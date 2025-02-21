@@ -39,7 +39,7 @@ $
   ||a| - |b|| <= |a - b| <= |a| + |b|
 $
 
-#card("moivre", "Formule de Moivre", ("Complexes",))
+#card("moivre", "Formule de Moivre", ("Maths.Complexes",))
 
 Formule de Moivre.
 
