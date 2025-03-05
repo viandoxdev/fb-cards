@@ -87,7 +87,7 @@ Soient $a, b in RR$
 $
   cos a cos b &= 1/2 [ cos(a + b) + cos(a - b) ] \
   sin a sin b &= 1/2 [ cos(a - b) - cos(a + b) ] \
-  cos a sin b &= 1/2 [ cos(a + b) - cos(a - b) ] \
+  cos a sin b &= 1/2 [ sin(a + b) - sin(a - b) ] \
 $
 
 #card("trigfac", "Formules de factorisation trigonométrique", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
