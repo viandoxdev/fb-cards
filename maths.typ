@@ -221,3 +221,21 @@ $
   & + (-1)^n abs(A_1 inter A_2 inter dots.c inter A_n) \
   abs(union.big_(k = 1)^n A_k) &= sum_(k = 1)^n (-1)^k sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
 $
+
+#card("majmaxbs", "Majorant, borne supérieure, élément maximale", ("Maths.Relations",))
+
+Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$, définitions de
+
+- Majorant
+- Maximum
+- Borne supérieure
+- Élément maximale
+
+#answer
+
+Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$.
+
+/ Majorant: $M in E$ est un majorant de $A$ si $forall x in A, x <= M$
+/ Maxium: $M$ est le maximum de $A$ si $M$ est un majorant de $A$ et $M in A$. S'il existe il est unique.
+/ Borne supérieure: $B$ est la borne supérieure de $A$ si $B$ est le plus petit majorant de $A$ : $forall M in E, (forall x in A, x <= M) => B <= M$. Si elle existe elle est unique.
+/ Élément maximale: $M$ est un élément maximale de $A$ si $M$ n'est plus petit que personne : $exists.not x in A, M <= x$. Dans le cas d'un ensemble totalement ordonné, seul un maximum est élément maximale, dans le cas d'un ensemble non totalement ordonné, il peut en exister plusieurs.
