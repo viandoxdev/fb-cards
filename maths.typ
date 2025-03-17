@@ -39,7 +39,7 @@ $
   ||a| - |b|| <= |a - b| <= |a| + |b|
 $
 
-#card("moivre", "Formule de Moivre", ("Maths.Complexes",))
+#card("moivre", "Formule de Moivre", ("Maths.Analyse.Complexes",))
 
 Formule de Moivre.
 
@@ -51,7 +51,7 @@ $
   (cos theta + i sin theta)^n = cos (n theta) + i sin (n theta)
 $
 
-#card("trigsomme", "Formules d'addition trigonometrique", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("trigsomme", "Formules d'addition trigonometrique", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules d'additions trigonométriques.
 
@@ -64,7 +64,7 @@ $
   tan(theta + phi) &= (tan theta + tan phi) / (1 - tan theta tan phi) \
 $
 
-#card("trigdup", "Formules de duplication trigonométrique", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("trigdup", "Formules de duplication trigonométrique", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules de duplication trigonométriques.
 
@@ -77,7 +77,7 @@ $
   tan(2 theta) &= (2 tan theta) / (1 - tan^2 theta) \
 $
 
-#card("triglin", "Formules de linéarisation trigonométrique", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("triglin", "Formules de linéarisation trigonométrique", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules de linéarisation trigonométriques.
 
@@ -90,7 +90,7 @@ $
   cos a sin b &= 1/2 [ sin(a + b) - sin(a - b) ] \
 $
 
-#card("trigfac", "Formules de factorisation trigonométrique", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("trigfac", "Formules de factorisation trigonométrique", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules de factorisation trigonométriques.
 
@@ -103,7 +103,7 @@ $
   sin p + sin q &= &2 sin ((p + q) / 2) cos ((p - q) / 2) \
 $
 
-#card("trigts2", "Formules en tangente de theta sur deux", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("trigts2", "Formules en tangente de theta sur deux", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules en $tan theta / 2$.
 
@@ -116,7 +116,7 @@ $
   tan theta &= (2 tan theta / 2) / (1 - tan^2 theta / 2) \
 $
 
-#card("trigparper", "Formules de parité et périodicité trigonométriques", ("Maths.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("trigparper", "Formules de parité et périodicité trigonométriques", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules de parité et périodicité trigonométriques.
 
@@ -202,7 +202,7 @@ $
 vec(n, k) + vec(n, k+1) = vec(n + 1, k + 1)
 $
 
-#card("cribleens", "Formule du crible", ("Maths.Ensembles",))
+#card("cribleens", "Formule du crible", ("Maths.Algèbre.Ensembles",))
 
 Formule du crible : soit $A_1, dots, A_n subset.eq E$
 
@@ -222,7 +222,7 @@ $
   abs(union.big_(k = 1)^n A_k) &= sum_(k = 1)^n (-1)^k sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
 $
 
-#card("majmaxbs", "Majorant, borne supérieure, élément maximale", ("Maths.Relations",))
+#card("majmaxbs", "Majorant, borne supérieure, élément maximale", ("Maths.Algèbre.Relations",))
 
 Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$, définitions de
 
@@ -239,3 +239,171 @@ Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$.
 / Maxium: $M$ est le maximum de $A$ si $M$ est un majorant de $A$ et $M in A$. S'il existe il est unique.
 / Borne supérieure: $B$ est la borne supérieure de $A$ si $B$ est le plus petit majorant de $A$ : $forall M in E, (forall x in A, x <= M) => B <= M$. Si elle existe elle est unique.
 / Élément maximale: $M$ est un élément maximale de $A$ si $M$ n'est plus petit que personne : $exists.not x in A, M <= x$. Dans le cas d'un ensemble totalement ordonné, seul un maximum est élément maximale, dans le cas d'un ensemble non totalement ordonné, il peut en exister plusieurs.
+
+#card("edlo1", "EDL d'ordre 1", ("Maths.Analyse.EDL",))
+
+Soit $a, b in CC, c(x)$ et $C(x)$ tel que $C'(x) = c(x)$.
+
+$
+  (E_1) : quad y' = a y + b \
+  (E_2) : quad y' = c(x) y
+$
+
+#answer
+
+Les solutions $S_1$ et $S_2$ de $(E_1)$ et $(E_2)$ sont
+$
+  S_1 = {x |-> lambda e^(a x) - b / a, lambda in RR} \
+  S_2 = {x |-> lambda e^(A(x)), lambda in RR}
+$
+
+#card("edlsepvar", "Méthode de séparation des variables", ("Maths.Analyse.EDL",))
+
+Soit $a(x) in D^1$
+$
+  (dif y) / (dif x) = a(x) y \
+  y(x) = thin ?
+$
+
+#answer
+
+Soient $a(x) in D^1$ et $A(x)$ une primitive de $a(x)$.
+$
+  (dif y) / (dif x) = a(x) y \
+  (dif y) / y = a(x) dif x \
+  integral_(y_0)^y (dif y) / y = integral_(x_0)^x a(x) dif x \
+  ln y - ln y_0 = A(x) - A(x_0) \
+  y = underbrace(y_0 e^(-A(x_0)), lambda) e^(A(x))
+$
+
+#card("edlvarcst", "Méthode de variation de la constante", ("Maths.Analyse.EDL",))
+
+Soient $a(x), b(x) : RR -> RR$ et $A(x)$ une primitive de $a(x)$.
+$
+  y' = a(x) y + b(x) \
+  f_h : quad y(x) = lambda e^(A(x))
+$
+
+Trouver $f_p$ solution particulière par la variation de la constante.
+
+#answer
+
+Soient $a(x), b(x) : RR -> RR$ et $A(x)$ une primitive de $a(x)$.
+$
+  y' = a(x) y + b(x) \
+  f_h : quad y(x) = lambda e^(A(x))
+$
+On fait varier la constante : $lambda -> lambda(x)$ :
+$
+  f_p (x) &= lambda(x) e^(A(x)) \
+  f_p' (x) &= a(x) f_p(x) + b(x) \
+  &= lambda'(x) e^(A(x)) + lambda(x) a(x) e^(A(x))  \
+  &= lambda(x) a(x) e^(A(x)) + b(x) \
+  lambda'(x) &= b(x) e^(-A(x)) \
+  lambda (x) &= integral b(x) e^(-A(x)) dif x
+$
+
+#card("edlo2", "EDL d'ordre 2", ("Maths.Analyse.EDL",))
+
+Soient $a, b, c in CC$, résolution de l'équation homogène :
+$
+  a y'' + b y' + c y = 0
+$
+
+#answer
+
+Soient $a, b, c in CC$
+$
+  a y'' + b y' + c y = 0
+$
+On appèlle équation caractèristique
+$
+  (E C) : quad a z^2 + b z + c = 0
+$
+- Si $Delta > 0$, soit $r_1, r_2$ les racines (réelles) de $(E C)$
+  $
+    f_h(x) = lambda e^(r_1 x) + mu e^(r_2 x), quad lambda, mu in RR
+  $
+- Si $Delta = 0$, soit $r$ la racine double de $(E C)$
+  $
+  f_h(x) = (lambda + mu x) e^(r x), quad lambda, mu in RR
+  $
+- Si $Delta < 0$, soit $alpha + i beta$ et $alpha - i beta$ les racines complexes de $(E C)$ #h(1fr)
+  $
+  f_h(x) = e^(alpha x)(lambda cos (beta x) + mu sin (beta x))
+  $
+#card("axgroupe", "Axiomes d'un groupe", ("Maths.Algèbre.Groupes",))
+
+Soit $G$ un ensemble muni d'une opération interne $*$, quels axiomes pour que $(G, *)$ ait une structure de groupe ?
+
+#answer
+
+Soit $G$ un ensemble et $*$ une opération interne, $(G, *)$ forme un groupe si
+#[
+  #set enum(numbering: "i)")
+  + Associativité : #h(1fr)
+    $
+      forall x, y, z in G, x * (y * z) = (x * y) * z
+    $
+  + Existence d'un neutre :
+    $
+      exists e in G, forall x in G, x * e = e * x = x
+    $
+  + Existence d'inverse :
+    $
+      forall x in G, exists y in G, x * y = y * x = e
+    $
+]
+
+#card("vocensstruct", "Vocabulaire d'ensemble structuré", ("Maths.Algèbre",))
+
+Définitions du vocabulaire suivant 
+- Magma
+- Semi-groupe
+- Monoïde
+- Groupe
+
+#answer
+
+#align(center, table(columns: (auto,) * 6,
+  table.header([Ensemble], [Loi interne], [Associative], [Neutre], [Inverse], [Nom]),
+  $times$, $times$, [], [], [], [Magma],
+  $times$, $times$, $times$, [], [], [Semi-groupe],
+  $times$, $times$, $times$, $times$, [], [Monoïde],
+  $times$, $times$, $times$, $times$, $times$, [Groupe]
+))
+
+#card("axsousgroupe", "Axiomes d'un sous-groupe", ("Maths.Algèbre.Groupes",))
+
+Soit $(G, *)$ un groupe, quels axiome pour que $H subset.eq G$ soit un sous-groupe ?
+
+#answer
+
+Soit $(G, *)$ un groupe et $H subset.eq G$, $H$ est un sous-groupe de $G$ si
+#[
+  #set enum(numbering: "i)")
+  + Présence du neutre : #h(1fr)
+    $
+      e in H
+    $
+  + Stable par $*$ :
+    $
+      forall x, y in H, x * y in H
+    $
+  + Stable par inverse :
+    $
+      forall x in H, x^(-1) in H
+    $
+]
+
+#card("thlagrange", "Théorème de Lagrange", ("Maths.Algèbre.Groupes",))
+
+Énoncer le théorème de Lagrange sur les groupes.
+
+#answer
+
+Soit $(G, dot)$ un groupe fini et $H$ un sous-groupe de $G$
+
+$
+  |H| | |G|
+$
