@@ -236,7 +236,7 @@ Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$, définitions de
 Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$.
 
 / Majorant: $M in E$ est un majorant de $A$ si $forall x in A, x <= M$
-/ Maxium: $M$ est le maximum de $A$ si $M$ est un majorant de $A$ et $M in A$. S'il existe il est unique.
+/ Maximum: $M$ est le maximum de $A$ si $M$ est un majorant de $A$ et $M in A$. S'il existe il est unique.
 / Borne supérieure: $B$ est la borne supérieure de $A$ si $B$ est le plus petit majorant de $A$ : $forall M in E, (forall x in A, x <= M) => B <= M$. Si elle existe elle est unique.
 / Élément maximale: $M$ est un élément maximale de $A$ si $M$ n'est plus petit que personne : $exists.not x in A, M <= x$. Dans le cas d'un ensemble totalement ordonné, seul un maximum est élément maximale, dans le cas d'un ensemble non totalement ordonné, il peut en exister plusieurs.
 
@@ -332,6 +332,7 @@ $
   $
   f_h(x) = e^(alpha x)(lambda cos (beta x) + mu sin (beta x))
   $
+
 #card("axgroupe", "Axiomes d'un groupe", ("Maths.Algèbre.Groupes",))
 
 Soit $G$ un ensemble muni d'une opération interne $*$, quels axiomes pour que $(G, *)$ ait une structure de groupe ?
