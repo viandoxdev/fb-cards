@@ -27,7 +27,7 @@ $
   f(b) = sum_(k = 0)^(n) f^((k))(a) (x - a)^k / (k!) + integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
 $
 
-#card("inegtri", "Inégalitée Triangulaire", ("Maths.Analyse.Réels", "Maths.Complexes"))
+#card("inegtri", "Inégalitée Triangulaire", ("Maths.Analyse.Réels", "Maths.Analyse.Complexes"))
 
 Inégalitée triangulaire première et deuxième forme.
 
