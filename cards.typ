@@ -12,6 +12,7 @@
 
 #let card(id, name, tags) = {
   v(1em)
+  pagebreak()
   figure(
     kind: "Card",
     supplement: [Card],

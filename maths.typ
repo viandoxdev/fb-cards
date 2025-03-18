@@ -408,3 +408,33 @@ Soit $(G, dot)$ un groupe fini et $H$ un sous-groupe de $G$
 $
   |H| | |G|
 $
+
+#card("thlagrangedemo", "Démonstration du Théorème de Lagrange", ("Maths.Algèbre.Groupes",))
+
+Démonstration du théorème de Lagrange
+
+#answer
+
+Soit $(G, dot)$ un groupe fini et $H$ un sous-groupe.
+
+#let re = math.class("relation", $cal(R)$)
+- Relation quotienté par $H$ : $x re y$ si $y x^(-1) in H$ (relation d'équivalence). On note $G_(\/ H)$ l'ensemble des classes d'équivalences.
+- Soit $x in G$, $accent(x, macron)$ sa classe d'équivalence pour $re$. $accent(x, macron) = H x = {h x, h in H}$.
+
+  Par double inclusion :
+  - $H x subset.eq accent(x, macron)$ : Soit $y in H x$, $y = h x$ avec $h in H$, donc $y x^(-1) = h in H$ d'où $y re x$ et $y in accent(x, macron)$.
+  - $accent(x, macron) subset.eq H x$ : Soit $y in accent(x, macron)$, $y x^(-1) = h in H$, donc $y = h x in H x$.
+- Donc $forall x in G, accent(x, macron) = H x tilde.eq H$ d'où $abs(accent(x, macron)) = abs(H)$.
+- Enfin par le lemme du berger : $abs(G_(\/ H)) = abs(G) / abs(H)$ et donc $abs(H) | abs(G)$.
+
+#card("propmorphgrouplag", "Relation de cardinal pour un morphisme de groupe", ("Maths.Algèbre.Groupes",))
+
+Soient $(G_1, +), (G_2, dot)$ des groupes et $phi : G_1 -> G_2$ un morphisme, avec $G_1$ fini. Que peut on dire de $abs(G_1)$ ?
+
+#answer
+
+Soient $(G_1, +), (G_2, dot)$ des groupes et $phi : G_1 -> G_2$ un morphisme, avec $G_1$ fini.
+
+$
+  abs(G_1) = abs(ker phi) dot abs(im phi)
+$
