@@ -438,3 +438,80 @@ Soient $(G_1, +), (G_2, dot)$ des groupes et $phi : G_1 -> G_2$ un morphisme, av
 $
   abs(G_1) = abs(ker phi) dot abs(im phi)
 $
+
+#card("axanneaux", "Axiomes d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
+
+Soit $A$ muni de deux opérations internes $+$ et $times$, quels axiomes pour que $(A, +, times)$ soit un anneau ?
+
+#answer
+
+Soit $A$ muni de deux opérations internes $+$ et $dot$, $(A, +, dot)$ est un anneau si il existe $0_A, 1_A in A$ tel que pour tout $x, y, z in A$, il existe $(-x) in A$ et
+#[
+  #set enum(numbering: "ia)")
+  + $(A, +)$ est un groupe abélien
+    + Associativité de $+$ #h(1fr)
+      $ 
+      x + (y + z) = (x + y) + z
+      $
+    + Existence d'un neutre additif
+      $
+      0_A + x = x + 0_A = x
+      $
+    + Existence d'inverses
+      $
+      x + (-x) = (-x) + x = 0_A
+      $
+    + Commutativité de $+$
+      $
+      x + y = y + x
+      $
+  + Associativité de $dot$
+    $
+    x(y z) = (x y) z
+    $
+  + Existence d'un neutre multiplicatif
+    $
+    1_A x = x 1_A = x
+    $
+  + Distributivité de $dot$ sur $+$
+    $
+    x (y + z) = x y + x z "et" (x + y) z = x z + y z
+    $
+]
+
+#card("dibzero", "Diviseur de zéro", ("Math.Algèbre.Anneaux et corps",))
+
+Définition de diviseur de $0$ dans un anneau.
+
+#answer
+
+Soit $(A, +, dot)$ un anneau, $x in A$ est dit diviseur de $0$ (à gauche) si $x != 0$ et $ exists y != 0, quad x y = 0$
+
+#card("integrité", "Intégrité d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
+
+Définition d'un anneau intègre.
+
+#answer
+
+Un anneau $(A, +, dot)$ est dit intègre si
+- $A$ est commutatif
+- $A$ n'admet aucun diviseur de $0$
+
+#card("grpinv", "Groupe des inversibles", ("Maths.Algèbre.Anneaux et corps",))
+
+Définition de groupe des inversibles d'un anneau.
+
+#answer
+
+Le groupe des inversibles d'un anneau $(A, +, dot)$, est le groupe $(A^"inv", dot)$.
+
+#card("ideal", "Idéal d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
+
+Définition d'un idéal d'un anneau.
+
+#answer
+
+Soit $(A, +, dot)$ un anneau et $I subset.eq A$, $I$ est un idéal de $A$ si
+
+- $I$ est un sous-groupe additif de $A$
+- $I$ est stable par produit externe : $forall x in I, forall a in A, a x in I$
