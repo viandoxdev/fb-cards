@@ -166,12 +166,12 @@ $
 
 Soit $k, n, p in NN$
 
-#pad(x: 20%, grid(columns: (1fr, 1fr),
+#pad(x: 20%, grid(columns: (1fr, 6em, 1fr),
 $
   vec(n, 0) &= thin ? \
   sum_(k=0)^n vec(n, k) &= thin ? \
   vec(n, n - k) &= thin ? \
-$,
+$, [],
 $
   vec(n, n) &= thin ? \
   k vec(n, k) &= thin ? \
@@ -186,20 +186,13 @@ $
 
 Soit $k, n, p in NN$
 
-#pad(x: 20%, grid(columns: (1fr, 1fr),
 $
-  vec(n, 0) &= 1 \
-  sum_(k=0)^n vec(n, k) &= 2^n \
-  vec(n, n - k) &= vec(n, k) \
-$,
-$
-  vec(n, n) &= 1 \
-  k vec(n, k) &= n vec(n - 1, k - 1) \
-  vec(k, p) vec(n, k) &= vec(n, p) vec(n - p, k - p)
-$
-))
-$
-vec(n, k) + vec(n, k+1) = vec(n + 1, k + 1)
+  vec(n, 0) = vec(n, n) = 1 \
+  sum_(k=0)^n vec(n, k) = 2^n \
+  vec(n, n - k) = vec(n, k) \
+  k vec(n, k) = n vec(n - 1, k - 1) \
+  vec(k, p) vec(n, k) = vec(n, p) vec(n - p, k - p) \
+  vec(n, k) + vec(n, k+1) = vec(n + 1, k + 1)
 $
 
 #card("cribleens", "Formule du crible", ("Maths.Algèbre.Ensembles",))
@@ -214,11 +207,11 @@ $
 
 Soit $A_1, dots, A_n subset.eq E$
 $
-  abs(union.big_(k = 1)^n A_k) &= abs(A_1) + abs(A_2) + dots.c + abs(A_n) \
-  & - abs(A_1 inter A_2) - dots.c - abs(A_(n - 1) inter A_n) \
-  & + abs(A_1 inter A_2 inter A_3) + dots.c + abs(A_(n - 2) inter A_(n - 1) inter A_n) \
-  & space dots.v \
-  & + (-1)^n abs(A_1 inter A_2 inter dots.c inter A_n) \
+  abs(union.big_(k = 1)^n A_k) thick & script(= thick abs(A_1) + abs(A_2) + dots.c + abs(A_n)) \
+  & script(- thick abs(A_1 inter A_2) - dots.c - abs(A_(n - 1) inter A_n)) \
+  & script(+ thick abs(A_1 inter A_2 inter A_3) + dots.c + abs(A_(n - 2) inter A_(n - 1) inter A_n)) \
+  & script(thick dots.v) \
+  & script(+ thick (-1)^n abs(A_1 inter A_2 inter dots.c inter A_n)) \
   abs(union.big_(k = 1)^n A_k) &= sum_(k = 1)^n (-1)^k sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
 $
 
@@ -366,13 +359,16 @@ Définitions du vocabulaire suivant
 
 #answer
 
-#align(center, table(columns: (auto,) * 6,
-  table.header([Ensemble], [Loi interne], [Associative], [Neutre], [Inverse], [Nom]),
-  $times$, $times$, [], [], [], [Magma],
-  $times$, $times$, $times$, [], [], [Semi-groupe],
-  $times$, $times$, $times$, $times$, [], [Monoïde],
-  $times$, $times$, $times$, $times$, $times$, [Groupe]
-))
+#[
+  #set text(size: 0.6em)
+  #align(center, table(columns: (auto,) * 6,
+    table.header([Ensemble], [Loi interne], [Associative], [Neutre], [Inverse], [Nom]),
+    $times$, $times$, [], [], [], [Magma],
+    $times$, $times$, $times$, [], [], [Semi-groupe],
+    $times$, $times$, $times$, $times$, [], [Monoïde],
+    $times$, $times$, $times$, $times$, $times$, [Groupe]
+  ))
+]
 
 #card("axsousgroupe", "Axiomes d'un sous-groupe", ("Maths.Algèbre.Groupes",))
 
@@ -441,45 +437,29 @@ $
 
 #card("axanneaux", "Axiomes d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
 
-Soit $A$ muni de deux opérations internes $+$ et $times$, quels axiomes pour que $(A, +, times)$ soit un anneau ?
+Soit $A$ muni de deux opérations internes $+$ et $dot$, quels axiomes pour que $(A, +, dot)$ soit un anneau ?
 
 #answer
 
-Soit $A$ muni de deux opérations internes $+$ et $dot$, $(A, +, dot)$ est un anneau si il existe $0_A, 1_A in A$ tel que pour tout $x, y, z in A$, il existe $(-x) in A$ et
+$(A, +, dot)$ est un anneau si :
+#v(0.5em)
 #[
   #set enum(numbering: "ia)")
   + $(A, +)$ est un groupe abélien
     + Associativité de $+$ #h(1fr)
-      $ 
-      x + (y + z) = (x + y) + z
-      $
-    + Existence d'un neutre additif
-      $
-      0_A + x = x + 0_A = x
-      $
-    + Existence d'inverses
-      $
-      x + (-x) = (-x) + x = 0_A
-      $
+    + Existence d'un neutre additif $(0_A)$
+    + Existence d'opposés $(-x)$
     + Commutativité de $+$
-      $
-      x + y = y + x
-      $
   + Associativité de $dot$
-    $
-    x(y z) = (x y) z
-    $
-  + Existence d'un neutre multiplicatif
-    $
-    1_A x = x 1_A = x
-    $
+  + Existence d'un neutre multiplicatif $(1_A)$
   + Distributivité de $dot$ sur $+$
     $
-    x (y + z) = x y + x z "et" (x + y) z = x z + y z
+    x (y + z) &= x y + x z \
+    (x + y) z &= x z + y z
     $
 ]
 
-#card("dibzero", "Diviseur de zéro", ("Math.Algèbre.Anneaux et corps",))
+#card("dibzero", "Diviseur de zéro", ("Maths.Algèbre.Anneaux et corps",))
 
 Définition de diviseur de $0$ dans un anneau.
 
@@ -515,3 +495,80 @@ Soit $(A, +, dot)$ un anneau et $I subset.eq A$, $I$ est un idéal de $A$ si
 
 - $I$ est un sous-groupe additif de $A$
 - $I$ est stable par produit externe : $forall x in I, forall a in A, a x in I$
+
+#card("axcorps", "Axiomes d'un corps", ("Maths.Algèbre.Anneaux et corps",))
+
+Soit $K$ muni de deux opérations internes $+$ et $dot$, quels axiomes pour que $(K, +, dot)$ soit un corps ?
+
+#answer
+
+$(K, +, dot)$ est un corps si :
+#v(0.5em)
+#[
+  #set enum(numbering: "ia)")
+  + $(K, +)$ est un groupe abélien
+    + Associativité de $+$ #h(1fr)
+    + Existence d'un neutre additif $(0)$
+    + Existence d'opposés $(-x)$
+    + Commutativité de $+$
+  + Associativité de $dot$
+  + Commutativité de $dot$
+  + Existence d'un neutre multiplicatif $(1)$
+  + Distributivité de $dot$ sur $+$
+  + Existence d'inverses (sauf pour $0$)
+  $
+    forall x in K\{0}, exists x^(-1) in K \
+    x x^(-1) = x^(-1) x = 1
+  $
+]
+
+#card("corpsgauche", "Corps gauche, anneau à division", ("Maths.Algèbre.Anneaux et corps",))
+
+Qu'est-ce qu'un "corps gauche" ou "anneau à division" ?
+
+#answer
+
+Un corps gauche ou anneau a division et un anneau non commutatif dont tous les éléments sont inversible sauf $0$. C'est un corps dont le produit n'est pas commutatif.
+
+#card("axsouscorps", "Axiomes d'un sous-corps", ("Maths.Algèbre.Anneaux et corps",))
+
+Soit $(K, +, times)$ un corps, axiomes pour que $L subset.eq K$ soit un sous-corps ?
+
+#answer
+
+$(K, +, times)$ un corps, $L subset.eq K$ est un sous-corps si :
+#v(0.5em)
+#[
+  #set enum(numbering: "ia)")
+  + $0 in L$
+  + $1 in L$
+  + Stable par $+$
+  + Stable par $-$ ou stable par opposé
+  + Stable par $times$
+  + Stable par $div$ ou stable par inverse
+]
+
+#card("carprem", "Primalité de la caracèristique d'un corps", ("Maths.Algèbre.Anneaux et corps",))
+
+Si $(K, +, dot)$ est un corps de caractèristique non nulle, que peut-on dire sur celle ci ?
+
+#answer
+
+$(K, +, dot)$ un corps, notons $p$ sa caractèristique, si $p != 0$ alors $p$ est premier
+
+Démonstration:
+
+Notons $p = a b$ avec $a, b in NN$
+
+$
+  (sum_(k = 1)^a 1) (sum_(k = 1)^b 1) &= sum_(k = 1)^a sum_(k = 1)^b 1 \
+  &= sum_(k = 1)^(a b = p) 1 \
+  &= 0
+$
+
+Or un corps n'admet pas de diviseurs de $0$, donc $sum_(k = 1)^a 1 = 0$ ou $sum_(k = 1)^b 1 = 0$, d'où 
+$
+"ou" space vec(delim: #none, a = p\, b = 1, p = b\, a = 1)
+$
+Donc $p$ est premier.
+
