@@ -42,7 +42,7 @@
     } else {
       block(
         inset: (left: 0.5em, top: 0.2em, bottom: 0.2em),
-        stroke: (left: 0.75pt + black),
+        stroke: (left: 0.8pt + black),
         spacing: 0.9em,
         {
           text(weight: "bold", node.name, font: "DejaVu Sans Mono", size: 8pt)

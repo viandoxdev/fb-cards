@@ -517,7 +517,7 @@ $(K, +, dot)$ est un corps si :
   + Distributivité de $dot$ sur $+$
   + Existence d'inverses (sauf pour $0$)
   $
-    forall x in K\{0}, exists x^(-1) in K \
+    forall x in K\\{0}, exists x^(-1) in K \
     x x^(-1) = x^(-1) x = 1
   $
 ]
@@ -572,3 +572,62 @@ $
 $
 Donc $p$ est premier.
 
+#card("corpsfrac", "Corps des fractions", ("Maths.Algèbre.Anneaux et corps",))
+
+Définition du corps des fractions d'un anneau intègre.
+
+#answer
+
+#[
+  #let re = math.class("relation", $cal(R)$)
+  $(A, +', dot)$ un anneau intègre.
+
+  - Soit $(a, b),(c, d) in A times A\\{0}$, on définit la relation d'équivalence suivante :
+    $
+    (a, b) re (d, c) "si" a d = b c
+    $
+  - On note $a / b$ la classe d'équivalence de $(a, b)$.
+  - On définit les opérations $+, times$ sur les fractions
+    $
+    a / b plus c / d = (a d +' c b) / (b d) \
+    a / b times c / d = (a c) / (b d)
+    $
+  Le corps des fractions de $A$ est le corps 
+  $
+  (A times A\\{0}, plus, times)
+  $
+]
+
+#card("thgauss", "Théorème de Gauss", ("Maths.Algèbre.Arithmétique",))
+
+Théorème de Gauss.
+
+#answer
+
+Soit $a, b, c in NN$, si $a | b c$ et $a and b = 1$ alors $a | c$
+
+#card("eqdioph", "Équations diophantiennes", ("Maths.Algèbre.Arithmétique",))
+
+Résolutions d'une équation de la forme $a x + b y = c$ dans $ZZ$.
+
+#answer
+
+
+Soit $a, b, c in ZZ$
+$
+  (E) : quad a x + b y = c
+$
+- Solution homogène : On cherche un couple $(u, v) in ZZ^2$ (Bézout) tel que 
+  $
+  a u + b v = c
+  $
+- Solution particulière : il en existe si 
+  $
+  a and b | c
+  $
+- Les solutions sont 
+  $
+  S = cases(x = x_p - k b', y = y_p + k a') \
+  "avec" (x_p, y_p) "solution particulière" \
+  "et" a' = a / (a and b), quad b' = b / (a and b)
+  $
