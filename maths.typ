@@ -12,7 +12,7 @@ Soit $f : [a, b] -> RR$, $C^n$ sur $[a, b]$ et $D^(n+1)$ sur $]a,b[$
 
 Il existe $c in ]a, b[$ tel que
 $
-  f(b) = sum_(k = 0)^(n) f^((k))(a) (x - a)^k / (k!) + f^(n+1) (c) (x - a)^(n+1) / ((n+1)!)
+  f(b) = sum_(k = 0)^(n) f^((k))(a) (x - a)^k / (k!) + f^((n+1)) (c) (x - a)^(n+1) / ((n+1)!)
 $
 
 #card("anatlri", "Taylor reste intégrale", ("Maths.Analyse.Intégration", "Maths.Analyse.Taylor"))
