@@ -631,3 +631,143 @@ $
   "avec" (x_p, y_p) "solution particulière" \
   "et" a' = a / (a and b), quad b' = b / (a and b)
   $
+
+#card("nbfermat", "Nombres de Fermat", ("Maths.Algèbre.Arithmétique",))
+
+Que sont les nombres de Fermat, et quelques propriétées.
+
+#answer
+
+Le $n$-ème nombre de Fermat est 
+$
+F_n = 2^(2^n) - 1
+$
+Ils sont impaires et premier entre eux :
+
+Soit $n < m in NN$,
+
+$
+  &(2^(2^n) - 1)& dot &F_n& dot &F_(n+1) dot dots.c dot F_(m - 1) \
+  &(2^(2^n) - 1)& dot &(2^(2^n) + 1)& dot &F_(n+1) dot dots.c dot F_(m - 1) \
+  &&& (2^(2^(n+1)) - 1)& dot &F_(n+1) dot dots.c dot F_(m-1) \
+$
+$
+  dots.v \
+  2^(2^(m)) - 1 = F_m - 2
+$
+Donc $F_n | F_m - 2$, d'où $F_m and F_n | F_m - 2$, donc $F_m and F_n | 2$, mais ils sont impaire donc premier entre eux.
+
+#card("euclid", "Lemme d'Euclide", ("Maths.Algèbre.Arithmétique",))
+
+Théorème du lemme d'Euclide.
+
+#answer
+
+Soit $p in PP, a,b in ZZ$,
+$
+p | a b => p | a "ou" p | b
+$
+
+Plus algébriquement :
+
+$
+  ZZ_(\/ p ZZ) "est un anneaux intègre :" \
+  a b equiv 0 space [p] => a equiv 0 space [p] "ou" b equiv 0 space [p]
+$
+
+#card("nbdiv", "Formule du nombre de diviseurs", ("Maths.Algèbre.Arithmétique",))
+
+Formule du nombre de diviseurs d'un entier.
+
+#answer
+
+$
+  n = p_1^alpha_1 p_2^alpha_2 dots.c p_k^alpha_k \
+  "nombre de diviseurs" = product_(i = 1)^k (alpha_k + 1)
+$
+
+#card("crt", "Théorème des restes chinois", ("Maths.Algèbre.Arithmétique",))
+
+Théorème des restes chinois.
+
+#answer
+
+Soit $n, m in NN^star$ premiers entre eux
+
+- Formulation arithmétique : #h(1fr)
+  $
+  forall a in [|0, m-1|], forall b in [|0, n-1|], \
+  exists! x in [|0, n m - 1|], \
+  x equiv a space [m] "et" x equiv b space [n]
+  $
+- Formulation algébrique :
+  $
+  phi space : space mat(delim: #none,
+    ZZ_(\/ m n ZZ), ->, ZZ_(\/ m ZZ) times ZZ_(\/ n ZZ);
+    x,|->,vec(x &space [m], x &space [n])
+  )
+  $
+  est un isomorphisme d'anneaux.
+
+#card("ptitfermat", "Petit théorème de Fermat", ("Maths.Algèbre.Arithmétique",))
+
+Petit théorème de Fermat.
+
+#answer
+
+- Première formulation : #h(1fr)
+  $
+    forall p in PP, forall a in ZZ, \
+    a and p = 1 => a^(p - 1) equiv 1 space [p]
+  $
+- Deuxième formulation (moins forte) :
+  $
+    forall p in PP, forall a in ZZ, \
+    a^p equiv a space [p]
+  $
+- Démo :
+  On étudie $(ZZ_(\/p ZZ))^"inv"$ :
+  $
+    forall a in (ZZ_(\/p ZZ))^"inv", "ord"(a) | p - 1 "(Lagrange)" \
+    a^(p - 1) equiv 1 space [p]
+  $
+
+#card("indeuler", "Indicatrice d'Euler", ("Maths.Algèbre.Arithmétique",))
+
+Définition de l'indicatrice d'Euler, et propriétées.
+
+#answer
+
+La fonction indicatrice d'Euler est
+$
+  phi space : space mat(delim: #none, NN^star, ->, NN; n, |->, abs((ZZ_(\/n ZZ))^"inv")) \
+$
+Quelques propriétées :
+
+$
+phi(p) = p - 1 \
+phi(p^alpha) = p^alpha - p^(alpha - 1) \
+m and n = 1 => phi(m n) = phi(m) phi(n) \
+phi(n = p_1^alpha_1 p_2^alpha_2 dots.c p_k^alpha_k) = product_(i = 1)^k (p_i^alpha - p_i^(alpha - 1)) \
+phi(n) / n = product_(i = 1)^(k) (1 - 1 / p_i) \
+sum_(d in "Div"(n)) phi(d) = n
+$
+Pour se convaincre de la dernière :
+$
+1 / n + 2 / n + dots.c + n / n \
+$
+Sous formes irréductibles ($p_i and q_i = 1$)
+$
+p_1 / q_1 + p_2 / q_2 + dots.c + p_n / q_n
+$
+Il y a $n$ fractions, les $q_i in "Div"(n)$, et pour chaque $q_i$, on a tous les $p_i <= q_i$, qui sont premiers avec eux :
+
+$
+  underbrace(sum_(d in "Div"(n)), "somme sur" \ "tous les" \ "dénominateur") underbrace(phi(d), "nombre de" \ "fractions pour le" \ "dénominateur" d) = underbrace(n, "nombre de" \ "fractions")
+$
+
+Enfin, une généralisation du petit théorème de Fermat :
+
+$
+  a and n = 1 => a^(phi(n)) equiv 1 space [n]
+$
