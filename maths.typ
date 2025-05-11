@@ -708,6 +708,7 @@ Soit $n, m in NN^star$ premiers entre eux
   )
   $
   est un isomorphisme d'anneaux.
+- Structure de preuve : injectivité par $ker phi$ + argument de cardinal.
 
 #card("ptitfermat", "Petit théorème de Fermat", ("Maths.Algèbre.Arithmétique",))
 
@@ -771,3 +772,317 @@ Enfin, une généralisation du petit théorème de Fermat :
 $
   a and n = 1 => a^(phi(n)) equiv 1 space [n]
 $
+
+#card("bezout", "Théorème de Bézout", ("Maths.Algèbre.Arithmétique",))
+
+Énoncé et preuve du théorème de Bézout.
+
+#answer
+
+- Soient $a, b in NN$ et $d = a and b$ alors il existe $u, v in ZZ$ tel que $a u + b v = d$.
+- Preuve : Soit $I = {a u + b v, (u, v) in ZZ }$
+
+  $I$ est un idéal de $ZZ$, donc $exists d in ZZ, I = d ZZ$ (principalité de $ZZ$). Donc $d | a$ et $d | b$.
+
+  Soit $diff$ tel que $d | a$ et $d | b$. $forall x in I, diff | x$, en particulier $diff | d$ d'où $diff <= d$.
+
+  $a and b = d in I$ d'où $exists u,v in ZZ, d = a u + b v$
+
+#card("propidcd", "Propriétées diviseurs communs", ("Maths.Algèbre.Arithmétique",))
+
+Soit $a, b in ZZ$
+$
+  x | a "et" x | b "ssi" space ? \
+  a | y "et" b | y "ssi" space ? \
+  a ZZ + b ZZ = space ? \
+  a ZZ inter b ZZ = space ? \
+$
+
+#answer
+
+Soit $a, b in ZZ$
+$
+  x | a "et" x | b "ssi" space x | (a and b) \
+  a | y "et" b | y "ssi" space m | (a or b) \
+  a ZZ + b ZZ =  (a and b) ZZ\
+  a ZZ inter b ZZ = (a or b) ZZ \
+$
+
+#card("corptotord", "Corps totalement ordonné", ("Maths.Analyse.Réels",))
+
+Définition d'un corps totalement ordonné.
+
+#answer
+
+Soit $(K, +, dot)$ un corps et un ordre $<=$.
+
++ $forall x, y, z in K, x <= y => x + z <= y + z$
++ $forall x, y in K, x >= 0 "et" y >= 0 => x y >= 0$
+
+$RR$ et $QQ$ sont ordonnés, $CC$ ne l'est pas. Mais il existe un seul corps totalement ordonné (à isomorphisme près) : $RR$.
+
+#card("porpreel", "Propriété fondamentale des réels", ("Maths.Analyse.Réels",))
+
+Propriété fondamentale des réels.
+
+#answer
+
+Toute partie non vide majoré de $RR$ admet une borne sup. De même pour minoré.
+
+On en déduit (car $RR$ est totalement ordonné) que
+- $x >= 0 => -x <= 0$
+- Loi du signe de produit
+- $x^2 >= 0$
+- $1 > 0$
+- $x > 0 => 1/x > 0$
+- $0 < x <= y => 1/x >= 1/y$
+
+#card("propsup", "Propriété de la borne supérieure", ("Maths.Analyse.Réels",))
+
+Propriété de la borne supérieure.
+
+#answer
+
+Soit $A subset.eq RR$ non vide majoré, $S = sup A$ ssi
++ $forall x in A, x <= S$
++ $forall epsilon > 0, exists y in A, s - epsilon < y$
+
+#card("partconv", "Partie convexe de R", ("Maths.Analyse.Réels",))
+
+Définition de partie convexe.
+
+#answer
+
+Une partie convexe de $RR$ est un ensemble $C subset.eq RR$ tel que
+$
+  forall x <= y in C, [x, y] subset.eq C
+$
+Les parties convexes de $RR$ sont des intervalles.
+
+#card("densite", "Densité", ("Maths.Analyse.Réels",))
+
+Définition de densité.
+
+#answer
+
+Soit $D subset.eq RR$, $D$ est dense dans $RR$ si
+$
+  forall a < b in RR, ]a, b[ inter D != emptyset
+$
+$QQ$ est dense dans $RR$, preuve : saut de grenouille.
+
+#card("vois", "Voisinage", ("Maths.Analyse.Réels",))
+
+Définition de voisinage.
+
+#answer
+
+Soit $x in overline(RR)$, $V subset.eq RR$ est un voisinage de $x$ si 
+$
+exists epsilon > 0, ] x-epsilon, x+epsilon [ subset.eq V
+$
+On note $cal(V) (x)$ l'ensemble des voisinages de $x$.
+
+#card("adh", "Adhérence", ("Maths.Analyse.Réels",))
+
+Définition et propriétés de l'adhérence d'un ensemble.
+
+#answer
+
+Soit $A subset.eq RR$, $x in overline(RR)$, $x in RR$ est adhérent à $A$ si
+$
+  forall V in cal(V)(x), V inter A != emptyset
+$
+L'adhérence de $A$ est alors
+$
+  "adh"(A) &= {x in RR | x "adhérent à" A} \
+  &= {x in RR | script(forall epsilon > 0\, \]x-epsilon\, x+epsilon\[ inter A != emptyset)}
+$
+Propriétés :
+- $A subset.eq "adh"(A)$
+- Si $A$ non vide borné : ${inf A, sup A} subset.eq A$
+- $"adh"(]a,b[) = [a,b]$
+- $D$ est dense dans $RR$ ssi $"adh"(D) = RR$
+- $"adh"("adh"(A)) = "adh"(A)$
+
+#card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites Réelles",))
+
+Formule explicite d'une suite arithmético-géometrique.
+
+#answer
+
+Soit $a, b in RR$ et $(u_n)$ une suite tel que
+$
+  forall n in NN, u_(n+1) = a u_n + b
+$
+On note $f(x) = a x + b$, on trouve le point fixe $w = b / (1 - a)$. Soit $v_n= u_n - w$.
+$
+  v_(n+1) &= a u_n + b - underbrace((a w + b), -w) \
+  &= a(u_n - w) = a v_n \
+  v_n &= a^n v_0 \
+  u_n &= a^n (v_0 - w) + w
+$
+
+#card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites Réelles",))
+
+Formule explicite d'une suite récurrent d'ordre 2.
+
+#answer
+
+Soit $a, b in RR$, $(u_n)$ une suite tel que
+$
+  u_(n+2) = a u_(n+1) + b u_n
+$
+On résout l'équation caractèristique 
+$
+x^2 = a x + b
+$
+- Deux racines $r_1, r_2$ #h(1fr)
+  $
+    u_n = lambda r_1^n + mu r_2^n
+  $
+- Racine double $r$
+  $
+    u_n = (lambda + mu n)r^n
+  $
+Avec $lambda, mu in RR$ déterminés par $u_0$ et $u_1$.
+
+#card("carseq", "Caractèrisation séquentielle de l'adhérence", ("Maths.Analyse.Suites Réelles",))
+
+Caractèrisation séquentielle de l'adhérence et la borne supérieure.
+
+#answer
+
+Soit $A subset.eq RR$.
+- Si $(u_n)$ une suite à valeure dans $A$ et $u_n -> l$, alors $l in "adh"_overline(RR)(A)$.
+- Si $x in "adh"_overline(RR)$, alors il existe $(u_n) in A^NN$ tel que $u_n -> x$.
+Ainsi
+$
+  "adh"(A) = {x in RR | exists (u_n) in A^NN, u_n -> x}
+$
+Et $S = sup A$ existe si $A$ non vide majoré par $S$ et il existe $(u_n) in A^NN$ tel que $u_n -> S$.
+
+#card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites Réelles",))
+
+Définition et théorème des suites adjacentes et emboitées.
+
+#answer
+
+- Adjacentes :
+
+  Deux suites $(a_n)$ et $(b_n)$ sont adjacentes si
+  $
+  (a_n) arrow.tr, quad (b_n) arrow.br, quad lim_(n -> oo) (b_n - a_n) = 0
+  $
+
+  Théorème : $(a_n)$ et $(b_n)$ et $lim a_n = lim b_n$.
+
+  Preuve : Théorème de la limite croissante pour la convergence.
+- Emboitées :
+
+  La même chose avec des segments.
+
+  Théorème : 
+  $
+    inter.big_(n=0)^oo [a_n, b_n] = {x} "avec" x = lim a_n = lim b_n
+  $
+
+#card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites Réelles",))
+
+Théorème de Bolzano-Weiestrass et démonstration.
+
+#answer
+
+Toute suite réelle bornée admet une sous-suite convergente. Dans $RR^n$ (et $CC$), il suffit d'ếtre borné en norme ou module.
+
+Preuve :
+
+Soit $(u_n)$ une suite bornée par $a_0$ et $b_0$, notons $A = {u_n, n in NN}$. Par récurrence :
+- Ini : $abs([a_0, b_0] inter A) = oo$
+- Héré : On suppose $abs([a_n, b_n] inter A) = oo$, et on coupe en $m = (a_n + b_n) / 2$ :
+  - Si $abs([a_n, m] inter A) = oo$, $cases(a_(n+1) = a_n, b_(n+1) = m)$ #v(8pt)
+  - Si $abs([m, b_n] inter A) = oo$, $cases(a_(n+1) = m, b_(n+1) = b_n)$
+
+Par le théorème des suites emboitées : 
+$
+exists l in [a_0, b_0], space inter.big_(n = 0)^oo [a_n, b_n] = {l}
+$
+
+Soit $phi$ une extractrice, par récurrence :
+- Ini : $phi(0) = 0$
+- Héré : $[a_(n+1), b_(n+1)]$ est infini, donc il existe $m > phi(n)$ tel que $u_m in [a_(n+1), b_(n+1)]$. On prend $phi(n+1) = m$.
+
+Donc $a_n <= u_(phi(n)) <= b_n$ d'où $lim u_(phi(n)) = l$.
+
+#card("cesaro", "Moyennes de Cesàro", ("Maths.Analyse.Suites Réelles",))
+
+Définition, propriétés des moyennes de Cesàro.
+
+#answer
+
+Soit $(u_n)$ une suite. La suite des moyennes de Cesàro de $u_n$ est
+$
+  sigma_n = (a_1 + a_2 + dots.c + a_n) / n
+$
+Si $u_n -> l in overline(RR)$, alors $sigma_n -> l$.
+
+Preuve : 
+- $l$ fini : Découpage pour $n < N$ et $n >= N$ et inégalité triangulaire.
+- $l$ inifni : majoration.
+
+#card("asympt", "Manipulations asymptotiques", ("Maths.Analyse.Suites Réelles",))
+
+Manipulations asymptotiques élémentaires.
+
+#answer
+
+- $~$ : relation d'équivalence
+  - produit, quotient, exposant
+  - *pas* de somme, de composition, ...
+- $o(1) <=> "tend vers" 0, O(1) <=> "borné"$
+- $O$ et $o$ transitifs
+- $O$ et $o$ mangent les constantes
+- $u_n ~ v_n "ssi" u_n = v_n + o(v_n)$
+- Si $u_n ~ v_n$ (ou $O, o$), alors $u_(phi(n)) ~ v_(phi(n))$ (ou $O, o$)
+- $o$ et $~$ sont des cas particuliers de $O$.
+
+#card("asyusu", "Comparaison asymptotiques usuelles", ("Maths.Analyse.Suites Réelles",))
+
+Comparaison asymptotiques usuelles, stirling
+
+#answer
+
+Soit $k in RR_+^star, q > 1$, au voisinage de l'infini :
+$
+  n^k &= o(q^n) \
+  q^n &= o(n!) \
+  n! &~ sqrt(2 pi n) n^n / e^n \
+  ln (n!) &~ n ln n \
+  sum_(k = 1)^n 1/n &= ln n + gamma + o(1)
+$
+
+#card("lipschitz", "Fonctions K-Lipschitziennes", ("Maths.Analyse.Continuité",))
+
+Qu'est qu'une fonction $K$-lipschitzienne
+
+#answer
+
+Une fonction $f: A -> RR$ est $K$-lipschitzienne si
+$
+  forall x,y in A, abs(f(x) - f(y)) <= K abs(x - y)
+$
+Lipschitz sur un segment implique uniformement continue.
+
+#card("bornes", "Théorème des bornes atteintes", ("Maths.Analyse.Continuité",))
+
+Théorème des bornes atteintes et démonstration.
+
+#answer
+
+Si $f$ est $C^0 ([a, b])$, alors $f$ est bornée et atteint ses bornes.
+
+Preuve :
+
+Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR)(f([a, b]))$, donc il existe une suite $(x_n)$ à valeur dans $[a, b]$ tel que $f(x_n) -> M$.
+
+Par Bolzano-Weiestrass, il existe $phi$ tel que $x_n -> l$ avec $l in [a, b]$ et donc nécéssairement $M in RR$.
