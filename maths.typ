@@ -212,7 +212,7 @@ $
   & script(+ thick abs(A_1 inter A_2 inter A_3) + dots.c + abs(A_(n - 2) inter A_(n - 1) inter A_n)) \
   & script(thick dots.v) \
   & script(+ thick (-1)^n abs(A_1 inter A_2 inter dots.c inter A_n)) \
-  abs(union.big_(k = 1)^n A_k) &= sum_(k = 1)^n (-1)^k sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
+  abs(union.big_(k = 1)^n A_k) &= sum_(k = 1)^n (-1)^(k+1) sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
 $
 
 #card("majmaxbs", "Majorant, borne supérieure, élément maximale", ("Maths.Algèbre.Relations",))
@@ -1086,3 +1086,230 @@ Preuve :
 Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR)(f([a, b]))$, donc il existe une suite $(x_n)$ à valeur dans $[a, b]$ tel que $f(x_n) -> M$.
 
 Par Bolzano-Weiestrass, il existe $phi$ tel que $x_n -> l$ avec $l in [a, b]$ et donc nécéssairement $M in RR$.
+
+#card("heine", "Théorème de Heine", ("Maths.Analyse.Continuité",))
+
+Énoncé et démonstration du théorème de Heine.
+
+#answer
+
+Toute fonction continue sur un segment est uniformement continue.
+
+Preuve :
+
+Soit $f in C^0([a,b])$. Supposons par l'absurde que $f$ n'est pas uniformement continue.
+
+$
+  exists epsilon > 0, forall delta > 0, exists x, y in [a,b] \
+  |x - y| < delta "et" |f(x) - f(y)| >= epsilon
+$
+ 
+On prend $(x_n), (y_n) in [a,b]^NN$ tel que 
+$
+forall n in NN, |x_n - y_n| < 1/n \
+|f(x_n) - f(y_n)| >= epsilon
+$
+Ces suites sont bornées donc par Bolzano-Weiestrass, il existe une extractrice $phi$ tel que $x_(phi(n)) -> l in [a, b]$.
+
+Or $|x_(phi(n)) - y_(phi(n))| -> 0$ donc $y_(phi(n)) -> l$. 
+
+Mais par continuité de $f$, 
+$
+lim_(n->oo) f(x_(phi(n))) = lim_(n->oo) f(y_(phi(n))) = f(l)
+$
+
+Donc il existe $N in NN$ tel que 
+$
+|f(x_phi(n)) - f(y_(phi(n)))| < epsilon
+$
+Qui est absurde.
+
+#card("trigorec", "Fonctions trigonometriques réciproques", ("Maths.Analyse.Dérivation",))
+
+Domaine de définition et dérivés des fonctions trigonometrique réciproques.
+
+#answer
+
+#let ivl(delim: "[]", a, b) = {
+  let (l,r) = delim.split("").slice(1, count: 2)
+  $
+  lr(class("opening", #l) #a, #b class("closing", #r))
+  $
+}
+
+$
+  mat(delim: #none,
+    arccos,:,ivl(-1, 1),->,ivl(0, pi);
+    arccos',:,ivl(-1, 1, delim: "]["),->,ivl(-1,-oo, delim: "[[");
+    ,,x,|->,-1/sqrt(1 - x^2);;
+    arcsin,:,ivl(-1,1),->,ivl(-pi/2,pi/2);
+    arcsin',:,ivl(-1,1, delim: "]["),->,ivl(1,+oo, delim: "[[");
+    ,,x,|->,1/sqrt(1 - x^2);;
+    arctan,:,RR,->,ivl(-pi/2, pi/2);
+    arctan',:,RR,->,ivl(0,1, delim: "]]");
+    ,,x,|->, 1 / (1+x^2)
+  )
+$
+
+#card("extrloc", "Propriété des extrémum locaux", ("Maths.Analyse.Dérivation",))
+
+Que peut on dire si $f : I -> RR$ et dérivable et admet un extrémum local en $a in I\\{inf I, sup I}$.
+
+#answer
+
+Soit $f : I -> RR$ dérivable qui admet un extrémum local en $a$, un point intérieur à $I$, alors $f'(a) = 0$.
+
+Preuve : par hypothèse, pour un maximum (un minimum se traite de même)
+$
+exists V in cal(V)(a), forall x in V, f(x) <= f(a)
+$
+Étudions
+$
+lim_(x -> a) (f(x) - f(a)) / (x - a)
+$
+#pad(x: 0.5em, grid(columns: (1fr, 1fr),
+[
+Si $x < a$ : #h(1fr)
+  $
+    overbrace(f(x) - f(a), <= 0) / underbrace(x - a, < 0) >= 0
+  $
+],[
+Si $x > a$ :
+  $
+    overbrace(f(x) - f(a), <= 0) / underbrace(x - a, > 0) <= 0
+  $
+]))
+Donc $f'(a) = 0$ (les deux limites sont égales par la dérivabilité de $f$ en $a$).
+
+#card("rolletaf", "Théorème de Rolle, théorème des acroissements finis", ("Maths.Analyse.Dérivation",))
+
+Énoncé et preuve des théorèmes de Rolle et des acroissements finis.
+
+#answer
+Soit $f in C^0([a,b])$ dérivable sur $class("opening", ]) a,b class("closing", \[)$ 
+
+/ Rolle: Si $f(a) = f(b)$, alors 
+  $
+  exists c in class("opening", ]) a,b class("closing", \[), space f'(c) = 0
+  $
+/ TAF:
+  $
+  exists c in class("opening", ]) a,b class("closing", \[), space f'(c) = (f(b) - f(a)) / (b - a)
+  $
+
+Preuve :
+- Rolle : théorème des bornes atteintes, propriétés des extrémum locaux avec une disjonction de cas si les extrémums sont aux bornes.
+- TAF : Rolle en pente, on corrige par la pente pour se ramener à Rolle.
+
+#card("inegacrlag", "Inégalité des acroissements finis et de Taylor-Lagrange", ("Maths.Analyse.Dérivation",))
+
+Inégalité des acroissements finis et de Taylor-Lagrange.
+
+#answer
+
+/ Inégalité des acroissements finis: #linebreak()
+  Soit $f : I -> RR$ dérivable et $a in I$
+$
+  forall x in I, abs(f(x) - f(a)) <= sup_[a,x] abs(f') dot abs(x - a)
+$
+/ Inégalité de Taylor-Lagrange: #linebreak()
+  Soit $f : I -> RR$ qui est $D^(n+1)$ et $a in I$
+$
+forall x in I, abs(f(x) - sum_(k = 0)^n f^((k))(a) (x - a)^k / k!)\ <= sup_[a,x] abs(f^((n+1))) dot abs(x - a)^(n+1) / (n+1)!
+$
+
+Preuve :
+
+On prend les théorème et on majore le paramètre.
+
+#card("intrecpol", "Intégration de l'inverse d'un trinôme", ("Maths.Analyse.Intégration",))
+
+Méthode d'intégration pour l'inverse d'un trinôme du second degré.
+
+#answer
+
+On prend $a x^2 + b x + c$ un trinôme du second degré, on vas intégrer $1 / (a x^2 + b x + c)$.
+
+- $Delta > 0$ : décomposition en éléments simples
+- $Delta = 0$ : 
+  $
+    integral (dif x) / (a x^2 + b x + c) &= integral (dif x) / (a(x - r)^2) \
+    &= - 1 /(a(x - r))
+  $
+- $Delta < 0$ : on passe à la forme cannonique
+  $
+    a x^2 + b x + c = a [(x + b/(2 a))^2 + abs(Delta) / (4 a^2)]
+  $
+  Et on se ramène à $integral (dif u) / (u^2 + 1) = arctan u$.
+  $
+    integral 1 / (a x^2 + b x + c) = 2 / sqrt(abs(Delta)) arctan( (2 a x + b) / sqrt(abs(Delta)))
+  $
+
+#card("dls", "Développements limités", ("Maths.Analyse.Développements Limités",))
+
+Développements limités à connaître.
+
+#answer
+$
+script(
+  1/(1 - x) &space& &= &space& 1 + x + x^2 + dots.c + x^n = o(x^n) \
+  1/(1 + x) &&&=&& 1 - x + x^2 - dots.c + (-1)^n x^n + o(x^n) \
+  ln(1 + x) &&&=&& x - x^2 / 2 +x^3 / 3 - dots.c + (-1)^n x^(n+1)/(n+1) + o(x^(n+1)) \
+  e^x &&&=&& 1 + x + x^2 / 2 + dots.c + x^n / n! + o(x^n) \
+  e^(-x) &&&=&& 1 - x + x^2 / 2 - dots.c + (-1)^n x^n / n! + o(x^n) \
+  cos(x) &&&=&& 1 - x^2 / 2 + x^4 / 24 - dots.c + (-1)^n x^(2n) / (2n)! + o(x^(2n)) \
+  sin(x) &&&=&& x - x^3 / 6 + x^5 / 120 - dots.c + (-1)^n x^(2n+1) / (2n+1)! + o(x^(2n+1)) \
+  "ch"(x) &&&=&& 1 + x^2 / 2 + x^4 / 24 + dots.c + x^(2n) / (2n)! + o(x^(2n)) \
+  "sh"(x) &&&=&& x + x^3 / 6 + x^5 / 120 + dots.c + x^(2n+1) / (2n+1)! + o(x^(2n+1)) \
+  (1 + x)^alpha &&&=&& 1 + alpha x + alpha(alpha - 1) / 2 x^2 + dots.c + (alpha(alpha - 1) dots.c (alpha - n + 1)) / n! x^n + o(x^n) \
+  1 / (sqrt(1 - x^2)) &&&=&& 1 + 1/2 x^2 + 3/8 x^4 + dots.c + 1/(2^(2n)) vec(2n, n) x^(2n) + o(x^(2n)) \
+  arcsin(x) &&&=&& x + 1/2 x^3 / 3 + 3/8 x^5/5 + dots.c + 1/(2^(2n)) vec(2n, n) x^(2n+1)/(2n+1) + o(x^(2n+1)) \
+  arccos(x) &&&=&& -x - 1/2 x^3 / 3 - 3/8 x^5/5 - dots.c - 1/(2^(2n)) vec(2n, n) x^(2n+1)/(2n+1) + o(x^(2n+1)) \
+  arctan(x) &&&=&& x - x^3 / 3 + x^5/5 - dots.c + (-1)^n x^(2n+1) / (2n+1) + o(x^(2n+1)) \
+  tan(x) &&&=&& x + 1/3 x^3 + 2/15 x^5 + 17/315 x^7 + o(x^8) \
+)
+$
+
+#card("etudl", "Étude local et asymptotique de fonctions", ("Maths.Analyse.Développements Limités",))
+
+Méthode pour étudié le comportement local et asymptotique d'une fonction.
+
+#answer
+
+/ Local: au voisinage de $a in RR$
+  - Équivalent en $a$ : premier terme
+  - Tangente en $a$ : $"DL"_1(a)$
+  - Signe de $f$ en $a$ : premier terme non nul.
+  - Position relative par rapport à la tangente : signe du premier terme non nul après l'ordre $1$.
+/ Asymptotique: au voisinage de $plus.minus oo$
+  - Asymptote oblique : $"DL"_1(plus.minus oo)$
+  - Position relative : signe du terme suivant.
+
+Rappelle :
+
+$f$ admet une asymptote oblique d'équation $a x + b$ si 
+$
+lim_(x -> plus.minus oo) f(x) - a x - b = 0
+$
+
+#card("suitrec", "Suites récurrentes", ("Maths.Analyse.Suites Réelles",))
+
+Méthode pour les suites récurrentes de la forme $u_(n+1) = f(u_n)$.
+
+#answer
+
+Soit $f$ une fonction et $(u_n) in RR^NN$ tel que $u_(n+1) = f(u_n)$.
+
++ Intervalle stable : on cherche $I$ tel que $f(I) subset.eq I$.
++ Variations de $(u_n)$
+  - Signe de $f(x) - x$ sur $I$
+    - $+$ : $(u_n)$ est croissante
+    - $-$ : $(u_n)$ est décroissante
+    - Sinon affiner $I$
+  - Monotonie de $f$
+    - Si $f$ est croissante sur $I$, $(u_n)$ est monotone
+    - Si $f$ est décroissante sur $I$, $(u_(2n))$ et $(u_(2n+1))$ sont monotone.
++ On montre l'éxistence de la limite (limite croissante)
++ On la détermine : il s'agit de l'un des points fixes de $I$ (idéalement il n'y en a qu'un).
+  
+  Dans le cas des fonctions décroissantes, on cherche les limites des deux sous-suites, points fixes de $f compose f$.

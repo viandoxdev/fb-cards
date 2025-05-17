@@ -69,12 +69,28 @@
     [
       #s.len() cartes.
     ]
+    v(-2em)
   }
 }
 
 #let setup(doc) = {
   set text(size: 12pt)
-  set page(margin: 1em, height: auto, width: 250pt)
+  set page(
+    margin: (x: 1em, y: 1.5em), 
+    height: auto, 
+    width: 250pt,
+    footer: context {
+      let c = store.get().len()
+      let t = store.final().len()
+      if c > 0 {
+        set align(right)
+        set text(size: 7pt)
+        [
+          #c / #t
+        ]
+      }
+    }
+  )
   show figure.where(kind: "Card"): it => {
     it.body
   }
