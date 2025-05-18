@@ -1313,3 +1313,273 @@ Soit $f$ une fonction et $(u_n) in RR^NN$ tel que $u_(n+1) = f(u_n)$.
 + On la détermine : il s'agit de l'un des points fixes de $I$ (idéalement il n'y en a qu'un).
   
   Dans le cas des fonctions décroissantes, on cherche les limites des deux sous-suites, points fixes de $f compose f$.
+
+#card("conv", "Propriétés de convexité", ("Maths.Analyse.Convexité",))
+
+Définition et propriétés de convexité.
+
+#answer
+
+Soit $f : I -> RR$, $f$ est dite convexe si 
+$
+forall x, y in I, forall lambda in [0, 1] \ f(lambda x + (1 - lambda) y) <= lambda f(x) + (1-lambda) f(y)
+$
+
+Propriétés :
+- Soit $f : I -> RR$ convexe, $forall x_1, dots, x_n in I$
+  $
+  forall lambda_1, dots, lambda_n in [0, 1], lambda_1 + dots.c + lambda_n = 1 =>\
+  f(sum_(i = 1)^n lambda_i x_i) <= sum_(i = 1)^n lambda_i f(x_i)
+  $
+- Soit $Phi$ convexe, $forall f in C^0([a,b])$
+  $
+    Phi(1/(b-a) integral_a^b f(x) dif x) \ <= 1/(b-a) integral_a^b Phi (f(x)) dif x
+  $
+- Soit $f : I -> RR$, $a in I$, on note
+  $
+    mat(delim: #none, tau_a,:, I\\{a},->,RR;,,x,|->,(f(x) - f(a)) / (x - a))
+  $
+  les taux d'acroissements en $a$ de $f$.
+
+  $f$ est convexe ssi $forall a in I, tau_a$ est croissante.
+- Soit $f : I -> RR$, on appelle droite d'appuis en $x_0$ de $f$ une droite $y = a x + b$ tel que
+  - $forall x in I, a x + b <= f(x)$ \
+  - $f(x_0) = a x_0 + b$
+  Si $f$ convexe, $f$ admet des droites d'appuis en tout points.
+
+#card("invmat", "Théorème de caractérisation des matrices inversibles", ("Maths.Algèbre.Matrices",))
+
+Énoncé du théorème de caractérisation des matrices inversibles.
+
+#answer
+
+Soit $A in M_n (RR)$, les assertions suivantes sont équivalentes :
+- $A$ est inversible.
+- $A attach(t: L, ~) I_n$.
+- $"rg" A = n$.
+- Le système homogène $A X = 0$ admet une seule solution.
+- $forall Y in RR^n$ le système homogène $A X = Y$ admet au plus une solution.
+- $forall Y in RR^n$ le système homogène $A X = Y$ admet au moins une solution.
+
+#card("assoc", "Polynômes associés", ("Maths.Algèbre.Polynômes",))
+
+Définition et propriétés des polynômes associés.
+
+#answer
+
+Soit $P, Q in KK[X]$, $P$ et $Q$ sont dit associé si $P | Q$ et $Q | P$.
+
+$P, Q$ sont associés ssi $exists lambda in KK^star, A = lambda B$. Toute class de polynômes associés contient un unique polynôme unitaire (à l'exception de ${0}$).
+
+#card("porpracines", "Propriétés des racines d'une polynôme", ("Maths.Algèbre.Polynômes",))
+
+Propriétés des racines d'une polynôme.
+
+#answer
+
+Soit $P in KK[X]$, $n = deg P$
+- L'unique polynôme qui à une infinité de racines est $P = 0$.
+- Si $n >= 0$, alors $P$ à au plus $n$ racines.
+- Si $Q in KK_n [X]$ et $exists alpha_0, dots, alpha_n in KK$ tels que $forall k in [|0, n|], P(alpha_k) = Q(alpha_k)$, alors $P = Q$.
+
+#card("multrac", "Multiplicité d'une racine", ("Maths.Algèbre.Polynômes",))
+
+Définition de multiplicité d'une racine.
+
+#answer
+
+Soit $P in KK[X], alpha in KK$ une racine et $n in NN^star$. On dit que $alpha$ est de multiplicité $n$ si (l'un ou l'autre) :
+- $(X - alpha)^n | P$ mais $(X - alpha)^(n+1) divides.not P$.
+- $forall k in [|0, n-1|], P^((k)) (alpha) = 0$
+
+#card("scinde", "Polynômes scindés", ("Maths.Algèbre.Polynômes",))
+
+Définition et propriétés des polynôme scindés.
+
+#answer
+
+Soit $P in KK[X]$, $alpha_1, dots, alpha_k$ ses racines et $m_1, dots, m_k$ leur multiplicités. 
+- $P$ est scindé si $deg P = sum_(i = 1)^k m_k$.
+- $P$ est scindé racines simples si $P$ scindé et $forall i in [|1, k|], m_i = 1$.
+
+Propriétés :
+- Si $P$ est scindé racines simples sur $RR$, $P'$ aussi.
+- Si $P$ est scindé sur $RR$, $P'$ aussi.
+- Tout polynôme $P$ est scindé sur $RR$ : théorème de Gauss-d'Alembert.
+
+#card("irred", "Polynômes irréductibles", ("Maths.Algèbre.Polynômes",))
+
+Définition et propriétés des polynômes irréductibles.
+
+#answer
+
+Soit $P in KK[X]$, $P$ est dit irréductible si ses seuls diviseurs sont $P$, $1$ et leurs associés.
+
+- Dans $CC$, les polynômes irréductibles sont les monômes (théorème de Gauss-d'Alembert).
+- Dans $RR$, les polynômes irréductibles sont les monômes et les polŷnomes de degré $2$ avec $Delta < 0$.
+
+#card("fnsymrac", "Fonctions symétriques des racines", ("Maths.Algèbre.Polynômes",))
+
+Définition des fonctions symétriques des racines et formules de Viete.
+
+#answer
+
+Soit $alpha_1, dots, alpha_k in CC$ et $k in [|0, n|]$, la $k$-ème fonction symétrique des élémentaire de $alpha_1, dots, alpha_n$ est
+$
+  sigma_k = sum_(1 <= i_1 < dots.c < i_k <= n) product_(j = 1)^k alpha_(i_j)
+$
+On remarque que $sigma_0 = 1$.
+
+Soit $P = a_0 + a_1 X + dots.c + a_n X^n$ scindé, on note $alpha_1, dots, alpha_n$ ses racines (non distinctes).
+
+Formule de Viete :
+$
+  forall k in [|0, n|], sigma_k = (-1)^k a_(n-k) / a_n
+$
+
+#card("tcheb", "Polynômes de Tchebycheff", ("Maths.Algèbre.Polynômes",))
+
+Définition et propriétés des polynômes de Tchebycheff.
+
+#answer
+
+Le $n$-ème polynôme de Tchebycheff est le polynôme tel que 
+$
+  forall theta in RR, T_n (cos theta) = cos(n theta)
+$
+
+Propriétés :
++ Formule de récurrence : #h(1fr)
+  $
+    T_(n+1) + T_(n-1) = 2 X T_n
+  $
++ $deg T_n = n$, coéfficient dominant : $2^(n-1)$, sauf pour $n = 0$, $T_0 = 1$.
++ $T_n$ est scindé racines simples sur $RR$ :
+  $
+    T_n (X) = 2^(n-1) product_(k = 0)^(n-1) (X - cos ((2k+1) pi) / (2n))
+  $
++ Orthogonalité : si $n != p$
+  $
+    integral_(-1)^1 T_n (x) T_p (x) (dif x) / sqrt(1 - x^2) = 0
+  $
++ Minimalité en norme :
+  $
+    norm(P) = max_(t in [-1, 1]) abs(P (t))
+  $
+  Si $P$ unitaire de degré $n$, alors $norm(P) >= 1 / (2^(n-1))$.
+
+  Avec cas d'égalité si $P(X) = (T_n (X)) / (2^(n-1))$
+
+Preuves :
++ Formules de trigonométrie : #h(1fr)
+  $
+  script(cos((n+1)theta) + cos((n-1)theta) = 2 cos theta cos(n theta)) \
+  script(T_(n+1) (cos theta) + T_(n-1) (cos theta) = 2 (cos theta) T_(n) (cos theta))
+  $
+  Donc ils coincident en une infinité de valeurs $[-1, 1]$, et sont donc égaux.
++ Par récurrence avec la relation de récurrence.
++ On résout $cos(n theta) = 0$, on fait attention à distingué les racines.
++ Changement de variable $x = cos theta$, puis formules de trigonométrie.
++ Par contraposé : On prend $P$ unitare de degré $n$ tel que $norm(P) <= 1 / (2^(n-1))$.
+  - $P = 1/(2^(n-1)) T_n + Q, quad deg Q <= n - 1$.
+  - On regarde les $y_k$ quand $T_n (y_k) = plus.minus 1$.
+  - On en déduis le signe de $Q$
+  - Par le TVI $Q$ à $n$ racines donc $Q = 0$.
+  - Donc $P(X) = (T_n (X)) / (2^(n-1))$.
+
+#card("fracrat", "Propriétés des fractions rationelles", ("Maths.Algèbre.Polynômes",))
+
+Propriétés des fractions rationelles
+
+#answer
+
+- Si on dit que $P / Q$ est scindé, c'est que $Q$ est scindé.
+- Si $F$ admet une infinité de racines alors $F = 0$.
+- Si $F$ et $G$ coincident en une infinité de points alors $F = G$.
+
+#card("decompels", "Décomposition en éléments simples", ("Maths.Algèbre.Polynômes",))
+
+Formules, propriétés de la décomposition en éléments simples.
+
+#answer
+
+Soit $F in KK(X)$, $F$ se décompose de façon uniqe sous la forme
+$
+  F = E + G "avec" E in KK[X] "et" deg G < 0
+$
+On appelle $E$ la partie entière de $F$ et $G$ la partie pôlaire.
+
+- Si $F = P / Q$ sindé racines simples : soit $alpha_1, dots, alpha_n$ les pôles et $Q(X) = (X - alpha_k) R_k (X)$ pour tout $k in [|1, n|]$ : #h(1fr)
+  $
+    F = E + lambda_1 / (X - alpha_1) + dots.c + lambda_n / (X - alpha_n)
+  $
+  Avec
+  $
+    lambda_k = P(alpha) / (R_k (alpha)) = P(alpha) / (Q'(alpha))
+  $
+- Si $F$ est scindé pôles multiples, on fait la même chose en retranchant les décompositions à chaques fois.
+
+Décomposition en éléments simples de $P' / P$ :
+
+$
+  P(X) &= lambda (X - alpha_1)^(m_1) dots dots.c dot (X - alpha_k)^(m_k) \
+  (P'(X)) / (P(X)) &=  m_1 / (X - alpha_1) + dots.c + m_k / (X - alpha_k)
+$
+
+#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Espaces Vectoriels",))
+
+Axiomes d'un espace vectoriel.
+
+#answer
+
+Sois $KK$ un corps, $E$ muni de la somme interne $+$ et du produit externe $dot$ est un $KK$-ev si
++ $(E, +)$ est un groupe abélien.
++ $forall x in E, 1 dot x = x$.
++ $forall lambda in KK, forall x, y in E, lambda (x + y) = lambda x + lambda y$.
++ $forall lambda, mu in KK, forall x in E, (lambda + mu) x = lambda x + mu x$.
++ $forall lambda, mu in KK, forall x in E, lambda (mu x) = (lambda mu) x$
+
+#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Espaces Vectoriels",))
+
+Énoncé du théorème de caractérisation du rang.
+
+#answer
+
+Soit $A in M_(n p)(KK), r in NN$, les assertions suivantes sont équivalentes
+- $A$ équivalente par ligne à une matrice échelonné avec $r$ lignes non nulles.
+- $"rg" phi_A = r$ \
+- $"rg" (C_1, dots, C_p) = r$ (avec $C_i$ la $i$-ème colonne de $A$)
+- $"rg" (L_1, dots, L_n) = r$ (avec $L_i$ la $i$-ème ligne de $A$)
+- $A attach(t: sscript(L\,C), ~) J_r$
+On dit alors que $"rg" A = r$.
+
+On a aussi
+- $A attach(t: sscript(L\,C), ~) B$ ssi $"rg" A = "rg" B$ #h(1fr)
+- $"rg"(phi compose psi) <= min("rg" phi, "rg" psi)$
+
+#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Espaces Vectoriels",))
+
+Formes lineaires et hyperplans.
+
+#answer
+
+Soit $E$ un $KK$-ev de dimension finie.
+- Si $alpha in E^star\\{0}$, alors $ker alpha$ est un hyperplan.
+- Si $H$ est un hyperplan de $E$, il existe une forme linéaire $alpha$ unique à constante multiplicative prés tel que $H = ker alpha$.
+
+#card("semb", "Matrices sembables", ("Maths.Algèbre.Matrices",))
+
+Définition de matrices sembables.
+
+#answer
+
+Soit $A, B in M_n(KK)$, $A$ est dite sembable à $B$ si
+$
+  exists P in "GL"_n (KK), space B = P^(-1) A P
+$
+Invariants :
+- $"rg" A = "rg" B$
+- $tr A = tr B$
+- $det A = det B$
+- $chi_A = chi_B$
+- $mu_A = mu_B$
