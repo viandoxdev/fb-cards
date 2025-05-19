@@ -1247,7 +1247,30 @@ On prend $a x^2 + b x + c$ un trinôme du second degré, on vas intégrer $1 / (
 
 #card("dls", "Développements limités", ("Maths.Analyse.Développements Limités",))
 
-Développements limités à connaître.
+#grid(columns: (1fr,)*2,
+$
+  1/(1 - x) = space ? \
+  1/(1 + x) = space ? \
+  ln(1 + x) = space ? \
+  e^x = space ? \
+  e^(-x) = space ? \
+  cos(x) = space ? \
+  sin(x) = space ? \
+$,
+$
+  "ch"(x) = space ? \
+  "sh"(x) = space ? \
+  (1 + x)^alpha = space ? \
+  1 / (sqrt(1 - x^2)) = space ? \
+  arcsin(x) = space ? \
+  arccos(x) = space ? \
+  arctan(x) = space ? \
+$
+)
+#v(-0.5em)
+$
+  tan(x) = space ?
+$
 
 #answer
 $
