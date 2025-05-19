@@ -12,7 +12,7 @@ Soit $f : [a, b] -> RR$, $C^n$ sur $[a, b]$ et $D^(n+1)$ sur $]a,b[$
 
 Il existe $c in ]a, b[$ tel que
 $
-  f(b) = sum_(k = 0)^(n) f^((k))(a) (x - a)^k / (k!) + f^((n+1)) (c) (x - a)^(n+1) / ((n+1)!)
+  f(b) = sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!) + f^((n+1)) (c) (b - a)^(n+1) / ((n+1)!)
 $
 
 #card("anatlri", "Taylor reste intégrale", ("Maths.Analyse.Intégration", "Maths.Analyse.Taylor"))
@@ -23,9 +23,9 @@ Théorème de Taylor reste intégrale, et conditions d'application.
 
 Soit $f : [a, b] -> RR$, $C^(n+1)$
 
-$
-  f(b) = sum_(k = 0)^(n) f^((k))(a) (x - a)^k / (k!) + integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
-$
+#scale(90%, $
+  f(b) = sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!) + integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
+$)
 
 #card("inegtri", "Inégalitée Triangulaire", ("Maths.Analyse.Réels", "Maths.Analyse.Complexes"))
 
@@ -239,7 +239,7 @@ Soit $a, b in CC, c(x)$ et $C(x)$ tel que $C'(x) = c(x)$.
 
 $
   (E_1) : quad y' = a y + b \
-  (E_2) : quad y' = c(x) y
+  (E_2) : quad y' = a(x) y
 $
 
 #answer
@@ -640,7 +640,7 @@ Que sont les nombres de Fermat, et quelques propriétées.
 
 Le $n$-ème nombre de Fermat est 
 $
-F_n = 2^(2^n) - 1
+F_n = 2^(2^n) + 1
 $
 Ils sont impaires et premier entre eux :
 
@@ -784,7 +784,7 @@ $
 
   $I$ est un idéal de $ZZ$, donc $exists d in ZZ, I = d ZZ$ (principalité de $ZZ$). Donc $d | a$ et $d | b$.
 
-  Soit $diff$ tel que $d | a$ et $d | b$. $forall x in I, diff | x$, en particulier $diff | d$ d'où $diff <= d$.
+  Soit $diff$ tel que $diff | a$ et $diff | b$. $forall x in I, diff | x$, en particulier $diff | d$ d'où $diff <= d$.
 
   $a and b = d in I$ d'où $exists u,v in ZZ, d = a u + b v$
 
@@ -925,7 +925,7 @@ $
 
 #card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites Réelles",))
 
-Formule explicite d'une suite récurrent d'ordre 2.
+Formule explicite d'une suite récurrente d'ordre 2.
 
 #answer
 
@@ -1028,7 +1028,7 @@ Si $u_n -> l in overline(RR)$, alors $sigma_n -> l$.
 
 Preuve : 
 - $l$ fini : Découpage pour $n < N$ et $n >= N$ et inégalité triangulaire.
-- $l$ inifni : majoration.
+- $l$ infini : majoration.
 
 #card("asympt", "Manipulations asymptotiques", ("Maths.Analyse.Suites Réelles",))
 
@@ -1085,7 +1085,7 @@ Preuve :
 
 Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR)(f([a, b]))$, donc il existe une suite $(x_n)$ à valeur dans $[a, b]$ tel que $f(x_n) -> M$.
 
-Par Bolzano-Weiestrass, il existe $phi$ tel que $x_n -> l$ avec $l in [a, b]$ et donc nécéssairement $M in RR$.
+Par Bolzano-Weiestrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in [a, b]$ et donc nécéssairement $M in RR$.
 
 #card("heine", "Théorème de Heine", ("Maths.Analyse.Continuité",))
 
@@ -1126,7 +1126,7 @@ Qui est absurde.
 
 #card("trigorec", "Fonctions trigonometriques réciproques", ("Maths.Analyse.Dérivation",))
 
-Domaine de définition et dérivés des fonctions trigonometrique réciproques.
+Domaine de définition et dérivées des fonctions trigonometrique réciproques.
 
 #answer
 
@@ -1145,7 +1145,7 @@ $
     arcsin,:,ivl(-1,1),->,ivl(-pi/2,pi/2);
     arcsin',:,ivl(-1,1, delim: "]["),->,ivl(1,+oo, delim: "[[");
     ,,x,|->,1/sqrt(1 - x^2);;
-    arctan,:,RR,->,ivl(-pi/2, pi/2);
+    arctan,:,RR,->,ivl(-pi/2, pi/2, delim: "][");
     arctan',:,RR,->,ivl(0,1, delim: "]]");
     ,,x,|->, 1 / (1+x^2)
   )
@@ -1394,9 +1394,9 @@ Soit $P, Q in KK[X]$, $P$ et $Q$ sont dit associé si $P | Q$ et $Q | P$.
 
 $P, Q$ sont associés ssi $exists lambda in KK^star, A = lambda B$. Toute class de polynômes associés contient un unique polynôme unitaire (à l'exception de ${0}$).
 
-#card("porpracines", "Propriétés des racines d'une polynôme", ("Maths.Algèbre.Polynômes",))
+#card("porpracines", "Propriétés des racines d'un polynôme", ("Maths.Algèbre.Polynômes",))
 
-Propriétés des racines d'une polynôme.
+Propriétés des racines d'un polynôme.
 
 #answer
 
@@ -1428,7 +1428,7 @@ Soit $P in KK[X]$, $alpha_1, dots, alpha_k$ ses racines et $m_1, dots, m_k$ leur
 Propriétés :
 - Si $P$ est scindé racines simples sur $RR$, $P'$ aussi.
 - Si $P$ est scindé sur $RR$, $P'$ aussi.
-- Tout polynôme $P$ est scindé sur $RR$ : théorème de Gauss-d'Alembert.
+- Tout polynôme $P$ est scindé sur $CC$ : théorème de Gauss-d'Alembert.
 
 #card("irred", "Polynômes irréductibles", ("Maths.Algèbre.Polynômes",))
 
