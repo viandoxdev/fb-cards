@@ -2,6 +2,8 @@
 
 #show: setup
 
+//![FLASHBANG HEADER]
+
 #card("anatl", "Taylor-Langrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
 
 Théorème de Taylor-Lagrange, et conditions d'application.
@@ -12,7 +14,8 @@ Soit $f : [a, b] -> RR$, $C^n$ sur $[a, b]$ et $D^(n+1)$ sur $]a,b[$
 
 Il existe $c in ]a, b[$ tel que
 $
-  f(b) = sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!) + f^((n+1)) (c) (b - a)^(n+1) / ((n+1)!)
+  f(b) = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!) \ 
+         &+ f^((n+1)) (c) (b - a)^(n+1) / ((n+1)!)
 $
 
 #card("anatlri", "Taylor reste intégrale", ("Maths.Analyse.Intégration", "Maths.Analyse.Taylor"))
@@ -24,7 +27,7 @@ Théorème de Taylor reste intégrale, et conditions d'application.
 Soit $f : [a, b] -> RR$, $C^(n+1)$
 
 #scale(90%, $
-  f(b) = sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!) + integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
+  f(b) = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!)  \ &+ integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
 $)
 
 #card("inegtri", "Inégalitée Triangulaire", ("Maths.Analyse.Réels", "Maths.Analyse.Complexes"))
@@ -97,11 +100,11 @@ Formules de factorisation trigonométriques.
 #answer
 
 Soient $p, q in RR$
-$
-  cos p + cos q &= &2 cos((p + q) / 2) cos ((p - q) / 2) \
-  cos p - cos q &= -&2 sin ((p + q) / 2) sin ((p - q) / 2) \
-  sin p + sin q &= &2 sin ((p + q) / 2) cos ((p - q) / 2) \
-$
+$inline(
+  cos p + cos q &= 2 cos((p + q) / 2) cos ((p - q) / 2) \
+  cos p - cos q &= -2 sin ((p + q) / 2) sin ((p - q) / 2) \
+  sin p + sin q &= 2 sin ((p + q) / 2) cos ((p - q) / 2) \
+)$
 
 #card("trigts2", "Formules en tangente de theta sur deux", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
@@ -212,7 +215,10 @@ $
   & script(+ thick abs(A_1 inter A_2 inter A_3) + dots.c + abs(A_(n - 2) inter A_(n - 1) inter A_n)) \
   & script(thick dots.v) \
   & script(+ thick (-1)^n abs(A_1 inter A_2 inter dots.c inter A_n)) \
-  abs(union.big_(k = 1)^n A_k) &= sum_(k = 1)^n (-1)^(k+1) sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
+$
+
+$
+    = sum_(k = 1)^n (-1)^(k+1) sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
 $
 
 #card("majmaxbs", "Majorant, borne supérieure, élément maximale", ("Maths.Algèbre.Relations",))
@@ -647,9 +653,11 @@ Ils sont impaires et premier entre eux :
 Soit $n < m in NN$,
 
 $
-  &(2^(2^n) - 1)& dot &F_n& dot &F_(n+1) dot dots.c dot F_(m - 1) \
-  &(2^(2^n) - 1)& dot &(2^(2^n) + 1)& dot &F_(n+1) dot dots.c dot F_(m - 1) \
-  &&& (2^(2^(n+1)) - 1)& dot &F_(n+1) dot dots.c dot F_(m-1) \
+  inline(
+    &(2^(2^n) - 1)& dot &F_n& dot &F_(n+1) dots.c F_(m - 1) \
+    &(2^(2^n) - 1)& dot &(2^(2^n) + 1)& dot &F_(n+1) dots.c F_(m - 1) \
+    &&& (2^(2^(n+1)) - 1)& dot &F_(n+1) dots.c F_(m-1) \
+  )
 $
 $
   dots.v \
@@ -729,8 +737,9 @@ Petit théorème de Fermat.
 - Démo :
   On étudie $(ZZ_(\/p ZZ))^"inv"$ :
   $
-    forall a in (ZZ_(\/p ZZ))^"inv", "ord"(a) | p - 1 "(Lagrange)" \
-    a^(p - 1) equiv 1 space [p]
+    forall a in (ZZ_(\/p ZZ))^"inv" \
+    "ord"(a) | p - 1 "(Lagrange)" \
+    "donc" a^(p - 1) equiv 1 space [p]
   $
 
 #card("indeuler", "Indicatrice d'Euler", ("Maths.Algèbre.Arithmétique",))
@@ -958,7 +967,7 @@ Soit $A subset.eq RR$.
 - Si $x in "adh"_overline(RR)$, alors il existe $(u_n) in A^NN$ tel que $u_n -> x$.
 Ainsi
 $
-  "adh"(A) = {x in RR | exists (u_n) in A^NN, u_n -> x}
+  "adh"(A) \ = {x in RR | exists (u_n) in A^NN, u_n -> x}
 $
 Et $S = sup A$ existe si $A$ non vide majoré par $S$ et il existe $(u_n) in A^NN$ tel que $u_n -> S$.
 
@@ -972,7 +981,7 @@ Définition et théorème des suites adjacentes et emboitées.
 
   Deux suites $(a_n)$ et $(b_n)$ sont adjacentes si
   $
-  (a_n) arrow.tr, quad (b_n) arrow.br, quad lim_(n -> oo) (b_n - a_n) = 0
+  (a_n) arrow.tr, quad (b_n) arrow.br \ "et" lim_(n -> oo) (b_n - a_n) = 0
   $
 
   Théorème : $(a_n)$ et $(b_n)$ et $lim a_n = lim b_n$.
@@ -984,7 +993,7 @@ Définition et théorème des suites adjacentes et emboitées.
 
   Théorème : 
   $
-    inter.big_(n=0)^oo [a_n, b_n] = {x} "avec" x = lim a_n = lim b_n
+    inter.big_(n=0)^oo [a_n, b_n] = {x} \ "avec" x = lim a_n = lim b_n
   $
 
 #card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites Réelles",))
@@ -1115,7 +1124,7 @@ Or $|x_(phi(n)) - y_(phi(n))| -> 0$ donc $y_(phi(n)) -> l$.
 
 Mais par continuité de $f$, 
 $
-lim_(n->oo) f(x_(phi(n))) = lim_(n->oo) f(y_(phi(n))) = f(l)
+lim_(n->oo) f(x_(phi(n))) &= lim_(n->oo) f(y_(phi(n))) \ &= f(l)
 $
 
 Donc il existe $N in NN$ tel que 
@@ -1208,14 +1217,14 @@ Inégalité des acroissements finis et de Taylor-Lagrange.
 #answer
 
 / Inégalité des acroissements finis: #linebreak()
-  Soit $f : I -> RR$ dérivable et $a in I$
+  Soit $f : I -> RR$ dérivable et $a in I$, pour tout $x in I$
 $
-  forall x in I, abs(f(x) - f(a)) <= sup_[a,x] abs(f') dot abs(x - a)
+  abs(f(x) - f(a)) <= sup_[a,x] abs(f') dot abs(x - a)
 $
 / Inégalité de Taylor-Lagrange: #linebreak()
-  Soit $f : I -> RR$ qui est $D^(n+1)$ et $a in I$
+  Soit $f : I -> RR$ qui est $D^(n+1)$ et $a in I$, pour tout $x in I$
 $
-forall x in I, abs(f(x) - sum_(k = 0)^n f^((k))(a) (x - a)^k / k!)\ <= sup_[a,x] abs(f^((n+1))) dot abs(x - a)^(n+1) / (n+1)!
+abs(f(x) - sum_(k = 0)^n f^((k))(a) (x - a)^k / k!)\ <= sup_[a,x] abs(f^((n+1))) dot abs(x - a)^(n+1) / (n+1)!
 $
 
 Preuve :
@@ -1238,11 +1247,11 @@ On prend $a x^2 + b x + c$ un trinôme du second degré, on vas intégrer $1 / (
   $
 - $Delta < 0$ : on passe à la forme cannonique
   $
-    a x^2 + b x + c = a [(x + b/(2 a))^2 + abs(Delta) / (4 a^2)]
+    a x^2 + b x + c \ = a [(x + b/(2 a))^2 + abs(Delta) / (4 a^2)]
   $
   Et on se ramène à $integral (dif u) / (u^2 + 1) = arctan u$.
   $
-    integral 1 / (a x^2 + b x + c) = 2 / sqrt(abs(Delta)) arctan( (2 a x + b) / sqrt(abs(Delta)))
+    integral 1 / (a x^2 + b x + c) \ = 2 / sqrt(abs(Delta)) arctan( (2 a x + b) / sqrt(abs(Delta)))
   $
 
 #card("dls", "Développements limités", ("Maths.Analyse.Développements Limités",))
@@ -1274,23 +1283,36 @@ $
 
 #answer
 $
-script(
-  1/(1 - x) &space& &= &space& 1 + x + x^2 + dots.c + x^n = o(x^n) \
-  1/(1 + x) &&&=&& 1 - x + x^2 - dots.c + (-1)^n x^n + o(x^n) \
-  ln(1 + x) &&&=&& x - x^2 / 2 +x^3 / 3 - dots.c + (-1)^n x^(n+1)/(n+1) + o(x^(n+1)) \
-  e^x &&&=&& 1 + x + x^2 / 2 + dots.c + x^n / n! + o(x^n) \
-  e^(-x) &&&=&& 1 - x + x^2 / 2 - dots.c + (-1)^n x^n / n! + o(x^n) \
-  cos(x) &&&=&& 1 - x^2 / 2 + x^4 / 24 - dots.c + (-1)^n x^(2n) / (2n)! + o(x^(2n)) \
-  sin(x) &&&=&& x - x^3 / 6 + x^5 / 120 - dots.c + (-1)^n x^(2n+1) / (2n+1)! + o(x^(2n+1)) \
-  "ch"(x) &&&=&& 1 + x^2 / 2 + x^4 / 24 + dots.c + x^(2n) / (2n)! + o(x^(2n)) \
-  "sh"(x) &&&=&& x + x^3 / 6 + x^5 / 120 + dots.c + x^(2n+1) / (2n+1)! + o(x^(2n+1)) \
-  (1 + x)^alpha &&&=&& 1 + alpha x + alpha(alpha - 1) / 2 x^2 + dots.c + (alpha(alpha - 1) dots.c (alpha - n + 1)) / n! x^n + o(x^n) \
-  1 / (sqrt(1 - x^2)) &&&=&& 1 + 1/2 x^2 + 3/8 x^4 + dots.c + 1/(2^(2n)) vec(2n, n) x^(2n) + o(x^(2n)) \
-  arcsin(x) &&&=&& x + 1/2 x^3 / 3 + 3/8 x^5/5 + dots.c + 1/(2^(2n)) vec(2n, n) x^(2n+1)/(2n+1) + o(x^(2n+1)) \
-  arccos(x) &&&=&& -x - 1/2 x^3 / 3 - 3/8 x^5/5 - dots.c - 1/(2^(2n)) vec(2n, n) x^(2n+1)/(2n+1) + o(x^(2n+1)) \
-  arctan(x) &&&=&& x - x^3 / 3 + x^5/5 - dots.c + (-1)^n x^(2n+1) / (2n+1) + o(x^(2n+1)) \
-  tan(x) &&&=&& x + 1/3 x^3 + 2/15 x^5 + 17/315 x^7 + o(x^8) \
-)
+
+  1/(1 - x) &= 1 + x + x^2 + o(x^2) \
+  &= sum_(k = 0)^n x^k + o(x^n) \
+  1/(1 + x) &= 1 - x + x^2 + o(x^2) \
+  &= sum_(k = 0)^n (-x)^k + o(x^n) \
+  ln(1 + x) &= x - x^2 / 2 + x^3 / 3 + o(x^3) \
+  &= sum_(k = 0)^n (-x)^(k+1) / (k+1) + o(x^n) \
+  e^x &= 1 + x + x^2 / 2 + x^3/6 + o(x^3) \
+  &= sum_(k = 0)^n x^k / k! + o(x^n) \
+  e^(-x) &= 1 - x + x^2 / 2 - x^3/6 + o(x^3) \
+  &= sum_(k = 0)^n (-x)^k / k! + o(x^n) \
+  cos(x) &= 1 - x^2 / 2 + x^4 / 24 + o(x^5) \
+  &= sum_(k=0)^n (-1)^k x^(2k) / (2k)! + o(x^(2k)) \
+  sin(x) &= x - x^3 / 6 + x^5 / 120 + o(x^6) \
+  &= sum_(k=0)^n inline(((-1)^k x^(2k+1)) / (2k+1)!) + o(x^(2k+1)) \
+  "ch"(x) &= 1 + x^2 / 2 + x^4 / 24 + o(x^5) \
+  &= sum_(k=0)^n x^(2k) / (2k)! + o(x^(2k)) \
+  "sh"(x) &= x + x^3 / 6 + x^5 / 120 + o(x^6) \
+  &= sum_(k=0)^n (x^(2k+1)) / (2k+1)! + o(x^(2k+1)) \
+  (1 + x)^alpha &= inline(1 + alpha x + alpha(alpha - 1) / 2 x^2 + o(x^2)) \
+  &= sum_(k=1)^n (product_(p = 0)^(k - 1) (alpha - p)) / k! x^k + o(x^n) \
+  1 / (sqrt(1 - x^2)) &= 1 + 1/2 x^2 + 3/8 x^4 + o(x^4)  \
+  &= sum_(k=1)^n 1/(2^(2k)) vec(2k, k) x^(2k) + o(x^(2k)) \
+  arcsin(x) &= x + 1/2 x^3 / 3 + 3/8 x^5/5 + o(x^5) \
+  &= sum_(k=1)^n (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1)) \
+  arccos(x) &= -x - 1/2 x^3 / 3 - 3/8 x^5/5 + o(x^5) \
+  &= sum_(k=1)^n - (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1)) \
+  arctan(x) &= x - x^3 / 3 + x^5/5 + o(x^5) \
+  &= sum_(k=1)^n (-1)^k x^(2k+1) / (2k+1) + o(x^(2n+1)) \
+  tan(x) &= inline(x + 1/3 x^3 + 2/15 x^5 + 17/315 x^7 + o(x^8)) \
 $
 
 #card("etudl", "Étude local et asymptotique de fonctions", ("Maths.Analyse.Développements Limités",))
@@ -1479,7 +1501,7 @@ Propriétés :
 + $deg T_n = n$, coéfficient dominant : $2^(n-1)$, sauf pour $n = 0$, $T_0 = 1$.
 + $T_n$ est scindé racines simples sur $RR$ :
   $
-    T_n (X) = 2^(n-1) product_(k = 0)^(n-1) (X - cos ((2k+1) pi) / (2n))
+    T_n (X) \ = 2^(n-1) product_(k = 0)^(n-1) (X - cos ((2k+1) pi) / (2n))
   $
 + Orthogonalité : si $n != p$
   $

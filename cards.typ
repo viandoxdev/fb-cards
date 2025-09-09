@@ -78,7 +78,7 @@
   set page(
     margin: (x: 1em, y: 1.5em), 
     height: auto, 
-    width: 250pt,
+    width: 200pt,
     footer: context {
       let c = store.get().len()
       let t = store.final().len()
