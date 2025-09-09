@@ -1307,11 +1307,11 @@ $
   1 / (sqrt(1 - x^2)) &= 1 + 1/2 x^2 + 3/8 x^4 + o(x^4)  \
   &= sum_(k=1)^n 1/(2^(2k)) vec(2k, k) x^(2k) + o(x^(2k)) \
   script(arcsin(x)) &= x + 1/2 x^3 / 3 + 3/8 x^5/5 + o(x^5) \
-  &= sum_(k=1)^n (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1)) \
+  &= sum_(k=1)^n inline((vec(2k, k) x^(2k+1))/(2^(2k)(2k+1))) + o(x^(2n+1)) \
   script(arccos(x)) &= -x - 1/2 x^3 / 3 - 3/8 x^5/5 + o(x^5) \
   &= sum_(k=1)^n inline(- (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1))) \
   script(arctan(x)) &= x - x^3 / 3 + x^5/5 + o(x^5) \
-  &= sum_(k=1)^n (-1)^k x^(2k+1) / (2k+1) + o(x^(2n+1)) \
+  &= sum_(k=1)^n inline(((-1)^k x^(2k+1)) / (2k+1)) + o(x^(2n+1)) \
   script(tan(x)) &= script(x + 1/3 x^3 + 2/15 x^5 + 17/315 x^7 + o(x^8)) \
 $
 
