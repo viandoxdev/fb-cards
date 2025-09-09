@@ -1303,16 +1303,16 @@ $
   "sh"(x) &= x + x^3 / 6 + x^5 / 120 + o(x^6) \
   &= sum_(k=0)^n (x^(2k+1)) / (2k+1)! + o(x^(2k+1)) \
   (1 + x)^alpha &= inline(1 + alpha x + alpha(alpha - 1) / 2 x^2 + o(x^2)) \
-  &= sum_(k=1)^n (product_(p = 0)^(k - 1) (alpha - p)) / k! x^k + o(x^n) \
+  &= sum_(k=1)^n x^k/k! display(product_(p = 0)^(k - 1) (alpha - p)) + o(x^n) \
   1 / (sqrt(1 - x^2)) &= 1 + 1/2 x^2 + 3/8 x^4 + o(x^4)  \
   &= sum_(k=1)^n 1/(2^(2k)) vec(2k, k) x^(2k) + o(x^(2k)) \
-  arcsin(x) &= x + 1/2 x^3 / 3 + 3/8 x^5/5 + o(x^5) \
+  script(arcsin(x)) &= x + 1/2 x^3 / 3 + 3/8 x^5/5 + o(x^5) \
   &= sum_(k=1)^n (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1)) \
-  arccos(x) &= -x - 1/2 x^3 / 3 - 3/8 x^5/5 + o(x^5) \
-  &= sum_(k=1)^n - (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1)) \
-  arctan(x) &= x - x^3 / 3 + x^5/5 + o(x^5) \
+  script(arccos(x)) &= -x - 1/2 x^3 / 3 - 3/8 x^5/5 + o(x^5) \
+  &= sum_(k=1)^n inline(- (vec(2k, k) x^(2k+1))/(2^(2k)(2k+1)) + o(x^(2n+1))) \
+  script(arctan(x)) &= x - x^3 / 3 + x^5/5 + o(x^5) \
   &= sum_(k=1)^n (-1)^k x^(2k+1) / (2k+1) + o(x^(2n+1)) \
-  tan(x) &= inline(x + 1/3 x^3 + 2/15 x^5 + 17/315 x^7 + o(x^8)) \
+  script(tan(x)) &= script(x + 1/3 x^3 + 2/15 x^5 + 17/315 x^7 + o(x^8)) \
 $
 
 #card("etudl", "Étude local et asymptotique de fonctions", ("Maths.Analyse.Développements Limités",))
@@ -1367,7 +1367,7 @@ Définition et propriétés de convexité.
 
 Soit $f : I -> RR$, $f$ est dite convexe si 
 $
-forall x, y in I, forall lambda in [0, 1] \ f(lambda x + (1 - lambda) y) <= lambda f(x) + (1-lambda) f(y)
+forall x, y in I, forall lambda in [0, 1] \ f(lambda x + (1 - lambda) y) \ <= lambda f(x) + (1-lambda) f(y)
 $
 
 Propriétés :
@@ -1567,8 +1567,8 @@ On appelle $E$ la partie entière de $F$ et $G$ la partie pôlaire.
 Décomposition en éléments simples de $P' / P$ :
 
 $
-  P(X) &= lambda (X - alpha_1)^(m_1) dots dots.c dot (X - alpha_k)^(m_k) \
-  (P'(X)) / (P(X)) &=  m_1 / (X - alpha_1) + dots.c + m_k / (X - alpha_k)
+  P(X) = lambda (X - alpha_1)^(m_1) dots dots.c dot (X - alpha_k)^(m_k) \
+  (P'(X)) / (P(X)) =  m_1 / (X - alpha_1) + dots.c + m_k / (X - alpha_k)
 $
 
 #card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Espaces Vectoriels",))
