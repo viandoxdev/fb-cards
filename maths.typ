@@ -4,6 +4,8 @@
 
 //![FLASHBANG HEADER]
 
+#import "utils.typ": *
+
 #card("anatl", "Taylor-Langrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
 
 Théorème de Taylor-Lagrange, et conditions d'application.
@@ -1139,23 +1141,16 @@ Domaine de définition et dérivées des fonctions trigonometrique réciproques.
 
 #answer
 
-#let ivl(delim: "[]", a, b) = {
-  let (l,r) = delim.split("").slice(1, count: 2)
-  $
-  lr(class("opening", #l) #a, #b class("closing", #r))
-  $
-}
-
 $
   mat(delim: #none,
-    arccos,:,ivl(-1, 1),->,ivl(0, pi);
-    arccos',:,ivl(-1, 1, delim: "]["),->,ivl(-1,-oo, delim: "[[");
+    arccos,:,Icc(-1, 1),->,Icc(0, pi);
+    arccos',:,Ioo(-1, 1),->,Ico(-1,-oo);
     ,,x,|->,-1/sqrt(1 - x^2);;
-    arcsin,:,ivl(-1,1),->,ivl(-pi/2,pi/2);
-    arcsin',:,ivl(-1,1, delim: "]["),->,ivl(1,+oo, delim: "[[");
+    arcsin,:,Icc(-1,1),->,Icc(-pi/2,pi/2);
+    arcsin',:,Ioo(-1,1),->,Ico(1,+oo);
     ,,x,|->,1/sqrt(1 - x^2);;
-    arctan,:,RR,->,ivl(-pi/2, pi/2, delim: "][");
-    arctan',:,RR,->,ivl(0,1, delim: "]]");
+    arctan,:,RR,->,Ioo(-pi/2, pi/2);
+    arctan',:,RR,->,Ioc(0,1);
     ,,x,|->, 1 / (1+x^2)
   )
 $
@@ -1628,3 +1623,215 @@ Invariants :
 - $det A = det B$
 - $chi_A = chi_B$
 - $mu_A = mu_B$
+
+#card("propbaseseries", "Propriétées élémentaires sur les séries", ("Maths.Analyse.Séries",))
+
+Propriétées élémentaires sur les séries.
+
+#answer
+
+- Soit $(u_n) in KK^NN$ et $S_n = sum_(k=0)^n u_n$, on dit que $sum u_n$ converge si $(S_n)$ converge.
+- Si $sum u_n$ converge alors 
+  $
+  (u_n) tends(n -> +oo) 0
+  $
+- La suite $(u_n)$ converge ssi la série $sum (u_(n+1) - u_n)$ converge.
+- L'ensemble $cal(S)$ des séries convergentes est un sev de l'espace des suites, et l'application
+  $
+    mat(delim: #none, phi : , cal(S), ->, KK;, (u_n), |->, sum_(n = 0)^(+oo) u_n)
+  $
+  est linéaire.
+- Si $(u_n) in RR_+^NN$ alors $sum u_n$ converge ssi $(S_n)$ est majoré (théorème de la limite monotone).
+
+#card("thcmpserpos", "Théorème de comparaison des séries positives", ("Maths.Analyse.Séries",))
+
+Énoncé et démonstration du théorème de comparaison des séries positives.
+
+#answer
+
+Soient $(u_n), (v_n) in RR_+^NN$ alors
+
++ Si $forall n >= n_0, u_n <= v_n$ et $sum v_n$ converge alors $sum u_n$ converge.
++ Si $u_n = O_(n -> +oo) (v_n)$ et $sum v_n$ converge alors $sum u_n$ converge.
++ Si $u_n eqv(n -> +oo) v_n$ alors $sum u_n$ converge ssi $sum v_n$ converge.
+
+Démonstration :
+
++ $(S_n)$ est majoré par $(accent(S, ~)_n)$ qui est fini.
++ $(S_n)$ est majoré par $M dot accent(S, ~)_n$ qui est fini.
++ $u_n ~ v_n$ implique $u_n = O(v_n)$ et $v_n = O(u_n)$.
+
+#card("cmpserint", "Comparaison série intégrale", ("Maths.Analyse.Séries", "Maths.Analyse.Intégration"))
+
+Propriétées et methode de comparaison série intégrale.
+
+#answer
+
+Pour $f in C_("pm")^0 ([a, +oo[, RR_+)$, décroissante, $forall n >= ceil(a) + 1 = N_0$
+
+$
+  f(n) &>= integral_n^(n+1) f(t) dif t \
+&<= integral_(n-1)^n f(t) dif t
+$
+
+D'où
+
+$
+  sum_(n = N_0)^N f(n) &>= integral_(N_0)^(N+1) f(t) dif t \
+&<= integral_(N_0-1)^N f(t) dif t
+$
+
+Ainsi $sum f(n)$ converge ssi $integral_(N_0)^(+oo) f$ converge.
+
+Et de plus (à redémontrer) :
+$
+  sum (integral_(n-1)^n f(t) dif t - f(n)) \
+  sum (f(n) - integral_n^(n+1) f(t) dif t) \
+$
+sont à terme général positif et convergent car
+
+$
+  f(n) <= integral_(n-1)^n f <= f(n +1) \
+
+  0 <= integral_(n-1)^n f - f(n) <= f(n +1) - f(n) \
+$
+
+Et $sum f(n+1) - f(n) $ est positive et converge (série téléscopique) car $f$ converge (positive et décroissante).
+
+#card("serbertrand", "Séries de Bertrand", ("Maths.Analyse.Séries",))
+
+Définitions et propriétées des séries de Bertrand.
+
+#answer
+
+Soit $alpha, beta in RR$, la série $sum 1 / (n^alpha (ln n)^beta)$ est appelée série de Bertrand.
+
+Cette série converge ssi $alpha > 1$ ou $alpha = 1$ et $beta > 1$.
+
+Démonstration :
+- Cas $alpha > 1$ comparaison avec les series de Riemann, en prenant $gamma in Ioo(1, alpha)$.
+- Cas $alpha < 1$ même chose avec $gamma in Ioc(alpha, 1)$.
+- Cas $alpha = 1$, comparaison série intégrale avec $t |-> 1 / (t (ln t)^beta)$.
+
+#card("recheqsuit", "Recherche d'équivalent d'une suite", ("Maths.Analyse",))
+
+Méthodes de recherche d'équivalents.
+
+#answer
+
+Si on cherche un équivalent d'une suite $(u_n)$
+
+- Étudier la série $sum (u_(n+1) - u_n)$
+
+#card("abscv", "Absolue convergence", ("Maths.Analyse.Séries",))
+
+Définitions et démonstration du théorème de l'absolue convergence d'une série.
+
+#answer
+
+Une série $sum u_n$ (dans $RR$ ou $CC$) est dite absoluement convergente si $sum |u_n|$ converge. Si $sum u_n$ est absoluement convergente, alors elle est convergente.
+
+Démonstration : on étudie $((u_n)_+)$ et $((u_n)_-)$ pour le cas réel, puis $("Re"(u_n))$ et $("Im"(u_n))$ pour le cas imaginaire, à chaque fois on majore par le module et on applique les thorème de comparaison des séries positives.
+
+#card("thseralt", "Théorème des séries alternées", ("Maths.Analyse.Séries",))
+
+Énoncer et démonstration du théorème des séries alternées.
+
+#answer
+
+Si $(u_n) in RR_+^NN$ décroissante tel que $u_n tends(n -> +oo) 0$, alors $sum u_n$ converge et $R_n = sum_(k = n+1)^(+oo) = S - S_n$ est du signe du premier terme et $abs(R_n) <= abs(u_(n+1))$.
+
+Démonstration : on montre que les suites $S_(2n)$ et $S_(2n +1)$ sont adjacentes et on étudie $R_(2n)$ et $R_(2n+1)$.
+
+#card("abel", "Transformation d'Abel", ("Maths.Analyse.Séries",))
+
+Définition et applications de la transformation d'Abel.
+
+#answer
+
+Il s'agit d'une sorte d'IPP sur les séries. Soit $(a_n)$ et $(b_n)$ deux suites, la transformation d'Abel est utile si on a des hypothèses sur $S_n = sum_(k = 0)^n a_k$. On pose $S_(-1) = 0$.
+
+$
+  sum_(k = 0)^n a_k b_k &= sum_(k=0)^n (S_k - S_(k-1)) b_k \
+&= sum_(k = 0)^n S_k b_k - sum_(k=0)^n S_(k-1) b_k \
+&= S_n b_n - sum_(k = 0)^(n-1) S_k (b_(k+1) - b_k)
+$
+
+Applications :
+
+$
+  sum sin(n theta) / n^alpha \
+sum cos(n theta) / n^alpha \
+sum e^(i n theta) / n^alpha \
+$
+
+Remarque : on peut aussi écrire $a_k = R_(k-1) - R_k$, qui peut être intérressant si $sum a_n$ converge.
+
+#card("raabduchamel", "Règle de Raabe-Duhamel", ("Maths.Analyse.Séries",))
+
+Énoncé et démonstration de la règle de Raab-Duchamel.
+
+#answer
+
+Soit $(a_n) in (RR_+^*)^NN, a_(n+1)/a_n tends(n -> +oo) 1$ et
+$
+  a_(n+1) / a_n = 1 - alpha / n + O_(n->+oo)(1/n^(1+h)), quad h > 0
+$
+
+On considère $n^alpha a_n = u_n$, on veut montrer que $u_n tends(n -> +oo) l in RR_+^*$, c'est dire que $(ln(u_n))$ a une limite réelle. On étudie $sum ln(u_(n+1)) - ln(u_n)$.
+
+$
+  ln(u_(n+1)) - ln(u_n) = ln(a_(n+1) / a_n) + alpha ln((n + 1) / n) \
+= ln(1 - alpha / n + O(1/n^(1+h))) + alpha ln (1 + 1/n) \
+= alpha / n - alpha / n + O(1 / n^(1 + h)) + O(1 / n^2) \
+= O(1/n^min(2, 1 + h))
+$
+
+Donc par le théorème de comparaison des séries à terme positifs (en valeur absolue) $sum ln(u_(n+1)) - ln(u_n)$ converge,  d'où $(u_n)$ converge.
+
+Ainsi $n^alpha a_n tends(n -> +oo) e^l$, donc $a_n ~ e^l / n^alpha$, $sum a_n$ converge ssi $alpha > 1$.
+
+#card("thsomrelser", "Théorème de sommation des relations de comparaison pour les séries", ("Maths.Analyse.Séries",))
+
+Énoncés des théorèmes de sommation des relations de comparaison pour les séries.
+
+#answer
+
+*Pour les restes de séries convergentes :*
+
+Si $(u_n) in KK^NN, (a_n) in RR_+^NN$ et $sum a_n$ converge.
+
++ Si $u_n = O(a_n)$, alors $sum u_n$ converge absoluement et
+  $
+  sum_(k = n+1)^(+oo) u_k = O(sum_(k = n+1)^(+oo) a_n)
+  $
++ Si $u_n = o(a_n)$, alors $sum u_n$ converge absoluement et
+  $
+  sum_(k = n+1)^(+oo) u_k = o(sum_(k = n+1)^(+oo) a_n)
+  $
++ Si $u_n ~ a_n$, alors
+  $
+  sum_(k = n+1)^(+oo) u_k ~ sum_(k = n+1)^(+oo) a_n
+  $
+
+Démonstration : on repasse par les définitions de $o$ et $O$ : $exists N in NN, forall n >= NN, |u_n| <= K a_n$, avec $K > 0$ fixé pour $O$ et $K = epsilon > 0$ pour $o$. Pour $~$, on a $u_n - a_n = o(a_n)$.
+
+#linebreak()
+*Pour les sommes partielles de séries divergentes :*
+
+Si $(u_n) in KK^NN, (a_n) in RR_+^NN$ et $sum a_n$ diverge.
+
++ Si $u_n = O(a_n)$, alors $sum u_n$ converge absoluement et
+  $
+  sum_(k = 0)^n u_k = O(sum_(k = 0)^n a_n)
+  $
++ Si $u_n = o(a_n)$, alors $sum u_n$ converge absoluement et
+  $
+  sum_(k = 0)^n u_k = o(sum_(k = 0)^n a_n)
+  $
++ Si $u_n ~ a_n$, alors
+  $
+  sum_(k = 0)^n u_k ~ sum_(k = 0)^n a_n
+  $
+
+Démonstration : même que pour l'autre, on à juste a découper la somme entre avant et après un certain rang (pour $o$ et $O$).

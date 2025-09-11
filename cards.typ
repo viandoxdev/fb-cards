@@ -74,9 +74,10 @@
 }
 
 #let setup(doc) = {
-  set text(size: 12pt)
+  set text(font: "Lexend")
+  show math.equation: set text(font: "Noto Sans Math")
   set page(
-    margin: (x: 1em, y: 1.5em), 
+    margin: (x: 1em, top: 1.3em, bottom: 2.3em), 
     height: auto, 
     width: 200pt,
     footer: context {
@@ -85,6 +86,7 @@
       if c > 0 {
         set align(right)
         set text(size: 7pt)
+        v(1em)
         [
           #c / #t
         ]
@@ -114,13 +116,13 @@
     supplement: [Card],
     caption: name,
     {box(
-      stroke: (left: 2pt + red),
+      radius: 4pt,
       inset: 10pt,
       fill: luma(240),
       width: 100%,
     {
       {
-        set text(size: 8pt, fill: black, weight: "bold", font: "DejaVu Sans Mono")
+        set text(size: 8pt, fill: blue.saturate(-40%).darken(20%), weight: "bold", font: "DejaVu Sans Mono")
         set align(left)
         for path in tags {
           for tag in path.split(".") {
@@ -133,7 +135,7 @@
         }
       }
       set text(size: 14pt, weight: "bold")
-      set align(left)
+      set align(center)
       v(-5pt)
       name
     })
