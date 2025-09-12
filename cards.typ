@@ -2,6 +2,13 @@
 
 #let store = state("store", ())
 
+#let _colors = (
+  text: black
+)
+#let _sizes = (
+  text: 11pt
+)
+
 #let tree() = {
   let cards_of(cards, path) = {
     let segs = path.join(".")

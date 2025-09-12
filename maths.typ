@@ -1882,12 +1882,14 @@ Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n =
     ylim: (0, 1),
     grid: none,
     xaxis: (
+      stroke: _colors.text + 2pt,
       position: base,
       ticks: ((3, $S_(n-1)$), (4, $S_n$), (5, $S_(n+1)$)),
       subticks: none,
       tip: tiptoe.stealth,
     ),
     yaxis: (
+      stroke: _colors.text + 2pt,
       position: base + 1,
       ticks: none, 
       subticks: none,
@@ -1897,6 +1899,7 @@ Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n =
       line(stroke: orange, length: 1em), $script(1/t^alpha)$,
       box(fill: blue, width: 1em, height: 1em), $script(u_n / S_n^alpha)$,
       box(fill: teal, width: 1em, height: 1em), $script(u_(n+1) / S_(n+1)^alpha)$,
+      fill: none,
     ),
     lq.bar(
       range(6),
