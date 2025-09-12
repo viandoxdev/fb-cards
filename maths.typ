@@ -5,6 +5,8 @@
 //![FLASHBANG HEADER]
 
 #import "utils.typ": *
+#import "@preview/tiptoe:0.3.1"
+#import "@preview/lilaq:0.4.0" as lq
 
 #card("anatl", "Taylor-Langrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
 
@@ -1721,7 +1723,11 @@ Méthodes de recherche d'équivalents.
 
 Si on cherche un équivalent d'une suite $(u_n)$
 
-- Étudier la série $sum (u_(n+1) - u_n)$
+- Étudier la série $sum (u_(n+1) - u_n)$ ou $sum (u_n - u_(n + 1))$, sommes partielles ou restes (voir théorème de sommation des relations de comparaison).
+- Chercher $alpha in RR^*$ tel que $u_(n+1)^alpha - u_n^alpha tends(n -> +oo) l in RR^*$, pour avoir
+  $
+    u_n^alpha - u_0^alpha &= sum_(k=0)^(n-1) u_(k+1)^alpha - u_k^alpha eqv(n->+oo) n l \
+  $
 
 #card("abscv", "Absolue convergence", ("Maths.Analyse.Séries",))
 
@@ -1835,3 +1841,120 @@ Si $(u_n) in KK^NN, (a_n) in RR_+^NN$ et $sum a_n$ diverge.
   $
 
 Démonstration : même que pour l'autre, on à juste a découper la somme entre avant et après un certain rang (pour $o$ et $O$).
+
+#card("eqvrefrim", "Équivalents de référence : séries de Riemann", ("Maths.Analyse.Séries",))
+
+Équivalent des restes ou sommes partielles des séries de Riemann (à redemontrer).
+
+#answer
+
+Par comparaison série intégrale :
+
+- Pour $1 >= alpha > 0$ #h(1fr)
+  $
+    integral_1^(n+1) (dif t)/t^alpha <= 1 + sum_(k = 1)^n 1/k^alpha <= integral_2^(n) (dif t) / t^alpha \
+  S_n (alpha) = sum_(k = 1)^n 1 / k^alpha eqv(n -> +oo) n^(1 - alpha) / (1 - alpha)
+  $
+- Pour $alpha > 0$
+  $
+    integral_(n+1)^(+oo) (dif t) / t^alpha <= sum_(k = n + 1)^(+oo) 1/k^alpha <= integral_n^(+oo) (dif t) / t^alpha \
+  R_n (alpha) = sum_(k = n + 1)^(+oo) 1/k^alpha eqv(n -> +oo) 1/(alpha - 1) dot 1 / n^(alpha - 1)
+  $
+
+#card("convsertgsp", "Convergence de la série terme général sur somme partielle", ("Maths.Analyse.Séries",))
+
+Démonstration de la CNS sur $alpha$ de la convergence de la série $sum u_n / S_n^alpha$ (avec $sum u_n$ divergente).
+
+#answer
+
+Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n = sum_(k = 1)^n u_n$.
+
+- Si $alpha > 1$ :
+
+#{
+  set align(center)
+  let base = 0.2
+  let xs = lq.linspace(1, 8)
+  let color = (blue,) * 6
+  color.at(4) = teal
+  lq.diagram(
+    width: 4cm,
+    xlim: (1, 7),
+    ylim: (0, 1),
+    grid: none,
+    xaxis: (
+      position: base,
+      ticks: ((3, $S_(n-1)$), (4, $S_n$), (5, $S_(n+1)$)),
+      subticks: none,
+      tip: tiptoe.stealth,
+    ),
+    yaxis: (
+      position: base + 1,
+      ticks: none, 
+      subticks: none,
+      tip: tiptoe.stealth,
+    ),
+    legend: lq.legend(
+      line(stroke: orange, length: 1em), $script(1/t^alpha)$,
+      box(fill: blue, width: 1em, height: 1em), $script(u_n / S_n^alpha)$,
+      box(fill: teal, width: 1em, height: 1em), $script(u_(n+1) / S_(n+1)^alpha)$,
+    ),
+    lq.bar(
+      range(6),
+      (base, base, base, 1 / 4 + base, 1 / 5 + base, base ),
+      fill: color,
+      align: left,
+      width: 1.0,
+      base: base,
+    ),
+    lq.plot(
+      xs,
+      xs.map(x => 1 / x + base),
+      mark: none,
+    ),
+  ) 
+}
+
+Donc pour $t in [S_(n-1), S_n]$
+$
+  1/t^alpha >= 1 / S_n^alpha \
+  sum_(k = 1)^n u_k / S_k^alpha <= integral_(S_0)^S_n (dif t) / t^alpha = 1/(alpha - 1) (1/S_0^(alpha - 1) - 1 / S_n^(alpha - 1))
+$
+Or $S_n tends(n -> +oo) 0$ donc
+
+$
+  sum_(n = 1)^(+oo) u_n / S_n^alpha <= 1/(alpha - 1) dot 1 / (S_0^alpha)
+$
+
+- Si $alpha = 1$ :
+
+Si $u_n / S_n tendsnot(n->+oo) 0$, la série diverge grossièrement, et sinon
+
+$
+  u_n / S_n &~ -ln(1 - u_n / S_n) \
+&~ ln(S_n) - ln(S_(n-1))
+$
+
+Qui est le terme général d'une série téléscopique divergergente.
+
+- Si $alpha <= 1$, on compare avec $alpha = 1$, car à partir d'un certain rang $S_n >= 1$.
+
+#card("famsom", "Familles sommables", ("Maths.Analyse.Séries",))
+
+Définition et propriétées élémentaires des familles sommables.
+
+#answer
+
+Soit $I$ un ensemble non vide.
+
+Pour $(u_i) in RR_+^I$, on définit
+$
+  sum_(i in I) u_i &= sup { sum_(j in J) u_j, J subset.eq I "fini"} \ &in RR_+ union {+oo}
+$
+
+Pour une famille $(u_i) in KK^I$, on dit qu'elle est sommable si 
+$
+sum_(i in I) |u_i| < +oo
+$
+
+Si $(u_i)_(i in I)$ est sommable, alors elle contient un nombre au plus dénombrable d'éléments non nuls (Démonstration : on étudie $J_n = {i in I | u_i >= 1 / n}$)

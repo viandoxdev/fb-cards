@@ -47,10 +47,10 @@
         {
           text(weight: "bold", node.name, font: "DejaVu Sans Mono", size: 8pt)
           linebreak()
-          for card in node.cards {
+          for card in node.cards.sorted(key: (card) => card.name) {
             render_card(card)
           }
-          for child in node.children {
+          for child in node.children.sorted(key: (child) => child.name) {
             render(child)
           }
         }
