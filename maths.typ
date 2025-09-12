@@ -1878,7 +1878,6 @@ Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n =
   let color = (blue,) * 6
   color.at(4) = teal
   lq.diagram(
-    width: 4cm,
     xlim: (1, 7),
     ylim: (0, 1),
     grid: none,
