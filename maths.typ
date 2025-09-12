@@ -1878,6 +1878,8 @@ Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n =
   let color = (blue,) * 6
   color.at(4) = teal
   lq.diagram(
+    width: _sizes.text * 15,
+    height: _sizes.text * 10,
     xlim: (1, 7),
     ylim: (0, 1),
     grid: none,
@@ -1920,7 +1922,7 @@ Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n =
 Donc pour $t in [S_(n-1), S_n]$
 $
   1/t^alpha >= 1 / S_n^alpha \
-  sum_(k = 1)^n u_k / S_k^alpha <= integral_(S_0)^S_n (dif t) / t^alpha = 1/(alpha - 1) (1/S_0^(alpha - 1) - 1 / S_n^(alpha - 1))
+  sum_(k = 1)^n u_k / S_k^alpha <= integral_(S_0)^S_n (dif t) / t^alpha = 1/script(alpha - 1) (1/S_0^(alpha - 1) - 1 / S_n^(alpha - 1))
 $
 Or $S_n tends(n -> +oo) 0$ donc
 
