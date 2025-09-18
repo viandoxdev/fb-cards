@@ -1700,6 +1700,28 @@ $
 
 Et $sum f(n+1) - f(n) $ est positive et converge (série téléscopique) car $f$ converge (positive et décroissante).
 
+*Dans le cas $f$ non monotone* :
+
+Si $f in C^1$ et $integral_n^(+oo) |f'|$ converge
+
+$
+  integral_k^(k+1) f &= underbrace([(t - k -1) f(t)]_k^(k+1), f(k)) \
+&- integral_k^(k+1) (t-k-1) f'(t) dif t \
+  integral_1^(N+1) f &= sum_(k=1)^N f(k) \ &+ sum_(k=1)^N integral_k^(k+1) (k+1-t)f'(t) dif t
+$
+
+Or pour tout $k >= 1$
+
+$
+  abs(integral_k^(k+1) (k + 1 - t)f'(t) dif t) <= integral_k^(k+1) |f'|
+$
+
+Qui est le terme général d'une série convergente d'où
+
+$
+ & sum f(n) & "converge" \ "ssi" & (integral_1^N f)_N & "converge" \ "ssi" & integral_1^(+oo) f & "converge"
+$
+
 #card("serbertrand", "Séries de Bertrand", ("Maths.Analyse.Séries",))
 
 Définitions et propriétées des séries de Bertrand.
@@ -1962,3 +1984,150 @@ sum_(i in I) |u_i| < +oo
 $
 
 Si $(u_i)_(i in I)$ est sommable, alors elle contient un nombre au plus dénombrable d'éléments non nuls (Démonstration : on étudie $J_n = {i in I | u_i >= 1 / n}$)
+
+#card("sompaq", "Théorème de sommation par paquets", ("Maths.Analyse.Séries",))
+
+Énoncer et éléments de démonstration du théorème de sommation par paquets.
+
+#answer
+
+Soit $(u_i)_(i in I) in RR^I$, et $I = union.big.plus_(n in NN) I_n$ une partition. La famille $(u_i)$ est sommable ssi
+
+$
+  (*) : cases(
+    space forall n in NN\, (u_i)_(i in I_n) "sommable",
+    space sum (sum_(i in I_n) abs(u_i)) "converge vers" S
+  )
+$
+
+Dans ce cas
+
+$
+  sum_(i in I) u_i = sum_(n = 0)^(+oo) (sum_(i in I_n) u_i)
+$
+
+Démonstration :
+
+- Cas positif :
+  - On suppose $(*)$, on prend une sous famille fini $J$ de $I$, on a donc une famille $(J_n = I_n inter J)_n$, on note $N = max(n in NN | J_n != emptyset)$ qui existe car $J$ fini.
+    $
+      sum_(j in J) u_j &= sum_(n = 0)^N (sum_(j in J_n) u_j) \
+&<= sum_(n=0)^(+oo) (sum_(i in I_n) u_i) = S
+    $
+  - Caractèrisation de la borne supérieure, majoration et sous ensembles finis.
+- Cas général :
+  D'abord en valeurs absolues, puis parties positives, négatives, réelles et imaginaires. 
+
+#card("intclas", "Critère de convergence d'intégrales usuelles", ("Maths.Analyse.Intégration",))
+
+Critère de convergence d'intégrales usuelles : 
+$
+  integral_1^(+oo) (dif t) / t^alpha \
+  integral_0^1 (dif t) / t^alpha \
+  integral_2^(+oo) (dif t) / (t^alpha (ln t)^beta) \
+  integral_0^(1/2) (dif t) / (t^alpha (ln t)^beta) \
+$
+
+#answer
+
+- $integral_1^(+oo) (dif t) / t^alpha$ converge vers $1 / (alpha - 1)$ ssi $alpha > 1$.
+
+- $integral_0^1 (dif t) / t^alpha$ converge vers $1 / (1 - alpha)$ ssi $alpha < 1$.
+
+- $integral_2^(+oo) (dif t) / (t^alpha (ln t)^beta)$ converge ssi $alpha > 1$ ou $alpha = 1$ et $beta > 1$
+
+- $integral_0^(1/2) (dif t) / (t^alpha (ln t)^beta)$ converge ssi $alpha < 1$ ou $alpha  = 1$ et $beta > 1$
+
+#card("fungamma", "Fonction gamma", ("Maths.Analyse.Intégration",))
+
+Définition, convergence et démonstration de la fonction $Gamma$.
+
+#answer
+
+On définit
+
+$
+  Gamma(x) = integral_0^(+oo) e^(-t) t^(x - 1) dif t
+$
+
+- Qui converge pour $x > 0$. #h(1fr)
+- Pour $x > 0$
+  $
+    Gamma(x+1) = x Gamma(x)
+  $
+- $Gamma(1) = 1$
+
+$t |-> e^(-t) t^(x-1)$ est $C^0_"pm"$ sur $Ioo(0, +oo)$.
+
+- Sur $Ico(1, +oo)$ #h(1fr)
+  $
+    e^(-t) t^(x^-1) &= o_(t->+oo) (e^(-t/2)) \
+&= o_(t->+oo) (1/t^2)
+  $
+
+  Or $integral_1^(+oo) e^(-t/2) dif t$ converge, donc par le théorème de comparaison d'intégrales de fonctions positives, $integral_1^(+oo) e^(-t) t^(x - 1) dif t$ converge.
+- Sur $Ioc(0, 1)$
+  $
+    e^(-t) t^(x - 1) eqv(t->0_+) 1 / t^(1 - x)
+  $
+  Or $integral_0^1 (dif t) / t^(1 - x)$ converge ssi $1 - x < 1$ d'où $x > 0$, et on conclut par le même théorème.
+
+$
+  Gamma(x + 1) &= integral_0^(+oo) e^(-t) t^x dif t \
+&= [-e^(-t) t^x]_0^(+oo) + x integral_0 e^(-t) t^(x - 1) dif t \
+&= x Gamma(x)
+$
+
+#card("mobiusphi", "Fonctions arithmétiques : Möbius et indicatrice d'Euler", ("Maths.Algèbre.Arithmétique",))
+
+Définition, contexte et démonstration de la fonction de Möbius et la formule d'inversion.
+
+#answer
+
+Pour $A = cal(F)(NN^*, CC)$ on définit $(*)$, pour $f, g in A$
+
+$
+  f * g = cases(space display(mat(delim: #none, NN^*, ->, CC; n, |->, display(sum_(d | n) f(d) g(n / d)))))
+$
+
+Qui est une loi de composition interne sur $A$. On montre que
+- $bb(1)_({1})$ est l'élément neutre.
+- $(*)$ est commutatif
+- $(*)$ est associatif
+
+On définit la fonction de Möbius, on note $pi(n) = |{p in PP, p | n}|$
+
+$
+  mu : mat(delim: #none, 1, |->, 1; n | exists.not p in PP\, p^2 | n, |->, (-1)^pi(n ); n | exists p in PP\, p^2 | n, |->, 0)
+$
+
+On montre de plus
+
+$
+  mu * bb(1)_NN = bb(1)_{1}
+$
+
+Pour $n >= 2$ on écrit $n = product_(j = 1)^k p_j^(alpha_j)$. Un diviseur $d$ s'écrit $product_(j = 1)^k p_j^(beta_j)$ avec $beta_j <= alpha_j$. Donc
+
+$
+  mu(d) != 0 <=> forall j in [|1, k|], beta_j in {0, 1}
+$
+
+Ainsi
+
+$
+  sum_(d | n)  mu(d) &= sum_(beta_1, dots, beta_k in {0, 0}) mu(product_(j=1)^k p_j^(beta_j)) \
+&=sum_(q = 0)^k sum_(I subset [|1, q|]) (-1)^(|I|) \
+&= sum_(q = 0)^k (-1)^q vec(k, q) \
+&= 0
+$
+
+On en déduit la formule d'inversion de Möbius : soit $f : NN^* -> CC$, on pose $g : n |-> sum_(n | d) f(d)$ ($g = f * bb(1)_NN$), on a alors pour tout $n in NN$
+
+$
+  f(n) = sum_(d | n) mu(d) g(n / d)
+$
+
+C'est à dire $f = g * mu = f * underbrace(bb(1)_NN * mu, bb(1)_{1})$.
+
+De plus $mu$ est multiplicative.
