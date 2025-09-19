@@ -14,9 +14,9 @@ Théorème de Taylor-Lagrange, et conditions d'application.
 
 #answer
 
-Soit $f : [a, b] -> RR$, $C^n$ sur $[a, b]$ et $D^(n+1)$ sur $]a,b[$
+Soit $f : Icc(a, b) -> RR$, $C^n$ sur $Icc(a, b)$ et $D^(n+1)$ sur $Ioo(a,b)$
 
-Il existe $c in ]a, b[$ tel que
+Il existe $c in Ioo(a, b)$ tel que
 $
   f(b) = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!) \ 
          &+ f^((n+1)) (c) (b - a)^(n+1) / ((n+1)!)
@@ -28,7 +28,7 @@ Théorème de Taylor reste intégrale, et conditions d'application.
 
 #answer
 
-Soit $f : [a, b] -> RR$, $C^(n+1)$
+Soit $f : Icc(a, b) -> RR$, $C^(n+1)$
 
 #scale(90%, $
   f(b) = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!)  \ &+ integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
@@ -493,7 +493,7 @@ Définition de groupe des inversibles d'un anneau.
 
 #answer
 
-Le groupe des inversibles d'un anneau $(A, +, dot)$, est le groupe $(A^"inv", dot)$.
+Le groupe des inversibles d'un anneau $(A, +, dot)$, est le groupe $(A^times, dot)$.
 
 #card("ideal", "Idéal d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
 
@@ -739,9 +739,9 @@ Petit théorème de Fermat.
     a^p equiv a space [p]
   $
 - Démo :
-  On étudie $(ZZ_(\/p ZZ))^"inv"$ :
+  On étudie $(ZZ_(\/p ZZ))^times$ :
   $
-    forall a in (ZZ_(\/p ZZ))^"inv" \
+    forall a in (ZZ_(\/p ZZ))^times \
     "ord"(a) | p - 1 "(Lagrange)" \
     "donc" a^(p - 1) equiv 1 space [p]
   $
@@ -754,7 +754,7 @@ Définition de l'indicatrice d'Euler, et propriétées.
 
 La fonction indicatrice d'Euler est
 $
-  phi space : space mat(delim: #none, NN^star, ->, NN; n, |->, abs((ZZ_(\/n ZZ))^"inv")) \
+  phi space : space mat(delim: #none, NN^star, ->, NN; n, |->, abs((ZZ_(\/n ZZ))^times)) \
 $
 Quelques propriétées :
 
@@ -868,7 +868,7 @@ Définition de partie convexe.
 
 Une partie convexe de $RR$ est un ensemble $C subset.eq RR$ tel que
 $
-  forall x <= y in C, [x, y] subset.eq C
+  forall x <= y in C, Icc(x, y) subset.eq C
 $
 Les parties convexes de $RR$ sont des intervalles.
 
@@ -880,7 +880,7 @@ Définition de densité.
 
 Soit $D subset.eq RR$, $D$ est dense dans $RR$ si
 $
-  forall a < b in RR, ]a, b[ inter D != emptyset
+  forall a < b in RR, Ioo(a, b) inter D != emptyset
 $
 $QQ$ est dense dans $RR$, preuve : saut de grenouille.
 
@@ -892,7 +892,7 @@ Définition de voisinage.
 
 Soit $x in overline(RR)$, $V subset.eq RR$ est un voisinage de $x$ si 
 $
-exists epsilon > 0, ] x-epsilon, x+epsilon [ subset.eq V
+exists epsilon > 0, Ioo(x-epsilon, x+epsilon) subset.eq V
 $
 On note $cal(V) (x)$ l'ensemble des voisinages de $x$.
 
@@ -909,12 +909,12 @@ $
 L'adhérence de $A$ est alors
 $
   "adh"(A) &= {x in RR | x "adhérent à" A} \
-  &= {x in RR | script(forall epsilon > 0\, \]x-epsilon\, x+epsilon\[ inter A != emptyset)}
+  &= {x in RR | script(forall epsilon > 0\, #Ioo($x-epsilon$, $x+epsilon$) inter A != emptyset)}
 $
 Propriétés :
 - $A subset.eq "adh"(A)$
 - Si $A$ non vide borné : ${inf A, sup A} subset.eq A$
-- $"adh"(]a,b[) = [a,b]$
+- $"adh"(Ioo(a,b)) = Icc(a,b)$
 - $D$ est dense dans $RR$ ssi $"adh"(D) = RR$
 - $"adh"("adh"(A)) = "adh"(A)$
 
@@ -997,7 +997,7 @@ Définition et théorème des suites adjacentes et emboitées.
 
   Théorème : 
   $
-    inter.big_(n=0)^oo [a_n, b_n] = {x} \ "avec" x = lim a_n = lim b_n
+    inter.big_(n=0)^oo Icc(a_n, b_n) = {x} \ "avec" x = lim a_n = lim b_n
   $
 
 #card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites Réelles",))
@@ -1011,19 +1011,19 @@ Toute suite réelle bornée admet une sous-suite convergente. Dans $RR^n$ (et $C
 Preuve :
 
 Soit $(u_n)$ une suite bornée par $a_0$ et $b_0$, notons $A = {u_n, n in NN}$. Par récurrence :
-- Ini : $abs([a_0, b_0] inter A) = oo$
-- Héré : On suppose $abs([a_n, b_n] inter A) = oo$, et on coupe en $m = (a_n + b_n) / 2$ :
-  - Si $abs([a_n, m] inter A) = oo$, $cases(a_(n+1) = a_n, b_(n+1) = m)$ #v(8pt)
-  - Si $abs([m, b_n] inter A) = oo$, $cases(a_(n+1) = m, b_(n+1) = b_n)$
+- Ini : $abs(Icc(a_0, b_0) inter A) = oo$
+- Héré : On suppose $abs(Icc(a_n, b_n) inter A) = oo$, et on coupe en $m = (a_n + b_n) / 2$ :
+  - Si $abs(Icc(a_n, m) inter A) = oo$, $cases(a_(n+1) = a_n, b_(n+1) = m)$ #v(8pt)
+  - Si $abs(Icc(m, b_n) inter A) = oo$, $cases(a_(n+1) = m, b_(n+1) = b_n)$
 
 Par le théorème des suites emboitées : 
 $
-exists l in [a_0, b_0], space inter.big_(n = 0)^oo [a_n, b_n] = {l}
+exists l in Icc(a_0, b_0), space inter.big_(n = 0)^oo Icc(a_n, b_n) = {l}
 $
 
 Soit $phi$ une extractrice, par récurrence :
 - Ini : $phi(0) = 0$
-- Héré : $[a_(n+1), b_(n+1)]$ est infini, donc il existe $m > phi(n)$ tel que $u_m in [a_(n+1), b_(n+1)]$. On prend $phi(n+1) = m$.
+- Héré : $Icc(a_(n+1), b_(n+1))$ est infini, donc il existe $m > phi(n)$ tel que $u_m in Icc(a_(n+1), b_(n+1))$. On prend $phi(n+1) = m$.
 
 Donc $a_n <= u_(phi(n)) <= b_n$ d'où $lim u_(phi(n)) = l$.
 
@@ -1092,13 +1092,13 @@ Théorème des bornes atteintes et démonstration.
 
 #answer
 
-Si $f$ est $C^0 ([a, b])$, alors $f$ est bornée et atteint ses bornes.
+Si $f$ est $C^0 (Icc(a, b))$, alors $f$ est bornée et atteint ses bornes.
 
 Preuve :
 
-Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR)(f([a, b]))$, donc il existe une suite $(x_n)$ à valeur dans $[a, b]$ tel que $f(x_n) -> M$.
+Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR)(f(Icc(a, b)))$, donc il existe une suite $(x_n)$ à valeur dans $Icc(a, b)$ tel que $f(x_n) -> M$.
 
-Par Bolzano-Weiestrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in [a, b]$ et donc nécéssairement $M in RR$.
+Par Bolzano-Weiestrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in Icc(a, b)$ et donc nécéssairement $M in RR$.
 
 #card("heine", "Théorème de Heine", ("Maths.Analyse.Continuité",))
 
@@ -1110,19 +1110,19 @@ Toute fonction continue sur un segment est uniformement continue.
 
 Preuve :
 
-Soit $f in C^0([a,b])$. Supposons par l'absurde que $f$ n'est pas uniformement continue.
+Soit $f in C^0(Icc(a,b))$. Supposons par l'absurde que $f$ n'est pas uniformement continue.
 
 $
-  exists epsilon > 0, forall delta > 0, exists x, y in [a,b] \
+  exists epsilon > 0, forall delta > 0, exists x, y in Icc(a,b) \
   |x - y| < delta "et" |f(x) - f(y)| >= epsilon
 $
  
-On prend $(x_n), (y_n) in [a,b]^NN$ tel que 
+On prend $(x_n), (y_n) in Icc(a,b)^NN$ tel que 
 $
 forall n in NN, |x_n - y_n| < 1/n \
 |f(x_n) - f(y_n)| >= epsilon
 $
-Ces suites sont bornées donc par Bolzano-Weiestrass, il existe une extractrice $phi$ tel que $x_(phi(n)) -> l in [a, b]$.
+Ces suites sont bornées donc par Bolzano-Weiestrass, il existe une extractrice $phi$ tel que $x_(phi(n)) -> l in Icc(a, b)$.
 
 Or $|x_(phi(n)) - y_(phi(n))| -> 0$ donc $y_(phi(n)) -> l$. 
 
@@ -1192,15 +1192,15 @@ Donc $f'(a) = 0$ (les deux limites sont égales par la dérivabilité de $f$ en 
 Énoncé et preuve des théorèmes de Rolle et des acroissements finis.
 
 #answer
-Soit $f in C^0([a,b])$ dérivable sur $class("opening", ]) a,b class("closing", \[)$ 
+Soit $f in C^0(Icc(a,b))$ dérivable sur $Ioo(a,b)$ 
 
 / Rolle: Si $f(a) = f(b)$, alors 
   $
-  exists c in class("opening", ]) a,b class("closing", \[), space f'(c) = 0
+  exists c in Ioo(a,b), space f'(c) = 0
   $
 / TAF:
   $
-  exists c in class("opening", ]) a,b class("closing", \[), space f'(c) = (f(b) - f(a)) / (b - a)
+  exists c in Ioo(a,b), space f'(c) = (f(b) - f(a)) / (b - a)
   $
 
 Preuve :
@@ -1216,12 +1216,12 @@ Inégalité des acroissements finis et de Taylor-Lagrange.
 / Inégalité des acroissements finis: #linebreak()
   Soit $f : I -> RR$ dérivable et $a in I$, pour tout $x in I$
 $
-  abs(f(x) - f(a)) <= sup_[a,x] abs(f') dot abs(x - a)
+  abs(f(x) - f(a)) <= sup_Icc(a,x) abs(f') dot abs(x - a)
 $
 / Inégalité de Taylor-Lagrange: #linebreak()
   Soit $f : I -> RR$ qui est $D^(n+1)$ et $a in I$, pour tout $x in I$
 $
-abs(f(x) - sum_(k = 0)^n f^((k))(a) (x - a)^k / k!)\ <= sup_[a,x] abs(f^((n+1))) dot abs(x - a)^(n+1) / (n+1)!
+abs(f(x) - sum_(k = 0)^n f^((k))(a) (x - a)^k / k!)\ <= sup_Icc(a,x) abs(f^((n+1))) dot abs(x - a)^(n+1) / (n+1)!
 $
 
 Preuve :
@@ -1364,16 +1364,16 @@ Définition et propriétés de convexité.
 
 Soit $f : I -> RR$, $f$ est dite convexe si 
 $
-forall x, y in I, forall lambda in [0, 1] \ f(lambda x + (1 - lambda) y) \ <= lambda f(x) + (1-lambda) f(y)
+forall x, y in I, forall lambda in Icc(0, 1) \ f(lambda x + (1 - lambda) y) \ <= lambda f(x) + (1-lambda) f(y)
 $
 
 Propriétés :
 - Soit $f : I -> RR$ convexe, $forall x_1, dots, x_n in I$
   $
-  forall lambda_1, dots, lambda_n in [0, 1], lambda_1 + dots.c + lambda_n = 1 =>\
+  forall lambda_1, dots, lambda_n in Icc(0, 1), lambda_1 + dots.c + lambda_n = 1 =>\
   f(sum_(i = 1)^n lambda_i x_i) <= sum_(i = 1)^n lambda_i f(x_i)
   $
-- Soit $Phi$ convexe, $forall f in C^0([a,b])$
+- Soit $Phi$ convexe, $forall f in C^0(Icc(a,b))$
   $
     Phi(1/(b-a) integral_a^b f(x) dif x) \ <= 1/(b-a) integral_a^b Phi (f(x)) dif x
   $
@@ -1506,7 +1506,7 @@ Propriétés :
   $
 + Minimalité en norme :
   $
-    norm(P) = max_(t in [-1, 1]) abs(P (t))
+    norm(P) = max_(t in Icc(-1, 1)) abs(P (t))
   $
   Si $P$ unitaire de degré $n$, alors $norm(P) >= 1 / (2^(n-1))$.
 
@@ -1518,7 +1518,7 @@ Preuves :
   script(cos((n+1)theta) + cos((n-1)theta) = 2 cos theta cos(n theta)) \
   script(T_(n+1) (cos theta) + T_(n-1) (cos theta) = 2 (cos theta) T_(n) (cos theta))
   $
-  Donc ils coincident en une infinité de valeurs $[-1, 1]$, et sont donc égaux.
+  Donc ils coincident en une infinité de valeurs $Icc(-1, 1)$, et sont donc égaux.
 + Par récurrence avec la relation de récurrence.
 + On résout $cos(n theta) = 0$, on fait attention à distingué les racines.
 + Changement de variable $x = cos theta$, puis formules de trigonométrie.
@@ -1669,7 +1669,7 @@ Propriétées et methode de comparaison série intégrale.
 
 #answer
 
-Pour $f in C_("pm")^0 ([a, +oo[, RR_+)$, décroissante, $forall n >= ceil(a) + 1 = N_0$
+Pour $f in C_("pm")^0 (Ico(a, +oo), RR_+)$, décroissante, $forall n >= ceil(a) + 1 = N_0$
 
 $
   f(n) &>= integral_n^(n+1) f(t) dif t \
@@ -1941,7 +1941,7 @@ Soit $(u_n) in (RR_+^*)^NN$, $sum u_n$ diverge, et $alpha in RR$. On note $S_n =
   ) 
 }
 
-Donc pour $t in [S_(n-1), S_n]$
+Donc pour $t in Icc(S_(n-1), S_n)$
 $
   1/t^alpha >= 1 / S_n^alpha \
   sum_(k = 1)^n u_k / S_k^alpha <= integral_(S_0)^S_n (dif t) / t^alpha = 1/script(alpha - 1) (1/S_0^(alpha - 1) - 1 / S_n^(alpha - 1))
@@ -2131,3 +2131,144 @@ $
 C'est à dire $f = g * mu = f * underbrace(bb(1)_NN * mu, bb(1)_{1})$.
 
 De plus $mu$ est multiplicative.
+
+#card("wallis", "Intégrales de Wallis", ("Maths.Analyse.Intégration",))
+
+Définition, propriétées et démonstration des intégrales de Wallis.
+
+#answer
+
+On pose pour $n in NN$
+
+$
+  W_n &= integral_0^(pi/2) (cos t)^n dif t \ 
+  &= integral_0^(pi / 2) (sin theta)^n dif theta quad  script((theta = pi/2 - t))
+$
+
+*Relation de récurrence*
+
+$
+  W_(n+2) &= integral_0^(pi/2) (sin t)^(n + 2) dif t \
+&= underbrace([-cos(t) sin(t)^(n+1)]_0^(pi/2), 0) \
+&+ (n+1) integral_0^(pi/2) (sin t)^n underbrace((cos t)^2, 1 - (sin t)^2) dif t \
+&= (n+1) W_n - (n+1) W_(n+2) \
+&= (n+1) / (n+2) W_n
+$
+
+*Formules explicites*
+
+$
+  W_0 &= pi / 2 \
+  W_1 &= 1 \
+  W_(2n) &= (2n)! / (2^(2n) (n!)^2) pi / 2 \
+  W_(2n + 1) &= (2^(2n) (n!)^2) / (2n + 1)!
+$
+
+*Équivalents*
+
+Pour $t in Icc(0, pi / 2)$
+$
+  0 <= (sin t)^(n+2) <= (sin t)^(n+1) <= (sin t)^n \
+  0 <= W_(n+2) <= W_(n+1) <= W_n \
+  (n+1) / (n+2) <= W_(n+1) / W_n <= 1
+$
+
+D'où 
+$
+  W_(n+1) &eqv(n -> +oo) W_n \
+  W_(2n)^2 &eqv(n -> +oo) W_(2n + 1)^2  \
+  &eqv(n -> +oo) W_(2n) W_(2n + 1) = pi / (4 n+ 2) \
+$
+
+Ainsi
+
+$
+  W_(2n + 1) eqv(n -> +oo) sqrt(pi / (4n + 2)) \
+  W_(2n) eqv(n -> +oo) sqrt(pi / (4n)) \
+$
+
+#card("rimannlebesg", "Lemme de Riemann-Lebesgue", ("Maths.Analyse.Intégration",))
+
+Énoncé et démonstration du lemme de Riemann-Lebesgue.
+
+#answer
+
+Si $I$ est un Intervalle de $RR$, et $f in C^0_"pm" (I, KK)$ intégrable sur $I$, alors
+
+$
+  integral_I f(t) e^(i lambda t) dif t tends(lambda -> oo) 0 \
+  integral_I f(t) cos(lambda t) dif t tends(lambda -> oo) 0 \
+  integral_I f(t) sin(lambda t) dif t tends(lambda -> oo) 0 \
+$
+
+*Démonstration*
+
+- Si $f$ est $C^1$ sur un ségment : par IPP, on dérive $f$, $f'$ étant continue sur un ségment elle est uniformement continue sur ce ségment (théorème de Heine), et est donc bornée (théorème des bornes atteintes).
+
+- On montre d'abord pour $I$ ségment.
+  - On traite le cas $f$ constante.
+  - On généralise à $f$ en éscalier.
+  - Par densité des fonctions en éscalier on étend aux fonctions continues.
+- On étend finalement aux intervalles quelconques.
+
+#card("exunsgcycl", "Éxistence et unicité des sous groupes de groupe cyclique", ("Maths.Algèbre.Groupes",))
+
+Soit $G$ un groupe cyclique d'ordre $n$, et $d | n$, montrer l'éxistence et l'unicité d'un sous groupe d'ordre $d$.
+
+#answer
+
+Soit $G$ cyclique d'ordre $n$.
+
+Par isomorphisme à $(ZZ_(\/n ZZ), +)$, on se ramène à l'étude de $(UU_n, dot)$.
+
+Soit $H$ sous groupe de $UU_n$, $|H| = d$.
+
+Pour tout $x in H$, $x^d = 1$ donc $H subset UU_d$, par égalité des cardinaux, $H = UU_d$.
+
+#card("polcyc", "Polynômes cyclotomiques", ("Maths.Algèbre.Polynômes",))
+
+Définitions et propriétées des polynômes cyclotomiques.
+
+#answer
+
+Pour $n in NN^*$ on note 
+$
+VV_n &= {z in UU_n | "ord"(z) = n} \
+&= { e^((2k i pi) / n) , k in (ZZ_(\/n ZZ))^times}
+$
+
+On définit de $n$-ème polynôme cyclotomique
+$
+  Phi_n (X) = product_(xi in VV_n) (X - xi) \
+  deg(Phi_n) = phi(n)
+$
+
+On montre
+$
+  X^n - 1 = product_(d | n) Phi_d
+$
+
+Démonstration :
+
+- Pour $d | n$, on a #h(1fr)
+  $
+  VV_d = {z in UU_n | "ord"(n) = d}
+  $
+  Car si $z in UU_n$ d'ordre $d$, $z in gen(z)$ sous groupe de $UU_n$ de cardinal $d$, qui est unique car $UU_n$ est cyclique. D'où $z in UU_d$ et à fortiori $z in VV_d$.
+
+- On a donc
+  $
+    UU_n = union.big.plus_(d | n) VV_d \
+  $
+  $
+    X^n - 1 &= product_(xi in UU_n) (X - xi) \
+&= product_(d | n) (product_(xi in VV_n) (X - xi)) \
+&= product_(d | n) Phi_d
+  $
+
+Démonstration de $n = sum_(d | n) phi(d)$ :
+
+$
+    n &= |UU_n| \ &= sum_(d | n) |VV_d| \
+&= sum_(d | n) phi(d)
+$
