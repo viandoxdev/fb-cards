@@ -2245,7 +2245,8 @@ $
 
 On montre
 $
-  X^n - 1 = product_(d | n) Phi_d
+  X^n - 1 = product_(d | n) Phi_d \
+  Phi_n in ZZ[X]
 $
 
 Démonstration :
@@ -2265,6 +2266,12 @@ Démonstration :
 &= product_(d | n) (product_(xi in VV_n) (X - xi)) \
 &= product_(d | n) Phi_d
   $
+- On montre que la division euclidienne dans $ZZ[X]$ par un polynôme unitaire donnent un polynôme dans $ZZ[X]$. On refait la démonstration de la division euclidienne (récurrence).
+- Récurrence forte sur $n$ pour montrer que $Phi_n in ZZ[X]$
+  $
+    X^n - 1 = Phi_n dot (product_(d | n \ d != n) Phi_d) 
+  $
+
 
 Démonstration de $n = sum_(d | n) phi(d)$ :
 
