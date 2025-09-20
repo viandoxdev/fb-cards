@@ -424,14 +424,14 @@ Démonstration du théorème de Lagrange
 Soit $(G, dot)$ un groupe fini et $H$ un sous-groupe.
 
 #let re = math.class("relation", $cal(R)$)
-- Relation quotienté par $H$ : $x re y$ si $y x^(-1) in H$ (relation d'équivalence). On note $G_(\/ H)$ l'ensemble des classes d'équivalences.
+- Relation quotienté par $H$ : $x re y$ si $y x^(-1) in H$ (relation d'équivalence). On note $G \/ H$ l'ensemble des classes d'équivalences.
 - Soit $x in G$, $accent(x, macron)$ sa classe d'équivalence pour $re$. $accent(x, macron) = H x = {h x, h in H}$.
 
   Par double inclusion :
   - $H x subset.eq accent(x, macron)$ : Soit $y in H x$, $y = h x$ avec $h in H$, donc $y x^(-1) = h in H$ d'où $y re x$ et $y in accent(x, macron)$.
   - $accent(x, macron) subset.eq H x$ : Soit $y in accent(x, macron)$, $y x^(-1) = h in H$, donc $y = h x in H x$.
 - Donc $forall x in G, accent(x, macron) = H x tilde.eq H$ d'où $abs(accent(x, macron)) = abs(H)$.
-- Enfin par le lemme du berger : $abs(G_(\/ H)) = abs(G) / abs(H)$ et donc $abs(H) | abs(G)$.
+- Enfin par le lemme du berger : $abs(G \/ H) = abs(G) / abs(H)$ et donc $abs(H) | abs(G)$.
 
 #card("propmorphgrouplag", "Relation de cardinal pour un morphisme de groupe", ("Maths.Algèbre.Groupes",))
 
@@ -497,7 +497,7 @@ Le groupe des inversibles d'un anneau $(A, +, dot)$, est le groupe $(A^times, do
 
 #card("ideal", "Idéal d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
 
-Définition d'un idéal d'un anneau.
+Définition d'un idéal d'un anneau, propriétées élémentaires.
 
 #answer
 
@@ -505,6 +505,16 @@ Soit $(A, +, dot)$ un anneau et $I subset.eq A$, $I$ est un idéal de $A$ si
 
 - $I$ est un sous-groupe additif de $A$
 - $I$ est stable par produit externe : $forall x in I, forall a in A, a x in I$
+
+Propriétées :
+
+- Si $1 in I$ idéal de $A$, alors $I = A$.
+- Plus généralement s'il existe $x in I$ inversible, $I = A$.
+- Une intersection quelconque d'idéaux est un idéal.
+- Une somme finie d'idéaux est un idéal.
+- Si $phi: A_1 -> A_2$ un morphisme d'anneau avec $A_1$ commutatif, $ker phi$ est un idéal de $A_1$.
+- Pour tout $b in A, b A$ est un idéal de $A$.
+- Un idéal engendré par un ensemble est le plus petit idéal le contenant, dans le cas d'un singleton ${a} subset A$, il s'agit de $a A$.
 
 #card("axcorps", "Axiomes d'un corps", ("Maths.Algèbre.Anneaux et corps",))
 
@@ -683,7 +693,7 @@ $
 Plus algébriquement :
 
 $
-  ZZ_(\/ p ZZ) "est un anneaux intègre :" \
+  ZZ \/ p ZZ "est un anneaux intègre :" \
   a b equiv 0 space [p] => a equiv 0 space [p] "ou" b equiv 0 space [p]
 $
 
@@ -715,7 +725,7 @@ Soit $n, m in NN^star$ premiers entre eux
 - Formulation algébrique :
   $
   phi space : space mat(delim: #none,
-    ZZ_(\/ m n ZZ), ->, ZZ_(\/ m ZZ) times ZZ_(\/ n ZZ);
+    ZZ \/ m n ZZ, ->, ZZ_(\/ m ZZ) times ZZ_(\/ n ZZ);
     x,|->,vec(x &space [m], x &space [n])
   )
   $
@@ -739,9 +749,9 @@ Petit théorème de Fermat.
     a^p equiv a space [p]
   $
 - Démo :
-  On étudie $(ZZ_(\/p ZZ))^times$ :
+  On étudie $(ZZ \/p ZZ)^times$ :
   $
-    forall a in (ZZ_(\/p ZZ))^times \
+    forall a in (ZZ \/p ZZ)^times \
     "ord"(a) | p - 1 "(Lagrange)" \
     "donc" a^(p - 1) equiv 1 space [p]
   $
@@ -754,7 +764,7 @@ Définition de l'indicatrice d'Euler, et propriétées.
 
 La fonction indicatrice d'Euler est
 $
-  phi space : space mat(delim: #none, NN^star, ->, NN; n, |->, abs((ZZ_(\/n ZZ))^times)) \
+  phi space : space mat(delim: #none, NN^star, ->, NN; n, |->, abs((ZZ \/n ZZ)^times)) \
 $
 Quelques propriétées :
 
@@ -2219,7 +2229,7 @@ Soit $G$ un groupe cyclique d'ordre $n$, et $d | n$, montrer l'éxistence et l'u
 
 Soit $G$ cyclique d'ordre $n$.
 
-Par isomorphisme à $(ZZ_(\/n ZZ), +)$, on se ramène à l'étude de $(UU_n, dot)$.
+Par isomorphisme à $(ZZ \/n ZZ, +)$, on se ramène à l'étude de $(UU_n, dot)$.
 
 Soit $H$ sous groupe de $UU_n$, $|H| = d$.
 
@@ -2234,7 +2244,7 @@ Définitions et propriétées des polynômes cyclotomiques.
 Pour $n in NN^*$ on note 
 $
 VV_n &= {z in UU_n | "ord"(z) = n} \
-&= { e^((2k i pi) / n) , k in (ZZ_(\/n ZZ))^times}
+&= { e^((2k i pi) / n) , k in (ZZ \/n ZZ)^times}
 $
 
 On définit de $n$-ème polynôme cyclotomique
@@ -2279,3 +2289,122 @@ $
     n &= |UU_n| \ &= sum_(d | n) |VV_d| \
 &= sum_(d | n) phi(d)
 $
+
+#card("quotgr", "Groupes quotientés", ("Maths.Algèbre.Groupes",))
+
+Définitions et propriétées des groupes quotientés.
+
+#answer
+
+Soit $G$ un groupe, $H$ sous-groupe.
+
+On définit la relation d'équivalence 
+
+$
+  forall (x, y) in G^2, space x ~ y "ssi" y in x H
+$
+
+On obtient ainsi les classes à gauche $g H$ pour tout $g in G$, dont l'ensemble est noté $G \/ H$.
+
+$H$ est dit distingué si 
+
+$
+forall g in G, space g H g^(-1) = H
+$
+
+Et dans ce cas $G \/ H$   à une structure de groupe muni de la multiplication sur les classes
+$
+  overline(x) dot overline(y) = overline(x dot y)
+$
+
+Et on pose
+
+$
+  f : mat(delim: #none, G, ->, G \/ H; g, |->, g H)
+$
+
+qui est un morphisme de groupe surjectif appelé projection cannonique de $G$ sur $G \/ H$ dont le noyau est $H$.
+
+#card("idmax", "Idéal maximaux, anneaux quotientés", ("Maths.Algèbre.Anneaux et corps",))
+
+Définitions d'idéal maximale, anneau quotienté, propriétées.
+
+#answer
+
+Soit $(A, +, dot)$ un anneau et $I$ idéal de $A$.
+
+*Idéal maximale*
+
+Un idéal $I$ de $A$ est dit maximale si pour tout $J$ idéal de $A$
+  $
+    I subset.neq J => J = A
+  $
+
+*Anneau quotienté*
+
+On définit sur $A$ la relation d'équivalence
+
+$
+  forall (x, y) in A^2, space x ~ y "ssi" x - y in I
+$
+
+On note $A \/ I$ l'ensemble des classes d'équivalences par cette relation qu'on muni d'une structure de groupe en définissant les loi suivantes
+$
+  overline(x) + overline(y) = overline(x + y) \
+  overline(x) dot overline(y) = overline(x dot y) \
+$
+
+Qui ne dépend pas du représentant choisis.
+
+*Propriétées*
+
+- $I$ est maximale ssi tous les éléments non nuls de $A \/ I$ sont inversibles.
+- Si $A$ commutatif, $I$ maximale, alors $I$ est premier ($A \/ I$ est intègre).
+
+Démonstration :
+
+- On suppose $I$ maximale. Soit $x in A\\I$ c'est à dire $x in.not overline(0_A)$, montrons que $overline(x)$ est inversible. 
+
+  $I subset.eq x A + I = J$ est un idéal, or $I$ maximale d'où $1_A in A = J$, d'où l'éxistence de $y in A$ et $z in I$ tel que
+
+  $
+    x y + z = 1_A \
+    overline(x y) = overline(1_A)
+  $
+- On suppose les éléments non nuls de $I \/ A$ inversibles.
+
+  Soit $J supset.neq I$ idéal de $A$, donc il existe $x in J$ tel que $x in.not I$.
+
+  $overline(x) != overline(0)$ donc $overline(x)^(-1) = overline(y)$ existe.
+  $
+  overline(x) overline(y) = overline(x y) = overline(1_A) \
+  exists z in I, space underbrace(x y + z, in J) = 1_A
+  $
+
+  $1_A in J$ donc $J = A$, $I$ est maximale.
+- Soit $x, y in A$ tels que $x y in I$, supposons que $x in.not I$. Donc $overline(x)$ inversible : on dispose de $x' in A$ et $z in I$ tels que
+
+  $
+    x x' + z = 1_A \
+    overbrace(underbrace(x y, in I) x' + z y, in I) = y in I
+  $
+
+#card("sigsn", "Signature d'une permutation", ("Maths.Algèbre.Groupes",))
+
+Définitions et propriétées de la signature dans $frak(S)_n$.
+
+#answer
+
+Plusieurs définitions alternatives.
+
+- $epsilon : (frak(S)_n, compose) -> (ZZ^times, dot)$ est l'unique morphisme non triviale.
+
+Pour $sigma in frak(S)_n$ :
+
+$
+epsilon(sigma) &= product_(1 <= i < j <= n) (sigma(i) - sigma(j)) / (i - j) \
+&=  (-1)^(N_sigma) \
+&= (-1)^(n - |"Orb"(sigma)|)
+$
+
+Où $N_sigma = |{(i, j) | i < j "et" sigma(i) > sigma(j)}|$.
