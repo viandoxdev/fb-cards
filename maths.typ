@@ -724,9 +724,9 @@ Soit $n, m in NN^star$ premiers entre eux
   $
 - Formulation algébrique :
   $
-  phi space : space mat(delim: #none,
-    ZZ \/ m n ZZ, ->, ZZ_(\/ m ZZ) times ZZ_(\/ n ZZ);
-    x,|->,vec(x &space [m], x &space [n])
+  phi space : space func(delim: #none,
+    ZZ \/ m n ZZ, ZZ \/ m ZZ times ZZ \/ n ZZ,
+    x, vec(x &space [m], x &space [n])
   )
   $
   est un isomorphisme d'anneaux.
@@ -764,7 +764,7 @@ Définition de l'indicatrice d'Euler, et propriétées.
 
 La fonction indicatrice d'Euler est
 $
-  phi space : space mat(delim: #none, NN^star, ->, NN; n, |->, abs((ZZ \/n ZZ)^times)) \
+  phi space : space func(delim: #none, NN^star, NN, n, abs((ZZ \/n ZZ)^times)) \
 $
 Quelques propriétées :
 
@@ -1893,7 +1893,7 @@ Par comparaison série intégrale :
   R_n (alpha) = sum_(k = n + 1)^(+oo) 1/k^alpha eqv(n -> +oo) 1/(alpha - 1) dot 1 / n^(alpha - 1)
   $
 
-#card("convsertgsp", "Convergence de la série terme général sur somme partielle", ("Maths.Analyse.Séries",))
+#card("convsertgsp", "Exercice : Nature de la série terme général sur somme partielle", ("Maths.Analyse.Séries","Maths.Exercice.Séries"))
 
 Démonstration de la CNS sur $alpha$ de la convergence de la série $sum u_n / S_n^alpha$ (avec $sum u_n$ divergente).
 
@@ -2391,6 +2391,8 @@ Démonstration :
 
 #card("sigsn", "Signature d'une permutation", ("Maths.Algèbre.Groupes",))
 
+// TODO: Finish this ? I think this might need more but idk.
+
 Définitions et propriétées de la signature dans $frak(S)_n$.
 
 #answer
@@ -2408,3 +2410,302 @@ epsilon(sigma) &= product_(1 <= i < j <= n) (sigma(i) - sigma(j)) / (i - j) \
 $
 
 Où $N_sigma = |{(i, j) | i < j "et" sigma(i) > sigma(j)}|$.
+
+#card("hold", "Hölder", ("Maths.Analyse.Intégration",))
+
+Inégalité de Hölder et démonstration.
+
+#answer
+
+Soit $p, q in RR_+^star$ tels que $1/p + 1/q = 1$.
+
+Pour $x_1, dots, x_n, y_1, dots, y_n in RR_+$ #h(1fr)
+
+$
+  sum_(i=1)^n x_i y_i <= (sum_(i = 1)^n x_i^p)^(1/p) (sum_(i = 1)^n y_i^q)^(1/q)
+$
+
+*Démonstration*
+
+- Pour tout $x, y in RR_+$ #h(1fr)
+  $
+  x y <= 1/p x^p + 1/q y^q
+  $
+  Le cas nul se traite facilement, puis on utilise la concavité de $ln$ sur $RR_+^*$ :
+  $
+    ln(1/p x^p + 1/q y^q) &>= 1/p ln(x^p) + 1/q ln(y^q) \ &= ln(x y) \
+    1/p x^p + 1/q y^q &>= x y 
+  $
+- On traite d'abord le cas où l'un des vecteurs ($X$ ou $Y$) est nul.
+- On traite ensuite le cas où
+  $
+    sum_(i = 1)^n x_i^p = 1 quad "et" quad sum_(j = 1)^n y_j^q = 1 \
+  $
+  Pour tout $i in [|1, n|]$
+  $
+    x_i y_i &<= 1/p x_i^p + 1/q y_i^q \
+    sum_(i = 1)^n x_i y_i &<= 1/p underbrace(sum_(i = 1)^n x_i^p, 1) + 1/q underbrace(sum_(i = 1)^n y_i^q, 1) \
+  &<= 1 = (sum_(i = 1)^n x_i^p)^(1/p) (sum_(i = 1)^n y_i^q)^(1/q)
+  $
+- Enfin dans le cas général, on pose pour $i in [|1, n|]$
+  $
+    accent(x, ~)_i = x_i / (sum_(i = 1)^n x_i) quad quad 
+    accent(y, ~)_i = y_i / (sum_(i = 1)^n y_i)
+  $
+  Et ça marche.
+
+// TODO: Minkowski
+
+#card("actgr", "Actions de groupe", ("Maths.Algèbre.Groupes",))
+
+Définitions et exemples usuels, propriétées des actions de groupes.
+
+#answer
+
+Soit $G$ un groupe, $X$ un ensemble. Une action de groupe est la donnée d'un morphisme de groupe
+$
+  phi : func(G, frak(S)(X), g, rho_g : func(X, X, x, rho_g (X) = g.x))
+$
+
+Ainsi tout groupe fini de cardinal $n in NN$ est isomorphe à un sous groupe de $frak(S)_n$.
+
+*Démonstration*
+
+Grâce à l'action de groupe $phi$
+$
+  phi : func(G, frak(S)(G) tilde.eq frak(S)_n, a, rho_& : func(G, G, g, a g))
+$
+Qui est un morphisme de groupe (car $rho_a compose rho_b = rho_(a, b)$), injectif (car $ker phi = e_G$), d'où $phi|_(phi(G))$ isomorphisme de $G -> phi(G)$, avec $phi(G)$ sous groupe de $frak(S)(G) tilde.eq frak(S)_n$.
+
+*Autre action classique*
+
+On peut aussi considérer l'action de conjugaison
+$
+  theta : func(G, frak(S)(G), g, rho_g : func(G, G, x, g x g^(-1)))
+$
+
+On a 
+$
+ker theta &= { g in G | theta(g) = id } \
+&= {g in G | forall x in G, g x g^(-1) = x} \
+&= {g in G | forall x in G, g x = x g} \
+&= Z(G) \
+$
+
+#card("formcl", "Formule des classes", ("Maths.Algèbre.Groupes",))
+
+Énoncé, démonstration et définitions de la formule des classes.
+
+#answer
+
+Soit $G$ un groupe et $phi$ une action de $G$ sur un ensemble $X$. On définit pour tout $x in X$
+
+$
+  "Stab"(x) = {g in G | g.x = x}
+$
+
+C'est un sous groupe de $G$ :
+- $e.x = x$ d'où $e in "Stab"(x)$ \
+- $forall g in "Stab"(x), g^(-1).x = g^(-1).g.x = x$
+- $forall g, h in "Stab"(x), (g h).x = g.h.x = x$
+
+On définit également
+
+$
+  "Orb"(x) = { g.x, g in G }
+$
+
+Qui est la classe d'équivalence de $x$ pour la relation d'équivalence
+
+$
+  x ~ y "si" exists g in G, y = g.x
+$
+
+Donc les orbites forment une partition de $X$.
+
+*Formule des classes*
+
+Pour tout $x in X$ fini et $G$ fini
+$
+  |"Orb"(x)| dot |"Stab"(x)| = |G|
+$
+
+*Démonstration*
+
+Soit $x in X$, pour $y in "Orb"(x)$, on dispose de $g_0 in G$ tel que $g_0.x = y$.
+
+Étudions ${g in G | g.x = y}$ :
+
+$
+  g.x = y &<=> g.x = g_0.x \
+&<=> (g_0^(-1) g).x = x \
+&<=> g_0^(-1) g in "Stab"(x) \
+&<=> g in g_0 "Stab" (x)
+$
+
+D'où
+
+$
+  G &= union.big.plus_(y in "Orb"(x)) { g in G | g.x = y} \
+  |G| &= sum_(y in "Orb"(x)) |g_0 "Stab" (x)| \
+&= sum_(y in "Orb"(x)) |"Stab" (x)| \
+&= |"Orb"(x)| dot |"Stab" (x)| \
+$
+
+#card("pgroup", "Exercices : Les p-groupes", ("Maths.Algèbre.Groupes","Maths.Exercices.Algèbre Générale"))
+
+Définitions d'un $p$-groupe, et démonstration de
++ Pour $G$ $p$-groupe, $|Z(G)| = p^alpha$ avec $alpha in NN^*$.
++ Tout groupe $G$ d'ordre $p^2$ est abélien
+
+#answer
+
+Un $p$-groupe est un groupe dont tout les éléments sont d'odre $p^gamma$ avec $p in PP$. A fortiori, il s'agit d'un groupe de cardinal $p^alpha$.
+
++ On étudie l'action de groupe 
+  $
+    phi : func(G, frak(S)(G), g, rho_g : func(G, G, x, g x g^(-1)))
+  $
+
+  On montre que 
+  $
+  x in Z(G) "ssi" "Orb"(x) = {e_G}
+  $
+  Et par la formule des classes on a pour tout $x in G$ :
+  $
+    p^alpha = |G| = |"Orb"(x)| dot |"Stab"(x)|
+  $
+  Donc $|"Orb"(x)| | p^alpha$ d'où si $|"Orb"(x)| > 0, p | |"Orb"(x)|$.
+  
+  Or les $"Orb"(x)$ forment une partition de $G$ donc
+
+  $
+      p^alpha &= |G| = sum_(x in G) |"Orb"(x)| \
+&= |Z(G)| + underbrace(sum_(x in G \/ ~ \ |"Orb"(x)| > 1) |"Orb"(x)|, "divisible par " p)
+  $
+
+  Donc $p | |Z(G)|$ mais $e_G in Z(G)$ donc $|Z(G)| > 0$ d'où $|Z(G)| >= p$.
++ Par l'exercice ci dessus
+  $
+    Z(G) in {p, p^2}
+  $
+  Supposons qu'il existe $x in G\\Z(G)$, alors 
+  $
+    Z(G) subset "Stab"(x) "et" x in "Stab"(x)
+  $ 
+  Donc $|"Stab"(x)| >= p + 1$ sous-groupe de $G$ donc 
+  $
+    "Stab"(x) = G
+  $
+  D'où $x in Z(G)$, absurde.
+
+#card("exeordp", "Exercice : élément d'ordre p dans un groupe d'ordre divisé par p", ("Maths.Algèbre.Groupes", "Maths.Exercice.Algèbre Générale"))
+
+Soit $G$ un groupe d'ordre $p q$ avec $p in PP$ et $q in NN^star$, démonstration de l'éxistence d'un élémént d'ordre $p$.
+
+#answer
+
+Soit $G$ d'odre $n = p q$ avec $(p, q) in PP times NN^*$.
+
+On pose
+$
+  Gamma = { (x_1, dots, x_p) in G^p | x_1 dots.c x_n = e_G} \
+  sigma = (1 space 2 space dots.c space p) in frak(S)_p
+$
+
+On considère $H = gen(sigma)$ qui agit sur $Gamma$ via
+$
+  phi : func(H, frak(S)(Gamma), sigma^k, rho_(sigma^k))
+
+$
+Où
+$
+  rho_(sigma^k) : func(Gamma, Gamma, (x_1, dots, x_p), (x_(sigma^k (1)), dots, x_(sigma^k (p))))
+$
+(On montre par récurrence sur $k$ que $rho_(sigma^k)$ à bien valeur dans $Gamma$).
+
+On remarque que $|H| = p$ et
+$
+  forall X = (x_1, dots, x_p) in G^p, \ X in Gamma <=> x_p^(-1) = x_1 dots.c x_(p-1) \
+  Gamma tilde.eq G^(p-1) "donc"
+  |Gamma| = n^(p-1)
+$
+
+Pour tout $x in Gamma$ (par la formule des classes)
+$
+  p = |H| = |"Orb"(x)| dot |"Stab"(x)| \
+  "donc" |"Orb"(x)| in {1, p} \
+$
+$
+  "Orb"(x) = {x} &<=> x_1 = x_2 = dots.c = x_p \
+  &<=> x_1^p = e_G
+$
+
+Et
+$
+  n^(p - 1) &= |Gamma| = sum_(x in Gamma \/ ~) |"Orb"(x)| \
+&= sum_(x in Gamma \/ ~ \ |"Orb"(x)| = 1) 1 + sum_(x in Gamma \/ ~ \ |"Orb"(x)| > 1) p \
+&= |{x in G | x^p = e_G}| + k p
+$
+Avec $k in NN$. Or $p | n$ donc 
+$
+p | |{x in G | x^p = e_G}| >= 1
+$
+Donc il existe au moins $p - 1$ éléménts d'ordre $p$.
+
+*Cas $n = 2$ :*
+
+On regroupe les éléments avec leurs inverse, ce qui montre par la parité du cardinale l'éxistence d'un élémént d'ordre $2$.
+
+#card("burnside", "Théorème de Burnside", ("Maths.Algèbre.Groupes",))
+
+Soit $G$ un groupe fini qui agit sur un ensemble $X$ fini par $phi$.
+
+On définit pour $g in G$
+
+$
+  "Fix"(g) = { x in X, g.x = x}
+$
+
+Notons $N$ le nombre d'orbites :
+
+$
+  N = 1/(|G|)sum_(g in G) |"Fix"(g)|
+$
+
+*Démonstration*
+
+On étudie
+$
+  Gamma &= { (g, x) in G times X | g.x = x } \
+&= union.big.plus_(x in X) { (g, x), g in "Stab"(x) } \
+&= union.big.plus_(g in G) { (g, x), x in "Fix"(g) }
+$
+
+Or par la formule des classes
+$
+  |"Stab"(x)| = (|G|) / (|"Orb"(x)|)
+$
+
+D'où (en notant $x_i$ représentant du $i$-ème orbite)
+
+$
+  |Gamma| &= sum_(x in X) |"Stab"(x)| \
+&= sum_(j = 1)^N sum_(x in overline(x_j)) |"Stab"(x)| \
+&= sum_(j = 1)^N sum_(x in overline(x_j)) (|G|) / (|"Orb"(x_j)|) \ 
+&= N |G|
+$
+
+Or
+
+$
+  |Gamma| = sum_(g in G) |"Fix"(g)|
+$
+
+D'où
+
+$
+  N = 1/(|G|) sum_(g in G) |"Fix"(g)|
+$
+
+

@@ -8,3 +8,11 @@
 #let Ico(a, b) = $lr(class("opening", \[) #a, #b class("closing", \[))$
 #let Ioc(a, b) = $lr(class("opening", \]) #a, #b class("closing", \]))$
 #let Icc(a, b) = $lr(class("opening", \[) #a, #b class("closing", \]))$
+#let func(delim: ("{", "}"), ..args) = {
+  let cells = args
+    .pos()
+    .chunks(2)
+    .enumerate()
+    .map(((i, c)) => (c.at(0), if i == 0 { sym.arrow.r } else { sym.arrow.r.bar }, c.at(1)))
+  $cases(delim: delim, space display(mat(delim: #none, ..cells)))$
+}
