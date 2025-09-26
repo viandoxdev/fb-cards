@@ -1,6 +1,7 @@
 //![FLASHBANG IGNORE]
 
 #let store = state("store", ())
+#let had_answer = state("had_answer", true)
 
 #let _colors = (
   text: black
@@ -105,10 +106,26 @@
   }
   // outline(target: figure)
   tree()
+
   doc
+
+  context {
+    if not had_answer.get() {
+       panic("Last card wasn't answered")
+    }
+  }
 }
 
 #let card(id, name, tags) = {
+  had_answer.update(x => {
+    if x {
+      false
+    } else {
+      panic("Can't have card without answer")
+      false
+    }
+  })    
+
   v(1em)
   pagebreak()
   store.update(s => 
@@ -149,5 +166,13 @@
   }) #label(id)]
 }
 #let answer = {
+  had_answer.update(x => {
+    if not x {
+      true
+    } else {
+      panic("Can't have answer without a card")
+      true
+    }
+  })    
   line(length: 100%, stroke: 1pt + luma(200))
 }

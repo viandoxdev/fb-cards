@@ -2659,6 +2659,10 @@ On regroupe les éléments avec leurs inverse, ce qui montre par la parité du c
 
 #card("burnside", "Théorème de Burnside", ("Maths.Algèbre.Groupes",))
 
+Énoncer et démonstration du théorème de Burnside.
+
+#answer
+
 Soit $G$ un groupe fini qui agit sur un ensemble $X$ fini par $phi$.
 
 On définit pour $g in G$
@@ -2707,5 +2711,3 @@ D'où
 $
   N = 1/(|G|) sum_(g in G) |"Fix"(g)|
 $
-
-
