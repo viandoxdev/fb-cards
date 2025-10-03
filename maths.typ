@@ -497,7 +497,7 @@ Le groupe des inversibles d'un anneau $(A, +, dot)$, est le groupe $(A^times, do
 
 #card("ideal", "Idéal d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
 
-Définition d'un idéal d'un anneau, propriétées élémentaires.
+Définition d'un idéal d'un anneau, propriétés élémentaires.
 
 #answer
 
@@ -506,7 +506,7 @@ Soit $(A, +, dot)$ un anneau et $I subset.eq A$, $I$ est un idéal de $A$ si
 - $I$ est un sous-groupe additif de $A$
 - $I$ est stable par produit externe : $forall x in I, forall a in A, a x in I$
 
-Propriétées :
+Propriétés :
 
 - Si $1 in I$ idéal de $A$, alors $I = A$.
 - Plus généralement s'il existe $x in I$ inversible, $I = A$.
@@ -654,7 +654,7 @@ $
 
 #card("nbfermat", "Nombres de Fermat", ("Maths.Algèbre.Arithmétique",))
 
-Que sont les nombres de Fermat, et quelques propriétées.
+Que sont les nombres de Fermat, et quelques propriétés.
 
 #answer
 
@@ -758,7 +758,7 @@ Petit théorème de Fermat.
 
 #card("indeuler", "Indicatrice d'Euler", ("Maths.Algèbre.Arithmétique",))
 
-Définition de l'indicatrice d'Euler, et propriétées.
+Définition de l'indicatrice d'Euler, et propriétés.
 
 #answer
 
@@ -766,7 +766,7 @@ La fonction indicatrice d'Euler est
 $
   phi space : space func(delim: #none, NN^star, NN, n, abs((ZZ \/n ZZ)^times)) \
 $
-Quelques propriétées :
+Quelques propriétés :
 
 $
 phi(p) = p - 1 \
@@ -811,7 +811,7 @@ $
 
   $a and b = d in I$ d'où $exists u,v in ZZ, d = a u + b v$
 
-#card("propidcd", "Propriétées diviseurs communs", ("Maths.Algèbre.Arithmétique",))
+#card("propidcd", "Propriétés diviseurs communs", ("Maths.Algèbre.Arithmétique",))
 
 Soit $a, b in ZZ$
 $
@@ -1432,18 +1432,22 @@ Propriétés des racines d'un polynôme.
 Soit $P in KK[X]$, $n = deg P$
 
 *En général*
-+ Si $P != 0$, $P$ à au plus $n$ racines *distinctes*.
++ Si $P != 0$, $P$ à au plus $n$ racines (comptées avec multiplicités).
 + L'unique polynôme qui à une infinité de racines est $P = 0$.
++ Si $Q in KK_n [X]$ et $exists alpha_1, dots, alpha_(n+1) in KK$ tels que $forall k in [|1, n+1|], P(alpha_k) = Q(alpha_k)$, alors $P = Q$.
 
 *En caractèristique nulle*
-3. Si $n >= 0$, alors $P$ à au plus $n$ racines.
-+ Si $Q in KK_n [X]$ et $exists alpha_0, dots, alpha_n in KK$ tels que $forall k in [|0, n|], P(alpha_k) = Q(alpha_k)$, alors $P = Q$.
+4. $a in KK$ est racine de $P$ avec multiplicité $m$ ssi 
+  $
+  forall k in [|0, m - 1|], P^((k))(a) = 0 \
+  "et" P^((m)) (a) != 0
+  $
 
 *Démonstration*
 
-+ Si $alpha_1, dots, alpha_N in KK$ sont des  racines distinctes de $P$, #h(1fr)
++ Si $alpha_1, dots, alpha_N in KK$ sont des  racines distinctes de $P$, et $m_1, dots, m_N in NN^*$ leurs multiplicités. #h(1fr)
 
-  Pour tout $k in [|1, N|], (X - alpha_k) | P$
+  Pour tout $k in [|1, N|], (X - alpha_k)^(m_k) | P$
 
   Or pour $i < j in [|1, n|]$
   $
@@ -1451,8 +1455,23 @@ Soit $P in KK[X]$, $n = deg P$
   $
   Relation de Bézout ($alpha_j - alpha_i$ associé à $1$) donc premiers entre eux deux à deux.
 
-  D'où $product_(k in 1)^N (X - alpha_k) | P$ et $n >= N$.
+  D'où $product_(k in 1)^N (X - alpha_k)^(m_k) | P$ et $n >= sum_(k = 1)^N m_k$.
+
 + Par la propriétés précedente, si $P$ à une infinité de racine distincte il ne peut être de degré positif (ou il serait infini) donc il est nul.
+
+4. Par Taylor-Langrange formel, pour tout $j in [|1, m-1|]$
+
+  $
+    P &= underbrace(sum_(k = 0)^(j - 1) P^((k)) (a) (X - a)^k / k!, R_j (X) space (deg < j)) \ &+ underbrace(sum_(k = j)^(n) P^((k)) (a) (X - a)^k / k!, (X - a)^j Q(X))  \
+  $
+
+  D'où $R_j$ le reste de la division euclidienne de $P$ par $(X - a)^j$. Or $a$ est une racine de multiplicité $m$ ssi
+
+  $
+    cases(R_m = 0, R_(m+1) != 0)  \
+  <=> cases(forall k in [|0\, m - 1|]\, (P^((k)) (a)) / k! = 0, exists k in [|0\, m|]\, (P^((k)) (a)) / k! != 0 ) \
+  <=> cases(forall k in [|0\, m - 1|]\, (P^((k)) (a)) = 0, P^((m)) (a) != 0 ) \
+  $
 
 #card("multrac", "Multiplicité d'une racine", ("Maths.Algèbre.Polynômes",))
 
@@ -1494,6 +1513,23 @@ Soit $P in KK[X]$, $P$ est dit irréductible si ses seuls diviseurs sont $P$, $1
 + Dans $KK[X]$, un polynôme de degré $>= 2$ ne peut être irréductible s'il admet une racine dans $KK$.
 
 *Démonstration*
+
+2. Par les propriétés 3 et 4, on sait que ces polynômes sont irréductibles, montrons que ce sont les seuls.
+
+  Soit $P in RR[X]$ irréductible de degré $>= 2$.
+
+  $P in CC[X]$ donc on dispose de $lambda in CC\\RR$ racine de $P$.
+
+  $
+    P(overline(lambda))   = overline(P)(overline(lambda)) = overline(P(lambda)) = 0
+  $
+
+  D'où (car $(X - lambda) and (X - overline(lambda)) = 1$)
+  $
+    Q = underbrace(X^2 - 2 Re(lambda) X + |lambda|^2, in RR[X]) | P
+  $
+
+  Comme $P$ est irréductible, $P$ et $Q$ sont associés et $deg P = 2$.
 
 4. Soit $P in KK_3 [X] \\ KK_1 [X]$
   - S'il est irréductible il n'admet pas de racine.
@@ -1670,9 +1706,9 @@ Invariants :
 - $chi_A = chi_B$
 - $mu_A = mu_B$
 
-#card("propbaseseries", "Propriétées élémentaires sur les séries", ("Maths.Analyse.Séries",))
+#card("propbaseseries", "Propriétés élémentaires sur les séries", ("Maths.Analyse.Séries",))
 
-Propriétées élémentaires sur les séries.
+Propriétés élémentaires sur les séries.
 
 #answer
 
@@ -1709,7 +1745,7 @@ Démonstration :
 
 #card("cmpserint", "Comparaison série intégrale", ("Maths.Analyse.Séries", "Maths.Analyse.Intégration"))
 
-Propriétées et methode de comparaison série intégrale.
+Propriétés et methode de comparaison série intégrale.
 
 #answer
 
@@ -1768,7 +1804,7 @@ $
 
 #card("serbertrand", "Séries de Bertrand", ("Maths.Analyse.Séries",))
 
-Définitions et propriétées des séries de Bertrand.
+Définitions et propriétés des séries de Bertrand.
 
 #answer
 
@@ -2011,7 +2047,7 @@ Qui est le terme général d'une série téléscopique divergergente.
 
 #card("famsom", "Familles sommables", ("Maths.Analyse.Séries",))
 
-Définition et propriétées élémentaires des familles sommables.
+Définition et propriétés élémentaires des familles sommables.
 
 #answer
 
@@ -2178,7 +2214,7 @@ De plus $mu$ est multiplicative.
 
 #card("wallis", "Intégrales de Wallis", ("Maths.Analyse.Intégration",))
 
-Définition, propriétées et démonstration des intégrales de Wallis.
+Définition, propriétés et démonstration des intégrales de Wallis.
 
 #answer
 
@@ -2271,7 +2307,7 @@ Pour tout $x in H$, $x^d = 1$ donc $H subset UU_d$, par égalité des cardinaux,
 
 #card("polcyc", "Polynômes cyclotomiques", ("Maths.Algèbre.Polynômes",))
 
-Définitions et propriétées des polynômes cyclotomiques.
+Définitions et propriétés des polynômes cyclotomiques.
 
 #answer
 
@@ -2326,7 +2362,7 @@ $
 
 #card("quotgr", "Groupes quotientés", ("Maths.Algèbre.Groupes",))
 
-Définitions et propriétées des groupes quotientés.
+Définitions et propriétés des groupes quotientés.
 
 #answer
 
@@ -2366,7 +2402,7 @@ qui est un morphisme de groupe surjectif appelé projection cannonique de $G$ su
 
 #card("idmax", "Idéaux maximaux, anneaux quotientés", ("Maths.Algèbre.Anneaux et corps",))
 
-Définitions d'idéal maximale, anneau quotienté, propriétées.
+Définitions d'idéal maximale, anneau quotienté, propriétés.
 
 #answer
 
@@ -2395,7 +2431,7 @@ $
 
 Qui ne dépend pas du représentant choisis.
 
-*Propriétées*
+*Propriétés*
 
 - $I$ est maximale ssi tous les éléments non nuls de $A \/ I$ sont inversibles.
 - Si $A$ commutatif, $I$ maximale, alors $I$ est premier ($A \/ I$ est intègre).
@@ -2432,7 +2468,7 @@ Démonstration :
 
 // TODO: Finish this ? I think this might need more but idk.
 
-Définitions et propriétées de la signature dans $frak(S)_n$.
+Définitions et propriétés de la signature dans $frak(S)_n$.
 
 #answer
 
@@ -2497,7 +2533,7 @@ $
 
 #card("actgr", "Actions de groupe", ("Maths.Algèbre.Groupes",))
 
-Définitions et exemples usuels, propriétées des actions de groupes.
+Définitions et exemples usuels, propriétés des actions de groupes.
 
 #answer
 
@@ -2753,7 +2789,7 @@ $
 
 #card("grord2", "Exercice : Groupe d'éléments d'ordre inférieur à deux", ("Maths.Exercice.Algèbre Générale",))
 
-Propriétées du groupe $G$ tel que $forall x in G, x^2 = 1$
+Propriétés du groupe $G$ tel que $forall x in G, x^2 = 1$
 
 #answer
 
@@ -2782,7 +2818,7 @@ $G$ un $FF_2$-ev de dimension finie, donc isomorphe à $FF_2^n$ en tant qu'éspa
 
 #card("irean", "Irréductibles d'un anneau", ("Maths.Algèbre.Anneaux et Corps",))
 
-Définition, propriétées élémentaires sur les irréductibles dans un anneau principal.
+Définition, propriétés élémentaires sur les irréductibles dans un anneau principal.
 
 #answer
 
@@ -2819,7 +2855,7 @@ Soit $(A, +, dot)$ un anneau principal.
   Par définition de la divisibilité, $(x_n A)_n$ est une suite croissante d'idéaux, et est donc stationnaire. 
 
   Soit $k$ le rang à partir du quel c'est le cas, $x_k$ est donc un diviseur irréductible de $x$.
-- Éxistence de la décomposition : récurrence avec la propriétée ci dessus.
+- Éxistence de la décomposition : récurrence avec la propriété ci dessus.
 - Unicité de la décomposition : on prend deux décomposition on montre que chaque irréductible est présent à la même puissance dans les deux.
 
 #card("carspos", "Polynômes en caractèristique strictement positive", ("Maths.Algèbre.Polynômes",))
@@ -2834,6 +2870,39 @@ Soit $KK$ un corps tel que $"car"(KK) > 0$
 
   Dans $FF_p$, $theta (X^p - X) = theta(0) = 0_(cal(F)(FF_p, FF_p))$ or $X^p - 1 != 0$.
 
+- Il n'y a pas équivalence entre multiplicité d'une racine et les valeurs des dérivées succéssives.
+
+  Pour $"car"(KK) = p in PP$
+
+  Pour $k in [|1, p - 1|]$
+
+  $
+    vec(k, p) = overbrace(p (p-1) dot dots.c dot (p - k + 1), p "divise") / underbrace(k!, p "ne divise pas")
+  $
+
+  D'où $vec(k, p)$ nul dans $KK$.
+
+  Ainsi pour tout $a, b in KK$
+
+  $
+    (a + b)^p &= a^p + b^p + sum_(k = 1)^(p - 1) vec(k, p) a^k b^(p - k)  \
+&= a^p + b^p
+  $
+
+  Et on peut définir le morphisme de corps de Frobenius
+
+  $
+    sigma : func(KK, KK, x, x^p)
+  $
+
+  Donc dans $FF_p [X]$
+
+  $
+    Q = (X - 1)^p = X^p - 1
+  $
+
+  $1$ est racine de multiplicité $p$ de $Q$ or $Q' = 0$ d'où pour tout $k in NN, Q^((k)) (1) = 0$.
+
 #card("thwilson", "Théorème de Wilson", ("Maths.Algèbre.Arithmétique",))
 
 Énoncer et démonstration du théorème de Wilson.
@@ -2846,11 +2915,162 @@ Pour tout $p in NN^star$, $p$ est premier ssi $(p - 1)! equiv -1 [p]$.
 
 - Soit $n in NN^star$ non premier.
   - Si $3 <= n = m^2$ avec $m in NN^star$. $2 m dot m | (n - 1)!$ d'où $(n - 1)! equiv 0 [n]$
-- Soit $p in PP$, on étudie $Q = X^p - X$ dans $FF_p [X]$.
+  - Sinon on dispose de $1 <= p, q < n$ tels que $n = p q$ d'où $n = p q | (n - 1)!$ et $(n - 1)! equiv 0 [n]$.
+- Soit $p in PP$, étudions $(p - 1)!$ dans $(ZZ \/ p ZZ)^times$
 
-  Pour tout $x in FF_p, Q(x) = 0$ donc $(X - x) | Q$ et premiers entre eux deu x à deux d'où
+  Soit $x in (ZZ \/ p ZZ)^times$ tel que $x^2 = 1$
 
   $
-    product_(x in FF_p) (X - x) | Q
+    (x + 1)(x - 1) = 0
   $
+
+  Donc $x = {1, -1}$.
+
+  On peut donc regrouper les éléments du produit $(p - 1)!$ avec leurs inverses (qui sont dans le produit), à l'éxception de $1$ et $-1$ d'où
+
+  $
+    (p-1)! &= (p-1) (p - 2) dot dots.c  dot 1 \
+  &= -1 dot 1 = 1
+  $
+
+  Dans $ZZ \/ p ZZ$.
+
+*Autre démonstration horrible pour le deuxième sens*
+
+Soit $p in PP$, on étudie $R = X^p - X$ dans $FF_p [X]$.
+
+  Pour tout $x in FF_p, R(x) = 0$ donc $(X - x) | R$ et premiers entre eux deu x à deux d'où
+
+  $
+    product_(x in FF_p) (X - x) | R
+  $
+
+  Et par égalité des degrés on a égalité des polynômes.
+
+  Considèrons maintenant le morphisme d'anneau suivant :
+  $
+    pi : func(ZZ[X], FF_p [X], sum_(k = 0)^n a_k X^k, sum_(k = 0)^n overline(a_k) X^k) \
+
+    Q = product_(k = 0)^(p - 1) (X - k) = X^p + sum_(k = 0)^(p - 1) a_k X^k \
+    pi(Q) = product_(k = 0)^(p - 1) (X - overline(k)) = R \
+  $
+  $
+    a_1 &= (-1)^(p - 1) sum_(I subset [|0, p-1|] \ |I| = p - 1) product_(i in I) i \
+&= (p - 1)! \
+    overline(a)_1 &= overline((p-1)!) = -1
+  $
+
+#card("taylorform", "Formule de Taylor-Langrange formelle", ("Maths.Algèbre.Polynômes",))
+
+Formule de Taylor-Langrange formelle sur $KK[X]$, démonstration.
+
+#answer
+
+Soit $KK$ un corps tel que $"car"(KK) = 0$, $P in KK[X], N >= deg P "et" a in KK$.
+
+$
+  P = sum_(k = 0)^N P^((k)) (a) (X - a)^k / k!
+$
+
+*Démonstration*
+
+Notons $E = KK_N [X]$ qui est un $KK$-ev de dimension $N+1$.
+
+La famille $((X - a)^k)_(k in [|0, N|])$ est libre car échelonné en degré, c'est donc une base de $E$, et comme $P in E$, et comme $P in E$
+
+$
+  P = sum_(k = 0)^N lambda_k (X - a)^k
+$
+
+Pour $j in [|0, N|]$
+
+$
+  P^((j)) (a) &= sum_(k = j)^N (lambda_k k!) / (k - j)! (a - a)^(k - j) \
+&= lambda_j j! \
+  lambda_j &= (P^((j)) (a)) / j!
+$
+
+#card("polentz", "Contenus d'un polynôme à coéfficients entiers", ("Maths.Algèbre.Polynômes",))
+
+Définitions, propriétés, et démonstrations à propos du contenu dans $ZZ[X]$.
+
+#answer
+
+Soit $P = sum_(k = 0)^d a_k X^k in ZZ[X]$, on définit le contenu de $P$ comme
+
+$
+  c(P) = and.big_(k = 0)^d a_k
+$
+
+Et on dit qu'un polynôme $P$ est primitif si $c(P) = 1$.
+
+- Soient $P, Q in ZZ[X]$ tels que $c(P) = c(Q) = 1$, alors $c(P Q) = 1$.A
+- Pour tout $P, Q in ZZ[X], c(P Q) = c(P) c(Q)$.
+
+*Démonstration*
+
+- Soit $p in PP$, posons le morphisme d'anneau #h(1fr)
+  $
+    pi: func(ZZ[X], FF_p [X], sum_(k=0)^d a_k X^k, sum_(k = 0)^d overline(a_k) X^k)
+  $
+  
+  $c(P) = 1$ donc $P$ admet au moins un coéfficient non divisible par $p$ et de même pour $Q$.
+
+  $
+    pi(P) != 0 "et" pi(Q) != 0 \
+    pi(P Q) = pi(P) pi(Q) != 0
+  $
+
+  Donc $p$ ne divise pas tous les coéfficients de $P Q$ pour tout $p in PP$, d'où $c(P Q) = 1$.
+- On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $accent(P, ~) = P / c(P)$ et $accent(Q, ~) = Q / c(Q)$.
+
+#card("exocont", "Exercices sur les contenus", ("Maths.Algèbre.Polynômes",))
+
++ Soient $P, Q in QQ[X]$ unitaires, montrer que si $P Q in ZZ[X]$ alors $P, Q in ZZ[X]$.
+
++ Soit $P in ZZ[X]$ dont les seuls diviseurs dans $ZZ[X]$ sont de degré $0$ ou $deg P$, montrer que $P$ est irréductible dans $QQ[X]$.
+
+#answer
+
++ $P, Q in QQ[X]$ unitaires, $P Q in ZZ[X]$.
+
+  Comme $P Q$ unitaire $c(P Q) = 1$. On trouve $a, b in ZZ$ tels que $a P, b Q in ZZ[X]$.
+
+  $
+    c(a P) c(b Q) = a b c(P Q) = a b
+  $
+
+  Or $P$ et $Q$ étant unitaires
+
+  $
+    cases(c(a P) | a, c(b Q) | b) "donc" cases(a = k_a c(a P), b = k_b c(b Q)) \
+    c(a P) c(b Q) = a b = k_a k_b c(a P) c(b Q) \
+    "d'où" k_a = k_b = 1 "et" cases(a = c(a P), b = c(b Q))
+  $
+  Ainsi
+
+  $
+    cases(P = a P / a in ZZ[X], Q = b Q / b in ZZ[X])
+  $
+
++ On suppose par contraposé que $P$ n'est pas irréductible dans $QQ$.
+
+  $
+  P = Q R \
+  1 <= deg Q, deg R <= deg P - 1
+  $
+
+  On introduit $a, b in ZZ$ tels que $a Q, b R in ZZ[X]$.
+
+  $
+    a b c(P) &= c(a Q b R) \
+&= c(a Q) c(b R) \
+  $
+  $
+  P &= (a Q b R) / (a b) \
+&= ((a Q)(b R)) / ((c(a Q) c(b R)) / (c(P))) \
+&= c(P) dot underbrace((a Q) / (c(a Q)), Q_0) dot underbrace((b R) / (c(b R)), R_0) in ZZ[X]
+  $
+
+  Avec $Q_0$ et $R_0$ diviseurs de $P$ dans $ZZ[X]$ de degrés compris dans $[|1, deg P - 1|]$.
 
