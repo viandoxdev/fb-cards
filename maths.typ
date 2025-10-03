@@ -1430,9 +1430,29 @@ Propriétés des racines d'un polynôme.
 #answer
 
 Soit $P in KK[X]$, $n = deg P$
-- L'unique polynôme qui à une infinité de racines est $P = 0$.
-- Si $n >= 0$, alors $P$ à au plus $n$ racines.
-- Si $Q in KK_n [X]$ et $exists alpha_0, dots, alpha_n in KK$ tels que $forall k in [|0, n|], P(alpha_k) = Q(alpha_k)$, alors $P = Q$.
+
+*En général*
++ Si $P != 0$, $P$ à au plus $n$ racines *distinctes*.
++ L'unique polynôme qui à une infinité de racines est $P = 0$.
+
+*En caractèristique nulle*
+3. Si $n >= 0$, alors $P$ à au plus $n$ racines.
++ Si $Q in KK_n [X]$ et $exists alpha_0, dots, alpha_n in KK$ tels que $forall k in [|0, n|], P(alpha_k) = Q(alpha_k)$, alors $P = Q$.
+
+*Démonstration*
+
++ Si $alpha_1, dots, alpha_N in KK$ sont des  racines distinctes de $P$, #h(1fr)
+
+  Pour tout $k in [|1, N|], (X - alpha_k) | P$
+
+  Or pour $i < j in [|1, n|]$
+  $
+    (X - alpha_i) - (X - alpha_j) = alpha_j - alpha_i
+  $
+  Relation de Bézout ($alpha_j - alpha_i$ associé à $1$) donc premiers entre eux deux à deux.
+
+  D'où $product_(k in 1)^N (X - alpha_k) | P$ et $n >= N$.
++ Par la propriétés précedente, si $P$ à une infinité de racine distincte il ne peut être de degré positif (ou il serait infini) donc il est nul.
 
 #card("multrac", "Multiplicité d'une racine", ("Maths.Algèbre.Polynômes",))
 
@@ -1467,8 +1487,22 @@ Définition et propriétés des polynômes irréductibles.
 
 Soit $P in KK[X]$, $P$ est dit irréductible si ses seuls diviseurs sont $P$, $1$ et leurs associés.
 
-- Dans $CC$, les polynômes irréductibles sont les monômes (théorème de Gauss-d'Alembert).
-- Dans $RR$, les polynômes irréductibles sont les monômes et les polŷnomes de degré $2$ avec $Delta < 0$.
++ Dans $CC$, les polynômes irréductibles sont les monômes (théorème de Gauss-d'Alembert).
++ Dans $RR$, les polynômes irréductibles sont les monômes et les polŷnomes de degré $2$ avec $Delta < 0$.
++ En général, un polynôme de degré $1$ est toujours irréductible.
++ Dans $KK[X]$, un polynôme de degré $2$ ou $3$ est irréductible ssi il n'admet pas de racine dans $KK$.
++ Dans $KK[X]$, un polynôme de degré $>= 2$ ne peut être irréductible s'il admet une racine dans $KK$.
+
+*Démonstration*
+
+4. Soit $P in KK_3 [X] \\ KK_1 [X]$
+  - S'il est irréductible il n'admet pas de racine.
+  - S'il n'est pas irréductible, #h(1fr)
+    $
+    P = Q R
+    $ 
+    - Soit $deg Q = 1, Q = X - alpha$ et $alpha$ racine de $P$.
+    - Soit $deg R = 1, R = X - beta$ et $beta$ racine de $P$.
 
 #card("fnsymrac", "Fonctions symétriques des racines", ("Maths.Algèbre.Polynômes",))
 
@@ -2325,7 +2359,12 @@ $
 
 qui est un morphisme de groupe surjectif appelé projection cannonique de $G$ sur $G \/ H$ dont le noyau est $H$.
 
-#card("idmax", "Idéal maximaux, anneaux quotientés", ("Maths.Algèbre.Anneaux et corps",))
+*Cas particuliers*
+
+- Tous noyau de morphisme est un sous groupe distingué.
+- Tous sous-groupe d'indice 2 ($(|G|)/(|H|) = 2$) est distingué.
+
+#card("idmax", "Idéaux maximaux, anneaux quotientés", ("Maths.Algèbre.Anneaux et corps",))
 
 Définitions d'idéal maximale, anneau quotienté, propriétées.
 
@@ -2552,7 +2591,7 @@ $
 &= |"Orb"(x)| dot |"Stab" (x)| \
 $
 
-#card("pgroup", "Exercices : Les p-groupes", ("Maths.Algèbre.Groupes","Maths.Exercices.Algèbre Générale"))
+#card("pgroup", "Exercice : Les p-groupes", ("Maths.Algèbre.Groupes","Maths.Exercice.Algèbre Générale"))
 
 Définitions d'un $p$-groupe, et démonstration de
 + Pour $G$ $p$-groupe, $|Z(G)| = p^alpha$ avec $alpha in NN^*$.
@@ -2711,3 +2750,107 @@ D'où
 $
   N = 1/(|G|) sum_(g in G) |"Fix"(g)|
 $
+
+#card("grord2", "Exercice : Groupe d'éléments d'ordre inférieur à deux", ("Maths.Exercice.Algèbre Générale",))
+
+Propriétées du groupe $G$ tel que $forall x in G, x^2 = 1$
+
+#answer
+
+On a immédiatement 
+$
+forall x in G, x = x^(-1)
+$
+
+- $G$ est abélien, soit $x,y in G$ : #h(1fr)
+  $
+    x y = (x y)^(-1) = y^(-1) x^(-1) = y x
+  $
+- Si $G$ fini, $G tilde.eq (ZZ\/2ZZ)^n$ et $|G| = 2^n$ pour un $n in NN$.
+
+  Passons en notation additive pour plus de caireté :
+
+  Faison de $G$ un $FF_2$-ev :
+
+  $
+    func(delim: #none, FF_2 times G, G, (overline(k), g), k g)
+  $
+
+  Qui ne dépend pas du représentant car $2 G = {0}$.
+
+$G$ un $FF_2$-ev de dimension finie, donc isomorphe à $FF_2^n$ en tant qu'éspace vectoriel, et à fortiori en tant que groupe.
+
+#card("irean", "Irréductibles d'un anneau", ("Maths.Algèbre.Anneaux et Corps",))
+
+Définition, propriétées élémentaires sur les irréductibles dans un anneau principal.
+
+#answer
+
+Soit $(A, +, dot)$ un anneau principal.
+
+- Dans un anneau principal on a un PGCD
+
+  Pour tout $a, b in A$, il existe $d in A$ tel que $a A + b A = d A$, unique (à associés près), qu'on appelle PGCD de $a$ et $b$ ($a and b = d$).
+
+  On a aussi Bézout car $d in d A = a A + b A$ d'où $exists (u, v) in A^2, d = a u + b v$.
+- Un élément de $A$ est dit irréductible si ses seuls diviseurs sont ses associés et les inversibles.
+- Pour tout $a in A$, il existe une unique (à permutation et multiplication par des inversibles près) décomposition de $a$ en irréductibles.
+
+*Démonstration de la décomposition*
+
+- Toute suite croissante d'idéaux est stationnaire.
+  
+  $(I_i)_(i in NN)$ suite d'idéaux de $A$ croissante au sens de l'inclusion.
+  $
+    K = union.big_(i in NN) I_i
+  $
+  Est encore un idéal car union croissante d'idéaux
+
+  Par principalité de $A$, $K = z A$ avec $z in K$ donc on dispose de $k in NN$ tel que $z in I_k$ d'où
+  $
+    K = z A subset.eq I_k subset.eq K
+  $
+- Tout élément de $A$ admet au moins un diviseur irréductible dans $A$.
+
+  Soit $x in A$, on construit la suite $(x_n)$ par récurrence : $x_0 = x$ et pour $n in NN$
+  - Si $x_n$ irréductible, $x_(n+1) = x_n$
+  - Sinon on prend $x_(n+1)$ diviseur de $x_n$ non associés et non inversible.
+  
+  Par définition de la divisibilité, $(x_n A)_n$ est une suite croissante d'idéaux, et est donc stationnaire. 
+
+  Soit $k$ le rang à partir du quel c'est le cas, $x_k$ est donc un diviseur irréductible de $x$.
+- Éxistence de la décomposition : récurrence avec la propriétée ci dessus.
+- Unicité de la décomposition : on prend deux décomposition on montre que chaque irréductible est présent à la même puissance dans les deux.
+
+#card("carspos", "Polynômes en caractèristique strictement positive", ("Maths.Algèbre.Polynômes",))
+
+Remarques et mises en gardes à propos de $KK[X]$ quand $"car"(KK) > 0$
+
+#answer
+
+Soit $KK$ un corps tel que $"car"(KK) > 0$
+
+- Le morphisme d'évaluation $theta : KK[X] -> cal(F)(KK, KK)$ n'est pas forcément injectif.
+
+  Dans $FF_p$, $theta (X^p - X) = theta(0) = 0_(cal(F)(FF_p, FF_p))$ or $X^p - 1 != 0$.
+
+#card("thwilson", "Théorème de Wilson", ("Maths.Algèbre.Arithmétique",))
+
+Énoncer et démonstration du théorème de Wilson.
+
+#answer
+
+Pour tout $p in NN^star$, $p$ est premier ssi $(p - 1)! equiv -1 [p]$.
+
+*Démonstration*
+
+- Soit $n in NN^star$ non premier.
+  - Si $3 <= n = m^2$ avec $m in NN^star$. $2 m dot m | (n - 1)!$ d'où $(n - 1)! equiv 0 [n]$
+- Soit $p in PP$, on étudie $Q = X^p - X$ dans $FF_p [X]$.
+
+  Pour tout $x in FF_p, Q(x) = 0$ donc $(X - x) | Q$ et premiers entre eux deu x à deux d'où
+
+  $
+    product_(x in FF_p) (X - x) | Q
+  $
+
