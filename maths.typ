@@ -1511,6 +1511,7 @@ Soit $P in KK[X]$, $P$ est dit irréductible si ses seuls diviseurs sont $P$, $1
 + En général, un polynôme de degré $1$ est toujours irréductible.
 + Dans $KK[X]$, un polynôme de degré $2$ ou $3$ est irréductible ssi il n'admet pas de racine dans $KK$.
 + Dans $KK[X]$, un polynôme de degré $>= 2$ ne peut être irréductible s'il admet une racine dans $KK$.
++ ($"car"(KK) = 0$) Un polynôme $P in KK[X] subset LL[X]$ irréductible ($LL$ extension de corps de $KK$) n'admet que des racines simples dans $LL$ (et à fortiori dans $KK$).
 
 *Démonstration*
 
@@ -1539,6 +1540,14 @@ Soit $P in KK[X]$, $P$ est dit irréductible si ses seuls diviseurs sont $P$, $1
     $ 
     - Soit $deg Q = 1, Q = X - alpha$ et $alpha$ racine de $P$.
     - Soit $deg R = 1, R = X - beta$ et $beta$ racine de $P$.
+
+6. $0 <= deg P' <= deg P - 1$ et par irréductibilité de $P$ dans $KK[X]$
+
+  $
+    P and P' = 1
+  $
+
+  Or le PGCD se conserve sur les extensions de corps, ils n'ont donc pas de racine communes (dans $KK$ et $LL$).
 
 #card("fnsymrac", "Fonctions symétriques des racines", ("Maths.Algèbre.Polynômes",))
 
@@ -2326,10 +2335,11 @@ $
 On montre
 $
   X^n - 1 = product_(d | n) Phi_d \
-  Phi_n in ZZ[X]
+  Phi_n in ZZ[X] \
+  Phi_p "irréductible"
 $
 
-Démonstration :
+*Démonstration*
 
 - Pour $d | n$, on a #h(1fr)
   $
@@ -2351,6 +2361,27 @@ Démonstration :
   $
     X^n - 1 = Phi_n dot (product_(d | n \ d != n) Phi_d) 
   $
+
+- Soit $p in PP$
+
+  $
+    Phi_p &= product_(omega in UU_p \ "ord"(omega) = p) (X - omega) \
+&= (X^p - 1) / (X - 1) = sum_(k = 0)^(p - 1) X^k
+  $
+  Remarquons que
+  $
+    tau : func(QQ[X], QQ[X], P(X), P(X+1))
+  $
+  est un automorphisme d'anneau.
+  
+  D'où $Phi_p (X)$ irréductible ssi $Phi_p (X+1)$ irréductible.
+
+  $
+    Phi_p (X+1) &= ((X+1)^p - 1) / X \
+&= X^(p-1) + sum_(k=1)^(p - 1) underbrace(vec(k, p), "divisible par" p) X^(k - 1)
+  $
+
+  et le coéfficient constant est $vec(p, 1)$ qui n'est pas divisible par $p^2$, d'où par le critère d'Eisenstein, $Phi_p$ irréductible dans $QQ[X]$.
 
 
 Démonstration de $n = sum_(d | n) phi(d)$ :
@@ -3024,53 +3055,337 @@ Et on dit qu'un polynôme $P$ est primitif si $c(P) = 1$.
   Donc $p$ ne divise pas tous les coéfficients de $P Q$ pour tout $p in PP$, d'où $c(P Q) = 1$.
 - On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $accent(P, ~) = P / c(P)$ et $accent(Q, ~) = Q / c(Q)$.
 
-#card("exocont", "Exercices sur les contenus", ("Maths.Algèbre.Polynômes",))
+#card("exocont1", "Exercice : Produit de polynômes de rationels unitaire entier", ("Maths.Exercice.Polynômes",))
 
-+ Soient $P, Q in QQ[X]$ unitaires, montrer que si $P Q in ZZ[X]$ alors $P, Q in ZZ[X]$.
-
-+ Soit $P in ZZ[X]$ dont les seuls diviseurs dans $ZZ[X]$ sont de degré $0$ ou $deg P$, montrer que $P$ est irréductible dans $QQ[X]$.
+Soient $P, Q in QQ[X]$ unitaires, montrer que si $P Q in ZZ[X]$ alors $P, Q in ZZ[X]$.
 
 #answer
 
-+ $P, Q in QQ[X]$ unitaires, $P Q in ZZ[X]$.
+$P, Q in QQ[X]$ unitaires, $P Q in ZZ[X]$.
 
-  Comme $P Q$ unitaire $c(P Q) = 1$. On trouve $a, b in ZZ$ tels que $a P, b Q in ZZ[X]$.
+Comme $P Q$ unitaire $c(P Q) = 1$. On trouve $a, b in ZZ$ tels que $a P, b Q in ZZ[X]$.
 
-  $
-    c(a P) c(b Q) = a b c(P Q) = a b
-  $
+$
+  c(a P) c(b Q) = a b c(P Q) = a b
+$
 
-  Or $P$ et $Q$ étant unitaires
+Or $P$ et $Q$ étant unitaires
 
-  $
-    cases(c(a P) | a, c(b Q) | b) "donc" cases(a = k_a c(a P), b = k_b c(b Q)) \
-    c(a P) c(b Q) = a b = k_a k_b c(a P) c(b Q) \
-    "d'où" k_a = k_b = 1 "et" cases(a = c(a P), b = c(b Q))
-  $
-  Ainsi
+$
+  cases(c(a P) | a, c(b Q) | b) "donc" cases(a = k_a c(a P), b = k_b c(b Q)) \
+  c(a P) c(b Q) = a b = k_a k_b c(a P) c(b Q) \
+  "d'où" k_a = k_b = 1 "et" cases(a = c(a P), b = c(b Q))
+$
+Ainsi
 
-  $
-    cases(P = a P / a in ZZ[X], Q = b Q / b in ZZ[X])
-  $
+$
+  cases(P = a P / a in ZZ[X], Q = b Q / b in ZZ[X])
+$
 
-+ On suppose par contraposé que $P$ n'est pas irréductible dans $QQ$.
+#card("exocont2", "Exercice : Irréductibilité dans les rationels", ("Maths.Exercice.Polynômes",))
 
-  $
-  P = Q R \
-  1 <= deg Q, deg R <= deg P - 1
-  $
+Soit $P in ZZ[X]$ dont les seuls diviseurs dans $ZZ[X]$ sont de degré $0$ ou $deg P$, montrer que $P$ est irréductible dans $QQ[X]$.
 
-  On introduit $a, b in ZZ$ tels que $a Q, b R in ZZ[X]$.
+#answer
 
-  $
-    a b c(P) &= c(a Q b R) \
+On suppose par contraposé que $P$ n'est pas irréductible dans $QQ$.
+
+$
+P = Q R \
+1 <= deg Q, deg R <= deg P - 1
+$
+
+On introduit $a, b in ZZ$ tels que $a Q, b R in ZZ[X]$.
+
+$
+  a b c(P) &= c(a Q b R) \
 &= c(a Q) c(b R) \
-  $
-  $
-  P &= (a Q b R) / (a b) \
+$
+$
+P &= (a Q b R) / (a b) \
 &= ((a Q)(b R)) / ((c(a Q) c(b R)) / (c(P))) \
 &= c(P) dot underbrace((a Q) / (c(a Q)), Q_0) dot underbrace((b R) / (c(b R)), R_0) in ZZ[X]
+$
+
+Avec $Q_0$ et $R_0$ diviseurs de $P$ dans $ZZ[X]$ de degrés compris dans $[|1, deg P - 1|]$.
+
+#card("entieralg", "Entiers algébriques", ("Maths.Algèbre.Polynômes",))
+
+Définition d'entier algébrique.
+
+#answer
+
+Soit $alpha in CC$, on dit que $alpha$ est un entier algébrique s'il existe $Q in ZZ[X]$ unitaire tel que $Q(alpha) = 0$.
+
++ $alpha$ est donc aussi algébrique dans $QQ$, et son polynôme minimal est aussi dans $ZZ[X]$.
+
+*Démonstration*
++ Notons $P_alpha$ ce polynôme, comme $Q(alpha) = 0, P_alpha | Q$ dans $QQ[X]$, d'où 
+  $
+  ZZ[X] in.rev Q = P_alpha R in QQ[X]
   $
 
-  Avec $Q_0$ et $R_0$ diviseurs de $P$ dans $ZZ[X]$ de degrés compris dans $[|1, deg P - 1|]$.
+  Et donc $P_alpha, R in ZZ[X]$ car $Q$ unitaire (cf. exercices sur le contenu).
 
+#card("expolent", "Exercice : Polynômes à coéfficients entiers", ("Maths.Exercice.Polynômes",))
+
++ Soit $P = sum_(k = 0)^d a_k X^k in ZZ[X]$, montrer que si $P$ admet une racine rationelle $p / q$ avec $p and q = 1$, alors $q | a_d$ et $p | a_0$.
+
+#answer
+
++ #h(1fr)
+  $
+    0 = P(p / q) &= sum_(k = 0)^d a_k p^k q^(d - k) \
+    - underbrace(sum_(k = 0)^(d - 1) a_k p^k q^(d - k), "divisible par" q) &= a_d p^d \
+    - underbrace(sum_(k = 1)^d a_k p^k q^(d - k), "divisible par" p) &= a_0 q^d
+  $
+  D'où $cases(q | a_d p^d, p | a_0 q^d)$ or $q and p = 1$ donc par le théorème de Gauss, $cases(q | a_d, p | a_0)$.
+
+  On en déduis que si $P in ZZ[X]$ est unitaire et admet une racine rationelle, alors elle est entière.
+
+#card("eisenstein", "Critère d'Eisenstein", ("Maths.Algèbre.Polynômes",))
+
+Énoncé et démonstration du critère d'Eisenstein.
+
+#answer
+
+Soit $P = sum_(k=0)^d a_k X^k in ZZ[X]$ tel qu'il existe $p in PP$ et
+$
+  cases(forall k in [|0, d - 1|]\, p | a_k, p divides.not a_d, p^2 divides.not a_0)
+$
+
+Alors $P$ n'a pas de diviseurs dans $ZZ[X]$ de degré compris dans $[|1, d - 1|]$, et est donc irréductible dans $QQ[X]$ (cf. exercices sur le contenu).
+
+*Démonstration*
+
+On considère le morphisme d'anneau suivant
+$
+  pi: func(ZZ[X], FF_p [X], sum_(k = 0)^d a_k X^k, sum_(k = 0)^d overline(a_k) X^k)
+$
+
+Supposons par l'absurde que $P = Q R$ avec $Q, R in ZZ[X]$
+
+$
+  overline(0) != overline(a_d) X^d = pi(P) = pi(Q) pi(R)
+$
+
+Par unicité de la décomposition en irréductibles dans $FF_p [X]$
+
+$
+  pi(Q) = alpha X^k quad pi(R) = beta X^l \
+  k + l = d space space deg Q >= k space space deg R >= l
+$
+Or $deg Q + deg R = d$ d'où
+$
+  Q = sum_(i = 0)^k b_i X^i "avec" cases(space overline(b_k) = alpha != 0, space overline(b_0) = 0) \
+  R = sum_(i = 0)^l c_i X^i "avec" cases(space overline(c_l) = beta != 0, space overline(c_0) = 0) \
+$
+D'où $a_0 = b_0 c_0$ est divisible par $p^2$, absurde.
+
+#card("exratmul", "Exercice : rationalité d'une racine de haute multiplicité", ("Maths.Exercice.Polynômes",))
+
+Soit $P in QQ[X]$ de degré $n$ et $alpha$ racine de $P$ de multiplicité $m_alpha > n / 2$, montrer que $alpha in QQ$.
+
+#answer
+
+Soit $P in QQ[X]$ de degré $n$ et $alpha$ racine de $P$ de multiplicité $m_alpha > n / 2$.
+
+$
+  P = product_(k = 0)^N Q_k^p_k
+$
+
+Décomposition en irréductibles de $P$ dans $QQ[X]$. Pour tout $i != j, P_i and P_j = 1$ dans $QQ[X]$ et donc dans $CC[X]$.
+
+Ainsi $alpha$ n'est racine que d'un des $P_i$, notons $P_1(alpha) = 0$.
+
+C'est une racine simple car $P_1$ irréductible, d'où
+
+$
+  p_1 >= m_alpha > n / 2 \
+2p_1 > n >= p_1 deg(P_1) \
+  2 > deg(P_1) = 1
+$
+
+Donc $P_1 = lambda (X - alpha) in QQ[X]$ d'où $alpha in QQ$.
+
+#card("algb", "Algèbres", ("Maths.Algèbre.Algèbres",))
+
+Définition d'une $KK$-Algèbre avec $KK$ un corps.
+
+#answer
+
+Une $KK$-Algèbre est un ensemble $A$ muni de deux lois de composition internes $(+)$, $(times)$ et d'une loi de composition externe $(dot)$ tel que
+- $(A, +, times)$ est un anneau
+- $(A, +, dot)$ est un $KK$-ev
+- $forall (alpha, x, y) in KK times A^2$ #h(1fr)
+  $
+    alpha (x times y) = (alpha x) times y = x times (alpha y)
+  $
+
+*Exemples*
+- $KK$ est une $KK$-Algèbre
+- $(KK[X], +, times, dot)$ est une $KK$-Algèbre
+- Pour $E$ un $KK$-ev, $(cal(L)(E), +, compose, dot)$ est une $KK$-Algèbre.
+
+#card("exordppcm", "Exercice : existence d'un élément d'ordre du ppcm de deux autres", ("Maths.Exercice.Algèbre Générale",))
+
++ Soit $G$ un groupe abélien fini, montrer que pour tout $x, y in G$, il existe un élément $z in G$ tel que $"ord"(z) = "ord"(x) or "ord"(y)$.
+
++ En déduire que 
+$
+max_(g in G) "ord"(g) = or.big_(g in G) "ord"(g)
+$
+
+#answer
+
++ Soit $G$ un groupe abélien, $x, y in G$ qui admettent un ordre.
+
+  $
+    "ord"(x) = product_(i = 1)^N p_i^alpha_i \
+    "ord"(y) = product_(i = 1)^N p_i^beta_i \
+  $
+
+  Pour tout $k in [|1, N|]$
+  $
+    "ord"(x^(product_(i != k) p_i^alpha_i)) = p_k^alpha_k \
+    "ord"(y^(product_(i != k) p_i^beta_i)) = p_k^beta_k
+  $
+
+  On pose alors 
+  $
+  z_k = cases(space x^(product_(i != k) p_i^alpha_i) "si" alpha_k >= beta_k, space y^(product_(i != k) p_i^beta_i) "sinon")
+  $
+  D'où $"ord"(z_k) = p_k^max(alpha_k, beta_k)$
+
+  Ainsi en posant $z = product_(k = 1)^N z_k$ :
+
+  $
+  "ord"(z) &= product_(k = 1)^N p_k^max(alpha_k, beta_k) \ &= "ord"(x) or "ord"(y)
+  $
+
+  (Car $G$ est abélien).
+
++ Par récurrence (car $G$ fini) on dispose de $h in G$ tel que
+  $
+    "ord"(h) = or.big_(g in G) "ord"(g) = m
+  $
+  Posons $g_0 in G$ d'ordre $max_(g in G) "ord"(g)$.
+
+  On a donc
+  $
+    m <= "ord"(g_0) | m \
+    m = "ord"(g_0)
+  $
+
+#card("excyclsginvcor", "Exercice : Cyclicité des sous-groupes finis des inversibles d'un corps", ("Maths.Exercice.Algèbre Générale",))
+
+Soit $KK$ un corps, et $G <= KK^times$ fini. Montrer que $G$ est cyclique.
+
+#answer
+
+*Première méthode*
+
+On utilise la propriété suivante (à redémontrer) : si $G$ abélien fini
+$
+  max_(g in G) "ord"(g) = or.big_(g in G) "ord"(g)
+$
+
+Or pour tout $g in G, g^m = 1$ d'où
+$
+  G subset {"racines de" X^m - 1 "dans" KK[X]}
+$
+D'où $|G| <= m$ car $KK$ est un corps et ainsi l'élément d'ordre maximale est d'ordre supérieure ou égal au cardinal de $G$, d'où $G$ cyclique.
+
+*Deuxième méthode*
+
+Pour $d | n = |G|$ on pose
+$
+  Gamma_d = {g in G | "ord"(g) = d} \
+  G = union.plus.big_(d | n) Gamma_d \
+  n = sum_(d | n) |Gamma_d| \
+$
+
+On pose aussi
+$
+  A_d &= {g in G | g^d = 1} \
+  &= {"racines de" X^d - 1} inter G \
+|A_d| &<= d
+$
+
+Pour $d | n$ on a
+- $Gamma_d = emptyset$ et $|Gamma_d| = 0$
+- Ou il existe $x in Gamma_d$, d'où $gen(x) subset A_d$ et $d <= |A_d| <= d$.
+
+  Ainsi 
+  $
+    Gamma_d = {g in A_d = gen(x) | "ord"(g) = d} \
+  |Gamma_d| = phi(d)
+  $
+
+Finalement
+
+$
+  sum_(d | n) phi(d) = n = sum_(d | n) underbrace(|Gamma_d|, in {0, phi(d)})
+$
+
+D'où nécéssairement $|Gamma_d| = phi(d)$ pour tout $d | n$, en particulier pour $|Gamma_n| = phi(n) > 0$ : il existe $phi(n)$ éléments d'ordre $n$.
+
+#card("excarfp", "Exercice : Les carrés de Fp", ("Maths.Exercice.Algèbre Générale",))
+
+Notons $FF_p^2 = {x^2, x in FF_p}$ et $FF^(*^2)_p = {x^2, x in FF_p^*}$.
+
++ Montrer que $abs(FF_p^2) = (p + 1)/ 2$ et $abs(FF^(*^2)_p) = (p - 1) / 2$.
++ Montrer que pour $x in FF_p^*$, $x in FF^(*^2)_p$ ssi $x^((p - 1)/2) = overline(1)$.
++ En déduire que pour $p >= 3$, $-1$ est un carré ssi $p equiv 1 [4]$.
++ On suppose $p equiv 3 [4]$, pour $x in FF_p^*$ montrer que $x$ est un carré ssi $-x$ n'en est pas un.
++ 
+
+#answer
+
++ On étudie le morphisme de groupe #h(1fr)
+
+  $
+    theta : func(FF_p^*, FF^(*^2)_p, x, x^2) \
+  $
+  $
+    ker theta &= {x in FF_p^*, x^2 = 1} \
+    &= {x in FF_p^*, (x - 1)(x + 1) = 0} \ 
+    &= {-1, 1} \ 
+  $
+  $
+    underbrace(abs(ker theta), 2) dot underbrace((im theta), abs(FF^(*^2)_p)) = p - 1
+  $
+  D'où $abs(FF^(*^2)_p) = (p - 1) / 2$. 
+
+  Et $FF_p = FF_p^* union {0}$ d'où
+  $
+    abs(FF_p^2) = abs(FF^(*^2)_p) + 1 = (p + 1) /2
+  $
+
++ Soit $x in FF_p^(*^2)$, on écrit $x = y^2$ avec $y in FF_p^*$.
+
+  $
+    x^((p - 1) / 2) = y^(p - 1) = overline(1)
+  $
+  D'où
+
+  $
+    underbrace(FF_p^(*^2), (p - 1) / 2) subset underbrace({"racines de" X^((p - 1) / 2) - 1}, <= (p - 1) /2)
+  $
+
+  D'où l'égalité des ensembles.
+
++ $
+    overline(-1) in FF_p^(*^2) &<=> (-1)^((p - 1)/2) = overline(1) \
+&<=> (p - 1) / 2 in 2 ZZ \
+&<=> p equiv 1 [4]
+  $
++ On suppose $p equiv 3 [4]$
+  $
+    (-1) in.not FF_p^(*^2) quad "car" (-1)^((p- 1) / 2) = -1 \
+  $
+  $
+    x in FF_p^(*^2) &<=> x^((p-1)/2) = 1 \
+&<=> (-x)^((p - 1)/2) = -1 \
+&<=> -x in.not FF_p^(*^2)
+  $

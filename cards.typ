@@ -1,7 +1,15 @@
 //![FLASHBANG IGNORE]
 
 #let store = state("store", ())
-#let had_answer = state("had_answer", true)
+#let errors = state("errors", ())
+#let had_answer = state("had_answer", (true, none))
+
+#let signal_error(err) = {
+  errors.update(errs => {
+    errs.push(err)
+    errs
+  })
+}
 
 #let _colors = (
   text: black
@@ -110,69 +118,91 @@
   doc
 
   context {
-    if not had_answer.get() {
-       panic("Last card wasn't answered")
+    let errs = errors.get()
+    let (had, last_id) = had_answer.get()
+    if not had {
+      errs.push("Card '" + last_id + "' doesn't have an answer.")
+    }
+
+    if errs.len() > 0 {
+      pagebreak()
+      for err in errs {
+        box(fill: red, radius: 5pt, width: 100%, pad(rest: 10pt, {
+            err
+        }))
+      }
     }
   }
 }
 
-#let card(id, name, tags) = {
-  had_answer.update(x => {
-    if x {
-      false
-    } else {
-      panic("Can't have card without answer")
-      false
+#let card(rid, name, tags) = {
+  had_answer.update(((had, prev_id)) => {
+    if not had {
+      signal_error("Card '" + prev_id + "' doesn't have an answer.")
     }
+    (false, rid)
   })    
 
   v(1em)
   pagebreak()
-  store.update(s => 
-    s + ((
-      id: id,
-      name: name,
-      tags: tags,
-    ),)
-  )
-  [#figure(
-    kind: "Card",
-    supplement: [Card],
-    caption: name,
-    {box(
-      radius: 4pt,
-      inset: 10pt,
-      fill: luma(240),
-      width: 100%,
-    {
-      {
-        set text(size: 8pt, fill: blue.saturate(-40%).darken(20%), weight: "bold", font: "DejaVu Sans Mono")
-        set align(left)
-        for path in tags {
-          for tag in path.split(".") {
-            tag
-            if not path.ends-with(tag) {
-              [ $triangle.filled.small.r$ ]
-            }
-          }
-          linebreak()
-        }
+  context {
+    let s = store.get()
+    let id = rid
+    if s.find(v => v.id == rid) != none {
+      signal_error("Duplicate card id '" + id + "'")
+      let n = 1
+      while s.find(v => v.id == rid + str(n)) != none {
+        n += 1
       }
-      set text(size: 14pt, weight: "bold")
-      set align(center)
-      v(-5pt)
-      name
-    })
-  }) #label(id)]
+      id = rid + str(n)
+    }
+    store.update(s =>
+      return s + ((
+        id: id,
+        name: name,
+        tags: tags,
+      ),))
+    [#figure(
+      kind: "Card",
+      supplement: [Card],
+      caption: name,
+      {box(
+        radius: 4pt,
+        inset: 10pt,
+        fill: luma(240),
+        width: 100%,
+      {
+        {
+          set text(size: 8pt, fill: blue.saturate(-40%).darken(20%), weight: "bold", font: "DejaVu Sans Mono")
+          set align(left)
+          for path in tags {
+            for tag in path.split(".") {
+              tag
+              if not path.ends-with(tag) {
+                [ $triangle.filled.small.r$ ]
+              }
+            }
+            linebreak()
+          }
+        }
+        set text(size: 14pt, weight: "bold")
+        set align(center)
+        v(-5pt)
+        name
+      })
+    }) #label(id)]
+  }
 }
 #let answer = {
-  had_answer.update(x => {
-    if not x {
-      true
-    } else {
-      panic("Can't have answer without a card")
-      true
+  had_answer.update(((had, prev_id)) => {
+    if had {
+      if prev_id == none {
+        signal_error("Can't have answer without any card.")
+      } else {
+        signal_error("Card '" + prev_id + "' has more than one answer.")
+      }
     }
+    (true, prev_id)
   })    
   line(length: 100%, stroke: 1pt + luma(200))
 }
