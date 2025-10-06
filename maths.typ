@@ -3338,7 +3338,7 @@ Notons $FF_p^2 = {x^2, x in FF_p}$ et $FF^(*^2)_p = {x^2, x in FF_p^*}$.
 + Montrer que pour $x in FF_p^*$, $x in FF^(*^2)_p$ ssi $x^((p - 1)/2) = overline(1)$.
 + En déduire que pour $p >= 3$, $-1$ est un carré ssi $p equiv 1 [4]$.
 + On suppose $p equiv 3 [4]$, pour $x in FF_p^*$ montrer que $x$ est un carré ssi $-x$ n'en est pas un.
-+ 
++ Soit $p in PP | p equiv -1 [4]$, pour tout $r in FF_p^*$ montrer que $Gamma_r = {(x, y) in (FF_p^*)^2 | x^2 - y^2 = r}$ est de cardinal $p - 3$.
 
 #answer
 
@@ -3389,3 +3389,154 @@ Notons $FF_p^2 = {x^2, x in FF_p}$ et $FF^(*^2)_p = {x^2, x in FF_p^*}$.
 &<=> (-x)^((p - 1)/2) = -1 \
 &<=> -x in.not FF_p^(*^2)
   $
+
++ 
+  - Si $r$ est un carré, $r = a^2$ avec $a in FF_p^*$
+    $
+      (x, y) in Gamma_r &<=> x^2 - y^2 = a^2 \
+  &<=> (x a^(-1))^2  - (y a^(-1))^2 = 1 \
+  &<=> (x a^(-1), y a^(-1)) in Gamma_1
+    $
+
+    D'où $abs(Gamma_r) = abs(Gamma_1)$
+  - Si $r$ n'est pas un carré, $-r$ en est un.
+
+    $
+      (x, y) in Gamma_r &<=> y^2 - x^2 = -r
+    $
+  
+    Et on se ramène au cas précédent.
+
+    $
+      abs(Gamma_r) = abs(Gamma_1)
+    $
+
+  Dénombrons $Gamma_1$.
+
+  $
+    (x, y) in Gamma_1 &<=> x^2 - y^2 = 1 \
+&<=> (x - y)(x + y) = 1
+  $
+
+  Posons $a = x + y, b = x - y$ ($p$ impair d'où $2 in FF_p^*$)
+
+  $
+    x &= a + b / 2 \
+    y &= a - b / 2 \
+  $
+
+  $
+    (x, y) in Gamma_1 <=> b = a^(-1)
+  $
+
+  On a $(p - 1)$ choix pour $a$, et $b$ déterminé par $a$, d'où au plus $(p-1)$ couples.
+
+  Il faut exclure les cas où notre choix de $a$ permet $x, y in.not FF_p^star$ :
+
+  $
+    x = overline(0) &<=> a = -a^(-1) \
+&<=> a^2 = -1 \
+    y = overline(0) &<=> a = a^(-1) \
+&<=> a^2 = 1 \
+  $
+  
+  Ainsi $abs(Gamma_r) = abs(Gamma_1) = p - 3$.
+
+#card("salg", "Sous algèbres", ("Maths.Algèbre.Algèbres",))
+
+Définition, propriétés des sous-algèbres.
+
+#answer
+
+Soit $(A, +, times, dot)$ une $KK$-algèbre, $B subset A$ est une sous-algèbre de $A$ si c'est un sous-anneau et un sev de $A$.
+
+De plus si $B$ est de dimension finie
+
+$
+  B^times = B inter A^times
+$
+
+*Démonstration*
+
+On a évidement $B^times subset B inter B^times$.
+
+On suppose $b in B inter A^times$, on dispose de $a in A, a b = b a = 1$.
+
+On pose
+$
+  phi_b = func(B, B, x, b c) in cal(L)(B)
+$
+
+Soit $x in ker phi_b$, on a $b x = 0$ donc $(a b) x = x = 0$.
+
+Donc $phi_b$ bijectif (argument dimensionnel), et $phi_b^(-1)(b) = a$ existe et $a in B$.
+
+#card("csalgcor", "Algèbres commutatives intègres de dimension finie", ("Maths.Algèbre.Algèbres",))
+
+Que peut-on dire d'une algèbre $(A, +, times, dot)$ commutative et intègre de dimension finie ?
+
+#answer
+
+Si $(A, +, times, dot)$ est commutative, intègre et de dimension finie, alors c'est un corps.
+
+*Démonstration*
+
+Soit $a in A \\ {0}$, étudions
+
+$
+  phi_a : func(A, A, x, a x) in cal(L) (A)
+$
+
+$
+  ker phi_a &= {x in A | a x = 0} \
+&= {x in A | x = 0} quad "(par integrité)" \
+&= {0}
+$
+
+Et par argument dimensionnel, $phi_a$ bijectif, d'où $phi_a^(-1)(a) = a^(-1)$ existe.
+
+#card("morpalg", "Morphisme d'algèbre", ("Maths.Algèbre.Algèbres",))
+
+Définition, propriétés des morphismes d'algèbres.
+
+#answer
+
+Pour $A, B$ deux $KK$-algèbre, une application $phi : A -> B$ est un morphisme d'algèbre si c'est un morphisme d'anneau linéaire.
+
+Et dans ce cas $im phi$ est une sous-algèbre de $B$ et $ker phi$ est un idéal et un sev de $A$.
+
+#card("devsg", "Dévissage de groupes", ("Maths.Algèbre.Groupes",))
+
+Propriétés, outils du dévissage de groupes.
+
+#answer
+
++ Soient $G$ et $H$ deux groupes cycliques de cardinaux $n$ et $p$, $G times H$ est cyclique ssi $n and p = 1$.
+
+*Démonstration*
+
++ - Par contraposé, supposons que $n and p = d > 1$, ainsi $m = n or p < n p$.
+
+    Pour tout $(x, y) in G times H$,
+    $
+      (x, y)^m = (x^m, y^m) = (e_G, e_H)
+    $
+    donc $"ord"((x, y)) | m < |G times H|$ qui ne peut être cyclique.
+
+  - Soit $x in G$ d'ordre $n$ et $y in H$ d'ordre $p$. Pour $k in NN^*$
+
+    $
+      (x, y)^k &<=> (x^k, y^k) = (e_G, e_H) \
+&<=> cases(n | k, p | k) <=> n p | k \
+&<=> G times H "cyclique"
+    $
+  
+  - Autre méthode :
+    $
+      G tilde.eq ZZ \/ n ZZ \
+      H tilde.eq ZZ \/ p ZZ \ 
+    $
+    $
+      G times H &tilde.eq ZZ \/ n ZZ times ZZ \/ p ZZ \ 
+&tilde.eq ZZ \/ (n p) ZZ quad "cyclique"\
+    $
