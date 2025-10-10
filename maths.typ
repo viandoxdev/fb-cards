@@ -3505,13 +3505,16 @@ Pour $A, B$ deux $KK$-algèbre, une application $phi : A -> B$ est un morphisme 
 
 Et dans ce cas $im phi$ est une sous-algèbre de $B$ et $ker phi$ est un idéal et un sev de $A$.
 
-#card("devsg", "Dévissage de groupes", ("Maths.Algèbre.Groupes",))
+#card("devsg", "Dévissage de groupes", ("Maths.Algèbre.Groupes","Maths.Exercice.Algèbre Générale"))
 
 Propriétés, outils du dévissage de groupes.
+
+
 
 #answer
 
 + Soient $G$ et $H$ deux groupes cycliques de cardinaux $n$ et $p$, $G times H$ est cyclique ssi $n and p = 1$.
++ 
 
 *Démonstration*
 
@@ -3540,3 +3543,353 @@ Propriétés, outils du dévissage de groupes.
       G times H &tilde.eq ZZ \/ n ZZ times ZZ \/ p ZZ \ 
 &tilde.eq ZZ \/ (n p) ZZ quad "cyclique"\
     $
+
++ Soient $H, K$ sous-groupes de $G$ et $phi$ (qui n'est pas forcément un morphisme) tel que
+
+  $
+    phi : func(H times K, G, (h, k), h k)
+  $
+
+  On note $H K = phi(H times K)$. Soient $(h, k), (h_0, k_0) in H times K$
+
+  $
+   & phi(h, k) = phi(h_0, k_0)  \ 
+<=> & h k = h_0 k_0 \
+<=> & h_0^(-1) h = k_0 k^(-1) = t in H inter K \ 
+<=> & exists t in H inter K, space cases(space h = k_0 t, space k = t^(-1) h_0)
+  $
+
+  $phi$ est injectif ssi $H inter K = {e_G}$, c'est automatique si $|H| and |K| = 1$ (en étudiant les ordres et les divisibilités de ceux-ci).
+
+  Dans ce cas $abs(H K) = abs(im phi) = abs(H) dot abs(K)$
+
+  Dans le cas général 
+  $
+    abs(phi^(-1) {phi(h_0, k_0)}) = abs(H inter K)
+  $
+
+#card("grodied", "Groupe Diédral", ("Maths.Algèbre.Groupes",))
+
+Construction et propriétés du groupe diédral.
+
+#answer
+
+*Construction*
+
+Soient $n >= 2$ et $A_0, dots, A_(n-1)$ des points de $RR^2$ d'afixes
+$
+  forall i in [|0, n-1|], A_i : e^((2 i k pi) / n)
+$
+On considère $Gamma$ l'ensemble des isométries qui préservent le polygone $A_0, dots, A_(n-1)$.
+
+Comme une transformation affine préserve les barycentres, tout élément de $Gamma$ préserve l'isobarycentre (l'origine).
+
+On a alors
+$
+  Gamma in O(RR^2)
+$
+Et donc tout $gamma in Gamma$, est soit une rotation ou une réflexion.
+
+- Si $gamma$ est une rotation :
+  $gamma(A_0) in {A_0, dots, A_(n-1)}$ d'où $gamma = "rot"((2k pi)/ n)$ pour un $k in [|0, n - 1|]$.
+
+  On note $r$ la rotation d'angle $(2 pi) / n$
+  $
+    gamma = r^k
+  $
+
+- Si $gamma$ est une réflexion
+
+  Soit $s$ la réflexion à l'axe des abscices, $s in Gamma$.
+
+  $s compose gamma in Gamma$ est une rotation car
+  $
+    det(s compose gamma) = (-1)^2 = 1
+  $
+
+  Ainsi $exists k in [|0, n-1|]$ tel que
+  $
+    s compose gamma = r^k <=> gamma = s compose r^k
+  $
+
+Donc
+$
+  Gamma &= union.big_(k = 0)^(n - 1) {r^k, s r^k}
+$
+
+*Groupe*
+
+$Gamma$ est un sous-groupe de $O(RR^2)$.
+
+- $abs(Gamma) = 2 n$
+- $Gamma = gen(s\, r)$
+
+#card("algeng", "Algèbre engendrée", ("Maths.Algèbre.Algèbres",))
+
+Pour $(A, +, times, dot)$ une $KK$-algèbre et $alpha in A$, définition et propriétés de $KK[alpha]$.
+
+#answer
+
+Soit $(A, +, times, dot)$ une $KK$-algèbre et $alpha in A$. Si on pose le morphisme d'algèbre
+$
+  theta_alpha : func(KK[X], A, P = sum_(k = 0)^d a_k X^k, sum_(k = 0)^d a_k alpha^k)
+$
+
+On note $KK[alpha] = im theta_alpha$ qui est la plus petite sous-algèbre de $A$ contenant $alpha$.
+
+De plus $ker theta_alpha$ est un idéal de $KK[X]$.
+- Si $theta_alpha$ est injectif et $KK[alpha] tilde.eq KK[X]$ qui est donc de dimension infinie.
+
+- Sinon on dispose d'un unique polynôme $pi_alpha$ unitaire tel que $ker theta_alpha = pi_alpha KK[X]$ (par principalité).
+
+  $pi_alpha$ est appelé polynôme minimal de $alpha$, $KK[alpha]$ est de dimension $d = deg pi_alpha$ et $(1, alpha, dots, alpha^(d-1))$ en est une base.
+
+*Démonstration*
+
+- Soit $B in KK[X] \\ {0}$ et $d = deg B$, par l'éxistence et l'unicité de la division euclidienne on a
+
+  $
+    KK[X] = B KK[X] plus.circle KK_(d - 1) [X]
+  $
+
+- Soit $u in cal(L)(E, F)$ et $G$ un supplémentaire de $ker u$, montrons que $u|_G$ est un isomorphisme de $G -> im u$.
+
+  $ker u|_G = ker u inter G = {0}$ par supplémentarité.
+
+  Soit $y in im u, y = u(x), x = a + b$ avec $(a, b) in ker u times G$.
+
+  $
+    u(x) &= underbrace((a), 0) + u(b) \
+y &= u|_G (b)
+  $
+
+  Soit $y in im u|_G, y = u|_G (x) = u(x)$.
+
+  D'où $im u = im u|_G$.
+
+- Si $theta_alpha$ est injectif, c'est un isomorphisme de $KK[X]$ sur $im theta_alpha = KK[alpha]$.
+
+- Sinon on a $pi_alpha$ de degré $d$ et
+  $
+    KK[X] = pi_alpha KK[X] plus.circle KK_(d - 1) [X]
+  $
+
+  $KK_(d - 1)$ est un supplémentaire de $ker theta_alpha$, ainsi $theta_alpha|_(KK_(d - 1) [X])$ est un isomorphisme de $KK_(d - 1) [X] -> KK[alpha]$, d'où
+  $
+    dim KK[alpha] = d
+  $
+
+  Et l'image de la base cannonique de $KK_(d - 1) [X]$ par $theta|_(KK_(d - 1) [X])$ est
+
+  $
+    (1, alpha, dots, alpha^(d - 1))
+  $
+  Qui est donc une base de $KK[alpha]$.
+
+#card("intkalph", "Condition d'intégrité d'une sous-algèbre engendrée", ("Maths.Algèbre.Algèbres",))
+
+Pour $A$ une $KK$-algèbre et $alpha in A$ tel que $theta_alpha$ n'est pas injectif, sous quelle condition $KK[alpha]$ est elle intègre ?
+
+#answer
+
+Soit $A$ une $KK$-algèbre et $alpha in A$ tel que $theta_alpha$ n'est pas injectif.
+
+$KK[alpha]$ est intègre ssi $pi_alpha$ est irréductible.
+
+*Démonstration*
+
+- Si $pi_alpha$ irréductible, soit $x = P(alpha), y = Q(alpha) in KK[alpha]$ tels que $x y = 0$.
+
+  $
+    P Q (alpha) = 0 \
+    pi_alpha | P Q
+  $
+
+  Donc par le lemme d'Euclide, 
+  $
+  "ou" space cases(delim: #none, pi_alpha | P <=> x = 0, pi_alpha | Q <=> y = 0)
+  $
+- Par contraposé, si $pi_alpha$ non irréductible, $pi_alpha = P Q$ avec $P, Q in KK[X]$ non inversible ou associé à $pi_alpha$.
+
+  $
+    underbrace(P(alpha), != 0) underbrace(Q(alpha), != 0) = pi_alpha (alpha) = 0
+  $
+
+  D'où $KK[alpha]$ non intègre.
+
+#card("inverkkalp", "inversibilité des éléments d'une sous-algèbre engendrée", ("Maths.Algèbre.Algèbres",))
+
+Soit $KK[alpha]$ une sous-algèbre de $A$ de dimension finie pour $alpha in A$, sous quelle condition $x in KK[alpha]$ est il inversible ?
+
+#answer
+
+Soit $KK[alpha]$ une sous-algèbre de $A$ de dimension finie pour $alpha in A$. Soit $x = P(alpha) in KK[alpha]$.
+
+$
+  x in KK[alpha]^times "ssi" P and pi_alpha = 1
+$
+
+On en déduit que $KK[alpha]$ est un corps ssi $pi_alpha$ est irréductible.
+
+*Démonstration*
+
+Par propriété de sous-algèbre
+
+$
+  KK[alpha]^times = A^times inter KK[alpha]
+$
+
+Ainsi
+
+$
+  x in KK[alpha]^times &<=> exists y in KK[alpha], x y = 1 \
+&<=> exists Q in KK[X], P Q (alpha) = 1 \
+&<=> exists Q in KK[X], pi_alpha | (P Q - 1) \
+&<=> exists Q, V in KK[X], P Q - 1 = pi_alpha V \
+&<=> exists Q, V in KK[X], P Q - pi_alpha V = 1 \
+&<=> P and pi_alpha = 1
+$
+
+Ainsi si $pi_alpha$ irréductible, pour tout $x = P(alpha) in KK[alpha] \\ {0}, P and pi_alpha = 1$ d'où $x$ inversible et $KK[alpha]$ est un corps.
+
+Et si $KK[alpha]$ est un corps, alors il est intègre et $pi_alpha$ irréductible.
+
+#card("algextc", "Algèbres et extensions de corps", ("Maths.Algèbre.Algèbres",))
+
+Propriétés des algèbres en lien avec les extensions de corps.
+
+#answer
+
+Soient $KK subset.eq LL$ deux corps. On remarque que $LL$ est une $KK$-algèbre.
+
++ Soit $alpha in LL$ qui admet un polynôme annulateur dans $KK[X]$ et $pi_alpha$ son polynôme minimal.
+
+  $pi_alpha$ est irréductible dans $KK[X]$ et $KK[alpha]$ est un corps.
+
+*Démonstration*
+
++ $P, Q in KK[X]$ tels que $pi_alpha = P Q$.
+
+  Dans $LL$
+
+  $
+    P (alpha) Q (alpha) = pi_alpha (alpha) = 0
+  $
+
+  Donc $P(alpha) = 0 <=> pi_alpha | P$ ou $Q(alpha) = 0 <=> pi_alpha | Q$ donc $pi_alpha$ irréductible.
+
+  Ainsi $KK[alpha]$ est un corps.
+
+#card("algebriques", "Nombres algébriques", ("Maths.Algèbre.Algèbres",))
+
+Définitions et propriétés des nombres algébriques sur un corps $KK$.
+
+#answer
+
+Soit $alpha in A$ une $KK$-algèbre, on dit que $alpha$ est algébrique sur $KK$ s'il admet un polynôme annulateur dans $KK[X]$.
+
+Par défaut $alpha$ algébrique veut dire algébrique sur $QQ$., quitte à les échangers prenons $P(alpha) = 0, P in ker theta_alpha = pi_alpha KK[X]$.
+
+*Propriété*
+
++ Soit $alpha in LL$ une extension de corps de $KK$, $alpha$ algébrique sur $KK$.
+
+  Pour tout $P in KK[X]$ unitaire, $P = pi_alpha$ ssi $P(alpha) = 0$ et $P$ irréductible sur $KK[X]$.
+
+*Démonstration*
+
++ Sens directe connus. Soit $P in KK[X]$ unitaire, irréductible et annulateur de $alpha$.
+
+  On a $pi_alpha | P$, or $P$ irréductible donc $P$ et $pi_alpha$ sont associé, or tout deux unitaires donc $P = pi_alpha$.
+
+#card("bastel", "Théorème de la base téléscopique", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Énoncer et démonstration du théorème de la base téléscopique.
+
+#answer
+
+Soit $KK subset.eq LL$ deux corps tel que $LL$ est de dimension finie sur $KK$.
+
+Soient
+- $E$ un $LL$-ev, (et donc un $KK$-ev).
+- $e = (e_1, dots, e_n)$ base de $E$ sur $LL$.
+- $z = (z_1, dots, z_p)$ base de $LL$ sur $KK$.
+
+Alors $F = (z_i e_j)_(i in [|1, p|] \ j in [|1, n|])$ est une base de $E$ sur $KK$
+
+Ainsi $dim_KK E = dim_LL E dot dim_KK LL$.
+
+*Démonstration*
+
+- Soit $omega in E$, on dispose de $lambda_1, dots, lambda_n in LL$ tels que
+  $
+    omega = sum_(j = 1)^n lambda_j e_j
+  $
+  On dispose de $(a_(i j))_(i j) in KK^[|1, p|]^[|1, n|]$ 
+  $
+    forall j in [|1, n|], lambda_j = sum_(i = 1)^p alpha_(i j) z_i \
+  $
+  Ainsi
+  $
+    omega = sum_(j = 1)^n sum_(i = 1)^p alpha_(i j) z_i e_j
+  $
+
+- Soit $(a_(i j))_(i j) in KK^[|1, p|]^[|1, n|]$ tel que
+
+  $
+    sum_(j = 1)^n underbrace(sum_(i = 1)^p a_(i j) z_i, lambda_j in LL) e_j = 0 \
+    sum_(j = 1)^n lambda_j e_j = 0
+  $
+  Donc pour tout $j in [|1, n|], lambda_j = 0$.
+  $
+    lambda_j = sum_(i = 1)^p a_(i j) z_i = 0
+  $
+  Donc par liberté de $z$, $a_(i j) = 0$ pour tout $i, j$.
+
+#card("clotrat", "Clôture algébrique des rationnels", ("Maths.Algèbre.Algèbres",))
+
+Propriétés de la clôture algébrique de $QQ$.
+
+#answer
+
+Notons $KK$ l'ensemble des $alpha in CC$ algébriques sur $QQ$.
+
+$KK$ est un corps algébriquement clos.
+
+
+*Démonstration : corps*
+
+- Soit $alpha, beta in KK$, montrons que $alpha beta, alpha + beta in KK$.
+
+  On utilise le fait que $z$ algébrique dans $LL$ ssi $LL[z]$ de dimension finie sur $LL$ (car $z$ admet un polynôme annulateur dans $LL[X]$).
+
+  - Donc $QQ[alpha]$ est de dimension finie sur $QQ$, 
+
+  - $beta$ algébrique sur $QQ subset QQ[alpha]$ donc algébrique sur $QQ[alpha]$.
+  - Donc $QQ[alpha][beta]$ est de dimension finie sur $QQ[alpha]$, et donc par le théorème de la base téléscopique, sur $QQ$.
+
+  - Or $QQ[alpha + beta], QQ[alpha beta] subset.eq QQ[alpha][beta]$, donc $QQ[alpha + beta]$ et $QQ[alpha beta]$ sont de dimension finie sur $QQ$.
+
+- Soit $alpha in KK\\{0}$, soit $pi_alpha$ son polynôme minimal et $d = deg pi_alpha$.
+
+  $
+    underbrace(X^d pi_alpha (1 / X), in QQ[X]) space "annule" space 1/ alpha
+  $
+
+  Donc $1 / alpha in KK$
+
+- $1 in KK$ car $QQ subset.eq KK$.
+
+*Démonstration : clôture*
+
+Soit $P = sum_(k = 0)^d a_k X^k in KK[X]$. Soit $alpha in CC$ racine de $KK$, montrons que $alpha in KK$.
+
+Pour tout $k in [|0, d|], a_k in KK$ donc $QQ[a_k]$ de dimension finie sur $QQ$.
+
+Par récurrence on a 
+$
+LL = QQ[a_0][a_1] dots.c [a_d]
+$
+De dimension finie sur $QQ$.
+
+Comme $P in LL[X]$ annule $alpha$, $LL[alpha]$ est de dimension finie sur $LL$ et donc sur $QQ$, id est $alpha in KK$.
