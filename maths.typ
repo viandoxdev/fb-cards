@@ -3119,6 +3119,40 @@ Soit $alpha in CC$, on dit que $alpha$ est un entier algébrique s'il existe $Q 
 
 + $alpha$ est donc aussi algébrique dans $QQ$, et son polynôme minimal est aussi dans $ZZ[X]$.
 
+*Entiers algébrique de degré 2*
+
+2. $alpha in CC$ entier algébrique de degré $2$ : on dispose de $pi_alpha in ZZ[X]$ unitaire de degré $2$ qui annule $alpha$. $ZZ[alpha] = im theta_alpha$ est un sous-anneau de $RR$ (et donc de $CC$).
+
++ $ZZ[alpha] = {x + alpha y, (x, y) in ZZ^2}$ et tout élément s'écrite de manière unique sous cette forme.
+
++ On peut écrire 
+  $
+  pi_alpha = (X - alpha)(X - beta)
+  $
+  
+  On remarque que $beta in ZZ[alpha]$ car $alpha + beta = a in ZZ$ d'où $beta = a - alpha in ZZ[alpha]$.
+
+  On définit
+  $
+    tau : func(ZZ[alpha], ZZ[alpha], x + alpha y, x + beta y)
+  $
+
+  On a alors
+
+  $
+    forall z, z' in ZZ[alpha], space tau(z z') = tau(z) tau(z')
+  $
+
++ Et on peut alors définir
+
+  $
+    N : func(ZZ[alpha], ZZ, z = x + alpha y, z tau(z))
+  $
+
+  Qui est aussi multiplicatif.
+
++ $z in ZZ[alpha]$ est inversible ssi $N(z) = abs(1)$.
+
 *Démonstration*
 + Notons $P_alpha$ ce polynôme, comme $Q(alpha) = 0, P_alpha | Q$ dans $QQ[X]$, d'où 
   $
@@ -3126,6 +3160,63 @@ Soit $alpha in CC$, on dit que $alpha$ est un entier algébrique s'il existe $Q 
   $
 
   Et donc $P_alpha, R in ZZ[X]$ car $Q$ unitaire (cf. exercices sur le contenu).
+
+3. $alpha$ de degré $2$ donc 
+  $
+  pi_alpha (X) = X^2 + a X + b
+  $
+  
+  - On a déjà ${x + alpha y, (x, y) in ZZ^2} subset.eq ZZ[alpha]$.
+
+  - Soit $x = P(alpha) in ZZ[alpha]$, $P = Q pi_alpha + R$ avec $Q in KK[X], R in KK_1 [X]$.
+
+    Donc
+    $
+      R = y X + x in ZZ[X] \
+      P(alpha) = underbrace(Q(alpha) pi_alpha(alpha), 0) + y alpha + x
+    $
+
+  - Soit $x_1 + alpha y_1 = x_2 + alpha y_2$ avec $x_1, x_2, y_1, y_2 in ZZ$.
+
+    $
+      x_1 - x_2 = (y_2 - y_1) alpha
+    $
+
+    Par l'absurde, si $y_1 != y_2$ :
+
+    $
+      alpha = (x_1 - x_2) / (y_2 - y_1) in QQ[X]
+    $
+
+    Qui est absurde car $pi_alpha$ serait de degré $1$.
+
++ Soit $z = x + alpha y, z' = x' + alpha y'$ \
+
+  On a $alpha^2 = a alpha - b$ et $beta^2 = a beta - b$ donc
+
+  $
+    tau(z z') &= tau(x x' + alpha (x y' + x' y) + alpha^2 y y') \
+&= tau(x x' - b y y' + alpha (x y' + x y' + a y y')) \
+&= x x' - b y y' + beta (x y ' + x' y + a y y') \
+&= (x + beta y) (x' + beta y) \
+&= tau(z) tau(z')
+  $
+
++ Soit $z = x + alpha y in ZZ[alpha]$
+
+  $
+    N(z) = z tau(z) &= (x + alpha y)(x + beta y) \ 
+&= x^2 + (alpha + beta) x y + alpha beta y^2 \
+&= x^2 = a x y + b y^2 in ZZ
+  $
+
++ - Soit $z in ZZ[alpha]$ inversible, on dispose de $z' in ZZ[alpha]$ tel que $z z' = 1$.
+
+    $
+      N(z z') = N(1) = 1 = N(z) N(z')
+    $
+
+    Donc $abs(N(z)) = 1$
 
 #card("expolent", "Exercice : Polynômes à coéfficients entiers", ("Maths.Exercice.Polynômes",))
 
@@ -3893,3 +3984,5 @@ $
 De dimension finie sur $QQ$.
 
 Comme $P in LL[X]$ annule $alpha$, $LL[alpha]$ est de dimension finie sur $LL$ et donc sur $QQ$, id est $alpha in KK$.
+
+
