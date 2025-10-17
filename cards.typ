@@ -1,15 +1,7 @@
 //![FLASHBANG IGNORE]
 
 #let store = state("store", ())
-#let errors = state("errors", ())
-#let had_answer = state("had_answer", (true, none))
-
-#let signal_error(err) = {
-  errors.update(errs => {
-    errs.push(err)
-    errs
-  })
-}
+#let lifecycle = state("had_answer", (true, none, ()))
 
 #let _colors = (
   text: black
@@ -17,6 +9,13 @@
 #let _sizes = (
   text: 11pt
 )
+
+#let signal_error(err) = {
+  lifecycle.update(((had, id, errs)) => {
+    errs.push(err)
+    (had, id, errs)
+  })
+}
 
 #let tree() = {
   let cards_of(cards, path) = {
@@ -118,8 +117,7 @@
   doc
 
   context {
-    let errs = errors.get()
-    let (had, last_id) = had_answer.get()
+    let (had, last_id, errs) = lifecycle.get()
     if not had {
       errs.push("Card '" + last_id + "' doesn't have an answer.")
     }
@@ -136,12 +134,12 @@
 }
 
 #let card(rid, name, tags) = {
-  had_answer.update(((had, prev_id)) => {
+  lifecycle.update(((had, prev_id, errors)) => {
     if not had {
-      signal_error("Card '" + prev_id + "' doesn't have an answer.")
+      errors.push("Card '" + prev_id + "' doesn't have an answer.")
     }
-    (false, rid)
-  })    
+    (false, rid, errors)
+  })
 
   v(1em)
   pagebreak()
@@ -194,15 +192,16 @@
   }
 }
 #let answer = {
-  had_answer.update(((had, prev_id)) => {
+  lifecycle.update(((had, prev_id, errs)) => {
     if had {
       if prev_id == none {
-        signal_error("Can't have answer without any card.")
+        errs.push("Can't have answer without any card.")
       } else {
-        signal_error("Card '" + prev_id + "' has more than one answer.")
+        errs.push("Card '" + prev_id + "' has more than one answer.")
       }
     }
-    (true, prev_id)
-  })    
+    (true, prev_id, errs)
+  })  
+
   line(length: 100%, stroke: 1pt + luma(200))
 }

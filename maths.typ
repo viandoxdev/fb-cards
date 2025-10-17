@@ -3218,6 +3218,14 @@ Soit $alpha in CC$, on dit que $alpha$ est un entier algébrique s'il existe $Q 
 
     Donc $abs(N(z)) = 1$
 
+  - Soit $z in ZZ[alpha]$ tel que $N(z) = epsilon in {1, -1}$
+
+    $
+      (x + alpha y)(x + beta y) = epsilon \
+      z (epsilon x + epsilon beta y) = 1 = epsilon^2 \
+z^(-1) = epsilon(x + beta y)
+    $
+
 #card("expolent", "Exercice : Polynômes à coéfficients entiers", ("Maths.Exercice.Polynômes",))
 
 + Soit $P = sum_(k = 0)^d a_k X^k in ZZ[X]$, montrer que si $P$ admet une racine rationelle $p / q$ avec $p and q = 1$, alors $q | a_d$ et $p | a_0$.
@@ -3985,4 +3993,220 @@ De dimension finie sur $QQ$.
 
 Comme $P in LL[X]$ annule $alpha$, $LL[alpha]$ est de dimension finie sur $LL$ et donc sur $QQ$, id est $alpha in KK$.
 
+#card("gaussluca", "Exercice : Gauss-Lucas", ("Maths.Exercice.Polynômes",))
 
+Soit $P in CC[X]$, montrer que les racines de $P'$ sont dans l'enveloppe convexe des racines de $P$.
+
+#answer
+
+Soit $P in CC[X]$, montrer que les racines de $P'$ sont dans l'enveloppe convexe des racines de $P$.
+
+On écris
+
+$
+  P = c product_(k = 1)^N (X - a_k)^(m_k)
+$
+Soit $b$ une racine de $P'$.
+
+Si $b in {a_1, dots, a_N}$, b est nécéssairement dans leur enveloppe convexe.
+
+Sinon
+
+$
+  P' / P = sum_(k = 1)^n m_k / (X - a_k) \
+$
+$
+  0 &= P' / P (b)
+= sum_(k = 1)^N m_k / (b - a_k)
+= sum_(k = 1)^N m_k / overline(b - a_k) \
+&= sum_(k = 1)^N m_k / abs(b - a_k)^2 (b - a_k) \
+b &= (sum_(k = 1)^N (a_k m_k) / abs(b - a_k)^2) / (sum_(k = 1)^N m_k / abs(b - a_k)^2) \
+ &= sum_(k = 1)^N lambda_k a_k
+$
+
+Où $lambda_k = (a_k m_k) / abs(b - a_k)^2 / (sum_(i = 1)^N m_i / abs(b - a_i)^2)$ (on a alors $sum_(k = 1)^N lambda_k = 1$).
+
+$b$ est donc un barycentre à coéfficients positifs des $a_1, dots, a_n$ et est donc dans leur enveloppe convexe.
+
+#card("exdenommorp", "Exercice : Dénombrement de morphismes", ("Maths.Exercice.Algèbre Générale",))
+
++ Dénombrer les morphismes de $G_1$ vers $G_2$, avec $abs(G_1) and abs(G_2) = 1$.
+
++ Dénombrer les morphismes de $G_1$ vers $G_2$ où $G_1$ et $G_2$ sont cyclique.
+
++ Même chose avec les injections et les surjections.
+
+#answer
+
+*Remarque générale*
+
+Soit $phi : G_1 -> G_2$ morphisme de groupe, $x in G_1$
+
+$
+  phi(x)^("ord"(x)) = e_G_2 \
+  "donc" "ord"(phi(x)) | abs(G_2) \
+  "et" "ord"(phi(x)) | abs(G_1) 
+$
+
+Ainsi $"ord"(phi(x)) | abs(G_1) and abs(G_2)$.
+
+*Exercices*
+
++ Soit $phi : G_1 -> G_2$ morphisme, $x in G_1$. Par la remarque ci dessus $"ord"(phi(x)) | p and q = 1$ donc $phi(x) = 0$, il n'y a donc que morphisme le morphisme triviale.
+
++ Notons $G_1 = gen(a)$, posons
+
+  $
+    theta : func(hom(G_1, G_2), G_2, phi, phi(a))
+  $
+
+  Qui est injectif car tout morphisme est uniquement déterminé par son image du générateur $a$.
+
+  Pour tout $phi in hom(G_1, G_2)$ on a
+
+  $
+    phi(a)^abs(G_1) = phi(a^abs(G_1)) = phi(e_G_1) = e_G_2
+  $
+
+  D'où
+
+  $
+    im theta subset { y in G_2 | y^abs(G_1) = e_G_2 }
+  $
+
+  Soit $y in im theta$ posons
+
+  $
+    phi : func(G_1, G_2, x = a^k, y^k)
+  $
+
+  Qui ne dépend pas du $k$ choisi, soit $x = a^k = a^l$ :
+
+  $
+    a^(k - l) = e_G_1 \
+    "donc" abs(G_1) | k - l \
+    "et" y^(k - l) = e_G_2 \
+    "d'où" y^k = y^l
+  $
+
+  Donc $theta (phi) = y$.
+
+  $
+    &abs(hom(G_1, G_2)) \ &= abs(im theta) \
+&= abs({y in G_2 | y^abs(G_1) = e_G_2}) \
+&= abs({y in G_2 | "ord"(y) | abs(G_1)}) \
+&= union.big.plus_(d | abs(G_1)) {y in G_2 | "ord"(y) = d} \
+&= sum_(d | abs(G_1) and abs(G_2)) phi(d) \
+&= abs(G_1) and abs(G_2)
+  $
+
++ - Pour les injections on veut $phi in hom(G_1, G_2)$ tels que $ker phi = {e_G_1}$.
+
+  Pour $k in [|1, abs(G_1) - 1|]$,
+
+  $
+    phi(a)^k = phi(a^k) != 0 \
+    "ord" phi(a) = abs(G_1)
+  $
+
+  Si $abs(G_1) divides.not abs(G_2)$, $G_2$ ne contient pas éléments d'ordre $abs(G_1)$ donc auncune injection.
+
+  Si $abs(G_1) divides abs(G_2)$, il y a $phi(abs(G_1))$ éléments d'ordre $abs(G_1)$, donc autant d'injections.
+
+  - Pour les surjections on veut $"ord" phi(a) = abs(G_2)$, donc 
+
+    $
+    cases(space 0 &"si" abs(G_2) divides.not abs(G_1), space phi(abs(G_2)) space &"sinon")  
+    $
+
+#card("exunionsev", "Exercice : Union de sous espaces vectoriels", ("Maths.Exercice.Algèbre Linéaire",))
+
+$E$ un $KK$ espace vectoriel.
+
++ Soit $F, G$ deux sev de $E$, montrer que $F union G$ sev ssi $F subset.eq G$ ou $G subset.eq F$.
+
++ Supposons $KK$ infini, soit $F_1, dots, F_n$ $n$ sevs, montrer que si $union.big_(k = 1)^n F_k$ est un sev, alors il existe $i in [|1, n|]$ tel que 
+  
+  $
+  union.big_(k = 1)^n F_k = F_i
+  $
+
+#answer
+
++ Soit $F, G$ sevs de $E$ un $KK$-ev tel que $F union G$ est un sev.
+
+  Si $F subset.eq.not G$, on pose $z in F\\G$, soit $x in G$.
+
+  $
+    x + z in F union G
+  $
+
+  $x + z in.not G$ car sinon 
+  $
+  F\\G in.rev z = underbrace((x + z), in G) - underbrace(x, in G) in G
+  $
+  Donc $x + z in F$ d'où
+  $
+    x = (x + z) - z in F
+  $
+
+  Et $G subset.eq F$.
+
++ Soient $F_1, dots, F_n$ sevs de $E$ tels que $union.big_(k = 1)^n F_k$ est un sev.
+
+  Notons $U_m = union.big_(k = 1)^m F_k$ pour $m in NN$.
+
+  On à déjà fait le cas $n = 2$ et le cas $n = 1$ est trivial.
+
+  Supposons la propriété vraie pour un $n in NN$.
+
+  Si $U_n subset.eq F_(n+1)$ alors on a fini.
+
+  Si $F_(n+1) subset.eq U_n$ alors par hypothèse de récurrence, on dispose de $i in [|1, n|]$
+  $
+    U_(n+1) = U_n = F_i
+  $
+
+  Sinon, on dispose de 
+  $
+    x in F_(n+1)\\U_n subset.eq U_(n+1) \
+    y in U_n\\F_(n+1) subset.eq U_(n+1)
+  $
+
+  Soient $lambda_0, dots, lambda_(n+1) in KK$ deux à deux distincts.
+  $
+    z_k = x + lambda_k y
+  $
+  Par le lemme des tiroirs, on dispose de $k != l$ et $j$ tel que $z_k, z_l in F_j$
+
+  Si $j = n+1$
+  $
+    z_k - z_l = underbrace((lambda_k - lambda_l), != 0)y in F_(n+1)
+  $
+  Et $y in F_(n+1)$ impossible.
+
+  Si $j in [|1,n|]$
+  $
+    lambda_l z_k - lambda_k z_l = underbrace((lambda_l - lambda_k), != 0) x in F_j
+  $
+  Et $x in F_j$ impossible.
+
+#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre Linéaire",))
+
+Définition et propriétés de somme directe de sev.
+
+#answer
+
+Soient $F_1, dots, F_n$ sev de $E$ un $KK$-ev. On dit qu'ils sont en somme directe si pour tout $x in sum_(k = 1)^n F_k$
+
+$
+  exists! (x_1, dots, x_n) in product_(k = 1)^n F_k, space x = sum_(k = 1)^n x_k
+$
+
+Il y a équivalence entre $F_1, dots, F_n$ en somme directe et
+
++ $forall (x_1, dots, x_n) in product_(k = 1)^n F_k, space sum_(k = 1)^n x_k = 0 => forall k in [|1, n|], space x_k = 0$.
+
++ $forall i in [|1, n|], space F_i inter (sum_(i != k)^n F_k) = {0}$
+
++ $F_n inter plus.big_(k = 1)^(n-1) F_k = {0}$
