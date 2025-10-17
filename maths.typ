@@ -4196,7 +4196,7 @@ $E$ un $KK$ espace vectoriel.
   $
   Et $x in F_j$ impossible.
 
-#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre Linéaire",))
+#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre.Algèbre Linéaire",))
 
 Définition et propriétés de somme directe de sev.
 
