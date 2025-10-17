@@ -7,6 +7,7 @@
 #import "utils.typ": *
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 
 #card("anatl", "Taylor-Langrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
 
@@ -1685,8 +1686,12 @@ Soit $A in M_(n p)(KK), r in NN$, les assertions suivantes sont équivalentes
 On dit alors que $"rg" A = r$.
 
 On a aussi
-- $A attach(t: sscript(L\,C), ~) B$ ssi $"rg" A = "rg" B$ #h(1fr)
-- $"rg"(phi compose psi) <= min("rg" phi, "rg" psi)$
+$
+A attach(t: sscript(L\,C), ~) B space "ssi" "rg" A = "rg" B
+$
+$
+"rg"(phi compose psi) &= "rg" psi - dim(ker phi inter im phi) \ &<= min("rg" phi, "rg" psi)
+$
 
 #card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Espaces Vectoriels",))
 
@@ -4210,3 +4215,105 @@ Il y a équivalence entre $F_1, dots, F_n$ en somme directe et
 + $forall i in [|1, n|], space F_i inter (sum_(i != k)^n F_k) = {0}$
 
 + $F_n inter plus.big_(k = 1)^(n-1) F_k = {0}$
+
+*En dimension finie*
+
+4. $dim sum_(k = 1)^n F_n <= sum_(k = 1)^n dim F_n$ avec égalité ssi les $F_1, dots, F_n$ sont en somme directe.
+
+*Démonstration*
+
++ $=>$ il s'agit d'un cas particulier pour $x = 0$.
+  
+  $arrow.double.l$ Supposons $sum_(k = 1)^n x_k = sum_(k = 1)^n x'_k$
+
+  Alors $sum_(k = 1)^n (x_k - x'_k) = 0$ donc $x_k = x'_k$ pour tout $k in [|1, n|]$.
+
+3. $=>$ Soit $x in F_n inter plus.big_(k = 1)^n F_k$
+
+  $
+    x &= sum_(k = 1)^(n-1) 0 + x \ 
+&= sum_(k = 1)^(n-1) x_k + 0 quad "car" x in plus.big_(k = 1)^(n-1) F_k
+  $
+
+  Donc par unicité de la décomposition $x = sum_(k = 1)^n 0 = 0$.
+
+  $arrow.double.l$ Soit $x_1, dots, x_n in E$ tels que
+
+  $
+    sum_(k = 1)^n x_k = 0 \
+  -x_n = sum_(k = 1)^(n-1) x_k in F_n inter plus.big_(k = 1)^(n - 1) F_k
+  $
+
+  Donc $x_n = 0$ et $sum_(k = 1)^(n-1) x_k = 0$ donc $x_1 = x_2 = dots.c = x_n = 0$.
+
+#card("espsup", "Espaces supplémentaires", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Définition, propriétés des espaces supplémentaires.
+
+#answer
+
+Soient $F_1, dots, F_n$ sevs de $E$ un $KK$-ev. On dit qu'ils sont supplémentaires si
+$
+  E = plus.big_(k = 1)^n F_k
+$
+
+Et on a
+
+$
+E = plus.big_(k = 1)^n F_k \
+
+<=> cases(space E = sum_(k = 1)^n F_k, space dim(E) = sum_(k = 1)^n dim(F_k))  \
+
+<=> cases(space sum_(k = 1)^n F_k = plus.big_(k = 1)^n F_k, space dim(E) = sum_(k = 1)^n dim(F_k)) \
+$
+
+#card("notmat", "Notations de matrices", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Notations de matrices : changements de bases, matrices d'un endomorphisme, ...
+
+#answer
+
+Soit $u in cal(L)(E, F)$, $e = (e_1, dots, e_n), e' = (e'_1, dots, e'_n)$ bases de $E$ et $f = (f_1, dots, f_p)$ base de $F$.
+
+*Applications linéaires*
+
+$
+  cal(M)_(e, f) (u) = cal(M)_(e <- f) (u) = cal(M)_e^f (u) in cal(M)_(p n) (KK) \
+$
+Et la matrice est alors
+$
+    cal(M)_(f <- e) (u) = mat(delim: #none, #diagram(
+      spacing: 0pt,
+      $
+        node(enclose: #("tl", "bl"), lr(size: #600%, \())
+        node(enclose: #("tr", "br"), lr(size: #600%, \))) \
+        && u(e_1) & u(e_2) edge("rr", "..") & #h(0.6em) & u(e_n) & \
+        f_1 & node(name: "tl") & a_11 & a_12 edge("rr", "..") && a_(1n) & node(name: "tr") \
+        f_2 edge("dd", "..") && a_21 edge("dd", "..") & a_22 edge("dd", "..") edge("rr", "..") edge("drdr", "..") && a_(2n) edge("dd", "..") & \
+        thin \
+        f_p & node(name: "bl") & a_(p 1) & a_(p 2) edge("rr", "..") & & a_(p n) & node(name: "br")
+      $
+    ))
+$
+
+Où pour $j in [|1, n|]$
+
+$
+  u(e_j) = sum_(k = 1)^p  a_(k j) f_k
+$
+
+*Endomorphismes*
+
+$
+  cal(M)_e (u) = cal(M)_(e <- e) (u) = cal(M)_e^e (u) \
+$
+
+$
+  u(e_j) = sum_(k = 1)^p  a_(k j) f_k
+$
+
+*Changement de base*
+
+$
+  P_(e -> e') = cal(M)_(e) (e') = cal(M)_(e <- e') (id)
+$
