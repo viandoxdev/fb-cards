@@ -1,0 +1,28 @@
+name: Compile and publish pdfs on Github pages
+on: 
+  push:
+    branch:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Setup typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile documents into dist directory
+        run: ./compile.sh
+
+      - name: Deploy to pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
