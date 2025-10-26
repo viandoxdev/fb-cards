@@ -16,7 +16,7 @@ for doc in "${documents[@]}"; do
     base="$(basename -- "$doc")"
     name="${base%.*}"
 
-    typst compile "$doc" "./dist/$name.pdf"
+    typst compile --font-path ./fonts --ignore-system-fonts "$doc" "./dist/$name.pdf"
 done
 
 cat > ./dist/index.html << EOF

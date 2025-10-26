@@ -808,7 +808,7 @@ $
 
   $I$ est un idéal de $ZZ$, donc $exists d in ZZ, I = d ZZ$ (principalité de $ZZ$). Donc $d | a$ et $d | b$.
 
-  Soit $diff$ tel que $diff | a$ et $diff | b$. $forall x in I, diff | x$, en particulier $diff | d$ d'où $diff <= d$.
+  Soit $partial$ tel que $partial | a$ et $partial | b$. $forall x in I, partial | x$, en particulier $partial | d$ d'où $partial <= d$.
 
   $a and b = d in I$ d'où $exists u,v in ZZ, d = a u + b v$
 
