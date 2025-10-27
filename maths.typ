@@ -3562,7 +3562,7 @@ $
 
 *Démonstration*
 
-On a évidement $B^times subset B inter B^times$.
+On a évidement $B^times subset B inter A^times$.
 
 On suppose $b in B inter A^times$, on dispose de $a in A, a b = b a = 1$.
 
