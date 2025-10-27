@@ -3568,12 +3568,12 @@ On suppose $b in B inter A^times$, on dispose de $a in A, a b = b a = 1$.
 
 On pose
 $
-  phi_b = func(B, B, x, b c) in cal(L)(B)
+  phi_b = func(B, B, x, b x) in cal(L)(B)
 $
 
 Soit $x in ker phi_b$, on a $b x = 0$ donc $(a b) x = x = 0$.
 
-Donc $phi_b$ bijectif (argument dimensionnel), et $phi_b^(-1)(b) = a$ existe et $a in B$.
+Donc $phi_b$ bijectif (argument dimensionnel), et $phi_b^(-1)(1) = a$ existe et $a in B$.
 
 #card("csalgcor", "Algèbres commutatives intègres de dimension finie", ("Maths.Algèbre.Algèbres",))
 
@@ -4317,3 +4317,42 @@ $
 $
   P_(e -> e') = cal(M)_(e) (e') = cal(M)_(e <- e') (id)
 $
+
+#card("noyimgiter", "Exercice : Noyaux et images itérées", ("Maths.Exercice.Algèbre Linéaire",))
+
+Soit $u in cal(L)(E)$ avec $E$ un $KK$-ev. Que peut on dire des suites $(ker u^k)_k$ et $(im u^k)_k$ ?
+
+#answer
+
+Soit $u in cal(L)(E)$ avec $E$ un $KK$-ev.
+
+*Dimension quelconque*
+- Si $ker u^k = ker u^(k+1)$ pour un $k in NN$ alors pour tout $n >= k$, $ker u^k = ker u^n$.
+- De même pour les images.
+
+*Dimension finie*
+
+
+
+*Démonstration*
+
+- Soit $l >= k$, on a évidement $ker u^l subset.eq ker u^(l+1)$. #h(1fr)
+
+  Soit $x in ker u^(l + 1)$ :
+  $
+    u^(k+1) (u^(l - k) (x)) = 0 \
+    u^(l - k)(x) in ker u^(k+1) = ker u^k \
+    u^k (u^(l - k) (x)) = 0 \
+    x in ker u^l
+  $
+
+- Soit $l >= k$, on a évidement $im u^(l+1) subset.eq im u^l$. 
+
+  Soit $u^l (x) = y in im u^l$ :
+  $
+    u^(l-k) (u^k (x)) = y \
+    u^k (x) in im u^k = im u^(k+1) \
+    u^k (x) = u^(k+1) (x') \
+    u^(l - k) (u^(k+1) (x')) = y \
+    y in im u^(l+1)
+  $
