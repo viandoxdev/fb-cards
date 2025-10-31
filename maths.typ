@@ -1699,9 +1699,26 @@ Formes lineaires et hyperplans.
 
 #answer
 
-Soit $E$ un $KK$-ev de dimension finie.
+Soit $E$ un $KK$-ev
+
+Un hyperplan de $E$ est un sev de codimension $1$, c'est à dire qui admet un supplémentaire de dimension $1$.
+
 - Si $alpha in E^star\\{0}$, alors $ker alpha$ est un hyperplan.
 - Si $H$ est un hyperplan de $E$, il existe une forme linéaire $alpha$ unique à constante multiplicative prés tel que $H = ker alpha$.
+
+Deux hyperplans on toujours un supplémentaire commun.
+
+*Démonstration*
+
+- Si $H_1$ et $H_2$ sont des hyperplans, $H_1 union H_2 != E$ 
+
+  - Par l'absurde : supposons $H_1 union H_2 = E$ sev de $E$
+
+    Or $H_1 union H_2 = (H_1 "ou" H_2) = E$ (cf unions de sev) qui est absurde.
+
+  Donc on dispose de $x_0 in E\\(H_1 union H_2)$ 
+
+  Ainsi $"Vect"(x_0)$ est un supplémentaire de $H_1$ et $H_2$
 
 #card("semb", "Matrices sembables", ("Maths.Algèbre.Matrices",))
 
@@ -4332,7 +4349,38 @@ Soit $u in cal(L)(E)$ avec $E$ un $KK$-ev.
 
 *Dimension finie*
 
+En notant $n = dim E$ on a
+$
+  d_k = dim ker u^k in [|0, n|] arrow.tr \
+  r_k = "rg" u^k in [|0, n|] arrow.br
+$
 
+Ces deux suites sont donc stationnaires, on peut poser
+
+$
+  m_K &= min { k in NN | ker u^k = ker u^(k+1) } \
+  m_I &= min { k in NN | im u^k = im u^(k+1) } \
+$
+
+On a de plus $m_K = m_I = m$.
+
+Et en notant
+$
+  K = union.big_(k in NN) ker u^k = ker u^m \
+  I = inter.big_(k in NN) im u^k = im u^m
+$
+
+Qui sont les valeurs auquelles les suites stationnent, on a
+
+- $K plus.circle I = E$
+
+- $K, I$ stables par $u$
+
+- $u|_(K)^(K)$ est nilpotant
+
+- $u|_I^I$ est inversible.
+
+- Si $E = K' plus.circle I'$ avec $K', I'$ stables par $u$, $u|_K'^K'$ nilpotent et $u|_I'^I'$ inversible, alors $K' = K$ et $I' = I$.
 
 *Démonstration*
 
@@ -4356,3 +4404,359 @@ Soit $u in cal(L)(E)$ avec $E$ un $KK$-ev.
     u^(l - k) (u^(k+1) (x')) = y \
     y in im u^(l+1)
   $
+
+*Dimension finie*
+
+- Par le théorème de rang on a $d_k = n - r_k$, donc si $r_k$ est constante à partire du rang $m_I$, alors $d_k$ est aussi constante a partire de ce rang, donc $m_K = m_I$.
+
+- Soit $y in K inter I$, on dispose de $x in E$ tel que
+
+  $
+    u^m (x) = y \
+    u^m (y) = 0 \
+    u^(2m) (x) = 0 \
+    x in ker u^(2m) = ker u^m \
+    u^m (x) = y = 0
+  $
+
+  donc $K plus.circle I = E$.
+
+- Soit $x in K = ker u^m$
+
+  $
+    u^m (u(x)) = u^(m+1) (x) = 0 
+  $
+
+  donc $u(x) in K$.
+
+- Soit $y in I = im u^m$, on dispose de $x in E$ tel que
+
+  $
+    u^m (x) = y \
+    u^(m+1) (x) = u(y) in im u^m \
+    u(y) = u^m (x')
+  $
+
+  et $u(y) in I$.
+
+- Notons $accent(u, ~) = u|_K^K$ l'endomorphisme induit par $u$ sur $K$.
+
+  $
+    accent(u, ~)^m (K) = u^m (K) = {0}
+  $
+
+  Donc $accent(u, ~)$ est nilpotant d'indice $m$.
+
+- Notons $accent(u,~) = u |_I^I$ l'endomorphisme induit par $u$ sur $I$.
+
+  $
+    accent(u,~) (I) &= u (im u^m) = im u^(m+1) \
+    &= im u^m = I
+  $
+
+  Donc $accent(u, ~)$ est inversible.
+
+- Soit $K' plus.circle I' = E$ qui respectent les hypothèses.
+
+  On dispose de $d in NN^*$ tel que
+
+  $
+    u^d (K') = {0} \
+    K' subset.eq ker u^d subset K = union.big_(k in NN) ker u^k
+  $
+
+  Et on a
+
+  $
+    u(I') = I' \
+    u^m (I') = I' \
+    I' subset.eq im u^m = I
+  $
+
+  Donc
+
+  $
+    dim K' <= dim K \
+    dim I' <= dim I \
+  $
+
+  Et on obtient l'égalité par supplémentarité, d'où $K' = K$ et $I' = I$.
+
+#card("detligcol", "Développement du déterminant par ligne ou par colonne", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Formules et définitions du développement du déterminant par ligne ou par colonne.
+
+#answer
+
+Soit $A in cal(M)_n (KK)$
+
+- pour tout $j in [|1, n|]$ : #h(1fr)
+
+  $
+    det(A) = sum_(i = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
+  $
+
+- pour tout $i in [|1, n|]$ : #h(1fr)
+
+  $
+    det(A) = sum_(j = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
+  $
+
+Où $accent(A, ~)_(i j) in cal(M)_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
+
+On appelle $accent(A,hat)_(i j) = (-1)^(i + j) det (accent(A, ~)_(i j))$ cofacteur.
+
+On appelle $"com"(A)$ la matrice des cofacteurs.
+
+Et on a
+
+$
+  A dot "com"(A)^T = det(A) I_n
+$
+
+// TODO: Démo de tout ça ?
+
+#card("exrgcom", "Exercice : rang d'une comatrice", ("Maths.Exercice.Algèbre Linéaire",))
+
+Soit $A in cal(M)_n (KK)$ ($n >= 3$), calculer $"rg" "com"(A)$ en fonction de $"rg" A$.
+
+#answer
+
+Soit $A in cal(M)_n (KK)$ avec $n >= 3$.
+
+- Si $"rg" A = n$, $A in "GL"_n (KK)$ donc $"com" A in "GL"_n (KK)$ et $"rg" "com"(A) = n$.
+
+- Si $"rg" A <= n - 2$, pour tout $i, j in [|1, n|]$ la matrice $accent(A, ~)_(i j)$ extraite de $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne est de rang inférieur à $n - 2$ et n'est donc pas inversible, $"com" A = 0$ et $"rg" "com"(A) = 0$.
+
+- Si $"rg" A = n - 1$, on dispose d'une matrice éxtraite de taille $n - 1$ inversible, donc au moins un des cofacteur est non nul d'où $"rg" "com"(A) >= 1$.
+
+  De plus 
+  $
+    A_T "com"(A) = det(A) I_n = 0
+  $
+  Donc $im "com" (A) subset.eq ker A^T$ et $dim ker A^T = 1$ d'où $"rg" "com" (A) <= 1$.
+
+#card("algopivgau", "Algorithme du pivot de Gauss", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Déscription de l'algorithme du pivot de Gauss, et propriétés qui en découlent.
+
+#answer
+
+*Opérations, représentation matricielle*
+
+Notons $(E_(i j))_(i j)$ la base cannonique de $cal(M)_n (KK)$. On a
+
+$
+  E_(i k) E_(l j) = delta_(k l) E_(i j)
+$
+
+Pour $A in cal(M)_(n p) (KK)$
+$
+  E_(k l)^((n)) A = mat(augment: #1,,1;, dots.v; L_l, k;,dots.v;,n) \
+  A E_(k l)^((p)) = mat(augment: #("hline": 1),,,C_k,,;1,dots.c,l,dots.c,n)
+$
+
+Ainsi on peut définir
+
+- $T_(k l) (lambda) = I_n + lambda E_(k l)^((n))$ la transvection sur les lignes ($L_k <- L_k + lambda L_l$)
+
+- $T'_(k l) (lambda) = I_p + lambda E_(k l)^((p))$ la transvection sur les colonnes ($C_l <- C_l + lambda C_k$)
+
+- $P_(k l) = I_n - E_(k k)^((n)) - E_(l l)^((n)) + E_(k l)^((n)) + E_(l k)^((n))$ la transposition de lignes ($L_l <-> L_k$)
+
+- $P_(k l) = I_p - E_(k k)^((p)) - E_(l l)^((p)) + E_(k l)^((p)) + E_(l k)^((p))$ la transposition de colonnes ($C_l <-> C_k$)
+
+*Algorithme*
+
+Prenons $A = mat(C_1, dots.c, C_n) in cal(M)_n (KK)$
+
+- Si $A = 0$ fini.
+
+- Soit $j = min {k in [|1, n|] | C_k != 0}$ #h(1fr)
+
+  $
+  A^((1)) : quad C_j <-> C_1
+  $
+
+- Soit $i = min {k in [|1, n|] | a_(i 1) != 0}$
+
+  - Si $i = 1$ on effectue $L_2 <- L_2 + L_1$ et on prend $i = 2$.
+
+  $
+    A^((2)) : quad L_1 <- L_1 + (1 - a_(1 1) / a_(i 1)) L_i \
+
+    A^((2)) = mat(augment: #("hline": 1, "vline": 1), 1, *, dots.c, *; *;dots.v,,*;*)
+  $
+
+- Pour tout $i in [|2, n|]$ on effectue
+
+  $
+    A^((i + 1)) : quad L_i <- L_i - a_(i 1) L_1 \
+  $
+  Ainsi
+  $
+    A^((n + 1)) = mat(augment: #("hline": 1, "vline": 1), 1, *, dots.c, *; 0;dots.v,,accent(A,~);0)
+  $
+
+On repète l'algorithme sur $accent(A,~)$, on obtient alors
+
+$
+  accent(accent(A, ~),~) = mat(augment: #("hline": (4, 3), "vline": (4, 3)),
+    1,,(*),*;
+    ,dots.down,,dots.v,,(*);
+    ,,1,*;
+    ,,,mu,*,dots.c,*;
+    ,,,,0;
+    ,,,,,dots.down;
+    ,,,,,,0
+  )
+$
+
+Avec $mu != 1$ ssi le blocs de zéros à la fin est de taille nulles (on ne dispose pas des lignes nécéssaires pour se ramener à $mu = 1$).
+
+On peut alors finalement effectuer pour tout $i in [|1, "rg" A|]$, puis pour $j in [|i + 1, n|]$
+
+$
+  accent(accent(accent(A,~),~),~) : quad C_j <- C_j - accent(accent(A,~),~)_(i j) / (accent(accent(A,~),~)_(i i)) C_i \
+  accent(accent(accent(A,~),~),~) = mat(
+    1;
+    ,dots.down;
+    ,,1;
+    ,,,mu;
+    ,,,,0;
+    ,,,,,dots.down;
+    ,,,,,,0
+  )
+$
+
+On remarque que si $A$ est inversible, les transpositions sont inutiles car il n'éxiste pas de colonnes nulles.
+
+*Propriétés*
+
+- Les transvections engendrent $"SL"_n (KK)$.
+
+- Les transvections et une dilatation (pour atteindre n'importe quel déterminant) suffisent à engendrer $"GL"_n (KK)$.
+
+#card("interhyppl", "Intersection d'hyperplans", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Propriétés sur les intersections d'hyperplans.
+
+#answer
+
+Soient $(phi_1, dots, phi_p) in cal(L)(E, KK)^p$
+
+$
+  dim inter.big_(k = 1)^p ker phi_k &= n - "rg"(phi_1, dots, phi_p) quad "(H.P)" \
+  &>= n - p quad "(P)"
+$
+
+*Lemme très utile*
+
+La famille $(phi_1, dots, phi_p)$ est libre ssi
+
+$
+  theta : func(E, KK^p, x, vec(phi_1 (x), dots.v, phi_p (x))) quad "surjective"
+$
+
+*Second lemme*
+
+Pour tout $psi in cal(L)(E, KK)$
+
+$
+  phi in "Vect"(phi_1, dots, phi_p) \ "ssi" space inter.big_(k=1)^p ker phi_k subset.eq ker psi
+$
+
+*Démonstration au programme*
+
+Récurrence sur $p$.
+
+*Démonstration du premier lemme*
+
+- Supposons $theta$ surjective, on considère $lambda_1, dots, lambda_p in KK$ tels que
+
+  $
+    sum_(k = 1)^p lambda_k phi_k = 0
+  $
+
+  Soit $i in [|1, p|]$, on dispose de $x in E$ tel que 
+
+  $
+  theta(x) = mat(augment: #1,,1;,dots.v;1,i;,dots.v;,p) = vec(phi_1 (x), dots.v, phi_i (x), dots.v, phi_p (x))
+  $
+  Ainsi
+  $
+    (sum_(k = 1)^(p) lambda_k phi_k) (x) = 0 = lambda_i
+  $
+- Par contraposé supposons $theta$ non surjective : $"rg" theta <= p - 1$.
+
+  On dispose de $H$ hyperplan tel que $im theta subset.eq H$. Donc on dispose de $(alpha_1, dots, alpha_p) in KK^p\\{0}$ tels que
+
+  $
+    H = {lr(vec(x_1, dots.v, x_p) in KK^p |) sum_(k = 1)^p alpha_k x_k = 0}
+  $
+
+  Donc pour tout $x in E$,
+
+  $
+    theta(x) = vec(phi_1 (x), dots.v, phi_p (x)) in im theta subset.eq H \
+    sum_(k = 1)^p alpha_k phi_k (x) = 0
+  $
+
+  Donc $sum_(k = 1)^p alpha_k phi_k = 0$ et la famille est liée
+
+*Démonstration du second lemme*
+
+- Si $phi in "Vect"(phi_1, dots, phi_p)$, on dispose de $lambda_1, dots, lambda_p in KK$ tels que
+
+  $
+    psi = sum_(k = 1)^p lambda_k phi_k
+  $
+
+  D'où
+
+  $
+    psi(inter.big_(k = 1)^p ker psi_p) &= sum_(k = 1)^p lambda_k phi_k (inter.big_(i = 1)^p ker phi_p) \
+    &= {0}
+  $
+
+  Et donc $inter.big_(k = 1)^p ker phi_p subset.eq ker psi$.
+
+- Supposons $inter.big_(k = 1)^p ker phi_p subset.eq ker psi$. Quitte à extraire et renuméroter, $(phi_1, dots, phi_r)$ est libre.
+
+  Or pour tout $k in [|r + 1, p|]$,
+  $
+  phi_k in "Vect" (phi_1, dots, phi_r) \
+  "Donc" space inter.big_(i = 1)^r phi_i subset.eq ker phi_k
+  $ 
+  D'où $display(inter.big_(k = 1)^p phi_k = inter.big_(k = 1)^r phi_k)$.
+
+  Donc
+  $
+    theta : func(E, KK^r, x, vec(phi_1 (x), dots.v, phi_r (x))) quad "surjective"
+  $
+  Posons alors
+  $
+    theta' : func(E, KK^(r+1),x, vec(phi_1 (x), dots.v, phi_r (x), psi(x)))
+  $
+  Or
+  $
+  inter.big_(k = 1)^r ker phi_k = inter.big_(k = 1)^p ker phi_k subset.eq ker psi \
+  "Donc" space vec(0, dots.v, 0, 1) in.not im theta'
+  $
+  La famille $(phi_1, dots, phi_r, psi)$ est liée d'où $psi in "Vect"(phi_1, dots, phi_p)$.
+
+*Démonstration hors programme*
+
+Quitte à extraire et renuméroter, $(phi_1, dots, phi_r)$ est libre, on montre de même que
+$
+  inter.big_(k = 1)^r ker phi_k = inter.big_(k = 1)^p ker phi_k
+$
+Donc
+$
+  theta : func(E, KK^r, x, vec(phi_1 (x), dots.v, phi_r (x))) quad "surjective" \
+  ker theta = inter.big_(k = 1)^r ker phi_k
+$
+Donc par le théorème du rang
+$
+  dim (inter.big_(k = 1)^p ker phi_k) = n - "rg" (phi_1, dots, phi_p)
+$
