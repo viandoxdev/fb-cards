@@ -4646,11 +4646,42 @@ Propriétés sur les intersections d'hyperplans.
 Soient $(phi_1, dots, phi_p) in cal(L)(E, KK)^p$
 
 $
-  dim inter.big_(k = 1)^p ker phi_k &= n - "rg"(phi_1, dots, phi_p) quad "(H.P)" \
-  &>= n - p quad "(P)"
+  dim inter.big_(k = 1)^p ker phi_k &= n - "rg"(phi_1, dots, phi_p) \
+  &>= n - p
 $
 
-*Lemme très utile*
+*Démonstration*
+
+On montre l'inégalité par récurrence sur $p$.
+
+Montrons l'égalité.
+
+Quitte à extraire et renuméroter, $(phi_1, dots, phi_r)$ est libre.
+
+Or pour tout $k in [|r + 1, p|]$,
+$
+phi_k in "Vect" (phi_1, dots, phi_r) \
+"Donc" space inter.big_(i = 1)^r ker phi_i subset.eq ker phi_k \
+"D'où" space inter.big_(k = 1)^p ker phi_k = inter.big_(k = 1)^r ker phi_k
+$ 
+
+Donc (cf. lemme sur la liberté d'une famille de formes linéaires)
+$
+  theta : func(E, KK^r, x, vec(phi_1 (x), dots.v, phi_r (x))) quad "surjective" \
+  ker theta = inter.big_(k = 1)^r ker phi_k
+$
+Donc par le théorème du rang
+$
+  dim (inter.big_(k = 1)^p ker phi_k) = n - "rg" (phi_1, dots, phi_p)
+$
+
+#card("lemutihyp", "Liberté d'une famille de l'espace dual", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Démonstration d'une CNS pour la liberté d'une famille de $cal(L) (E, KK)$ où $E$ est un $KK$-ev.
+
+#answer
+
+Soient $phi_1, dots, phi_p in cal(L)(E, KK)$.
 
 La famille $(phi_1, dots, phi_p)$ est libre ssi
 
@@ -4658,19 +4689,7 @@ $
   theta : func(E, KK^p, x, vec(phi_1 (x), dots.v, phi_p (x))) quad "surjective"
 $
 
-*Second lemme*
-
-Pour tout $psi in cal(L)(E, KK)$
-
-$
-  phi in "Vect"(phi_1, dots, phi_p) \ "ssi" space inter.big_(k=1)^p ker phi_k subset.eq ker psi
-$
-
-*Démonstration au programme*
-
-Récurrence sur $p$.
-
-*Démonstration du premier lemme*
+*Démonstration*
 
 - Supposons $theta$ surjective, on considère $lambda_1, dots, lambda_p in KK$ tels que
 
@@ -4704,7 +4723,23 @@ Récurrence sur $p$.
 
   Donc $sum_(k = 1)^p alpha_k phi_k = 0$ et la famille est liée
 
-*Démonstration du second lemme*
+#card("condindepfl", "Condition de liberté d'une forme linéaire à une famille", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Soit $phi_1, dots, phi_p, psi in cal(L)(E, KK)$.
+
+Démonstration d'une CNS pour que $psi in "Vect"(phi_1, dots, phi_p)$.
+
+#answer
+
+Soit $phi_1, dots, phi_p, psi in cal(L)(E, KK)$.
+
+Pour tout $psi in cal(L)(E, KK)$
+
+$
+  phi in "Vect"(phi_1, dots, phi_p) \ "ssi" space inter.big_(k=1)^p ker phi_k subset.eq ker psi
+$
+
+*Démonstration*
 
 - Si $phi in "Vect"(phi_1, dots, phi_p)$, on dispose de $lambda_1, dots, lambda_p in KK$ tels que
 
@@ -4721,14 +4756,16 @@ Récurrence sur $p$.
 
   Et donc $inter.big_(k = 1)^p ker phi_p subset.eq ker psi$.
 
-- Supposons $inter.big_(k = 1)^p ker phi_p subset.eq ker psi$. Quitte à extraire et renuméroter, $(phi_1, dots, phi_r)$ est libre.
+- Supposons $inter.big_(k = 1)^p ker phi_p subset.eq ker psi$.
+
+  Quitte à extraire et renuméroter, $(phi_1, dots, phi_r)$ est libre.
 
   Or pour tout $k in [|r + 1, p|]$,
   $
   phi_k in "Vect" (phi_1, dots, phi_r) \
-  "Donc" space inter.big_(i = 1)^r phi_i subset.eq ker phi_k
+  "Donc" space inter.big_(i = 1)^r ker phi_i subset.eq ker phi_k \
+  "D'où" space inter.big_(k = 1)^p ker phi_k = inter.big_(k = 1)^r ker phi_k
   $ 
-  D'où $display(inter.big_(k = 1)^p phi_k = inter.big_(k = 1)^r phi_k)$.
 
   Donc
   $
@@ -4745,18 +4782,222 @@ Récurrence sur $p$.
   $
   La famille $(phi_1, dots, phi_r, psi)$ est liée d'où $psi in "Vect"(phi_1, dots, phi_p)$.
 
-*Démonstration hors programme*
+#card("baseduale", "Base duale, antéduale", ("Maths.Algèbre.Algèbre Linéaire",))
 
-Quitte à extraire et renuméroter, $(phi_1, dots, phi_r)$ est libre, on montre de même que
+Définitions, propriétés, démonstrations autours des bases duals.
+
+#answer
+
+*Base duale*
+
+Soit $E$ un $KK$-ev de dimension finie, $e = (e_1, dots, e_n)$ une base de $e$.
+
+Il existe une unique famille $(phi_1, dots, phi_n) in cal(L)(E, KK)^n$ tel que
+
 $
-  inter.big_(k = 1)^r ker phi_k = inter.big_(k = 1)^p ker phi_k
+  forall i, j in [|1,n|], space phi_i (e_j) = delta_(i j)
 $
-Donc
+
+Cette famille est appelée base duale de $e$ et est une base de $cal(L)(E, KK)$.
+
+Dans ce cas
 $
-  theta : func(E, KK^r, x, vec(phi_1 (x), dots.v, phi_r (x))) quad "surjective" \
-  ker theta = inter.big_(k = 1)^r ker phi_k
+  forall x in E, space x = sum_(k = 1)^n phi_k (x) e_k \
+  forall psi in cal(L)(E, KK), space psi = sum_(k = 1)^n psi(e_k) phi_k
 $
-Donc par le théorème du rang
+
+*Base antéduale*
+
+Pour toute base $(phi_1, dots, phi_n)$ de $cal(L)(E, KK)$, il existe une unique base $(e_1, dots, e_n)$ de $E$ tel que $(phi_1, dots, phi_n)$ en est la base duale.
+
+*Démonstration*
+
+- Existence / Unicité : car les formes linéaire sont uniquement déterminés par leurs image d'une base.
+
+- Génératrice : Soit $psi in cal(L)(E, KK)$
+
+  pour tout $i in [|1, n|]$
+
+  $
+    (sum_(k = 1)^n psi(e_k) phi_k) (e_i) &= sum_(k = 1)^n psi(e_k) phi_k (e_i) \
+    &= psi(e_k) \
+  $
+  $
+    "Donc" space psi = sum_(k = 1)^n psi(e_k) phi_k
+  $
+
+  Donc $(phi_1, dots, phi_n)$ est une base.
+
+- Soit $x = sum_(k = 1)^n x_k e_k in E, i in [|1, n|]$
+
+  $
+    phi_i (x) &= phi_i (sum_(k = 1)^n x_k e_k) \
+    &= sum_(k = 1)^n x_k delta_(i k) = x_i
+  $
+
+- Soit $(phi_1, dots, phi_n)$ base de $cal(L)(E, KK)$
+
+  $
+  theta : func(E, KK^n, x, vec(phi_1 (x), dots.v, phi_n (x))) quad "surjective"
+  $
+
+  Par liberté de la famille, donc bijective par argument dimensionnel.
+
+  Notons $(b_1, dots, b_n)$ la base cannonique de $KK^n$.
+
+  La famille $(e_k = theta^(-1) (b_k))_(k in [|1, n|])$ est l'unique base de $E$ tel que
+
+  $
+    forall i, j in [|1,n|], space phi_i (e_j) = delta_(i j)
+  $
+// TODO: point de vue matricielle
+
+#card("lemfacalgl", "Lemme de factorisation", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Énoncé et démonstration du lemme de factorisation en algèbre linéaire.
+
+#answer
+Soient $E, F, G$ trois $KK$-ev
+
++ Soient $u in cal(L)(E, F), v in cal(L)(E, G)$, dans ce cas
+
+  $
+    ker u subset.eq ker v \
+    <=> exists w in cal(L)(F, G), space v = w compose u
+  $
+  (Si $u$ est inversible $w = v compose u^(-1)$).
+
++ Soient $u in cal(L)(E, F), v in cal(L)(G, F)$, dans ce cas
+
+  $
+    im v subset.eq im u \
+    <=> exists w in cal(L)(G, E), v = space u compose w
+  $
+
+*Démonstration*
+
++
+  - Supposons qu'il existe $w in cal(L)(F, G)$ tel que $v = w compose u$. #h(1fr)
+
+    $
+    v(ker u) &= w(u(ker u)) \
+    &= w({0}) = 0
+    $
+
+    D'où $ker u subset.eq ker v$.
+
+  - Supposons que $ker u subset.eq ker v$.
+
+    Soient $H, K$ tels que 
+    $
+      ker u plus.circle H &= E \
+      im u plus.circle K &= F \
+    $
+    Posons
+    $
+      accent(u,~) : func(H, im u, x, u(x)) \
+      ker accent(u,~) = ker u inter H = {0} \
+      space dim H = "rg" u \
+    $
+    Donc $accent(u, ~)$ inversible.
+
+    On peut donc écrire
+    $
+      w : func(F &= im u &plus.circle& K, G, x &= y &+& z, v compose accent(u, ~)^(-1) (y))
+    $
+
+    Soit $x = y + z in E = ker u plus.circle H$.
+
+    $
+     w compose u (x) &= v(accent(u, ~)^(-1) (u(z))) \
+     &= v(z) \
+     v(x) &= underbrace(v(y), 0) + v(z)
+    $
+
++ 
+  - Supposons qu'il existe $w in cal(L)(G, E)$ tel que $v = u compose w$
+    $
+      v(E) = u compose w (E) subset.eq u (E)
+    $
+    D'où $im v subset.eq im u$.
+
+  - Supposons que $im v subset.eq im u$.
+
+    Soit $H$ tel que $ker u plus.circle H = E$.
+    $
+      accent(u,~) : func(H, im u, x, u(x)) \
+      w : func(G, E, x, accent(u,~)^(-1) compose v (x))
+    $
+    On a bien pour $x in E$
+    $
+      u compose w(x) = accent(u,~)(accent(u,~)^(-1)(v(x))) = v(x)
+    $
+
+// TODO: VI.2) Liberté des familles de F(X, K) (flm la vrm)
+
+#card("vanlag", "Vandermonde, interpolation de Lagrange", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Définitions, propriétés et démonstrations de l'interpolation de Lagrange et des matrices des Vandermonde.
+
+#answer
+
+Soit $KK$ un corps, $n in NN$, $a_0, dots, a_n in KK$ deux à deux distincts.
+
 $
-  dim (inter.big_(k = 1)^p ker phi_k) = n - "rg" (phi_1, dots, phi_p)
+  theta : func(KK_n [X], KK^(n+1), P, vec(P(a_0), dots.v, P(a_n))) in cal(L)(KK_n [X], KK^(n+1))
+$
+
+Pour tout $P in ker theta$, 
+$
+P(a_0) = P(a_1) = dots.c = P(a_n) = 0
+$ 
+Donc $P$ est de degré $n$ avec $n+1$ racines distinctes, d'où $P = 0$.
+
+Donc $theta$ est un isomorphisme.
+
+Notons 
+$
+e &= (e_0, dots, e_n) \ c &= (1, X, dots, X^n)
+$ 
+Les bases cannoniques de $KK^(n+1)$ et $KK_n [X]$.
+$
+  forall k in [|0, n|], space theta^(-1)(e_k) = product_(i = 0 \ i != k)^n (X - a_i) / (a_k - a_i) = L_k (X)
+$
+La matrice de $theta$ dans les bases cannoniques est appelée matrice de Vandermonde de $a_0, dots, a_n$.
+$
+  cal(M)_(e <- c)(theta) = mat(1, a_0, a_0^2, dots.c, a_0^n; dots.v, dots.v, dots.v, dots.down, dots.v; 1, a_n, a_n^2, dots.c, a_n^n)
+$
+
+Sont déterminant vaut
+
+$
+  V(a_0, dots, a_n) &= det(cal(M)_(e <- c) (theta)) \ &= product_(0 <= i < j <= n) (a_j - a_i)
+$
+
+*Démonstration*
+
+Par récurrence sur $n$, initialisée aisément pour $n = 1$.
+
+On suppose la formule pour un $n in NN$.
+
+$
+  P(X) &= V(a_0, dots, a_n, X) \
+  &= mat(delim: "|", 1, a_0, a_0^2, dots.c, a_0^(n+1); dots.v, dots.v, dots.v, dots.down, dots.v; 1, a_n, a_n^2, dots.c, a_n^(n+1); 1, X, X^2, dots.c, X^(n+1)) \
+  &= sum_(j = 0)^(n+1) (-1)^(n + j) X^j V_(j)
+$
+Où $V_j$ est le déterminant mineur en $(n+2,j+1)$. De plus
+$
+  deg P <= n+1 \
+  "cd" P = V(a_0, dots, a_n) != 0
+$
+De plus pour tout $k in [|0,n|]$, $P(a_k) = 0$ donc
+$
+  P &= V(a_0, dots, a_n) product_(k = 0)^n (X - a_k) \
+  &= product_(0 <= i < j <= n) (a_j - a_i) product_(k = 0)^n (X - a_k) \
+$
+Ainsi on peut calculer
+$
+  P(a_(n+1)) &= V(a_0, dots, a_(n+1)) \
+  &= product_(0 <= i < j <= n) (a_j - a_i) product_(k = 0)^n (a_(n+1) - a_k) \
+  &= product_(0 <= i < j <= n + 1) (a_j - a_i)
 $
