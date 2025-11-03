@@ -5001,3 +5001,228 @@ $
   &= product_(0 <= i < j <= n) (a_j - a_i) product_(k = 0)^n (a_(n+1) - a_k) \
   &= product_(0 <= i < j <= n + 1) (a_j - a_i)
 $
+
+// TODO: Pas sur de les mettres, sous espaces stables, droite stables, definition de vecteur et valeurs propres.
+
+#card("extvp", "Exercice : endomorphisme qui stabilise toutes les droites", ("Maths.Exercice.Algèbre Linéaire",))
+
+Soit $u in cal(L)(E)$ qui stabilise toute les droites, qui dire de $u$ ?
+
+#answer
+
+Par définition pour tout $x in E, space u(x) = lambda_x x$ avec $lambda_x in KK$.
+
+Soit $x, y in E\\{0}$.
+
+- Si $(x, y)$ est liée, $y = alpha x$ #h(1fr)
+
+  $
+    lambda_y alpha x = u(y) = alpha u(x) = lambda_x alpha x \
+    lambda_y = lambda_x
+  $
+
+- Sinon $(x, y)$ est libre
+
+  $
+    lambda_(x + y) (x + y) = u(x + y) = u(x) + u(y) \
+    lambda_(x + y) x + lambda_(x + y) y = lambda_x x + lambda_y y \
+    lambda_x = lambda_(x + y) = lambda_y
+  $
+
+Donc pour tout $x in E, lambda_x = lambda$ et $u = lambda id$.
+
+#card("vpep", "Valeurs propres, espaces propres", ("Maths.Algèbre.Réduction",))
+
+Définitions, caractérisation, démonstration autour des valeurs propres et des espaces propres.
+
+#answer
+
+Soit $u in cal(L)(E), lambda in KK$, il y a équivalence entre
+
++ $exists x_0 in E\\{0}, space u(x_0) = lambda x_0$
+
++ $ker (u - lambda id) != {0}$
+
++ $u - lambda id in.not "GL"(E)$
+
+On dit alors que $lambda$ est une valeur propre de $u$, on appelle sous-espace propre de $u$ pour la valeur propre $lambda$
+$
+  E_lambda (u) = {x in E | u(x) = lambda x}
+$
+
+*Démonstration*
+
+$
+  exists x_0 in E \\ {0}, space u(x_0) = lambda x_0 \
+  <=> exists x_0 in ker (u - lambda id) \\ {0} \
+  <=> u - lambda id in.not "GL"(E) quad script(vec("dimension", "finie"))
+$
+
+#card("somdirsep", "Somme directe des sous-espaces propres", ("Maths.Algèbre.Réduction",))
+
+Démonstration du fait que les sous-espaces propres d'un endomorphisme sont en somme directe.
+
+#answer
+
+Soit $u in cal(L)(E)$, $lambda_1, dots, lambda_p in KK$ ses valeurs propres deux à deux distinctes.
+
+Soit $(x_1, dots, x_p) in product_(k = 1)^p E_(lambda_k) (u)$ tels que $sum_(k = 1)^p x_k = 0$.
+
+Par recurrence on montre que pour tout $P(X) in KK [X]$.
+$
+  0 = sum_(k = 1)^p P(lambda_k) x_k
+$
+
+En particulier avec $P = L_i$ pour $i in [|1,n|]$ on a
+$
+  0 = sum_(k = 1)^p L_i (lambda_k) x_k = x_i
+$
+
+On appelle spèctre de $u$
+
+$
+  "Sp"(u) = {lambda in KK | lambda "valeur propre"}
+$
+
+Qui est finit ($abs("Sp"(u)) <= n = dim E$).
+
+// TODO: Stabilité des sous espaces propres, ça sert a quoique que ce soit ? I.5)
+
+#card("polcar", "Polynôme caractèristique d'un endomorphisme", ("Maths.Algèbre.Réduction",))
+
+Définitions, propriétés élémentaires et démonstrations autours du polynôme caractèristique d'un endomorphisme.
+
+#answer
+
+*Matrices*
+
+Soit $A in cal(M)_n (KK)$, on définit le polynôme caractèristique de $A$ comme
+$
+  chi_A (X) = det(X I_n - A)
+$
+Et on a
+$
+  chi_A (X) = sum_(k = 0)^n a_k X^k
+$
+$
+  a_n &= 1 quad & "("chi_A" unitaire)" \
+  a_(n-1) &= - tr(A) \
+  a_0 &= (-1)^n det(A)
+$
+
+*Endomorphismes*
+
+Soit $u in cal(L)(E)$, $e$ base de $E$, $A = cal(M)_e (u)$. On définit
+$
+  chi_u (X) = chi_A (X)
+$
+Ceci ne dépend pas de la base $e$ choisie.
+
+De plus
+$
+  "Sp"(u) = Z_KK (chi_u)
+$
+
+*Démonstration*
+
+$
+  chi_A (X) = sum_(sigma in frak(S)_n) epsilon(sigma) underbrace(product_(j = 1)^n (X delta_(sigma(j) j) - A_(sigma(j) j)), P_sigma (X))
+$
+
+Pour tout $sigma in frak(S)_n$, $P_sigma in KK_n [X]$ donc $chi_A in KK_n [X]$. De plus
+$
+deg (P_sigma) = abs({k in [|1, n|] | sigma(k) = k}) \
+deg (P_sigma) = n <=> sigma = id
+$
+Donc $deg chi_A = n$ et $"cd" chi_A = 1$.
+
+Si $sigma != id, space deg (P_sigma) <= n - 2$, donc $a_(n-1)$ est le terme en $X^(n-1)$ de $P_id$.
+$
+  P_id = product_(j = 1)^n (X - A_(j j)) \
+  a_(n-1) = - sum_(j = 1)^n A_(j j) = - tr (A)
+$
+$
+  a_0 &= chi_A (0) = det(0 - A) \ &= (-1)^n det(A)
+$
+
+Soient $e, e'$ deux bases de $E$, $A = cal(M)_e (u), A' = cal(M)_e' (u), P = P_(e'->e)$.
+
+$
+  A' = P A P^(-1)
+$
+$
+  chi_A' (X) &= det(X I_n - A') \
+  &= det(X P I_n P^(-1) - P A P^(-1)) \
+  &= det(P) det(X I_n - A) det(P^(-1)) \
+  &= chi_A (X)
+$
+
+#card("multvp", "Multiplicités d'une valeur propre", ("Maths.Algèbre.Réduction",))
+
+Définitions des multiplicités d'une valeur propre.
+
+#answer
+
+Soit $lambda in KK$ une valeur propre de l'endomorphisme $u$.
+
+- On appelle multiplicité algébrique ($m_lambda$), ou juste multiplicité de $lambda$ sa multiplicité en tant que racine de $chi_u$.
+
+- On appelle multiplicité géométrique de $lambda$ la dimension de son espace propre.
+
+On a toujours
+
+$
+  dim E_lambda (u) <= m_lambda
+$
+
+*Démonstration*
+
+Soit $(e_1, dots, e_d)$ base de $E_lambda$ complété en $e = (e_1, dots, e_n)$ base de $E$.
+
+$
+  cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), lambda I_d, B; 0, C) \
+$
+$
+  chi_u &= chi_(cal(M)_e (u)) \
+  &= mat(delim: "|", augment: #("hline": 1, "vline": 1), (X - lambda) I_d, -B; 0, X I_(n - d) - C) \
+  &= (X-lambda)^d chi_C (X)
+$
+
+#card("proppolcaran", "Propriétés diverses du polynôme caractèristique", ("Maths.Algèbre.Réduction",))
+
+Cas particuliers de calculs du polynôme caractèristique, et lien avec les endomorphisme induit.
+
+#answer
+
+- Pour tout $T in T_n (KK)$ #h(1fr)
+
+  $
+    chi_T = product_(k = 1)^n T_(k k)
+  $
+
+- Pour tout $M = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C) in cal(M)_n (KK), A in cal(M)_r (KK), C in cal(M)_(n - r) (KK), B in cal(M)_(r,n-r) (KK)$
+
+  $
+    chi_M (X) = chi_A (X) chi_C (X)
+  $
+
+- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
+  $
+    chi_accent(u,~) | chi_u
+  $
+
+*Démonstration*
+
+- L'écrire.
+
+- L'écrire.
+
+- Soit $e = (e_1, dots, e_n)$ base de $F$ complété en base de $E$.
+
+  $
+  cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C)
+  $
+
+  Avec $A = cal(M)_accent(e,~) (accent(u,~))$.
+
+// TODO: Fin de M116
