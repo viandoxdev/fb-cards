@@ -3770,7 +3770,7 @@ De plus $ker theta_alpha$ est un idéal de $KK[X]$.
 - Soit $B in KK[X] \\ {0}$ et $d = deg B$, par l'éxistence et l'unicité de la division euclidienne on a
 
   $
-    KK[X] = B KK[X] plus.circle KK_(d - 1) [X]
+    KK[X] = B KK[X] plus.o KK_(d - 1) [X]
   $
 
 - Soit $u in cal(L)(E, F)$ et $G$ un supplémentaire de $ker u$, montrons que $u|_G$ est un isomorphisme de $G -> im u$.
@@ -3792,7 +3792,7 @@ y &= u|_G (b)
 
 - Sinon on a $pi_alpha$ de degré $d$ et
   $
-    KK[X] = pi_alpha KK[X] plus.circle KK_(d - 1) [X]
+    KK[X] = pi_alpha KK[X] plus.o KK_(d - 1) [X]
   $
 
   $KK_(d - 1)$ est un supplémentaire de $ker theta_alpha$, ainsi $theta_alpha|_(KK_(d - 1) [X])$ est un isomorphisme de $KK_(d - 1) [X] -> KK[alpha]$, d'où
@@ -4372,7 +4372,7 @@ $
 
 Qui sont les valeurs auquelles les suites stationnent, on a
 
-- $K plus.circle I = E$
+- $K plus.o I = E$
 
 - $K, I$ stables par $u$
 
@@ -4380,7 +4380,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
 - $u|_I^I$ est inversible.
 
-- Si $E = K' plus.circle I'$ avec $K', I'$ stables par $u$, $u|_K'^K'$ nilpotent et $u|_I'^I'$ inversible, alors $K' = K$ et $I' = I$.
+- Si $E = K' plus.o I'$ avec $K', I'$ stables par $u$, $u|_K'^K'$ nilpotent et $u|_I'^I'$ inversible, alors $K' = K$ et $I' = I$.
 
 *Démonstration*
 
@@ -4419,7 +4419,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
     u^m (x) = y = 0
   $
 
-  donc $K plus.circle I = E$.
+  donc $K plus.o I = E$.
 
 - Soit $x in K = ker u^m$
 
@@ -4456,7 +4456,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
   Donc $accent(u, ~)$ est inversible.
 
-- Soit $K' plus.circle I' = E$ qui respectent les hypothèses.
+- Soit $K' plus.o I' = E$ qui respectent les hypothèses.
 
   On dispose de $d in NN^*$ tel que
 
@@ -4890,8 +4890,8 @@ Soient $E, F, G$ trois $KK$-ev
 
     Soient $H, K$ tels que 
     $
-      ker u plus.circle H &= E \
-      im u plus.circle K &= F \
+      ker u plus.o H &= E \
+      im u plus.o K &= F \
     $
     Posons
     $
@@ -4903,10 +4903,10 @@ Soient $E, F, G$ trois $KK$-ev
 
     On peut donc écrire
     $
-      w : func(F &= im u &plus.circle& K, G, x &= y &+& z, v compose accent(u, ~)^(-1) (y))
+      w : func(F &= im u &plus.o& K, G, x &= y &+& z, v compose accent(u, ~)^(-1) (y))
     $
 
-    Soit $x = y + z in E = ker u plus.circle H$.
+    Soit $x = y + z in E = ker u plus.o H$.
 
     $
      w compose u (x) &= v(accent(u, ~)^(-1) (u(z))) \
@@ -4923,7 +4923,7 @@ Soient $E, F, G$ trois $KK$-ev
 
   - Supposons que $im v subset.eq im u$.
 
-    Soit $H$ tel que $ker u plus.circle H = E$.
+    Soit $H$ tel que $ker u plus.o H = E$.
     $
       accent(u,~) : func(H, im u, x, u(x)) \
       w : func(G, E, x, accent(u,~)^(-1) compose v (x))
