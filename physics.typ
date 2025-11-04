@@ -343,3 +343,38 @@ De plus on dispose de $va(A)$ (champ potentiel vecteur, H.P.) tel que
 $
   va(F) = curl va(A)
 $
+
+#card("laplacien", "Laplacien", ("Physique.Analyse Vectorielle",))
+
+Définition du laplacien d'un champ.
+
+#answer
+
+*Scalaire*
+
+On appelle laplacien scalaire d'un champ scalaire $V$ le champ scalaire
+$
+  laplace V = div (grad V)
+$
+En cartésiennes :
+$
+  laplace V = pdv(V,x,2) + pdv(V,y,2) + pdv(V,z,2)
+$
+En général :
+$
+  laplace V = 1/(h_1 h_2 h_3) &[ pdv(,q_1) ((h_2 h_3) / h_1 pdv(V, q_1)) \
+  &+ pdv(,q_2)((h_1 h_3) / h_2 pdv(V, q_2)) \
+  &+ pdv(,q_3)((h_1 h_2) / h_3 pdv(V, q_3))]
+$
+
+*Vectoriel*
+
+On appelle laplacien vectoriel d'un champ vectoriel $va(F)$ le champ vectoriel
+$
+  laplace va(F) = grad (div va(F)) - curl (curl va(F))
+$
+En cartésiennes :
+$
+  laplace va(F) &= vec(pdv(F_x,x,2) + pdv(F_x,y,2) + pdv(F_x,z,2), pdv(F_y,x,2) + pdv(F_y,y,2) + pdv(F_y,z,2), pdv(F_z,x,2) + pdv(F_z,y,2) + pdv(F_z,z,2)) \
+  &= vec(laplace F_x, laplace F_y, laplace F_z)
+$
