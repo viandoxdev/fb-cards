@@ -8,6 +8,7 @@
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/physica:0.9.7": *
 
 #card("anatl", "Taylor-Langrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
 
@@ -4376,7 +4377,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
 - $K, I$ stables par $u$
 
-- $u|_(K)^(K)$ est nilpotant
+- $u|_(K)^(K)$ est nilpotent
 
 - $u|_I^I$ est inversible.
 
@@ -4445,7 +4446,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
     accent(u, ~)^m (K) = u^m (K) = {0}
   $
 
-  Donc $accent(u, ~)$ est nilpotant d'indice $m$.
+  Donc $accent(u, ~)$ est nilpotent d'indice $m$.
 
 - Notons $accent(u,~) = u |_I^I$ l'endomorphisme induit par $u$ sur $I$.
 
@@ -5225,4 +5226,496 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
 
   Avec $A = cal(M)_accent(e,~) (accent(u,~))$.
 
-// TODO: Fin de M116
+#card("diag", "Diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Définition et premier critère de diagonalisabilité.
+
+#answer
+
+On dit que $u in cal(L)(E)$ est diagonalisable s'il existe une base $e$ de $E$ tel que $cal(M)_e (u)$ est diagonale.
+
+Une tel base est par définition formée de vecteurs propres de $u$.
+
+De plus
+$
+  u "diagonalisable" \
+  <=> E = plus.o.big_(lambda in "Sp"(u)) E_lambda (u) \
+  <=> sum_(lambda in "Sp"(u)) dim E_lambda (u) = dim E
+$
+
+En particulier
+- Les homothéties sont diagonales dans toutes les bases
+
+- Les projecteurs sont diagonalisables :
+  $
+    underbrace(ker (p - id), E_1 (p)) plus.o underbrace(ker p, E_0 (p)) = E
+  $
+
+- Les symétries sont diagonalisables :
+  $
+    underbrace(ker (s - id), E_1 (s)) plus.o underbrace(ker s + id, E_(-1) (s)) = E
+  $
+
+#card("autcrit", "Autre critère de diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Énoncer du critère de diagonalisabilité sur $chi_u$ et les multiplicités.
+
+#answer
+
+Soit $u in cal(L)(E)$
+$
+  u "diagonalisable" \
+  <=> cases(space chi_u "scindé", space forall lambda in "Sp"(u)\, dim E_lambda (u) = m_lambda)
+$
+Où $m_lambda$ est la multiplicité (algébrique) de $lambda$.
+
+Ainsi car $dim E_lambda (u) >= 1$ pour tout $lambda in "Sp"(u)$,
+
+$
+  chi_u "SARS" => u "diagonalisable"
+$
+
+*Démonstration*
+
+- Supposons $u$ diagonalisable, notons $e$ la base qui le diagonalise.
+
+  $
+  cal(M)_e (u) = dmat(alpha_1, dots.down, alpha_n)
+  $
+  Donc $chi_u$ est scindé
+  $
+    chi_u (X) &= product_(k = 1)^n (X- alpha_k) \
+    &= product_(k = 1)^p (X - lambda_k)^(m_lambda_k)
+  $
+  Ainsi
+  $
+    deg chi_u &= n = sum_(k = 1)^p m_lambda_k \
+    n = sum_(k=1)^p m_lambda_k &>= sum_(k = 1)^p dim E_lambda_k = n
+  $
+
+- Supposons $chi_u$ scindé et pour tout $lambda in "Sp"(u), dim E_lambda (u) = m_lambda$.
+
+  $
+    chi_u = underbrace(product_(lambda in "Sp"(u)) (X - lambda)^(m_lambda), deg = n) \
+    n = sum_(lambda in "Sp"(u)) m_lambda = sum_(lambda in "Sp"(u)) E_lambda (u)
+  $
+
+  Donc $u$ est diagonalisable.
+
+#card("trigonalisabilite", "Trigonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Définition et premier critères de la trigonalisabilité.
+
+#answer
+
+Soit $u in cal(L)(E)$. On dit que $u$ est trigonalisable s'il existe une base $e = (e_1, dots, e_n)$ de $E$ tel que $cal(M)_e (u) in T_n^+ (KK)$
+
+Dans ce cas
+- $u(e_1) = t_(1 1) e_1$, donc $e_1$ est un vecteur propre de $u$.
+
+- Notons $F_k = "Vect"(e_1, dots, e_k)$ le drapeau. #h(1fr)
+  $
+  forall k in [|1, n|], u(F_k) subset F_k
+  $
+
+- $chi_u (X) = product_(k = 1)^n (X - t_(k k)) space$ scindé.
+
+La réciproque est aussi vraie : $chi_u "scindé" => u "trigonalisable"$.
+
+Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $accent(u,~)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_accent(u,~) | chi_u$ scindé).
+
+Si $KK$ est algébriquement clos, toute matrice ou endomorphisme est trigonalisable.
+
+*Démonstration*
+
+Par récurrence sur $n = dim E$.
+
+Toute matrice de taille $1$ est supérieure.
+
+Supposons pour un $n in NN$
+$
+  forall A in cal(M)_n (KK), \ chi_A "scindé" => A "trigonalisable"
+$
+
+Soit $A in cal(M)_(n+1) (KK)$ tel que $chi_A$ scindé.
+
+$chi_A$ a au moins une racine, donc $A$ admet une valeur propre $lambda$.
+
+On dispose de $X_0 in KK^(n+1)$ tel que 
+$
+A X_0 = lambda X_0
+$
+Ainsi on peut construire la base $e' = (X_0, dots, X_n)$ de $KK^(n+1)$. Notons $P = P_("can" -> e')$.
+
+$
+  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,accent(A,~);0) P^(-1)
+$
+
+Avec $accent(A,~) in cal(M)_n (KK)$ et $chi_A = chi_accent(A,~) (X - lambda)$ d'où $chi_accent(A,~)$ scindé.
+
+Par hypothèse de récurrence $accent(A,~)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
+
+$
+  A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
+$
+
+#card("nilp", "Endomorphismes nilpotents", ("Maths.Algèbre.Algèbre Linéaire",))
+
+Définition d'un endomorphisme nilpotent et inégalité sur son indice.
+
+#answer
+
+Soit $u in cal(L)(E)$, $u$ est dit nilpotent s'il existe $q in NN^*$ tel que $u^q = 0$.
+
+On appelle indice de nilpotence la valeur
+$
+  d = min Set(q in NN^*, u^q = 0)
+$
+On a toujours $d <= dim E$.
+
+*Démonstration*
+
+Comme $u^(d-1) != 0$ on dispose de $x in E$ tel que $u^(d-1) != 0$.
+
+Considèrons la famille $(x, u(x), dots, u^(d-1) (x))$, soient $lambda_0, dots, lambda_(d - 1)$ tels que
+$
+  sum_(k = 0)^(d-1) lambda_k u^k (x) = 0 \
+$
+$
+  u^(d - 1) (sum_(k = 0)^(d - 1) lambda_k u^k (x)) &= lambda_0 u^(d-1) (x) = 0 \
+  & => lambda_0 = 0 \
+  u^(d - 2) (sum_(k = 1)^(d - 1) lambda_k u^k (x)) &= lambda_1 u^(d-1) (x) = 0 \
+  & => lambda_1 = 0 \
+  dots.v
+$
+$
+  lambda_0 = lambda_1 = dots.c = lambda_(d-1) = 0
+$
+D'où $d <= n$.
+
+#card("carnilp", "Caractèrisation des endomorphismes nilpotents", ("Maths.Algèbre.Réduction",))
+
+Caractèrisation des endomorphisme nilpotents.
+
+#answer
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ $u$ nilpotent
+
++ $u$ trigonalisable en une matrice strictement supérieure.
+
++ $u$ trigonalisable et $"Sp"(u) = {0}$
+
++ $chi_u = X^n$
+
+*Démonstration*
+
+- (4 $=>$ 3) $chi_u = X^n$ est scindé donc $u$ est trigonalisable et $"Sp"(u) = Z(X^n) = {0}$.
+
+- (3 $<=>$ 2) Évident.
+
+- (3 $=>$ 4) On dispose de $e$ base de $E$ tel que
+
+  $
+    cal(M)_e (u) = mat(0,,*;,dots.down;,,0) \
+    "Donc" space chi_u = X^n
+  $
+
+- (2 $=>$ 1) On dispose de $e$ base de $E$ tel que $cal(M)_e (u) in T_n^(++) (KK)$, notons $F_k = "Vect"(e_1, dots, e_k)$.
+
+  $
+    u(F_k) subset.eq u(F_(k-1)) \
+    u^n (F_n = E) subset.eq F_0 = { 0 } \
+    u^n = 0
+  $
+
+- (1 $=>$ 2) $u$ est nilpotent d'indice $d$.
+
+  $
+    {0} subset.neq ker u subset.neq dots.c subset.neq ker u^d = E
+  $
+
+  Construisons une base adaptée
+
+  $
+    (overbrace(underbrace(e_1\, dots\, e_(i_1), "base de" ker u)\, dots\, e_(i_2), "base de" ker u^2), dots, e_(i_d))
+  $
+
+  Pour tout $x in ker u^k$ :
+  $
+  u(x) in ker u^(k-1)
+  $
+  Ainsi pour tout $k in [|1, n|]$ si $i_j + 1 <= k <= i_(j+1)$
+  $
+    e_k in ker u^j \
+    u(e_k) in ker u^(j-1) \
+    u(e_k) in "Vect"(e_1, dots, e_i_(j-1))
+  $
+
+#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractèristique", ("Maths.Algèbre.Réduction",))
+
+Lien entre racines du polynôme minimal et celles du polynôme caractèristique.
+
+#answer
+
+Soit $u in cal(L)(E)$, $P in KK[X]$ annulateur de $u$.
+
+$
+  "Sp"(u) subset.eq Z_KK (P) \
+  Z(chi_u) = "Sp"(u) = Z_KK (Pi_u)
+$
+
+*Démonstration*
+
+- Soit $lambda in "Sp"(u)$ et $x in E_lambda (u) \\ {0}$ : #h(1fr)
+  $
+    P(X) = sum_(k = 0)^d a_k X^k \
+  $
+  $
+    P(u)(x) &= sum_(k = 0)^d u^k (x) = sum_(k = 0)^d lambda^k x \
+    &= P(lambda) x = 0
+  $
+  Or $x != 0$, donc $P(lambda) = 0$.
+
+- $Pi_u$ annule $u$ d'où $"Sp"(u) subset.eq Z_KK (Pi_u)$
+
+- Soit $lambda in KK$ racine de $Pi_u$
+
+  $
+    Pi_u = (X - lambda) Q(X) \
+    0 = (u - lambda id) compose Q(u)
+  $
+
+  Donc $im Q(u) subset.eq ker (u - lambda id)$.
+
+  Mais $Q(u) != 0$ car $Pi_u$ minimal, donc 
+  $
+  dim (im Q(u)) >= 1 \
+  im Q(u) subset.eq ker (u - lambda id) = E_lambda (u) \
+  lambda in "Sp"(u)
+  $
+
+#card("tdn", "Théorème des noyaux", ("Maths.Algèbre.Réduction",))
+
+Énoncé et démonstrations du théorème des noyaux.
+
+#answer
+
+Soit $u in cal(L)(E)$ ($KK$-ev de dimension finie), $P in KK[X]$.
+
+Si $P = product_(k = 1)^N P_k$ avec $P_1, dots, P_N$ deux à deux premiers entre eux, alors
+$
+  ker P(u) = plus.o.big_(k = 1)^N ker P_k (u)
+$
+
+Si de plus $P$ annule $u$ alors
+$
+  E = ker P(u) = plus.o.big_(k = 1)^N ker P_k (u) \
+  cal(M)_e (u) = dmat(A_1,dots.down,A_N)
+$
+Où $e$ est la base construite par concaténation de bases des $ker P_k (u)$.
+
+*Démonstration*
+
+Par récurrence sur $N$.
+
+Pour $P = P_1 P_2$ avec $P_1 and P_2 = 1$ :
+$
+  P_1 V_1 + P_2 V_2 = 1 \
+  P_1 (u) compose V_1 (u) + P_2 (u) compose V_2 (u) = id quad (*)
+$
+En évaluant on trouve 
+$
+ker P_1 (u) inter ker P_2 (u) = {0}
+$
+De plus 
+$
+P_1 (u) compose P_2 (u) = P_2 (u) compose P_1 (u) = P(u) \
+"Donc" space cases(space ker P_1 (u) subset.eq ker P(u), space ker P_2 (u) subset.eq ker P(u)) \
+ker P_1 (u) plus.o ker P_2 (u) subset.eq ker P (u)
+$
+
+Soit $x in ker P(u)$, par $(*)$ on a
+$
+  x = underbrace(V_1 (u) compose P_1 (u) (x), x_2) + underbrace(V_2 (u) compose P_2 (u) (x), x_1)
+$
+$
+  P_1 (u) (x_1) &= (P_1 V_2 P_2) (u) (x) \
+  &= (V_1 P) (u) (x) \
+  &= 0 \
+  P_2 (u) (x_2) &= (P_2 V_1 P_1) (u) (x) \
+  &= (V_2 P) (u) (x) \
+  &= 0 \
+$
+$
+x = underbrace(x_1, in ker P_1 (u)) + underbrace(x_2, in ker P_2 (u))
+$
+D'où $ker P(u) = ker P_1 (u) plus.o ker P_2 (u)$.
+
+Supposons maintenant le résultat pour tout $P_1, dots, P_N$ respectant les conditions.
+
+Soient $P = P_1 dots.c P_(N+1) in KK[X]$ avec $P_1, dots, P_(N+1)$ deux à deux premiers entre eux.
+
+Donc $Q = P_1 P_2 dots.c P_N$ et $P_(N+1)$ sont premiers entre eux.
+
+Ainsi 
+$
+ker P (u) &= ker (P_(N+1) Q) (u) \
+&= underbrace(ker Q(u) plus.o ker P_(N+1) (u), "cas" N = 2) \
+&= underbrace(plus.o.big_(k = 1)^N ker P_k (u) plus.o ker P_(N+1) (u), "H.R.") \
+&= plus.o.big_(k = 1)^(N+1) ker P_k (u)
+$
+
+#card("projchelou", "Projecteurs de la démonstration du théorème des noyaux", ("Maths.Algèbre.Réduction",))
+
+Démonstration secondaire du théorème des noyaux dans le cas d'un polynôme annulateur.
+
+#answer
+
+Soit $u in cal(L)(E)$.
+
+On suppose $P = product_(k = 1)^N P_k$ annulateur de $u$, $P_1, dots, P_N$ premiers entre eux deux à deux. On pose
+$
+  Q_k = product_(i = 1 \ i != k)^N P_i
+$
+Qui sont premiers dans leur ensemble.
+$
+  sum_(k = 1)^N V_k Q_k = 1 \
+  sum_(k = 1)^N underbrace(V_k (u) compose Q_k (u), Pi_k) = id quad (1)\
+$
+On remarque que
+$
+  P_k (u) compose Pi_k = (V_k P_k Q_k) (u) = (V_k P) (u) = 0 \
+  "Donc" space im Pi_k subset.eq ker P_k (u)
+$
+Et pour $k != i, P | Q_i Q_k$ d'où
+$
+  P | (V_k P_k) (V_i P_i) \
+  Pi_i compose Pi_k = 0
+$
+Donc par $(1)$
+$
+sum_(i = 1)^N Pi_k compose Pi_i = Pi_k compose Pi_k = Pi_k
+$
+Donc les $Pi_k$ sont des projecteurs.
+
+Soit $x in ker P_k (u)$, pour tout $i != k$, $Pi_i (x) = 0$. Par $(1)$
+$
+  x = Pi_k (x) \
+  x in im Pi_k
+$
+Ainsi
+$
+  ker P_k (u) = im Pi_k  \
+  ker P_i (u) subset.eq ker Pi_k
+$
+Les $Pi_k$ projettent sur $ker P_k$.
+
+*Théorème des noyaux*
+
+Soient $(x_1, dots, x_N) in product_(k = 1)^N ker P_k (u)$ tels que $sum_(k = 1)^N x_k = 0$.
+
+Pour tout $i in [|1, N|]$
+$
+  Pi_i (sum_(k = 1)^N x_k) = x_i = 0
+$
+Donc les $ker P_k (u) = im Pi_k$ sont en somme directe.
+
+Soit $x in ker P(u) = E$, par $(1)$
+$
+  x = sum_(k = 1)^N Pi_k (x) in sum_(k = 1)^N ker P_k (u)
+$
+D'où
+$
+  E = plus.o.big_(k = 1)^N ker P_k (u)
+$
+Et de plus
+$
+  im Pi_k &= ker P_k (u) \
+  ker Pi_k &= plus.o.big_(i = 1 \ i != k)^N ker P_i (u) \
+  Pi_k &in KK[u]
+$
+
+#card("crtidiag", "Critère de Diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Démonstration d'une CNS de diagonalisabilité.
+
+#answer
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ $u$ diagonalisable.
+
++ $u$ annule un polynôme SARS.
+
++ $Pi_u$ est SARS
+
+*Démonstration*
+
+- (2 $<=>$ 3) #h(1fr)
+  $
+    exists P in KK[X], space P "SARS et" P(u) = 0 \
+    <=> exists P in KK[X], space P "SARS et" Pi_u | P \ 
+    <=> Pi_u "SARS"
+  $
+
+- (3 $=>$ 1) $Pi_u$ SARS donc
+  $
+    Pi_u = product_(lambda in "Sp"(u))^N (X - lambda)
+  $
+  Par le TDN
+  $
+    E &= plus.o.big_(lambda in "Sp"(u)) ker (u - lambda id) \
+    &= plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
+  $
+  Donc $u$ diagonalisable.
+
+- (1 $=>$ 3) $u$ diagonalisable
+  $
+    cal(M)_e (u) &= underbrace(inline(dmat(lambda_1, dots.down, lambda_1, dots.down, lambda_n, dots.down, lambda_n)), M) \
+    P(X) &= product_(k = 1)^N (X - lambda_k) space "SARS" \
+    P(M) &= inline(dmat(P(lambda_1), dots.down, P(lambda_1), dots.down, P(lambda_n), dots.down, P(lambda_n))) \
+    &= 0
+  $
+  Donc $Pi_u | P$ SARS.
+
+#card("diaginduit", "Diagonalisabilité d'un endomorphisme induit", ("Maths.Algèbre.Réduction",))
+
+Diagonalisabilité d'un endomorphisme induit.
+
+#answer
+
+Soit $u in cal(L)(E)$, $F$ un sev stable par $u$.
+
+Notons $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$.
+
+- $Pi_accent(u,~) | Pi_u$
+
+- Si $u$ diagonalisable, alors $accent(u,~)$ aussi.
+
+*Démonstration*
+
+- $Pi_u (accent(u,~)) = 0$ donc $Pi_accent(u,~) | Pi_u$.
+
+- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_accent(u,~)$ aussi (car divise) donc $accent(u,~)$ est diagonalisable.
+
+// TODO: M127 Dénombrement
+
+#card("endocycl", "Endomorphismes cycliques", ("Maths.Algèbre.Réduction",))
+
+Définition, propriétés, démonstration autour des endomorphismes cycliques.
+
+#answer
+
+Soit $u in cal(L)(E)$, on dit que $u$ est cyclique si l'une des conditions équivalentes suivantes est vérifiée
+
++ $exists x_0 in E, space "Vect"(u^k (x_0))_(k in NN) = E$.
+
++ $exists x_0 in E, space (x_0, u(x_0), dots, u^(n-1) (x_0))$ base de $E$.
+
+*Démonstration équivalence*
+
+- (2 $=>$ 1) Évident.
+
+- (1 $=>$ 2)
