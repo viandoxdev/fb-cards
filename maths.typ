@@ -5702,6 +5702,48 @@ Notons $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$.
 
 // TODO: M127 Dénombrement
 
+#card("seceng", "Sous-espaces cycliques", ("Maths.Algèbre.Réduction",))
+
+Définition de sous-espace cyclique et base associé.
+
+#answer
+
+Pour un $u in cal(L)(E)$ et $x_0 in E$ on appelle sous-espace cyclique engendré par $x_0$ (pour $u$)
+$
+  F_(x_0) = "Vect"(u^k (x_0))_(k in NN)
+$
+Cet espace admet comme base
+$
+  (x_0, u(x_0), dots, u^(d - 1) (x_0))
+$
+Où $d = deg Pi_(u,x_0)$ le polynôme minimal ponctuel, l'unique polynôme unitaire minimal tel que
+$
+  "Pour " theta_(x_0) : func(KK[X], E, P, P(u) (x_0)) \ \
+  ker theta_(x_0) = Pi_(u,x_0) KK[X]
+$
+
+*Démonstration*
+
+$theta_(x_0) in cal(L)(E)$, donc $ker theta_(x_0)$ est un sev, donc un sous-groupe de $(KK[X], +)$.
+
+Soit $P in ker theta_x_0, Q in KK[X]$
+$
+  theta_x_0 (Q P) &= Q(u) (P(u) (x_0)) \ &= Q(u) (0) = 0
+$
+Donc $ker theta_x_0$ est un idéal de $KK[X]$, qui est principal d'où $Pi_(u,x_0)$ existe. Notons $d_x_0 = deg Pi_(u,x_0)$.
+
+Par existance et unicité de la division euclidienne on a
+$
+  KK[X] = KK_(d_x_0 - 1) [X] plus.o ker theta_x_0
+$
+Donc $evaluated(theta_x_0)_(KK_(d_x_0 -1) [X])$ isomorphisme de $KK_(d_x_0 - 1) [X] -> im theta_x_0 = F_x_0$.
+
+Donc $F_x_0$ a pour base
+$
+  (theta_x_0 (1), theta_x_0 (X), dots, theta_x_0 (X^(d_x_0 - 1))) \
+  = (x_0, u(x_0), dots, u^(d - 1) (x_0))
+$
+
 #card("endocycl", "Endomorphismes cycliques", ("Maths.Algèbre.Réduction",))
 
 Définition, propriétés, démonstration autour des endomorphismes cycliques.
@@ -5714,8 +5756,474 @@ Soit $u in cal(L)(E)$, on dit que $u$ est cyclique si l'une des conditions équi
 
 + $exists x_0 in E, space (x_0, u(x_0), dots, u^(n-1) (x_0))$ base de $E$.
 
+*Propriétés en vrac (sans démonstration)*
+
+- Si $u$ cyclique, tout endomorphisme induit l'est aussi.
+
+- Si $u$ cyclique, $u$ admet un nombre fini de sev stables.
+
+- Si $KK$ est fini et $u$ admet un nombre fini de sev stables, alors $u$ est cyclique.
+
 *Démonstration équivalence*
 
 - (2 $=>$ 1) Évident.
 
-- (1 $=>$ 2)
+- (1 $=>$ 2) $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ est les sous-espace engendré par $x_0$ pour $u$, donc
+
+  $
+    (x_0, u(x_0), dots, u^(d-1) (x_0))
+  $
+  Où $d = deg Pi_(u,x_0)$ en est une base.
+
+  Or $F_x_0 = E$ par hypothèse, donc $dim F_x_0 = n$ et $d = n$.
+
+#card("cycmat", "Vision matricielle de la cyclicité", ("Maths.Algèbre.Réduction",))
+
+Lien entre endomorphisme cyclique et matrices de compagnon.
+
+#answer
+
+Soit $u in cal(L)(E)$, $u$ est cyclique ss'il existe une base $e$ de $E$ et $P$ unitaire de degré $n$ tel que $cal(M)_e (u) = C_P$.
+
+Dans ce cas $Pi_u = P$.
+
+*Démonstration*
+
+Soit $u in cal(L)(E)$ cyclique pour $x_0 in E$. Notons $e = (x_0, u(x_0), dots, u^(n-1) (x_0))$ la base associé.
+
+On dispose alors de $a_0, dots, a_(n-1) in KK$ tels que
+$
+  u^n (x_0) - sum_(k = 0)^(n-1) a_k u^k (x_0) = 0 \
+  P = X^n - sum_(k = 0)^(n - 1) a_k X^k \
+  P(u) (x_0) = 0
+$
+Et alors
+$
+  cal(M)_e (u) &= 
+    mat(delim: #none, #{
+      diagram(
+      spacing: 0pt,
+      cell-size: 0pt,
+      $
+        node(enclose: #("tl", "bl"), lr(size: #800%, \())
+        node(enclose: #("tr", "br"), lr(size: #800%, \))) \
+        && u(x_0) edge("rr", "..") & #h(0.6em) & u^n (x_0) & \
+        x_0 & node(name: "tl") & 0 edge("ddr", "..") && a_0 & node(name: "tr") \
+        u(x_0) edge("dd", "..") && 1 edge("ddr", "..") && a_1 edge("dd", "..") & \
+        &&& 0 && \
+        u^(n-1) (x_0) & node(name: "bl") && 1 & a_(n-1) & node(name: "br") \
+      $
+    )
+  }) \
+  &= C_P
+$
+
+Réciproquement :
+
+Soit $u in cal(L)(E)$ et $e = (e_1, dots, e_n)$ base de $E$ tel que
+
+$
+  cal(M)_e (u) = mat(augment: #3,
+    0,,,a_0;
+    1,dots.down,,a_1;
+    ,dots.down,0, dots.v;
+    ,,1, a_(n-1)
+  )
+$
+
+Alors pour $k in [|1, n-1|]$
+$
+  u(e_k) = u(e_(k+1)) \
+  "Donc" e = (e_1, u(e_1), dots, u^(n-1)(e_1))
+$
+Donc $u$ est cyclique.
+
+Ainsi :
+$
+  P(u) (x_0) = u^n (x_0) - underbrace(sum_(k = 0)^(n-1) a_k u^k (x_0), u^n (x_0)) = 0 \
+$
+Donc pour tout $m in [|0,n-1|]$
+$
+  P(u)  (u^m (x_0)) = u^m (P(u) (x_0)) = 0
+$
+Ainsi $P(u)$ annule une base, d'où $Pi_u | P$.
+
+Or $deg Pi_(u,x_0) = n$ car $u$ cyclique et $Pi_(u,x_0) | Pi_u$, donc 
+$
+n <= deg Pi_u <= deg P = n
+$
+Et comme $Pi_u$ et $P$ sont unitaires
+$
+  Pi_u = P
+$
+
+#card("matcomp", "Matrice compagnon", ("Maths.Algèbre.Réduction",))
+
+Définition de matrice compagnon.
+
+#answer
+
+Soit $P = X^d sum_(k = 0)^(d-1) a_k X^k in KK[X]$ un polynôme unitaire. On appelle matrice compagnon de $P$ la matrice
+$
+  C_P = mat(augment: #3,
+    0,,,-a_0;
+    1,dots.down,,-a_1;
+    ,dots.down,0, dots.v;
+    ,,1, -a_(d-1)
+  )
+$
+Ainsi (en développant selon la dernière colonne)
+$
+  chi_C_P (X) = P(X)
+$
+
+#card("exx0tqpiux0egpiu", "Exercice : vecteur dont le polynôme minimal ponctuel est le polynôme minimal", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$, montrer qu'il existe $x in E$ tel que $Pi_(u,x) = Pi_u$.
+
+En déduire que $u$ cyclique ssi $deg Pi_u = n$.
+
+#answer
+
+Soit $u in cal(L)(e)$.
+
+On pose
+$
+  Pi_u = product_(k = 1)^N P_k^d_k
+$
+Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
+
+*Démonstration $KK$ quelconque*
+
+Par le TDN
+$
+  E = plus.o.big_(k = 1)^N ker underbrace(P_k^d_k (u), F_k) \
+  ker P_k^(d_k - 1) (u) subset.eq ker P_k^d_k (u) = F_k
+$
+
+Supposons par l'absurde qu'on ai égalité pour un $k$.
+$
+  E &= plus.o.big_(j != k) ker P_j^d_j (u) plus.o ker P_k^(d_k - 1) (u) \
+  &= ker underbrace(( P_k^(d_k - 1) product_(j != k) P_j^d_j), "ne peut annuler" u \ "car" Pi_u "minimal") (u)
+$
+Donc $ker P_k^(d_k - 1) (u) subset.neq ker P_k^d_k (u)$.
+
+Pour tout $k in [|1, N|]$ on dispose de 
+$
+x_k in F_k \\ ker P_k^(d_k - 1) (u) \
+"Donc" cases(space P_k^d_k (u) (x_k) = 0, space P_k^(d_k - 1) (x_k) != 0) \
+"Donc" cases(space Pi_(u,x_k) | P_k^d_k, space Pi_(u,x_k) divides.not P_k^(d_k - 1) ) \
+"Donc" underbrace(Pi_(u, x_k) = P_k^(d_k), "car" P_k "irréductible")
+$
+On pose $x = sum_(k = 1)^N x_k$, alors pour tout $P in Pi_(u,x) KK[X]$
+$
+  P(u) (x) = 0 \
+  <=> sum_(k = 1)^N P(u) (x_k) = 0 \
+  underbrace(<=> forall k in [|1, N|]\, space P(u) (x_k) = 0, "somme directe") \
+  <=> forall k in [|1, N|], space P_k^d_k = Pi_(u,x_k) | P \
+  <=> product_(k = 1)^N P_k^d_k = Pi_u | P \
+  <=> P in Pi_u KK[X]
+$
+Donc $Pi_u | Pi_(u,x) | Pi_u$.
+
+*Démonstration $KK$ infini*
+
+Pour tout $x in E$, $Pi_(u,x) | Pi_u$ donc
+$
+  Pi_(u,x) in D = Set("Diviseurs unitaires de" Pi_u) \
+  abs(D) = product_(k = 1)^N (d_k + 1) \
+  D' = Set(Pi_(u,y), y in E) subset.eq D
+$
+Et $x in ker Pi_(u,x) (u)$ d'où
+$
+  E &= union.big_(x in E) ker Pi_(u,x) (u) \
+  &= underbrace(union.big_(P in D') ker P(u), "union finie de sev")
+$
+Donc on dipose de $Q = Pi_(u,y) in D'$ tel que (cf. exercice union de sev dans un corps infini)
+$
+  E = ker Q(u)
+$
+Par minimalité de $Pi_u$, $Pi_(u,y) = Pi_u$.
+
+*CNS de cyclicité*
+
+On sait que si $u$ cyclique, alors on dispose de $e$ base de $E$ tel que 
+$
+cal(M)_e (u) = C_(Pi_u)
+$
+Avec $Pi_u in KK[X]$ unitaire de degré $n$.
+
+Supposons maintenant que $deg Pi_u = n$. 
+
+On dispose de $x_0 in E$ tel que $Pi_(u,x_0) = Pi_u$, d'où 
+$
+deg Pi_(u,x_0) = n = dim underbrace("Vect"(u^k (x_0))_(k in NN), F_x_0)
+$ 
+D'où $F_x_0 = E$ et $u$ cyclique.
+
+#card("cayleyhamilton", "Théorème de Cayley-Hamilton", ("Maths.Algèbre.Réduction",))
+
+Énoncé et démonstration du théorème de Cayley-Hamilton.
+
+#answer
+
+Soit $u in cal(L)(E)$, on a $chi_u (u) = 0$ c'est à dire $Pi_u | chi_u$.
+
+*Démonstration*
+
+Soit $x_0 in E\\{0}$, on veut montrer $chi_u (u) (x_0) = 0$.
+
+On pose $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ sev de $E$ stable par $u$.
+
+Soit $accent(u,~)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
+
+Soit $d in NN$ tel que 
+$
+e_0 = (x_0, u(x_0), dots, u^(d-1) (x_0))
+$
+Soit une base de $F_x_0$.
+$
+  cal(M)_e_0 (accent(u,~)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
+$
+Où 
+$
+  accent(u,~)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
+  P(X) = X^d - sum_(k = 0)^(d-1) a_k X^k \
+  P(u)(x_0) = 0
+$
+
+Or $P = chi_C_P = chi_accent(u,~) | chi_u$ donc
+$
+  chi_u (u) (x_0) = Q(u) (P(u) (x_0)) = 0
+$
+
+#card("expropcycl", "Exercice : propriétés des endomorphismes cycliques", ("Maths.Exercice.Réduction",))
+
++ Soit $u in cal(L)(E)$ diagonalisable, CNS pour $u$ cyclique.
+
++ Soit $u in cal(L)(E)$ nilpotent, CNS pour $u$ cyclique.
+
++ Soit $u in cal(L)(E)$ cyclique, montrer que pour tout $lambda in "Sp"(u)$, $dim E_lambda (u) = 1$.
+
++ Soit $u in cal(L)(E)$ cyclique, montrer que $"Com" u = KK[u]$.
+
+#answer
+
++ Soit $u in cal(L)(E)$ diagonalisable.
+
+  $
+    Pi_u = product_(k = 1)^N (X - lambda_k)
+  $
+  Où les $lambda_1, dots, lambda_N$ sont deux à deux distincts ($Pi_u$ SARS).
+
+  $u$ cyclique ssi $N = n = dim E$.
+
+  - Si $u$ cyclique, $deg Pi_u = n = N$.
+
+  - Si $deg Pi_u = n$
+
+    Soit $e = (e_1, dots, e_n)$ base de vecteurs propres associés aux $lambda_1, dots, lambda_n$.
+
+    Posons $x = sum_(k = 1)^n e_k$.
+
+    $
+    cal(M)_e (x_0, u(x_0), dots, u^(n-1) (x_0)) \
+    = mat(1, lambda_1, lambda_1^2, dots.c, lambda_1^n; dots.v, dots.v, dots.v, dots.down, dots.v; 1, lambda_n, lambda_n^2, dots.c, lambda_n^n)
+    $
+
+    Matrice de Vandermonde inversible, d'où $(x_0, u(x_0), dots, u^(n-1) (x_0))$ base.
+
++ Soit $u in cal(L)(E)$ nilpotent d'indice $q$.
+
+  $
+    Pi_u = X^q
+  $
+
+  - Si $u$ cyclique, alors $deg Pi_u = q = n$.
+
+  - Si $q = n$, $u^(n - 1) != 0$, donc on dispose de $x_0 in E$ tel que $u^(n - 1) (x_0) != 0$.
+
+    Et $(x_0, u(x_0), dots, u^(n-1) (x_0))$ est libre et donc une base.
+
+    (En évaluant $u^i (sum_(k = 0)^(n-1) lambda_k u^k (x_0))$).
+
++ Soit $u in cal(L)(E)$ cyclique, donc on dispose de $e$ base de $E$ tel que pour $lambda in "Sp"(u)$
+
+  $
+    cal(M)_e (u - lambda id) = mat(augment: #("hline": 1, "vline": 4), -lambda,,,,a_0;1,-lambda,,,a_2;,1,dots.down,,dots.v;,,dots.down,-lambda,a_(n-2);,,,1,a_(n-1) - lambda)
+  $
+  Dont le quadrant inférieur gauche est une sous-matrice inversible de taille $n - 1$.
+  $
+    "rg" (u - lambda id) >= n - 1 \
+    1 <= dim E_lambda (u) = dim ker (u - lambda id) <= 1
+  $
+
++ Soit $u in cal(L)(E)$ cyclique. On dispose de $x_0 in E$ tel que
+  $
+    (x_0, u(x_0), dots, u^(n-1) (x_0))
+  $
+  Est une base.
+
+  On a déjà $KK[u] subset.eq "Com"(u)$. 
+
+  Soit $v in "Com"(u)$. On dispose de $alpha_0, dots, alpha_(n-1) in KK$ tels que
+  $
+    v(x_0) = sum_(k = 0)^(n-1) alpha_k u^k (x_0)
+  $
+  Soit $m in [|0, n - 1|]$
+  $
+    v(u^m (x_0)) &= u^m (v(x_0)) \ 
+    &= u^m (sum_(k = 0)^(n - 1) alpha_k u^k (x_0)) \
+    &= sum_(k = 0)^(n - 1) alpha_k u^k (u^m (x_0))
+  $
+  Donc $v$ et $sum_(k = 0)^(n-1) alpha_k u^k$ coincident sur une base, d'où $v in KK[u]$.
+
+#card("polmintz", "Critère de trigonalisabilité sur le polynôme minimal", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$, CNS de trigonalisabilité sur $Pi_u$.
+
+#answer
+
+Soit $u in cal(L)(E)$, $u$ est trigonalisable ssi $Pi_u$ scindé.
+
+*Démonstration*
+
+- Supposons $u$ trigonalisable, donc $chi_u$ est scindé or $Pi_u | chi_u$ donc $Pi_u$ est scindé.
+
+- Supposons $Pi_u$ scindé.
+  $
+    Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k)
+  $
+  Avec $lambda_1, dots, lambda_N in KK$ deux à deux distincts.
+
+  Par le TDN
+  $
+    E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), F_k)
+  $
+  Pour $k$ fixé, $F_k$ est stable par $u$ et $u - lambda id$, posons $u_k$ induit par $u$ sur $F_k$.
+
+  $u_k - lambda_k id$ est nilpotent, donc on dispose de $e_k$ base de $F_k$ tel que
+  $
+    cal(M)_(e_k) (u_k - lambda_k id) = mat(0,,*;,dots.down;,,0) \
+    cal(M)_(e_k) (u_k) = A_k = mat(lambda_k,,*;,dots.down;,,lambda_k)
+  $
+
+  Notons $e$ la base concatenant les bases $e_1, dots, e_N$.
+  $
+    cal(M)_e (u) &= dmat(A_1,dots.down,A_N) \
+  $
+  Où les $A_1, dots A_N$ sont triangulaires.
+
+- (Autre méthode) Par récurrence sur $n$.
+
+  Cas $n = 1$ évident.
+
+  Supposons le résultat pour $n in NN$. Soit $u in cal(L)(E)$ où $dim E = n + 1$ et $Pi_u$ scindé.
+
+  $Pi_u$ admet au moins une racine $lambda$, on dispose donc de $x in E$ vecteur propre associé.
+
+  On forme la base $(lambda, e_1, dots, e_(n-1))$ de $E$.
+  $
+    cal(M)_e (u) = A = mat(augment: #("hline": 1, "vline": 1), lambda,*,dots.c,*;0;dots.v,,A_1;0)
+  $
+  Or
+  $
+    0 &= cal(M)_e (Pi_u (u)) = Pi_u (A) \
+    &= mat(augment: #("hline": 1, "vline": 1), Pi_u (lambda),*,dots.c,*;0;dots.v,,Pi_u (A_1);0)
+  $
+  D'où $Pi_u (A_1) = 0$ donc $Pi_(A_1) | Pi_u$ et $Pi_(A_1)$ scindé, donc par hypothèse de récurrence $A_1$ est trigonalisable.
+
+#card("exchiudivpiun", "Exercice : polynôme caractèristique divisant une puissance du polynôme minimal", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$, $n = dim E$. Montrer que $chi_u | Pi_u^n$
+
+#answer
+
+Par récurrence forte sur $n$.
+
+Cas $n = 1$ évident.
+
+Supposons le résultat pour tout $m in [|1, n-1|]$.
+
+Si $u$ est cyclique, $Pi_u = chi_u$ d'où $chi_u | Pi_u^n$.
+
+Sinon on prend $x_0 in E\\{0}$, $k = deg Pi_(u,x_0) < n$ donc $(x_0, u(x_0), dots, u^(k-1) (x_0))$ est libre, on la complète en une base $e$ de $E$.
+$
+  cal(M)_e (u) = mat(augment: #(hline: 1, vline: 1), C_Pi_(u,x_0), *; 0, A)
+$
+Donc
+$
+chi_u = underbrace(chi_C_Pi_(u,x_0), Pi_(u,x_0)) chi_A \
+chi_u | Pi_u chi_A
+$
+Or par hypothèse de récurrence $chi_A | Pi_A^(n - k)$ et
+$
+  0 = cal(M)_e (Pi_u (u)) = mat(augment: #(vline: 1, hline: 1), Pi_u (C_Pi_(u,x_0)), *;0,Pi_u (A)) \
+  "Donc" Pi_A | Pi_u
+$
+Ainsi
+$
+  chi_u | Pi_u Pi_A^(n-k) | Pi_u^(n - k + 1) | Pi_u^n
+$
+
+#card("decompsec", "Décomposition en sous espaces caractèristiques", ("Maths.Algèbre.Réduction",))
+
+Définition et démonstration de la décomposition en sous-espaces caractèristiques.
+
+#answer
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, l'espace $E$ se décompose en somme directe de sev stables par $u$ :
+$
+  E = plus.o.big_(k = 1)^N F_k
+$
+Où pour tout $k in [|1,N|]$, $u_k$ induit par $u$ sur $F_k$ vérifie
+$
+  u_k = lambda_k id + n_k
+$
+Où $n_k$ est nilpotent et $lambda_k in "Sp"(u)$.
+
+Dé plus $dim F_k = m_k$ et $F_k = ker (u - lambda_k id)^(m_k)$.
+
+*Cas diagonalisable*
+
+Si $u$ est diagonalisable
+$
+  dim F_k = m_k = dim E_lambda_k (u) \
+$
+$
+  E_lambda_k (u) &= ker (u - lambda_k id) \ &subset.eq ker (u-lambda_k id)^(m_k) = F_k
+$
+$
+  E_lambda_k (u) = F_k
+$
+
+*Démonstration*
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé.
+$
+  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k)
+$
+Où $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
+Par le TDN on a
+$
+  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(m_k), F_k)
+$
+Les $F_k$ sont stables par $u$, on peut donc poser $u_k$ induit par $u$ sur $F_k$.
+
+On note $n_k = u_k - lambda_k id in cal(L)(F_k)$ qui est nilpotent d'ordre inférieur à $m_k$.
+
+Soit $e_k$ base de $F_k$ tel que $cal(M)_e_k (n_k) = N_k in T_(dim F_k)^(++) (KK)$.
+
+Ainsi $cal(M)_e_k (u_k) = lambda_k I_(dim F_k) + N_k$.
+
+En concatenant les bases $(e_k)_k$ en une base $e$ de $E$ on trouve
+$
+  cal(M)_e (u) = dmat(A_1, dots.down, A_N) \
+  forall k in [|1, N|], space A_k = mat(lambda_k,,*;,dots.down;,,lambda_k)
+$
+D'où
+$
+product_(k = 1)^N (X - lambda_k)^(m_k) = chi_u = product_(k = 1)^N (X - lambda_k)^(dim F_k) \
+m_k = dim F_k
+$
