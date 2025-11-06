@@ -6227,3 +6227,320 @@ $
 product_(k = 1)^N (X - lambda_k)^(m_k) = chi_u = product_(k = 1)^N (X - lambda_k)^(dim F_k) \
 m_k = dim F_k
 $
+
+#card("secarpolmin", "Sous-espaces caractèristiques et polynôme minimal", ("Maths.Algèbre.Réduction",))
+
+Lien entre la décomposition en sous-espaces caractèristiques et le polynôme minimal.
+
+#answer
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, à fortiori, $Pi_u$ est scindé.
+
+$
+  Pi_u &= product_(k = 1)^N (X - lambda_k)^(d_k) \ chi_u &= product_(k = 1)^N (X - lambda_k)^(m_k)
+$
+On peut décomposer par le TDN sur $Pi_u$ et en les espaces caractèristiques
+$
+  E &= plus.o.big_(k = 1)^N overbrace(ker (u - lambda_k id)^(m_k), F_k) \
+  &= plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), G_k) \
+$
+Or $d_k <= m_k$ (car $Pi_u | chi_u$), d'où
+$
+  G_k &= ker (u - lambda_k id)^(d_k) \ &subset.eq ker (u - lambda_k id)^(m_k) = F_k
+$
+Mais $plus.o.big_(k = 1)^N G_k = plus.o.big_(k = 1)^N F_k$ donc $G_k = F_k$.
+
+Soit $q_k <= d_k$ l'indice de nilpotence de $n_k = evaluated((u - lambda_k id))_(F_k)^(F_k)$.
+
+$
+F_k &subset.eq ker (u - lambda_k id)^(q_k) \ &subset.eq ker (u - lambda_k id)^(d_k) = F_k
+$
+
+Posons $Q = product_(k = 1)^N (X - lambda_k)^(q_k)$
+$
+  E &= plus.o.big_(k = 1)^N ker (u - lambda_k)^(d_k) \
+  &= plus.o.big_(k = 1)^N ker (u - lambda_k)^(q_k) \
+$
+Donc par le TDN $ker Q(u) = E$, $Pi_u | Q$ donc $d_k <= q_k <= d_k$.
+
+#card("expiuxdq", "Exercice : valuation X-adique du polynôme minimal.", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
+
++ Montrer que  #h(1fr)
+  $
+  d = min Set(k in NN^*, ker u^k = ker u^(k+1))
+  $
+
++ Montrer que
+  $
+    E = ker u^d plus.o im u^d
+  $
+
+#answer
+
+Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
+
++ Notons #h(1fr)
+  $
+    q = min Set(k in NN^*, ker u^k = ker u^(k+1))
+  $
+
+  Soit $accent(u,~)$ l'induit par $u$ sur $ker u^q$.
+  $
+    cases(space accent(u,~)^q = 0, space accent(u,~)^(q - 1) != 0) " Donc " Pi_accent(u,~) = X^q \
+    X^q | Pi_accent(u,~) | Pi_u = X^d Q \
+    q <= d
+  $
+  Donc $ker u^q = ker u^d$
+  $
+    ker u^d compose Q(u) = E \
+    im Q(u) subset.eq ker u^d = ker u^q \
+    ker u^q compose Q(u) = E \
+    X^d Q | X^q Q \
+    q >= d
+  $
+
++ On a (TDN) #h(1fr)
+  $
+    E = ker u^d plus.o ker Q(u)
+  $
+  Soit $y in im u^d$, on dispose donc de $x in E$ tel que $y = u^d (x)$.
+  $
+    y = u^d (x) \
+    Q(u) (y) = (X^d Q) (u) (x) = 0 \
+    im u^d subset.eq ker Q(u)
+  $
+  Or par le théorème du rang 
+  $
+  dim im u^d &= dim E - dim ker u^d \ &= dim ker Q(u) \
+  $
+  D'où $im u^d = ker Q(u)$.
+
+#card("dunford", "Décomposition de Dunford", ("Maths.Algèbre.Réduction",))
+
+Définition et démonstration de la décomposition de Dunford.
+
+#answer
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé.
+
+On dispose de $d, n in cal(L)(E)$ tel que
+- $u = d + n$
+- $d$ diagonalisable
+- $n$ nilpotent
+- $d compose n = n compose d$
+
+De plus cette décomposition est unique.
+
+*Démonstration*
+
+On reprend la décomposition en sous-espaces caractèristiques
+$
+  Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k) \
+  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
+  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^m_k, F_k) \
+  forall k in [|1, n|], space F_k = ker (u - lambda_k id)^(d_k)
+$
+On note $u_k$ l'endomorphisme induit par $u$ sur $F_k$.
+$
+  F_k = ker (u - lambda_k id_E)^(m_k) \
+  "D'où " (u_k - lambda_k id_F_k)^(m_k) = 0_(cal(L) (F_k)) \
+$
+Posons
+$
+  n_k = u_k - lambda_k id_F_k \
+  "Donc" u_k = lambda_k id_F_k + n_k
+$
+Où $n_k$ est nilpotent d'ordre $d_k$ (cf démonstration sous-espaces caractèristiques).
+
+On pose alors $d, n in cal(L)(E)$ tel que
+$
+  forall k in [|1,n|], \ d|_(F_k)^(F_k) = lambda_k id_F_k \
+  n|_(F_k)^(F_k) = n_k \
+$
+Donc $d$ diagonalisable et $n$ nilpotent d'odre $max_(k in [|1;n|])(d_k)$.
+
+Matriciellement
+$
+  cal(M)_e (d) = dmat(lambda_1 I_m_k, dots.down, lambda_N I_m_k) in D_n (KK) \
+  cal(M)_e (n) = dmat(N_1, dots.down, N_N) in T_n^(++) (KK) \ \
+  D N = dmat(lambda_1 N_1, dots.down, lambda_N N_N) = N D
+$
+
+*Unicité*
+
+On prend $p_1, dots, p_N$ les projecteurs associés à la décomposition (cf. démonstration du TDN)
+$
+  E = plus.o.big_(k = 1)^N F_k = plus.o.big_(k = 1)^N ker (u - lambda_k id)^(d_k)
+$
+On avait montrer que $p_1, dots, p_N in KK[u]$.
+
+On a
+$
+  d = sum_(k = 1)^N lambda_k p_k in KK[u] \
+  n = u - d in KK[u] \
+$
+
+Soient $d', n' in cal(L)(E)$ respectent les conditions.
+
+Comme $u = d' + n'$, $d'$ commute avec $u$ et $n'$ aussi, donc $d'$ commute avec $d in KK[u]$ et $n'$ avec $n in KK[u]$.
+
+Ainsi $d'$ et $d$ sont codiagonalisables, d'où $d' - d$ est diagonalisable.
+
+Et $n - n'$ est nilpotent (binôme de Newton).
+
+Or $d' + n' = d + n$ d'où 
+$
+underbrace(d' - d, "diagonalisable") = underbrace(n - n', "nilpotent")
+$
+
+D'où $d' - d = 0$ et $n' - n = 0$.
+
+#card("codiag", "Codiagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Définition et critère de codiagonalisabilité.
+
+#answer
+
+Soient $(u_i)_i in cal(L)(E)^I$ une famille d'endomorphismes. 
+
+On dit que les $(u_i)_i$ sont codiagonalisables s'il existe une base $e$ de $E$ tels que pour tout $i in I$, $cal(M)_e (u_i) in D_n (KK)$.
+
+*Démonstration : deux endomorphismes*
+
+Soient $u, v in cal(L)(E)$ diagonalisables tels que $u compose v = v compose u$.
+$
+  E = plus.o.big_(k = 1)^N E_lambda_k (u) " où " "Sp"(u) = {lambda_1, dots, lambda_N}
+$
+Comme $u compose v = v compose u$, les $E_lambda_k (u)$ sont stables par $v$. 
+
+Soit $v_k$ l'induit de $v$ sur $E_lambda_k (u)$, qui est diagonalisable car $v$ l'est.
+
+Pour chaque $k in [|1, N|]$ on dispose de $e_k$ base de vecteurs propres de $v_k$ (donc de $v$ et $u$).
+
+En concatenant on obtient une base qui convient.
+
+*Démonstration famille quelconque*
+
+Par récurrence sur $n = dim E$.
+
+Cas $n = 1$ évident.
+
+Supposons la propriété pour tout $KK$-ev de dimension inférieur à $n$.
+
+Soit $(u_i)_i in cal(L)(E)^I$ diagonalisables commutant avec $dim E = n+1$.
+
+Si tout les $u_i$ sont des homothéties n'importe quelle base convient.
+
+Sinon on dispose de $j in I$ tel que $u_j$ n'est pas une homothétie.
+
+$
+  E = plus.o.big_(k = 1)^N E_lambda_k (u_j) " où " "Sp"(u_j) = {lambda_1, dots, lambda_N}
+$
+
+Pour tout $i in I$, les $E_lambda_k (u_j)$ sont stables par $u_i$ car $u_i compose u_j = u_j compose u_i$.
+
+Notons $u_(i,k)$ l'induit de $u_i$ sur $E_lambda_k (u_j)$ qui est de dimension inférieur à $n$ car $u_j$ n'est pas une homothétie. 
+
+Les $(u_(i,k))_i$ sont donc diagonalisables et commutent entre eux, on peut appliquer l'hypothèse de récurrence.
+
+On dispose donc de $e_k$ base de $E_lambda_k (u_j)$ formée de vecteurs propres commmun aux $(u_i)_i$. Il suffit alors de les concatener.
+
+// TODO: Ex 64 de la fiche réduction
+
+#card("comendo", "Commutant d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur le commutant d'un endomorphisme diagonalisable.
+
+#answer
+
+Soit $u in cal(L)(E)$ diagonalisable.
+
+- Pour tout $v in cal(L)(E)$, $v in "Com" (u)$ ssi les espaces propres de $u$ sont stables par $v$.
+
+- $dim "Com" (u) = display(sum_(lambda in "Sp"(u)) (dim E_lambda (u))^2)$
+
+*Démonstration*
+
+- L'implication directe est évidente. 
+
+  Supposons $v in cal(L)(E)$ qui stabilise les espaces propres de $u$.
+
+  Pour $lambda in "Sp"(u)$ soit $x in E_lambda (u)$, d'où $v(x) in E_lambda (u)$.
+  $
+    v(u(x)) &= v(lambda x) = lambda v(x) \
+    u(v(x)) &= lambda v(x)
+  $
+
+  Or $u$ diagonalisable, donc on dispose d'une base de vecteurs propres de $u$.
+
+  Ainsi $u compose v$ et $v compose u$ coincident sur une base d'où l'égalité.
+
+- On note $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
+  On considère
+  $
+    theta : func("Com"(u), product_(k = 1)^N cal(L)(E_lambda_k (u)), v, (evaluated(v)_(E_lambda_1 (u)), dots, evaluated(v)_(E_lambda_N (u))))
+  $
+  Qui est linéair.
+
+  Soit $v in ker theta$ : pour tout $k in [|1, N|]$
+  $
+    v(E_lambda_k (u)) = 0 \
+    "Or " E = plus.o.big_(k = 1)^N E_lambda_k (u) \
+    "Donc " v = 0
+  $
+
+  Soit $(v_1, dots, v_k) in product_(k = 1)^N cal(L)(E_lambda_k (u))$.
+
+  Pour $k in [|1,N|]$, on note $e_k$ base de $E_lambda_k (u)$.
+
+  On définit $v in cal(L)(E)$ qui coincide avec $v_k$ sur tout les vecteurs de $e_k$.
+
+  Ainsi $theta(v) = (v_1, dots, v_k)$, et $theta$ isomorphisme.
+  $
+    dim "Com"(u) &= sum_(k = 1)^N dim cal(L)(E_lambda_k (u)) \
+    &= sum_(k = 1)^N (dim E_lambda_k (u))^2
+  $
+
+#card("exbicom", "Exercice : le bicommutant", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$ diagonalisable. On définit le bicommutant de $u$
+$
+B(u) = Set(w in cal(L)(E), vec(delim: #none, forall v in "Com"(u), space v compose w = w compose v) space)
+$
+Montrer que $B(u) = KK[u]$.
+
+#answer
+
+Comme $u in "Com" (u)$ on remarque
+$
+  KK[u] subset.eq B(u) subset.eq "Com"(u)
+$
+On construit $e$ concatenation de bases des $E_lambda_k (u)$ pour $k in [|1, N|]$ et $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
+Soit $w in B(u) subset.eq "Com"(u)$ donc les $(E_lambda_k)_k$ sont stables par $w$.
+$
+  M = cal(M)_e (w) = dmat(M_1, dots.down, M_N)
+$
+Pour tout $v in "Com"(u), w compose v = v compose w$.
+$
+A = cal(M)_e (v) = dmat(A_1, dots.down, A_N)
+$
+Or $A M = M A$ donc
+$
+  forall k in [|1, N|], A_k M_k = M_k A_k
+$
+Ainsi $M_k$ est une matrice qui commute avec toutes les autres. 
+
+On montre facilement grâce à $E_(i j)$ que $M_k = alpha_k I_(m_k)$.
+
+Par interpolation de Lagrange on dispose de $P in KK_(N+1) (X)$ tel que $P(lambda_k) = alpha_k$. Or
+$
+  cal(M)_e (u) &= dmat(lambda_1 I_(m_1), dots.down, lambda_N I_(m_N)) \
+  cal(M)_e (P(u)) &= dmat(P(lambda_1) I_(m_1), dots.down, P(lambda_N) I_(m_N)) \
+   &= dmat(alpha_1 I_(m_1), dots.down, alpha_N I_(m_N)) \
+   &= cal(M)_e (w)
+$
+D'où $w in KK[u]$.
