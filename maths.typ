@@ -5567,7 +5567,7 @@ ker P (u) &= ker (P_(N+1) Q) (u) \
 &= plus.o.big_(k = 1)^(N+1) ker P_k (u)
 $
 
-#card("projchelou", "Projecteurs de la démonstration du théorème des noyaux", ("Maths.Algèbre.Réduction",))
+#card("projchelou", "Démonstration annexe du théorème des noyaux", ("Maths.Algèbre.Réduction",))
 
 Démonstration secondaire du théorème des noyaux dans le cas d'un polynôme annulateur.
 
@@ -6544,3 +6544,66 @@ $
    &= cal(M)_e (w)
 $
 D'où $w in KK[u]$.
+
+#card("projspect", "Projecteurs spectraux d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Définition et propriétés des projecteurs spectraux d'un endomorphisme diagonalisable.
+
+#answer
+
+Soit $u in cal(L)(E)$ diagonalisable.
+
+$
+  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
+  Pi_u = product_(k = 1)^N (X - lambda_k)
+$
+Soient $p_1, dots, p_N$ les projecteurs associés à la décomposition
+$
+  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
+$
+On a alors pour tout $i, j in [|1,N|]$
+$
+  evaluated(p_i)_(E_lambda_j (u)) = delta_(i j) lambda_i id \
+$
+Dans la base $e$ diagonalisant $u$ et pour tout $P in KK[X]$ on a 
+$
+  cal(M)_e (P(u)) = dmat(P(lambda_1) I_m_1, dots.down, P(lambda_N) I_m_N) \
+  cal(M)_e (p_k) = dmat(0, dots.down, I_m_k, dots.down, 0) \
+$
+Donc $p_k = L_k (u) in KK_(N-1) [u]$ avec $L_k$ polynôme de Lagrange associés aux $(lambda_i)_i$.
+
+Ainsi pour tout $q in NN$
+$
+  u = sum_(k = 1)^N lambda_k p_k \
+  u^p = sum_(k = 1)^N lambda_k^q p_k in KK_(N - 1) [u]
+$
+
+#card("sesendodiag", "Sous-espaces stables d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur les sous-espaces stables d'un endomorphisme diagonalisable.
+
+#answer
+
+Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
++ Si $G$ sev stable par $u$ alors #h(1fr)
+  $
+    G = plus.o.big_(k = 1)^N G inter E_lambda_k (u)
+  $
+
++ Réciproquement si $G_1, dots, G_N$ sont des sevs de $E_lambda_1 (u), dots, E_lambda_N (u)$ respectivements alors
+  $
+    G = plus.o.big_(k = 1) G_k
+  $
+  Est un sev stable par $u$.
+
+*Démonstration*
+
++ Soit $accent(u,~)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
+  $
+    G &= plus.o.big_(lambda in "Sp"(accent(u,~))) E_lambda (accent(u,~)) \
+    &= plus.o.big_(k = 1)^N ker (accent(u,~) - lambda_k id_G) \
+    &= plus.o.big_(k = 1)^N G inter underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
+  $
+
++ L'écrire.
