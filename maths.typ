@@ -5761,8 +5761,8 @@ Soit $u in cal(L)(E)$, on dit que $u$ est cyclique si l'une des conditions équi
 - Si $u$ cyclique, tout endomorphisme induit l'est aussi.
 
 - Si $u$ cyclique, $u$ admet un nombre fini de sev stables.
-
-- Si $KK$ est fini et $u$ admet un nombre fini de sev stables, alors $u$ est cyclique.
+// TODO: Reprendre démo M140
+- Si $KK$ est infini et $u$ admet un nombre fini de sev stables, alors $u$ est cyclique.
 
 *Démonstration équivalence*
 
@@ -6607,3 +6607,210 @@ Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
   $
 
 + L'écrire.
+
+#card("dopsprev", "Existence d'une droite ou d'un plan stable dans un espace vectoriel réel", ("Maths.Algèbre.Réduction",))
+
+Démonstration de l'existence d'une droite ou d'un plan stable dans un espace vectoriel réel.
+
+#answer
+
+Soit $E$ un $RR$-ev et $u in cal(L)(E)$, $u$ admet une droite ou un plan stable.
+
+$
+  Pi_u = product_(k = 1)^N P_k^(m_k)
+$
+Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
+
+- Si l'un des $P_k$ est de degré $1$. #h(1fr)
+  $
+    P_k = X - lambda
+  $
+  Et $lambda$ est racine de $Pi_u$ et est donc une valeur propre de $u$ d'où l'existence d'une droite stable.
+
+- Si l'un des $P_k$ est de degré $2$.
+  $
+    P_k = X^2 - a X - b
+  $
+
+  Supposons par l'absurde que $ker P_k (u) = {0}$.
+  $
+    Pi_u (u) = P_k (u) compose Q(u) = 0
+  $
+  D'où $Q(u) = 0$ qui est absurde car $Pi_u$ est minimal.
+
+  On dispose donc de $x in ker P_k (u) \\ {0}$.
+
+  $
+    u^2 (x) = a u(x) + b x
+  $
+  D'où $F = "Vect"(x, u(x))$ stable par $u$.
+
+  Si $u(x) = alpha x$, $alpha in RR$.
+  $
+    alpha^2 x = (a alpha + b) x \
+    alpha | X^2 - a X - b
+  $
+  Absurde donc $F$ est un plan.
+
+#card("endosimple", "Endomorphismes simples", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ Les seuls sev stables de $u$ sont $E$ et ${0}$.
+
++ $chi_u$ irréductible.
+
++ $u$ est dit simple.
+
+#answer
+
++ (2 $=>$ 1) Par contraposé #h(1fr)
+
+  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $accent(u,~)$ l'endomorphisme induit.
+
+  $
+    chi_accent(u,tilde) | chi_u
+  $
+  Avec $chi_accent(u,~) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
+
++ (1 $=>$ 2) Par contraposé : Soit $x in E\\{0}$ on note
+  $
+    F_x = "Vect"(u^k (x_0))_(k in NN)
+  $
+  Qui est stable par $u$.
+
+  Si $deg Pi_(u,x) = dim F_x <= n - 1$, alors $u$ possède un sev stable non trivial.
+
+  Sinon $Pi_(u,x) | Pi_u | chi_u$ tous unitaires de degré $n$, donc égaux. Ainsi
+  $
+    Pi_(u,x) = chi_u = P Q \
+    y = Q(u) (x) \
+    Pi_(u,y) = P \
+  $
+  D'où $F_y$ stable non trivial.
+
+#card("endosemsimple", "Endomorphismes semi-simples", ("Maths.Algèbre.Réduction",))
+
+Définition et propriétés des endomorphismes semi-simples.
+
+#answer
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ Tout sev stable par $u$ admet un supplémentaire stable.
+
++ $Pi_u$ est sans carrés
+  $
+    Pi_u = product_(k = 1)^N P_k
+  $
+  Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
+
++ $u$ est semi-simple.
+
+*Démonstration*
+
++ (1 $=>$ 2) On pose #h(1fr)
+  $
+    Pi_u = product_(k = 1)^N P_k^(d_k)
+  $
+  Pour $i in [|1,N|]$, $F = ker P_k (u)$ admet un supplémentaire stable $G$.
+
+  Soient $u_F, u_G$ induient par $u$ sur $F$ et $G$.
+  $
+    Pi_(u_F)  = P_i
+  $
+  Car annule et irréductible.
+
+  De plus
+  $
+    P(u) = 0 \ <=> cases(space forall x in F\, space  P(u) (x) &= 0, space forall x in G\, space P(u) (x) &= 0) \
+    <=> Pi_(u_F) | P "et" Pi_(u_G) | P \
+    <=> Pi_u_F or Pi_u_G | P \
+    "Donc" Pi_u = Pi_u_F or Pi_u_G
+  $
+  Ainsi
+  $
+    Pi_u_G | product_(k = 1)^N P_k^(d_k) \
+    Pi_u = Pi_u_G or P_i
+  $
+  Mais 
+  $
+  G inter F = {0} \
+  G inter ker P_1 (u) = {0} \
+  0 != P_i (u_G) in "GL"(E) \
+  P_i divides.not Pi_u_G
+  $
+  Ainsi comme $Pi_u = P_i or Pi_u_G$
+  $
+  d_i = 1
+  $
+
++ (2 $=>$ 1) Cas $Pi_u$ irréductible.
+
+  On suppose $Pi_u$ irréductible de degré $d$.
+
+  Donc pour tout $x in E\\{0}$
+  $ 
+    Pi_(u,x) | Pi_u " d'où " Pi_u = Pi_(u,x) \ "et" dim F_x = d
+  $
+  
+  Soit $F$ sev stable par $u$, si $F = E$, $G = 0$ convient.
+
+  On dispose alors de $x_1 in E \\ F$.
+
+  Comme $F$ et $F_x_1$ sont stables par $u$, $F inter F_x_1$ l'est.
+
+  Supposons par l'absurde qu'il existe $x in F inter F_x_1 \\ {0}$.
+
+  $
+    underbrace(F_x, dim d) subset.eq underbrace(overbrace(F_x_1, dim d) inter F, dim <= d) \
+    F_x_1 subset.eq F \
+    x_1 in F
+  $
+  Qui est absurde : $F plus.o F_x_1 subset.eq E$.
+
+  Supposons construits $x_1, dots, x_k$ tels que
+  $
+    underbrace(F plus.o (plus.o.big_(i = 1)^k F_x_i), F_k "stable") subset.eq E
+  $
+
+  Si $F_k = E$ on a fini.
+
+  Sinon on choisit $x_(k+1) in E \\ F_k$ et on répéte.
+
+  $
+    F_x_(k+1) inter F_k = {0} \
+    F_k plus.o F_x_(k+1) subset.eq E \
+    F plus.o (plus.o.big_(i = 1)^(k+1) F_x_i) subset.eq E
+  $
+
+  Qui se termine en au plus $floor(n / d)$ étapes.
+  // TODO: Que faire de la remarque Frobenius M142 ?
+
++ (2 $=>$ 1) Cas général.
+  $
+    Pi_u = product_(k = 1)^N P_k
+  $
+
+  Par le TDN
+  $
+    E = plus.o.big_(k = 1)^N ker P_k (u)
+  $
+  Soit $F$ sev stable par $u$, $accent(u,~)$ induit par $u$ sur $F$. Par TDN 
+  $
+    F &= plus.o.big_(k = 1)^N ker P_k (accent(u,~)) \
+     &= plus.o.big_(k = 1)^N underbrace((ker P_k (accent(u,~))) inter F, F_k)
+  $
+  $F_k$ sev de $E_k = ker P_k (u)$ stable par $u_k$ induit par $u$ sur $E_k$.
+
+  De plus $Pi_u_k = P_k$ (annule et irréductible).
+
+  Donc par le premier cas on trouve $G_k$ sev de $E_k$ stable par $u$ tel que
+  $
+    E_k = G_k plus.o F_k
+  $
+  Enfin
+  $
+    E &= plus.o.big_(k = 1)^N E_k \
+    &= underbrace((plus.o.big_(k = 1)^N (F_k)), F "stable par" u) plus.o underbrace((plus.o.big_(k = 1)^N G_k), G "stable par" u)
+  $
