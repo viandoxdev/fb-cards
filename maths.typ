@@ -4296,7 +4296,7 @@ Soit $u in cal(L)(E, F)$, $e = (e_1, dots, e_n), e' = (e'_1, dots, e'_n)$ bases 
 *Applications linéaires*
 
 $
-  cal(M)_(e, f) (u) = cal(M)_(e <- f) (u) = cal(M)_e^f (u) in cal(M)_(p n) (KK) \
+  cal(M)_(e, f) (u) = cal(M)_(e <- f) (u) = cal(M)_e^f (u) in M_(p n) (KK) \
 $
 Et la matrice est alors
 $
@@ -4489,7 +4489,7 @@ Formules et définitions du développement du déterminant par ligne ou par colo
 
 #answer
 
-Soit $A in cal(M)_n (KK)$
+Soit $A in M_n (KK)$
 
 - pour tout $j in [|1, n|]$ : #h(1fr)
 
@@ -4503,7 +4503,7 @@ Soit $A in cal(M)_n (KK)$
     det(A) = sum_(j = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
   $
 
-Où $accent(A, ~)_(i j) in cal(M)_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
+Où $accent(A, ~)_(i j) in M_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
 
 On appelle $accent(A,hat)_(i j) = (-1)^(i + j) det (accent(A, ~)_(i j))$ cofacteur.
 
@@ -4519,11 +4519,11 @@ $
 
 #card("exrgcom", "Exercice : rang d'une comatrice", ("Maths.Exercice.Algèbre Linéaire",))
 
-Soit $A in cal(M)_n (KK)$ ($n >= 3$), calculer $"rg" "com"(A)$ en fonction de $"rg" A$.
+Soit $A in M_n (KK)$ ($n >= 3$), calculer $"rg" "com"(A)$ en fonction de $"rg" A$.
 
 #answer
 
-Soit $A in cal(M)_n (KK)$ avec $n >= 3$.
+Soit $A in M_n (KK)$ avec $n >= 3$.
 
 - Si $"rg" A = n$, $A in "GL"_n (KK)$ donc $"com" A in "GL"_n (KK)$ et $"rg" "com"(A) = n$.
 
@@ -4545,13 +4545,13 @@ Déscription de l'algorithme du pivot de Gauss, et propriétés qui en découlen
 
 *Opérations, représentation matricielle*
 
-Notons $(E_(i j))_(i j)$ la base cannonique de $cal(M)_n (KK)$. On a
+Notons $(E_(i j))_(i j)$ la base cannonique de $M_n (KK)$. On a
 
 $
   E_(i k) E_(l j) = delta_(k l) E_(i j)
 $
 
-Pour $A in cal(M)_(n p) (KK)$
+Pour $A in M_(n p) (KK)$
 $
   E_(k l)^((n)) A = mat(augment: #1,,1;, dots.v; L_l, k;,dots.v;,n) \
   A E_(k l)^((p)) = mat(augment: #("hline": 1),,,C_k,,;1,dots.c,l,dots.c,n)
@@ -4569,7 +4569,7 @@ Ainsi on peut définir
 
 *Algorithme*
 
-Prenons $A = mat(C_1, dots.c, C_n) in cal(M)_n (KK)$
+Prenons $A = mat(C_1, dots.c, C_n) in M_n (KK)$
 
 - Si $A = 0$ fini.
 
@@ -5097,7 +5097,7 @@ Définitions, propriétés élémentaires et démonstrations autours du polynôm
 
 *Matrices*
 
-Soit $A in cal(M)_n (KK)$, on définit le polynôme caractèristique de $A$ comme
+Soit $A in M_n (KK)$, on définit le polynôme caractèristique de $A$ comme
 $
   chi_A (X) = det(X I_n - A)
 $
@@ -5201,7 +5201,7 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
     chi_T = product_(k = 1)^n T_(k k)
   $
 
-- Pour tout $M = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C) in cal(M)_n (KK), A in cal(M)_r (KK), C in cal(M)_(n - r) (KK), B in cal(M)_(r,n-r) (KK)$
+- Pour tout $M = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C) in M_n (KK), A in M_r (KK), C in M_(n - r) (KK), B in M_(r,n-r) (KK)$
 
   $
     chi_M (X) = chi_A (X) chi_C (X)
@@ -5334,10 +5334,10 @@ Toute matrice de taille $1$ est supérieure.
 
 Supposons pour un $n in NN$
 $
-  forall A in cal(M)_n (KK), \ chi_A "scindé" => A "trigonalisable"
+  forall A in M_n (KK), \ chi_A "scindé" => A "trigonalisable"
 $
 
-Soit $A in cal(M)_(n+1) (KK)$ tel que $chi_A$ scindé.
+Soit $A in M_(n+1) (KK)$ tel que $chi_A$ scindé.
 
 $chi_A$ a au moins une racine, donc $A$ admet une valeur propre $lambda$.
 
@@ -5351,7 +5351,7 @@ $
   A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,accent(A,~);0) P^(-1)
 $
 
-Avec $accent(A,~) in cal(M)_n (KK)$ et $chi_A = chi_accent(A,~) (X - lambda)$ d'où $chi_accent(A,~)$ scindé.
+Avec $accent(A,~) in M_n (KK)$ et $chi_A = chi_accent(A,~) (X - lambda)$ d'où $chi_accent(A,~)$ scindé.
 
 Par hypothèse de récurrence $accent(A,~)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
 
@@ -6263,7 +6263,7 @@ $
 $
 Donc par le TDN $ker Q(u) = E$, $Pi_u | Q$ donc $d_k <= q_k <= d_k$.
 
-#card("expiuxdq", "Exercice : valuation X-adique du polynôme minimal.", ("Maths.Algèbre.Réduction",))
+#card("expiuxdq", "Exercice : valuation X-adique du polynôme minimal.", ("Maths.Exercice.Réduction",))
 
 Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
 
@@ -6483,7 +6483,7 @@ Soit $u in cal(L)(E)$ diagonalisable.
   $
     theta : func("Com"(u), product_(k = 1)^N cal(L)(E_lambda_k (u)), v, (evaluated(v)_(E_lambda_1 (u)), dots, evaluated(v)_(E_lambda_N (u))))
   $
-  Qui est linéair.
+  Qui est linéaire.
 
   Soit $v in ker theta$ : pour tout $k in [|1, N|]$
   $
@@ -6504,7 +6504,7 @@ Soit $u in cal(L)(E)$ diagonalisable.
     &= sum_(k = 1)^N (dim E_lambda_k (u))^2
   $
 
-#card("exbicom", "Exercice : le bicommutant", ("Maths.Algèbre.Réduction",))
+#card("exbicom", "Exercice : le bicommutant", ("Maths.Exercice.Réduction",))
 
 Soit $u in cal(L)(E)$ diagonalisable. On définit le bicommutant de $u$
 $
@@ -6814,3 +6814,215 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
     E &= plus.o.big_(k = 1)^N E_k \
     &= underbrace((plus.o.big_(k = 1)^N (F_k)), F "stable par" u) plus.o underbrace((plus.o.big_(k = 1)^N G_k), G "stable par" u)
   $
+
+#card("diagsisevstabl", "Exercice : critère de diagonalisabilité sur l'existence de supplémentaires stables", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisable ssi tout sev stable par $u$ admet un supplémentaire stable.
+
+#answer
+
+- Supposons $u$ diagonalisable, soit $F$ un sev stable par $u$.
+
+  On dispose donc de $f = (f_1, dots, f_d)$ base de $F$ et $e = (e_1, dots, e_n)$ base de vecteurs propres de $E$.
+
+  On peut donc complétée la base $f$ par des vecteurs de $e$:
+  $
+    (f_1, dots, f_d, e_i_1, dots, e_i_(n - d)) "base de" E
+  $
+  Ainsi $G = "Vect"(e_i_1, dots, e_i_(n-d))$ est un supplémentaire de $F$ stable par $u$.
+
+- Supposons que tout sev stable par $u$ admettent un supplémentaire stable.
+
+  $
+    F = plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
+  $
+  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $accent(u,~)$ l'induit sur $G$ de $u$.
+  $
+    Pi_accent(u,~) | Pi_u "scindé"
+  $
+  Donc $accent(u,~)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
+
+#card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur les endomorphismes de la forme $M |-> A M$ et $M |-> M A$ de $cal(L)(M_n (KK))$.
+
+#answer
+
+Soit $A in M_n (KK)$. Posons
+$
+  L_A : func(M_n (KK), M_n (KK), M, A M "ou" M A) in cal(L)(M_n (KK)) \
+$
+Pour tout $P in KK[X]$ et $M in M_n (KK)$
+$
+  P(L_A) (M) = cases(space P(A) M, space M P(A)) = L_P(A) (M) \
+$
+De plus $L_B = 0 => L_B (I_n) = B = 0$ d'où
+$
+  P(L_A) = 0 <=> P(A) = 0
+$
+C'est à dire $Pi_L_A = Pi_A$
+
+On en déduit
+
+- $L_A$ est nilpotent ssi $A$ l'est et est de même ordre.
+
+- $L_A$ est diagonalisable ssi $A$ l'est.
+
+- $"Sp"(A) = "Sp"(L_A)$
+
+De plus pour $lambda in "Sp"(A)$
+$
+dim E_lambda (L_A) = n dim E_lambda (A)
+$
+
+*Démonstration*
+
+- Pour $L_A (M) = A M$
+
+  Soit $M = (C_1, dots, C_n) in M_n (KK)$
+
+  $
+    M in E_lambda (L_A) <=> A M = lambda M \
+    <=> forall j in [|1,n|], space A C_j = lambda C_j \
+    <=> {C_1, dots, C_n} subset.eq E_lambda (A)
+  $
+  Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
+
+- Pour $L_A (M) = M A$ 
+
+  Soit $M = vec(L_1, dots.v, L_n) in M_n (KK)$
+
+  $
+    M in E_lambda (L_A) <=> M A = lambda M \
+    <=> forall i in [|1,n|], space A L_i = lambda L_i \
+    <=> {L_1, dots, L_n} subset.eq E_lambda (A)
+  $
+  Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
+
+#card("endodiffprodmat", "Endomorphisme différence de produits de matrices", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur l'endomorphisme $phi : M |-> A M - M B$ in $cal(L)(M_n (KK))$
+
+#answer
+
+Soit $A, B in M_n (KK)$, tel que $chi_A$ scindé et $B$ admet au moins une valeur propre. ($KK$ algébriquement clos suffit).
+
+Posons
+$
+  phi : func(M_n (KK), M_n (KK), M, A M - M B) in cal(L)(M_n (KK))
+$
+Il y a équivalence entre
+
++ $"Sp"(A) inter "Sp"(B) = emptyset$.
+
++ $chi_A (B) in "GL"_n (KK)$.
+
++ $phi$ injectif.
+
++ $phi$ est un automorphisme.
+
+De plus on a
+
+- $"Sp"(phi) = {lambda - mu, (lambda, mu) in "Sp"(A) times "Sp"(B)}$
+
+*Démonstration*
+
+- (3 $<=>$ 4) Argument dimensionnel.
+
+- (1 $=>$ 2) Pour tout $lambda in "Sp"(A)$ #h(1fr)
+  $
+    lambda in.not "Sp"(B) \
+    ker (B - lambda I_n) = E_lambda (B) = {0} \
+    B - lambda I_n in "GL"_n (KK)
+  $
+  Ainsi
+  $
+    chi_A (B) = product_(lambda in "Sp"(A)) (B - lambda I_n)^(m_lambda) in "GL"_n (KK)
+  $
+
+- (2 $=>$ 3) Soit $M in ker phi$
+
+  $
+    A M = M B \
+    forall k in NN, space A^k M = M B^k \
+    0 = chi_A (A) M = underbrace(chi_A (B), in "GL"_n (KK)) M \
+    M = 0
+  $
+
+- (3 $=>$ 1) Par contraposé, supposons qu'on dispose de $lambda in "Sp"(A) inter "Sp"(B)$.
+
+  On sait que $chi_B = chi_(B^TT)$ donc toute valeur propre de $B$ est valeur propre de $B^TT$.
+  
+  Soit $X, Y$ vecteurs propres non nuls de $A$ et $B^TT$.
+  $ 
+  phi(X Y^TT) &= A X Y^TT - X Y^TT B \
+  &= A X Y^TT - X (B^TT Y)^TT \
+  &= lambda X Y^TT - lambda X Y^TT \
+  &= 0
+  $
+  Or $X Y^TT != 0$ d'où $phi$ non injective.
+
+- Soit $lambda in "Sp"(A), mu in "Sp"(B)$. $X, Y$ vecteurs propres non nuls de $A$ et $B^TT$.
+  $
+  phi(X Y^TT) &= A X Y^TT - X Y^TT B \
+  &= lambda X Y^TT - mu X Y^TT \
+  &= (lambda - mu) X Y^TT
+  $
+  D'où $lambda - mu in "Sp"(phi)$
+
+- Soit $alpha in "Sp"(phi)$, $M$ vecteur propre non nul associé.
+
+  $
+    phi(M) = A M - M B = alpha M \
+    underbrace((A - alpha I_n), accent(A,~)) M - M B = 0
+  $
+  Avec $chi_accent(A,~)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $accent(A,~)$)
+
+  Posons $phi' : N |-> accent(A,~) N - N B$
+  $
+    phi' (M) = 0
+  $
+  Donc $phi'$ non injectif d'où $
+  {mu} subset.eq "Sp"(accent(A,~)) inter "Sp"(B) != emptyset
+  $
+  Ainsi $alpha + mu in "Sp"(A)$.
+
+#card("endocommuta", "Endomorphisme commutateur de matrices", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur les endomorphismes de la forme $M |-> A M - M A in cal(L)(M_n (KK))$.
+
+#answer
+
+Soit $A in cal(M)_n (KK)$ tel que $chi_A$ scindé.
+
+$
+  phi_A : func(M_n (KK), M_n (KK), M, A M - M A) in cal(L)(M_n (KK))
+$
+
+On a les propriétés de $M |-> A M - M B$, et de plus
+
+- Si $A$ est nilpotent alors $phi_A$ l'est.
+
+- Si $A$ est diagonalisable alors $phi_A$ aussi.
+
+*Démonstration*
+
+- Supposons $A$ nilpotent d'ordre $q$. Posons
+  $
+  mat(delim: #none,,M_n (KK), ->, M_n (KK);L_A :, M, |->, A M; R_A :, M, |->, M A)
+  $
+  On sait que $L_A$ et $R_A$ sont nilpotents d'ordre $q$ car $A$ l'est.
+
+  De plus $L_A compose R_A = A M A = R_A compose L_A$ d'où
+  $
+    phi_A = L_A - R_A \
+    phi_A^(2q) = sum_(k = 0)^(2q) vec(2q, k) (-1)^k R_A^k compose L_A^(2q - k) = 0
+  $
+
+- Supposons $A$ diagonalisable.
+
+  On sait que $L_A$ et $R_A$ commutent et sont diagonalisables, donc ils sont codiagonalisables :
+  $
+    phi_A = L_A - R_A
+  $
+  Est diagonalisable.
