@@ -7108,5 +7108,78 @@ Alors
   Or $Pi_M$ est SARS : $Pi_M and Pi_M' = 1$ donc $P' and Pi_A = 1$ car $Pi_A | Pi_M$.
 
   Donc $Pi_M'(A) in "GL"_n (KK)$ et $A Pi_M' (A) = 0$ d'où $A = 0$.
-
 // TODO: Exo 51 Reduc
+
+#card("cotz", "Cotrigonalisation", ("Maths.Algèbre.Réduction",))
+
+Critère de Cotrigonalisabilité d'une famille d'endomorphismes.
+
+#answer
+
+Soit $(u_i)_i in cal(L)(E)^I$ une famille d'endomorphismes trigonalisables qui commutent. 
+
+Il existe une base $e$ de $E$ tel que pour tout $i in I$, $cal(M)_e (u_i)$ soit triangulaire supérieure.
+
+*Démonstration : structure*
+
+On voudra toujours
++ Trouver un vecteur propre commun
++ Faire une récurrence sur la dimension.
+
+Faisons d'abord la 2#super[e] étape dans le cas général :
+
+Supposons que toute famille $(u_i)_i in cal(L)(E)^I$ d'endomorphismes trigonalisables qui commutent admete un vecteur propre commun.
+
+Cas $n = 1$ évident.
+
+Supposons la propriété sur tout $KK$-ev de dimension strictement inférieur à $n$.
+
+Soit $e_1$ vecteur propre commun aux éléments de $(u_i)_i$ associé aux valeurs propres $(lambda_i)_i in KK^I$.
+
+On complète $e_1$ en la base $(e_1, dots, e_n)$. Pour tout $i in I$
+
+$
+    cal(M)_e (u_i) = mat(augment: #(hline: 1, vline: 1), lambda_i, *; 0, A_i) quad chi_u_i = chi_A_i (X - lambda)\ 
+$
+Or $chi_u_i$ scindé donc $chi_A$ scindé : $chi_A$ est trigonalisable.
+
+De plus les $(A_i)_i$ commutent car mes $(u_i)_i$ aussi.
+
+Par hypothèse de récurrence on conclut.
+
+*Démonstration : deux endomorphismes*
+
+Soit $u, v in cal(L)(E)$ trigonalisables qui commutent.
+
+Soit $lambda in "Sp"(u)$, $E_lambda (u) != {0}$ est stable par $v$.
+
+Notons $accent(v, ~)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
+
+Puis récurrence.
+
+*Démonstration : famille finie*
+
+Par récurrence sur $d$ cardinal de la famille.
+
+Cas 1 et 2 endomorphismes traités.
+
+On suppose que toute famille de cardinal inférieur à $d$ admet un vecteur propre commun.
+
+Soit $u_1, dots, u_(d+1) in cal(L)(E)$ trigonalisables qui comuttent.
+
+Soit $x$ vecteur propre commun aux $u_1, dots, u_d$ associé aux valeurs propres $lambda_1, dots, lambda_d in KK$.
+
+$
+{x} in F = inter.big_(k = 1)^d underbrace(E_lambda_k (u_k), "stable par" v) != emptyset
+$
+Donc $F$ est stable par $v$, on peut donc y induire $accent(v,~)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
+
+*Démonstration : famille infinie*
+
+Soit $(u_i)_i in cal(L)(E)^I$ une famille quelconqe d'endomorphismes trigonalisables qui commutent.
+
+$"Vect"(u_i)_(i in I)$ est un sev de $cal(L)(E)$ et admet donc une base $u_i_1, dots, u_i_d$.
+
+C'est une famille finie, donc cotrigonalisable dans une base $e$.
+
+Et pour tout $i in I$, $u_i in "Vect"(u_i_1, dots, u_i_d)$ donc $cal(M)_e (u_i)$ est triangulaire supérieur (comme combinaison linéaire de matrices qui le sont).
