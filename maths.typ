@@ -7026,3 +7026,87 @@ On a les propriétés de $M |-> A M - M B$, et de plus
     phi_A = L_A - R_A
   $
   Est diagonalisable.
+
+#card("endonilpcyc", "Endomorphismes nilpotents cycliques", ("Maths.Algèbre.Réduction",))
+
+Caractèrisation des sev stables par un endomorphisme nilpotent cyclique.
+
+#answer
+
+Soit $u in cal(L)(E)$ nilpotent cyclique.
+
+Les seuls sev de $E$ stables par $u$ sont les $(ker u^k)_(k in [|0, n|])$.
+
+*Démonstration*
+
+Ils sont stables comme $ker$ d'un endomorphisme commutant avec $u$.
+
+Soit $F$ sev stable par $u$. Soit $accent(u,~)$ induit par $u$ sur $F$ qui est nilpotent car car $accent(u,~)^n = 0$.
+
+Or l'ordre de nilpotence de $accent(u,~)$ est majoré par $d = dim F$ : $accent(u,~)^d = 0$.
+
+Donc $F subset.eq ker u^d$.
+
+De plus par les noyaux itérées
+$
+underbrace(ker u, dim 1) subset.neq dots.c subset.neq underbrace(ker u^d, dim d) subset.neq dots.c subset.neq underbrace(ker u^n, dim n)
+$
+
+D'où $F = ker u^d$.
+
+#card("prodkroc", "Produit de Kronecker et diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Diagonalisabilité du produit de Kronecker de matrices (dimension $2n$).
+
+#answer
+
+Soit $L = mat(alpha, beta; gamma, delta) in M_2 (KK)$ et $A in M_n (KK)$. On pose le produit de Kronecker
+$
+  M = L times.o A = mat(alpha A, beta A; gamma A, delta A) in M_(2n) (KK)
+$
+
+Alors
+
+- Si $L$ est diagonalisable, $M$ est diagonalisable ssi $A$ l'est.
+
+- Si $L = mat(1, 1; 0, 1)$, $M$ est diagonalisable ssi $A = 0$.
+
+*Démonstration*
+
+- On suppose $L$ diagonalisable :
+
+  $
+    L = P dmat(lambda, mu) P^(-1) quad vec(delim: #none, P = mat(a, b; c, d) in "GL"_2 (KK), P^(-1) = mat(a', b'; c', d'))
+  $
+  On remarque
+  $
+    Q = P times.o I_n = mat(a I_n, b I_n; c I_n, d I_n) \
+    Q' = P times.o I_n = mat(a' I_n, b' I_n; c' I_n, d' I_n) \ 
+    Q Q' = dmat(I_n, I_n) = I_(2n) \
+  $
+  $
+    Q' M Q &= mat(a' I_n, b' I_n; c' I_n, d' I_n) mat(alpha A, beta A; gamma A, delta A) mat(a I_n, b I_n; c I_n, d I_n) \
+    &= dmat(lambda A, mu A)
+  $
+
+  Donc $M$ est diagonalisable ssi $A$ l'est.
+
+- Pour $L = mat(1, 1; 0, 1)$.
+  $
+    M^k = mat(A^k, k A^k;0, A^k) quad "(récurrence)"
+  $
+  Donc pour tout $P in KK[X]$
+  $
+    P(M) = mat(P(A), A P'(A); 0, P(A))
+  $
+  Si $M$ est diagonalisable, $Pi_M$ est SARS.
+  $
+    Pi_M (M) = 0 <=> cases(space Pi_M (A) = 0, space A Pi_M (A) = 0)
+  $
+  Comme $Pi_M (A) = 0$, $A$ est diagonalisable.
+
+  Or $Pi_M$ est SARS : $Pi_M and Pi_M' = 1$ donc $P' and Pi_A = 1$ car $Pi_A | Pi_M$.
+
+  Donc $Pi_M'(A) in "GL"_n (KK)$ et $A Pi_M' (A) = 0$ d'où $A = 0$.
+
+// TODO: Exo 51 Reduc
