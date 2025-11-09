@@ -1,22 +1,25 @@
 #!/usr/bin/bash
 
-documents=()
+function nameof () {
+    dashes="${1//\//-}"
+    echo "${dashes%.*}"
+}
 
-for f in ./*.typ; do
-    if ! grep -F -q -e '//![FLASHBANG IGNORE]' -e '//![FLASHBANG INCLUDE]' "$f"; then
-        documents+=("$f")
+documents=()
+while IFS=  read -r -d $'\0'; do
+    if ! grep -F -q -e '//![FLASHBANG IGNORE]' -e '//![FLASHBANG INCLUDE]' "$REPLY"; then
+        documents+=("$REPLY")
     fi
-done
+done < <(find . -name "*.typ" -printf "%P\0")
 
 mkdir -p ./dist
 
 for doc in "${documents[@]}"; do
-    >&2 echo "compiling $doc"
+    name="$(nameof "$doc")"
 
-    base="$(basename -- "$doc")"
-    name="${base%.*}"
+    >&2 echo "compiling $doc -> ./dist/$name.pdf"
 
-    typst compile --font-path ./fonts --ignore-system-fonts "$doc" "./dist/$name.pdf"
+    typst compile --root . --font-path ./fonts --ignore-system-fonts "$doc" "./dist/$name.pdf"
 done
 
 cat > ./dist/index.html << EOF
@@ -53,8 +56,7 @@ cat > ./dist/index.html << EOF
 EOF
 
 for doc in "${documents[@]}"; do
-    base="$(basename -- "$doc")"
-    name="${base%.*}"
+    name="$(nameof "$doc")"
     echo "<a href=\"$name.pdf\"> $name </a>" >> ./dist/index.html
 done
 
