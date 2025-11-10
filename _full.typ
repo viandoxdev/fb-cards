@@ -2,7 +2,7 @@
 #show: setup
 #[
 
-#import "../utils.typ" : *
+#import "/utils.typ": *
 #import "@preview/cetz:0.4.2"
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
@@ -379,7 +379,7 @@ $
 ]
 #[
 
-#import "../utils.typ" : *
+#import "/utils.typ": *
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
@@ -1771,7 +1771,7 @@ $
 ]
 #[
 
-#import "../utils.typ" : *
+#import "/utils.typ": *
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
@@ -4101,7 +4101,7 @@ $
 ]
 #[
 
-#import "../utils.typ" : *
+#import "/utils.typ": *
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
