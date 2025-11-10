@@ -1277,6 +1277,11 @@ On dispose de $d, n in cal(L)(E)$ tel que
 
 De plus cette décomposition est unique.
 
+Elle peut entre autre servire pour les puissances de matrices :
+$
+  A^k = P dmat((lambda_1 I_m_1 + N_1)^k, dots.down, (lambda_n I_m_n + N_n)^k) P^(-1)
+$
+
 *Démonstration*
 
 On reprend la décomposition en sous-espaces caractèristiques
@@ -2127,3 +2132,202 @@ $"Vect"(u_i)_(i in I)$ est un sev de $cal(L)(E)$ et admet donc une base $u_i_1, 
 C'est une famille finie, donc cotrigonalisable dans une base $e$.
 
 Et pour tout $i in I$, $u_i in "Vect"(u_i_1, dots, u_i_d)$ donc $cal(M)_e (u_i)$ est triangulaire supérieur (comme combinaison linéaire de matrices qui le sont).
+
+#card("polcarsomme", "Exercice : polynôme caractèristique d'une somme d'endomorphismes", ("Maths.Exercice.Réduction",))
+
+Soit $E$ un $CC$-ev de dimension finie, $u, v in cal(L)(E)$ qui commutent, tel que $v$ est nilpotent. 
+
+Montrer que $chi_(u + v) = chi_u$ (Exercice 106).
+
+#answer
+
+Deux perspectives
+
++ Comme $E$ est un $CC$-ev, $u$ et $v$ sont trigonalisables, et commutent, donc sont cotrigonalisable.
+
+  Ainsi on dispose de $e$ base de $E$ tel que
+  $
+    cal(M)_e (u) &= mat(lambda_1,,*;,dots.down;,,lambda_n) \
+    cal(M)_e (v) &= mat(0,,*;,dots.down;,,0) \
+    cal(M)_e (u + v) &= mat(lambda_1,,*;,dots.down;,,lambda_n) \
+    chi_(u + v) &= chi_u
+  $
+
+#card("excomuveu", "Exercice : commutateur qui vaut l'un des opérande", ("Maths.Exercice.Réduction",))
+
+Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u = u$.
+
++ Montrer que $u$ est nilpotent.
+
++ Montrer que si $KK = CC$, $u$ et $v$ sont cotrigonalisable.
+
+#answer
+
++ Deux méthodes : #h(1fr)
+  - On considère
+    $
+      phi_v : func(cal(L)(E), cal(L)(E), w, w v - v w) \
+      phi_v (u^k) = k u^k \
+    $
+    Donc si $u^k != 0$, $k in "Sp"(phi_v)$ qui est fini, donc on dispose de $k in NN^*$ tel que $u^k = 0$.
+
+  - On remarque
+    $
+      P(u) v - v P(u) = u P'(u)
+    $
+    En particulier pour $P = Pi_u$
+    $
+    0 = u Pi'_u (u) \
+    underbrace(Pi_u, deg d) | underbrace(X Pi'_u, deg d) \
+    X Pi'_u = c Pi_u
+    $
+    Donc
+    $
+    d X^d + sum_(k = 0)^(d-1) k a_k X^k = c X^d + sum_(k = 0)^(d-1) c a_k X^k \
+    c = d \
+    forall k in [|0, d-1|], space d a_k = k a_k \
+    forall k in [|0, d-1|], a_k = 0 \
+    Pi_u = X^d
+    $
+
++ Comme $u$ est nilpotent, $"Sp"(u) = {0}$.
+  $
+    (u v - v u) (ker u) &= u (ker u) \
+    u (v (ker u)) &= 0 \
+    v(ker u) &subset.eq ker u
+  $
+  Donc $ker u$ est stable par $v$, posons $accent(v,~)$ induit sur $ker u$. Or $accent(v,~)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
+
+  Ainsi par récurrence sur la dimension de $E$ :
+
+  Supposons la propriété pour tout $CC$-ev de dimension inférieur strictement à $n$.
+
+  Soit $e_1$ vecteur propre commun à $u$ et $v$ associé aux valeurs propres $0$ et $lambda$.
+
+  Soit $e' = (e_1, e'_2 dots, e'_n)$ base de $E$.
+  $
+    cal(M)_e' (u) = mat(augment: #(hline: 1, vline: 1), 0, *; 0, A) \
+    cal(M)_e' (v) = mat(augment: #(hline: 1, vline: 1), lambda, *; 0, B) \
+  $
+  Et $A B - B A = A$ car $u v - v u = u$ donc on dispose de $(e_2, dots, e_n)$ qui cotrigonalisent $A$ et $B$.
+
+#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Algèbre.Réduction",))
+
+Soit $E$ un $KK$-ev de dimension $n$ ($KK subset.eq CC$).
+
++ Soit $u in cal(L)(E)$, montrer que $u$ est nilpotent ssi pour tout $k in NN^*$, $tr(u^k) = 0$.
+
++ Soit $u in cal(L)(E)$ tel que pour tout $k in NN^*$
+  $
+    tr u^k = sum_(i = 1)^n lambda_i^k quad lambda_1, dots, lambda_n in CC
+  $
+  Montrer que
+  $
+    chi_u = product_(k = 1)^n (X - lambda_k)
+  $
+
+#answer
+
+Dans les deux cas, $KK subset.eq CC$, donc $u$ est trigonalisable dans $CC$.
+$
+  cal(M)_e (u) = mat(mu_1,,*;,dots.down;,,mu_n) = D \
+  forall k in NN, space tr u^k = tr D^k = sum_(i = 1)^n mu_i^k
+$
+Posons ${mu_1, dots, mu_n} = {alpha_1, dots, alpha_d}$ deux à deux distincts.
+$
+  chi_u = product_(k = 1)^d (X - alpha_k)^(m_k) \
+  tr u^k = sum_(i = 1)^d m_i alpha_i^k quad (*)
+$
+
++ Par l'absurde : on suppose $d >= 2$ et $alpha_1 = 0$ (éventuellement $m_1 = 0$).
+
+  Par $(*)$ :
+  $
+    forall P in X KK[X], space sum_(k = 1)^d m_k P(alpha_k) = 0
+  $
+  Ainsi par interpolation de lagrange : pour $i in [|2, d|]$,
+  $
+    P(alpha_i) = 1 \
+    forall j != i, space P(alpha_j) = 0 \
+    P(alpha_i) = P(0) = 0 "d'où" X | P \
+    sum_(k = 1)^d m_k P(alpha_k) = m_i = 0
+  $
+
++ Pour tout $k in NN^*$
+  $
+    sum_(i = 1)^n mu_i^k = sum_(i = 1)^n lambda_i^k
+  $
+  On considère ${lambda_1, dots, lambda_n} union {mu_1, dots mu_n} = {beta_1, dots, beta_N}$ deux à deux distincts.
+
+  Pour $i in [|1, n|]$
+  $
+    n_i &= abs(Set(k in [|1,n|], mu_k &= beta_i)) \
+    m_i &= abs(Set(k in [|1,n|], lambda_k &= beta_i)) \
+  $
+  Donc pour tout $k in NN^*$
+  $
+    forall k in NN^*, space sum_(i = 1)^N n_i beta_i^k = sum_(k = 1)^N m_i beta_i^k \
+    <=> forall k in NN^*, space sum_(i = 1)^N (n_i - m_i) beta_i^k = 0
+  $
+  Or $V(beta_1, dots, beta_N) != 0$ d'où $m_i = n_i$.
+
+#card("calcpmatdz", "Calcul de puissance de matrice : cas diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Méthodes de calcul des puissances d'une matrice diagonalisable.
+
+#answer
+
+Soit $A in M_n (KK)$ diagonalisable.
+
++ Matrice diagonale :
+
+  On dispose de $P in "GL"_n (KK)$ (à calculer) tel que
+  $
+    A &= P dmat(alpha_1, dots.down, alpha_n) P^(-1) \
+    A^k &= P dmat(alpha_1^k, dots.down, alpha_n^k) P^(-1)
+  $
+
++ Lagrange : notons $d = deg Pi_A$ #h(1fr)
+  $
+    A^k in KK[u] = "Vect"(I_n, A, dots, A^(d-1)) \
+  $
+  Donc on dispose de $P in KK_(d-1) [X]$ tel que $A^k = P(A)$.
+
+  Explicitons le :
+  $
+    KK^n = plus.o.big_(i = 1)^N E_lambda_i
+  $
+  Soit $X in KK^n$
+  $
+    X = underbrace(X_1, in E_lambda_1) + dots.c + underbrace(X_d, in E_lambda_d) \
+    A X = lambda_1 X_1 + dots.c + lambda_d X_d \
+    A^k X = lambda_1^k X_1 + dots.c + lambda_d^k X_d \
+    P(A) X = P(lambda_1) X_1 + dots.c + P(lambda_d) X_d \
+  $
+  Ainsi avec $P$ construit par interpolation de Lagrange afin de vérifier
+  $
+    forall i in [|1, d|], space P(lambda_i) = lambda_i^k \
+    P in KK_(d - 1) [X]
+  $
+  On a alors $P(A) X = A^k X$ pour tout $X$, d'où $P(A) = A^k$.
+
+#card("calcpmatde", "Calcul de puissance de matrice : polynôme annulateur", ("Maths.Algèbre.Réduction",))
+
+Méthodes de calcul des puissances d'une matrice grâce à un polynôme annulateur.
+
+#answer
+
+Soit $A in M_n (KK)$, $P in KK[X]$ annulateur de degré $d$.
+$
+  X^k = Q P + R \
+  A^k = underbrace(Q P (A), 0) + R(A)
+$
+Avec $R in KK_(d-1) [X]$.
+
+Si $P = (X - lambda)^m$ on trouve le reste de la division euclidienne grâce à la formule de Taylor :
+
+$
+  Q &= overbrace(sum_(k = 0)^(m-1) (Q^((k)) (lambda)) / k! (X - lambda)^k, "reste") \
+  &+ (X - lambda)^m underbrace(sum_(k = m)^(deg Q) (Q^((k)) (lambda)) / k! (X - lambda)^(k - m), "quotient") \
+  A^p &= sum_(k = 0)^(m - 1) vec(p, k) lambda^(p - k)(A - lambda I_n)^(k)
+$
