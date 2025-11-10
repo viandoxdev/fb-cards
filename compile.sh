@@ -31,38 +31,7 @@ for doc in "${documents[@]}"; do
 
     # start new section (avoid polluting the global scope)
     echo "#[" >> "$src"
-
-    # ugly bash line by line write because we need to perform subtle substitutions
-
-    # We skip the begining of the file that is just typst boilerplate to make each document
-    # work on its own
-    append=false
-    while IFS="" read -r p || [[ -n "$p" ]]; do
-        if [ "$append" = true ]; then
-            # check for relative imports
-            if [[ "$p" =~ $re ]]; then
-                prefix="${BASH_REMATCH[1]}" # extract what comes before 'import'
-                file="${BASH_REMATCH[2]}" # the file imported
-                suffix="${BASH_REMATCH[3]}" # what comes after
-                # Recompute path with new base
-                path="$(realpath --relative-to ./dist/ "$(dirname -- "$doc")/$file.typ")"
-                # Log substitution because this is a weak point, so this might break
-                >&2 echo "  path substitution: '$p' => '${prefix}import \"$path\"$suffix'"
-
-                # write
-                echo "${prefix}import \"$path\" $suffix" >> "$src"
-            else
-                # write
-                echo "$p" >> "$src"
-            fi
-        fi
-
-        if [[ "$p" == "//![FLASHBANG HEADER]"* ]]; then
-            # begin reading file
-            append=true
-        fi
-    done < "$doc"
-
+    awk '/^\/\/!\[FLASHBANG HEADER\]/{flag=1;next} flag' "$doc" >> "$src"
     echo "]" >> "$src"
 
     name="$(nameof "$doc")"

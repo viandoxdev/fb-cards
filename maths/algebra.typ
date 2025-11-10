@@ -1,10 +1,10 @@
-#import "../cards.typ": *
+#import "/cards.typ": *
 
 #show: setup
 
 //![FLASHBANG HEADER]
 
-#import "../utils.typ": *
+#import "/utils.typ": *
 #import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
