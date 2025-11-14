@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
-#font_path = "--font-path ./fonts"
-font_path = ""
+disable_sans_math="0"
+if [ "$1" == "--disable-sans-math" ]; then
+    disable_sans_math="1"
+fi
 
 # Turns path of document into a displayable name (just swaps / for - and removes the extension)
 function nameof () {
@@ -41,12 +43,12 @@ for doc in "${documents[@]}"; do
 
     # Compile each file
     >&2 echo "compiling $doc -> ./dist/$name.pdf"
-    typst compile --root . "$font_path" --ignore-system-fonts "$doc" "./dist/$name.pdf"
+    typst compile --root . --font-path "./fonts/" --ignore-system-fonts --input "disable_sans_math=$disable_sans_math" "$doc" "./dist/$name.pdf"
 done
 
 # Compile merged file
 >&2 echo "compiling $src -> $full"
-typst compile --root . "$font_path" --ignore-system-fonts "$src" "$full"
+typst compile --root . --font-path "./fonts/" --ignore-system-fonts --input "disable_sans_math=$disable_sans_math" "$src" "$full"
 
 # Build index
 cat > ./dist/index.html << EOF

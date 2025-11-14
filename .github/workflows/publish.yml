@@ -18,7 +18,7 @@ jobs:
         uses: typst-community/setup-typst@v4
 
       - name: Compile documents into dist directory
-        run: ./compile.sh
+        run: ./compile.sh --disable-sans-math
 
       - name: Deploy to pages
         uses: peaceiris/actions-gh-pages@v4

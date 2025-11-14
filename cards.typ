@@ -1,5 +1,6 @@
 //![FLASHBANG IGNORE]
 
+#let use_sans_math_font = sys.inputs.at("disable_sans_math", default: "0") != "1"
 #let store = state("store", ())
 #let lifecycle = state("had_answer", (true, none, ()))
 
@@ -90,7 +91,6 @@
 
 #let setup(doc) = {
   set text(font: "Lexend")
-  show math.equation: set text(font: "Noto Sans Math")
   set page(
     margin: (x: 1em, top: 1.3em, bottom: 2.3em), 
     height: auto, 
@@ -114,7 +114,12 @@
   // outline(target: figure)
   tree()
 
-  doc
+  if use_sans_math_font {
+    show math.equation: set text(font: "Noto Sans Math")
+    doc
+  } else {
+    doc
+  }
 
   context {
     let (had, last_id, errs) = lifecycle.get()
