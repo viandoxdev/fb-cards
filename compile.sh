@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+#font_path = "--font-path ./fonts"
+font_path = ""
+
 # Turns path of document into a displayable name (just swaps / for - and removes the extension)
 function nameof () {
     dashes="${1//\//-}"
@@ -38,12 +41,12 @@ for doc in "${documents[@]}"; do
 
     # Compile each file
     >&2 echo "compiling $doc -> ./dist/$name.pdf"
-    typst compile --root . --font-path ./fonts --ignore-system-fonts "$doc" "./dist/$name.pdf"
+    typst compile --root . "$font_path" --ignore-system-fonts "$doc" "./dist/$name.pdf"
 done
 
 # Compile merged file
 >&2 echo "compiling $src -> $full"
-typst compile --root . --font-path ./fonts --ignore-system-fonts "$src" "$full"
+typst compile --root . "$font_path" --ignore-system-fonts "$src" "$full"
 
 # Build index
 cat > ./dist/index.html << EOF

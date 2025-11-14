@@ -2331,3 +2331,398 @@ $
   &+ (X - lambda)^m underbrace(sum_(k = m)^(deg Q) (Q^((k)) (lambda)) / k! (X - lambda)^(k - m), "quotient") \
   A^p &= sum_(k = 0)^(m - 1) vec(p, k) lambda^(p - k)(A - lambda I_n)^(k)
 $
+
+#card("eqmat", "Équations matricielles", ("Maths.Algèbre.Réduction",))
+
+Méthodes de résolutions d'équations matricielles.
+
+#answer
+
+Soit $A in M_n (KK), P in KK[X]$.
+
+On cherche à résoudre les équations de la forme
+$
+  P(M) = A
+$
+*Idées*
+- $M A = A M$ car $A in KK[M]$.
+
+- Ainsi $M$ laisse stable
+  - Les sous-espaces propres de $A$
+  - Les sous-espaces caractèristiques de $A$
+  - Tout les $ker Q(A)$
+
+- Pour $Q$ annulateur de $A$, $Q compose P$ est annulateur de $M$ : si $Q compose P$ est SARS, $M$ est diagonalisable.
+
+*Résolutions cas simple*
+
+Si $chi_A$ SARS :
+$
+  chi_A = product_(k = 1)^n (X - lambda_k) \
+  A = R dmat(lambda_1, dots.down, lambda_n) R^(-1) \
+  R = mat(C_1, dots.c, C_n)
+$
+Avec $C_1, dots, C_n$ vecteurs propres associés aux $lambda_1, dots, lambda_n$.
+
+Si $M$ est solution, $M$ laisse stable tout les $E_lambda_k = "Vect"(C_k)$
+$
+  M C_k = mu_k C_k \
+  M = R dmat(mu_1, dots.down, mu_n) R^(-1)
+$
+Or
+$
+  P(M) &= R dmat(P(mu_1), dots.down, P(mu_n)) R^(-1) \
+  &= A
+$
+D'où $P(mu_k) = lambda_k$ pour tout $k in [|1,n|]$.
+
+#card("eqmatxk", "Racine k-ème de matrices", ("Maths.Algèbre.Réduction",))
+
+Méthodes général de résolution de l'équation $M^p = A$.
+
+#answer
+
+Soit $A in M_n (KK)$ et $p in NN$.
+
+- Si $A$ est nilpotent : il peut ne pas exister de solutions, par exemple :
+
+  Si $A$ nilpotent d'ordre $n$ et $p >= 2$
+  $
+    A^n = (M^p)^n = 0
+  $
+  D'où $M$ nilpotent
+  $
+    M^n = A^ceil(n / p) = 0
+  $
+  Absurde.
+
+- Cas $A = I_n + N$ avec $N$ nilpotent.
+
+  Idée : DL de $(1+x)^(1/k)$
+  $
+    (1 + x)^(1/k) = P_k (x) + o_(x->0) (x^(n-1)) \
+    P_k (X) = 1 + sum_(j = 1)^(n-1) product_(i = 0)^(n-1) (1 / k - i) x^j / j! in RR_(n-1) [X] \
+  $
+  $
+    1 + x &= (P_k (x) + o_(x->0)(x^(n-1)))^k \
+    &= Q_k (x) + o_(x->0) (x^(n-1))
+  $
+  Par unicité de la partie principale du DL :
+  $
+    1 + X = Q_k (X)
+  $
+  Où $Q_k$ est $P_k^k$ tronqué à $n - 1$ termes
+  $
+    1 + X = P_k^k (X) - X^n R_k (X) \
+    A = I_n + N = P_k^k (N) - underbrace(N^n R_k (N), 0)
+  $
+  D'où $P_k (N)$ est solution.
+- Cas $A in M_n (CC)$ tel que $0 in.not "Sp"(A)$ :
+  Pour tout $k in NN^star$ :
+
+  $
+    chi_A = product_(k = 1)^q (X - lambda_k)^(m_k) \
+    A = P dmat(lambda_1 I_m_1 + N_1, dots.down, lambda_q I_m_q + N_q) P^(-1)
+  $
+  Pour tout $j in [|1, q|]$, on dispose de $accent(M,~)_j$ et $mu_j$ tels que
+  $
+    mu_j^k = lambda_j \
+    accent(M,~)_j^k = I_m_j + 1/lambda_j N_j \
+  $
+  On définit alors
+  $
+    M_j &= mu_j accent(M,~)_j \
+    M_j^k &= mu_j^k I_m_j + mu_j^k / lambda_j N_j \
+    &= lambda_j I_m_j + N_j
+  $
+  Ainsi
+  $
+    M = P dmat(M_1, dots.down, M_q) P^(-1) \
+  $
+  Est solution :
+  $
+    M^k &= P dmat(M_1^k, dots.down, M_q^k) P^(-1) \
+    &= A
+  $
+
+#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$ où $E$ est un $CC$-ev, montrer que
+$
+  u "diagonalisable" \ <=> cases(space u^2 "diagonalisable", space ker u = ker u^2)
+$
+
+#answer
+
+- Supposons $u$ diagonalisable, on dispose de $e$ base de $E$ tel que
+  $
+    cal(M)_e (u) = dmat(lambda_1, dots.down, lambda_n) \
+    cal(M)_e (u^2) = dmat(lambda_1^2, dots.down, lambda_n^2) \
+  $
+  D'où $u^2$ diagonalisable, et de plus $ker u subset.eq ker u^2$.
+
+  Posons $k in [|0, n|]$ tel que 
+  $
+  lambda_1 = dots.c = lambda_k = 0 \
+  lambda_(k+1), dots, lambda_n != 0
+  $
+  On a bien $ker u^2 = ker u$ (Vision matricielle).
+
+- Supposons $0 in.not "Sp"(u)$, $u^2$ diagonalisable et $ker u^2 = ker u$.
+  $
+    Pi_(u^2) = product_(k = 1)^q (X - lambda_k) \
+    Pi_(u^2) (u^2) = product_(k = 1)^q (X - delta_k)(X + delta_k) (u) = 0
+  $
+  Avec $delta_k^2 = lambda_k$. Ainsi $u$ est annuler par un polynôme SARS, donc diagonalisable.
+
+- Supposons $0 = lambda_1 in "Sp"(u)$, $u^2$ diagonalisable et $ker u^2 = ker u$.
+  $
+    E &= plus.o.big_(k = 1)^q ker (u^2 - lambda_k id) \
+    &= plus.o.big_(k = 2)^q ker (u^2 - lambda_k id) plus.o ker u^2\
+    &= plus.o.big_(k = 2)^q ker (u - delta_k id)(u + delta_k id) \
+    &plus.o underbrace(ker u^2, ker u) \
+  $
+  D'où $u$ diagonalisable.
+// TODO: Exo 16/17 cf photos
+#card("rechhypstab", "Recherche d'hyperplans stables", ("Maths.Algèbre.Réduction",))
+
+Méthodes de recherche d'hyperplans stables.
+
+#answer
+
+Soit $A in M_n (KK)$, $H$ hyperplan de $KK^n$.
+
+On dispose de $L in M_(1 n) (KK)$ tel que
+$
+  H = Set(X in KK^n, L X = 0) = ker L
+$
+$H$ est stable par $A$ ssi
+$
+  L^T "vecteur propre de" A^TT
+$
+
+*Démonstration*
+
+$
+  A H subset.eq H <=> ker L subset.eq ker L A \
+  <=> exists lambda in KK, L A = lambda L \
+  <=> exists lambda in KK, A^TT L^TT = lambda L^TT
+$
+
+#card("polcarabba", "Pseudo-commutativité du polynôme caractèristique", ("Maths.Algèbre.Réduction",))
+
+Pour $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$, lien entre $chi_(A B)$ et $chi_(B A)$.
+
+#answer
+
+Soient $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$.
+$
+  A B in M_p (KK) quad quad B A in M_n (KK) \
+  X^n chi_(A B) = X^p chi_(B A) \
+  "Sp"(A B) \\ {0} = "Sp"(B A) \\ {0} \
+  forall lambda in KK\\{0}, \ dim E_lambda (A B) = dim E_lambda (B A)
+$
+Si $p = n$ ($A$ et $B$ sont carrés) alors
+$
+  chi_(A B) = chi_(B A)
+$
+
+*Démonstration*
+
+- Cas $A = J_r$ : #h(1fr)
+  $
+    A &= mat(augment: #(hline: 1, vline: 1), I_r, 0; 0, 0) quad quad
+    &B &= mat(augment: #(hline: 1, vline: 1), B_1, B_2; B_3, B_4) \
+    A B &= mat(augment: #(hline: 1, vline: 1), B_1, B_2; 0, 0)  quad quad
+    &B A &= mat(augment: #(hline: 1, vline: 1), B_1, 0; B_3, 0) \
+  $
+  $
+    chi_(A B) &= chi_B_1 X^(p - r) \
+    chi_(B A) &= chi_B_1 X^(n - r) \
+  $
+
+- Cas général : $A = P J_r Q$
+  $
+  A B &= P J_r Q B \
+  &= P (J_r Q B P) P^(-1) \
+  B A &= B P J_r Q \
+  &= Q^(-1) (Q B P J_r) Q
+  $
+  Donc
+  $
+    X^n chi_(A B) &= X^n chi_(J_r Q B P) \
+    &= X^p chi_(Q B P J_r) = X^p chi_(B A)
+  $
+
+- Pour tout $X in E_lambda (A B)$
+  $
+    A B X = lambda X \
+    B A B X = lambda B X \
+    B X in E_lambda (B A) \
+  $
+  Ainsi
+  $
+    theta : func(E_lambda (A B), E_lambda (B A), X, B X)
+  $
+  Est linéaire injectif, donc
+  $
+    dim E_lambda (B A) >= dim E_lambda (A B)
+  $
+  Avec égalité par symétrie.
+
+#card("redmatrg1", "Réduction de matrice dans rang 1", ("Maths.Algèbre.Réduction",))
+
+Propriétés de réduction de matrices de rang $1$. 
+
+#answer
+
+Soit $A in M_n (KK)$ tel que $"rg" A = 1$.
+
++ On dispose de $L in M_(1 n) (KK), C in M_(n 1) (KK)$ tels que $A = C L$.
+
++ $A^2 = (tr A) A$.
+
++ $X(X - tr A)$ annule $A$.
+
++ Si $tr A != 0$, $A$ est diagonalisable.
+
++ Si $tr A = 0$, $A$ est nilpotente.
+
+*Démonstration*
+
++ Comme $"rg" A = "rg" mat(C_1, dots.c, C_n) = 1$, on dispose de $k in [|1, n|]$ tel que ${C_1, dots, C_n} subset.eq "Vect"(C_k)$ : #h(1fr)
+  $
+    A &= mat(C_1, dots.c, C_n) = C_k mat(alpha_1, dots.c, alpha_n) \
+    &= underbrace(vec(x_1, dots.v, x_n), C) underbrace(mat(alpha_1, dots.c, alpha_n), L)
+  $
+
++ $
+  A^2 = C underbrace(L C, tr A) L = (tr A) A
+  $
+
++ Évident.
+
++ Si $tr A != 0$, $A$ est annuler par $X(X - tr A)$ SARS donc $A$ est diagonalisable.
+
++ Si $tr A = 0$, $X^2$ annule $A$, donc $A$ est nilpotente.
+
+#card("suitreclin", "Suites récurrentes linéaires", ("Maths.Algèbre.Réduction", "Maths.Analyse.Suites"))
+
+Propriétés, méthodes d'étude de suites récurrentes linéaires.
+
+#answer
+
+Pour tout $(x_0, dots, x_(p-1)) in KK^p$, pour tout $n in NN$ on définit la suite $(x_n)_n in KK^NN$
+$
+  x_(n + p) = sum_(k = 0)^(p-1) a_k x_(n + k) quad (*) \
+  cal(S) = Set((x_n)_n in KK^NN, (*)) \
+  dim cal(S) = p
+$
+Où $cal(S)$ est un $KK$-ev.
+
+$
+  A = mat(augment: #(hline: 3), 0, 1;,dots.down, dots.down;,,0,1;a_0, a_1, dots.c, a_(p - 1)) = C_P^TT \
+  P = X^p - sum_(k = 0)^(p-1) a_k X^k
+$
+Ainsi si $X_n = vec(X_n, dots.v, X_(n + p))$
+$
+  A X_n = X_(n+1) \
+  X_n = A^n X_0
+$
+Si $chi_A$ est SARS
+$
+  chi_A = product_(k = 1)^p (X - lambda_k) \
+ cal(S) = "Vect" ((lambda_k^n)_(n in NN))_(k in [|1, p|])
+$
+
+*Démonstration*
+
+- Si $P = chi_C_P = chi_A$ est SARS #h(1fr)
+  $
+    X^p - sum_(k = 0)^(p-1) a_k X^k = product_(k = 1)^p (X - lambda_k)
+  $
+  $A$ est diagonalisable comme $chi_A$ est SARS
+  $
+    A = Q dmat(lambda_1, dots.down, lambda_p) Q^(-1) \
+    A^n = sum_(k = 1)^p lambda_k^p Pi_k
+  $
+  Où les $Pi_k$ sont les projecteurs issus de la décomposition en sous-espaces propres.
+  $
+    vec(x_n, dots.v, x_(n+p)) &= X_n = A^n X_0 \
+    &= sum_(k = 1)^p lambda_k^n Pi_k X_0 \
+    x_n &= sum_(k = 1)^p lambda_k^n gamma_k \
+    (x_n)_n &= sum_(k = 1)^p gamma_k (lambda_k^n)_n \
+    &in "Vect" ((lambda_k^n)_(n in NN))_(k in [|1, p|])
+  $
+  Soit $k in [|1, p|]$
+  $
+    chi_A (lambda_k) = 0 \
+    "Donc " lambda_k^p = sum_(i = 0)^(p-1) a_i lambda_k^i \ 
+    forall n in NN, space lambda_k^(p + n) = sum_(i = 0)^(p-1) a_i lambda_k^(n + i) \
+    (lambda_k^n)_(n in NN) in cal(S)
+  $
+
+- Sinon 
+  $
+    P = product_(k = 1)^q (X - lambda_k)^(m_k)
+  $
+  Posons
+  $
+    delta : func(KK^NN, KK^NN, (y_n)_n, (y_(n+1))_n)
+  $
+  Ainsi on a
+  $
+    cal(S) &= ker P(delta) \
+    &= plus.o.big_(k = 1)^q ker (delta - lambda_k)^(m_k)
+  $
+  - Montrons que $(n^d lambda_k^n)_n in ker (delta - lambda_k id)^(m_k) subset.eq ker P(delta) = cal(S)$ :
+
+    Définissons d'abord
+    $
+      Delta : func(KK[X], KK[X], P(X), P(X+1) - P(X))
+    $
+    On remarque que
+    $
+      P = sum_(k = 0)^d a_k X^k \
+    $
+    $
+      Delta (P) &= sum_(k = 0)^d a_k [(X + 1)^k - X^k] \
+      &= sum_(k = 0)^d a_k [sum_(i = 0)^(k - 1) underbrace(X^(k - 1 - i) X^i, deg <= k - 1)] \
+      deg Delta (P) &<= deg P - 1
+    $
+    Ainsi $Delta^(d+1) P = 0$.
+    
+    Alors pour tout $k in [|1, q|]$, $P in KK_(m_k - 1) [X]$
+    $
+      (delta - lambda_k id) (P(n) lambda_k^n)_n \
+      = ([P(n+1) - P(n)] lambda_k^(n+1))_n \
+      = (Delta(P)(n) lambda_k^(n+1))_n
+    $
+    Donc 
+    $
+    (delta - lambda_k)^(m_k) (P(n) lambda_k^n)_n \
+      = (Delta^(m_k)(P)(n) lambda_k^(n+1))_n \
+      = 0
+    $
+    Ainsi pour $P(X) = X^d$ avec $d in [|0, m_k - 1|]$, $
+    (n^d lambda_k^n)_n in ker (delta - lambda_k id)^(m_k) 
+    $
+
+  - Montrons que la famille $((n^d lambda_k^n)_(n in NN))_(d in [|0, m_k - 1|])$ est libre.
+
+    Notons $u_d = (n^d lambda_k^n)_(n in NN) $.
+
+    Supposons
+    $
+      sum_(i = 0)^(m_k - 1) gamma_i u_i = 0
+    $
+    Alors pour tout $n in NN$
+    $
+      underbrace((sum_(i = 0)^(m_k - 1) gamma_i n^i), P_k (n)) underbrace(lambda_k^n, != 0) = 0
+    $
+    Et $P_k$ est un polynôme qui s'annule sur $NN$ entier, et est donc nul.
+
+  Donc on dispose de bases des $ker (delta - lambda_k id)^(m_k)$
+  $
+    cal(S) = "Vect"((n^d lambda_k^n)_(n in NN))_(d in [|0, m_k - 1|] \ k in [|1, q|])
+  $
