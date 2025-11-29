@@ -188,12 +188,12 @@ Soit $(G, dot)$ un groupe fini et $H$ un sous-groupe.
 
 #let re = math.class("relation", $cal(R)$)
 - Relation quotienté par $H$ : $x re y$ si $y x^(-1) in H$ (relation d'équivalence). On note $G \/ H$ l'ensemble des classes d'équivalences.
-- Soit $x in G$, $accent(x, macron)$ sa classe d'équivalence pour $re$. $accent(x, macron) = H x = {h x, h in H}$.
+- Soit $x in G$, $macron(x)$ sa classe d'équivalence pour $re$. $macron(x) = H x = {h x, h in H}$.
 
   Par double inclusion :
-  - $H x subset.eq accent(x, macron)$ : Soit $y in H x$, $y = h x$ avec $h in H$, donc $y x^(-1) = h in H$ d'où $y re x$ et $y in accent(x, macron)$.
-  - $accent(x, macron) subset.eq H x$ : Soit $y in accent(x, macron)$, $y x^(-1) = h in H$, donc $y = h x in H x$.
-- Donc $forall x in G, accent(x, macron) = H x tilde.eq H$ d'où $abs(accent(x, macron)) = abs(H)$.
+  - $H x subset.eq macron(x)$ : Soit $y in H x$, $y = h x$ avec $h in H$, donc $y x^(-1) = h in H$ d'où $y re x$ et $y in macron(x)$.
+  - $macron(x) subset.eq H x$ : Soit $y in macron(x)$, $y x^(-1) = h in H$, donc $y = h x in H x$.
+- Donc $forall x in G, macron(x) = H x tilde.eq H$ d'où $abs(macron(x)) = abs(H)$.
 - Enfin par le lemme du berger : $abs(G \/ H) = abs(G) / abs(H)$ et donc $abs(H) | abs(G)$.
 
 #card("propmorphgrouplag", "Relation de cardinal pour un morphisme de groupe", ("Maths.Algèbre.Groupes",))
@@ -1691,7 +1691,7 @@ Et on dit qu'un polynôme $P$ est primitif si $c(P) = 1$.
   $
 
   Donc $p$ ne divise pas tous les coéfficients de $P Q$ pour tout $p in PP$, d'où $c(P Q) = 1$.
-- On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $accent(P, ~) = P / c(P)$ et $accent(Q, ~) = Q / c(Q)$.
+- On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $tilde(P) = P / c(P)$ et $tilde(Q) = Q / c(Q)$.
 
 #card("exocont1", "Exercice : Produit de polynômes de rationels unitaire entier", ("Maths.Exercice.Polynômes",))
 
@@ -3052,22 +3052,22 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
   et $u(y) in I$.
 
-- Notons $accent(u, ~) = u|_K^K$ l'endomorphisme induit par $u$ sur $K$.
+- Notons $tilde(u) = u|_K^K$ l'endomorphisme induit par $u$ sur $K$.
 
   $
-    accent(u, ~)^m (K) = u^m (K) = {0}
+    tilde(u)^m (K) = u^m (K) = {0}
   $
 
-  Donc $accent(u, ~)$ est nilpotent d'indice $m$.
+  Donc $tilde(u)$ est nilpotent d'indice $m$.
 
-- Notons $accent(u,~) = u |_I^I$ l'endomorphisme induit par $u$ sur $I$.
+- Notons $tilde(u) = u |_I^I$ l'endomorphisme induit par $u$ sur $I$.
 
   $
-    accent(u,~) (I) &= u (im u^m) = im u^(m+1) \
+    tilde(u) (I) &= u (im u^m) = im u^(m+1) \
     &= im u^m = I
   $
 
-  Donc $accent(u, ~)$ est inversible.
+  Donc $tilde(u)$ est inversible.
 
 - Soit $K' plus.o I' = E$ qui respectent les hypothèses.
 
@@ -3106,18 +3106,18 @@ Soit $A in M_n (KK)$
 - pour tout $j in [|1, n|]$ : #h(1fr)
 
   $
-    det(A) = sum_(i = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
+    det(A) = sum_(i = 1)^n (-1)^(i + j) a_(i j) det(tilde(A)_(i j))
   $
 
 - pour tout $i in [|1, n|]$ : #h(1fr)
 
   $
-    det(A) = sum_(j = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
+    det(A) = sum_(j = 1)^n (-1)^(i + j) a_(i j) det(tilde(A)_(i j))
   $
 
-Où $accent(A, ~)_(i j) in M_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
+Où $tilde(A)_(i j) in M_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
 
-On appelle $accent(A,hat)_(i j) = (-1)^(i + j) det (accent(A, ~)_(i j))$ cofacteur.
+On appelle $hat(A)_(i j) = (-1)^(i + j) det (tilde(A)_(i j))$ cofacteur.
 
 On appelle $"com"(A)$ la matrice des cofacteurs.
 
@@ -3139,7 +3139,7 @@ Soit $A in M_n (KK)$ avec $n >= 3$.
 
 - Si $"rg" A = n$, $A in "GL"_n (KK)$ donc $"com" A in "GL"_n (KK)$ et $"rg" "com"(A) = n$.
 
-- Si $"rg" A <= n - 2$, pour tout $i, j in [|1, n|]$ la matrice $accent(A, ~)_(i j)$ extraite de $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne est de rang inférieur à $n - 2$ et n'est donc pas inversible, $"com" A = 0$ et $"rg" "com"(A) = 0$.
+- Si $"rg" A <= n - 2$, pour tout $i, j in [|1, n|]$ la matrice $tilde(A)_(i j)$ extraite de $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne est de rang inférieur à $n - 2$ et n'est donc pas inversible, $"com" A = 0$ et $"rg" "com"(A) = 0$.
 
 - Si $"rg" A = n - 1$, on dispose d'une matrice éxtraite de taille $n - 1$ inversible, donc au moins un des cofacteur est non nul d'où $"rg" "com"(A) >= 1$.
 
@@ -3208,13 +3208,13 @@ Prenons $A = mat(C_1, dots.c, C_n) in M_n (KK)$
   $
   Ainsi
   $
-    A^((n + 1)) = mat(augment: #("hline": 1, "vline": 1), 1, *, dots.c, *; 0;dots.v,,accent(A,~);0)
+    A^((n + 1)) = mat(augment: #("hline": 1, "vline": 1), 1, *, dots.c, *; 0;dots.v,,tilde(A);0)
   $
 
-On repète l'algorithme sur $accent(A,~)$, on obtient alors
+On repète l'algorithme sur $tilde(A)$, on obtient alors
 
 $
-  accent(accent(A, ~),~) = mat(augment: #("hline": (4, 3), "vline": (4, 3)),
+  tilde(tilde(A)) = mat(augment: #("hline": (4, 3), "vline": (4, 3)),
     1,,(*),*;
     ,dots.down,,dots.v,,(*);
     ,,1,*;
@@ -3230,8 +3230,8 @@ Avec $mu != 1$ ssi le blocs de zéros à la fin est de taille nulles (on ne disp
 On peut alors finalement effectuer pour tout $i in [|1, "rg" A|]$, puis pour $j in [|i + 1, n|]$
 
 $
-  accent(accent(accent(A,~),~),~) : quad C_j <- C_j - accent(accent(A,~),~)_(i j) / (accent(accent(A,~),~)_(i i)) C_i \
-  accent(accent(accent(A,~),~),~) = mat(
+  tilde(tilde(tilde(A))) : quad C_j <- C_j - tilde(tilde(A))_(i j) / (tilde(tilde(A))_(i i)) C_i \
+  tilde(tilde(tilde(A))) = mat(
     1;
     ,dots.down;
     ,,1;
@@ -3508,21 +3508,21 @@ Soient $E, F, G$ trois $KK$-ev
     $
     Posons
     $
-      accent(u,~) : func(H, im u, x, u(x)) \
-      ker accent(u,~) = ker u inter H = {0} \
+      tilde(u) : func(H, im u, x, u(x)) \
+      ker tilde(u) = ker u inter H = {0} \
       space dim H = "rg" u \
     $
-    Donc $accent(u, ~)$ inversible.
+    Donc $tilde(u)$ inversible.
 
     On peut donc écrire
     $
-      w : func(F &= im u &plus.o& K, G, x &= y &+& z, v compose accent(u, ~)^(-1) (y))
+      w : func(F &= im u &plus.o& K, G, x &= y &+& z, v compose tilde(u)^(-1) (y))
     $
 
     Soit $x = y + z in E = ker u plus.o H$.
 
     $
-     w compose u (x) &= v(accent(u, ~)^(-1) (u(z))) \
+     w compose u (x) &= v(tilde(u)^(-1) (u(z))) \
      &= v(z) \
      v(x) &= underbrace(v(y), 0) + v(z)
     $
@@ -3538,12 +3538,12 @@ Soient $E, F, G$ trois $KK$-ev
 
     Soit $H$ tel que $ker u plus.o H = E$.
     $
-      accent(u,~) : func(H, im u, x, u(x)) \
-      w : func(G, E, x, accent(u,~)^(-1) compose v (x))
+      tilde(u) : func(H, im u, x, u(x)) \
+      w : func(G, E, x, tilde(u)^(-1) compose v (x))
     $
     On a bien pour $x in E$
     $
-      u compose w(x) = accent(u,~)(accent(u,~)^(-1)(v(x))) = v(x)
+      u compose w(x) = tilde(u)(tilde(u)^(-1)(v(x))) = v(x)
     $
 
 // TODO: VI.2) Liberté des familles de F(X, K) (flm la vrm)

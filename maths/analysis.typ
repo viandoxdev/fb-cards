@@ -300,52 +300,6 @@ $
 $
 Les parties convexes de $RR$ sont des intervalles.
 
-#card("densite", "Densité", ("Maths.Analyse.Réels",))
-
-Définition de densité.
-
-#answer
-
-Soit $D subset.eq RR$, $D$ est dense dans $RR$ si
-$
-  forall a < b in RR, Ioo(a, b) inter D != emptyset
-$
-$QQ$ est dense dans $RR$, preuve : saut de grenouille.
-
-#card("vois", "Voisinage", ("Maths.Analyse.Réels",))
-
-Définition de voisinage.
-
-#answer
-
-Soit $x in overline(RR)$, $V subset.eq RR$ est un voisinage de $x$ si 
-$
-exists epsilon > 0, Ioo(x-epsilon, x+epsilon) subset.eq V
-$
-On note $cal(V) (x)$ l'ensemble des voisinages de $x$.
-
-#card("adh", "Adhérence", ("Maths.Analyse.Réels",))
-
-Définition et propriétés de l'adhérence d'un ensemble.
-
-#answer
-
-Soit $A subset.eq RR$, $x in overline(RR)$, $x in RR$ est adhérent à $A$ si
-$
-  forall V in cal(V)(x), V inter A != emptyset
-$
-L'adhérence de $A$ est alors
-$
-  "adh"(A) &= {x in RR | x "adhérent à" A} \
-  &= {x in RR | script(forall epsilon > 0\, #Ioo($x-epsilon$, $x+epsilon$) inter A != emptyset)}
-$
-Propriétés :
-- $A subset.eq "adh"(A)$
-- Si $A$ non vide borné : ${inf A, sup A} subset.eq A$
-- $"adh"(Ioo(a,b)) = Icc(a,b)$
-- $D$ est dense dans $RR$ ssi $"adh"(D) = RR$
-- $"adh"("adh"(A)) = "adh"(A)$
-
 #card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites Réelles",))
 
 Formule explicite d'une suite arithmético-géometrique.
@@ -387,21 +341,6 @@ $
     u_n = (lambda + mu n)r^n
   $
 Avec $lambda, mu in RR$ déterminés par $u_0$ et $u_1$.
-
-#card("carseq", "Caractèrisation séquentielle de l'adhérence", ("Maths.Analyse.Suites Réelles",))
-
-Caractèrisation séquentielle de l'adhérence et la borne supérieure.
-
-#answer
-
-Soit $A subset.eq RR$.
-- Si $(u_n)$ une suite à valeure dans $A$ et $u_n -> l$, alors $l in "adh"_overline(RR)(A)$.
-- Si $x in "adh"_overline(RR)$, alors il existe $(u_n) in A^NN$ tel que $u_n -> x$.
-Ainsi
-$
-  "adh"(A) \ = {x in RR | exists (u_n) in A^NN, u_n -> x}
-$
-Et $S = sup A$ existe si $A$ non vide majoré par $S$ et il existe $(u_n) in A^NN$ tel que $u_n -> S$.
 
 #card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites Réelles",))
 

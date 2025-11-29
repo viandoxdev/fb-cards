@@ -185,9 +185,9 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
     chi_M (X) = chi_A (X) chi_C (X)
   $
 
-- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
+- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $tilde(u)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
   $
-    chi_accent(u,~) | chi_u
+    chi_tilde(u) | chi_u
   $
 
 *Démonstration*
@@ -202,7 +202,7 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
   cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C)
   $
 
-  Avec $A = cal(M)_accent(e,~) (accent(u,~))$.
+  Avec $A = cal(M)_tilde(e) (tilde(u))$.
 
 #card("diag", "Diagonalisabilité", ("Maths.Algèbre.Réduction",))
 
@@ -300,7 +300,7 @@ Dans ce cas
 
 La réciproque est aussi vraie : $chi_u "scindé" => u "trigonalisable"$.
 
-Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $accent(u,~)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_accent(u,~) | chi_u$ scindé).
+Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $tilde(u)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_tilde(u) | chi_u$ scindé).
 
 Si $KK$ est algébriquement clos, toute matrice ou endomorphisme est trigonalisable.
 
@@ -326,12 +326,12 @@ $
 Ainsi on peut construire la base $e' = (X_0, dots, X_n)$ de $KK^(n+1)$. Notons $P = P_("can" -> e')$.
 
 $
-  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,accent(A,~);0) P^(-1)
+  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,tilde(A);0) P^(-1)
 $
 
-Avec $accent(A,~) in M_n (KK)$ et $chi_A = chi_accent(A,~) (X - lambda)$ d'où $chi_accent(A,~)$ scindé.
+Avec $tilde(A) in M_n (KK)$ et $chi_A = chi_tilde(A) (X - lambda)$ d'où $chi_tilde(A)$ scindé.
 
-Par hypothèse de récurrence $accent(A,~)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
+Par hypothèse de récurrence $tilde(A)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
 
 $
   A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
@@ -632,17 +632,17 @@ Diagonalisabilité d'un endomorphisme induit.
 
 Soit $u in cal(L)(E)$, $F$ un sev stable par $u$.
 
-Notons $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$.
+Notons $tilde(u)$ l'endomorphisme induit par $u$ sur $F$.
 
-- $Pi_accent(u,~) | Pi_u$
+- $Pi_tilde(u) | Pi_u$
 
-- Si $u$ diagonalisable, alors $accent(u,~)$ aussi.
+- Si $u$ diagonalisable, alors $tilde(u)$ aussi.
 
 *Démonstration*
 
-- $Pi_u (accent(u,~)) = 0$ donc $Pi_accent(u,~) | Pi_u$.
+- $Pi_u (tilde(u)) = 0$ donc $Pi_tilde(u) | Pi_u$.
 
-- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_accent(u,~)$ aussi (car divise) donc $accent(u,~)$ est diagonalisable.
+- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_tilde(u)$ aussi (car divise) donc $tilde(u)$ est diagonalisable.
 
 // TODO: M127 Dénombrement
 
@@ -919,7 +919,7 @@ Soit $x_0 in E\\{0}$, on veut montrer $chi_u (u) (x_0) = 0$.
 
 On pose $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ sev de $E$ stable par $u$.
 
-Soit $accent(u,~)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
+Soit $tilde(u)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
 
 Soit $d in NN$ tel que 
 $
@@ -927,16 +927,16 @@ e_0 = (x_0, u(x_0), dots, u^(d-1) (x_0))
 $
 Soit une base de $F_x_0$.
 $
-  cal(M)_e_0 (accent(u,~)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
+  cal(M)_e_0 (tilde(u)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
 $
 Où 
 $
-  accent(u,~)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
+  tilde(u)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
   P(X) = X^d - sum_(k = 0)^(d-1) a_k X^k \
   P(u)(x_0) = 0
 $
 
-Or $P = chi_C_P = chi_accent(u,~) | chi_u$ donc
+Or $P = chi_C_P = chi_tilde(u) | chi_u$ donc
 $
   chi_u (u) (x_0) = Q(u) (P(u) (x_0)) = 0
 $
@@ -1230,10 +1230,10 @@ Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
     q = min Set(k in NN^*, ker u^k = ker u^(k+1))
   $
 
-  Soit $accent(u,~)$ l'induit par $u$ sur $ker u^q$.
+  Soit $tilde(u)$ l'induit par $u$ sur $ker u^q$.
   $
-    cases(space accent(u,~)^q = 0, space accent(u,~)^(q - 1) != 0) " Donc " Pi_accent(u,~) = X^q \
-    X^q | Pi_accent(u,~) | Pi_u = X^d Q \
+    cases(space tilde(u)^q = 0, space tilde(u)^(q - 1) != 0) " Donc " Pi_tilde(u) = X^q \
+    X^q | Pi_tilde(u) | Pi_u = X^d Q \
     q <= d
   $
   Donc $ker u^q = ker u^d$
@@ -1548,10 +1548,10 @@ Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
 
 *Démonstration*
 
-+ Soit $accent(u,~)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
++ Soit $tilde(u)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
   $
-    G &= plus.o.big_(lambda in "Sp"(accent(u,~))) E_lambda (accent(u,~)) \
-    &= plus.o.big_(k = 1)^N ker (accent(u,~) - lambda_k id_G) \
+    G &= plus.o.big_(lambda in "Sp"(tilde(u))) E_lambda (tilde(u)) \
+    &= plus.o.big_(k = 1)^N ker (tilde(u) - lambda_k id_G) \
     &= plus.o.big_(k = 1)^N G inter underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
   $
 
@@ -1615,12 +1615,12 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
 
 + (2 $=>$ 1) Par contraposé #h(1fr)
 
-  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $accent(u,~)$ l'endomorphisme induit.
+  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $tilde(u)$ l'endomorphisme induit.
 
   $
-    chi_accent(u,tilde) | chi_u
+    chi_tilde(u) | chi_u
   $
-  Avec $chi_accent(u,~) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
+  Avec $chi_tilde(u) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
 
 + (1 $=>$ 2) Par contraposé : Soit $x in E\\{0}$ on note
   $
@@ -1745,10 +1745,10 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
   $
     E = plus.o.big_(k = 1)^N ker P_k (u)
   $
-  Soit $F$ sev stable par $u$, $accent(u,~)$ induit par $u$ sur $F$. Par TDN 
+  Soit $F$ sev stable par $u$, $tilde(u)$ induit par $u$ sur $F$. Par TDN 
   $
-    F &= plus.o.big_(k = 1)^N ker P_k (accent(u,~)) \
-     &= plus.o.big_(k = 1)^N underbrace((ker P_k (accent(u,~))) inter F, F_k)
+    F &= plus.o.big_(k = 1)^N ker P_k (tilde(u)) \
+     &= plus.o.big_(k = 1)^N underbrace((ker P_k (tilde(u))) inter F, F_k)
   $
   $F_k$ sev de $E_k = ker P_k (u)$ stable par $u_k$ induit par $u$ sur $E_k$.
 
@@ -1785,11 +1785,11 @@ Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisabl
   $
     F = plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
   $
-  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $accent(u,~)$ l'induit sur $G$ de $u$.
+  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $tilde(u)$ l'induit sur $G$ de $u$.
   $
-    Pi_accent(u,~) | Pi_u "scindé"
+    Pi_tilde(u) | Pi_u "scindé"
   $
-  Donc $accent(u,~)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
+  Donc $tilde(u)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
 
 #card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Réduction",))
 
@@ -1923,16 +1923,16 @@ De plus on a
 
   $
     phi(M) = A M - M B = alpha M \
-    underbrace((A - alpha I_n), accent(A,~)) M - M B = 0
+    underbrace((A - alpha I_n), tilde(A)) M - M B = 0
   $
-  Avec $chi_accent(A,~)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $accent(A,~)$)
+  Avec $chi_tilde(A)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $tilde(A)$)
 
-  Posons $phi' : N |-> accent(A,~) N - N B$
+  Posons $phi' : N |-> tilde(A) N - N B$
   $
     phi' (M) = 0
   $
   Donc $phi'$ non injectif d'où $
-  {mu} subset.eq "Sp"(accent(A,~)) inter "Sp"(B) != emptyset
+  {mu} subset.eq "Sp"(tilde(A)) inter "Sp"(B) != emptyset
   $
   Ainsi $alpha + mu in "Sp"(A)$.
 
@@ -1990,9 +1990,9 @@ Les seuls sev de $E$ stables par $u$ sont les $(ker u^k)_(k in [|0, n|])$.
 
 Ils sont stables comme $ker$ d'un endomorphisme commutant avec $u$.
 
-Soit $F$ sev stable par $u$. Soit $accent(u,~)$ induit par $u$ sur $F$ qui est nilpotent car car $accent(u,~)^n = 0$.
+Soit $F$ sev stable par $u$. Soit $tilde(u)$ induit par $u$ sur $F$ qui est nilpotent car car $tilde(u)^n = 0$.
 
-Or l'ordre de nilpotence de $accent(u,~)$ est majoré par $d = dim F$ : $accent(u,~)^d = 0$.
+Or l'ordre de nilpotence de $tilde(u)$ est majoré par $d = dim F$ : $tilde(u)^d = 0$.
 
 Donc $F subset.eq ker u^d$.
 
@@ -2102,7 +2102,7 @@ Soit $u, v in cal(L)(E)$ trigonalisables qui commutent.
 
 Soit $lambda in "Sp"(u)$, $E_lambda (u) != {0}$ est stable par $v$.
 
-Notons $accent(v, ~)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
+Notons $tilde(v)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
 
 Puis récurrence.
 
@@ -2121,7 +2121,7 @@ Soit $x$ vecteur propre commun aux $u_1, dots, u_d$ associé aux valeurs propres
 $
 {x} in F = inter.big_(k = 1)^d underbrace(E_lambda_k (u_k), "stable par" v) != emptyset
 $
-Donc $F$ est stable par $v$, on peut donc y induire $accent(v,~)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
+Donc $F$ est stable par $v$, on peut donc y induire $tilde(v)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
 
 *Démonstration : famille infinie*
 
@@ -2196,7 +2196,7 @@ Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u 
     u (v (ker u)) &= 0 \
     v(ker u) &subset.eq ker u
   $
-  Donc $ker u$ est stable par $v$, posons $accent(v,~)$ induit sur $ker u$. Or $accent(v,~)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
+  Donc $ker u$ est stable par $v$, posons $tilde(v)$ induit sur $ker u$. Or $tilde(v)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
 
   Ainsi par récurrence sur la dimension de $E$ :
 
@@ -2424,14 +2424,14 @@ Soit $A in M_n (KK)$ et $p in NN$.
     chi_A = product_(k = 1)^q (X - lambda_k)^(m_k) \
     A = P dmat(lambda_1 I_m_1 + N_1, dots.down, lambda_q I_m_q + N_q) P^(-1)
   $
-  Pour tout $j in [|1, q|]$, on dispose de $accent(M,~)_j$ et $mu_j$ tels que
+  Pour tout $j in [|1, q|]$, on dispose de $tilde(M)_j$ et $mu_j$ tels que
   $
     mu_j^k = lambda_j \
-    accent(M,~)_j^k = I_m_j + 1/lambda_j N_j \
+    tilde(M)_j^k = I_m_j + 1/lambda_j N_j \
   $
   On définit alors
   $
-    M_j &= mu_j accent(M,~)_j \
+    M_j &= mu_j tilde(M)_j \
     M_j^k &= mu_j^k I_m_j + mu_j^k / lambda_j N_j \
     &= lambda_j I_m_j + N_j
   $
