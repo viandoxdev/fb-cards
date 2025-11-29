@@ -675,52 +675,6 @@ $
 $
 Les parties convexes de $RR$ sont des intervalles.
 
-#card("densite", "Densité", ("Maths.Analyse.Réels",))
-
-Définition de densité.
-
-#answer
-
-Soit $D subset.eq RR$, $D$ est dense dans $RR$ si
-$
-  forall a < b in RR, Ioo(a, b) inter D != emptyset
-$
-$QQ$ est dense dans $RR$, preuve : saut de grenouille.
-
-#card("vois", "Voisinage", ("Maths.Analyse.Réels",))
-
-Définition de voisinage.
-
-#answer
-
-Soit $x in overline(RR)$, $V subset.eq RR$ est un voisinage de $x$ si 
-$
-exists epsilon > 0, Ioo(x-epsilon, x+epsilon) subset.eq V
-$
-On note $cal(V) (x)$ l'ensemble des voisinages de $x$.
-
-#card("adh", "Adhérence", ("Maths.Analyse.Réels",))
-
-Définition et propriétés de l'adhérence d'un ensemble.
-
-#answer
-
-Soit $A subset.eq RR$, $x in overline(RR)$, $x in RR$ est adhérent à $A$ si
-$
-  forall V in cal(V)(x), V inter A != emptyset
-$
-L'adhérence de $A$ est alors
-$
-  "adh"(A) &= {x in RR | x "adhérent à" A} \
-  &= {x in RR | script(forall epsilon > 0\, #Ioo($x-epsilon$, $x+epsilon$) inter A != emptyset)}
-$
-Propriétés :
-- $A subset.eq "adh"(A)$
-- Si $A$ non vide borné : ${inf A, sup A} subset.eq A$
-- $"adh"(Ioo(a,b)) = Icc(a,b)$
-- $D$ est dense dans $RR$ ssi $"adh"(D) = RR$
-- $"adh"("adh"(A)) = "adh"(A)$
-
 #card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites Réelles",))
 
 Formule explicite d'une suite arithmético-géometrique.
@@ -762,21 +716,6 @@ $
     u_n = (lambda + mu n)r^n
   $
 Avec $lambda, mu in RR$ déterminés par $u_0$ et $u_1$.
-
-#card("carseq", "Caractèrisation séquentielle de l'adhérence", ("Maths.Analyse.Suites Réelles",))
-
-Caractèrisation séquentielle de l'adhérence et la borne supérieure.
-
-#answer
-
-Soit $A subset.eq RR$.
-- Si $(u_n)$ une suite à valeure dans $A$ et $u_n -> l$, alors $l in "adh"_overline(RR)(A)$.
-- Si $x in "adh"_overline(RR)$, alors il existe $(u_n) in A^NN$ tel que $u_n -> x$.
-Ainsi
-$
-  "adh"(A) \ = {x in RR | exists (u_n) in A^NN, u_n -> x}
-$
-Et $S = sup A$ existe si $A$ non vide majoré par $S$ et il existe $(u_n) in A^NN$ tel que $u_n -> S$.
 
 #card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites Réelles",))
 
@@ -2087,6 +2026,217 @@ Dans ce cas :
 + Toute suite convergente pour $norm(dot)_1$ l'est pour $norm(dot)_2$.
 
 On dit que $norm(dot)_1$ et $norm(dot)_2$ sont équivalentes si chacune est plus fine que l'autre. C'est une relation d'équivalence.
+
+#card("adh", "Adhérance", ("Maths.Topologie",))
+
+Définition de l'adhérance, caractérisation séquentielle.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $A subset.eq E$ une partie. Un point $x in A$ est dit adhérant à $A$ s'il vérifit une des conditions équivalentes suivantes :
+
++ $forall r > 0, B(x, r) inter A != emptyset$
+
++ $exists (u_n)_n in A^NN, lim_(n -> oo) u_n = x$
+
++ $d(x, A) = 0$
+
+On définit alors l'adhérance d'un ensemble (noté $overline(A)$) comme l'ensemble de ses points d'adhérance.
+
+- $A subset.eq overline(A)$.
+
+- $A$ est fermée ssi $A = overline(A)$.
+
+- $overline(A)$ est le plus petit (au sens de l'inclusion) fermé contenant $A$ :
+  $
+    overline(A) = inter.big_(A subset.eq B subset.eq E \ B "fermé") B
+  $
+
+- $overline(E \\ A) = E \\ circle(A)$
+
+*Démonstration*
+
+- (1 $=>$ 2) Pour tout $n in NN$, on pose $x_n$ tel que $x_n in B(x, 1/(n+1))$, qui existe par hypothèse.
+
+  Ainsi $d(x_n, x) < 1/(n+1)$ d'où $(d(x_n, x))_n -> 0$ donc $(x_n)_n -> x$.
+
+- (2 $=>$ 1) Par hypothèse on dispose de $(x_n)_n in A^NN -> x$. Soit $r > 0$.
+
+  On dispose de $N in NN$ tel que $d(x_N, x) < r$, donc
+  $
+    x_N in B(x, r) inter A != emptyset
+  $
+
+- (2 $<=>$ 3) 
+  $
+    x in overline(A) &<=> exists (a_n)_n in A^NN, space a_n -> x \
+    &<=> exists (a_n)_n in A^NN, space d(x, a_n) -> 0 \
+    &<=> d(x, A) <= 0 \
+    &<=> d(x, A) = 0
+  $
+
+- Supposons que $F != overline(F)$, on dispose donc de $x in overline(F) \\ F$.
+
+  Soit $epsilon > 0$, comme $x in overline(F)$
+  $
+    B(x, epsilon) inter F != emptyset \
+    B(x, epsilon) subset.eq.not E \\ F
+  $
+  Donc $E \\ F$ n'est pas un ouvert : $F$ n'est pas fermée.
+
+- Supposons que $F$ n'est pas fermée, on dispose donc de $x in E \\ F$ tel que
+  $
+    forall epsilon > 0, B(x, epsilon) subset.eq.not E \\ F
+  $
+  Donc pour tout $epsilon > 0$
+  $
+    B(x, epsilon) inter F != emptyset
+  $
+  D'où $x in overline(F)$, mais $x in.not F$ : $F != overline(F)$.
+
+#card("vois", "Voisinage", ("Maths.Topologie",))
+
+Définition de voisinage.
+
+#answer
+
+Soit $(E, d)$ un espace métrique et $x in E$.
+
+On dit que $V subset.eq E$ est un voisinage de $x$ dans $E$ s'il existe $r > 0$ tel que $B(x, r) subset.eq V$.
+
+On note $cal(V)(x)$ l'ensemble des voisinages de $x$ dans $E$.
+
+#card("densite", "Densité", ("Maths.Topologie",))
+
+Définition de densité.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, on dit que $A subset.eq E$ est dense dans $E$ si
+$
+  overline(A) = E
+$
+
+#card("interieur", "Interieur", ("Maths.Topologie",))
+
+Définition de l'interieur d'une partie.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $A subset.eq E$ et $x in E$.
+
+On dit que $x$ est un point interieur de $A$ s'il existe $r > 0$ tel que
+$
+  B(x, r) subset.eq A
+$
+C'est à dire $A in cal(V)(x)$.
+
+On note $circle(A)$ l'ensemble des points interieurs de $A$.
+
+- $circle(A) subset.eq A$
+
+- $A$ est ouvert ssi $circle(A) = A$
+
+- $circle(A)$ est le plus grand ouvert inclus dans $A$
+
+- $circle(overparen(E \\ A)) = E \\ overline(A)$
+
+On définie aussi la frontière d'une partie $partial A = "Fr" A = overline(A) \\ circle(A)$ qui est un fermé.
+
+#card("limfunctop", "Limite d'une fonction", ("Maths.Topologie",))
+
+Définition de la limite d'une fonction.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques et $X subset.eq E$.
+
+Soit $f in cal(F)(X, F)$, $a in overline(X)$, on dit que $f$ admet $l in F$ comme limite en $a$ si l'une des conditions équivalentes suivantes est vérifiée.
+
++ $forall epsilon > 0, exists delta > 0, f(B(a, delta) inter X) subset.eq B(l, epsilon)$
+
++ $forall V in cal(V)(l), exists W in cal(V)(a), f(W inter X) subset.eq V$.
+
++ $forall (x_n)_n in X^NN -> a, lim_(n -> oo) f(x_n) = l$.
+
+*Démonstration*
+
+- (1 $=>$ 2) Soit $V in cal(V)(l)$, on dispose donc de $B(l, epsilon) subset.eq V$, et donc de $delta > 0$ tel que 
+  $
+  f(underbrace(B(a, delta), W in cal(V)(a)) inter X) subset.eq B(l, epsilon) subset.eq V
+  $
+
+- (2 $=>$ 1) Soit $epsilon > 0$, comme $V = B(epsilon, l) in cal(V)(l)$, on dispose de $W in cal(V)(a)$, et donc de $delta > 0$ tel que 
+  $
+  f(B(a, delta) inter X) subset.eq f(W inter X) subset.eq V
+  $
+
+- L'écrire.
+
+#card("continuite", "Continuité d'une fonction en un point", ("Maths.Topologie",))
+
+Définition de continuité en un point.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques, $X subset.eq E$ et $f in cal(F)(X, F)$.
+
+On dit que $f$ est continue en $a in X$ si:
+$
+  lim_(x -> a) f(x) = f(a)
+$
+
+Ce qui équivaut à
+$
+  forall V in cal(V)(f(a)), f^(-1) (V) in cal(V)(a)
+$ 
+
+Il suffit d'ailleur que $f$ admette une limite en $a$, car dans ce cas cette limite est forcément $f(a)$.
+
+*Démonstration*
+
+- Supposons $f$ continue en $a$ : comme $lim_(x -> a) f(x) = f(a)$, pour tout $V in cal(V)(f(a))$ on dispose de $W in cal(V)(a)$ tel que #h(1fr)
+  $
+    f(W inter X) subset.eq V \
+    cal(V) (a) in.rev W inter X supset.eq f^(-1) (V)
+  $
+
+- Soit $V in cal(V)(f(a))$ :
+  $
+    W = f^(-1)(V) in cal(V)(a) \
+    f(W inter X) subset.eq V
+  $
+
+#card("contglob", "Continuité d'une fonction", ("Maths.Topologie",))
+
+Définition de continuité (sur un ensemble) d'une fonction.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques, $X subset.eq E$ et $f in cal(F)(X, F)$.
+
+On dit que $f$ est continue sur $X$ ($f in C^0 (X, F)$) si pour tout $a in X$, $f$ est continue en $a$.
+
+Ce qui est équivalent à
+$
+  forall Omega "ouvert de" F, f^(-1) (Omega) "ouvert de" X
+$
+On en déduit que
+$
+  forall F "fermé de" F, f^(-1) (F) "fermé de" X
+$
+
+*Démonstration*
+
+- Supposons $f in C^0 (X, F)$, soit $Omega subset.eq F$ ouvert et $a in f^(-1)(Omega)$.
+
+  Comme $f(a) in Omega$, $Omega in cal(V)(f(a))$, et par continuité en $a in X$ : $f^(-1)(Omega) in cal(V)(a)$.
+
+- Soit $a in X, epsilon > 0$, comme $B(f(a), epsilon)$ est ouvert, $f^(-1)(B(f(a), epsilon))$ est un ouvert contenant $a$ : on dispose de $delta > 0$ tel que
+  $
+    B(a, delta) subset.eq f^(-1)(B(f(a), epsilon)) \
+    f(B(a, delta) inter X) subset.eq B(f(a), epsilon)
+  $
 ]
 #[
 
@@ -2271,9 +2421,9 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
     chi_M (X) = chi_A (X) chi_C (X)
   $
 
-- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
+- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $tilde(u)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
   $
-    chi_accent(u,~) | chi_u
+    chi_tilde(u) | chi_u
   $
 
 *Démonstration*
@@ -2288,7 +2438,7 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
   cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C)
   $
 
-  Avec $A = cal(M)_accent(e,~) (accent(u,~))$.
+  Avec $A = cal(M)_tilde(e) (tilde(u))$.
 
 #card("diag", "Diagonalisabilité", ("Maths.Algèbre.Réduction",))
 
@@ -2386,7 +2536,7 @@ Dans ce cas
 
 La réciproque est aussi vraie : $chi_u "scindé" => u "trigonalisable"$.
 
-Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $accent(u,~)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_accent(u,~) | chi_u$ scindé).
+Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $tilde(u)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_tilde(u) | chi_u$ scindé).
 
 Si $KK$ est algébriquement clos, toute matrice ou endomorphisme est trigonalisable.
 
@@ -2412,12 +2562,12 @@ $
 Ainsi on peut construire la base $e' = (X_0, dots, X_n)$ de $KK^(n+1)$. Notons $P = P_("can" -> e')$.
 
 $
-  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,accent(A,~);0) P^(-1)
+  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,tilde(A);0) P^(-1)
 $
 
-Avec $accent(A,~) in M_n (KK)$ et $chi_A = chi_accent(A,~) (X - lambda)$ d'où $chi_accent(A,~)$ scindé.
+Avec $tilde(A) in M_n (KK)$ et $chi_A = chi_tilde(A) (X - lambda)$ d'où $chi_tilde(A)$ scindé.
 
-Par hypothèse de récurrence $accent(A,~)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
+Par hypothèse de récurrence $tilde(A)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
 
 $
   A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
@@ -2718,17 +2868,17 @@ Diagonalisabilité d'un endomorphisme induit.
 
 Soit $u in cal(L)(E)$, $F$ un sev stable par $u$.
 
-Notons $accent(u,~)$ l'endomorphisme induit par $u$ sur $F$.
+Notons $tilde(u)$ l'endomorphisme induit par $u$ sur $F$.
 
-- $Pi_accent(u,~) | Pi_u$
+- $Pi_tilde(u) | Pi_u$
 
-- Si $u$ diagonalisable, alors $accent(u,~)$ aussi.
+- Si $u$ diagonalisable, alors $tilde(u)$ aussi.
 
 *Démonstration*
 
-- $Pi_u (accent(u,~)) = 0$ donc $Pi_accent(u,~) | Pi_u$.
+- $Pi_u (tilde(u)) = 0$ donc $Pi_tilde(u) | Pi_u$.
 
-- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_accent(u,~)$ aussi (car divise) donc $accent(u,~)$ est diagonalisable.
+- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_tilde(u)$ aussi (car divise) donc $tilde(u)$ est diagonalisable.
 
 // TODO: M127 Dénombrement
 
@@ -3005,7 +3155,7 @@ Soit $x_0 in E\\{0}$, on veut montrer $chi_u (u) (x_0) = 0$.
 
 On pose $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ sev de $E$ stable par $u$.
 
-Soit $accent(u,~)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
+Soit $tilde(u)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
 
 Soit $d in NN$ tel que 
 $
@@ -3013,16 +3163,16 @@ e_0 = (x_0, u(x_0), dots, u^(d-1) (x_0))
 $
 Soit une base de $F_x_0$.
 $
-  cal(M)_e_0 (accent(u,~)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
+  cal(M)_e_0 (tilde(u)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
 $
 Où 
 $
-  accent(u,~)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
+  tilde(u)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
   P(X) = X^d - sum_(k = 0)^(d-1) a_k X^k \
   P(u)(x_0) = 0
 $
 
-Or $P = chi_C_P = chi_accent(u,~) | chi_u$ donc
+Or $P = chi_C_P = chi_tilde(u) | chi_u$ donc
 $
   chi_u (u) (x_0) = Q(u) (P(u) (x_0)) = 0
 $
@@ -3316,10 +3466,10 @@ Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
     q = min Set(k in NN^*, ker u^k = ker u^(k+1))
   $
 
-  Soit $accent(u,~)$ l'induit par $u$ sur $ker u^q$.
+  Soit $tilde(u)$ l'induit par $u$ sur $ker u^q$.
   $
-    cases(space accent(u,~)^q = 0, space accent(u,~)^(q - 1) != 0) " Donc " Pi_accent(u,~) = X^q \
-    X^q | Pi_accent(u,~) | Pi_u = X^d Q \
+    cases(space tilde(u)^q = 0, space tilde(u)^(q - 1) != 0) " Donc " Pi_tilde(u) = X^q \
+    X^q | Pi_tilde(u) | Pi_u = X^d Q \
     q <= d
   $
   Donc $ker u^q = ker u^d$
@@ -3634,10 +3784,10 @@ Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
 
 *Démonstration*
 
-+ Soit $accent(u,~)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
++ Soit $tilde(u)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
   $
-    G &= plus.o.big_(lambda in "Sp"(accent(u,~))) E_lambda (accent(u,~)) \
-    &= plus.o.big_(k = 1)^N ker (accent(u,~) - lambda_k id_G) \
+    G &= plus.o.big_(lambda in "Sp"(tilde(u))) E_lambda (tilde(u)) \
+    &= plus.o.big_(k = 1)^N ker (tilde(u) - lambda_k id_G) \
     &= plus.o.big_(k = 1)^N G inter underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
   $
 
@@ -3701,12 +3851,12 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
 
 + (2 $=>$ 1) Par contraposé #h(1fr)
 
-  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $accent(u,~)$ l'endomorphisme induit.
+  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $tilde(u)$ l'endomorphisme induit.
 
   $
-    chi_accent(u,tilde) | chi_u
+    chi_tilde(u) | chi_u
   $
-  Avec $chi_accent(u,~) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
+  Avec $chi_tilde(u) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
 
 + (1 $=>$ 2) Par contraposé : Soit $x in E\\{0}$ on note
   $
@@ -3831,10 +3981,10 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
   $
     E = plus.o.big_(k = 1)^N ker P_k (u)
   $
-  Soit $F$ sev stable par $u$, $accent(u,~)$ induit par $u$ sur $F$. Par TDN 
+  Soit $F$ sev stable par $u$, $tilde(u)$ induit par $u$ sur $F$. Par TDN 
   $
-    F &= plus.o.big_(k = 1)^N ker P_k (accent(u,~)) \
-     &= plus.o.big_(k = 1)^N underbrace((ker P_k (accent(u,~))) inter F, F_k)
+    F &= plus.o.big_(k = 1)^N ker P_k (tilde(u)) \
+     &= plus.o.big_(k = 1)^N underbrace((ker P_k (tilde(u))) inter F, F_k)
   $
   $F_k$ sev de $E_k = ker P_k (u)$ stable par $u_k$ induit par $u$ sur $E_k$.
 
@@ -3871,11 +4021,11 @@ Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisabl
   $
     F = plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
   $
-  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $accent(u,~)$ l'induit sur $G$ de $u$.
+  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $tilde(u)$ l'induit sur $G$ de $u$.
   $
-    Pi_accent(u,~) | Pi_u "scindé"
+    Pi_tilde(u) | Pi_u "scindé"
   $
-  Donc $accent(u,~)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
+  Donc $tilde(u)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
 
 #card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Réduction",))
 
@@ -4009,16 +4159,16 @@ De plus on a
 
   $
     phi(M) = A M - M B = alpha M \
-    underbrace((A - alpha I_n), accent(A,~)) M - M B = 0
+    underbrace((A - alpha I_n), tilde(A)) M - M B = 0
   $
-  Avec $chi_accent(A,~)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $accent(A,~)$)
+  Avec $chi_tilde(A)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $tilde(A)$)
 
-  Posons $phi' : N |-> accent(A,~) N - N B$
+  Posons $phi' : N |-> tilde(A) N - N B$
   $
     phi' (M) = 0
   $
   Donc $phi'$ non injectif d'où $
-  {mu} subset.eq "Sp"(accent(A,~)) inter "Sp"(B) != emptyset
+  {mu} subset.eq "Sp"(tilde(A)) inter "Sp"(B) != emptyset
   $
   Ainsi $alpha + mu in "Sp"(A)$.
 
@@ -4076,9 +4226,9 @@ Les seuls sev de $E$ stables par $u$ sont les $(ker u^k)_(k in [|0, n|])$.
 
 Ils sont stables comme $ker$ d'un endomorphisme commutant avec $u$.
 
-Soit $F$ sev stable par $u$. Soit $accent(u,~)$ induit par $u$ sur $F$ qui est nilpotent car car $accent(u,~)^n = 0$.
+Soit $F$ sev stable par $u$. Soit $tilde(u)$ induit par $u$ sur $F$ qui est nilpotent car car $tilde(u)^n = 0$.
 
-Or l'ordre de nilpotence de $accent(u,~)$ est majoré par $d = dim F$ : $accent(u,~)^d = 0$.
+Or l'ordre de nilpotence de $tilde(u)$ est majoré par $d = dim F$ : $tilde(u)^d = 0$.
 
 Donc $F subset.eq ker u^d$.
 
@@ -4188,7 +4338,7 @@ Soit $u, v in cal(L)(E)$ trigonalisables qui commutent.
 
 Soit $lambda in "Sp"(u)$, $E_lambda (u) != {0}$ est stable par $v$.
 
-Notons $accent(v, ~)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
+Notons $tilde(v)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
 
 Puis récurrence.
 
@@ -4207,7 +4357,7 @@ Soit $x$ vecteur propre commun aux $u_1, dots, u_d$ associé aux valeurs propres
 $
 {x} in F = inter.big_(k = 1)^d underbrace(E_lambda_k (u_k), "stable par" v) != emptyset
 $
-Donc $F$ est stable par $v$, on peut donc y induire $accent(v,~)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
+Donc $F$ est stable par $v$, on peut donc y induire $tilde(v)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
 
 *Démonstration : famille infinie*
 
@@ -4282,7 +4432,7 @@ Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u 
     u (v (ker u)) &= 0 \
     v(ker u) &subset.eq ker u
   $
-  Donc $ker u$ est stable par $v$, posons $accent(v,~)$ induit sur $ker u$. Or $accent(v,~)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
+  Donc $ker u$ est stable par $v$, posons $tilde(v)$ induit sur $ker u$. Or $tilde(v)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
 
   Ainsi par récurrence sur la dimension de $E$ :
 
@@ -4510,14 +4660,14 @@ Soit $A in M_n (KK)$ et $p in NN$.
     chi_A = product_(k = 1)^q (X - lambda_k)^(m_k) \
     A = P dmat(lambda_1 I_m_1 + N_1, dots.down, lambda_q I_m_q + N_q) P^(-1)
   $
-  Pour tout $j in [|1, q|]$, on dispose de $accent(M,~)_j$ et $mu_j$ tels que
+  Pour tout $j in [|1, q|]$, on dispose de $tilde(M)_j$ et $mu_j$ tels que
   $
     mu_j^k = lambda_j \
-    accent(M,~)_j^k = I_m_j + 1/lambda_j N_j \
+    tilde(M)_j^k = I_m_j + 1/lambda_j N_j \
   $
   On définit alors
   $
-    M_j &= mu_j accent(M,~)_j \
+    M_j &= mu_j tilde(M)_j \
     M_j^k &= mu_j^k I_m_j + mu_j^k / lambda_j N_j \
     &= lambda_j I_m_j + N_j
   $
@@ -4999,12 +5149,12 @@ Soit $(G, dot)$ un groupe fini et $H$ un sous-groupe.
 
 #let re = math.class("relation", $cal(R)$)
 - Relation quotienté par $H$ : $x re y$ si $y x^(-1) in H$ (relation d'équivalence). On note $G \/ H$ l'ensemble des classes d'équivalences.
-- Soit $x in G$, $accent(x, macron)$ sa classe d'équivalence pour $re$. $accent(x, macron) = H x = {h x, h in H}$.
+- Soit $x in G$, $macron(x)$ sa classe d'équivalence pour $re$. $macron(x) = H x = {h x, h in H}$.
 
   Par double inclusion :
-  - $H x subset.eq accent(x, macron)$ : Soit $y in H x$, $y = h x$ avec $h in H$, donc $y x^(-1) = h in H$ d'où $y re x$ et $y in accent(x, macron)$.
-  - $accent(x, macron) subset.eq H x$ : Soit $y in accent(x, macron)$, $y x^(-1) = h in H$, donc $y = h x in H x$.
-- Donc $forall x in G, accent(x, macron) = H x tilde.eq H$ d'où $abs(accent(x, macron)) = abs(H)$.
+  - $H x subset.eq macron(x)$ : Soit $y in H x$, $y = h x$ avec $h in H$, donc $y x^(-1) = h in H$ d'où $y re x$ et $y in macron(x)$.
+  - $macron(x) subset.eq H x$ : Soit $y in macron(x)$, $y x^(-1) = h in H$, donc $y = h x in H x$.
+- Donc $forall x in G, macron(x) = H x tilde.eq H$ d'où $abs(macron(x)) = abs(H)$.
 - Enfin par le lemme du berger : $abs(G \/ H) = abs(G) / abs(H)$ et donc $abs(H) | abs(G)$.
 
 #card("propmorphgrouplag", "Relation de cardinal pour un morphisme de groupe", ("Maths.Algèbre.Groupes",))
@@ -6502,7 +6652,7 @@ Et on dit qu'un polynôme $P$ est primitif si $c(P) = 1$.
   $
 
   Donc $p$ ne divise pas tous les coéfficients de $P Q$ pour tout $p in PP$, d'où $c(P Q) = 1$.
-- On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $accent(P, ~) = P / c(P)$ et $accent(Q, ~) = Q / c(Q)$.
+- On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $tilde(P) = P / c(P)$ et $tilde(Q) = Q / c(Q)$.
 
 #card("exocont1", "Exercice : Produit de polynômes de rationels unitaire entier", ("Maths.Exercice.Polynômes",))
 
@@ -7863,22 +8013,22 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
   et $u(y) in I$.
 
-- Notons $accent(u, ~) = u|_K^K$ l'endomorphisme induit par $u$ sur $K$.
+- Notons $tilde(u) = u|_K^K$ l'endomorphisme induit par $u$ sur $K$.
 
   $
-    accent(u, ~)^m (K) = u^m (K) = {0}
+    tilde(u)^m (K) = u^m (K) = {0}
   $
 
-  Donc $accent(u, ~)$ est nilpotent d'indice $m$.
+  Donc $tilde(u)$ est nilpotent d'indice $m$.
 
-- Notons $accent(u,~) = u |_I^I$ l'endomorphisme induit par $u$ sur $I$.
+- Notons $tilde(u) = u |_I^I$ l'endomorphisme induit par $u$ sur $I$.
 
   $
-    accent(u,~) (I) &= u (im u^m) = im u^(m+1) \
+    tilde(u) (I) &= u (im u^m) = im u^(m+1) \
     &= im u^m = I
   $
 
-  Donc $accent(u, ~)$ est inversible.
+  Donc $tilde(u)$ est inversible.
 
 - Soit $K' plus.o I' = E$ qui respectent les hypothèses.
 
@@ -7917,18 +8067,18 @@ Soit $A in M_n (KK)$
 - pour tout $j in [|1, n|]$ : #h(1fr)
 
   $
-    det(A) = sum_(i = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
+    det(A) = sum_(i = 1)^n (-1)^(i + j) a_(i j) det(tilde(A)_(i j))
   $
 
 - pour tout $i in [|1, n|]$ : #h(1fr)
 
   $
-    det(A) = sum_(j = 1)^n (-1)^(i + j) a_(i j) det(accent(A, ~)_(i j))
+    det(A) = sum_(j = 1)^n (-1)^(i + j) a_(i j) det(tilde(A)_(i j))
   $
 
-Où $accent(A, ~)_(i j) in M_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
+Où $tilde(A)_(i j) in M_(n - 1) (KK)$ est la matrice $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne.
 
-On appelle $accent(A,hat)_(i j) = (-1)^(i + j) det (accent(A, ~)_(i j))$ cofacteur.
+On appelle $hat(A)_(i j) = (-1)^(i + j) det (tilde(A)_(i j))$ cofacteur.
 
 On appelle $"com"(A)$ la matrice des cofacteurs.
 
@@ -7950,7 +8100,7 @@ Soit $A in M_n (KK)$ avec $n >= 3$.
 
 - Si $"rg" A = n$, $A in "GL"_n (KK)$ donc $"com" A in "GL"_n (KK)$ et $"rg" "com"(A) = n$.
 
-- Si $"rg" A <= n - 2$, pour tout $i, j in [|1, n|]$ la matrice $accent(A, ~)_(i j)$ extraite de $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne est de rang inférieur à $n - 2$ et n'est donc pas inversible, $"com" A = 0$ et $"rg" "com"(A) = 0$.
+- Si $"rg" A <= n - 2$, pour tout $i, j in [|1, n|]$ la matrice $tilde(A)_(i j)$ extraite de $A$ privée de sa $i$#super[ème] ligne et $j$#super[ème] colonne est de rang inférieur à $n - 2$ et n'est donc pas inversible, $"com" A = 0$ et $"rg" "com"(A) = 0$.
 
 - Si $"rg" A = n - 1$, on dispose d'une matrice éxtraite de taille $n - 1$ inversible, donc au moins un des cofacteur est non nul d'où $"rg" "com"(A) >= 1$.
 
@@ -8019,13 +8169,13 @@ Prenons $A = mat(C_1, dots.c, C_n) in M_n (KK)$
   $
   Ainsi
   $
-    A^((n + 1)) = mat(augment: #("hline": 1, "vline": 1), 1, *, dots.c, *; 0;dots.v,,accent(A,~);0)
+    A^((n + 1)) = mat(augment: #("hline": 1, "vline": 1), 1, *, dots.c, *; 0;dots.v,,tilde(A);0)
   $
 
-On repète l'algorithme sur $accent(A,~)$, on obtient alors
+On repète l'algorithme sur $tilde(A)$, on obtient alors
 
 $
-  accent(accent(A, ~),~) = mat(augment: #("hline": (4, 3), "vline": (4, 3)),
+  tilde(tilde(A)) = mat(augment: #("hline": (4, 3), "vline": (4, 3)),
     1,,(*),*;
     ,dots.down,,dots.v,,(*);
     ,,1,*;
@@ -8041,8 +8191,8 @@ Avec $mu != 1$ ssi le blocs de zéros à la fin est de taille nulles (on ne disp
 On peut alors finalement effectuer pour tout $i in [|1, "rg" A|]$, puis pour $j in [|i + 1, n|]$
 
 $
-  accent(accent(accent(A,~),~),~) : quad C_j <- C_j - accent(accent(A,~),~)_(i j) / (accent(accent(A,~),~)_(i i)) C_i \
-  accent(accent(accent(A,~),~),~) = mat(
+  tilde(tilde(tilde(A))) : quad C_j <- C_j - tilde(tilde(A))_(i j) / (tilde(tilde(A))_(i i)) C_i \
+  tilde(tilde(tilde(A))) = mat(
     1;
     ,dots.down;
     ,,1;
@@ -8319,21 +8469,21 @@ Soient $E, F, G$ trois $KK$-ev
     $
     Posons
     $
-      accent(u,~) : func(H, im u, x, u(x)) \
-      ker accent(u,~) = ker u inter H = {0} \
+      tilde(u) : func(H, im u, x, u(x)) \
+      ker tilde(u) = ker u inter H = {0} \
       space dim H = "rg" u \
     $
-    Donc $accent(u, ~)$ inversible.
+    Donc $tilde(u)$ inversible.
 
     On peut donc écrire
     $
-      w : func(F &= im u &plus.o& K, G, x &= y &+& z, v compose accent(u, ~)^(-1) (y))
+      w : func(F &= im u &plus.o& K, G, x &= y &+& z, v compose tilde(u)^(-1) (y))
     $
 
     Soit $x = y + z in E = ker u plus.o H$.
 
     $
-     w compose u (x) &= v(accent(u, ~)^(-1) (u(z))) \
+     w compose u (x) &= v(tilde(u)^(-1) (u(z))) \
      &= v(z) \
      v(x) &= underbrace(v(y), 0) + v(z)
     $
@@ -8349,12 +8499,12 @@ Soient $E, F, G$ trois $KK$-ev
 
     Soit $H$ tel que $ker u plus.o H = E$.
     $
-      accent(u,~) : func(H, im u, x, u(x)) \
-      w : func(G, E, x, accent(u,~)^(-1) compose v (x))
+      tilde(u) : func(H, im u, x, u(x)) \
+      w : func(G, E, x, tilde(u)^(-1) compose v (x))
     $
     On a bien pour $x in E$
     $
-      u compose w(x) = accent(u,~)(accent(u,~)^(-1)(v(x))) = v(x)
+      u compose w(x) = tilde(u)(tilde(u)^(-1)(v(x))) = v(x)
     $
 
 // TODO: VI.2) Liberté des familles de F(X, K) (flm la vrm)
