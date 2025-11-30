@@ -441,18 +441,6 @@ $
   sum_(k = 1)^n 1/n &= ln n + gamma + o(1)
 $
 
-#card("lipschitz", "Fonctions K-Lipschitziennes", ("Maths.Analyse.Continuité",))
-
-Qu'est qu'une fonction $K$-lipschitzienne
-
-#answer
-
-Une fonction $f: A -> RR$ est $K$-lipschitzienne si
-$
-  forall x,y in A, abs(f(x) - f(y)) <= K abs(x - y)
-$
-Lipschitz sur un segment implique uniformement continue.
-
 #card("bornes", "Théorème des bornes atteintes", ("Maths.Analyse.Continuité",))
 
 Théorème des bornes atteintes et démonstration.
