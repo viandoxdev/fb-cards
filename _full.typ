@@ -816,18 +816,6 @@ $
   sum_(k = 1)^n 1/n &= ln n + gamma + o(1)
 $
 
-#card("lipschitz", "Fonctions K-Lipschitziennes", ("Maths.Analyse.Continuité",))
-
-Qu'est qu'une fonction $K$-lipschitzienne
-
-#answer
-
-Une fonction $f: A -> RR$ est $K$-lipschitzienne si
-$
-  forall x,y in A, abs(f(x) - f(y)) <= K abs(x - y)
-$
-Lipschitz sur un segment implique uniformement continue.
-
 #card("bornes", "Théorème des bornes atteintes", ("Maths.Analyse.Continuité",))
 
 Théorème des bornes atteintes et démonstration.
@@ -2237,6 +2225,387 @@ $
     B(a, delta) subset.eq f^(-1)(B(f(a), epsilon)) \
     f(B(a, delta) inter X) subset.eq B(f(a), epsilon)
   $
+
+#card("lipschitz", "Fonctions K-Lipschitziennes", ("Maths.Topologie",))
+
+Définition des fonctions $K$-lipschitziennes.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques et $X subset.eq E$.
+
+Une fonction $f in cal(F)(X, F)$ est dite $k$-lipschitzienne pour un $k > 0$ si
+$
+  forall x, y in X, \ d_F (f(x), f(y)) <= k d_E (x, y)
+$
+
+Toute fonction lipschitzienne est uniformement continue, donc continue.
+
+Exemples (notons $d = d_E$) :
+
+- Pour tout $a$ in $E$, $x |-> d (x, a)$ est $1$-lipschitzienne.
+
+- Pour tout $A subset.eq E$, $x |-> d (x, A)$ est $1$-lipschitzienne.
+
+Si $E = KK^n$ un $KK$-ev de dimension finie muni de $norm(dot)_oo$ et $d$ qui en dérive.
+
+- Pour tout $k in [|1, n|]$ : #h(1fr)
+  $
+    phi_k : func(KK^n, KK, x = vec(x_1, dots.v, x_n), x_k)
+  $
+  Est $1$-lipschitzienne.
+
+- Pour tout $P in KK[X_1, dots, X_n]$
+  $
+    func(KK^n, KK, x = vec(x_1, dots.v, x_n), P(x_1, dots, x_n))
+  $
+  Est continue (par somme et produit de fonctions qui le sont).
+
+*Démonstration*
+
+- Soit $a in E, x, y in X$ #h(1fr)
+  $
+    abs(d(x, a) - d(y, a)) \ <= abs(d(x, y) + d(y, a) - d(y , a)) \
+    <= d(x, y)
+  $
+
+- Soit $A subset.eq E, x, y in X$. Soit $a in A$
+  $
+    d(x, A) <= d(x, a) <= d(x, y) + d(y, a) \
+    d(x, A) - d(x, y) <= d(y, a) \
+  $
+  Ceci pour tout $a$ d'où
+  $
+    d(x, A) - d(x, y) <= d(y, A) \
+    d(x, A) - d(y, A) <= d(x, y) \
+  $
+  Et par symétrie
+  $
+    abs(d(x, A) - d(y, A)) <= d(x, y)
+  $
+
+- Soit $k in [|1, n|]$ et $x, y in KK^n$
+  $
+    abs(x_k - y_k) &<= max_(i in [|1, n|]) abs(x_i - y_i) \ &= norm(x - y)_oo
+  $
+
+#card("contapplin", "Continuité des applications linéaires", ("Maths.Topologie",))
+
+Conditions de continuité d'une application linéaire.
+
+#answer
+
+Soit $E, F$ deux $KK$-evn, $f in cal(L)(E, F)$.
+
+On a équivalence entre
+
++ $f$ continue sur $E$.
+
++ $f$ continue en $0$.
+
++ $exists k > 0, forall x in E, space norm(f(x)) <= k norm(x)$
+
++ $f$ est lipschitzienne.
+
+Inversement on a équivalence entre
+
++ $f$ n'est pas continue sur $E$
+
++ Il existe $(x_n)_n in E^NN$ tel que #h(1fr)
+  $
+    forall n in NN, norm(x_n) = 1 \
+    (norm(f(x_n)))_n tends(n->oo) +oo
+  $
+
++ Il existe $(x_n)_n in E^NN$ tel que
+  $
+    (x_n)_n tends(n->oo) 0 \
+    forall n in NN, norm(f(x_n)) = 1
+  $
+
+Enfin en dimension finie toute application linéaire est continue.
+
+*Démonstration*
+
+Continuité :
+- (1 $=>$ 2) Par définition.
+
+- (2 $=>$ 3) Par continuité de $f$ en $0$ on dispose de $delta > 0$ tel que
+  $
+    f(B_E (0, delta)) subset.eq B_F (0, epsilon)
+  $
+  Donc pour tout $x in E$
+  $
+    norm(f(delta / 2 x / norm(x))) <= 1 \
+    norm(f(x)) <= 2 / delta norm(x)
+  $
+
+- (3 $=>$ 4) Soit $x, y in E$
+  $
+    norm(f(x) - f(y)) &= norm(f(x - y)) \ &<= k norm(x - y)
+  $
+
+- (4 $=>$ 1) Immédiat.
+
+Non continuité :
+
+- (1 $=>$ 2) Comme $f$ n'est pas continue on a #h(1fr)
+  $
+    forall k > 0, exists x in E, norm(f(x)) > k norm(x)
+  $
+  Donc pour tout $n in NN$ on dispose de $tilde(x)_n in E$ tel que 
+  $
+  norm(f(tilde(x)_n)) > n norm(tilde(x)_n) \
+  x_n = tilde(x)_n / norm(tilde(x)_n) quad quad norm(x_n) = 1 \
+  norm(f(x_n))  > n " donc " norm(f(x_n)) -> oo
+  $
+
+- (2 $=>$ 3) Soit $(tilde(x)_n)_n in E^NN$ une telle suite.
+  $
+    x_n = tilde(x)_n / norm(f(tilde(x)_n)) quad quad norm(f(x_n)) = 1 \
+    norm(x_n) = 1 / norm(f(tilde(x)_n)) -> 0
+  $
+
+- (3 $=>$ 1) $f$ n'est pas continue en $0$.
+
+En dimension finie, on prend une base $e = (e_1, dots, e_n)$ et la norme $norm(dot)_oo$, et pour $f in cal(L)(E, F)$ et $x in 
+E$ on a
+$
+  norm(f(x)) &= norm(sum_(k = 1)^n x_k f(e_k)) \
+  &<= sum_(k = 1)^n norm(x)_oo norm(f(e_k)) \
+  &= (sum_(k = 1)^n norm(f(e_k))) norm(x)_oo
+$
+
+#card("hyptopo", "Nature topologique d'un hyperplan", ("Maths.Topologie",))
+
+Nature topologique d'un hyperplan.
+
+#answer
+
+Soit $E$ un $KK$-evn, $H$ un hyperplan de $E$.
+
+$H$ est soit fermé soit dense dans $E$.
+
+*Démonstration*
+
+Supposons que $H$ n'est pas fermé. On dispose de 
+$
+(h_n)_n in H^NN tends(n -> oo) z in.not H
+$
+Comme $H$ est un hyperplan, 
+$
+H plus.o "Vect"(z) = E
+$
+Ainsi pour tout $x in E$
+$
+  x = h + alpha z quad quad (h, alpha) in H times KK \
+  (h + alpha h_n)_n in H^NN tends(n -> oo) x
+$
+
+#card("hypcontfl", "Continuité des formes linéaires", ("Maths.Topologie",))
+
+Condition de continuité d'une forme linéaires, lien avec les hyperplans.
+
+#answer
+
+Soit $E$ un $KK$-evn.
+
+Si $f in cal(L)(E, KK)$ est une forme linéaire alors $f$ est continue ssi $ker f$ est fermé.
+
+*Démonstration*
+
+- Si $f$ est continue, $ker f = f^(-1) {0}$ est fermé comme image reciproque d'un fermé par une application continue.
+
+- Si $f$ n'est pas continue, on dispose de $(x_n)_n in E^NN$ tel que #h(1fr)
+  $
+    forall n in NN, abs(f(x_n)) = 1 \
+    (x_n)_n tends(n->oo) 0
+  $
+  Quitte à poser $(x'_n)_n$ on peut suppposer $f(x_n) = 1 = f(x_0)$.
+  $
+    h_n = x_n - x_0 in ker f \
+    lim_(n -> oo) h_n = -x_0 in.not ker f
+  $
+  Donc $ker f$ n'est pas fermé.
+
+#card("normop", "Norme opérateur", ("Maths.Topologie",))
+
+Définition de la norme opérateur.
+
+#answer
+
+Soit $E, F, G$ trois $KK$-evn, on définit
+$
+  cal(L)_C (E, F) = cal(L)(E, F) inter C^0 (E, F)
+$
+Qui est une $KK$-algèbre.
+
+Pour $f in cal(L)_C (E, F)$ on définit
+$
+  norm(f)_"op" = lr(class("opening", bar.triple) f class("closing", bar.triple)) &= sup_(x in E\\{0}) norm(f(x)) / norm(x) \ &= sup_(x in SS(0, 1)) norm(f(x))
+$
+Qui est une norme d'algèbre sur $cal(L)_C (E, F)$, elle est donc sous-multiplicative :
+$
+  forall f, g in cal(L)_C (E, F), \
+  norm(f compose g)_"op" <= norm(f)_"op" dot norm(g)_"op"
+$
+
+*Démonstration*
+
+- Comme $f$ est linéaire et continue on dispose de $k > 0$ tel que #h(1fr)
+  $
+    forall x in E, norm(f(x)) <= k norm(x)
+  $
+  Ainsi
+  $
+  Gamma = {norm(f(x)) / norm(x), x in E\\{0}}
+  $
+  Est non vide majoré, donc le $sup$ existe.
+
+- De plus
+  $
+    & space space space space space space lambda in Gamma  \
+    &<=> exists x in E \\ {0}, lambda = norm(f(x)) / norm(x) \
+    &<=> exists x in E \\ {0}, lambda = norm(f(x / norm(x))) \
+    &<=> exists x in SS(0, 1), lambda = norm(f(x))
+  $
+  Ainsi $Gamma = {norm(f(x)), x in SS(0,1)}$.
+
+- C'est bien une norme :
+
+  + Soit $lambda in KK, f in cal(L)_C (E, F)$ #h(1fr)
+    $
+      norm(lambda f)_"op" &= sup_(x in SS(0, 1)) norm(lambda f(x)) \
+      &= abs(lambda) norm(f)_"op"
+    $
+
+  + Soit $f in cal(L)_C (E, F)$ tel que $norm(f)_"op" = 0$, soit $x in E \\ {0}$
+    $
+      norm(f(x)) <= norm(f)_"op" dot norm(x) = 0 \
+      f(x) = 0 " donc " f = 0
+    $
+
+  + Soit $f, g in cal(L)_C (E, F)$
+    $
+      & quad norm(f + g)_"op" \ &= sup_(x in SS(0, 1)) norm(f(x) + g(x)) / norm(x) \ 
+      &<= sup_(x in SS(0,1)) [norm(f(x)) / norm(x) + norm(g(x)) / norm(x)] \
+      &<= norm(f)_"op" + norm(g)_"op"
+    $
+
+- Soit $f in cal(L)_C (E, F), g in cal(L)_C (F, G)$ et $x in E$ :
+  $
+    norm(g(f(x))) &<= norm(g)_"op" norm(f(x)) \
+    &<= norm(g)_"op" norm(f)_"op" norm(x)
+  $
+  D'où $norm(g compose f)_"op" <= norm(g)_"op" dot norm(f)_"op"$.
+
+#card("exjaugeconvex", "Exercice : jauge d'un convexe", ("Maths.Exercice.Topologie",))
+
+Soit $(E, norm(dot))$ un $RR$-evn et $K subset.eq E$ convexe, symétrique par rapport à l'origine (c'est à dire stable par $-$), d'intérieur non vide et borné.
+
+On pose
+$
+  N : func(E, RR_+, x, inf space Set(lambda > 0, x / lambda in K))
+$
+
++ Montrer que $N$ est bien définit.
++ Montrer que $N$ est une norme
++ Montrer que $N$ est équivalente à $norm(dot)$.
++ Montrer que $overline(B_N) (0, 1) = overline(K)$
+
+#answer
+
+Montrons d'abord qu'on dispose de $delta > 0$ tel que $B(0, delta) subset.eq K$.
+
+Soit $a in circle(K)$, on dispose donc de $delta > 0$ tel que 
+$
+B(a, delta) subset.eq K
+$
+Par symétrie, on a alors 
+$
+B(-a, delta) subset.eq K
+$
+Soit $x in B(0, delta)$
+$
+  x + a in B(a, delta) subset.eq K \
+  x - a in B(-a, delta) subset.eq K \
+  1/2 (x + a) + 1/2 (x - a) = x in K
+$
+Par convexité.
+
++ Soit $x in E$ #h(1fr)
+  $
+    delta / (2 norm(x)) x < delta \
+    (delta x) / (2 norm(x)) in B(0, delta) subset.eq K
+  $
+  D'où $Set(lambda > 0, x / lambda in K)$ non vide minoré par $0$ : $N(x)$ qui en est l'$inf$ existe et est positif.
+
++ + Comme $K$ est borné, on dispose de $R > 0$ tel que #h(1fr)
+    $
+      K subset.eq B(0, R)
+    $
+    Soit $x in E$ tel que $N(x) = 0$.
+
+    Par caractérisation de la borne inférieur, on dispose de
+    $
+    (lambda_n)_n in RR_+^NN tends(n->oo) 0 \
+    $
+    Et pour tout $n in NN$
+    $
+      x / lambda_n in K subset.eq B(0, R) \
+      norm(x) / lambda_n <= R \
+      norm(x) / R <= lambda_n tends(n -> oo) 0
+    $
+    Donc $x = 0$
+  + Soit $mu in RR, x in E$.
+    - Si $mu = 0, N(mu x) = N(0) = 0$.
+    - Si $mu > 0$
+      $
+        N(mu x) &= inf Set(lambda > 0, (mu x) / lambda in K) \
+        &= mu N(x)
+      $
+    - Si $mu < 0$, par symétrie
+      $
+        N(mu x) = N(-mu x) = -mu N(x)
+      $
+  + Soit $x, y in E$, $lambda, mu > 0$ tels que $x / lambda, y / mu in K$ on a alors
+    $
+      (x + y) / (lambda + mu) &= underbrace(lambda /(lambda + mu), 1 - t) underbrace(x / lambda, in K) + underbrace(mu / (lambda + mu), t) underbrace(y / mu, in K) \
+      &in K
+    $
+    Ainsi
+    $
+      N(x + y) <= lambda + mu
+    $
+    Et avec $lambda -> N(x), mu -> N(y)$ \
+    $
+      N(x + y) <= N(x) + N(y)
+    $
++ Soit $x in E$, $lambda > 0$ tel que $x / lambda in K$.
+  $
+    norm(x) / lambda < R \
+    norm(x) <= R dot N(x)
+  $
+  Et
+  $
+    (delta x) / (2 norm(x)) in K \
+    N(x) <= 2 / delta norm(x)
+  $
++ Soit $x in K, x / 1 in K$ donc $X in overline(B_N)(0, 1)$.
+
+  Soit $x in overline(B_N)(0, 1)$.
+  - Si $N(x) = 1$, on dispose de
+    $
+    (lambda_n)_n in RR_+^NN tends(n->oo) 1 \
+    forall n in NN, x / lambda_n in K \
+    x = lim_(n -> oo) x / lambda_n in overline(K)
+    $
+  - Si $N(x) < 1$, on dispose par propriété de la borne inférieur de $lambda in Ico(N(x), 1)$ tel que
+    $
+      x / lambda in K \
+      x = (1 - lambda) dot 0 + lambda dot (x / lambda) in K
+    $
+
 ]
 #[
 
