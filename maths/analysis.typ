@@ -441,9 +441,9 @@ $
   sum_(k = 1)^n 1/n &= ln n + gamma + o(1)
 $
 
-#card("bornes", "Théorème des bornes atteintes", ("Maths.Analyse.Continuité",))
+#card("bornes", "Théorème des bornes atteintes réel", ("Maths.Analyse.Continuité",))
 
-Théorème des bornes atteintes et démonstration.
+Théorème des bornes atteintes et démonstration (Dans $RR$).
 
 #answer
 
@@ -455,9 +455,9 @@ Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR
 
 Par Bolzano-Weiestrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in Icc(a, b)$ et donc nécéssairement $M in RR$.
 
-#card("heine", "Théorème de Heine", ("Maths.Analyse.Continuité",))
+#card("heine", "Théorème de Heine réel", ("Maths.Analyse.Continuité",))
 
-Énoncé et démonstration du théorème de Heine.
+Énoncé et démonstration du théorème de Heine (dans $RR$).
 
 #answer
 

@@ -912,3 +912,257 @@ Par convexité.
       x = (1 - lambda) dot 0 + lambda dot (x / lambda) in K
     $
 
+#card("adhsuiteens", "Points d'adhérance d'une suite", ("Maths.Topologie",))
+
+Définition et propriétés sur les points d'adhérance d'une suite.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
+
+On dit que $l in E$ est un point d'adhérance de $u$ s'il existe $phi$ extractrice tel que
+$
+  (u_phi(n))_n -> l
+$
+
+Notons $cal(V)(u)$ l'ensemble de ces points. On a
+
+$
+  cal(V)(u) = inter.big_(p in NN) overline({u_n, n >= p})
+$
+
+Qui est donc fermé.
+
+De plus si $(u_n)$ converge vers $l in E$.
+$
+  K = {u_n, n in NN} union {l}
+$
+Est compact.
+
+*Démonstration*
+
+- Soit $l = lim_(n -> oo) u_phi(n)$, $p in NN$ #h(1fr)
+  $
+    (u_phi(n))_(n >= p) -> l in overline({u_n, n >= p}) \
+  $
+  Donc
+  $
+    l in inter.big_(p in NN) overline({u_n, n >= p})
+  $
+
+- Soit $l in inter.big_(p in NN) overline({u_n, n>=p})$, on pose $delta_n = 1 / (n+1)$.
+
+  Comme $l in overline({u_n, n in NN})$, on dispose de $phi(0)$ tel que $d(u_phi(0), l) <= delta_0$.
+
+  Supposons construits $phi(0), dots, phi(k)$, comme $l in overline({u_n, n >= phi(k) + 1})$, on dispose de $phi(k + 1)$ tel que
+  $
+    d(u_phi(k+1), l) < delta_(k+1)
+  $
+  Ainsi $phi$ extractrice et $(u_phi(n))_n -> l$.
+
+- Soit $(x_n)_n in K^NN$, on pose
+  $
+    Gamma = {n in NN, exists k in NN, x_k = u_n} 
+  $
+  Si $Gamma$ est fini, alors $x_n$ prend une valeur une infinité de fois qui est valeur d'adhérance de $(x_n)$.
+
+  Sinon on construit : on prend $psi(0) in Gamma$ et $phi(0)$ tel que $u_psi(0) = x_phi(0)$.
+
+  Supposons construits $psi(0), dots, psi(k)$ et $phi(0), dots, phi(k)$, on considère
+  $
+    Gamma_(k+1) = Set(n > psi(k), exists q > phi(k)\, x_q = u_n)
+  $
+  Qui est infini, donc on prend $psi(k+1) in Gamma_(k+1)$ et $phi(k+1)$ tel que
+  $
+    u_psi(k+1) = x_phi(k+1)
+  $
+  D'où $l$ est valeur d'adhérance de $(x_n)$.
+
+#card("compact", "Compacité", ("Maths.Topologie",))
+
+Définition de compacité.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $K subset.eq E$ est dit compacte si de toute suite
+$
+  (u_n)_n in K^NN
+$
+On peut extraire une sous suite convergente
+$
+  (u_phi(n))_n -> l in K
+$
+La compacité ne dépend pas de l'espace ($E$), mais dépend de $d$.
+
+Si $K$ est compacte :
+
+- $K$ est bornée dans $E$.
+
+- Si $K subset.eq X$, $K$ est fermé dans $X$.
+
+- Si $F subset.eq K$ est fermé, alors $F$ est compact.
+
+- Si $(u_n)$ est une suite à valeur dans $K$, alors elle converge ssi elle n'a qu'une seul valeur d'adhérance.
+
+- Si $f in C^0 (K, F)$ avec $F$ un espace métrique, alors $f(K)$ est compacte.
+
+- Un produit fini de compacts est compact.
+
+*Démonstration*
+
+- Supposons $K$ non bornée, soit $a in K$, posons $(x_n)_n in K^NN$ tel que pour tout $n in NN$ #h(1fr)
+  $
+    d(a, x_n) >= n
+  $
+  Donc $(x_n)$ ne peut converger, et $K$ n'est pas compacte.
+
+- Soit $(x_n)_n in K^NN -> l in overline(X)$, par compacité on peut éxtraire
+  $
+    (u_phi(n))_n -> z in K
+  $
+  Et $z = l$ par unicité de la limite, donc $K$ est fermé.
+
+- Soit $(x_n)_n in F^NN$, par compacité de $K supset.eq F$, on a #h(1fr)
+  $
+    (u_phi(n))_n -> l in K
+  $
+  Or comme $F$ est fermé et $(u_phi(n))_n in F^NN$, $l in F$ d'où $F$ compact.
+
+- Par contraposée, soit $(x_n)_n in K^NN$ qui diverge, par compacité, elle admet une valeur d'adhérance $l$, mais $(x_n) arrow.r.not l_1$ c'est à dire #h(1fr)
+  $
+    exists epsilon>0, forall N in NN, exists n >= N, d(x_n, l_1) >= epsilon
+  $
+  On fixe $epsilon$, on dispose d'une suite $(x_phi(n))$ tel que
+  $
+    forall n in NN, d(x_phi(n), l) >= epsilon
+  $
+  Or cette suite admet une valeur d'adhérance $l_2 != l_1$.
+
+- Soit $(y_n)_n in f(K)^NN$, on dispose de $(x_n)_n in K^NN$ tel que #h(1fr)
+  $
+    forall n in NN, f(x_n) = y_n
+  $
+  Et par compacité on peut éxtraire
+  $
+    (x_phi(n))_n -> l in K \
+    (f(x_phi(n)))_n = (y_phi(n))_n -> f(l) in f(K)
+  $
+
+#card("thbatttop", "Théorème des bornes atteintes", ("Maths.Topologie",))
+
+Théorème des bornes atteintes en sur un espace métrique.
+
+#answer
+
+Soit $K$ compact et $f in C^0(K, RR)$.
+
+Comme $f(K)$ est compact, $f$ est bornée et atteint ses bornes.
+
+Ainsi pour tout $x in E supset.eq K$
+$
+  d(x, K) = inf_(y in K) d(x, y)
+$
+Admet un $min$ : la distance est atteinte.
+
+*Démonstration*
+
+$f(K)$ est bornée et fermé car compact, ainsi il existe un $inf$ et un $sup$, et ce sont un $min$ et un $max$.
+
+#card("ptsfixes", "Théorèmes du point fixe", ("Maths.Topologie",))
+
+Énoncés et démonstrations des différents théorèmes du points fixe.
+
+#answer
+
++ Soit $K$ compact, $f : K -> K$, si pour tout $x != y in K$
+  $
+    d(f(x), f(y)) < d(x, y)
+  $
+  Alors $f$ admet un unique point fixe.
+
+*Démonstration*
+
++ On pose #h(1fr)
+  $
+    phi : func(K, RR_+, x, d(f(x), x))
+  $
+  Par compacité de $K$, $phi$ admet un $min$ atteint en $x_0 in K$ 
+  Supposons par l'absurde que $f(x_0) != x_0$ :
+  $
+    phi(f(x_0)) &= d(f(f(x_0)), f(x_0))  \
+    &< d(f(x_0), x_0) \ &< min phi
+  $
+  Absurde.
+
+  Soit $x != x_0$
+  $
+    d(f(x), x_0) < d(x, x_0)
+  $
+  Donc $f(x) != x$.
+
+#card("cpctdf", "Compacité en dimension finie", ("Maths.Topologie",))
+
+Propriétés de compacité en dimension finie.
+
+#answer
+
+Soit $E$ un $KK$-ev de dimension finie muni de $norm(dot)_(oo,e)$ pour la base $e$.
+$
+  norm(dot)_(oo,e) : func(E, RR_+, display(x = sum_(k = 1)^d x_k e_k), display(max_(k in [|1,d|]) abs(x_k)))
+$
+
+- Pour tout $R > 0$, $overline(B_norm(dot)_(oo,e) (0, R))$ est compact.
+
+- $K subset.eq E$ est compact ssi $K$ est fermé borné.
+
+*Démonstration*
+
+- On considère #h(1fr)
+  $
+    theta : func((RR^d, norm(dot)_oo), (E, norm(dot)_(oo,e)), vec(x_1, dots.v, x_d), sum_(k = 1)^d x_k e_d)
+  $
+  Qui est $1$-lipschitzienne et
+  $
+    overline(B_norm(dot)_(oo,e) (0, R)) = theta ([-R, R]^d)
+  $
+  Or $[-R, R]$ est compact (Bolzano-Weierstrass), d'où le résultat.
+
+- Soit $K subset.eq E$ fermé borné, on dispose donc de $R > 0$ tel que #h(1fr)
+  $
+    K subset.eq underbrace(overline(B_norm(dot)_(oo,e) (0, R)), "compacte")
+  $
+  Donc $K$ est fermé dans un compact d'où le résultat.
+
+#card("thheinetop", "Théorème de Heine", ("Maths.Topologie",))
+
+Théorème de Heine sur un espace métrique.
+
+#answer
+
+Soit $K$ compact et $F$ un espace métrique.
+
+Si $f in C^0(K, F)$ alors $f$ est uniformement continue.
+
+*Démonstration*
+
+Supposons par l'absurde que $f$ ne le soit pas.
+$
+  exists epsilon > 0, forall delta > 0, exists x, y in K, \
+  cases(space d(x, y) < delta,space d(f(x), f(y)) >= epsilon)
+$
+
+On fixe un tel $epsilon$, on pose $delta_n = 1 / (n+1)$, et on construit $(x_n)_n, (y_n)_n in K^NN$ tels que
+$
+  forall n in NN, cases(space d(x_n, y_n) < delta_n, space d(f(x_n), f(y_n)) >= epsilon)
+$
+Par compacité, on peut éxtraire
+$
+  (x_phi(n))_n -> l in K \
+  "Or " d(x_n, y_n) -> 0 " donc" \
+  (y_phi(n))_n -> l
+$
+Or comme $f$ continue
+$
+  d(f(x_n), f(y_n)) -> d(f(l), f(l)) = 0 >= epsilon
+$
+Absurde.
