@@ -1844,7 +1844,7 @@ $
 
 Si $E$ est un $KK$-evn alors on a de plus la convexité de $B(a, r)$ et $B_f (a, r)$.
 
-#card("ptsextremaux", "Points extrémaux d'un convexe", ("Maths.Topologie",))
+#card("ptsextremaux", "Points extrémaux d'un convexe", ("Maths.Topologie.Connexité",))
 
 Définition des points extrémaux d'un convexe et points extrémaux d'une boule.
 
@@ -2307,27 +2307,24 @@ On a équivalence entre
 
 + $f$ est lipschitzienne.
 
-Inversement on a équivalence entre
-
-+ $f$ n'est pas continue sur $E$
-
-+ Il existe $(x_n)_n in E^NN$ tel que #h(1fr)
-  $
-    forall n in NN, norm(x_n) = 1 \
-    (norm(f(x_n)))_n tends(n->oo) +oo
-  $
-
-+ Il existe $(x_n)_n in E^NN$ tel que
-  $
-    (x_n)_n tends(n->oo) 0 \
-    forall n in NN, norm(f(x_n)) = 1
-  $
-
 Enfin en dimension finie toute application linéaire est continue.
+
+*Applications multi-linéaires*
+
+Similairement (démonstrations calculatoires), pour
+$
+  f : func(product_(k = 1)^d (E_k, norm(dot)_k), (F, norm(dot)_F), (x_1, dots, x_d), f(x_1, dots, x_d))
+$
+on a équivalence entre
+
++ $f$ est $C^0$ sur $product_(k = 1)^d E_k$ (muni de la norme produit).
+
++ $exists k in RR_+^*, forall (x_1, dots, x_n) in product_(k = 1)^d E_k$
+
+  $ norm(f(x_1, dots, x_d)) <= k norm((x_1, dots, x_d))$
 
 *Démonstration*
 
-Continuité :
 - (1 $=>$ 2) Par définition.
 
 - (2 $=>$ 3) Par continuité de $f$ en $0$ on dispose de $delta > 0$ tel que
@@ -2347,7 +2344,35 @@ Continuité :
 
 - (4 $=>$ 1) Immédiat.
 
-Non continuité :
+En dimension finie, on prend une base $e = (e_1, dots, e_n)$ et la norme $norm(dot)_oo$, et pour $f in cal(L)(E, F)$ et $x in 
+E$ on a
+$
+  norm(f(x)) &= norm(sum_(k = 1)^n x_k f(e_k)) \
+  &<= sum_(k = 1)^n norm(x)_oo norm(f(e_k)) \
+  &= (sum_(k = 1)^n norm(f(e_k))) norm(x)_oo
+$
+
+#card("nonconttopal", "Non continuité d'une application linéaire", ("Maths.Topologie",))
+
+Critères de non continuité d'une application linéaire.
+
+#answer
+
++ $f$ n'est pas continue sur $E$
+
++ Il existe $(x_n)_n in E^NN$ tel que #h(1fr)
+  $
+    forall n in NN, norm(x_n) = 1 \
+    (norm(f(x_n)))_n tends(n->oo) +oo
+  $
+
++ Il existe $(x_n)_n in E^NN$ tel que
+  $
+    (x_n)_n tends(n->oo) 0 \
+    forall n in NN, norm(f(x_n)) = 1
+  $
+
+*Démonstration*
 
 - (1 $=>$ 2) Comme $f$ n'est pas continue on a #h(1fr)
   $
@@ -2368,13 +2393,7 @@ Non continuité :
 
 - (3 $=>$ 1) $f$ n'est pas continue en $0$.
 
-En dimension finie, on prend une base $e = (e_1, dots, e_n)$ et la norme $norm(dot)_oo$, et pour $f in cal(L)(E, F)$ et $x in 
-E$ on a
-$
-  norm(f(x)) &= norm(sum_(k = 1)^n x_k f(e_k)) \
-  &<= sum_(k = 1)^n norm(x)_oo norm(f(e_k)) \
-  &= (sum_(k = 1)^n norm(f(e_k))) norm(x)_oo
-$
+
 
 #card("hyptopo", "Nature topologique d'un hyperplan", ("Maths.Topologie",))
 
@@ -2702,6 +2721,8 @@ Si $K$ est compacte :
 
 - Un produit fini de compacts est compact.
 
+- Toute intersection décroissante de compacts non vide est non vide.
+
 *Démonstration*
 
 - Supposons $K$ non bornée, soit $a in K$, posons $(x_n)_n in K^NN$ tel que pour tout $n in NN$ #h(1fr)
@@ -2742,6 +2763,16 @@ Si $K$ est compacte :
     (f(x_phi(n)))_n = (y_phi(n))_n -> f(l) in f(K)
   $
 
+- Soit $(K_n)_n$ une suite décroissante de compacts non vides. 
+
+  On construits une suite $(u_n)$ tel que $forall n in NN, u_n in K_n subset.eq K_0$, on peut donc en extraire une sous-suite convergente $(x_phi(n))_n -> z$.
+
+  Ainsi pour tout $n in NN$ :
+  $
+    forall k >= n, x_phi(k) in K_phi(k) subset.eq K_n \
+    z = lim_(k -> oo) x_phi(k) in K_n
+  $
+  Car $K_n$ est fermé, donc $z in inter.big_(n in NN) K_n$.
 #card("thbatttop", "Théorème des bornes atteintes", ("Maths.Topologie",))
 
 Théorème des bornes atteintes en sur un espace métrique.
@@ -2860,6 +2891,342 @@ $
   d(f(x_n), f(y_n)) -> d(f(l), f(l)) = 0 >= epsilon
 $
 Absurde.
+
+#card("eqnormdf", "Équivalence des normes en dimension finie", ("Maths.Topologie",))
+
+Démonstration de l'équivalence des normes en dimension finie.
+
+#answer
+
+Soit $(E, norm(dot))$ un $KK$-evn de dimension finie.
+
+On prend $e = (e_1, dots, e_d)$ base de $E$. On montre que toute norme $N$ sur $E$ est équivalente à $norm(dot)_(e,oo)$.
+
+Comme $N$ est une application linéaire, $N$ est continue donc lipschitzienne sur $E$ :
+$
+  forall x = sum_(k = 1)^d x_k e_k in E, \
+  N(x) <= sum_(k = 1)^d abs(x_k) N(e_k) <= beta norm(x)_(e,oo) \
+  "Où " beta = sum_(k = 1)^d N(e_k)
+$
+
+De plus comme $SS_(e,oo) (0,1)$ est fermée et bornée, elle est donc compacte comme $E$ est de dimension finie. Ainsi
+$
+  alpha = min_(x in SS_(e,oo) (0,1)) N(x) = N(x_0) > 0  \
+  "avec " x_0 in SS_(e,oo) (0,1)
+$
+Ainsi pour tout $x in E \\ {0}$
+$
+  alpha <= N(x / norm(x)_(e,oo)) \
+  alpha norm(x)_(e,oo) <= N(x) <= beta norm(x)_e(oo)
+$
+
+*Conséquences*
+
+En dimension finie, pour toute norme :
+
+- Toute application linéaire est continue.
+
+- Les compacts sont les fermés bornés.
+
+- Toute suite bornée admet au moins une valeur d'adhérance, et converge ssi elle n'en a qu'une.
+
+- Tout espace de dimension finie est fermé (caractère séquentielle).
+
+- La distance à un fermé est atteinte.
+
+#card("proptopgln", "Propriétés topologiques du groupe linéaire", ("Maths.Topologie.Réduction",))
+
+Propriétés topologiques du groupe linéaire.
+
+#answer
+
+$"GL"_n (KK)$ est un ouvert dense de $M_n (KK)$
+
+Et plus généralement pour tout $p in [|0, n|]$, $Set(M in M_n (KK), "rg" M >= p)$ est un ouvert.
+
+*Démonstration*
+
+- $"GL"_n$ est ouvert comme image reciproque de $KK\\{0}$ par $det$ (qui est continue).
+
+- Soit $P in "GL"_n (KK), delta > 0$, Soit $lambda = min "Sp" (P)$, afin que $lambda / 2$ ne soit pas valeur propre, c'est à dire $P - lambda / 2 I_n in "GL"_n (KK)$.
+
+- Soit $p in [|0, n|]$, pour $norm(dot) : M |-> "tr" (M^TT M)$. Soit $M in M_n (KK)$ tel que $"rg" M >= p$, on dispose d'une sous matrice inversible extraite de taille $p$, or $"GL"_p (KK)$ est un ouvert, donc on dispose d'une boule bien choisie qui marche.
+
+#card("proptopdiag", "Nature topologique des matrices diagonales", ("Maths.Topologie.Réduction",))
+
+Nature topologique des matrices diagonales.
+
+#answer
+
+Notons $"DZ"_n (KK) = Set(A in M_n (KK), A "diagonalisable")$ et $"TZ"_n (KK) = Set(A in M_n (KK), A "trigonalisable")$.
+
+On a
+
+ - $"DZ"_n (CC)$ est dense dans $M_n (CC)$.
+
+ - $"DZ"_n (RR)$ est dense dans $"TZ"_n (RR)$.
+
+*Démonstration*
+
+Montrons que $Set(A in M_n (KK), chi_A "SARS")$ est dense dans $M_n (CC)$.
+
+Soit $A in M_n (CC)$
+$
+  A &= P underbrace(mat(t_11,, (*);,dots.down;,,t_(n n) ), T) P^(-1) \
+
+  A_k &= P mat(t_11 + 1 / k,, (*);,dots.down;,,t_(n n) + n / k)
+$
+
+À partir d'un rang assez grand on a $chi_A_k$ SARS.
+
+Même démonstration pour $"DZ"_n (RR)$ dans $"TZ"_n (RR)$.
+
+#card("nattopcycl", "Nature topologique de l'ensemble des matrices cycycliques", ("Maths.Topologie.Réduction",))
+
+Nature topologique de l'ensemble des matrices cycycliques.
+
+#answer
+
+$Omega = Set(A in M_n (CC), A "cyclique")$ est un ouvert dense de $M_n (CC)$.
+
+Et de plus
+$
+  Pi : func(M_n (CC), CC_n [X], A, Pi_A)
+$
+N'est continue que sur $Omega$.
+
+*Démonstration*
+
+- $Omega$ est un ouvert : #h(1fr)
+  $
+    A in Omega \ <=> exists x_0 in CC^n, "Vect"(x_0, dots, A^(n - 1) x_0)  = CC^n \
+    <=> exists x_0 in CC^n, det (x_0, dots, A^(n-1) x_0) != 0
+  $
+
+  Ainsi 
+  $
+    phi_x_0 : func(M_n (CC), CC, A, det(x_0, dots, A^(n-1) x_0)) \
+    Omega = union.big_(x_0 in CC^n) phi_(x_0)^(-1) (CC^*)
+  $
+
+- De plus $cal(S) = Set(A in M_n (CC), chi_A "SARS") subset.eq Omega$  est dense dans $M_n (CC)$, donc $Omega$ aussi.
+
+- Soit $A in Omega$, on dispose donc de $V = B(A, delta) subset.eq Omega$, or $Pi|_V = chi|_V$ (par cyclicité : $Pi_M = chi_M$), et $chi$ est continue, donc $Pi$ aussi (en $A$).
+
+- Soit $A in.not Omega$, alors $deg Pi_A < n$, or on dispose de $(A_k)_k in Omega^NN -> A$, mais pour tout $k in NN$, $Pi_A_k = chi_A_k$ (unitaire de degré $n$), d'où $Pi_A_k arrow.r.not Pi_A$.
+
+#card("etclassimtopred", "Étude de la classe de similitude d'une matrice", ("Maths.Topologie.Réduction",))
+
+Étude de la classe de similitude d'une matrice.
+
+#answer
+
+Pour $A in M_n (CC)$, notons $cal(C)(A) = { P A P^(-1), P in "GL"_n(CC) }$. On a alors
+
+- $A$ est diagonalisable ssi $cal(C)$ est fermé.
+
+- $A$ est nilpotente ssi $0 in overline(cal(C)(A))$.
+
+*Démonstration*
+
+- On utilise le résultat suivant, si $M in T_n^+ (CC)$ on peut poser #h(1fr)
+  $
+    underbrace(dmat(1, k, dots.down, k^(n-1)), Q_k) quad quad underbrace(dmat(1, epsilon, dots.down, epsilon^(n-1)), P_epsilon) \
+    underbrace(mat(t_11,,,(*);,t_22;,,dots.down;,,,t_(n n)), M) quad quad underbrace(dmat(t_11, t_22, dots.down, t_(n n)), D) \
+  $
+  On a alors
+  $
+    Q_k M Q_k^(-1) = mat(t_11,,A_(i j) k^(i - j);,dots.down;,,t_(n n)) tends(k -> oo) D \
+    P_epsilon^(-1) M P_epsilon = mat(t_11,,A_(i j) epsilon^(j - i);,dots.down;,,t_(n n)) tends(epsilon -> 0) D
+  $
+
+- Supposons $cal(C)(A)$ fermé. Comme $A in cal(M)_n (CC)$, on dispose de $T in cal(C)(A) inter T_n^+ (CC)$, et on peut donc poser
+  $
+    A_k = Q_k T Q_k^(-1) in cal(C) \
+    lim_(k -> oo) A_k = D in cal(C) \
+  $
+  D'où $A$ est diagonalisable.
+
+- Soit $A in M_n (CC)$ diagonalisable. Soit $(R_k)_k in "GL"_n (CC)^NN$ tel que $A_k = R_k A R_k^(-1) -> B in M_n (CC)$.
+
+  Comme $chi$ est un invarient de similitude et une application continue, on a $chi_A = chi_B$.
+
+  De plus $Pi_A (A_k) = R_k Pi_A (A) R_k^(-1) = 0$ et $M |-> Pi_A (M)$ est continue, d'où $Pi_A (B) = 0$ (qui est SARS), ainsi $B$ est diagonalisable.
+
+  Donc $B in cal(C)(A)$.
+
+- Supposons que $0 in overline(cal(C)(A))$, on dispose de $(A_k)_k in C(A)^NN -> 0$, or $chi_A_k = chi_A$ et par continuité de $chi$, $chi_A = X^n$, d'où $A$ nilpotente.
+
+- Supposons $A$ nilpotente, donc on dispose de $T in cal(C)(A) inter T_n^(++) (CC)$
+  $
+    Q_k T Q_k^(-1) tends(k -> oo) 0
+  $
+  D'où $0 in overline(cal(C)(A))$.
+
+#card("ex42top", "Exercice : liens entre spectre norme subordonnée", ("Maths.Exercice.Topologie",))
+
+Soit $n in NN^*$, $norm(dot)$ une norme sur $CC^*$. On note 
+$
+norm(dot)_"op" : func(M_n (CC), RR_+, A, sup_(X in CC^n \\ {0}) norm(A X) / norm(X))
+$ 
+
+Pour $A in M_n (CC)$, on note $rho (A) = max_(lambda in "Sp" (A)) abs(lambda)$.
+
++ Montrer que pour toute matrice $A$, $rho(A) <= norm(A)_"op"$.
+
++ Montrer que $rho(A^k) = rho(A)^k$ pour $k in NN^*$. Montrer que $rho(A) <= norm(A^k)^(1 / k)_"op"$ pour $k in NN^*$.
+
++ Montrer que $norm(dot)_"op"$ est sous-multiplicative.
+
++ Donner un exemple de norme sur $M_n (CC)$ qui ne soit pas une norme d'opérateur.
+
++ Soit $norm(dot)_(oo,"op")$ la norme d'opérateur associé à la norme $norm(dot)_oo$ sur $CC^n$. Montrer que $norm(A)_(oo,"op") = max_(1 <= i <= n) sum_(j = 1)^n abs(a_(i,j))$.
+
++ Soit $T in T_n^+(CC))$. Pour $mu > 0$ on pose $Q_mu = dmat(1, dots.down, mu^(n - 1))$, calculer $lim_(mu -> +oo) norm(Q_mu T Q_mu^(-1))_(oo,"op")$.
+
++ Soient $A in M_n (CC)$ et $epsilon > 0$. Montrer qu'il existe une norme d'opérateur $N$ sur $M_n (CC)$ telle que $N(A) <= rho(A) + epsilon$.
+
++ Montrer que $rho(A) = lim_(k -> oo) norm(A^k)^(1/k)_"op"$.
+
++ En déduire l'équivalence entre
+
+  - $lim_(k -> oo) A^k = 0$.
+  - $forall X in M_(n,l) (CC), lim_(k -> oo) A^k X = 0$.
+  - $rho(A) < 1$
+  - Il existe sur $C^n$ une norme $norm(dot)$ tel que $norm(A)_"op" < 1$.
+  - Il existe $M$ semblable à $A$ telle que $norm(M)_(oo,"op") < 1$.
+
+#answer
+
+// TODO: vraiment la grosse flemme là je vais pas te mentir. (M196)
+
+#card("precomp", "Précompacité", ("Maths.Topologie",))
+
+Définition de précompacité.
+
+#answer
+
+On dit que $A subset.eq E$ est précompacte si
+$
+  forall epsilon > 0, exists N in NN, exists (x_1, dots, x_n) in E^n, \ A subset.eq union.big_(k = 1)^n B(x_k, epsilon)
+$
+
+Toute partie compacte est précompacte.
+
+*Démonstration*
+
+- Par contraposée. Soit $A$ non précompacte :
+  $
+    exists epsilon > 0, forall N in NN, forall (x_1, dots, x_n) in E^n \
+    A subset.eq.not union.big_(k = 1)^n B(x_k, epsilon)
+  $
+  Fixons un tel $epsilon$, et construisons une suite par récurrence : $u_0 in A$ quelconque, et
+  $
+   forall n in NN^*, u_n in A \\ union.big_(k = 0)^(n-1) B(u_k, epsilon)
+  $
+  Ainsi $(u_n)_n$ ne peut admettre de valeur d'adhérance, donc $A$ n'est pas compacte.
+
+// TODO: Peut être procéssus diagonal d'extraction ? (M198)
+
+#card("borellebesgueseg", "Borel Lebesgue sur un segment", ("Maths.Topologie",))
+
+Énoncé et démonstration de Borel-Lebesgue sur un segment.
+
+#answer
+
+Pour $K = [a, b] subset.eq RR$ tel que $K subset.eq union.big_(i in I) Omega_i$, où $(Omega_i)_(i in I)$ est une famille quelconque d'ouverts de $RR$. 
+
+On dispose de $J subset.eq I$ fini tel que $K subset.eq union.big_(j in J) Omega_j$.
+
+*Démonstration*
+
+Posons
+
+$
+  Gamma = Set(c in [a, b], exists J subset.eq I\, cases( space J "fini", space [a, c] subset.eq union.big_(j in J) Omega_j))
+$
+
+Qui est non vide ($a in Gamma$) et majoré, posons $beta = sup Gamma$.
+
+Or $beta in [a, b]$, donc on dispose de $i_0 in I$ tel que $beta in Omega_i_0$, donc il existe $delta_0$ tel que
+$
+  [beta - delta_0, beta + delta_0] subset.eq Omega_i_0
+$
+Par propriété de la borne sup, on dispose aussi de $c in Gamma inter Ioc(beta - delta_0, beta)$.
+
+Ainsi on a $J subset.eq I$ fini tel que $[a, c] subset.eq union.big_(j in J) Omega_j$.
+
+Supposons par l'absurde que $beta < b$. 
+
+Posons $beta' = min(b, beta + delta_0)$ et $J' = J union {i_0}$. Ainsi $[a, beta'] subset.eq union.big_(j in J') Omega_j$, or $beta' in Ioc(beta, b)$, qui est absurde.
+
+Donc $beta = b$.
+
+#card("borellebesgue", "Borel-Lebesgue", ("Maths.Topologie",))
+
+Énoncé et démonstration de Borel-Lebesgue.
+
+#answer
+
+On définit un compact au sens de Borel-Lebesgue comme une partie $K$ tel que si $(Omega_i)_(i in I)$ est une famille quelconque d'ouverts de $E$ tel que $K subset.eq union.big_(i in I) Omega_i$, alors
+$
+  exists J subset.eq I, J "finie et" K subset.eq union.big_(j in J) Omega_j
+$
+
+De manière équivalente (Borel-Lebesgue version fermé) : si $(G_i)_(i in I)$ est une famille quelconque de fermés de $K$ tels que $inter.big_(i in I) G_i = emptyset$ alors
+$
+  exists J subset.eq I, J "finie et" inter.big_(j in J) G_j = emptyset
+$
+
+*Équivalence*
+
+Soit $(E, d)$ un espace métrique. Toute partie compacte au sens de Bolzano-Weierstrass, est compacte au sens de Borel-Lebesgue (et vis-versa).
+
+*Démonstration*
+
+Soit $K subset.eq union.big_(i in I) Omega_i$ compacte (au sens de Bolzano-Weierstrass).
+
+- Montrons que
+  $
+    (exists epsilon > 0, forall x in K, exists i in I, B(x, epsilon) subset.eq Omega_i) \
+    eq.triple not (forall epsilon > 0, exists x in K, forall i in I, B(x, epsilon) subset.eq.not Omega_i)
+  $
+
+  Par l'absurde, posons $epsilon_n = 1/(n+1)$, on dispose donc de $(x_n) in K^NN$ tel que
+  $
+    forall i in I, B(x_k, 1 / (k+1)) subset.eq.not Omega_i
+  $
+  Qu'on peut extraire $(x_phi(n))_n -> z in K$.
+
+  Soit $j in I, delta > 0$ tels que $B(z, delta) subset.eq Omega_j$. Pour $N$ assez grand on a pour tout $n >= N$ :
+  $ 
+    d(x_phi(n), z) < delta / 2 quad quad 1 / (N + 1) <= delta / 2 \
+    B(x_phi(n), 1 / (phi(n) + 1)) subset.eq B(z, delta) subset.eq Omega_j
+  $
+  Qui est absurde.
+
+- Donc on dispose bien d'un tel $epsilon$. Par précompacité de $K$ on dispose de $x_1, dots, x_n in K$ tels que $K subset.eq union.big_(k = 1)^n B(x_k, epsilon)$.
+
+  Or pour tout $k in [|1, n|]$ on dispose de $i_k in I$ tel que $B(x_k, epsilon) subset.eq Omega_i_k$ d'où
+  $
+    K subset.eq union.big_(k = 1)^n Omega_i_k
+  $
+
+- La version fermé s'obtient en prenant $G_i = K\\Omega_i$.
+
+- La reciproque découle de la version fermée :
+
+  Soit $K$ compact au sens de Borel-Lebesgue, $(x_n)_n in K^NN$ une suite.
+
+  On a montrer que $S = {"valeurs d'adhérance de" (x_n)} = inter.big_(n in NN) overline({x_k, k >= n})$.
+
+  On note $F_n = overline({x_k, k >= n})$ fermé dans $KK$.
+  
+  Pour tout $n_1 < dots.c < n_d in NN$
+  $
+    x_n_d in inter.big_(k = 1)^d F_n_k
+  $
+  Donc comme $K$ compacte $inter.big_(n in NN) F_n != emptyset$, donc $(x_n)$ admet au moins une valeur d'adhérance dans $K$.
 ]
 #[
 
