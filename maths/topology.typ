@@ -1111,6 +1111,14 @@ $f(K)$ est bornée et fermé car compact, ainsi il existe un $inf$ et un $sup$, 
   $
   Alors $f$ admet un unique point fixe.
 
++ Soit $A subset.eq E$ complet, fermé, avec $E$ evn) et $f : A -> A$. 
+
+  Si $f$ est $k$-lipschitzienne avec $k < 1$, alors $f$ admet un unique point fixe.
+
++ Soit $K$ compact, convexe non vide, si $f : K -> K$ $1$-lipschitzienne, alors $f$ admet un point fixe.
+
+// TODO: Points fixes linéaire (M205)
+
 *Démonstration*
 
 + On pose #h(1fr)
@@ -1130,6 +1138,50 @@ $f(K)$ est bornée et fermé car compact, ainsi il existe un $inf$ et un $sup$, 
     d(f(x), x_0) < d(x, x_0)
   $
   Donc $f(x) != x$.
+
++ On pose $x_n = f^n ( x_0 )$ avec $x_0 in A$ quelconque. Ainsi
+  $
+    norm(x_(n+1) - x_n) <= k^n norm(x_1 - x_0)
+  $
+  D'où $sum (x_(n+1) - x_n)$ absolument convergente, donc convergente.
+
+  Donc par continuité de $f$ et unicité de la limite $f(x_oo) = x_oo$.
+
+  Soient $z, z'$ deux points fixes 
+  $
+    norm(f(z) - f(z')) &= norm(z - z) \
+    &<= underbrace(k, <1) norm(z - z')
+  $
+  D'où $norm(z - z') = 0$.
+
++ Soit $x_0 in K$, pour $lambda in Ioo(0, 1)$ on considère
+  $
+    g_lambda : func(K, K, x, f(lambda x + (1 - lambda) x_0))
+  $
+  Soit $x, y in K$
+  $
+    norm(g_lambda (x) - g_lambda (y)) \
+    = norm(f(script(lambda x + (1 - lambda) x_0)) - f(script(lambda y + (1 - lambda) x_0))) \
+    <= norm(lambda x - lambda y) = lambda norm(x - y)
+  $
+  Donc $g_lambda$ est $lambda$-lipschitzienne, avec $lambda < 1$, donc $g_lambda$ admet un point fixe $x_lambda$.
+
+  On considère $lambda_n = 1 - 1 / n$, comme $(x_lambda_n)_n in K^NN$, on dispose de $x_1$ valeur d'adhérance : 
+  $
+    (x_lambda_phi(n))_n -> x_1 in K
+  $
+  Or pour tout $lambda in Ioo(0, 1)$ :
+  $
+    norm(f(x_lambda) - x_lambda) 
+    = norm(f(x_lambda) - g_lambda (x_lambda)) \
+    = norm(f(x_lambda) - f(lambda x_lambda + (1 - lambda) x_0)) \
+    <= (1 - lambda) underbrace(norm(x_lambda - x_0), "borné")
+  $
+  D'où
+  $
+    norm(f(x_lambda_phi(n)) - x_lambda_phi(n)) tends(n -> oo) 0
+  $
+  Et donc $f(x_1) = x_1$.
 
 #card("cpctdf", "Compacité en dimension finie", ("Maths.Topologie",))
 
@@ -1533,3 +1585,213 @@ Soit $K subset.eq union.big_(i in I) Omega_i$ compacte (au sens de Bolzano-Weier
     x_n_d in inter.big_(k = 1)^d F_n_k
   $
   Donc comme $K$ compacte $inter.big_(n in NN) F_n != emptyset$, donc $(x_n)$ admet au moins une valeur d'adhérance dans $K$.
+
+// TODO: Tout idéal stricte de C°(K, K) (K compacte) est inclus dans { f ∈ E | f(c) = 0 } pour un c ∈ K. (B-L ouvert, pabs).
+
+#card("suitcauch", "Suites de Cauchy", ("Maths.Topologie",))
+
+Définition, propriétés des suites de Cauchy.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $(u_n)_n in E^NN$ une suite.
+
+On dit que $(u_n)_n$ est de Cauchy si
+$
+  forall epsilon > 0, exists N in NN, \ forall p, q >= N, d(u_p, u_q) < epsilon
+$
+
+Propriétés :
+
+- Toute suite convergente est de Cauchy.
+
+- Toute suite de Cauchy ayant une valeur d'adhérance converge.
+
+- Toute suite de Cauchy est bornée.
+
+- Si $E$ est un $KK$-evn de dimension finie, toute suite de cauchy converge.
+
+On appelle espace complet un espace métrique où les suites de Cauchy converge, et espace de Banach un evn complet.
+
+*Démonstration*
+
+- L'écrire.
+
+- Supposons $(u_n)_n$ de Cauchy et $(u_phi(n))_n -> l in E$. Soit $epsilon > 0$. #h(1fr)
+
+  On dispose de $k in NN$ tel que $d(u_phi(k) - l) < epsilon / 2$.
+
+  On dispose de $N in NN$ tel que pour tout $n >= N$
+  $
+    d(u_n, u_phi(k)) < epsilon
+  $
+  Ainsi
+  $
+    d(u_n, l) &<= d(u_n, u_phi(k)) + d(u_phi(k), l) \ &< epsilon
+  $
+
+- Supposons $(u_n)_n$ de Cauchy. Pour $epsilon = 1$ on dispose de $N in NN$ tel que pour tout $n >= N$
+  $
+    abs(u_n) <= d(u_n, u_0) + abs(u_0) < 1 + abs(u_0)
+  $
+
+- Supposons $(u_n)_n$ de Cauchy et $(E, norm(dot))$ un evn de dimension finie. Comme $(u_n)_n$ est de Cauchy, elle est bornée : $(u_n)_n in B(0, M)^NN$, qui est compacte, $(u_n)_n$ admet donc une valeur d'adhérance, et converge.
+
+#card("seriesevn", "Séries dans un espace vectoriel normé", ("Maths.Topologie",))
+
+Propriétés des séries dans une espace vectoriel normé.
+
+#answer
+
+Soit $(E, norm(dot))$ un $KK$-evn.
+
+Toute séries absolument convergente est convergente ssi $E$ est un espace de Banach.
+
+*Démonstration*
+
+- En dimension finie (sans les suites de Cauchy) :
+
+  Soit $u in E^NN$ tel que $sum norm(u_n)$ converge. #h(1fr)
+  $
+    norm(S_n) = norm(sum_(k = 0)^n u_n) <= S = sum_(k = 0)^(+oo) norm(u_k)
+  $
+  Donc $(S_n)_n$ est bornée et admet au moins une valeur d'adhérance.
+
+  Soit $phi, psi$ tels que $(u_phi(n))_n -> l_1$, $(u_psi(n))_n -> l_2$.
+  $
+    norm(S_psi(n) - S_phi(n)) &<= sum_(k in [|psi(n), phi(n)|]) norm(u_k)  \
+    &<= sum_(k = min(psi(n), phi(n)))^(+oo) norm(u_k) \ &tends(n -> +oo) 0
+  $
+  D'où $l_1 = l_2$.
+
+- Soit $u in E^NN$, $E$ un espace de Banach, tel que $sum norm(u_n)$ converge.
+
+  Pour tout $p >= q$
+  $
+    norm(S_p - S_q) &<= sum_(k = q + 1)^p norm(u_k) \
+    &<= sum_(k = q + 1)^(+oo) norm(u_k) \
+    &tends(q -> oo) 0
+  $
+  Donc $(S_n)$ est de Cauchy, et converge.
+
+- Soit $(u_n)$ une suite de Cauchy. On construit $phi$ extractrice tel que $norm(u_phi(n+1) - u_phi(n)) <= 1 / n^2$ (qui est possible car $(u_n)$ est de Cauchy).
+
+  Ainsi $sum (u_phi(n+1) - u_phi(n))$ est absolument convergente donc convergente et $(u_phi(n))_n$ converge, donc $(u_n)$ admet une valeur d'adhérance et converge.
+
+#card("thmbaire", "Théorème de Baire", ("Maths.Topologie",))
+
+Énoncé, démonstrations du théorème de Baire.
+
+#answer
+
+Dans $(E, norm(dot))$ espace de Banach, soit $A subset.eq E$ complet, et $(Omega_n)_(n in NN)$ une suite dénombrable d'ouverts denses dans $A$. Alors
+$
+  inter.big_(n in NN) Omega_n
+$
+Est dense dans $A$.
+
+*Éléments de démonstration*
+
+Suite de boules emboîtées, en alternant caractère ouvert et densité dans une récurrence bien construite pour trouver un point dans l'intersection à toute distance.
+
+// TODO: Vraie démo
+
+#card("conpararc", "Connexité par arcs", ("Maths.Topologie",))
+
+Définition, propriétés de connexité par arcs.
+
+#answer
+
+Pour $X subset.eq E$ ($E$ espace métrique) et $a, b in X$, on appelle chemin continue reliant $a$ et $b$ une fonction
+$
+  gamma : func([0, 1], E, 0, a, 1, b, t, gamma(t) in X)
+$
+
+L'existence d'un chemin continue forme une relation d'équivalence.
+
+- On appelle composentes connexes par arcs les classes d'équivalence pour cette relation.
+
+- On dit que $X$ est connexe par arcs s'il n'y à qu'une seule classe d'équivalence pour cette relation.
+
+- Si $f in C^0(X, F)$ et $X$ est connexe par arcs, alors $f(X)$ aussi.
+
+*Démonstration*
+
+- Soit $f(x) = a, f(y) = b in f(X)$, comme $X$ est connexe par arcs on dispose de $gamma$ chemin continue de $x$ à $y$.
+
+  Posons $gamma' = f compose gamma$, continue par composition de fonctions qui le sont, et forme un chemin continue de $a$ à $b$.
+
+  Donc $f(X)$ est connexe par arcs.
+
+#card("condeglnc", "Connexité par arcs du groupe linéaire complexe", ("Maths.Topologie",))
+
+Démonstrations de la connexité par arcs de $"GL"_n (CC)$.
+
+#answer
+
++ Soit $A in "GL"_n (CC)$, pour tout $t in CC$ #h(1fr)
+  $
+    (1 - t) I_n + t A in.not "GL"_n (CC) \
+    <=> A - (t - 1) / t in.not "GL"_n (CC) \
+    <=> 1 - 1 / t in "Sp" (A)
+  $
+  Notons $D = { 1 / lambda - 1, lambda in "Sp"(A) }$ qui est fini, donc $CC^* \\ D$ est connexe par arcs, et on dispose de $gamma$ chemin continue de $0$ à $1$ dans $CC^*\\D$.
+  $
+    tilde(gamma) : t |-> (1 - gamma(t)) I_n + gamma(t) A
+  $
+  Convient.
+
++ En trigonalisant :
+  $
+    gamma : s -> P mat(gamma_1 (s),,(s t_(i j));,dots.down;,,gamma_n (s)) P^(-1)
+  $
+  Avec $gamma_i : [0, 1] -> CC^*$ chemin continue de $1$ à $gamma_i$.
+
++ On écrit $A$ comme produit de transvections et d'une dilatation, et on relie les termes. (Marche pour montrer la connexité par arcs de $"GL"_n^+ (RR)$ et $"GL"_n^-(RR)$).
+
+#card("connexite", "Connexité", ("Maths.Topologie",))
+
+Définition et propriétés de la connexité.
+
+#answer
+
+Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules parties ouvertes et fermés de $X$ sont $emptyset$ et $X$.
+
+- Si $X$ connexe par arcs, alors $X$ est connexe.
+
+*Démonstration*
+
+- + Supposons $X$ connexe par arcs, soit $A subset.eq X$ non vide ouverte et fermé.
+
+    On dispose donc de $a in A$, supposons par l'absurde qu'on dispose de $b in X \\ A$.
+
+    Comme $X$ est connexe par arcs, on dispose de $gamma$ chemin continue de $a$ à $b$.
+    $
+      t_0 = sup underbrace([0, 1] inter gamma^(-1) (A), Gamma)
+    $
+    Qui existe car $Gamma$ est non vide et majoré.
+
+    On dispose donc de $(t_n)_n in Gamma^NN ->  t_0$
+    $
+      gamma(t_0) = lim_(n -> oo) underbrace(gamma(t_n), in A) in overline(A) = A
+    $
+    Or $A$ est ouvert, donc on dispose de $B_X (gamma(t_0), delta) subset.eq A$.
+
+    Par continuité de $gamma$ on a $eta > 0$ tel que 
+    $
+    gamma(B(t_0, eta)) subset.eq B(gamma(t_0), delta) subset.eq A
+    $
+    Absurde.
+
+  + Montrons que $bb(1)_A$ est continue.
+
+    Soit $Omega subset RR$ ouvert
+    $
+      bb(1)^(-1)_A (Omega) \ = cases(
+        space A &"si" 1 in Omega "et" 0 in.not Omega,
+        space X\\A &"si" 1 in.not Omega "et" 0 in Omega,
+        space emptyset &"si" 1 in.not Omega "et" 0 in.not Omega,
+        space X &"si" 1 in Omega "et" 0 in.not Omega,
+      )
+    $
+    Qui sont tous ouverts. Donc $bb(1)_A$ est continue. // TODO: Conclusion
