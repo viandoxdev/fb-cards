@@ -1703,6 +1703,7 @@ $
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
+#import "@preview/cetz:0.4.2"
 
 #card("norm", "Norme", ("Maths.Topologie",))
 
@@ -3453,6 +3454,21 @@ Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules 
 
 - Si $X$ connexe par arcs, alors $X$ est connexe.
 
+- $X$ est connexe ssi toute fonction $C^0(X, ZZ)$ est constante.
+
+- Si $X$ est connexe, $overline(X)$ aussi.
+
+Contre exemple de la reciproque de connexe par arcs implique connexe :
+
+$
+  X = { (x, sin(1/x)), x in Ioc(0, 1) } \
+  overline(X) = X union {0} times [-1, 1]
+$
+
+- $X$ est connexe par arcs, donc connexe.
+- $overline(X)$ est connexe car $X$ l'est.
+- $overline(X)$ n'est pas connexe par arcs.
+
 *Démonstration*
 
 - + Supposons $X$ connexe par arcs, soit $A subset.eq X$ non vide ouverte et fermé.
@@ -3488,7 +3504,217 @@ Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules 
         space X &"si" 1 in Omega "et" 0 in.not Omega,
       )
     $
-    Qui sont tous ouverts. Donc $bb(1)_A$ est continue. // TODO: Conclusion
+    Qui sont tous ouverts. Donc $bb(1)_A$ est continue, $bb(1)_A (X) subset.eq {0, 1}$ est connexe par arcs.
+
+    Donc $bb(1)_A (X) = {0}$ ou $bb(1)_A (X) = {1}$
+
+- ($arrow.double.l$) Soit $A subset.eq X$ ouvert et fermé, $bb(1)_A$ est continue (voir ci dessus) donc constante.
+
+  ($=>$) Soit $f in C^0(X, ZZ)$, soit $k = f(x) in ZZ$,
+  $
+    f^(-1) {k} = f^(-1) Ioo(k - 1/2, k + 1/2)
+  $
+  Qui est ouvert et fermé.
+
+- Supposons $X$ connexe, soit $f in C^0(overline(X), ZZ)$, et $tilde(f) = evaluated(f)_X$.
+
+  Par connexité de $X$, $tilde(f)$ est constante et donc $f$ aussi sur $X$, et par continuité elle l'est sur $overline(X)$.
+
+// TODO: Écrire cette fiche (M210 - M214)
+#card("barycentres", "Barycentres", ("Maths.Topologie",))
+
+Barycentres - revoir le cours / écrire la fiche.
+
+#answer
+
+Barycentres - revoir le cours / écrire la fiche.
+
+Rapidement :
+
+- À $(A_1, dots, A_n) in cal(E)^n$ (avec $E$ espace affine) et $lambda_1, dots, lambda_n in RR^n$ on associe $G in cal(E)$ l'unique point tel que #h(1fr)
+  $
+    sum_(k = 1)^n lambda_k va(G A_k) = va(0) \
+    "i.e" sum_(k = 1)^n lambda_k (a_k - g) = 0
+  $
+  Qu'on appelle barycentre :
+  $
+    G = "Bar" { (A_k, lambda_k), k in [1, n] }
+  $
+
+- Les pondérations sont unique à facteur multiplicatif près, il en existe une unique tel que
+  $
+    sum_(k = 1)^n lambda_k = 1
+  $
+
+- Associativité du barycentre :
+
+  Soit $(A_k)_k in cal(E)^(n + m)$ et $(lambda_k)_k in RR^(n + m)$ tel que 
+  $
+  alpha = sum_(k = 1)^n lambda_k != 0 != sum_(k = n + 1)^(n + m) lambda_k
+  $
+  Alors en posant
+  $
+    G_1 = "Bar" { (A_k, lambda_k), k in [|1, n|] } \
+    G_2 = "Bar" { (A_k, lambda_k), k in [|n + 1, n + m|] } \
+  $
+  On a
+  $
+    G &= "Bar" { (A_k, lambda_k), k in [|1, n + m|] } \
+    &= "Bar" { (G_1, alpha), (G_2, beta) }
+  $
+
+- $cal(F) subset.eq cal(E)$ est un sea ssi il est stable par barycentre.
+
+- On dit que $d+1$ points sont en position général (dans un espace de dimension $d$) si $(va(A_0 A_k))_(k in [|1, d|])$ est libre.
+
+- $cal(C) subset.eq cal(E)$ est convexe ssi pour tout $A_1, dots, A_n in cal(C)$ et $lambda_1, dots, lambda_n in RR_+$ tels que $sum_(k = 1)^n lambda_k != 0$
+  $
+    "Bar" { (A_k, lambda_k), k in [|1, n|] } in cal(C)
+  $
+
+- Pour $X subset.eq cal(E)$, il existe un plus petit convexe contenant $X$. On l'appelle enveloppe convexe de $X$ et
+  $
+    "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, n|] }\, n in NN\, \ (A_1, dots, A_n) in X^n\, (lambda_1, dots, lambda_n) in RR_+^n \ , sum_(k = 1)^n lambda_k != 0 ) = cal(C)
+  $
+
+- (Carathéoodory) Soit $d = dim cal(E)$, $X subset.eq cal(E)$
+  $
+    "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, d+1|] }\, \ (A_1, dots, A_(d+1)) in X^(d+1)\, \ (lambda_1\, dots, lambda_(d+1)) in RR_+^(d+1) \ , sum_(k = 1)^n lambda_k = 1)
+  $
+
+- Donc si $X$ est compact, $"Conv" X$ aussi.
+
+#card("projconv", "Projection sur un convexe fermé", ("Maths.Topologie",))
+
+Propriétés de projection sur un convexe fermé.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ un espace euclidien, $C subset.eq E$ un convexe fermé.
+
+$
+  forall x in E, exists! p(x) in C, \ d(x, C) = d(x, p(x))
+$
+
+Et de plus pour tout $x in E$, et $z in C$, on a équivalence entre
+
++ $z = p(x)$
+
++ $forall y in C, scl(y - z, x - z) <= 0$
+
+On a alors que $x |-> p(x)$ est $1$-lipschitzienne.
+
+*Démonstration*
+
+- Existence : la distance à un fermé est atteinte en dimension finie (ou dans un espace de Banach).
+
+- Unicité : #h(1fr)
+
+  #align(center, cetz.canvas({
+    import cetz.draw: *
+
+    let rad = _sizes.text * 20%
+    let stroke = _sizes.text * 10%
+    let col = _colors.text
+
+    set-style(stroke: none, fill: col)
+    circle((-1, 0), name: "z1", radius: rad)
+    circle((1, 0), name: "z2", radius: rad)
+    circle((0, -2), name: "x", radius: rad)
+
+    set-style(stroke: col + stroke, fill: none)
+
+    line("z1", "z2", "x", "z1")
+
+    circle((0, 0), name: "c", radius: rad, fill: red, stroke: none)
+    line("c", "x", stroke: red, fill: none)
+
+    content((rel: (-0.3, 0), to: "z1"), $z_1$)
+    content((rel: (0.3, 0), to: "z2"), $z_2$)
+    content((rel: (0, -0.3), to: "x"), $x$)
+  }))
+
+  Soit $z_1, z_2 in C$ tels que $d(x, C) = d(x, z_1) = d(x, z_2)$.
+  $
+    d(x, C) &<= d(x, (z_1 + z_2) / 2) \
+    &= 1/2 norm((x - z_1) + (x - z_2)) \
+    &<= d(x, C)
+  $
+  On a égalité dans l'inégalité triangulaire pour une norme issue d'un produit scalaire : $(x - z_1)$ et $(x - z_2)$ sont positivement liés et de même norme (par hypothèse), d'où $z_1 = z_2$.
+
+- Tangente :
+  #align(center, cetz.canvas({
+    import cetz.draw: *
+
+    let rad = _sizes.text * 20%
+    let stroke = _sizes.text * 10%
+    let col = _colors.text
+
+    set-style(stroke: col + stroke, fill: none)
+
+    circle((0, 0), name: "C", radius: 1)
+
+    circle((name: "C", anchor: 45deg), radius: rad, name: "z", fill: red, stroke: none)
+    line((to: "z", rel: (-1, 1)), (to: "z", rel: (1, -1)), stroke: red + stroke)
+
+    circle((0, 0.5), name: "y", radius: rad, fill: col, stroke: none)
+
+    circle((1.5, 1.5), name: "x", radius: rad, fill: black, stroke: none)
+
+    line("y", "z", "x")
+
+    cetz.angle.angle("z", "x", "y", radius: 0.2)
+
+    content((to: "z", rel: (0, 0.5)), $script(>= pi / 2)$)
+    content((to: "z", rel: (0.6, 0)), text(fill: red)[$p(x)$])
+    content((to: "x", rel: (0.3, 0)), $x$)
+    content((to: "y", rel: (-0.3, 0)), $y$)
+    content((to: "C.south", rel: (0, 0.5)), $C$)
+  }))
+  
+  (i $=>$ ii) Soit $y in C$, on considère pour $t in [0, 1]$ :
+  $
+    y_t = (1 - t) z + t y \
+  $
+  $
+    f(t) &= norm(x - y_t)^2  \
+    &= norm((x - z) - t(y - z))^2 \
+    &= norm(x - z)^2 - 2 t scl(x-z, y-z) \  &quad + t^2 norm(y - z)^2
+  $
+  Une fonction de $[0, 1] -> RR$ minimale en $0$ d'où
+  $
+    f'(0) >= 0 \
+    -2 scl(x - z, y - z) >= 0
+  $
+
+  (ii $=>$ i) Pour $y = p(x)$ :
+  $
+    scl(p(x) - z, x - z) <= 0
+  $
+  Or par (i $=>$ ii) (avec $z' = p(x)$ et $y' = z$) on a
+  $
+    scl(z - p(x), x - p(x)) <= 0 \
+    scl(p(x) - z, p(x) - x) <= 0 \
+  $
+  Donc par bilinéarité :
+  $
+    scl(z - p(x), z - p(x)) &= norm(z - p(x))^2 \ &<= 0
+  $
+  D'où $z = p(x)$.
+
+- Soit $x, y in E$ :
+  $
+    scl(p(y) - p(x), x - p(x)) <= 0 \
+    scl(p(x) - p(y), y - p(y)) <= 0 \ \
+  $
+  Donc
+  $
+    scl(p(y) - p(x), x - y + p(y) - p(x)) <= 0 \
+    norm(p(y) - p(x))^2 \ + scl(p(y) - p(x), x - y) <= 0 \
+    norm(p(y) - p(x))^2 <= scl(p(y) - p(x), y - x) \
+    <= norm(p(y) - p(x)) dot norm(y - x) \
+    norm(p(y) - p(x)) <= norm(y - x)
+  $
 ]
 #[
 
