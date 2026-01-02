@@ -8,7 +8,7 @@
 #let Ico(a, b) = $lr(class("opening", \[) #a, #b class("closing", \[))$
 #let Ioc(a, b) = $lr(class("opening", \]) #a, #b class("closing", \]))$
 #let Icc(a, b) = $lr(class("opening", \[) #a, #b class("closing", \]))$
-#let scl(a, b) = $lr(class("opening", chevron.l) #a|#b class("closing", chevron.r))$
+#let scl(a, b) = $lr(class("opening", chevron.l) #a mid(|) #b class("closing", chevron.r))$
 #let func(delim: ("{", "}"), ..args) = {
   let cells = args
     .pos()

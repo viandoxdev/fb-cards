@@ -3,9 +3,11 @@
 #let use_sans_math_font = sys.inputs.at("disable_sans_math", default: "0") != "1"
 #let store = state("store", ())
 #let lifecycle = state("had_answer", (true, none, ()))
+// "light" | "dark"
+#let theme="light"
 
 #let _colors = (
-  text: black
+  text: if theme == "light" { black } else { white }
 )
 #let _sizes = (
   text: 11pt
@@ -90,8 +92,9 @@
 }
 
 #let setup(doc) = {
-  set text(font: "Lexend")
+  set text(font: "Lexend", fill: _colors.text)
   set page(
+    fill: if theme == "light" { white } else { black },
     margin: (x: 1em, top: 1.3em, bottom: 2.3em), 
     height: auto, 
     width: 200pt,
