@@ -16,7 +16,7 @@ Théorème de Taylor-Lagrange, et conditions d'application.
 
 #answer
 
-Soit $f : Icc(a, b) -> RR$, $C^n$ sur $Icc(a, b)$ et $D^(n+1)$ sur $Ioo(a,b)$
+Soit $f : Icc(a, b) -> E$, $C^n$ sur $Icc(a, b)$ et $D^(n+1)$ sur $Ioo(a,b)$
 
 Il existe $c in Ioo(a, b)$ tel que
 $
@@ -24,16 +24,18 @@ $
          &+ f^((n+1)) (c) (b - a)^(n+1) / ((n+1)!)
 $
 
+
 #card("anatlri", "Taylor reste intégrale", ("Maths.Analyse.Intégration", "Maths.Analyse.Taylor"))
 
 Théorème de Taylor reste intégrale, et conditions d'application.
 
 #answer
 
-Soit $f : Icc(a, b) -> RR$, $C^(n+1)$
+Soit $f : Icc(a, b) -> E$, $C^(n+1)$
 
 #scale(90%, $
-  f(b) = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!)  \ &+ integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t
+  f(b) = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!)  \ &+ integral_a^b f^((n + 1)) (t) (b - t)^n / (n!) dif t \
+  = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!)  \ &+ (b - a)^(n+1) / n! integral_0^1 script((1 - s)^n f^((n + 1)) (a + s (b - a)) dif s) \
 $)
 
 #card("inegtri", "Inégalitée Triangulaire", ("Maths.Analyse.Réels", "Maths.Analyse.Complexes"))
