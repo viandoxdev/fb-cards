@@ -1,7 +1,7 @@
 //![FLASHBANG INCLUDE]
 
 #let gen(content) = $lr(class("opening", <) #content class("closing", >))$
-#let tends(content) = $stretch(->)_script(#content)$
+#let tends(content, above: []) = $stretch(->)_script(#content)^script(#above)$
 #let tendsnot(content) = math.attach($arrow.r.not$, b: math.script(content))
 #let eqv(content) = math.attach($~$, b: math.script(content))
 #let Ioo(a, b) = $lr(class("opening", \]) #a, #b class("closing", \[))$

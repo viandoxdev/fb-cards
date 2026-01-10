@@ -2021,3 +2021,47 @@ On a alors que $x |-> p(x)$ est $1$-lipschitzienne.
     <= norm(p(y) - p(x)) dot norm(y - x) \
     norm(p(y) - p(x)) <= norm(y - x)
   $
+
+#card("relcpct", "Relative compacité", ("Maths.Topologie",))
+
+Définition de relative compacité.
+
+#answer
+
+Soit $E$ un $KK$-evn, $A subset.eq E$, on a équivalence entre
+
++ $overline(A)$ est compact.
+
++ Il existe $K$ compact tel que $A subset.eq K$.
+
++ $forall (x_n)_n in A^NN$, $exists phi "extractrice"$, $(x_phi(n))_n -> l in E$.
+
+On dit dans ce cas que $A$ est relativement compact.
+
+Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
+
+*Démonstration*
+
+- (i $=>$ ii) $A subset.eq overline(A)$ compact.
+
+- (ii $=>$ i) $A subset.eq K$, donc $overline(A) subset.eq overline(K) = K$, $overline(A)$ est fermé dans un compact donc compact.
+
+- (i $=>$ iii) Soit $(x_n)_n in A^NN subset.eq overline(A)^NN$, qu'on peut donc extraire par compacité.
+
+- (iii $=>$ i) Soit $(y_n)_n in overline(A)^NN$, pour $n in NN$, $y_n in overline(A)$, on prend #h(1fr)
+  $
+    x_n in A inter B(y_n, 1 / 2^n)
+  $
+  Donc $(x_n)_n in A^NN$, par hypothèse $(x_phi(n)) -> l in overline(A)$.
+  $
+    norm(y_phi(n) - l) &<= underbrace(norm(y_phi(n) - x_phi(n)), < 1 / 2^n -> 0) \ &+ underbrace(norm(x_phi(n) - l), -> 0)
+  $
+
+- Soit $epsilon > 0$, $x_0 in A$, construisons par récurrence :
+  $
+    x_(n+1) in A \\ union.big_(k = 0)^n B(x_k, epsilon)
+  $
+  Comme une tel suite ne peut admètre de valeur d'adhérance, le procéssus doit se terminer.
+
+  Ainsi on dispose de $x_0, dots, x_n$ tels que $A subset.eq union.big_(k = 0)^n B(x_k, epsilon)$ et $A$ est précompacte.
+
