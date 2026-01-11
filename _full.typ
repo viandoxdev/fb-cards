@@ -527,7 +527,7 @@ Si $A = I$ intervalle et $E = RR$
   $
   Donc au sens de la norme infinie : $P_n -> Q = f$.
 
-#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de continuité pour les suites de fonctions.
 
@@ -549,7 +549,7 @@ $
   < & 3 epsilon
 $
 
-#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de la double limite pour les suites de fonctions.
 
@@ -572,7 +572,7 @@ $
   norm(l_n - l_m) <= norm(f_n - f_m)_oo "de Cauchy"
 $
 
-#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de primitivation pour les suites de fonctions.
 
@@ -613,7 +613,7 @@ $
   &<= M epsilon
 $
 
-#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation pour les suites de fonctions.
 
@@ -632,7 +632,7 @@ $
 
 Par théorème de primitivation.
 
-#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation k-ème pour les suites de fonctions.
 
@@ -652,7 +652,7 @@ Pour tout $j in [|0, k|]$, $(f^((j))_n)_n$ CVU sur tout segment vers $g_j = g_0^
 
 Récurrence à l'aide du théorème de dérivation.
 
-#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de continuité pour les séries de fonctions.
 
@@ -672,7 +672,7 @@ Alors $S : x |-> sum_(n = 0)^(+oo) f_n (x)$ est continue en $a$.
 
 On applique le théorème de continuité pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de la doulbe limite pour les séries de fonctions.
 
@@ -695,7 +695,7 @@ $
 
 On applique le théorème de la double limite pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation pour les séries de fonctions.
 
@@ -711,7 +711,7 @@ Alors $sum f_n$ CVU sur tout segment de $I$, et $S in C^1 (I, F)$ et $S' = sum_(
 
 On applique le théorème de dérivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation k-ème pour les séries de fonctions.
 
@@ -733,7 +733,7 @@ $
 
 On applique le théorème de dérivation k-ème pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'intervertion"))
+#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de primitivation pour les séries de fonctions.
 
@@ -764,6 +764,183 @@ $
 *Démonstration*
 
 On applique le théorème de primitivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
+
+#card("thcvd", "Théorème de convergence dominée", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé du théorème de convergence dominée.
+
+#answer
+
+Soit $(f_n)_n in C^0_"pm" (I, KK)^NN$, avec $I$ un intervalle. Si
+
++ $f_n tends(n -> oo, above: "CVS") f$ sur I.
+
++ $f C^0_"pm"$.
+
++ Il existe $phi in C^0_"pm" (I, RR_+)$ intégrable sur $I$ tel que #h(1fr)
+  $
+    forall n in NN, forall t in I, abs(f_n (t)) <= phi(t)
+  $
+
+Alors $f_n$ et $f$ sont intégrables sur $I$ et
+$
+  lim_(n -> oo) integral_I f_n (t) dif t &= integral_I f(t) dif t \ &= integral_I lim_(n -> oo) f_n (t) dif t
+$
+
+#card("thtat", "Théorème d'intégration terme à terme", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé du théorème d'intégration terme à terme.
+
+#answer
+
+- Version positive : #h(1fr)
+
+  Soit $(f_n)_n in C^0_"pm" (I, RR_+)^NN$, avec $I$ un intervalle. Si
+
+  + $sum f_n$ CVS sur $I$.
+
+  + $t |-> sum_(n = 0)^(+oo) f_n (t)$ est $C^0_"pm"$ sur $I$.
+
+  Alors dans $RR_+ union {+oo}$ :
+  $
+    integral_I sum_(n = 0)^(+oo) f_n (t) dif t = sum_(n = 0)^(+oo) integral_I f_n (t) dif t
+  $
+
+- Version générale :
+
+  Soit $(f_n)_n in C^0_"pm" (I, KK)^NN$, avec $I$ un intervalle. Si
+
+  + $sum f_n$ CVS sur $I$.
+
+  + $S : t |-> sum_(n = 0)^(+oo) f_n (t)$ est $C^0_"pm"$ sur $I$.
+
+  + Pour tout $n in NN$, $f_n$ est intégrable sur $I$ et
+    $
+      sum_(n = 0)^(+oo) integral_I abs(f_n (t)) dif t < +oo
+    $
+
+  Alors $S$ est intégrable sur $I$ et
+  $
+    integral_I S(t) dif t &= integral_I sum_(n = 0)^(+oo) f_n (t) dif t \
+    &= sum_(n = 0)^(+oo) integral_I f_n (t) dif t
+  $
+
+#card("thcvscont", "Théorème de convergence dominée par un paramètre continue", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de convergence dominée par un paramètre continue.
+
+#answer
+
+Soit $A subset.eq RR$, $(f_lambda)_lambda in C^0_"pm" (I, KK)^A$, $a in overline(A)$. Si
+
++ $forall x in I, f_lambda (x) tends(lambda -> a) f(x)$.
+
++ $f$ est $C^0_"pm"$ sur $I$.
+
++ Il existe $phi in C^0_"pm" (I, RR_+)$ intégrable sur $I$ tel que
+  $
+    forall t in I, forall lambda in A, abs(f_lambda (t)) <= phi(t)
+  $
+
+Alors les $f_lambda$ et $f$ sont intégrables sur $I$ et
+$
+  lim_(lambda -> a) integral_I f_lambda (t) dif t = integral_I lim_(lambda -> a) f_lambda (t) dif t
+$
+
+*Démonstration*
+
+Critère séquentiel, on montre que le résultat est vrai pour toute suite $(lambda_n)_n tends(n -> oo) a$.
+
+#card("thc0intp", "Théorème de continuité pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de continuité pour les intégrales à paramètre.
+
+#answer
+
+Soit $f: func(A times I, KK, (x, t), f(x, t))$, avec $A subset.eq E$ evn de dimension finie et $I$ intervalle. Si
+
++ $forall t in I$, $x |-> f(x, t)$ est $C^0$ sur $A$.
+
++ $forall x in A$, $t |-> f(x, t)$ est $C^0_"pm"$ sur $I$.
+
++ $forall a in A, exists V_a in cal(V)(a), exists phi_a in C^0_"pm" (I, RR_+), integral_I abs(phi(t)) dif t < +oo$,
+  $
+    forall t in I, forall x in V_a, abs(f(x, t)) <= phi(t)
+  $
+
+Alors
+$
+  g: func(A, KK, x, integral_I f(x, t) dif t)
+$
+Est bien définie et continue sur $A$.
+
+*Démonstration*
+
+Critère séquentiel et théorème de convergence dominée.
+
+#card("thc1intp", "Théorème de dérivation pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de dérivation pour les intégrales à paramètre.
+
+#answer
+
+Soit $f : func(J times I, KK, (x, t), f(x, t))$, avec $I, J$ des intervalles. Si
+
++ $forall t in I, x |-> f(x, t)$ est $C^1$ sur $J$.
+
++ $forall x in J, t |-> f(x, t)$ est $C^0_"pm"$ et intégrable sur $I$.
+
++ $forall x in J, t |-> pdv(f, x) (x, t)$ est $C^0_"pm"$ sur $I$.
+
++ $forall K = [a, b] subset.eq J, exists phi_K in C^0_"pm" (I, RR_+)$,$integral_I phi_K (t) dif t < +oo$,
+  $
+    forall x in K, forall t in I, space abs(pdv(f, x) (x, t)) <= phi_K (t)
+  $
+
+Alors
+$
+  g : func(J, KK, x, integral_I f(x, t) dif t)
+$
+Est bien définie, est $C^1$ sur $J$ et 
+$
+g' : func(J, KK, x, integral_I pdv(f, x) (x, t) dif t)
+$
+
+*Démonstration*
+
+Récurrence avec le théorème de dérivation.
+
+#card("thckintp", "Théorème de dérivation k-ème pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de dérivation k-ème pour les intégrales à paramètre.
+
+#answer
+
+Soit $f : func(J times I, KK, (x, t), f(x, t))$, avec $I, J$ des intervalles. Si
+
++ $forall t in I, x |-> f(x, t)$ est $C^k$ sur $J$.
+
++ $forall x in J, forall j in [|0, k - 1|]$, $t |-> pdv(f, x, [j])(x, t)$ est $C^0_"pm"$ et intégrable sur $I$.
+
++ $forall x in J, t |-> pdv(f, x, [k]) (x, t)$ est $C^0_"pm"$ sur $I$.
+
++ $forall K = [a, b] subset.eq J, exists phi_K in C^0_"pm" (I, RR_+)$,$integral_I phi_K (t) dif t < +oo$,
+  $
+    forall x in K, forall t in I, space abs(pdv(f, x, [k]) (x, t)) <= phi_K (t)
+  $
+
+Alors
+$
+  g : func(J, KK, x, integral_I f(x, t) dif t)
+$
+Est bien définie, est $C^k$ sur $J$ et pour tout $j in [|0, k|]$, 
+$
+g^((j)) : func(J, KK, x, integral_I pdv(f, x, [j]) (x, t) dif t)
+$
+
+*Démonstration*
+
+On montre $C^0$ avec le théorème de continuité, puis on montre la dérivabilité par le théorème de convergence dominée en calculant la limite usuelle.
 
 #card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
 
@@ -1061,6 +1238,28 @@ Soit $F$ de dimension finie, $K$ compact et $E = C^0 (K, F)$ muni de $norm(dot)_
   + On a $(f_psi(n))_n$ uniforme équicontinue qui CVS vers $g$, donc qui CVU, c'est à dire qui converge au sens de la norme infinie : $cal(F)$ est relativement compact.
 
 // TODO: Exos (M244.1-246)
+
+// TODO: Fourier (M253)
+
+#card("methequiintp", "Méthodes de recherche de limite ou d'équivalent pour les intégrales à paramètre", ("Maths.Analyse.Intégration",))
+
+Méthodes de recherche de limite ou d'équivalent pour les intégrales à paramètre.
+
+#answer
+
+- Théorème de convergence dominée, ou domination "à la main" (Limite).
+
+- Changement de variable.
+
+- Intuition (i.e intégration d'équivalent).
+
+- IPP : séparation en un terme plus simple et un terme négligeable.
+
+- Méthode de Laplace // Cf M256
+
+// TODO: Carte inutile ? (M255)
+
+// TODO: Gamma (M257)
 ]
 #[
 
@@ -6179,7 +6378,7 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
   $
 
   Qui se termine en au plus $floor(n / d)$ étapes.
-  // TODO: Que faire de la remarque Frobenius M142 ?
+// TODO: Que faire de la remarque Frobenius M142 ?
 
 + (2 $=>$ 1) Cas général.
   $
