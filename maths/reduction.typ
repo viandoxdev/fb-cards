@@ -1734,7 +1734,7 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
   $
 
   Qui se termine en au plus $floor(n / d)$ étapes.
-  // TODO: Que faire de la remarque Frobenius M142 ?
+// TODO: Que faire de la remarque Frobenius M142 ?
 
 + (2 $=>$ 1) Cas général.
   $
