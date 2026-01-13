@@ -885,3 +885,199 @@ Méthodes de recherche de limite ou d'équivalent pour les intégrales à param�
 // TODO: Carte inutile ? (M255)
 
 // TODO: Gamma (M257)
+
+#card("rayconv", "Rayon de convergence d'une séries entière", ("Maths.Analyse.Séries entières",))
+
+Propriétés, définition du convergence d'une séries entière.
+
+#answer
+
+Soit $sum a_n z^n$ une série entière. On appelle $R = R_"cv" (sum a_n z^n)$ le rayon de convergence de $sum a_n z^n$
+$
+  R = sup space Set(r in RR_+, (a_n r^n) "bornée")
+$
+
+- (Lemme d'Abel) : Si $(a_n z_0^n)$ est bornée, alors pour tout $z in CC$ tel que $abs(z) < abs(z_0)$, $sum a_n z^n$ est ACV.
+
+- Pour tout $z in CC$ (conséquence) : #h(1fr)
+  $
+    abs(z) < R quad quad sum a_n z^n "ACV" \
+    abs(z) > R quad quad sum a_n z^n "DVG" \
+  $
+
+- Pour tout $alpha in CC^*$
+  $
+    R_"cv" (sum alpha a_n z^n) = R_"cv" (sum a_n z^n)
+  $
+
+- Pour tout $alpha in CC^*$
+  $
+    R_"cv" (sum a_n alpha^n z^n) = (R_"cv" (sum a_n z^n)) / abs(alpha)
+  $
+
+- Si pour tout $n in NN$, $abs(a_n) <= abs(b_n)$
+  $
+    R_"cv" (sum a_n z^n) >= R_"cv" (sum b_n z^n)
+  $
+
+- Si $a_n = O_(n -> oo)(b_n)$
+  $
+    R_"cv" (sum a_n z^n) >= R_"cv" (sum b_n z^n)
+  $
+
+- Si $a_n eqv(n -> oo) b_n$
+  $
+    R_"cv" (sum a_n z^n) = R_"cv" (sum b_n z^n)
+  $
+
+- Soient $(a_n)_n, (b_n)_n in CC^NN$
+  $
+    R_"cv" (sum (a_n + b_n) z^n) >= min(R_a, R_b)
+  $
+  Avec égalité si $R_a != R_b$.
+
+- Soient $(a_n)_n, (b_n)_n in CC^NN$.
+  $
+      c_n = sum_(k = 0)^n a_k b_(n - k) \
+
+      R_"cv"(sum c_n z^n) >= min (R_a, R_b) \
+
+      forall z in DD(0, R_"cv"), \ sum_(n = 0)^(+oo) c_n z^n = (sum_(n = 0)^(+oo) a_n z^n) (sum_(n = 0)^(+oo) b_n z^n)
+  $
+
+#card("regse", "Régularité des séries entières", ("Maths.Analyse.Séries entières",))
+
+Régularité des séries entières.
+
+#answer
+
+Soit $(a_n)_n in CC^NN$ et $R = R_"cv" (sum a_n z^n)$.
+
+Pour tout $0 < r < R$
+$
+  f : func(DD(0, r), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+$
+Est $C^0$ sur $DD(0, r)$,
+$
+  g : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
+$
+Est $C^oo$ sur $Ioo(-R, R)$. Et pour tout $k in NN$
+$
+  f^((k)) : x |-> sum_(n = 0)^(+oo) (n + k)! / n! a_(n + k) x^n
+$
+
+*Démonstration*
+
+- Pour tout $r < R$ on a CVU de 
+  $
+    f : func(DD(0, r), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+  $
+  Et donc par le théorème de continuité des séries de fonctions, $f$ est $C^0$ sur $DD(0, r)$.
+
+- $R_"cv" (sum n a_n z^n) = R_"cv" (sum a_n z^n)$ :
+
+  Soit $z in DD(0, R), r = abs(z)$, pour $r_0 in Ioo(r, R)$, $(a_n r_0^n)$ est bornée.
+  $
+    abs(n a_n z^n) = underbrace(abs(a_n r_0^n), "bornée") dot underbrace(n (r / r_0)^n, -> 0) \
+    R_"cv" (sum n a_n z^n) >= R_"cv" (sum a_n z^n)
+  $
+  L'autre sens est évident :
+  $
+    R_"cv" (sum n a_n z^n) = R_"cv" (sum a_n z^n)
+  $
+
+- On applique le théorème $C^1$, qui donne la dérivée comme un série entière de même rayon de convergence (puis récurrence).
+
+#card("regidse", "Rigidité des séries entières", ("Maths.Analyse.Séries entières",))
+
+Rigidité des séries entières.
+
+#answer
+
+Soit $sum a_n z^n$ une série entière de rayon de convergence $R$.
+$
+  f : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
+$
+Pour tout $n in NN$
+$
+  a_n = (f^((n)) (0)) / n!
+$
+*Corolaire*
+
+Si deux séries entières coincident sur un intervalle $Ico(0, delta)$ avec $delta > 0$, alors ce sont les mêmes.
+
+*Démonstration*
+
+- Pour tout $k in NN$ #h(1fr)
+  $
+    f^((k)) (x) = sum_(n = 0)^(+oo) (n + k)! / n! a_(n + k) x^n \
+    f^((k)) (0) = k! a_k 
+  $
+
+- Soit 
+  $
+  g : func(Ioo(-R', R'), CC, x, sum_(n = 0)^(+oo) b_n x^n)
+  $
+  et $delta in Ioc(0, min(R, R'))$ tel que
+  $
+    forall x in Ico(0, delta), space f(x) = g(x)
+  $
+  Alors pour tout $k in NN$
+  $
+    f^((k)) = g^((k))
+  $
+  D'où (par continuité)
+  $
+    a_k = b_k
+  $
+
+#card("lemradabel", "Lemme radiale d'Abel", ("Maths.Analyse.Séries entières",))
+
+Lemme radiale d'Abel.
+
+#answer
+
+Soit $sum a_n z^n$ une série entière de rayon de convergence $R > 0$.
+$
+  f : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
+$
+Si $sum a_n R^n$ converge alors $f$ CVU sur $[0, R]$. Ainsi
+$
+  lim_(x -> R) f(x) = sum_(n = 0)^(+oo) a_n R^n
+$
+
+*Démonstration*
+
+- Cas $R = 1$ : #h(1fr)
+
+  On a $sum a_n$ qui converge, et $x |-> sum a_n x^n$ CVS sur $[0, 1]$.
+
+  $
+  rho_n = sum_(k = n+1)^(+oo) a_k tends(n -> oo) 0 \
+  $
+  Soit $epsilon > 0$ et $N in NN$ tel que pour tout $n >= N$, $abs(rho_n) < epsilon$. Pour tout $x in Ico(0, 1)$
+  $
+  abs(R_n (x)) &= abs(sum_(k = n + 1)^(+oo) a_k x^k) \
+  &= abs(rho_n x^(n+1) + sum_(k = n+1)^(+oo) rho_k (x^(k+1) - x^k) ) \
+  &<= abs(rho_n) + sum_(k = n + 1)^(+oo) abs(rho_k) (x^k - x^(k+1)) \
+  &< epsilon + epsilon sum_(k = n+1)^(+oo) (x^k - x^(k-1)) \
+  &< epsilon + epsilon x^(n + 1) < 2 epsilon
+  $
+  Et
+  $
+    abs(R_n (1)) = abs(rho_n) < epsilon
+  $
+  D'où
+  $
+    sup_(x in [0, 1]) abs(R_n) < 2 epsilon
+  $
+  Donc CVN sur $[0, 1]$.
+
+- Cas général :
+  $
+    b_n = a_n R^n quad quad R_"cv" (sum b_n x^n) = 1
+  $
+  Comme $sum b_n$ converge, le cas $R = 1$ s'applique et
+  $
+    sup_(x in [0, R]) abs(sum_(k = n + 1)^(+oo) a_n x^n) = sup_(t in [0, 1]) abs(sum_(k = n+1)^(+oo) underbrace(a_n R^n, b_n) x^n)
+  $
