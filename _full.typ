@@ -376,6 +376,26 @@ $
   laplace va(F) &= vec(pdv(F_x,x,2) + pdv(F_x,y,2) + pdv(F_x,z,2), pdv(F_y,x,2) + pdv(F_y,y,2) + pdv(F_y,z,2), pdv(F_z,x,2) + pdv(F_z,y,2) + pdv(F_z,z,2)) \
   &= vec(laplace F_x, laplace F_y, laplace F_z)
 $
+
+#card("formondeav", "Formules d'analyse vectoriel pour les ondes", ("Physique.Analyse Vectoriel",))
+
+Formules d'analyse vectoriel pour les ondes.
+
+#answer
+
+Pour
+$
+  f(va(r), t) = f_0 e^(plus.minus i (omega t - va(k) dot va(r))) \
+  va(F)(va(r), t) = va(F_0) e^(plus.minus i (omega t - va(k) dot va(r))) \
+$
+On a
+$
+  grad f &= minus.plus i va(k) f(va(r), t) \
+  curl va(F) &= minus.plus i va(k) curl va(F)(va(r), t) \
+  div va(F) &= minus.plus i va(k) dot va(F)(va(r), t) \
+  laplace f &= -omega^2 f \
+  laplace va(F) &= -k^2 va(F)
+$
 ]
 #[
 
