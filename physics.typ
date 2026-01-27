@@ -379,7 +379,7 @@ $
   &= vec(laplace F_x, laplace F_y, laplace F_z)
 $
 
-#card("formondeav", "Formules d'analyse vectoriel pour les ondes", ("Physique.Analyse Vectoriel",))
+#card("formondeav", "Formules d'analyse vectoriel pour les ondes", ("Physique.Analyse Vectorielle",))
 
 Formules d'analyse vectoriel pour les ondes.
 
