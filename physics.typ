@@ -398,3 +398,18 @@ $
   laplace f &= -omega^2 f \
   laplace va(F) &= -k^2 va(F)
 $
+
+#card("cstesphys", "Constantes physiques", ("Physique",))
+
+Valeurs numériques et unités de
+
+#answer
+
+$
+  h &= 6.63 times 10^(-34) J dot s quad quad e &= 1.6 times 10^(-19) C \
+  k_B &= 1.38 times 10^(-23) J dot K^(-1) quad quad call(N)_A &= 6.02 times 10^(23) "mol"^(-1) \
+  mu_0 &= 4pi times 10^(-7) H dot m^(-1) quad quad epsilon_0 &= 8.9 times 10^(35) F dot m^(-1) \
+  m_e &= 9.1 times 10^(-31) "kg" quad quad m_p = 1.7 times 10^(-27)
+$
+
+// TODO: finir ça 
