@@ -1081,3 +1081,5 @@ $
   $
     sup_(x in [0, R]) abs(sum_(k = n + 1)^(+oo) a_n x^n) = sup_(t in [0, 1]) abs(sum_(k = n+1)^(+oo) underbrace(a_n R^n, b_n) x^n)
   $
+
+

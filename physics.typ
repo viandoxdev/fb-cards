@@ -406,10 +406,10 @@ Valeurs numériques et unités de
 #answer
 
 $
-  h &= 6.63 times 10^(-34) J dot s quad quad e &= 1.6 times 10^(-19) C \
-  k_B &= 1.38 times 10^(-23) J dot K^(-1) quad quad call(N)_A &= 6.02 times 10^(23) "mol"^(-1) \
-  mu_0 &= 4pi times 10^(-7) H dot m^(-1) quad quad epsilon_0 &= 8.9 times 10^(35) F dot m^(-1) \
-  m_e &= 9.1 times 10^(-31) "kg" quad quad m_p = 1.7 times 10^(-27)
+  h &= 6.63 dot 10^(-34) J dot s \ e &= 1.6 dot 10^(-19) C \
+  k_B &= 1.38 dot 10^(-23) J dot K^(-1) \ cal(N)_A &= 6.02 dot 10^(23) "mol"^(-1) \
+  mu_0 &= 4pi dot 10^(-7) H dot m^(-1) \ epsilon_0 &= 8.9 dot 10^(35) F dot m^(-1) \
+  m_e &= 9.1 dot 10^(-31) "kg" \ m_p &= 1.7 dot 10^(-27) \
 $
 
 // TODO: finir ça 
