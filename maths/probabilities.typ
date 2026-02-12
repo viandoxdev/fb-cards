@@ -266,3 +266,162 @@ Alors $f(X_1, dots, X_n)$ et $g(X_(n+1), dots, X_(n+m))$ sont des variables alé
 Calculs pas très beau, fubini.
 
 // NOTE: Interpretation des lois usuels M289
+
+#card("esppb", "Espérance d'une variable aléatoire", ("Maths.Probabilités",))
+
+Définition et propriétés élémentaires de l'ésperance d'une variable aléatoire.
+
+#answer
+
+- Pour $X$ une variable aléatoire sur $(Omega, cal(T), PP)$ complexe, on dit que $X$ est d'ésperance finie si $(x P(X = x))_(x in X^(-1) (Omega))$ est sommable, on note $X in LL^1$ et on pose
+  $
+    EE(X) = sum_(x in X^(-1) (Omega)) x PP(X = x)
+  $
+
+- Pour $X$ à valeur dans $RR_+$ on définit l'ésperance dans $RR_+ union {+oo}$, avec $EE(X) = +oo$ si la somme diverge.
+
+- Pour $X$ à valeur dans $NN$ on a
+  $
+    EE(X) = sum_(n = 0)^(+oo) PP(X >= n)
+  $
+
+- Si $X$ est à valeur dans $NN$ et $EE(X) < +oo$, alors
+  $
+    PP(X >= n) tends(n -> oo) 0 \
+    PP(X >= n) = o_(n -> oo) (1/n)
+  $
+
+*Démonstration*
+
+- $X$ à valeur dans $NN$ #h(1fr)
+  $
+    sum_(n = 0)^(+oo) PP(X >= n) &= sum_(n = 0)^(+oo) sum_(k = n)^(+oo) PP(X = k) \
+    &= sum_(k = 0)^(+oo) sum_(n = 0)^(k) PP(X = k) \
+    &= sum_(k = 0)^(+oo) k PP(X = k) \
+    &= EE(X)
+  $
+
+- La première ligne est toujours vraie car 
+  $
+    sum_(n = 0)^(+oo) PP(X >= n) = EE(X) < +oo
+  $
+  Pour la deuxième
+  $
+    n PP(X >= n) &= n sum_(k = n)^(+oo) PP(X = k) \
+    &<= sum_(k = n)^(+oo) k PP(X = k) tends(n -> oo) 0
+  $
+  Car série reste d'une série convergente.
+
+#card("ldtpb", "Lemme de tranfert", ("Maths.Probabilités",))
+
+Énoncé et démonstration du lemme de transfert.
+
+#answer
+
+Soit $X$ variable aléatoire discrète à valeur dans $E$, et $f : E -> CC$.
+
+Alors $f(X) in LL^1$ ssi $(f(x)P(X = x))_(x in X^(-1)(Omega))$ est sommable et 
+$
+  EE(f(X)) = sum_(x in X^(-1)(Omega)) f(x) PP(X = x)
+$
+
+On en déduit que $X in LL^1$ ssi $EE(abs(X)) < +oo$.
+
+*Démonstration*
+
+Sommation par paquets.
+
+#card("propesppb", "Propriétés de l'ésperance", ("Maths.Probabilités",))
+
+Propriétés de l'ésperance.
+
+#answer
+
+On a les propriétés suivantes
+
+- Toute variable aléatoire bornée est d'ésperance finie.
+- $EE$ est linéaire : #h(1fr)
+  $
+  EE(alpha A + beta B) = alpha EE(A) + beta EE(B)
+  $
+- $EE$ est croissante :
+  $
+    X <= Y => EE(X) <= EE(Y)
+  $
+- On à l'inégalité triangulaire
+  $
+    abs(EE(X)) <= EE(abs(X))
+  $
+- Pour $X tack.t.double Y$
+  $
+    EE(X Y) = EE(X) EE(Y)
+  $
+- Pour $A in cal(T)$
+  $
+    EE(bb(1)_A) = PP(A)
+  $
+- Pour $X, Y in LL^2$
+  $
+    EE(X Y)^2 <= EE(X^2) EE(Y^2)
+  $
+  avec égalité ssi $X = alpha Y$ ps.
+
+// NOTE: Démonstrations M294 et avant
+
+#card("varvapb", "Variance d'une variable aléatoire", ("Maths.Probabilités",))
+
+Définition et propriétés élémentaires de la variance d'une variable aléatoire.
+
+#answer
+
+*Variance*
+
+Pour $X$ une variable aléatoire discrète réelle, on note $X in LL^2$ si $X^2 in LL^1$.
+
+Dans ce cas $X in LL^1$, et on définie
+$
+  VV(X) &= EE((X - EE(X))^2) \
+  &= underbrace(EE(X^2) - EE(X)^2, "Koenig-Huygens")
+$
+
+On a alors
+
+- Si $Y = a X + b$ #h(1fr)
+  $
+    VV(Y) = a^2 VV(X)
+  $
+
+- $VV(X) = 0$ ssi $X$ ps constante.
+
+*Covariance*
+
+On définit de plus la covariance de $X, Y in LL^2$
+$
+"Cov" (X, Y) \ = EE((X - EE(X))(Y - EE(Y))) \
+= EE(X Y) - EE(X) EE(Y)
+$
+Qui est une forme bilinéaire, symétrique, positive.
+
+Si $"Cov"(X, Y) = 0$ on dit que $X$ et $Y$ sont décorélées, et dans ce cas
+$
+  VV(X + Y) = VV(X) + VV(Y)
+$
+
+- Deux variables indépendantes sont décorélées.
+
+*Démonstration*
+
+- Pour $X in LL^2$ #h(1fr)
+  $
+    EE((X - EE(X))^2) \ = EE(X^2 - 2X EE(X) + EE(X)^2) \
+   = EE(X^2) - 2 EE(X) EE(X) + EE(X^2) \
+   = EE(X^2) - EE(X)^2
+  $
+
+- Pour $Y = a X + b$ \
+  $
+    VV(Y) &= EE((a X + b - EE(a X + b))^2) \ 
+    &= EE((a X - a EE(X))^2) \
+    &= a^2 EE((X - EE(x))^2) \
+    &= a^2 VV(X)
+  $
