@@ -409,6 +409,11 @@ $
 
 - Deux variables indépendantes sont décorélées.
 
+- Pour $X, Y in LL^2$
+  $
+    "Cov"(X, Y)^2 <= VV(X) VV(Y)
+  $
+
 *Démonstration*
 
 - Pour $X in LL^2$ #h(1fr)
@@ -425,3 +430,99 @@ $
     &= a^2 EE((X - EE(x))^2) \
     &= a^2 VV(X)
   $
+
+#card("inegprob", "Premières inégalités de probabilités", ("Maths.Probabilités",))
+
+Premières inégalités de probabilités.
+
+#answer
+
+*Markov*
+
+Pour $X in LL^1$ reélle, et pour tout $delta > 0$
+$
+  EE(abs(X) >= delta) <= EE(|X|) / delta
+$
+Et de plus pour $f : RR_+ -> RR_+$ strictement croissante et $X >= 0$
+$
+  PP(X >= delta) <= EE(f(X)) / f(delta)
+$
+
+*Bienaymé-Tchebychev*
+
+Soit $X in LL^2$, $m = EE(X)$ et $delta > 0$
+$
+  PP(abs(X - m) >= delta) <= VV(X) / delta^2
+$
+
+*Démonstration*
+
+Pour $X >= 0$
+$
+  X = X bb(1)_(X < delta) + X bb(1)_(X >= delta)
+$
+$
+  EE(X) &= underbrace(EE(X bb(1)_(X < delta)), >= 0) + EE(X bb(1)_(X >= delta)) \ 
+  &>= EE(delta bb(1)_(X >= delta)) = delta PP(X >= delta)
+$
+
+Et ainsi pour $X in LL^2$
+$
+  PP(abs(X - m) >= delta) &= PP((X - m)^2 >= delta^2) \
+  &<= EE((X - m)^2) / delta^2 \
+  &= VV(X) / delta^2
+$
+
+#card("loigrandnmbr", "Loi des grands nombres", ("Maths.Probabilités",))
+
+Loi faible et loi forte des grands nombres.
+
+#answer
+
+*Faible*
+
+Soit $(X_n)_(n in NN^*)$ vaiid de $LL^2$. On note $m = EE(X_1)$ et $sigma = sigma(X_1)$, pour $n in NN, S_n = sum_(k = 1)^n X_k$.
+
+Pour tout $delta > 0$
+$
+  PP(abs(S_n / n - m) >= delta) tends(n -> oo) 0
+$
+$(S_n / n)_n$ converge en probabilité vers $m$.
+
+*Forte*
+
+*Démonstration*
+
+$
+  PP(abs(S_n / n - m) >= delta) \ <= VV(S_n / n) / delta^2 = VV(sum_(k = 1)^n X_k) / (n^2 delta^2) = delta^2 / (n delta^2) \
+  tends(n -> oo) 0
+$
+
+#card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercices.Probabilités",))
+
+Démonstration probabiliste du théorème de Weierstrass.
+
+#answer
+
+Soit $f in C^0 ([0, 1], RR)$, pour $n in NN$
+$
+  B_n = sum_(k = 0)^n vec(n, k) f(k / n) X^k (1 - X)^(n - k)
+$
+Montrons que $(B_n)_n$ CVU vers $f$ sur $[0, 1]$.
+
+Soit $x in [0, 1]$, $(X_n)_(n in NN^*)$ vaiid tel que $X_k ~ cal(B)(x)$. Et $S_n = sum_(k = 1)^n X_k ~ cal(B)(n, x)$. On remarque que
+$
+  B_n (x) &= sum_(k = 0)^n f(k / n) PP(S_n = k) \ &= EE(f(S_n / n))
+$
+
+Soit $epsilon > 0$, par uniforme continuité de $f$ sur $[0,1]$, on dispose de $delta > 0$ associé.
+
+$
+  abs(B_n (x) - f(x)) = abs(EE(f(S_n / n) - f(x))) \
+$
+$
+  = abs(EE[ &underbrace((f(S_n / n) - f(x)), <= 2 norm(f)_oo) bb(1)_(abs(S_n / n - x) >= delta) \
+  + &underbrace((f(S_n / n) - f(x)), < epsilon) bb(1)_(abs(S_n / n - x) < delta) ]) \
+  <= & 2norm(f)_oo PP(abs(S_n / n - x) >= delta) + epsilon \
+  <= & 2norm(f)_oo (x(1 - x)) / (n delta^2) + epsilon
+$
