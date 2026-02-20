@@ -420,421 +420,1079 @@ $
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("ptribu", "Tribu", ("Maths.Probabilités",))
+#card("derivevn", "Dérivabilité", ("Maths.Analyse.Espaces vectoriels normés",))
 
-Définition et propriétés de tribu.
-
-#answer
-
-Soit $Omega$ un ensemble non vide. Une tribu sur $Omega$ est un $cal(T) subset.eq cal(P)(Omega)$ tel que
-
-- $emptyset in cal(T)$.
-
-- $cal(T)$ est stable par passage au complémentaire.
-
-- $cal(T)$ est stable par union dénombrable.
-
-$(Omega, cal(T))$ est appelé espace probabilisable.
-
-On a alors
-
-- $Omega in cal(T)$.
-- $cal(T)$ est stable par union finie.
-- $cal(T)$ est stable par intersection dénombrable.
-- Pour tout $A, B in cal(T)$, $A \\ B in cal(T)$.
-
-*Démonstration*
-
-- $Omega = overline(emptyset)$
-- Pour $(A_i)_i in cal(T)^I$, #h(1fr)
-  $
-    inter.big_(i in I) A_i = overline(union.big_(i in I) overline(A_i)) in cal(T)
-  $
-- Pour $A, B in cal(T)$
-  $
-    A \\ B = A inter overline(B) in cal(T)
-  $
-
-#card("espprob", "Espace probabilisé", ("Maths.Probabilités",))
-
-Définition et propriétés des espaces probabilisés.
+Définition de dérivabilité pour une fonction à valeur dans un evn.
 
 #answer
 
-Soit $(Omega, cal(T))$ un espace probabilisable. Une probabilité sur $(Omega, cal(T))$ est la donné d'un
+Pour $f in cal(F)(I, E)$, où $I$ est un intervalle et $E$ un $RR$ ou $CC$-evn.
+
+Soit $a in I$, on a équivalence entre
+
++ #h(1fr)
+  $
+    tau_a : func(I \\ {a}, E, x, (f(x) - f(a)) / (x - a)) 
+  $
+  Admet une limite finie $l in E$ en $a$.
+
++ On dispose de $l in E$ et $epsilon in cal(F)(I, E)$ tel que
+  $
+    f(x) = f(a) + (x - a)l + (x - a) epsilon(x) \
+    "et " lim_(x -> a) epsilon(x) = 0
+  $
+
+Dans ce cas on dit que $f$ est dérivable en $a$ et on note
 $
-  PP : cal(T) -> [0, 1]
+  l = f'(a) = lim_(x -> a) (f(x) - f(a)) / (x - a)
 $
-Tel que
 
-- $PP(Omega) = 1$.
+#card("linder", "Applications multi-linéaires et dérivation", ("Maths.Analyse.Espaces vectoriels normés",))
 
-- Pour tout $(A_n)_n in cal(T)^NN$ deux à deux disjoints
-  $
-    PP(union.plus.big_(n in NN) A_n) = sum_(n in NN) PP(A_n)
-  $
-  Avec convergence de la somme.
-
-Dans ce cas
-
-- $PP(emptyset) = 0$. #h(1fr)
-
-- Pour tout $A subset.eq B in cal(T)$
-  $
-    PP(A) <= PP(B) \
-    PP(B \\ A) = PP(B) - PP(A)
-  $
-
-- Pour tout $A in cal(T)$
-  $
-    PP(overline(A)) = 1 - PP(A)
-  $
-
-- Pour tout $(A_n)_n in cal(T)^NN$ une suite croissante d'évenements
-  $
-    PP(union.big_(n in NN) A_n) = lim_(n -> oo) PP(A_n)
-  $
-
-- Pour tout $(A_n)_n in cal(T)^NN$ une suite décroissante d'évenements
-  $
-    PP(inter.big_(n in NN) A_n) = lim_(n -> oo) PP(A_n)
-  $
-
-*Démonstration*
-
-- On pose $(A_n)_n = (emptyset)_n$ deux à deux disjoints #h(1fr)
-  $
-    PP(emptyset) = PP(union.plus.big_(n in NN) A_n) = sum_(n in NN) PP(emptyset)
-  $
-  Qui converge d'où $PP(emptyset) = 0$.
-
-- Soit $A subset.eq B in cal(T)$, on a
-  $
-    B = A union.plus (B \\ A) \
-    PP(B) = PP(A) + PP(B \\ A)
-  $
-
-- Cas croissant :
-  $
-  B_0 = A_0 \
-  B_(n + 1) = A_(n + 1) \\ A_n
-  $
-  Ainsi
-  $
-    A_n &= union.plus.big_(k = 0)^n B_k \
-    &= union.big_(k = 0)^n A_n
-  $
-  De même
-  $
-    union.big_(n in NN) A_n &= union.plus.big_(n in NN) B_n \
-    PP (union.big_(n in NN) A_n) &= sum_(n in NN) PP(B_n) \
-    &= lim_(n -> oo) sum_(k = 0)^n PP(B_k) \
-    &= lim_(n -> oo) PP(A_n)
-  $
-
-- Cas décroissant : On pose $B_n = overline(A_n)$, suite croissante.
-
-#card("borcant", "Lemme de Borel-Cantelli", ("Maths.Probabilités",))
-
-Énoncé et démonstration du lemme de Borel-Cantelli, version faible et version forte.
+Formules de dérivation de $L(f)$, $B(f, g)$ et $M(f_1, dots, f_n)$.
 
 #answer
 
-*Borel-Cantelli faible*
+Soient $E_1, dots, E_n, F$ des evn de dimension finie.
 
-Pour $(A_n)_in in cal(T)^NN$ où $(Omega, cal(T), PP)$ est un ep, on pose
-$
-  S &= inter.big_(N in NN) union.big_(n >= N) A_n \
-  &= lim sup A_n
-$
-Si $sum PP(A_n)$ converge, alors $PP(S) = 0$.
+- Soit $L in cal(L)(E_1, F)$ et $f in cal(F)(I, E)$, si $f$ dérivable en $a in I$ :
+  $
+    (L compose f)'(a) = L(f') (a)
+  $
+
+- Soit $B : E_1 times E_2 -> F$ bilinéaire, $f, g in cal(F)(I, F)$, si $f$ et $g$ sont dérivables en $a in I$ :
+  $
+    (B(f, g))'(a) \ = B(f', g)(a) + B(f, g')(a)
+  $
+
+- Soit $M : product_(k = 1)^n E_k -> F$ $n$-linéaire, $f_1, dots, f_n in cal(F)(I, F)$. Si $f_1, dots, f_n$ sont dérivables en $a in I$ alors :
+  $
+    (M(f_1, dots, f_n))'(a) \
+      = sum_(k = 1)^n M(f_1, dots, f_(k - 1), f'_k, f_(k+1), dots, f_n)(a)
+  $
+
+#card("derbout", "Théorème de Darboux", ("Maths.Analyse.Espaces vectoriels normés",))
+
+Énoncé et démonstration du théorème de Darboux.
+
+#answer
+
+Soit $F in D^1(I, RR)$, pour tout $gamma in [F'(a), F'(b)]$ pour $a, b in I$ on dispose de $x in [a, b]$ tel que $F'(x) = gamma$.
 
 *Démonstration*
 
-On pose $B_N = union.big_(n >= N) A_n$, une suite décroissante d'évenements, d'où
+Pour $gamma = 0$, supposons $F'(a) < 0, F'(b) > 0$
 $
-  PP(S) &= PP(inter.big_(N in NN) B_N) \ 
-  &= lim_(N -> oo) PP(B_N) \
-  &<= lim_(N -> oo) sum_(n = N)^(+oo) PP(A_n) = 0
+  min_[a,b] F in.not {F(a), F(b)}
+$
+Et $F C^0$ sur $[a, b]$
+
+Donc on dispose de $x in [a, b]$ tel que $F(x) = min_[a, b] F$ et ainsi $F'(x) = 0$.
+
+#card("inegevnfun", "Inégalités utiles", ("Maths.Analyse.Espaces vectoriels normés",))
+
+Inégalités utiles qui tiennent pour les fonctions à valeur dans un evn de dimension finie.
+
+#answer
+
++ Soit $f in C^1(I, E)$, pour tout $a, b in I$ : #h(1fr)
+  $
+    norm(f(a) - f(b)) <= abs(b - a) dot sup_[a, b] norm(f')
+  $
+
++ Soit $f in C^(n+1)(I, E)$, pour tout $a, b in I$ :
+  $
+    norm(f(b) - sum_(k = 0)^n (b - a)^k / k! f^((k)) (a)) \
+    <= abs(b - a) / (n+1)! sup_[a, b] norm(f^((n+1)))
+  $
+
+#card("cvs", "Convergence simple", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Propriétés, définition de la convergence simple.
+
+#answer
+
+Soit $(f_n)_n in cal(F) (A, E)^NN$, on dit que $(f_n)_n$ converge simplement vers $f in cal(F)(A, E)$ si
+$
+  forall x in A, lim_(n -> oo) f_n (x) = f(x)
 $
 
-*Borel-Cantelli fort*
+La convergence simple conserve les propriétés suivantes :
 
-Avec les même notations, si $sum PP(a_n)$ diverge et $(A_n)_n$ mutuellement indépendants, alors $PP(S) = 1$.
+- Si les $f_n$ sont croissants, $f$ aussi.
+- Si les $f_n$ sont $k$-lipschitzien, $f$ aussi.
+Si $A = I$ intervalle et $E = RR$
+
+- Si les $f_n$ sont bornés par $M$, $f$ aussi.
+- Si les $f_n$ sont convexes, $f$ aussi.
+
+#card("exsuitesdepol", "Exercice : suite de polynômes, convergence uniforme", ("Maths.Exercice.Analyse",))
+
++ Soit $(P_n)_n in RR[X]^NN tends(n -> oo, above: "CVU") f in cal(F)(RR, RR)$, montrer que $f$ est polynômiale.
+
++ Soit $(P_n)_n in RR_d [X]^NN tends(n -> oo, above: "CVS") Q in RR_d [X]$, montrer que $(P_n)_n$ converge uniformement sur tout segment.
+
++ Soit $(P_n)_n in RR_d [X]^NN tends(n -> oo, above: "CVS") f in cal(F)(RR, RR)$, montrer que $f in RR_d [X]$.
+
+#answer
+
++ Soit $N in NN$ tel que pour tout $n >= N$, $P_n - f$ bornée (possible car $norm(P_n - f)_oo -> 0$).
+
+  $
+    P_N - P_n = (P_N - f) - (P_n - f)
+  $
+  Différence de fonctions bornées, donc bornée et somme de polynômes de polynômiale.
+
+  D'où
+  $
+    P_N - P_n &= alpha_n in RR \
+    &tends(n -> oo) P_N - f = beta in RR
+  $
+  Donc $f = P_N + beta in RR[X]$.
+
++ Soit $[a, b] subset.eq RR$, $alpha_0, dots, alpha_d in [a, b]$ distincts.
+  $
+    N_d : func(RR_d [X], RR_+, P, max_(k in [|0, d|]) abs(P(alpha_k)))
+  $
+  Par CVS, $(P_n)_n$ converge vers $Q$ au sens de la norme $N_d$, qui est équivalente à la norme infinie car en dimension finie.
+
++ De même, par interpollation de Lagrange on prend $Q$ coincident avec $f$ en $d + 1$ points, et on définit la même norme :
+  $
+    N_d (P_n - Q) tends(n -> oo) 0
+  $
+  Donc au sens de la norme infinie : $P_n -> Q = f$.
+
+#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de continuité pour les suites de fonctions.
+
+#answer
+
+Soit $(f_n)_n in cal(F)(A, F)^NN tends(n -> oo, above: "CVS") f in cal(F)(A, F)$, $a in A$. Si
+
++ $(f_n)_n$ CVU sur un voisinage de $a$.
+
++ $forall n in NN, f_n C^0$ en $a$.
+
+Alors $f$ est $C^0$ en $a$.
 
 *Démonstration*
 
-On a
+Soit $epsilon > 0$, $N in NN$ associé par CVU, $delta > 0$ associé par continuité de $f_N$, ainsi pour tout $x in B(a, delta) inter A$
 $
-  overline(S) = union.big_(N in NN) inter.big_(n >= N) overline(A_n)
+  norm(f(x) - f(a))  <=& underbrace(norm(f(x) - f_N (x)), < epsilon)\ +& underbrace(norm(f_N (x) - f_N (a)), < epsilon) \ +& underbrace(norm(f_N (a) - f(a)), < epsilon) \
+  < & 3 epsilon
+$
+
+#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de la double limite pour les suites de fonctions.
+
+#answer
+
+Soit $(f_n)_n in cal(F)(A, F)^NN tends(n -> oo, above: "CVS") f in cal(F)(A, F)$, $a in overline(A)$. Si
+
++ $(f_n)_n$ CVU sur un voisinage de $a$.
+
++ $forall n in NN, lim_(x -> a) f_n (x) = l_n$.
+
+Alors
+$
+  lim_(n -> oo) l_n &= l in overline(F) \ &= lim_(n -> oo) lim_(x -> a) f_n (x) \ &= lim_(x -> a) lim_(n -> oo) f_n (x)
+$
+
+*Démonstration (Idée)*
+
+$
+  norm(l_n - l_m) <= norm(f_n - f_m)_oo "de Cauchy"
+$
+
+#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de primitivation pour les suites de fonctions.
+
+#answer
+
+Soit $(f_n)_n in C^0_"pm" (I, G)^NN$ ($G$ evn de dimension finie, $I$ intervalle de $RR$), $a in A$. Si
+
++ $(f_n)_n$ CVU sur tout segment de $I$ vers $f in C^0_"pm"$.
+
+En notant 
+$
+  F_n : func(I, G, x, integral_a^x f_n (t) dif t) \
+  F : func(I, G, x, integral_a^x f(t) dif t) \
+$
+
+Alors $F_n$ CVU sur tout segment vers $F$
+
+*Corolaire*
+
+Pour $(f_n)_n in C^0_"pm" ([a, b], F)^NN tends([a, b], above: "CVU") f in C^0_"pm" ([a, b], F)$.
+
+$
+  integral_a^b f_n (t) dif t tends(n -> oo) integral_a^b f(t) dif t
+$
+
+*Démonstration*
+
+Soit $K$ segment, $M = abs(sup K - inf K)$, quitte à le grandire, $a in K$.
+
+Soit $epsilon > 0$, on dispose de $N in NN$ tel que pour tout $n >= N$,
+$
+  norm(f_n - f)_oo < epsilon
 $
 Ainsi
 $
-  PP(S) &= 1 - PP(overline(S)) \
-  &>= 1 - sum_(N in NN) PP(inter.big_(n >= N) overline(A_n))
+  norm(F(x) - F_n (x)) &= norm(integral_a^x (f(t) - f_n (t) ) dif t) \
+  &<= abs(x - a) epsilon \
+  &<= M epsilon
 $
+
+#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de dérivation pour les suites de fonctions.
+
+#answer
+
+Soit $(f_n)_n in C^1(I, G)^NN tends(n -> oo, above: "CVS") f$. Si
+
++ $(f'_n)_n$ CVU sur tout segment vers $g$.
+
+Alors $(f_n)_n$ CVU vers $f$ sur tout segment et $f in C^1$ et $f' = g$ :
+$
+  (lim_(n -> oo) f_n)' = lim_(n -> oo) f'_n
+$
+
+*Démonstration*
+
+Par théorème de primitivation.
+
+#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de dérivation k-ème pour les suites de fonctions.
+
+#answer
+
+Soit $(f_n)_n in C^k (I, F)^NN$, si
+
++ Pour tout $j in [|0, k-1|]$, $(f^((j))_n)_n$ CVS vers $g_j$.
+
++ $(f^((k))_n)_n$ CVU sur tout segment vers $g_k$.
+
+Alors
+
+Pour tout $j in [|0, k|]$, $(f^((j))_n)_n$ CVU sur tout segment vers $g_j = g_0^((j))$, $g_0$ qui est $C^k$.
+
+*Démonstration*
+
+Récurrence à l'aide du théorème de dérivation.
+
+#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de continuité pour les séries de fonctions.
+
+#answer
+
+Soit $(f_n)_n in cal(F) (A, F)^NN$, $a in A$. Si
+
++ $sum f_n$ CVS.
+
++ $sum f_n$ CVU sur un voisinage de $a$.
+
++ Pour tout $n in NN$, $f_n$ est continue en $a$.
+
+Alors $S : x |-> sum_(n = 0)^(+oo) f_n (x)$ est continue en $a$.
+
+*Démonstration*
+
+On applique le théorème de continuité pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
+
+#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de la doulbe limite pour les séries de fonctions.
+
+#answer
+
+Soit $(f_n)_n in cal(F)(A, F)^NN$, $a in overline(A)$. Si
+
++ $sum f_n$ CVS.
+
++ Pour tout $n in NN$, $lim_(x -> a) f_n (x) = l_n in overline(F)$.
+
++ $sum f_n$ CVU sur un voisinage de $a$.
+
+Alors $sum l_n$ converge et
+$
+  sum_(n = 0)^(+oo) l_n &= sum_(n = 0)^(+oo) lim_(x -> a) f_n (x) \ &= lim_(x -> a) sum_(n = 0)^(+oo) f_n (x)
+$
+
+*Démonstration*
+
+On applique le théorème de la double limite pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
+
+#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de dérivation pour les séries de fonctions.
+
+#answer
+
+Soit $(f_n)_n in C^1 (I, F)^NN tends(n -> oo, above: "CVS") S$. Si
+
++ $sum f'_n$ CVU sur tout segment de $I$.
+
+Alors $sum f_n$ CVU sur tout segment de $I$, et $S in C^1 (I, F)$ et $S' = sum_(n = 0)^(+oo) f'_n$.
+
+*Démonstration*
+
+On applique le théorème de dérivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
+
+#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de dérivation k-ème pour les séries de fonctions.
+
+#answer
+
+Soit $(f_n)_n in C^1 (I, F)^NN$. Si
+
++ Pour tout $j in [|0, k - 1|]$, $sum f^((j))_n$ CVS sur $I$.
+
++ $sum f^((k))_n$ CVU sur tout segment de $I$.
+
+Alors pour tout $j in [|0, k|]$, $sum f^((j))_n$ CVU sur tout segment de $I$ et 
+$
+  S = sum_(n = 0)^(+oo) f_n in C^k (I, F) \
+  forall j in [|0, k|], space S^((j)) = sum_(n = 0)^(+oo) f^((j))_n
+$
+
+*Démonstration*
+
+On applique le théorème de dérivation k-ème pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
+
+#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé, démonstration du théorème de primitivation pour les séries de fonctions.
+
+#answer
+
+Soit $(f_n)_n in C^0_"pm" (I, F)^NN$, $a in I$. Si
+
++ $sum f_n$ CVU sur tout segment.
+
++ $s = sum_(n = 0)^(+oo) f_n in C^0_"pm" (I, F)$.
+
+En notant
+$
+  F_n (x) = integral_a^x f_n (t) dif t \
+  S(x) = integral_a^x s (t) dif t
+$
+
+Alors $sum F_n$ CVU sur tout segment vers $S$
+
+*Corolaire*
+
+Pour $(f_n)_n in C^0_"pm" ([a, b], F)^NN$ tel que $sum f_n$ CVU sur $[a, b]$ et $S = sum_(n = 0)^(+oo) f_n$ est $C^0_"pm"$.
+
+$
+  integral_a^b sum_(n = 0)^(+oo) f_n (t) dif t = sum_(n = 0)^(+ oo) integral_a^b f_n (t) dif t
+$
+
+*Démonstration*
+
+On applique le théorème de primitivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
+
+#card("thcvd", "Théorème de convergence dominée", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé du théorème de convergence dominée.
+
+#answer
+
+Soit $(f_n)_n in C^0_"pm" (I, KK)^NN$, avec $I$ un intervalle. Si
+
++ $f_n tends(n -> oo, above: "CVS") f$ sur I.
+
++ $f C^0_"pm"$.
+
++ Il existe $phi in C^0_"pm" (I, RR_+)$ intégrable sur $I$ tel que #h(1fr)
+  $
+    forall n in NN, forall t in I, abs(f_n (t)) <= phi(t)
+  $
+
+Alors $f_n$ et $f$ sont intégrables sur $I$ et
+$
+  lim_(n -> oo) integral_I f_n (t) dif t &= integral_I f(t) dif t \ &= integral_I lim_(n -> oo) f_n (t) dif t
+$
+
+#card("thtat", "Théorème d'intégration terme à terme", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé du théorème d'intégration terme à terme.
+
+#answer
+
+- Version positive : #h(1fr)
+
+  Soit $(f_n)_n in C^0_"pm" (I, RR_+)^NN$, avec $I$ un intervalle. Si
+
+  + $sum f_n$ CVS sur $I$.
+
+  + $t |-> sum_(n = 0)^(+oo) f_n (t)$ est $C^0_"pm"$ sur $I$.
+
+  Alors dans $RR_+ union {+oo}$ :
+  $
+    integral_I sum_(n = 0)^(+oo) f_n (t) dif t = sum_(n = 0)^(+oo) integral_I f_n (t) dif t
+  $
+
+- Version générale :
+
+  Soit $(f_n)_n in C^0_"pm" (I, KK)^NN$, avec $I$ un intervalle. Si
+
+  + $sum f_n$ CVS sur $I$.
+
+  + $S : t |-> sum_(n = 0)^(+oo) f_n (t)$ est $C^0_"pm"$ sur $I$.
+
+  + Pour tout $n in NN$, $f_n$ est intégrable sur $I$ et
+    $
+      sum_(n = 0)^(+oo) integral_I abs(f_n (t)) dif t < +oo
+    $
+
+  Alors $S$ est intégrable sur $I$ et
+  $
+    integral_I S(t) dif t &= integral_I sum_(n = 0)^(+oo) f_n (t) dif t \
+    &= sum_(n = 0)^(+oo) integral_I f_n (t) dif t
+  $
+
+#card("thcvscont", "Théorème de convergence dominée par un paramètre continue", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de convergence dominée par un paramètre continue.
+
+#answer
+
+Soit $A subset.eq RR$, $(f_lambda)_lambda in C^0_"pm" (I, KK)^A$, $a in overline(A)$. Si
+
++ $forall x in I, f_lambda (x) tends(lambda -> a) f(x)$.
+
++ $f$ est $C^0_"pm"$ sur $I$.
+
++ Il existe $phi in C^0_"pm" (I, RR_+)$ intégrable sur $I$ tel que
+  $
+    forall t in I, forall lambda in A, abs(f_lambda (t)) <= phi(t)
+  $
+
+Alors les $f_lambda$ et $f$ sont intégrables sur $I$ et
+$
+  lim_(lambda -> a) integral_I f_lambda (t) dif t = integral_I lim_(lambda -> a) f_lambda (t) dif t
+$
+
+*Démonstration*
+
+Critère séquentiel, on montre que le résultat est vrai pour toute suite $(lambda_n)_n tends(n -> oo) a$.
+
+#card("thc0intp", "Théorème de continuité pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de continuité pour les intégrales à paramètre.
+
+#answer
+
+Soit $f: func(A times I, KK, (x, t), f(x, t))$, avec $A subset.eq E$ evn de dimension finie et $I$ intervalle. Si
+
++ $forall t in I$, $x |-> f(x, t)$ est $C^0$ sur $A$.
+
++ $forall x in A$, $t |-> f(x, t)$ est $C^0_"pm"$ sur $I$.
+
++ $forall a in A, exists V_a in cal(V)(a), exists phi_a in C^0_"pm" (I, RR_+), integral_I abs(phi(t)) dif t < +oo$,
+  $
+    forall t in I, forall x in V_a, abs(f(x, t)) <= phi(t)
+  $
+
+Alors
+$
+  g: func(A, KK, x, integral_I f(x, t) dif t)
+$
+Est bien définie et continue sur $A$.
+
+*Démonstration*
+
+Critère séquentiel et théorème de convergence dominée.
+
+#card("thc1intp", "Théorème de dérivation pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de dérivation pour les intégrales à paramètre.
+
+#answer
+
+Soit $f : func(J times I, KK, (x, t), f(x, t))$, avec $I, J$ des intervalles. Si
+
++ $forall t in I, x |-> f(x, t)$ est $C^1$ sur $J$.
+
++ $forall x in J, t |-> f(x, t)$ est $C^0_"pm"$ et intégrable sur $I$.
+
++ $forall x in J, t |-> pdv(f, x) (x, t)$ est $C^0_"pm"$ sur $I$.
+
++ $forall K = [a, b] subset.eq J, exists phi_K in C^0_"pm" (I, RR_+)$,$integral_I phi_K (t) dif t < +oo$,
+  $
+    forall x in K, forall t in I, space abs(pdv(f, x) (x, t)) <= phi_K (t)
+  $
+
+Alors
+$
+  g : func(J, KK, x, integral_I f(x, t) dif t)
+$
+Est bien définie, est $C^1$ sur $J$ et 
+$
+g' : func(J, KK, x, integral_I pdv(f, x) (x, t) dif t)
+$
+
+*Démonstration*
+
+Récurrence avec le théorème de dérivation.
+
+#card("thckintp", "Théorème de dérivation k-ème pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
+
+Énoncé et démonstration du théorème de dérivation k-ème pour les intégrales à paramètre.
+
+#answer
+
+Soit $f : func(J times I, KK, (x, t), f(x, t))$, avec $I, J$ des intervalles. Si
+
++ $forall t in I, x |-> f(x, t)$ est $C^k$ sur $J$.
+
++ $forall x in J, forall j in [|0, k - 1|]$, $t |-> pdv(f, x, [j])(x, t)$ est $C^0_"pm"$ et intégrable sur $I$.
+
++ $forall x in J, t |-> pdv(f, x, [k]) (x, t)$ est $C^0_"pm"$ sur $I$.
+
++ $forall K = [a, b] subset.eq J, exists phi_K in C^0_"pm" (I, RR_+)$,$integral_I phi_K (t) dif t < +oo$,
+  $
+    forall x in K, forall t in I, space abs(pdv(f, x, [k]) (x, t)) <= phi_K (t)
+  $
+
+Alors
+$
+  g : func(J, KK, x, integral_I f(x, t) dif t)
+$
+Est bien définie, est $C^k$ sur $J$ et pour tout $j in [|0, k|]$, 
+$
+g^((j)) : func(J, KK, x, integral_I pdv(f, x, [j]) (x, t) dif t)
+$
+
+*Démonstration*
+
+On montre $C^0$ avec le théorème de continuité, puis on montre la dérivabilité par le théorème de convergence dominée en calculant la limite usuelle.
+
+#card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Exemples d'espaces denses de fonctions.
+
+#answer
+
+*Fonctions en escaliers*
+
+Les fonctions en escalier sont denses dans les fonctions $(C^0_"pm" ([a,b], E), norm(dot)_oo)$.
+
+*Fonctions polynômiales (Théorème de Weierstrass)*
+
+Les fonctions polynômiales sur $[a, b]$ sont denses dans $(C^0 ([a, b], KK), norm(dot)_oo)$.
+
+// TODO: Exos M230-231
+
+#card("dini1", "Premier théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Énoncé et démonstration du premier théorèmes de dini (HP).
+
+#answer
+
+Soit $K$ compact, $(f_n)_n in C^0(K, RR)^NN tends(n -> oo, above: "CVS") f in C^0(K, RR)$.
+
+Si pour tout $x in KK$, $(f_n (x))_n$ est monotone, alors $(f_n)_n$ CVU vers $f$.
+
+*Démonstration*
+
+On note
+$
+  g_n = cases(space f_n - f " si " (f_n (x))_n arrow.br, space f - f_n " sinon" )
+$
+Ainsi $g_n >= 0$, décroit et CVS vers $0$. On veut montrer que $norm(f_n - f)_oo = norm(g_n)_oo tends(n -> oo) 0$.
+
+Soit $epsilon > 0$, $K_n = Set( x in K, g_n (x) >= epsilon ) = g_n^(-1) Ico(epsilon, +oo)$, fermé dans $K$ donc compact par continuité de $g_n$.
+
+Par décroissance de $g_n$, $(K_n)_n$ est une suite décroissante de compacts.
+
+Supposons que les $K_n$ soient tous non vide, alors on dispose de $x_0 in inter.big_(n in NN) K_n$ (Intersection décroissante de compacts non vide).
+
 Or
 $
-  PP(inter.big_(n >= N) overline(A_n)) &= lim_(n -> oo) PP(inter.big_(k = N)^(n) overline(A_k)) \
-  &= lim_(n -> oo) product_(k = N)^(n) (1 - PP(A_n))
-$
-Et
-$
-  product_(k = N)^(n) (1 - PP(A_n)) &<= product_(k = N)^n e^(-PP(A_k)) \
-  &= exp(-sum_(k = N)^n PP(A_k)) \
-  &tends(n -> oo) 0
+  inter.big_(n in NN) K_n &= Set(x in K \, forall n in NN, g_n (x) >= epsilon) \
+  &= emptyset quad "Par CVS de" (g_n)_n
 $
 
-#card("vadp", "Variables aléatoires discrètes", ("Maths.Probabilités",))
+Absurde. Donc on dispose de $N in NN$ tel que pour tout $n >= N$, $K_n = emptyset$, c'est à dire $norm(g_n)_oo < epsilon$.
 
-Définition de variable aléatoire discrète.
+#card("dini2", "Deuxième théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Énoncé et démonstration du deuxième théorèmes de dini (HP).
 
 #answer
 
-Soit $(Omega, cal(T), PP)$ un ep, $E != emptyset$ un ensemble. Une variable aléatoire discrète sur $Omega$ à valeur dans $E$ est une application $X : Omega -> E$ tel que
-- $X(Omega)$ est fini ou dénombrable.
+Soit $(f_n)_n in C^0([a, b], RR)^NN tends(n -> oo, above: "CVS") f in C^0([a, b], RR)$.
 
-- $forall x in X(Omega), X^(-1){x} in cal(T)$
-
-Qui détermine une distribution de probabilité discrète sur $E$ ou $X(Omega)$.
-
-// NOTE: Indépendance d'évenements, formules de probabilité totales, de Bayes, conditionelles...
-
-#card("loibas", "Lois classique de probabilité", ("Maths.Probabilités",))
-
-Lois classique de probabilité, définition, espérance, variance et série génératrice.
-
-#answer
-
-#align(center, table(
-  stroke: none,
-  columns: 1,
-  table.hline(),
-  [*Bernoulli* ($p in [0, 1]$)],
-  table.hline(),
-  $
-    X(Omega) &= {0, 1} quad quad& PP(X = 1) &= p\ 
-    EE(X) &= p quad quad& VV(X) &= p q \
-  $,
-  $
-    G_X (t) = p t + q \
-    X ~ cal(B)(p)
-  $,
-  table.hline(),
-  [*Binomiale* ($n in NN, p in [0, 1]$)],
-  table.hline(),
-  $
-    X(Omega) &= [|0, n|] quad& PP(X = k) &= vec(n, k) p^k q^(n - k) \
-    EE(X) &= n p quad quad& VV(X) &= n p quad \
-  $,
-  $
-    G_X (t) &= (p t + q)^n \
-    X &~ cal(B)(n, p)
-  $,
-  table.hline(),
-  [*Géométrique* ($p in Ioc(0, 1)$)],
-  table.hline(),
-  $
-    X(Omega) &= NN^* quad& PP(X = k) &= q^(n - 1) p \
-    EE(X) &= 1 / p quad quad& VV(X) &= q / p^2 quad \
-  $,
-  $
-    G_X (t) = (p t) / (1 - q t) \
-    X ~ cal(G)(p)
-  $,
-  table.hline(),
-  [*Poisson* ($lambda > 0$)],
-  table.hline(),
-  $
-    X(Omega) &= NN quad& PP(X = k) &= e^(-lambda) lambda^k / (k!) \
-    EE(X) &= lambda quad quad& VV(X) &= lambda quad \
-  $,
-  $
-    G_X (t) = e^(lambda (t - 1)) \
-    X ~ cal(P) (lambda)
-  $,
-))
-
-// NOTE: lois usuels - M287, resultats connus qui existent
-// - indépendance de variable à faire ?
-
-#card("lemdescoal", "Lemme des coalitions", ("Maths.Probabilités",))
-
-Lemme des coalitions.
-
-#answer
-
-Soit $(X_1, dots, X_(n + m))$ une famille de variables aléatoires discrètes indépendantes sur $(Omega, cal(T), PP)$.
-$
-  f : product_(i = 1)^n X_i (Omega) -> E \
-  g : product_(j = n+1)^(n + m) X_j (Omega) -> F \
-$
-Alors $f(X_1, dots, X_n)$ et $g(X_(n+1), dots, X_(n+m))$ sont des variables aléatoires discrètes indépendantes.
+Si pour tout $n in NN$, $f_n$ est croissante (ou décroissante), alors $(f_n)_n$ CVU vers $f$.
 
 *Démonstration*
 
-Calculs pas très beau, fubini.
+Quitte à prendre $-f_n$ on suppose les $f_n$ croissants, et par CVS $f$ aussi.
 
-// NOTE: Interpretation des lois usuels M289
+Par le théorème de Heine, $f$ est uniformement continue sur $[a, b]$.
 
-#card("esppb", "Espérance d'une variable aléatoire", ("Maths.Probabilités",))
+Soit $epsilon > 0$, $delta > 0$ associé, et $N in NN^*$ tel que $(b - a) / N < delta$. On pose pour $k in [|0, N|], a_k = a + k (b - a) / N$.
 
-Définition et propriétés élémentaires de l'ésperance d'une variable aléatoire.
+Pour tout $x in [a, b]$, on dispose de $k in [|0, N|]$ tel que $x in [a_k, a_(k + 1)]$.
+
+Par CVS de $(f_n)_n$ vers $f$, pour tout $k in [|0, N|]$, on dispose de $n_k in NN$ tel que pour tout $n >= n_k$
+$
+  abs(f_n (a_k) - f(a_k)) < epsilon
+$
+On pose $N_0 = max_(k in [|0, N|]) n_k$.
+
+Ainsi pour tout $n >= N_0$
+$
+  underbrace(f_n (a_k) - f(a_k), -epsilon < " par CVS") + underbrace(f(a_k) - f(a_(k+1)), - epsilon < " par UC") \
+  = f_n (a_k) - f(a_(k+1)) <= f_n (x) - f(x) \
+  <= underbrace(f_n (a_(k+1)) - f(a_(k + 1)), < epsilon " par CVS") + underbrace(f(a_(k + 1)) - f(a_k), < epsilon " par UC") \
+  - 2 epsilon < f_n (x) - f(x) < 2 epsilon
+$
+
+#card("equicont", "Équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Définitions, propriétés de (uniforme) équicontinuité.
 
 #answer
 
-- Pour $X$ une variable aléatoire sur $(Omega, cal(T), PP)$ complexe, on dit que $X$ est d'ésperance finie si $(x P(X = x))_(x in X^(-1) (Omega))$ est sommable, on note $X in LL^1$ et on pose
-  $
-    EE(X) = sum_(x in X^(-1) (Omega)) x PP(X = x)
-  $
+Soit $cal(F) : (f_i)_i in C^0 (A, F)^I$ une famille de fonctions continues, on dit que $cal(F)$ est équicontinue en $a in A$ si
+$
+  forall epsilon > 0, exists delta > 0, forall i in I, \ forall x in B(a, delta), d(f_i (x), f_i (a)) < epsilon
+$
 
-- Pour $X$ à valeur dans $RR_+$ on définit l'ésperance dans $RR_+ union {+oo}$, avec $EE(X) = +oo$ si la somme diverge.
+On dit de plus que $cal(F)$ est uniformement équicontinue si
+$
+  forall epsilon > 0, exists delta > 0, forall i in I,
+  forall x, y in A, \ d(x, y) < delta => d(f_i (x), f_i (y)) < epsilon
+$
 
-- Pour $X$ à valeur dans $NN$ on a
-  $
-    EE(X) = sum_(n = 0)^(+oo) PP(X >= n)
-  $
+*Propriétés*
 
-- Si $X$ est à valeur dans $NN$ et $EE(X) < +oo$, alors
-  $
-    PP(X >= n) tends(n -> oo) 0 \
-    PP(X >= n) = o_(n -> oo) (1/n)
-  $
+- Si $(f_n)_n in C^0 (A, F)^NN tends("sur " A, above: "CVU") f in C^0 (A, F)$, alors $(f_n)_n$ est équicontinue sur $A$.
+
+- Soit $K$ compact, si $(f_n)_n in C^0 (K, F)^NN tends("sur " K, above: "CVU") f in C^0 (A, F)$, alors $(f_n)_n$ est uniformement équicontinue.
+
+- Soit $(f_i)_i in cal(F)(A, F)^I$, si les $f_i$ sont tous $k$-lipschitz, alors $(f_i)_i$ est uniformement équicontinue.
 
 *Démonstration*
 
-- $X$ à valeur dans $NN$ #h(1fr)
-  $
-    sum_(n = 0)^(+oo) PP(X >= n) &= sum_(n = 0)^(+oo) sum_(k = n)^(+oo) PP(X = k) \
-    &= sum_(k = 0)^(+oo) sum_(n = 0)^(k) PP(X = k) \
-    &= sum_(k = 0)^(+oo) k PP(X = k) \
-    &= EE(X)
-  $
+- Découpage : on fixe $N$ par CVU associé à $epsilon$, et on prend $delta$ le min des $delta_k$ associés aux $f_k$ pour $k in [|0, N - 1|]$ et $delta_N$ associé à $f$.
 
-- La première ligne est toujours vraie car 
-  $
-    sum_(n = 0)^(+oo) PP(X >= n) = EE(X) < +oo
-  $
-  Pour la deuxième
-  $
-    n PP(X >= n) &= n sum_(k = n)^(+oo) PP(X = k) \
-    &<= sum_(k = n)^(+oo) k PP(X = k) tends(n -> oo) 0
-  $
-  Car série reste d'une série convergente.
+- La même avec Heine pour en déduire l'uniforme continuité des $(f_n)$ et de $f$.
 
-#card("ldtpb", "Lemme de tranfert", ("Maths.Probabilités",))
+- Soit $epsilon > 0$, on pose $delta = epsilon / k$ qui convient pour tout $i in I$.
 
-Énoncé et démonstration du lemme de transfert.
+#card("cvscvuuec", "Convergence uniforme par convergence simple et uniforme équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Démonstration de la convergence uniforme par convergence simple et uniforme équicontinuité.
 
 #answer
 
-Soit $X$ variable aléatoire discrète à valeur dans $E$, et $f : E -> CC$.
+Soit $(f_n)_n in C^0 ([a, b], F)^NN tends(n -> oo, above: "CVS") f$.
 
-Alors $f(X) in LL^1$ ssi $(f(x)P(X = x))_(x in X^(-1)(Omega))$ est sommable et 
-$
-  EE(f(X)) = sum_(x in X^(-1)(Omega)) f(x) PP(X = x)
-$
+Si $(f_n)_n$ est uniformement équicontinue, alors $(f_n)_n$ CVU vers $f$.
 
-On en déduit que $X in LL^1$ ssi $EE(abs(X)) < +oo$.
+($f_n$ $k$-lipschitz pour tout $n in NN$ suffit car implique uniforme équicontinue).
 
 *Démonstration*
 
-Sommation par paquets.
+Soit $epsilon > 0$, $delta > 0$ associé par uniforme équicontinuité. $N in NN$ tel que $(b - a) / N < delta$, et pour $k in [|0, N|]$, $a_k = a + k (b - a) / N$.
 
-#card("propesppb", "Propriétés de l'ésperance", ("Maths.Probabilités",))
+Pour tout $x, y in [a, b]$ tel que $abs(x - y) < delta$, comme pour tout $n in NN$
+$
+  norm(f_n (x) - f_n (y)) < epsilon
+$
+Par CVS, à la limite
+$
+  norm(f(x) - f(y)) < epsilon
+$
 
-Propriétés de l'ésperance.
+Soit $N_0 in NN$ tel que pour tout $n >= 0, k in [|0, N|]$,
+$
+  norm(f(a_k) - f_n (a_k)) < epsilon
+$
+
+Soit $x in [a, b]$, $k in [|0, N|]$ tel que $x in [a_k, a_(k + 1)]$.
+
+$
+  norm(f(x) - f_n (x)) &<= underbrace(norm(f(x) - f(a_k)), < epsilon) \ &+ underbrace(norm(f(a_k) - f_n (a_k)), < epsilon) \ &+ underbrace(norm(f_n (a_k) - f_n (x)), < epsilon) \ &< 3 epsilon
+$
+
+On peut montrer ce resultat pour $K$ compact quelconque (au lieu de $[a, b]$), le découpage se faisant par précompacité.
+
+#card("modeconvseries", "Modes de convergence des séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Modes de convergence des séries de fonctions.
 
 #answer
 
-On a les propriétés suivantes
+Soit $(f_n)_n in cal(F)(A, F)^NN$, pour tout $n in NN$
+$
+  S_n = sum_(k = 0)^n f_n
+$
 
-- Toute variable aléatoire bornée est d'ésperance finie.
-- $EE$ est linéaire : #h(1fr)
+- On dit que $sum f_n$ CVS (simplement) sur $A$ si pour tout $x in A$, $sum f_n (x)$ converge.
+  
+  On peut alors écrire #h(1fr)
   $
-  EE(alpha A + beta B) = alpha EE(A) + beta EE(B)
+    S : func(A, F, x, sum_(n = 0)^(+oo) f_n (x))
   $
-- $EE$ est croissante :
-  $
-    X <= Y => EE(X) <= EE(Y)
-  $
-- On à l'inégalité triangulaire
-  $
-    abs(EE(X)) <= EE(abs(X))
-  $
-- Pour $X tack.t.double Y$
-  $
-    EE(X Y) = EE(X) EE(Y)
-  $
-- Pour $A in cal(T)$
-  $
-    EE(bb(1)_A) = PP(A)
-  $
-- Pour $X, Y in LL^2$
-  $
-    EE(X Y)^2 <= EE(X^2) EE(Y^2)
-  $
-  avec égalité ssi $X = alpha Y$ ps.
 
-// NOTE: Démonstrations M294 et avant
+- On dit que $sum f_n$ CVU (uniformement) sur $A$ si $(S_n)$ CVU sur $A$.
 
-#card("varvapb", "Variance d'une variable aléatoire", ("Maths.Probabilités",))
+  Ce qui est équivalent à $sum f_n$ CVS et
+  $
+    R_n = sum_(k = n + 1)^(+oo) f_k tends(n -> oo, above: "CVU") 0
+  $
 
-Définition et propriétés élémentaires de la variance d'une variable aléatoire.
+- On dit que $sum f_n$ CVA (absolument) sur $A$ si pour tout $x in A$, $sum f_n (x)$ est ACV.
+
+  Si $F$ est de dimension finie, alors CVA implique CVS.
+
+- On dit que $sum f_n$ CVN (normalement) sur $A$ si
+  - Pour tout $n in NN$, $f_n$ est bornée.
+  - $sum norm(f_n)_(oo, A)$ converge.
+
+  La CVN implique la CVA et CVU, donc CVS.
+
+// TODO: exp matrices, (voir chapitre suivant ?) (M236)
+
+// TODO: Méthodes équivalents / limites séries de fonctions (M240-241)
+
+// TODO: Développement en série de cotan (M241-242)
+
+#card("ascoli", "Théorème d'Ascoli", ("Maths.Analyse.Suites et séries de fonctions",))
+
+Énoncé, démonstration du Théorème d'Ascoli.
 
 #answer
 
-*Variance*
+Soit $F$ de dimension finie, $K$ compact et $E = C^0 (K, F)$ muni de $norm(dot)_oo$. Soit $cal(F) subset.eq E$, on a équivalence entre
 
-Pour $X$ une variable aléatoire discrète réelle, on note $X in LL^2$ si $X^2 in LL^1$.
++ $cal(F)$ relativement compact.
 
-Dans ce cas $X in LL^1$, et on définie
-$
-  VV(X) &= EE((X - EE(X))^2) \
-  &= underbrace(EE(X^2) - EE(X)^2, "Koenig-Huygens")
-$
-
-On a alors
-
-- Si $Y = a X + b$ #h(1fr)
-  $
-    VV(Y) = a^2 VV(X)
-  $
-
-- $VV(X) = 0$ ssi $X$ ps constante.
-
-*Covariance*
-
-On définit de plus la covariance de $X, Y in LL^2$
-$
-"Cov" (X, Y) \ = EE((X - EE(X))(Y - EE(Y))) \
-= EE(X Y) - EE(X) EE(Y)
-$
-Qui est une forme bilinéaire, symétrique, positive.
-
-Si $"Cov"(X, Y) = 0$ on dit que $X$ et $Y$ sont décorélées, et dans ce cas
-$
-  VV(X + Y) = VV(X) + VV(Y)
-$
-
-- Deux variables indépendantes sont décorélées.
++ $cal(F)$ est uniformement équicontinue et pour tout $x in K$, $Gamma(x) = {f(x), f in cal(F)}$ est bornée (c'est à dire relativement compact).
 
 *Démonstration*
 
-- Pour $X in LL^2$ #h(1fr)
+- (i $=>$ ii) On suppose $overline(cal(F))$ compact, soit $x in K$. On pose #h(1fr)
   $
-    EE((X - EE(X))^2) \ = EE(X^2 - 2X EE(X) + EE(X)^2) \
-   = EE(X^2) - 2 EE(X) EE(X) + EE(X^2) \
-   = EE(X^2) - EE(X)^2
+    theta_x : func(E, F, f, f(x)) 
+  $
+  Qui est linéaire et $norm(theta_x (f)) <= norm(f)_oo$ donc continue.
+
+  Comme $Gamma(x) = theta_x (cal(F)) subset.eq theta_x (overline(cal(F)))$, $Gamma(x)$ est relativement compact.
+
+  $cal(F)$ est relativement compact donc donc précompact. 
+
+  Soit $epsilon > 0$, on dispose alors de $f_1, dots, f_d subset.eq cal(F)$ tels que $cal(F) subset.eq union.big_(k = 0)^d B(f_k, epsilon)$.
+
+  Les $f_k$ sont continue sur $K$, donc uniformement continue, soit $delta > 0$ associé à $epsilon$ pour l'ensemble.
+
+  Soit $x, y in K$ tel que $norm(x - y) < delta$, $f in cal(F)$, on dispose donc de $k in [|0, d|]$ tel que $norm(f - f_k)_oo < epsilon$ 
+  $
+    norm(f(x) - f(y)) &<= underbrace(norm(f(x) - f_k (x)), < epsilon) \
+    &+ underbrace(norm(f_k (x) - f_k (y)), < epsilon) \
+    &+ underbrace(norm(f_k (y) - f(y)), < epsilon) \
+    &< 3 epsilon
   $
 
-- Pour $Y = a X + b$ \
+  Donc $cal(F)$ est uniformement équicontinue.
+
+- (ii $=>$ i) On introduit $(a_n)_n in K^NN$ dense.
+
+  Si $K = [a, b]$, $K inter QQ$ convient.
+
+  Sinon par précompacité, avec $epsilon_n = 1 / 2^n$, on dispose de $D_n$ fini tel que $K subset.eq union.big_(x in D_n) B(x, epsilon_n)$, d'où $D = union.big_(n in NN) D_n$ convient.
+
+  Montrons que $cal(F)$ est relativement compact.
+
+  Soit $(f_n)_n in cal(F)^NN$.
+
+  + On construit $psi$ tel que pour tout $k in NN$, $(f_psi(n) (a_k))_n$ converge.
+
+    $(f_n (a_0)) in Gamma (a_0)^NN$, par hypothèse on dispose de $phi_0$ tel que $(f_(phi_0 (n)) (a_0)) -> z_0 = g(a_0)$.
+
+    Supposons construits $phi_0, dots, phi_(k - 1)$ tel que pour tout $j in [|0, k - 1|]$.
+    $
+      (f_(phi_0 compose dots.c compose phi_(k - 1) (n)) (a_j))_n -> z_j = g(a_j)
+    $
+    Comme $Gamma(a_(k +1))$ est relativement compact, on dispose de $phi_(k + 1)$ tel que
+    $
+      (f_(phi_0 compose dots.c compose phi_k (n)) (a_k))_n -> z_k = g(a_k)
+    $
+    On pose
+    $
+    psi : func(NN, NN, n, phi_0 compose dots.c compose phi_n (n) )
+    $
+    Qui est strictement croissante et pour tout $k in NN$
+    $
+    (f_psi(n) (a_k)) tends(n -> oo) z_k = g(a_k)
+    $
+
+  + Par uniforme équicontinuité et densité de $(a_k)_k$, montrons que $(f_psi(n))_n$ CVS sur $K$.
+
+    Soit $x in K$, posons $g_n = f_psi(n)$.
+
+    On sait que $(g_n (x))_n in Gamma(x)^NN$ donc on dispose de $theta$ tel que
+    $
+      g_theta(n) (x) tends(n -> oo) y in F
+    $
+    Soit $epsilon > 0$, $delta > 0$ associé par uniforme équicontinuité de $cal(F)$, et par densité de $(a_k)_k$, on dispose de $k in NN$ tel que $norm(a_k - x) < delta$.
+
+    Comme $g_n (a_k) tends(n -> oo) z_k$, on dispose de $N in NN$ tel que pour tout $n >= N$.
+
+    Ainsi pour tout $n >= N$
+    $
+      &norm(g_n (x) - g_theta(n) (x)) \
+      <=& underbrace(norm(g_n (x) - g_n (a_k)), < epsilon) \
+      +& underbrace(norm(g_n (a_k) - z_k), < epsilon) \
+      +& underbrace(norm(z_k - g_theta(n) (a_k)), < epsilon) \
+      +& underbrace(norm(g_theta(n) (a_k) - g_theta(n) (x)), < epsilon) \
+      <& 4 epsilon
+    $
+
+    Soit $N_0 >= N$ tel que pour tout $n >= N_0$
+    $
+      norm(g_theta(n) (x) - y) < epsilon \
+      norm(g_n (x) - y) < 5 epsilon
+    $
+
+    Ainsi pour tout $x in K$, $(f_psi(n) (x))_n$ converge vers un $y = g(x)$.
+
+  + On a $(f_psi(n))_n$ uniforme équicontinue qui CVS vers $g$, donc qui CVU, c'est à dire qui converge au sens de la norme infinie : $cal(F)$ est relativement compact.
+
+// TODO: Exos (M244.1-246)
+
+// TODO: Fourier (M253)
+
+#card("methequiintp", "Méthodes de recherche de limite ou d'équivalent pour les intégrales à paramètre", ("Maths.Analyse.Intégration",))
+
+Méthodes de recherche de limite ou d'équivalent pour les intégrales à paramètre.
+
+#answer
+
+- Théorème de convergence dominée, ou domination "à la main" (Limite).
+
+- Changement de variable.
+
+- Intuition (i.e intégration d'équivalent).
+
+- IPP : séparation en un terme plus simple et un terme négligeable.
+
+- Méthode de Laplace // Cf M256
+
+// TODO: Carte inutile ? (M255)
+
+// TODO: Gamma (M257)
+
+#card("rayconv", "Rayon de convergence d'une séries entière", ("Maths.Analyse.Séries entières",))
+
+Propriétés, définition du convergence d'une séries entière.
+
+#answer
+
+Soit $sum a_n z^n$ une série entière. On appelle $R = R_"cv" (sum a_n z^n)$ le rayon de convergence de $sum a_n z^n$
+$
+  R = sup space Set(r in RR_+, (a_n r^n) "bornée")
+$
+
+- (Lemme d'Abel) : Si $(a_n z_0^n)$ est bornée, alors pour tout $z in CC$ tel que $abs(z) < abs(z_0)$, $sum a_n z^n$ est ACV.
+
+- Pour tout $z in CC$ (conséquence) : #h(1fr)
   $
-    VV(Y) &= EE((a X + b - EE(a X + b))^2) \ 
-    &= EE((a X - a EE(X))^2) \
-    &= a^2 EE((X - EE(x))^2) \
-    &= a^2 VV(X)
+    abs(z) < R quad quad sum a_n z^n "ACV" \
+    abs(z) > R quad quad sum a_n z^n "DVG" \
   $
+
+- Pour tout $alpha in CC^*$
+  $
+    R_"cv" (sum alpha a_n z^n) = R_"cv" (sum a_n z^n)
+  $
+
+- Pour tout $alpha in CC^*$
+  $
+    R_"cv" (sum a_n alpha^n z^n) = (R_"cv" (sum a_n z^n)) / abs(alpha)
+  $
+
+- Si pour tout $n in NN$, $abs(a_n) <= abs(b_n)$
+  $
+    R_"cv" (sum a_n z^n) >= R_"cv" (sum b_n z^n)
+  $
+
+- Si $a_n = O_(n -> oo)(b_n)$
+  $
+    R_"cv" (sum a_n z^n) >= R_"cv" (sum b_n z^n)
+  $
+
+- Si $a_n eqv(n -> oo) b_n$
+  $
+    R_"cv" (sum a_n z^n) = R_"cv" (sum b_n z^n)
+  $
+
+- Soient $(a_n)_n, (b_n)_n in CC^NN$
+  $
+    R_"cv" (sum (a_n + b_n) z^n) >= min(R_a, R_b)
+  $
+  Avec égalité si $R_a != R_b$.
+
+- Soient $(a_n)_n, (b_n)_n in CC^NN$.
+  $
+      c_n = sum_(k = 0)^n a_k b_(n - k) \
+
+      R_"cv"(sum c_n z^n) >= min (R_a, R_b) \
+
+      forall z in DD(0, R_"cv"), \ sum_(n = 0)^(+oo) c_n z^n = (sum_(n = 0)^(+oo) a_n z^n) (sum_(n = 0)^(+oo) b_n z^n)
+  $
+
+#card("regse", "Régularité des séries entières", ("Maths.Analyse.Séries entières",))
+
+Régularité des séries entières.
+
+#answer
+
+Soit $(a_n)_n in CC^NN$ et $R = R_"cv" (sum a_n z^n)$.
+
+Pour tout $0 < r < R$
+$
+  f : func(DD(0, r), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+$
+Est $C^0$ sur $DD(0, r)$,
+$
+  g : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
+$
+Est $C^oo$ sur $Ioo(-R, R)$. Et pour tout $k in NN$
+$
+  f^((k)) : x |-> sum_(n = 0)^(+oo) (n + k)! / n! a_(n + k) x^n
+$
+
+*Démonstration*
+
+- Pour tout $r < R$ on a CVU de 
+  $
+    f : func(DD(0, r), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+  $
+  Et donc par le théorème de continuité des séries de fonctions, $f$ est $C^0$ sur $DD(0, r)$.
+
+- $R_"cv" (sum n a_n z^n) = R_"cv" (sum a_n z^n)$ :
+
+  Soit $z in DD(0, R), r = abs(z)$, pour $r_0 in Ioo(r, R)$, $(a_n r_0^n)$ est bornée.
+  $
+    abs(n a_n z^n) = underbrace(abs(a_n r_0^n), "bornée") dot underbrace(n (r / r_0)^n, -> 0) \
+    R_"cv" (sum n a_n z^n) >= R_"cv" (sum a_n z^n)
+  $
+  L'autre sens est évident :
+  $
+    R_"cv" (sum n a_n z^n) = R_"cv" (sum a_n z^n)
+  $
+
+- On applique le théorème $C^1$, qui donne la dérivée comme un série entière de même rayon de convergence (puis récurrence).
+
+#card("regidse", "Rigidité des séries entières", ("Maths.Analyse.Séries entières",))
+
+Rigidité des séries entières.
+
+#answer
+
+Soit $sum a_n z^n$ une série entière de rayon de convergence $R$.
+$
+  f : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
+$
+Pour tout $n in NN$
+$
+  a_n = (f^((n)) (0)) / n!
+$
+*Corolaire*
+
+Si deux séries entières coincident sur un intervalle $Ico(0, delta)$ avec $delta > 0$, alors ce sont les mêmes.
+
+*Démonstration*
+
+- Pour tout $k in NN$ #h(1fr)
+  $
+    f^((k)) (x) = sum_(n = 0)^(+oo) (n + k)! / n! a_(n + k) x^n \
+    f^((k)) (0) = k! a_k 
+  $
+
+- Soit 
+  $
+  g : func(Ioo(-R', R'), CC, x, sum_(n = 0)^(+oo) b_n x^n)
+  $
+  et $delta in Ioc(0, min(R, R'))$ tel que
+  $
+    forall x in Ico(0, delta), space f(x) = g(x)
+  $
+  Alors pour tout $k in NN$
+  $
+    f^((k)) = g^((k))
+  $
+  D'où (par continuité)
+  $
+    a_k = b_k
+  $
+
+#card("lemradabel", "Lemme radiale d'Abel", ("Maths.Analyse.Séries entières",))
+
+Lemme radiale d'Abel.
+
+#answer
+
+Soit $sum a_n z^n$ une série entière de rayon de convergence $R > 0$.
+$
+  f : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
+$
+Si $sum a_n R^n$ converge alors $f$ CVU sur $[0, R]$. Ainsi
+$
+  lim_(x -> R) f(x) = sum_(n = 0)^(+oo) a_n R^n
+$
+
+*Démonstration*
+
+- Cas $R = 1$ : #h(1fr)
+
+  On a $sum a_n$ qui converge, et $x |-> sum a_n x^n$ CVS sur $[0, 1]$.
+
+  $
+  rho_n = sum_(k = n+1)^(+oo) a_k tends(n -> oo) 0 \
+  $
+  Soit $epsilon > 0$ et $N in NN$ tel que pour tout $n >= N$, $abs(rho_n) < epsilon$. Pour tout $x in Ico(0, 1)$
+  $
+  abs(R_n (x)) &= abs(sum_(k = n + 1)^(+oo) a_k x^k) \
+  &= abs(rho_n x^(n+1) + sum_(k = n+1)^(+oo) rho_k (x^(k+1) - x^k) ) \
+  &<= abs(rho_n) + sum_(k = n + 1)^(+oo) abs(rho_k) (x^k - x^(k+1)) \
+  &< epsilon + epsilon sum_(k = n+1)^(+oo) (x^k - x^(k-1)) \
+  &< epsilon + epsilon x^(n + 1) < 2 epsilon
+  $
+  Et
+  $
+    abs(R_n (1)) = abs(rho_n) < epsilon
+  $
+  D'où
+  $
+    sup_(x in [0, 1]) abs(R_n) < 2 epsilon
+  $
+  Donc CVN sur $[0, 1]$.
+
+- Cas général :
+  $
+    b_n = a_n R^n quad quad R_"cv" (sum b_n x^n) = 1
+  $
+  Comme $sum b_n$ converge, le cas $R = 1$ s'applique et
+  $
+    sup_(x in [0, R]) abs(sum_(k = n + 1)^(+oo) a_n x^n) = sup_(t in [0, 1]) abs(sum_(k = n+1)^(+oo) underbrace(a_n R^n, b_n) x^n)
+  $
+
+
 ]
 #[
 
@@ -2156,6 +2814,5671 @@ $
 
 // TODO: Minkowski
 
+]
+#[
+
+#import "/utils.typ": *
+#import "@preview/tiptoe:0.3.1"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/physica:0.9.7": *
+#import "@preview/cetz:0.4.2"
+
+#card("norm", "Norme", ("Maths.Topologie",))
+
+Définition d'une norme sur un $KK$-ev $E$.
+
+#answer
+
+Une norme sur un $KK$-ev $E$ est une application $N : E -> RR_+$ tel que
+
++ Homogénéité : $forall lambda in KK, x in E$ #h(1fr)
+  $
+    N(lambda x) = abs(lambda) N(x)
+  $
+
++ Inégalité triangulaire : $forall x, y in E$
+  $
+    N(x + y) <= N(x) + N(y)
+  $
+
++ Séparation : $forall x in E$
+  $
+    N(x) = 0 => x = 0
+  $
+
+#card("normeeuclidienne", "Norme euclidienne", ("Maths.Topologie",))
+
+Définition et propriétés des normes euclidiennes.
+
+#answer
+
+Pour $E$ un $RR$-ev un produit scalaire est une forme bilinéaire symétrique définie positive.
+
+Pour un produit scalaire $scl(dot, dot)$ on a l'Inégalité de Cauchy-Schwartz :
+$
+  forall x, y in E \
+  scl(x, y)^2 <= scl(x, x) dot scl(y, y)
+$
+Avec cas d'égalité si $(x, y)$ liée.
+
+D'un produit scalaire dérive une norme (euclidienne)
+$
+  norm(dot) : func(E, RR_+, x, sqrt(scl(x, x)))
+$
+
+*Démonstration*
+
+- Si $x = 0$ ou $y = 0$ : évident. Sinon pour $x, y in E\\{0}, t in RR$ : #h(1fr)
+  $
+    scl(x + t y, x + t y) \ = t^2 scl(y, y) + 2 t scl(x, y) + scl(x, x) \ = P(t)
+  $
+  Comme $scl(y, y) > 0$, $deg P = 2$. De plus par positivité de $scl(dot, dot)$ :
+  $
+    Delta = 4scl(x, y)^2 - 4 scl(x, x) dot scl(y, y) &<= 0 \
+    scl(x, y)^2 <= scl(x, x) dot scl(y, y)
+  $
+  Avec cas d'égalité si $Delta = 0$, c'est à dire $x + t y = 0$.
+
+- Vérifions les axiomes
+
+  + Soit $lambda in RR, x in E$ #h(1fr)
+    $
+      norm(lambda x) &= sqrt(scl(lambda x, lambda x)) \
+      &= abs(lambda) sqrt(scl(x, x))  \
+      &= abs(lambda) norm(x)
+    $
+
+  + Soit $x in E$ tel que $norm(x) = 0$
+    $
+      sqrt(scl(x, x)) &= 0 \
+      scl(x, x) &= 0 \
+      x &= 0
+    $
+
+  + Soit $x, y in E$ \
+    $
+      & space norm(x + y)^2 \
+      &= scl(x + y, x + y) \
+      &= norm(x)^2 + norm(y)^2 + 2 scl(x, y) \
+      &<= norm(x)^2 + norm(y)^2 + 2 underbrace(abs(scl(x, y)), "C-S") \
+      &<= norm(x)^2 + norm(y)^2 + 2 norm(x) norm(y) \
+      &= (norm(x) + norm(y))^2
+    $
+
+  Avec égalité ssi $scl(x, y) >= 0$ et égalité dans C-S : ssi $x, y$ positivement liés.
+
+#card("normprod", "Norme produit", ("Maths.Topologie",))
+
+Définition de la norme produit.
+
+#answer
+
+Soit $(E_1, norm(dot)_1), dots, (E_d, norm(dot)_d)$ des $KK$-evn.
+
+On définit la norme produit sur $product_(k = 1)^d E_k$ comme
+$
+  N : func(display(product_(k = 1)^d E_k), RR_+, vec(x_1, dots, x_n), display(max_(k in [|1, n|]) norm(x_k)_k))
+$
+
+#card("dist", "Distance", ("Maths.Topologie",))
+
+Définition de distance.
+
+#answer
+
+Soit $X$ un ensemble non vide. On appelle distance une application $d : X^2 -> RR_+$ tel que
+
++ Symétrie : $forall x, y in X$ #h(1fr)
+  $
+    d(x, y) = d(y, x)
+  $
+
++ Inégalité triangulaire : $forall x, y, z in X$
+  $
+    d(x, z) <= d(x, y) + d(y, z)
+  $
+
++ Séparation : $forall x, y in X$
+  $
+    d(x, y) = 0 => x = y
+  $
+
+Dans un evn $(E, norm(dot))$ on peut définir la distance sur $E$ associé à la norme $norm(dot)$ :
+$
+  d : func(E^2, RR_+, (x, y), norm(x - y))
+$
+
+#card("bouleetbil", "Boules et sphères", ("Maths.Topologie",))
+
+Définition, propriétés des boules et sphères.
+
+#answer
+
+Soit $E$ un espace métrique, $a in E$ et $r in RR_+$. On définit les ensembles suivants
+$
+  B(a, r) &= {x in E | d(a, x) < r} \
+  B_f (a, r) &= {x in E | d(a, x) <= r} \
+  SS(a, r) &= {x in E | d(a, x) = r} \
+$
+
+Si $E$ est un $KK$-evn alors on a de plus la convexité de $B(a, r)$ et $B_f (a, r)$.
+
+#card("ptsextremaux", "Points extrémaux d'un convexe", ("Maths.Topologie.Connexité",))
+
+Définition des points extrémaux d'un convexe et points extrémaux d'une boule.
+
+#answer
+
+Soit $(E, norm(dot))$ un evn, $K subset.eq E$ convexe. On dit que $x in K$ est extrémal si
+$
+  forall y, z in K, forall t in Ioo(0,1), \ x = (1 - t) y + t z => x = y = z
+$
+
+Si $norm(dot)$ dérive d'un produit scalaire, alors pour tout $a in E$ et $r in RR_+$, l'ensemble des points extrémaux de $B_f (a, r)$ est $SS(a, r)$.
+
+*Démonstration*
+
+Pour $r = 1$ et $a = 0$ : (auxquels on peut se ramener)
+
+- Soit $x in B(0, 1)$ #h(1fr)
+  $
+    x = (1 - norm(x)) 0 + norm(x) x / norm(x)
+  $
+  D'où $x$ pas extrémal (on traite le cas $x = 0$ séparément).
+
+- Soit $x in SS(0, 1)$, $y, z in B_f (0, 1), t in Ioo(0, 1)$ tel que
+  $
+    x = (1 - t) y + t z \
+    norm(x) = 1 <= (1 - t) underbrace(norm(y), <= 1) + t underbrace(norm(z), <= 1)
+  $
+  On a égalité dans l'inégalité triangulaire : $y$ et $z$ positivement liés (car produit scalaire) et $norm(y) = norm(z)$ d'où $y = z = x$.
+
+#card("topologies", "Topologie, espace topologique", ("Maths.Topologie",))
+
+Définition d'une topologie.
+
+#answer
+
+Soit $X$ un ensemble, $T subset.eq cal(P)(X)$ est une topologie sur $X$ si
+
++ ${emptyset, X} subset.eq T$
+
++ Pour toute famille $(Omega_i)_i in T^I$
+  $
+    union.big_(i in I) Omega_I in T
+  $
+
++ Pour tout $Omega_1, dots, Omega_n in T$
+  $
+    inter.big_(k = 1)^n Omega_k in T
+  $
+
+Les éléments de $T$ sont appelés ouverts de $X$.
+
+$X$ muni de $T$ est appelé espace topologique.
+
+#card("topem", "Topologie sur un espace métrique", ("Maths.Topologie",))
+
+Définitions des ouverts / fermés d'un espace métrique.
+
+#answer
+
+Soit $(E, d)$ un espace métrique.
+
+On dit que $Omega subset.eq E$ est un ouvert de $E$ si
+$
+  forall x in Omega, exists delta > 0, B(x, r) subset.eq Omega
+$
+De manière équivalente
+$
+  forall x in Omega, Omega in cal(V)(x)
+$
+L'ensemble $T$ des ouverts de $E$ forme une topologie :
+
++ $emptyset$ et $E$ sont ouverts.
+
++ $T$ est stable par union quelconque.
+
++ $T$ est stable par intersection finie.
+
+On définit de plus les fermés : le complémentaire d'un ouvert.
+
+*Démonstration*
+
++ Évident.
+
++ Soit $(Omega_i)_i in T^I$ une famille d'ouverts. Soit $x in W = union.big_(i in I) Omega_i$.
+
+  On dispose de $i in I$ tel que $x in Omega_i$, ainsi on dispose de plus de $delta > 0$ tel que
+  $
+    B(x, delta) subset.eq Omega_i subset.eq W
+  $
+
+  Donc $W in T$ : c'est un ouvert.
+
++ Soit $F_1, dots, F_n in T$, soit $x in W = inter.big_(k = 1)^n F_k$. Pour tout $k in [|1, n|]$ on dispose de $delta_k > 0$ tel que
+  $
+    B(x, delta_k) subset.eq F_k \
+    delta = min_(k in [|1; n|]) delta_k \
+  $
+  Ainsi on a pour tout $k in [|1,n|]$ :
+  $
+    B(x, delta) subset.eq B(x, delta_k) subset.eq F_k \
+  $
+  Donc
+  $
+    B(x, delta) subset.eq W
+  $
+
+#card("limsuit", "Limites de suites", ("Maths.Topologie",))
+
+Définitions équivalentes de limites d'une suite.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$. On dit que $l in E$ est limite de la suite $u$ si l'une des définitions suivantes équivalentes s'applique :
+
++ $forall epsilon > 0, exists N in NN, forall n >= N, d(u_n, l) < epsilon$.
+
++ $forall epsilon > 0, exists N in NN, forall n >= N, u_n in B(l, epsilon)$.
+
++ $(d(u_n, l))_n tends(n -> oo) 0$.
+
++ $forall V in cal(V)(l), exists N in NN, forall n >= N, u_n in V$.
+
+Si la limite existe, alors elle est unique.
+
+*Démonstration*
+
+- Équivalence : l'écrire.
+
+- Si $l = lim_(n -> oo) u_n$, prendre $l' != l$ et montrer que $(d(l', u_n))_n tendsnot(n->oo) 0$.
+
+#card("vadh", "Valeurs d'adhérance d'une suite", ("Maths.Topologie",))
+
+Définitions et propriétés sur les valeurs d'adhérance d'une suite.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
+
+On dit que $l in E$ est une valeur d'adhérance de $u$ s'il existe $phi$ extractrice tel que $(u_(phi(n)))_n tends(n -> oo) l$.
+
+Une suite qui à deux valeurs d'adhérance diverge.
+
+#card("compnorm", "Comparaison de normes", ("Maths.Topologie",))
+
+Définitions de comparaison de normes, propriétés.
+
+#answer
+
+Soit $E$ un $KK$-ev, $norm(dot)_1$ et $norm(dot)_2$ deux normes sur $E$.
+
+On dit que $norm(dot)_2$ est plus fine de $norm(dot)_1$ s'il existe $alpha > 0$ tel que
+$
+  forall x in E, space norm(x)_1 <= alpha norm(x)_2
+$
+
+Dans ce cas :
+
++ Pour tout $a in E$ et $r > 0$ #h(1fr)
+  $
+    B_2 (a, r) subset.eq B_1 (a, alpha r)
+  $
+
++ Si $Omega subset.eq E$ est ouvert pour $norm(dot)_1$ est ouvert pour $norm(dot)_2$
+
++ Toute suite bornée pour $norm(dot)_1$ l'est pour $norm(dot)_2$.
+
++ Toute suite convergente pour $norm(dot)_1$ l'est pour $norm(dot)_2$.
+
+On dit que $norm(dot)_1$ et $norm(dot)_2$ sont équivalentes si chacune est plus fine que l'autre. C'est une relation d'équivalence.
+
+#card("adh", "Adhérance", ("Maths.Topologie",))
+
+Définition de l'adhérance, caractérisation séquentielle.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $A subset.eq E$ une partie. Un point $x in A$ est dit adhérant à $A$ s'il vérifit une des conditions équivalentes suivantes :
+
++ $forall r > 0, B(x, r) inter A != emptyset$
+
++ $exists (u_n)_n in A^NN, lim_(n -> oo) u_n = x$
+
++ $d(x, A) = 0$
+
+On définit alors l'adhérance d'un ensemble (noté $overline(A)$) comme l'ensemble de ses points d'adhérance.
+
+- $A subset.eq overline(A)$.
+
+- $A$ est fermée ssi $A = overline(A)$.
+
+- $overline(A)$ est le plus petit (au sens de l'inclusion) fermé contenant $A$ :
+  $
+    overline(A) = inter.big_(A subset.eq B subset.eq E \ B "fermé") B
+  $
+
+- $overline(E \\ A) = E \\ circle(A)$
+
+*Démonstration*
+
+- (1 $=>$ 2) Pour tout $n in NN$, on pose $x_n$ tel que $x_n in B(x, 1/(n+1))$, qui existe par hypothèse.
+
+  Ainsi $d(x_n, x) < 1/(n+1)$ d'où $(d(x_n, x))_n -> 0$ donc $(x_n)_n -> x$.
+
+- (2 $=>$ 1) Par hypothèse on dispose de $(x_n)_n in A^NN -> x$. Soit $r > 0$.
+
+  On dispose de $N in NN$ tel que $d(x_N, x) < r$, donc
+  $
+    x_N in B(x, r) inter A != emptyset
+  $
+
+- (2 $<=>$ 3) 
+  $
+    x in overline(A) &<=> exists (a_n)_n in A^NN, space a_n -> x \
+    &<=> exists (a_n)_n in A^NN, space d(x, a_n) -> 0 \
+    &<=> d(x, A) <= 0 \
+    &<=> d(x, A) = 0
+  $
+
+- Supposons que $F != overline(F)$, on dispose donc de $x in overline(F) \\ F$.
+
+  Soit $epsilon > 0$, comme $x in overline(F)$
+  $
+    B(x, epsilon) inter F != emptyset \
+    B(x, epsilon) subset.eq.not E \\ F
+  $
+  Donc $E \\ F$ n'est pas un ouvert : $F$ n'est pas fermée.
+
+- Supposons que $F$ n'est pas fermée, on dispose donc de $x in E \\ F$ tel que
+  $
+    forall epsilon > 0, B(x, epsilon) subset.eq.not E \\ F
+  $
+  Donc pour tout $epsilon > 0$
+  $
+    B(x, epsilon) inter F != emptyset
+  $
+  D'où $x in overline(F)$, mais $x in.not F$ : $F != overline(F)$.
+
+#card("vois", "Voisinage", ("Maths.Topologie",))
+
+Définition de voisinage.
+
+#answer
+
+Soit $(E, d)$ un espace métrique et $x in E$.
+
+On dit que $V subset.eq E$ est un voisinage de $x$ dans $E$ s'il existe $r > 0$ tel que $B(x, r) subset.eq V$.
+
+On note $cal(V)(x)$ l'ensemble des voisinages de $x$ dans $E$.
+
+#card("densite", "Densité", ("Maths.Topologie",))
+
+Définition de densité.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, on dit que $A subset.eq E$ est dense dans $E$ si
+$
+  overline(A) = E
+$
+
+#card("interieur", "Interieur", ("Maths.Topologie",))
+
+Définition de l'interieur d'une partie.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $A subset.eq E$ et $x in E$.
+
+On dit que $x$ est un point interieur de $A$ s'il existe $r > 0$ tel que
+$
+  B(x, r) subset.eq A
+$
+C'est à dire $A in cal(V)(x)$.
+
+On note $circle(A)$ l'ensemble des points interieurs de $A$.
+
+- $circle(A) subset.eq A$
+
+- $A$ est ouvert ssi $circle(A) = A$
+
+- $circle(A)$ est le plus grand ouvert inclus dans $A$
+
+- $circle(overparen(E \\ A)) = E \\ overline(A)$
+
+On définie aussi la frontière d'une partie $partial A = "Fr" A = overline(A) \\ circle(A)$ qui est un fermé.
+
+#card("limfunctop", "Limite d'une fonction", ("Maths.Topologie",))
+
+Définition de la limite d'une fonction.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques et $X subset.eq E$.
+
+Soit $f in cal(F)(X, F)$, $a in overline(X)$, on dit que $f$ admet $l in F$ comme limite en $a$ si l'une des conditions équivalentes suivantes est vérifiée.
+
++ $forall epsilon > 0, exists delta > 0, f(B(a, delta) inter X) subset.eq B(l, epsilon)$
+
++ $forall V in cal(V)(l), exists W in cal(V)(a), f(W inter X) subset.eq V$.
+
++ $forall (x_n)_n in X^NN -> a, lim_(n -> oo) f(x_n) = l$.
+
+*Démonstration*
+
+- (1 $=>$ 2) Soit $V in cal(V)(l)$, on dispose donc de $B(l, epsilon) subset.eq V$, et donc de $delta > 0$ tel que 
+  $
+  f(underbrace(B(a, delta), W in cal(V)(a)) inter X) subset.eq B(l, epsilon) subset.eq V
+  $
+
+- (2 $=>$ 1) Soit $epsilon > 0$, comme $V = B(epsilon, l) in cal(V)(l)$, on dispose de $W in cal(V)(a)$, et donc de $delta > 0$ tel que 
+  $
+  f(B(a, delta) inter X) subset.eq f(W inter X) subset.eq V
+  $
+
+- L'écrire.
+
+#card("continuite", "Continuité d'une fonction en un point", ("Maths.Topologie",))
+
+Définition de continuité en un point.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques, $X subset.eq E$ et $f in cal(F)(X, F)$.
+
+On dit que $f$ est continue en $a in X$ si:
+$
+  lim_(x -> a) f(x) = f(a)
+$
+
+Ce qui équivaut à
+$
+  forall V in cal(V)(f(a)), f^(-1) (V) in cal(V)(a)
+$ 
+
+Il suffit d'ailleur que $f$ admette une limite en $a$, car dans ce cas cette limite est forcément $f(a)$.
+
+*Démonstration*
+
+- Supposons $f$ continue en $a$ : comme $lim_(x -> a) f(x) = f(a)$, pour tout $V in cal(V)(f(a))$ on dispose de $W in cal(V)(a)$ tel que #h(1fr)
+  $
+    f(W inter X) subset.eq V \
+    cal(V) (a) in.rev W inter X supset.eq f^(-1) (V)
+  $
+
+- Soit $V in cal(V)(f(a))$ :
+  $
+    W = f^(-1)(V) in cal(V)(a) \
+    f(W inter X) subset.eq V
+  $
+
+#card("contglob", "Continuité d'une fonction", ("Maths.Topologie",))
+
+Définition de continuité (sur un ensemble) d'une fonction.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques, $X subset.eq E$ et $f in cal(F)(X, F)$.
+
+On dit que $f$ est continue sur $X$ ($f in C^0 (X, F)$) si pour tout $a in X$, $f$ est continue en $a$.
+
+Ce qui est équivalent à
+$
+  forall Omega "ouvert de" F, f^(-1) (Omega) "ouvert de" X
+$
+On en déduit que
+$
+  forall F "fermé de" F, f^(-1) (F) "fermé de" X
+$
+
+*Démonstration*
+
+- Supposons $f in C^0 (X, F)$, soit $Omega subset.eq F$ ouvert et $a in f^(-1)(Omega)$.
+
+  Comme $f(a) in Omega$, $Omega in cal(V)(f(a))$, et par continuité en $a in X$ : $f^(-1)(Omega) in cal(V)(a)$.
+
+- Soit $a in X, epsilon > 0$, comme $B(f(a), epsilon)$ est ouvert, $f^(-1)(B(f(a), epsilon))$ est un ouvert contenant $a$ : on dispose de $delta > 0$ tel que
+  $
+    B(a, delta) subset.eq f^(-1)(B(f(a), epsilon)) \
+    f(B(a, delta) inter X) subset.eq B(f(a), epsilon)
+  $
+
+#card("lipschitz", "Fonctions K-Lipschitziennes", ("Maths.Topologie",))
+
+Définition des fonctions $K$-lipschitziennes.
+
+#answer
+
+Soit $(E, d_E), (F, d_F)$ deux espaces métriques et $X subset.eq E$.
+
+Une fonction $f in cal(F)(X, F)$ est dite $k$-lipschitzienne pour un $k > 0$ si
+$
+  forall x, y in X, \ d_F (f(x), f(y)) <= k d_E (x, y)
+$
+
+Toute fonction lipschitzienne est uniformement continue, donc continue.
+
+Exemples (notons $d = d_E$) :
+
+- Pour tout $a$ in $E$, $x |-> d (x, a)$ est $1$-lipschitzienne.
+
+- Pour tout $A subset.eq E$, $x |-> d (x, A)$ est $1$-lipschitzienne.
+
+Si $E = KK^n$ un $KK$-ev de dimension finie muni de $norm(dot)_oo$ et $d$ qui en dérive.
+
+- Pour tout $k in [|1, n|]$ : #h(1fr)
+  $
+    phi_k : func(KK^n, KK, x = vec(x_1, dots.v, x_n), x_k)
+  $
+  Est $1$-lipschitzienne.
+
+- Pour tout $P in KK[X_1, dots, X_n]$
+  $
+    func(KK^n, KK, x = vec(x_1, dots.v, x_n), P(x_1, dots, x_n))
+  $
+  Est continue (par somme et produit de fonctions qui le sont).
+
+*Démonstration*
+
+- Soit $a in E, x, y in X$ #h(1fr)
+  $
+    abs(d(x, a) - d(y, a)) \ <= abs(d(x, y) + d(y, a) - d(y , a)) \
+    <= d(x, y)
+  $
+
+- Soit $A subset.eq E, x, y in X$. Soit $a in A$
+  $
+    d(x, A) <= d(x, a) <= d(x, y) + d(y, a) \
+    d(x, A) - d(x, y) <= d(y, a) \
+  $
+  Ceci pour tout $a$ d'où
+  $
+    d(x, A) - d(x, y) <= d(y, A) \
+    d(x, A) - d(y, A) <= d(x, y) \
+  $
+  Et par symétrie
+  $
+    abs(d(x, A) - d(y, A)) <= d(x, y)
+  $
+
+- Soit $k in [|1, n|]$ et $x, y in KK^n$
+  $
+    abs(x_k - y_k) &<= max_(i in [|1, n|]) abs(x_i - y_i) \ &= norm(x - y)_oo
+  $
+
+#card("contapplin", "Continuité des applications linéaires", ("Maths.Topologie",))
+
+Conditions de continuité d'une application linéaire.
+
+#answer
+
+Soit $E, F$ deux $KK$-evn, $f in cal(L)(E, F)$.
+
+On a équivalence entre
+
++ $f$ continue sur $E$.
+
++ $f$ continue en $0$.
+
++ $exists k > 0, forall x in E, space norm(f(x)) <= k norm(x)$
+
++ $f$ est lipschitzienne.
+
+Enfin en dimension finie toute application linéaire est continue.
+
+*Applications multi-linéaires*
+
+Similairement (démonstrations calculatoires), pour
+$
+  f : func(product_(k = 1)^d (E_k, norm(dot)_k), (F, norm(dot)_F), (x_1, dots, x_d), f(x_1, dots, x_d))
+$
+on a équivalence entre
+
++ $f$ est $C^0$ sur $product_(k = 1)^d E_k$ (muni de la norme produit).
+
++ $exists k in RR_+^*, forall (x_1, dots, x_n) in product_(k = 1)^d E_k$
+
+  $ norm(f(x_1, dots, x_d)) <= k norm((x_1, dots, x_d))$
+
+*Démonstration*
+
+- (1 $=>$ 2) Par définition.
+
+- (2 $=>$ 3) Par continuité de $f$ en $0$ on dispose de $delta > 0$ tel que
+  $
+    f(B_E (0, delta)) subset.eq B_F (0, epsilon)
+  $
+  Donc pour tout $x in E$
+  $
+    norm(f(delta / 2 x / norm(x))) <= 1 \
+    norm(f(x)) <= 2 / delta norm(x)
+  $
+
+- (3 $=>$ 4) Soit $x, y in E$
+  $
+    norm(f(x) - f(y)) &= norm(f(x - y)) \ &<= k norm(x - y)
+  $
+
+- (4 $=>$ 1) Immédiat.
+
+En dimension finie, on prend une base $e = (e_1, dots, e_n)$ et la norme $norm(dot)_oo$, et pour $f in cal(L)(E, F)$ et $x in 
+E$ on a
+$
+  norm(f(x)) &= norm(sum_(k = 1)^n x_k f(e_k)) \
+  &<= sum_(k = 1)^n norm(x)_oo norm(f(e_k)) \
+  &= (sum_(k = 1)^n norm(f(e_k))) norm(x)_oo
+$
+
+#card("nonconttopal", "Non continuité d'une application linéaire", ("Maths.Topologie",))
+
+Critères de non continuité d'une application linéaire.
+
+#answer
+
++ $f$ n'est pas continue sur $E$
+
++ Il existe $(x_n)_n in E^NN$ tel que #h(1fr)
+  $
+    forall n in NN, norm(x_n) = 1 \
+    (norm(f(x_n)))_n tends(n->oo) +oo
+  $
+
++ Il existe $(x_n)_n in E^NN$ tel que
+  $
+    (x_n)_n tends(n->oo) 0 \
+    forall n in NN, norm(f(x_n)) = 1
+  $
+
+*Démonstration*
+
+- (1 $=>$ 2) Comme $f$ n'est pas continue on a #h(1fr)
+  $
+    forall k > 0, exists x in E, norm(f(x)) > k norm(x)
+  $
+  Donc pour tout $n in NN$ on dispose de $tilde(x)_n in E$ tel que 
+  $
+  norm(f(tilde(x)_n)) > n norm(tilde(x)_n) \
+  x_n = tilde(x)_n / norm(tilde(x)_n) quad quad norm(x_n) = 1 \
+  norm(f(x_n))  > n " donc " norm(f(x_n)) -> oo
+  $
+
+- (2 $=>$ 3) Soit $(tilde(x)_n)_n in E^NN$ une telle suite.
+  $
+    x_n = tilde(x)_n / norm(f(tilde(x)_n)) quad quad norm(f(x_n)) = 1 \
+    norm(x_n) = 1 / norm(f(tilde(x)_n)) -> 0
+  $
+
+- (3 $=>$ 1) $f$ n'est pas continue en $0$.
+
+
+
+#card("hyptopo", "Nature topologique d'un hyperplan", ("Maths.Topologie",))
+
+Nature topologique d'un hyperplan.
+
+#answer
+
+Soit $E$ un $KK$-evn, $H$ un hyperplan de $E$.
+
+$H$ est soit fermé soit dense dans $E$.
+
+*Démonstration*
+
+Supposons que $H$ n'est pas fermé. On dispose de 
+$
+(h_n)_n in H^NN tends(n -> oo) z in.not H
+$
+Comme $H$ est un hyperplan, 
+$
+H plus.o "Vect"(z) = E
+$
+Ainsi pour tout $x in E$
+$
+  x = h + alpha z quad quad (h, alpha) in H times KK \
+  (h + alpha h_n)_n in H^NN tends(n -> oo) x
+$
+
+#card("hypcontfl", "Continuité des formes linéaires", ("Maths.Topologie",))
+
+Condition de continuité d'une forme linéaires, lien avec les hyperplans.
+
+#answer
+
+Soit $E$ un $KK$-evn.
+
+Si $f in cal(L)(E, KK)$ est une forme linéaire alors $f$ est continue ssi $ker f$ est fermé.
+
+*Démonstration*
+
+- Si $f$ est continue, $ker f = f^(-1) {0}$ est fermé comme image reciproque d'un fermé par une application continue.
+
+- Si $f$ n'est pas continue, on dispose de $(x_n)_n in E^NN$ tel que #h(1fr)
+  $
+    forall n in NN, abs(f(x_n)) = 1 \
+    (x_n)_n tends(n->oo) 0
+  $
+  Quitte à poser $(x'_n)_n$ on peut suppposer $f(x_n) = 1 = f(x_0)$.
+  $
+    h_n = x_n - x_0 in ker f \
+    lim_(n -> oo) h_n = -x_0 in.not ker f
+  $
+  Donc $ker f$ n'est pas fermé.
+
+#card("normop", "Norme opérateur", ("Maths.Topologie",))
+
+Définition de la norme opérateur.
+
+#answer
+
+Soit $E, F, G$ trois $KK$-evn, on définit
+$
+  cal(L)_C (E, F) = cal(L)(E, F) inter C^0 (E, F)
+$
+Qui est une $KK$-algèbre.
+
+Pour $f in cal(L)_C (E, F)$ on définit
+$
+  norm(f)_"op" = lr(class("opening", bar.triple) f class("closing", bar.triple)) &= sup_(x in E\\{0}) norm(f(x)) / norm(x) \ &= sup_(x in SS(0, 1)) norm(f(x))
+$
+Qui est une norme d'algèbre sur $cal(L)_C (E, F)$, elle est donc sous-multiplicative :
+$
+  forall f, g in cal(L)_C (E, F), \
+  norm(f compose g)_"op" <= norm(f)_"op" dot norm(g)_"op"
+$
+
+*Démonstration*
+
+- Comme $f$ est linéaire et continue on dispose de $k > 0$ tel que #h(1fr)
+  $
+    forall x in E, norm(f(x)) <= k norm(x)
+  $
+  Ainsi
+  $
+  Gamma = {norm(f(x)) / norm(x), x in E\\{0}}
+  $
+  Est non vide majoré, donc le $sup$ existe.
+
+- De plus
+  $
+    & space space space space space space lambda in Gamma  \
+    &<=> exists x in E \\ {0}, lambda = norm(f(x)) / norm(x) \
+    &<=> exists x in E \\ {0}, lambda = norm(f(x / norm(x))) \
+    &<=> exists x in SS(0, 1), lambda = norm(f(x))
+  $
+  Ainsi $Gamma = {norm(f(x)), x in SS(0,1)}$.
+
+- C'est bien une norme :
+
+  + Soit $lambda in KK, f in cal(L)_C (E, F)$ #h(1fr)
+    $
+      norm(lambda f)_"op" &= sup_(x in SS(0, 1)) norm(lambda f(x)) \
+      &= abs(lambda) norm(f)_"op"
+    $
+
+  + Soit $f in cal(L)_C (E, F)$ tel que $norm(f)_"op" = 0$, soit $x in E \\ {0}$
+    $
+      norm(f(x)) <= norm(f)_"op" dot norm(x) = 0 \
+      f(x) = 0 " donc " f = 0
+    $
+
+  + Soit $f, g in cal(L)_C (E, F)$
+    $
+      & quad norm(f + g)_"op" \ &= sup_(x in SS(0, 1)) norm(f(x) + g(x)) / norm(x) \ 
+      &<= sup_(x in SS(0,1)) [norm(f(x)) / norm(x) + norm(g(x)) / norm(x)] \
+      &<= norm(f)_"op" + norm(g)_"op"
+    $
+
+- Soit $f in cal(L)_C (E, F), g in cal(L)_C (F, G)$ et $x in E$ :
+  $
+    norm(g(f(x))) &<= norm(g)_"op" norm(f(x)) \
+    &<= norm(g)_"op" norm(f)_"op" norm(x)
+  $
+  D'où $norm(g compose f)_"op" <= norm(g)_"op" dot norm(f)_"op"$.
+
+#card("exjaugeconvex", "Exercice : jauge d'un convexe", ("Maths.Exercice.Topologie",))
+
+Soit $(E, norm(dot))$ un $RR$-evn et $K subset.eq E$ convexe, symétrique par rapport à l'origine (c'est à dire stable par $-$), d'intérieur non vide et borné.
+
+On pose
+$
+  N : func(E, RR_+, x, inf space Set(lambda > 0, x / lambda in K))
+$
+
++ Montrer que $N$ est bien définit.
++ Montrer que $N$ est une norme
++ Montrer que $N$ est équivalente à $norm(dot)$.
++ Montrer que $overline(B_N) (0, 1) = overline(K)$
+
+#answer
+
+Montrons d'abord qu'on dispose de $delta > 0$ tel que $B(0, delta) subset.eq K$.
+
+Soit $a in circle(K)$, on dispose donc de $delta > 0$ tel que 
+$
+B(a, delta) subset.eq K
+$
+Par symétrie, on a alors 
+$
+B(-a, delta) subset.eq K
+$
+Soit $x in B(0, delta)$
+$
+  x + a in B(a, delta) subset.eq K \
+  x - a in B(-a, delta) subset.eq K \
+  1/2 (x + a) + 1/2 (x - a) = x in K
+$
+Par convexité.
+
++ Soit $x in E$ #h(1fr)
+  $
+    delta / (2 norm(x)) x < delta \
+    (delta x) / (2 norm(x)) in B(0, delta) subset.eq K
+  $
+  D'où $Set(lambda > 0, x / lambda in K)$ non vide minoré par $0$ : $N(x)$ qui en est l'$inf$ existe et est positif.
+
++ + Comme $K$ est borné, on dispose de $R > 0$ tel que #h(1fr)
+    $
+      K subset.eq B(0, R)
+    $
+    Soit $x in E$ tel que $N(x) = 0$.
+
+    Par caractérisation de la borne inférieur, on dispose de
+    $
+    (lambda_n)_n in RR_+^NN tends(n->oo) 0 \
+    $
+    Et pour tout $n in NN$
+    $
+      x / lambda_n in K subset.eq B(0, R) \
+      norm(x) / lambda_n <= R \
+      norm(x) / R <= lambda_n tends(n -> oo) 0
+    $
+    Donc $x = 0$
+  + Soit $mu in RR, x in E$.
+    - Si $mu = 0, N(mu x) = N(0) = 0$.
+    - Si $mu > 0$
+      $
+        N(mu x) &= inf Set(lambda > 0, (mu x) / lambda in K) \
+        &= mu N(x)
+      $
+    - Si $mu < 0$, par symétrie
+      $
+        N(mu x) = N(-mu x) = -mu N(x)
+      $
+  + Soit $x, y in E$, $lambda, mu > 0$ tels que $x / lambda, y / mu in K$ on a alors
+    $
+      (x + y) / (lambda + mu) &= underbrace(lambda /(lambda + mu), 1 - t) underbrace(x / lambda, in K) + underbrace(mu / (lambda + mu), t) underbrace(y / mu, in K) \
+      &in K
+    $
+    Ainsi
+    $
+      N(x + y) <= lambda + mu
+    $
+    Et avec $lambda -> N(x), mu -> N(y)$ \
+    $
+      N(x + y) <= N(x) + N(y)
+    $
++ Soit $x in E$, $lambda > 0$ tel que $x / lambda in K$.
+  $
+    norm(x) / lambda < R \
+    norm(x) <= R dot N(x)
+  $
+  Et
+  $
+    (delta x) / (2 norm(x)) in K \
+    N(x) <= 2 / delta norm(x)
+  $
++ Soit $x in K, x / 1 in K$ donc $X in overline(B_N)(0, 1)$.
+
+  Soit $x in overline(B_N)(0, 1)$.
+  - Si $N(x) = 1$, on dispose de
+    $
+    (lambda_n)_n in RR_+^NN tends(n->oo) 1 \
+    forall n in NN, x / lambda_n in K \
+    x = lim_(n -> oo) x / lambda_n in overline(K)
+    $
+  - Si $N(x) < 1$, on dispose par propriété de la borne inférieur de $lambda in Ico(N(x), 1)$ tel que
+    $
+      x / lambda in K \
+      x = (1 - lambda) dot 0 + lambda dot (x / lambda) in K
+    $
+
+#card("adhsuiteens", "Points d'adhérance d'une suite", ("Maths.Topologie",))
+
+Définition et propriétés sur les points d'adhérance d'une suite.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
+
+On dit que $l in E$ est un point d'adhérance de $u$ s'il existe $phi$ extractrice tel que
+$
+  (u_phi(n))_n -> l
+$
+
+Notons $cal(V)(u)$ l'ensemble de ces points. On a
+
+$
+  cal(V)(u) = inter.big_(p in NN) overline({u_n, n >= p})
+$
+
+Qui est donc fermé.
+
+De plus si $(u_n)$ converge vers $l in E$.
+$
+  K = {u_n, n in NN} union {l}
+$
+Est compact.
+
+*Démonstration*
+
+- Soit $l = lim_(n -> oo) u_phi(n)$, $p in NN$ #h(1fr)
+  $
+    (u_phi(n))_(n >= p) -> l in overline({u_n, n >= p}) \
+  $
+  Donc
+  $
+    l in inter.big_(p in NN) overline({u_n, n >= p})
+  $
+
+- Soit $l in inter.big_(p in NN) overline({u_n, n>=p})$, on pose $delta_n = 1 / (n+1)$.
+
+  Comme $l in overline({u_n, n in NN})$, on dispose de $phi(0)$ tel que $d(u_phi(0), l) <= delta_0$.
+
+  Supposons construits $phi(0), dots, phi(k)$, comme $l in overline({u_n, n >= phi(k) + 1})$, on dispose de $phi(k + 1)$ tel que
+  $
+    d(u_phi(k+1), l) < delta_(k+1)
+  $
+  Ainsi $phi$ extractrice et $(u_phi(n))_n -> l$.
+
+- Soit $(x_n)_n in K^NN$, on pose
+  $
+    Gamma = {n in NN, exists k in NN, x_k = u_n} 
+  $
+  Si $Gamma$ est fini, alors $x_n$ prend une valeur une infinité de fois qui est valeur d'adhérance de $(x_n)$.
+
+  Sinon on construit : on prend $psi(0) in Gamma$ et $phi(0)$ tel que $u_psi(0) = x_phi(0)$.
+
+  Supposons construits $psi(0), dots, psi(k)$ et $phi(0), dots, phi(k)$, on considère
+  $
+    Gamma_(k+1) = Set(n > psi(k), exists q > phi(k)\, x_q = u_n)
+  $
+  Qui est infini, donc on prend $psi(k+1) in Gamma_(k+1)$ et $phi(k+1)$ tel que
+  $
+    u_psi(k+1) = x_phi(k+1)
+  $
+  D'où $l$ est valeur d'adhérance de $(x_n)$.
+
+#card("compact", "Compacité", ("Maths.Topologie",))
+
+Définition de compacité.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $K subset.eq E$ est dit compacte si de toute suite
+$
+  (u_n)_n in K^NN
+$
+On peut extraire une sous suite convergente
+$
+  (u_phi(n))_n -> l in K
+$
+La compacité ne dépend pas de l'espace ($E$), mais dépend de $d$.
+
+Si $K$ est compacte :
+
+- $K$ est bornée dans $E$.
+
+- Si $K subset.eq X$, $K$ est fermé dans $X$.
+
+- Si $F subset.eq K$ est fermé, alors $F$ est compact.
+
+- Si $(u_n)$ est une suite à valeur dans $K$, alors elle converge ssi elle n'a qu'une seul valeur d'adhérance.
+
+- Si $f in C^0 (K, F)$ avec $F$ un espace métrique, alors $f(K)$ est compacte.
+
+- Un produit fini de compacts est compact.
+
+- Toute intersection décroissante de compacts non vide est non vide.
+
+*Démonstration*
+
+- Supposons $K$ non bornée, soit $a in K$, posons $(x_n)_n in K^NN$ tel que pour tout $n in NN$ #h(1fr)
+  $
+    d(a, x_n) >= n
+  $
+  Donc $(x_n)$ ne peut converger, et $K$ n'est pas compacte.
+
+- Soit $(x_n)_n in K^NN -> l in overline(X)$, par compacité on peut éxtraire
+  $
+    (u_phi(n))_n -> z in K
+  $
+  Et $z = l$ par unicité de la limite, donc $K$ est fermé.
+
+- Soit $(x_n)_n in F^NN$, par compacité de $K supset.eq F$, on a #h(1fr)
+  $
+    (u_phi(n))_n -> l in K
+  $
+  Or comme $F$ est fermé et $(u_phi(n))_n in F^NN$, $l in F$ d'où $F$ compact.
+
+- Par contraposée, soit $(x_n)_n in K^NN$ qui diverge, par compacité, elle admet une valeur d'adhérance $l$, mais $(x_n) arrow.r.not l_1$ c'est à dire #h(1fr)
+  $
+    exists epsilon>0, forall N in NN, exists n >= N, d(x_n, l_1) >= epsilon
+  $
+  On fixe $epsilon$, on dispose d'une suite $(x_phi(n))$ tel que
+  $
+    forall n in NN, d(x_phi(n), l) >= epsilon
+  $
+  Or cette suite admet une valeur d'adhérance $l_2 != l_1$.
+
+- Soit $(y_n)_n in f(K)^NN$, on dispose de $(x_n)_n in K^NN$ tel que #h(1fr)
+  $
+    forall n in NN, f(x_n) = y_n
+  $
+  Et par compacité on peut éxtraire
+  $
+    (x_phi(n))_n -> l in K \
+    (f(x_phi(n)))_n = (y_phi(n))_n -> f(l) in f(K)
+  $
+
+- Soit $(K_n)_n$ une suite décroissante de compacts non vides. 
+
+  On construits une suite $(u_n)$ tel que $forall n in NN, u_n in K_n subset.eq K_0$, on peut donc en extraire une sous-suite convergente $(x_phi(n))_n -> z$.
+
+  Ainsi pour tout $n in NN$ :
+  $
+    forall k >= n, x_phi(k) in K_phi(k) subset.eq K_n \
+    z = lim_(k -> oo) x_phi(k) in K_n
+  $
+  Car $K_n$ est fermé, donc $z in inter.big_(n in NN) K_n$.
+#card("thbatttop", "Théorème des bornes atteintes", ("Maths.Topologie",))
+
+Théorème des bornes atteintes en sur un espace métrique.
+
+#answer
+
+Soit $K$ compact et $f in C^0(K, RR)$.
+
+Comme $f(K)$ est compact, $f$ est bornée et atteint ses bornes.
+
+Ainsi pour tout $x in E supset.eq K$
+$
+  d(x, K) = inf_(y in K) d(x, y)
+$
+Admet un $min$ : la distance est atteinte.
+
+*Démonstration*
+
+$f(K)$ est bornée et fermé car compact, ainsi il existe un $inf$ et un $sup$, et ce sont un $min$ et un $max$.
+
+#card("ptsfixes", "Théorèmes du point fixe", ("Maths.Topologie",))
+
+Énoncés et démonstrations des différents théorèmes du points fixe.
+
+#answer
+
++ Soit $K$ compact, $f : K -> K$, si pour tout $x != y in K$
+  $
+    d(f(x), f(y)) < d(x, y)
+  $
+  Alors $f$ admet un unique point fixe.
+
++ Soit $A subset.eq E$ complet, fermé, avec $E$ evn) et $f : A -> A$. 
+
+  Si $f$ est $k$-lipschitzienne avec $k < 1$, alors $f$ admet un unique point fixe.
+
++ Soit $K$ compact, convexe non vide, si $f : K -> K$ $1$-lipschitzienne, alors $f$ admet un point fixe.
+
+// TODO: Points fixes linéaire (M205)
+
+*Démonstration*
+
++ On pose #h(1fr)
+  $
+    phi : func(K, RR_+, x, d(f(x), x))
+  $
+  Par compacité de $K$, $phi$ admet un $min$ atteint en $x_0 in K$ 
+  Supposons par l'absurde que $f(x_0) != x_0$ :
+  $
+    phi(f(x_0)) &= d(f(f(x_0)), f(x_0))  \
+    &< d(f(x_0), x_0) \ &< min phi
+  $
+  Absurde.
+
+  Soit $x != x_0$
+  $
+    d(f(x), x_0) < d(x, x_0)
+  $
+  Donc $f(x) != x$.
+
++ On pose $x_n = f^n ( x_0 )$ avec $x_0 in A$ quelconque. Ainsi
+  $
+    norm(x_(n+1) - x_n) <= k^n norm(x_1 - x_0)
+  $
+  D'où $sum (x_(n+1) - x_n)$ absolument convergente, donc convergente.
+
+  Donc par continuité de $f$ et unicité de la limite $f(x_oo) = x_oo$.
+
+  Soient $z, z'$ deux points fixes 
+  $
+    norm(f(z) - f(z')) &= norm(z - z) \
+    &<= underbrace(k, <1) norm(z - z')
+  $
+  D'où $norm(z - z') = 0$.
+
++ Soit $x_0 in K$, pour $lambda in Ioo(0, 1)$ on considère
+  $
+    g_lambda : func(K, K, x, f(lambda x + (1 - lambda) x_0))
+  $
+  Soit $x, y in K$
+  $
+    norm(g_lambda (x) - g_lambda (y)) \
+    = norm(f(script(lambda x + (1 - lambda) x_0)) - f(script(lambda y + (1 - lambda) x_0))) \
+    <= norm(lambda x - lambda y) = lambda norm(x - y)
+  $
+  Donc $g_lambda$ est $lambda$-lipschitzienne, avec $lambda < 1$, donc $g_lambda$ admet un point fixe $x_lambda$.
+
+  On considère $lambda_n = 1 - 1 / n$, comme $(x_lambda_n)_n in K^NN$, on dispose de $x_1$ valeur d'adhérance : 
+  $
+    (x_lambda_phi(n))_n -> x_1 in K
+  $
+  Or pour tout $lambda in Ioo(0, 1)$ :
+  $
+    norm(f(x_lambda) - x_lambda) 
+    = norm(f(x_lambda) - g_lambda (x_lambda)) \
+    = norm(f(x_lambda) - f(lambda x_lambda + (1 - lambda) x_0)) \
+    <= (1 - lambda) underbrace(norm(x_lambda - x_0), "borné")
+  $
+  D'où
+  $
+    norm(f(x_lambda_phi(n)) - x_lambda_phi(n)) tends(n -> oo) 0
+  $
+  Et donc $f(x_1) = x_1$.
+
+#card("cpctdf", "Compacité en dimension finie", ("Maths.Topologie",))
+
+Propriétés de compacité en dimension finie.
+
+#answer
+
+Soit $E$ un $KK$-ev de dimension finie muni de $norm(dot)_(oo,e)$ pour la base $e$.
+$
+  norm(dot)_(oo,e) : func(E, RR_+, display(x = sum_(k = 1)^d x_k e_k), display(max_(k in [|1,d|]) abs(x_k)))
+$
+
+- Pour tout $R > 0$, $overline(B_norm(dot)_(oo,e) (0, R))$ est compact.
+
+- $K subset.eq E$ est compact ssi $K$ est fermé borné.
+
+*Démonstration*
+
+- On considère #h(1fr)
+  $
+    theta : func((RR^d, norm(dot)_oo), (E, norm(dot)_(oo,e)), vec(x_1, dots.v, x_d), sum_(k = 1)^d x_k e_d)
+  $
+  Qui est $1$-lipschitzienne et
+  $
+    overline(B_norm(dot)_(oo,e) (0, R)) = theta ([-R, R]^d)
+  $
+  Or $[-R, R]$ est compact (Bolzano-Weierstrass), d'où le résultat.
+
+- Soit $K subset.eq E$ fermé borné, on dispose donc de $R > 0$ tel que #h(1fr)
+  $
+    K subset.eq underbrace(overline(B_norm(dot)_(oo,e) (0, R)), "compacte")
+  $
+  Donc $K$ est fermé dans un compact d'où le résultat.
+
+#card("thheinetop", "Théorème de Heine", ("Maths.Topologie",))
+
+Théorème de Heine sur un espace métrique.
+
+#answer
+
+Soit $K$ compact et $F$ un espace métrique.
+
+Si $f in C^0(K, F)$ alors $f$ est uniformement continue.
+
+*Démonstration*
+
+Supposons par l'absurde que $f$ ne le soit pas.
+$
+  exists epsilon > 0, forall delta > 0, exists x, y in K, \
+  cases(space d(x, y) < delta,space d(f(x), f(y)) >= epsilon)
+$
+
+On fixe un tel $epsilon$, on pose $delta_n = 1 / (n+1)$, et on construit $(x_n)_n, (y_n)_n in K^NN$ tels que
+$
+  forall n in NN, cases(space d(x_n, y_n) < delta_n, space d(f(x_n), f(y_n)) >= epsilon)
+$
+Par compacité, on peut éxtraire
+$
+  (x_phi(n))_n -> l in K \
+  "Or " d(x_n, y_n) -> 0 " donc" \
+  (y_phi(n))_n -> l
+$
+Or comme $f$ continue
+$
+  d(f(x_n), f(y_n)) -> d(f(l), f(l)) = 0 >= epsilon
+$
+Absurde.
+
+#card("eqnormdf", "Équivalence des normes en dimension finie", ("Maths.Topologie",))
+
+Démonstration de l'équivalence des normes en dimension finie.
+
+#answer
+
+Soit $(E, norm(dot))$ un $KK$-evn de dimension finie.
+
+On prend $e = (e_1, dots, e_d)$ base de $E$. On montre que toute norme $N$ sur $E$ est équivalente à $norm(dot)_(e,oo)$.
+
+Comme $N$ est une application linéaire, $N$ est continue donc lipschitzienne sur $E$ :
+$
+  forall x = sum_(k = 1)^d x_k e_k in E, \
+  N(x) <= sum_(k = 1)^d abs(x_k) N(e_k) <= beta norm(x)_(e,oo) \
+  "Où " beta = sum_(k = 1)^d N(e_k)
+$
+
+De plus comme $SS_(e,oo) (0,1)$ est fermée et bornée, elle est donc compacte comme $E$ est de dimension finie. Ainsi
+$
+  alpha = min_(x in SS_(e,oo) (0,1)) N(x) = N(x_0) > 0  \
+  "avec " x_0 in SS_(e,oo) (0,1)
+$
+Ainsi pour tout $x in E \\ {0}$
+$
+  alpha <= N(x / norm(x)_(e,oo)) \
+  alpha norm(x)_(e,oo) <= N(x) <= beta norm(x)_e(oo)
+$
+
+*Conséquences*
+
+En dimension finie, pour toute norme :
+
+- Toute application linéaire est continue.
+
+- Les compacts sont les fermés bornés.
+
+- Toute suite bornée admet au moins une valeur d'adhérance, et converge ssi elle n'en a qu'une.
+
+- Tout espace de dimension finie est fermé (caractère séquentielle).
+
+- La distance à un fermé est atteinte.
+
+#card("proptopgln", "Propriétés topologiques du groupe linéaire", ("Maths.Topologie.Réduction",))
+
+Propriétés topologiques du groupe linéaire.
+
+#answer
+
+$"GL"_n (KK)$ est un ouvert dense de $M_n (KK)$
+
+Et plus généralement pour tout $p in [|0, n|]$, $Set(M in M_n (KK), "rg" M >= p)$ est un ouvert.
+
+*Démonstration*
+
+- $"GL"_n$ est ouvert comme image reciproque de $KK\\{0}$ par $det$ (qui est continue).
+
+- Soit $P in "GL"_n (KK), delta > 0$, Soit $lambda = min "Sp" (P)$, afin que $lambda / 2$ ne soit pas valeur propre, c'est à dire $P - lambda / 2 I_n in "GL"_n (KK)$.
+
+- Soit $p in [|0, n|]$, pour $norm(dot) : M |-> "tr" (M^TT M)$. Soit $M in M_n (KK)$ tel que $"rg" M >= p$, on dispose d'une sous matrice inversible extraite de taille $p$, or $"GL"_p (KK)$ est un ouvert, donc on dispose d'une boule bien choisie qui marche.
+
+#card("proptopdiag", "Nature topologique des matrices diagonales", ("Maths.Topologie.Réduction",))
+
+Nature topologique des matrices diagonales.
+
+#answer
+
+Notons $"DZ"_n (KK) = Set(A in M_n (KK), A "diagonalisable")$ et $"TZ"_n (KK) = Set(A in M_n (KK), A "trigonalisable")$.
+
+On a
+
+ - $"DZ"_n (CC)$ est dense dans $M_n (CC)$.
+
+ - $"DZ"_n (RR)$ est dense dans $"TZ"_n (RR)$.
+
+*Démonstration*
+
+Montrons que $Set(A in M_n (KK), chi_A "SARS")$ est dense dans $M_n (CC)$.
+
+Soit $A in M_n (CC)$
+$
+  A &= P underbrace(mat(t_11,, (*);,dots.down;,,t_(n n) ), T) P^(-1) \
+
+  A_k &= P mat(t_11 + 1 / k,, (*);,dots.down;,,t_(n n) + n / k)
+$
+
+À partir d'un rang assez grand on a $chi_A_k$ SARS.
+
+Même démonstration pour $"DZ"_n (RR)$ dans $"TZ"_n (RR)$.
+
+#card("nattopcycl", "Nature topologique de l'ensemble des matrices cycycliques", ("Maths.Topologie.Réduction",))
+
+Nature topologique de l'ensemble des matrices cycycliques.
+
+#answer
+
+$Omega = Set(A in M_n (CC), A "cyclique")$ est un ouvert dense de $M_n (CC)$.
+
+Et de plus
+$
+  Pi : func(M_n (CC), CC_n [X], A, Pi_A)
+$
+N'est continue que sur $Omega$.
+
+*Démonstration*
+
+- $Omega$ est un ouvert : #h(1fr)
+  $
+    A in Omega \ <=> exists x_0 in CC^n, "Vect"(x_0, dots, A^(n - 1) x_0)  = CC^n \
+    <=> exists x_0 in CC^n, det (x_0, dots, A^(n-1) x_0) != 0
+  $
+
+  Ainsi 
+  $
+    phi_x_0 : func(M_n (CC), CC, A, det(x_0, dots, A^(n-1) x_0)) \
+    Omega = union.big_(x_0 in CC^n) phi_(x_0)^(-1) (CC^*)
+  $
+
+- De plus $cal(S) = Set(A in M_n (CC), chi_A "SARS") subset.eq Omega$  est dense dans $M_n (CC)$, donc $Omega$ aussi.
+
+- Soit $A in Omega$, on dispose donc de $V = B(A, delta) subset.eq Omega$, or $Pi|_V = chi|_V$ (par cyclicité : $Pi_M = chi_M$), et $chi$ est continue, donc $Pi$ aussi (en $A$).
+
+- Soit $A in.not Omega$, alors $deg Pi_A < n$, or on dispose de $(A_k)_k in Omega^NN -> A$, mais pour tout $k in NN$, $Pi_A_k = chi_A_k$ (unitaire de degré $n$), d'où $Pi_A_k arrow.r.not Pi_A$.
+
+#card("etclassimtopred", "Étude de la classe de similitude d'une matrice", ("Maths.Topologie.Réduction",))
+
+Étude de la classe de similitude d'une matrice.
+
+#answer
+
+Pour $A in M_n (CC)$, notons $cal(C)(A) = { P A P^(-1), P in "GL"_n(CC) }$. On a alors
+
+- $A$ est diagonalisable ssi $cal(C)$ est fermé.
+
+- $A$ est nilpotente ssi $0 in overline(cal(C)(A))$.
+
+*Démonstration*
+
+- On utilise le résultat suivant, si $M in T_n^+ (CC)$ on peut poser #h(1fr)
+  $
+    underbrace(dmat(1, k, dots.down, k^(n-1)), Q_k) quad quad underbrace(dmat(1, epsilon, dots.down, epsilon^(n-1)), P_epsilon) \
+    underbrace(mat(t_11,,,(*);,t_22;,,dots.down;,,,t_(n n)), M) quad quad underbrace(dmat(t_11, t_22, dots.down, t_(n n)), D) \
+  $
+  On a alors
+  $
+    Q_k M Q_k^(-1) = mat(t_11,,A_(i j) k^(i - j);,dots.down;,,t_(n n)) tends(k -> oo) D \
+    P_epsilon^(-1) M P_epsilon = mat(t_11,,A_(i j) epsilon^(j - i);,dots.down;,,t_(n n)) tends(epsilon -> 0) D
+  $
+
+- Supposons $cal(C)(A)$ fermé. Comme $A in cal(M)_n (CC)$, on dispose de $T in cal(C)(A) inter T_n^+ (CC)$, et on peut donc poser
+  $
+    A_k = Q_k T Q_k^(-1) in cal(C) \
+    lim_(k -> oo) A_k = D in cal(C) \
+  $
+  D'où $A$ est diagonalisable.
+
+- Soit $A in M_n (CC)$ diagonalisable. Soit $(R_k)_k in "GL"_n (CC)^NN$ tel que $A_k = R_k A R_k^(-1) -> B in M_n (CC)$.
+
+  Comme $chi$ est un invarient de similitude et une application continue, on a $chi_A = chi_B$.
+
+  De plus $Pi_A (A_k) = R_k Pi_A (A) R_k^(-1) = 0$ et $M |-> Pi_A (M)$ est continue, d'où $Pi_A (B) = 0$ (qui est SARS), ainsi $B$ est diagonalisable.
+
+  Donc $B in cal(C)(A)$.
+
+- Supposons que $0 in overline(cal(C)(A))$, on dispose de $(A_k)_k in C(A)^NN -> 0$, or $chi_A_k = chi_A$ et par continuité de $chi$, $chi_A = X^n$, d'où $A$ nilpotente.
+
+- Supposons $A$ nilpotente, donc on dispose de $T in cal(C)(A) inter T_n^(++) (CC)$
+  $
+    Q_k T Q_k^(-1) tends(k -> oo) 0
+  $
+  D'où $0 in overline(cal(C)(A))$.
+
+#card("ex42top", "Exercice : liens entre spectre norme subordonnée", ("Maths.Exercice.Topologie",))
+
+Soit $n in NN^*$, $norm(dot)$ une norme sur $CC^*$. On note 
+$
+norm(dot)_"op" : func(M_n (CC), RR_+, A, sup_(X in CC^n \\ {0}) norm(A X) / norm(X))
+$ 
+
+Pour $A in M_n (CC)$, on note $rho (A) = max_(lambda in "Sp" (A)) abs(lambda)$.
+
++ Montrer que pour toute matrice $A$, $rho(A) <= norm(A)_"op"$.
+
++ Montrer que $rho(A^k) = rho(A)^k$ pour $k in NN^*$. Montrer que $rho(A) <= norm(A^k)^(1 / k)_"op"$ pour $k in NN^*$.
+
++ Montrer que $norm(dot)_"op"$ est sous-multiplicative.
+
++ Donner un exemple de norme sur $M_n (CC)$ qui ne soit pas une norme d'opérateur.
+
++ Soit $norm(dot)_(oo,"op")$ la norme d'opérateur associé à la norme $norm(dot)_oo$ sur $CC^n$. Montrer que $norm(A)_(oo,"op") = max_(1 <= i <= n) sum_(j = 1)^n abs(a_(i,j))$.
+
++ Soit $T in T_n^+(CC))$. Pour $mu > 0$ on pose $Q_mu = dmat(1, dots.down, mu^(n - 1))$, calculer $lim_(mu -> +oo) norm(Q_mu T Q_mu^(-1))_(oo,"op")$.
+
++ Soient $A in M_n (CC)$ et $epsilon > 0$. Montrer qu'il existe une norme d'opérateur $N$ sur $M_n (CC)$ telle que $N(A) <= rho(A) + epsilon$.
+
++ Montrer que $rho(A) = lim_(k -> oo) norm(A^k)^(1/k)_"op"$.
+
++ En déduire l'équivalence entre
+
+  - $lim_(k -> oo) A^k = 0$.
+  - $forall X in M_(n,l) (CC), lim_(k -> oo) A^k X = 0$.
+  - $rho(A) < 1$
+  - Il existe sur $C^n$ une norme $norm(dot)$ tel que $norm(A)_"op" < 1$.
+  - Il existe $M$ semblable à $A$ telle que $norm(M)_(oo,"op") < 1$.
+
+#answer
+
+// TODO: vraiment la grosse flemme là je vais pas te mentir. (M196)
+
+#card("precomp", "Précompacité", ("Maths.Topologie",))
+
+Définition de précompacité.
+
+#answer
+
+On dit que $A subset.eq E$ est précompacte si
+$
+  forall epsilon > 0, exists N in NN, exists (x_1, dots, x_n) in E^n, \ A subset.eq union.big_(k = 1)^n B(x_k, epsilon)
+$
+
+Toute partie compacte est précompacte.
+
+*Démonstration*
+
+- Par contraposée. Soit $A$ non précompacte :
+  $
+    exists epsilon > 0, forall N in NN, forall (x_1, dots, x_n) in E^n \
+    A subset.eq.not union.big_(k = 1)^n B(x_k, epsilon)
+  $
+  Fixons un tel $epsilon$, et construisons une suite par récurrence : $u_0 in A$ quelconque, et
+  $
+   forall n in NN^*, u_n in A \\ union.big_(k = 0)^(n-1) B(u_k, epsilon)
+  $
+  Ainsi $(u_n)_n$ ne peut admettre de valeur d'adhérance, donc $A$ n'est pas compacte.
+
+// TODO: Peut être procéssus diagonal d'extraction ? (M198)
+
+#card("borellebesgueseg", "Borel Lebesgue sur un segment", ("Maths.Topologie",))
+
+Énoncé et démonstration de Borel-Lebesgue sur un segment.
+
+#answer
+
+Pour $K = [a, b] subset.eq RR$ tel que $K subset.eq union.big_(i in I) Omega_i$, où $(Omega_i)_(i in I)$ est une famille quelconque d'ouverts de $RR$. 
+
+On dispose de $J subset.eq I$ fini tel que $K subset.eq union.big_(j in J) Omega_j$.
+
+*Démonstration*
+
+Posons
+
+$
+  Gamma = Set(c in [a, b], exists J subset.eq I\, cases( space J "fini", space [a, c] subset.eq union.big_(j in J) Omega_j))
+$
+
+Qui est non vide ($a in Gamma$) et majoré, posons $beta = sup Gamma$.
+
+Or $beta in [a, b]$, donc on dispose de $i_0 in I$ tel que $beta in Omega_i_0$, donc il existe $delta_0$ tel que
+$
+  [beta - delta_0, beta + delta_0] subset.eq Omega_i_0
+$
+Par propriété de la borne sup, on dispose aussi de $c in Gamma inter Ioc(beta - delta_0, beta)$.
+
+Ainsi on a $J subset.eq I$ fini tel que $[a, c] subset.eq union.big_(j in J) Omega_j$.
+
+Supposons par l'absurde que $beta < b$. 
+
+Posons $beta' = min(b, beta + delta_0)$ et $J' = J union {i_0}$. Ainsi $[a, beta'] subset.eq union.big_(j in J') Omega_j$, or $beta' in Ioc(beta, b)$, qui est absurde.
+
+Donc $beta = b$.
+
+#card("borellebesgue", "Borel-Lebesgue", ("Maths.Topologie",))
+
+Énoncé et démonstration de Borel-Lebesgue.
+
+#answer
+
+On définit un compact au sens de Borel-Lebesgue comme une partie $K$ tel que si $(Omega_i)_(i in I)$ est une famille quelconque d'ouverts de $E$ tel que $K subset.eq union.big_(i in I) Omega_i$, alors
+$
+  exists J subset.eq I, J "finie et" K subset.eq union.big_(j in J) Omega_j
+$
+
+De manière équivalente (Borel-Lebesgue version fermé) : si $(G_i)_(i in I)$ est une famille quelconque de fermés de $K$ tels que $inter.big_(i in I) G_i = emptyset$ alors
+$
+  exists J subset.eq I, J "finie et" inter.big_(j in J) G_j = emptyset
+$
+
+*Équivalence*
+
+Soit $(E, d)$ un espace métrique. Toute partie compacte au sens de Bolzano-Weierstrass, est compacte au sens de Borel-Lebesgue (et vis-versa).
+
+*Démonstration*
+
+Soit $K subset.eq union.big_(i in I) Omega_i$ compacte (au sens de Bolzano-Weierstrass).
+
+- Montrons que
+  $
+    (exists epsilon > 0, forall x in K, exists i in I, B(x, epsilon) subset.eq Omega_i) \
+    eq.triple not (forall epsilon > 0, exists x in K, forall i in I, B(x, epsilon) subset.eq.not Omega_i)
+  $
+
+  Par l'absurde, posons $epsilon_n = 1/(n+1)$, on dispose donc de $(x_n) in K^NN$ tel que
+  $
+    forall i in I, B(x_k, 1 / (k+1)) subset.eq.not Omega_i
+  $
+  Qu'on peut extraire $(x_phi(n))_n -> z in K$.
+
+  Soit $j in I, delta > 0$ tels que $B(z, delta) subset.eq Omega_j$. Pour $N$ assez grand on a pour tout $n >= N$ :
+  $ 
+    d(x_phi(n), z) < delta / 2 quad quad 1 / (N + 1) <= delta / 2 \
+    B(x_phi(n), 1 / (phi(n) + 1)) subset.eq B(z, delta) subset.eq Omega_j
+  $
+  Qui est absurde.
+
+- Donc on dispose bien d'un tel $epsilon$. Par précompacité de $K$ on dispose de $x_1, dots, x_n in K$ tels que $K subset.eq union.big_(k = 1)^n B(x_k, epsilon)$.
+
+  Or pour tout $k in [|1, n|]$ on dispose de $i_k in I$ tel que $B(x_k, epsilon) subset.eq Omega_i_k$ d'où
+  $
+    K subset.eq union.big_(k = 1)^n Omega_i_k
+  $
+
+- La version fermé s'obtient en prenant $G_i = K\\Omega_i$.
+
+- La reciproque découle de la version fermée :
+
+  Soit $K$ compact au sens de Borel-Lebesgue, $(x_n)_n in K^NN$ une suite.
+
+  On a montrer que $S = {"valeurs d'adhérance de" (x_n)} = inter.big_(n in NN) overline({x_k, k >= n})$.
+
+  On note $F_n = overline({x_k, k >= n})$ fermé dans $KK$.
+  
+  Pour tout $n_1 < dots.c < n_d in NN$
+  $
+    x_n_d in inter.big_(k = 1)^d F_n_k
+  $
+  Donc comme $K$ compacte $inter.big_(n in NN) F_n != emptyset$, donc $(x_n)$ admet au moins une valeur d'adhérance dans $K$.
+
+// TODO: Tout idéal stricte de C°(K, K) (K compacte) est inclus dans { f ∈ E | f(c) = 0 } pour un c ∈ K. (B-L ouvert, pabs).
+
+#card("suitcauch", "Suites de Cauchy", ("Maths.Topologie",))
+
+Définition, propriétés des suites de Cauchy.
+
+#answer
+
+Soit $(E, d)$ un espace métrique, $(u_n)_n in E^NN$ une suite.
+
+On dit que $(u_n)_n$ est de Cauchy si
+$
+  forall epsilon > 0, exists N in NN, \ forall p, q >= N, d(u_p, u_q) < epsilon
+$
+
+Propriétés :
+
+- Toute suite convergente est de Cauchy.
+
+- Toute suite de Cauchy ayant une valeur d'adhérance converge.
+
+- Toute suite de Cauchy est bornée.
+
+- Si $E$ est un $KK$-evn de dimension finie, toute suite de cauchy converge.
+
+On appelle espace complet un espace métrique où les suites de Cauchy converge, et espace de Banach un evn complet.
+
+*Démonstration*
+
+- L'écrire.
+
+- Supposons $(u_n)_n$ de Cauchy et $(u_phi(n))_n -> l in E$. Soit $epsilon > 0$. #h(1fr)
+
+  On dispose de $k in NN$ tel que $d(u_phi(k) - l) < epsilon / 2$.
+
+  On dispose de $N in NN$ tel que pour tout $n >= N$
+  $
+    d(u_n, u_phi(k)) < epsilon
+  $
+  Ainsi
+  $
+    d(u_n, l) &<= d(u_n, u_phi(k)) + d(u_phi(k), l) \ &< epsilon
+  $
+
+- Supposons $(u_n)_n$ de Cauchy. Pour $epsilon = 1$ on dispose de $N in NN$ tel que pour tout $n >= N$
+  $
+    abs(u_n) <= d(u_n, u_0) + abs(u_0) < 1 + abs(u_0)
+  $
+
+- Supposons $(u_n)_n$ de Cauchy et $(E, norm(dot))$ un evn de dimension finie. Comme $(u_n)_n$ est de Cauchy, elle est bornée : $(u_n)_n in B(0, M)^NN$, qui est compacte, $(u_n)_n$ admet donc une valeur d'adhérance, et converge.
+
+#card("seriesevn", "Séries dans un espace vectoriel normé", ("Maths.Topologie",))
+
+Propriétés des séries dans une espace vectoriel normé.
+
+#answer
+
+Soit $(E, norm(dot))$ un $KK$-evn.
+
+Toute séries absolument convergente est convergente ssi $E$ est un espace de Banach.
+
+*Démonstration*
+
+- En dimension finie (sans les suites de Cauchy) :
+
+  Soit $u in E^NN$ tel que $sum norm(u_n)$ converge. #h(1fr)
+  $
+    norm(S_n) = norm(sum_(k = 0)^n u_n) <= S = sum_(k = 0)^(+oo) norm(u_k)
+  $
+  Donc $(S_n)_n$ est bornée et admet au moins une valeur d'adhérance.
+
+  Soit $phi, psi$ tels que $(u_phi(n))_n -> l_1$, $(u_psi(n))_n -> l_2$.
+  $
+    norm(S_psi(n) - S_phi(n)) &<= sum_(k in [|psi(n), phi(n)|]) norm(u_k)  \
+    &<= sum_(k = min(psi(n), phi(n)))^(+oo) norm(u_k) \ &tends(n -> +oo) 0
+  $
+  D'où $l_1 = l_2$.
+
+- Soit $u in E^NN$, $E$ un espace de Banach, tel que $sum norm(u_n)$ converge.
+
+  Pour tout $p >= q$
+  $
+    norm(S_p - S_q) &<= sum_(k = q + 1)^p norm(u_k) \
+    &<= sum_(k = q + 1)^(+oo) norm(u_k) \
+    &tends(q -> oo) 0
+  $
+  Donc $(S_n)$ est de Cauchy, et converge.
+
+- Soit $(u_n)$ une suite de Cauchy. On construit $phi$ extractrice tel que $norm(u_phi(n+1) - u_phi(n)) <= 1 / n^2$ (qui est possible car $(u_n)$ est de Cauchy).
+
+  Ainsi $sum (u_phi(n+1) - u_phi(n))$ est absolument convergente donc convergente et $(u_phi(n))_n$ converge, donc $(u_n)$ admet une valeur d'adhérance et converge.
+
+#card("thmbaire", "Théorème de Baire", ("Maths.Topologie",))
+
+Énoncé, démonstrations du théorème de Baire.
+
+#answer
+
+Dans $(E, norm(dot))$ espace de Banach, soit $A subset.eq E$ complet, et $(Omega_n)_(n in NN)$ une suite dénombrable d'ouverts denses dans $A$. Alors
+$
+  inter.big_(n in NN) Omega_n
+$
+Est dense dans $A$.
+
+*Éléments de démonstration*
+
+Suite de boules emboîtées, en alternant caractère ouvert et densité dans une récurrence bien construite pour trouver un point dans l'intersection à toute distance.
+
+// TODO: Vraie démo
+
+#card("conpararc", "Connexité par arcs", ("Maths.Topologie",))
+
+Définition, propriétés de connexité par arcs.
+
+#answer
+
+Pour $X subset.eq E$ ($E$ espace métrique) et $a, b in X$, on appelle chemin continue reliant $a$ et $b$ une fonction
+$
+  gamma : func([0, 1], E, 0, a, 1, b, t, gamma(t) in X)
+$
+
+L'existence d'un chemin continue forme une relation d'équivalence.
+
+- On appelle composentes connexes par arcs les classes d'équivalence pour cette relation.
+
+- On dit que $X$ est connexe par arcs s'il n'y à qu'une seule classe d'équivalence pour cette relation.
+
+- Si $f in C^0(X, F)$ et $X$ est connexe par arcs, alors $f(X)$ aussi.
+
+*Démonstration*
+
+- Soit $f(x) = a, f(y) = b in f(X)$, comme $X$ est connexe par arcs on dispose de $gamma$ chemin continue de $x$ à $y$.
+
+  Posons $gamma' = f compose gamma$, continue par composition de fonctions qui le sont, et forme un chemin continue de $a$ à $b$.
+
+  Donc $f(X)$ est connexe par arcs.
+
+#card("condeglnc", "Connexité par arcs du groupe linéaire complexe", ("Maths.Topologie",))
+
+Démonstrations de la connexité par arcs de $"GL"_n (CC)$.
+
+#answer
+
++ Soit $A in "GL"_n (CC)$, pour tout $t in CC$ #h(1fr)
+  $
+    (1 - t) I_n + t A in.not "GL"_n (CC) \
+    <=> A - (t - 1) / t in.not "GL"_n (CC) \
+    <=> 1 - 1 / t in "Sp" (A)
+  $
+  Notons $D = { 1 / lambda - 1, lambda in "Sp"(A) }$ qui est fini, donc $CC^* \\ D$ est connexe par arcs, et on dispose de $gamma$ chemin continue de $0$ à $1$ dans $CC^*\\D$.
+  $
+    tilde(gamma) : t |-> (1 - gamma(t)) I_n + gamma(t) A
+  $
+  Convient.
+
++ En trigonalisant :
+  $
+    gamma : s -> P mat(gamma_1 (s),,(s t_(i j));,dots.down;,,gamma_n (s)) P^(-1)
+  $
+  Avec $gamma_i : [0, 1] -> CC^*$ chemin continue de $1$ à $gamma_i$.
+
++ On écrit $A$ comme produit de transvections et d'une dilatation, et on relie les termes. (Marche pour montrer la connexité par arcs de $"GL"_n^+ (RR)$ et $"GL"_n^-(RR)$).
+
+#card("connexite", "Connexité", ("Maths.Topologie",))
+
+Définition et propriétés de la connexité.
+
+#answer
+
+Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules parties ouvertes et fermés de $X$ sont $emptyset$ et $X$.
+
+- Si $X$ connexe par arcs, alors $X$ est connexe.
+
+- $X$ est connexe ssi toute fonction $C^0(X, ZZ)$ est constante.
+
+- Si $X$ est connexe, $overline(X)$ aussi.
+
+Contre exemple de la reciproque de connexe par arcs implique connexe :
+
+$
+  X = { (x, sin(1/x)), x in Ioc(0, 1) } \
+  overline(X) = X union {0} times [-1, 1]
+$
+
+- $X$ est connexe par arcs, donc connexe.
+- $overline(X)$ est connexe car $X$ l'est.
+- $overline(X)$ n'est pas connexe par arcs.
+
+*Démonstration*
+
+- + Supposons $X$ connexe par arcs, soit $A subset.eq X$ non vide ouverte et fermé.
+
+    On dispose donc de $a in A$, supposons par l'absurde qu'on dispose de $b in X \\ A$.
+
+    Comme $X$ est connexe par arcs, on dispose de $gamma$ chemin continue de $a$ à $b$.
+    $
+      t_0 = sup underbrace([0, 1] inter gamma^(-1) (A), Gamma)
+    $
+    Qui existe car $Gamma$ est non vide et majoré.
+
+    On dispose donc de $(t_n)_n in Gamma^NN ->  t_0$
+    $
+      gamma(t_0) = lim_(n -> oo) underbrace(gamma(t_n), in A) in overline(A) = A
+    $
+    Or $A$ est ouvert, donc on dispose de $B_X (gamma(t_0), delta) subset.eq A$.
+
+    Par continuité de $gamma$ on a $eta > 0$ tel que 
+    $
+    gamma(B(t_0, eta)) subset.eq B(gamma(t_0), delta) subset.eq A
+    $
+    Absurde.
+
+  + Montrons que $bb(1)_A$ est continue.
+
+    Soit $Omega subset RR$ ouvert
+    $
+      bb(1)^(-1)_A (Omega) \ = cases(
+        space A &"si" 1 in Omega "et" 0 in.not Omega,
+        space X\\A &"si" 1 in.not Omega "et" 0 in Omega,
+        space emptyset &"si" 1 in.not Omega "et" 0 in.not Omega,
+        space X &"si" 1 in Omega "et" 0 in.not Omega,
+      )
+    $
+    Qui sont tous ouverts. Donc $bb(1)_A$ est continue, $bb(1)_A (X) subset.eq {0, 1}$ est connexe par arcs.
+
+    Donc $bb(1)_A (X) = {0}$ ou $bb(1)_A (X) = {1}$
+
+- ($arrow.double.l$) Soit $A subset.eq X$ ouvert et fermé, $bb(1)_A$ est continue (voir ci dessus) donc constante.
+
+  ($=>$) Soit $f in C^0(X, ZZ)$, soit $k = f(x) in ZZ$,
+  $
+    f^(-1) {k} = f^(-1) Ioo(k - 1/2, k + 1/2)
+  $
+  Qui est ouvert et fermé.
+
+- Supposons $X$ connexe, soit $f in C^0(overline(X), ZZ)$, et $tilde(f) = evaluated(f)_X$.
+
+  Par connexité de $X$, $tilde(f)$ est constante et donc $f$ aussi sur $X$, et par continuité elle l'est sur $overline(X)$.
+
+// TODO: Écrire cette fiche (M210 - M214)
+#card("barycentres", "Barycentres", ("Maths.Topologie",))
+
+Barycentres - revoir le cours / écrire la fiche.
+
+#answer
+
+Barycentres - revoir le cours / écrire la fiche.
+
+Rapidement :
+
+- À $(A_1, dots, A_n) in cal(E)^n$ (avec $E$ espace affine) et $lambda_1, dots, lambda_n in RR^n$ on associe $G in cal(E)$ l'unique point tel que #h(1fr)
+  $
+    sum_(k = 1)^n lambda_k va(G A_k) = va(0) \
+    "i.e" sum_(k = 1)^n lambda_k (a_k - g) = 0
+  $
+  Qu'on appelle barycentre :
+  $
+    G = "Bar" { (A_k, lambda_k), k in [1, n] }
+  $
+
+- Les pondérations sont unique à facteur multiplicatif près, il en existe une unique tel que
+  $
+    sum_(k = 1)^n lambda_k = 1
+  $
+
+- Associativité du barycentre :
+
+  Soit $(A_k)_k in cal(E)^(n + m)$ et $(lambda_k)_k in RR^(n + m)$ tel que 
+  $
+  alpha = sum_(k = 1)^n lambda_k != 0 != sum_(k = n + 1)^(n + m) lambda_k
+  $
+  Alors en posant
+  $
+    G_1 = "Bar" { (A_k, lambda_k), k in [|1, n|] } \
+    G_2 = "Bar" { (A_k, lambda_k), k in [|n + 1, n + m|] } \
+  $
+  On a
+  $
+    G &= "Bar" { (A_k, lambda_k), k in [|1, n + m|] } \
+    &= "Bar" { (G_1, alpha), (G_2, beta) }
+  $
+
+- $cal(F) subset.eq cal(E)$ est un sea ssi il est stable par barycentre.
+
+- On dit que $d+1$ points sont en position général (dans un espace de dimension $d$) si $(va(A_0 A_k))_(k in [|1, d|])$ est libre.
+
+- $cal(C) subset.eq cal(E)$ est convexe ssi pour tout $A_1, dots, A_n in cal(C)$ et $lambda_1, dots, lambda_n in RR_+$ tels que $sum_(k = 1)^n lambda_k != 0$
+  $
+    "Bar" { (A_k, lambda_k), k in [|1, n|] } in cal(C)
+  $
+
+- Pour $X subset.eq cal(E)$, il existe un plus petit convexe contenant $X$. On l'appelle enveloppe convexe de $X$ et
+  $
+    "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, n|] }\, n in NN\, \ (A_1, dots, A_n) in X^n\, (lambda_1, dots, lambda_n) in RR_+^n \ , sum_(k = 1)^n lambda_k != 0 ) = cal(C)
+  $
+
+- (Carathéoodory) Soit $d = dim cal(E)$, $X subset.eq cal(E)$
+  $
+    "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, d+1|] }\, \ (A_1, dots, A_(d+1)) in X^(d+1)\, \ (lambda_1\, dots, lambda_(d+1)) in RR_+^(d+1) \ , sum_(k = 1)^n lambda_k = 1)
+  $
+
+- Donc si $X$ est compact, $"Conv" X$ aussi.
+
+#card("projconv", "Projection sur un convexe fermé", ("Maths.Topologie",))
+
+Propriétés de projection sur un convexe fermé.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ un espace euclidien, $C subset.eq E$ un convexe fermé.
+
+$
+  forall x in E, exists! p(x) in C, \ d(x, C) = d(x, p(x))
+$
+
+Et de plus pour tout $x in E$, et $z in C$, on a équivalence entre
+
++ $z = p(x)$
+
++ $forall y in C, scl(y - z, x - z) <= 0$
+
+On a alors que $x |-> p(x)$ est $1$-lipschitzienne.
+
+*Démonstration*
+
+- Existence : la distance à un fermé est atteinte en dimension finie (ou dans un espace de Banach).
+
+- Unicité : #h(1fr)
+
+  #align(center, cetz.canvas({
+    import cetz.draw: *
+
+    let rad = _sizes.text * 20%
+    let stroke = _sizes.text * 10%
+    let col = _colors.text
+
+    set-style(stroke: none, fill: col)
+    circle((-1, 0), name: "z1", radius: rad)
+    circle((1, 0), name: "z2", radius: rad)
+    circle((0, -2), name: "x", radius: rad)
+
+    set-style(stroke: col + stroke, fill: none)
+
+    line("z1", "z2", "x", "z1")
+
+    circle((0, 0), name: "c", radius: rad, fill: red, stroke: none)
+    line("c", "x", stroke: red, fill: none)
+
+    content((rel: (-0.3, 0), to: "z1"), $z_1$)
+    content((rel: (0.3, 0), to: "z2"), $z_2$)
+    content((rel: (0, -0.3), to: "x"), $x$)
+  }))
+
+  Soit $z_1, z_2 in C$ tels que $d(x, C) = d(x, z_1) = d(x, z_2)$.
+  $
+    d(x, C) &<= d(x, (z_1 + z_2) / 2) \
+    &= 1/2 norm((x - z_1) + (x - z_2)) \
+    &<= d(x, C)
+  $
+  On a égalité dans l'inégalité triangulaire pour une norme issue d'un produit scalaire : $(x - z_1)$ et $(x - z_2)$ sont positivement liés et de même norme (par hypothèse), d'où $z_1 = z_2$.
+
+- Tangente :
+  #align(center, cetz.canvas({
+    import cetz.draw: *
+
+    let rad = _sizes.text * 20%
+    let stroke = _sizes.text * 10%
+    let col = _colors.text
+
+    set-style(stroke: col + stroke, fill: none)
+
+    circle((0, 0), name: "C", radius: 1)
+
+    circle((name: "C", anchor: 45deg), radius: rad, name: "z", fill: red, stroke: none)
+    line((to: "z", rel: (-1, 1)), (to: "z", rel: (1, -1)), stroke: red + stroke)
+
+    circle((0, 0.5), name: "y", radius: rad, fill: col, stroke: none)
+
+    circle((1.5, 1.5), name: "x", radius: rad, fill: black, stroke: none)
+
+    line("y", "z", "x")
+
+    cetz.angle.angle("z", "x", "y", radius: 0.2)
+
+    content((to: "z", rel: (0, 0.5)), $script(>= pi / 2)$)
+    content((to: "z", rel: (0.6, 0)), text(fill: red)[$p(x)$])
+    content((to: "x", rel: (0.3, 0)), $x$)
+    content((to: "y", rel: (-0.3, 0)), $y$)
+    content((to: "C.south", rel: (0, 0.5)), $C$)
+  }))
+  
+  (i $=>$ ii) Soit $y in C$, on considère pour $t in [0, 1]$ :
+  $
+    y_t = (1 - t) z + t y \
+  $
+  $
+    f(t) &= norm(x - y_t)^2  \
+    &= norm((x - z) - t(y - z))^2 \
+    &= norm(x - z)^2 - 2 t scl(x-z, y-z) \  &quad + t^2 norm(y - z)^2
+  $
+  Une fonction de $[0, 1] -> RR$ minimale en $0$ d'où
+  $
+    f'(0) >= 0 \
+    -2 scl(x - z, y - z) >= 0
+  $
+
+  (ii $=>$ i) Pour $y = p(x)$ :
+  $
+    scl(p(x) - z, x - z) <= 0
+  $
+  Or par (i $=>$ ii) (avec $z' = p(x)$ et $y' = z$) on a
+  $
+    scl(z - p(x), x - p(x)) <= 0 \
+    scl(p(x) - z, p(x) - x) <= 0 \
+  $
+  Donc par bilinéarité :
+  $
+    scl(z - p(x), z - p(x)) &= norm(z - p(x))^2 \ &<= 0
+  $
+  D'où $z = p(x)$.
+
+- Soit $x, y in E$ :
+  $
+    scl(p(y) - p(x), x - p(x)) <= 0 \
+    scl(p(x) - p(y), y - p(y)) <= 0 \ \
+  $
+  Donc
+  $
+    scl(p(y) - p(x), x - y + p(y) - p(x)) <= 0 \
+    norm(p(y) - p(x))^2 \ + scl(p(y) - p(x), x - y) <= 0 \
+    norm(p(y) - p(x))^2 <= scl(p(y) - p(x), y - x) \
+    <= norm(p(y) - p(x)) dot norm(y - x) \
+    norm(p(y) - p(x)) <= norm(y - x)
+  $
+
+#card("relcpct", "Relative compacité", ("Maths.Topologie",))
+
+Définition de relative compacité.
+
+#answer
+
+Soit $E$ un $KK$-evn, $A subset.eq E$, on a équivalence entre
+
++ $overline(A)$ est compact.
+
++ Il existe $K$ compact tel que $A subset.eq K$.
+
++ $forall (x_n)_n in A^NN$, $exists phi "extractrice"$, $(x_phi(n))_n -> l in E$.
+
+On dit dans ce cas que $A$ est relativement compact.
+
+Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
+
+*Démonstration*
+
+- (i $=>$ ii) $A subset.eq overline(A)$ compact.
+
+- (ii $=>$ i) $A subset.eq K$, donc $overline(A) subset.eq overline(K) = K$, $overline(A)$ est fermé dans un compact donc compact.
+
+- (i $=>$ iii) Soit $(x_n)_n in A^NN subset.eq overline(A)^NN$, qu'on peut donc extraire par compacité.
+
+- (iii $=>$ i) Soit $(y_n)_n in overline(A)^NN$, pour $n in NN$, $y_n in overline(A)$, on prend #h(1fr)
+  $
+    x_n in A inter B(y_n, 1 / 2^n)
+  $
+  Donc $(x_n)_n in A^NN$, par hypothèse $(x_phi(n)) -> l in overline(A)$.
+  $
+    norm(y_phi(n) - l) &<= underbrace(norm(y_phi(n) - x_phi(n)), < 1 / 2^n -> 0) \ &+ underbrace(norm(x_phi(n) - l), -> 0)
+  $
+
+- Soit $epsilon > 0$, $x_0 in A$, construisons par récurrence :
+  $
+    x_(n+1) in A \\ union.big_(k = 0)^n B(x_k, epsilon)
+  $
+  Comme une tel suite ne peut admètre de valeur d'adhérance, le procéssus doit se terminer.
+
+  Ainsi on dispose de $x_0, dots, x_n$ tels que $A subset.eq union.big_(k = 0)^n B(x_k, epsilon)$ et $A$ est précompacte.
+
+]
+#[
+
+#import "/utils.typ": *
+#import "@preview/tiptoe:0.3.1"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/physica:0.9.7": *
+
+#card("fbildege", "Formes bilinéaires non dégénérées", ("Maths.Algèbre.Euclidiens",))
+
+Formes bilinéaires non dégénérées.
+
+#answer
+
+Soit $E$ un $RR$-ev. Pour $phi : E^2 -> RR$ une forme bilinéaire on considère
+$
+  psi : func(E, cal(L)(E, RR), x, phi_x : y |-> phi(x, y))
+$
+On dit que $phi$ est non dégénérée si $psi$ est unjective.
+
+On a alors
+
+- Si $phi$ bilinéaire symmétrique positive, $phi$ est un produit scalaire sur $E$ ssi $phi$ est non dégénérée.
+
+*Démonstration*
+
+- ($=>$) Si $phi$ est un produit scalaire, $x in ker psi$ #h(1fr)
+  $
+    psi(x) (x) = phi(x, x) = 0 => x = 0
+  $
+
+- ($arrow.l.double$) Supposons $phi$ non dégénérée, soit $x in E$ tel que $phi(x, x) = 0$. Soit $y in E$
+  $
+    0 <= psi(x)(y)^2 &= phi(x, y)^2 \ &<= underbrace(phi(x, x), 0) phi(y, y) \ &= 0
+  $
+  Donc $x in ker psi = {0}$ d'où $x = 0$.
+
+#card("idpseucl", "Identités du produit scalaire", ("Maths.Algèbre.Euclidiens",))
+
+Identités du produit scalaire (polarisation, parallèlogramme).
+
+#answer
+
+Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien.
+
+- (Polarisation) Pour $x, y in E$
+  $
+    scl(x, y) &= 1 / 2 (norm(x + y)^2 - norm(x)^2 - norm(y)^2) \
+    &= 1/4 ( norm(x + y)^2 - norm(x - y)^2)
+  $
+
+- (Parallèlogramme) Pour $x, y in E$
+  $
+    norm(x + y)^2 + norm(x - y)^2 = 2 norm(x)^2 + 2 norm(y)^2
+  $
+
+#card("partieortho", "Orthogonal d'une partie", ("Maths.Algèbre.Euclidiens",))
+
+Orthogonal d'une partie.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien et $A subset.eq E$ une partie.
+
+On définit 
+$
+A^perp &= Set(x in E, forall a in A\, scl(x, a) = 0) \
+&= inter.big_(a in A) ker (x |-> scl(x, a))
+$
+Qui est donc un sev de $E$.
+
+On a alors
+- Pour $F$ sev de $E$, $F^perp inter F = {0}$.
+
+- En dimension finie $F^perp plus.o F = E$
+
+- Pour $F, G$ sevs de $E$, $(F + G)^perp = F^perp inter G^perp$.
+
+*Démonstration*
+
+- Par définie positivité.
+
+- Projection.
+
+- L'écrire.
+
+#card("projecsev", "Projection orthogonale sur un sev de dimension finie", ("Maths.Algèbre.Euclidiens",))
+
+Projection orthogonale sur un sev de dimension finie.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien et $F$ sev de $E$.
+
+Pour tout $x in E$, il existe un unique $z in F$ tel que $norm(x - z) = d(x, F)$, de plus si $(e_1, dots, e_d)$ est une bon de $F$
+$
+  z = sum_(j = 1)^d scl(x, e_j) e_j quad quad x - z in F^perp
+$
+Ainsi
+$
+  d(x, F)^2 &= norm(x - z)^2 \ &= norm(x)^2 - norm(z)^2 \
+  &= norm(x)^2 - sum_(j = 1)^d scl(x, e_j)^2
+$
+
+// NOTE: M320 matrice d'une application bilinéaire
+
+#card("exinegdetfam", "Exercice : Inégalité sur le determinant d'une famille de vecteurs", ("Maths.Algèbre.Euclidiens",))
+
+Soit $(E, scl(dot, dot))$ euclidien de dimension $n$, $(x_1, dots, x_n) in E^n$ une famille de vecteurs et $e$ une BON. Montrer que $abs(det_e (x_1, dots, x_n))$ est indépendant de la BON $e$ choisie et que
+$
+  abs(det_e (x_1, dots, x_n)) <= product_(k = 1)^n norm(x_k)
+$
+
+#answer
+
++ Soit $e, e'$ deux BON de $E$ : #h(1fr)
+  $
+    abs(det_e (x_1, dots, x_n))  \ = abs(underbrace(det_e (e'), plus.minus 1) det_e' (x_1, dots, x_n)) \
+  $
+
++ Si $(x_1, dots, x_n)$ n'est pas une base
+  $
+    0 &= abs(det_e (x_1, dots, x_n)) \
+    &<= product_(k = 1)^n norm(x_k)
+  $
+
++ Sinon, on pose $w = (w_1, dots, w_n)$ la BON obtenue par Gramm-Schmidt sur $x = (x_1, dots, x_n)$
+  $
+    forall i in [|1, n|], x_i &= sum_(k = 1)^n scl(x_i, w_k) w_k \ 
+    &= sum_(k = i)^n scl(x_i, w_k) w_k \
+  $
+  $
+    abs(det_e (x)) &= abs(det_w (x)) \ &= product_(k = 1)^n scl(x_k, w_k) \
+    &<= product_(k = 1)^n norm(x_k)
+  $
+  Car $cal(M)_w (x) in T_n^+ (RR)$.
+
+#card("thmrepr", "Théorème de représentation", ("Maths.Algèbre.Euclidiens",))
+
+Théorème de représentation.
+
+#answer
+
+Pour $(E, scl(dot, dot))$ euclidien, soit $u in cal(L)(E, RR)$ une forme linéaire, on dispose d'un unique $w in E$ tel que
+$
+  forall x in E, u(x) = scl(x, w)
+$
+
+*Démonstration*
+
+Comme $scl(dot, dot)$ est un produit scalaire
+$
+  psi : func(E, cal(L)(E, RR), x, y |-> scl(x, y))
+$
+Est injective et donc bijective par argument dimensionnel.
+
+#card("adjendo", "Adjoint d'un endomorphisme", ("Maths.Algèbre.Euclidiens",))
+
+Adjoint d'un endomorphisme.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ et $u in cal(L)(E)$, pour tout $x in E$ il existe un unique $z_x in E$ tel que
+$
+  forall y in E, scl(u(y), x) = scl(y, z_x)
+$
+On pose alors
+$
+  u^* : func(E, E, x, z_x) in cal(L)(E)
+$
+Qui est l'unique adjoit de $u$. On le caractérise alors par
+$
+  forall x, y in E, scl(x, u(y)) = scl(u^* (x), y)
+$
+
+On a alors
+- Pour tout $u in cal(L)(E), u^*^* = u$ #h(1fr)
+
+- Pour toute BON $e$ de $E$
+  $
+    cal(M)_e (u^*) = cal(M)_e (u)^TT
+  $
+
+- Pour $u in cal(L)(E)$
+  $
+    ker (u^*) &= im (u)^perp \
+    im (u^*) &= ker (u)^perp \
+    "rg" u^* &= u
+  $
+
+- Pour $u in cal(L)(E)$
+  $
+    ker (u^* compose u) = ker u \
+    "rg" (u^* compose u) = "rg" u
+  $
+
+- Pour tout $F$ sev de $E$ stable par $u$, $F^perp$ est stable par $u^*$
+
+*Démonstration*
+
+- Soit $x in E$, on pose #h(1fr)
+  $
+    phi_x : func(E, RR, y, scl(x, u (y)))
+  $
+  Par théorème de représentation on dispose d'un unique $z_x$ tel que
+  $
+    forall y in E, phi_x (y) = scl(z_x, y)
+  $
+  Soit $x, y, z in E$ et $alpha, beta in RR$
+  $
+    scl(alpha x + beta y, u(z)) \ = alpha scl(x, u(z)) + beta scl(y, u(z)) \
+    = alpha scl(u^*(x), z) + beta scl(u^*(y), z) \
+    = scl(alpha u^*(x) + beta u^*(y), z) \
+    = scl(u^*(alpha x + beta y), z)
+  $
+  D'où par unicité 
+  $
+  u^*(alpha x + beta y) = alpha u^* (x) + beta u^* (y)
+  $
+
+- Les écrires
+
+- On a $ker u subset.eq ker (u^* compose u)$. Soit $x in ker (u^* compose u)$.
+  $
+    scl(u^* (u(x)), x) &= 0 \
+    &= scl(u(x), u(x)) \
+    &= norm(u(x))^2
+  $
+
+#card("isomvec", "Isométries vectorielles", ("Maths.Algèbre.Euclidiens",))
+
+Isométries vectorielles.
+
+#answer
+
+Soit $u in cal(L)(E)$, on dit que $u$ est une isométrie vectorielle (ou automorphisme orthogonal) si pour tout $x in E$
+$
+  norm(u(x)) = norm(x)
+$
+
+Ce qui est équivalent à
+$
+  forall x, y in E, scl(u(x), u(y)) = scl(x, y)
+$
+
+D'autre caractérisation équivalente des isométrie vectorielles :
+
+- Il existe $e$ BON tel que $u(e)$ BON.
+- Pour tout $e$ BON, $u(e)$ BON.
+- $u^* compose u = u compose u^* = id$
+
+On note $O(E)$ leur ensemble, qui forme un sous groupe compact de $"GL"(E)$.
+
+On a alors
+
+- Pour tout $u in O(E)$, $det(u) = plus.minus 1$.
+
+
+*Démonstration*
+
+- ($arrow.l.double$) Soit $x in E$ #h(1fr)
+  $
+    norm(u(x))^2 &= scl(u(x), u(x)) \ &= scl(x, x) = norm(x)^2
+  $
+
+- ($=>$) Soit $x, y in E$
+  $
+    scl(u(x), u(y)) \ = (norm(u(x + y))^2 - norm(u(x - y))^2) / 4 \
+    (norm(x + y)^2 - norm(x - y)^2) / 4 \
+    = scl(x, y)
+  $
+
+- Les écrires.
+
+- $u in O(E)$
+  $
+    &<=> forall x, y in E, scl(u(x), u(y)) = scl(x, y) \
+    &<=> forall x, y in E, scl(u^* compose u (x), y) = scl(x, y) \
+    &<=> forall x, y in E, scl(u^* compose u (x) - x, y) = 0 \
+    &<=> forall x in E, norm(u^* compose u(x) - x)^2 = 0
+  $
+
+- Écrire la démonstration pour $O(E)$ sous groupe de $"GL"(E)$.
+
+- Pour tout $u in O(E)$, $norm(u)_"op" = 1$ donc $O(E)$ est borné et on montre facilement (par critère séquentiel) que $O(E)$ est fermé, donc compact.
+
+#card("symprojortho", "Symétries et projecteurs ortogonaux", ("Maths.Algèbre.Euclidiens",))
+
+Symétries et projecteurs ortogonaux.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ euclidiens.
+
+*Symmétries orthogonales*
+
+Soit $s in cal(L)(E)$ tel que $s^2 = id$, on dit que $s$ est une symmétrie orthogonale si
+$
+  ker (s - id) perp ker (s + id) \ => E = ker (s - id) dperp ker(s + id)
+$
+
+Ou de manière équivalente, si $s$ est une isométrie vectorielle.
+
+On appelle réflexion une symmétrie orthogonale par rapport à un hyperplan.
+
+*Projecteurs orthogonaux*
+
+Soit $p in cal(L)(E)$ tel que $p^2 = p$, on dit que $p$ est un projecteur orthogonale si
+$
+  ker (p - id) perp ker p \ => E = ker (p - id) dperp ker p
+$
+
+Ou de manière équivalente si $p$ est autoadjoint.
+
+*Démonstration*
+
+- ($=>$) Soit $s$ une symmétrie orthogonales, $x in E$, $F = ker (s - id)$
+  $
+    x = y + z quad quad y in F, z in F^perp \
+  $
+  $
+    norm(s(x))^2 &= norm(s(y + z))^2 \ &= norm(y - z)^2 \
+    &= norm(y)^2 + norm(-z)^2 \
+    &= norm(x)^2
+  $
+
+- ($arrow.l.double$) Soit $s$ une symmétrie qui conserve la norme, et donc le produit scalaire. Soit $x in F = ker (s - id)$ et $y in G = ker (s + id)$.
+  $
+    scl(x, y) = scl(s(x), s(y)) = scl(x, -y) \
+    scl(x, y) = 0
+  $
+
+#card("endosym", "Endomorphismes symmétriques ou autoadjoints", ("Maths.Algèbre.Euclidiens",))
+
+Endomorphismes symmétriques ou autoadjoints.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ euclidiens, on dit que $u in cal(L)(E)$ est autoadjoint (ou symmétrique) si $u^* = u$.
+
+Pour toute BON $e$ (d'où symmétrique)
+$
+  cal(M)_e (u) = A = A^TT in S_n (RR)
+$
+
+On note $S(E)$ leur ensemble
+$
+  S = ker ((u |-> u^*) - id)
+$
+Qui est donc un sev de $cal(L)(E)$ et $dim S(E) = (n (n+1)) / 2$.
+]
+#[
+
+#import "/utils.typ": *
+#import "@preview/tiptoe:0.3.1"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/physica:0.9.7": *
+
+#card("vpep", "Valeurs propres, espaces propres", ("Maths.Algèbre.Réduction",))
+
+Définitions, caractérisation, démonstration autour des valeurs propres et des espaces propres.
+
+#answer
+
+Soit $u in cal(L)(E), lambda in KK$, il y a équivalence entre
+
++ $exists x_0 in E\\{0}, space u(x_0) = lambda x_0$
+
++ $ker (u - lambda id) != {0}$
+
++ $u - lambda id in.not "GL"(E)$
+
+On dit alors que $lambda$ est une valeur propre de $u$, on appelle sous-espace propre de $u$ pour la valeur propre $lambda$
+$
+  E_lambda (u) = {x in E | u(x) = lambda x}
+$
+
+*Démonstration*
+
+$
+  exists x_0 in E \\ {0}, space u(x_0) = lambda x_0 \
+  <=> exists x_0 in ker (u - lambda id) \\ {0} \
+  <=> u - lambda id in.not "GL"(E) quad script(vec("dimension", "finie"))
+$
+
+#card("somdirsep", "Somme directe des sous-espaces propres", ("Maths.Algèbre.Réduction",))
+
+Démonstration du fait que les sous-espaces propres d'un endomorphisme sont en somme directe.
+
+#answer
+
+Soit $u in cal(L)(E)$, $lambda_1, dots, lambda_p in KK$ ses valeurs propres deux à deux distinctes.
+
+Soit $(x_1, dots, x_p) in product_(k = 1)^p E_(lambda_k) (u)$ tels que $sum_(k = 1)^p x_k = 0$.
+
+Par recurrence on montre que pour tout $P(X) in KK [X]$.
+$
+  0 = sum_(k = 1)^p P(lambda_k) x_k
+$
+
+En particulier avec $P = L_i$ pour $i in [|1,n|]$ on a
+$
+  0 = sum_(k = 1)^p L_i (lambda_k) x_k = x_i
+$
+
+On appelle spèctre de $u$
+
+$
+  "Sp"(u) = {lambda in KK | lambda "valeur propre"}
+$
+
+Qui est finit ($abs("Sp"(u)) <= n = dim E$).
+
+// TODO: Stabilité des sous espaces propres, ça sert a quoique que ce soit ? I.5)
+
+#card("polcar", "Polynôme caractèristique d'un endomorphisme", ("Maths.Algèbre.Réduction",))
+
+Définitions, propriétés élémentaires et démonstrations autours du polynôme caractèristique d'un endomorphisme.
+
+#answer
+
+*Matrices*
+
+Soit $A in M_n (KK)$, on définit le polynôme caractèristique de $A$ comme
+$
+  chi_A (X) = det(X I_n - A)
+$
+Et on a
+$
+  chi_A (X) = sum_(k = 0)^n a_k X^k
+$
+$
+  a_n &= 1 quad & "("chi_A" unitaire)" \
+  a_(n-1) &= - tr(A) \
+  a_0 &= (-1)^n det(A)
+$
+
+*Endomorphismes*
+
+Soit $u in cal(L)(E)$, $e$ base de $E$, $A = cal(M)_e (u)$. On définit
+$
+  chi_u (X) = chi_A (X)
+$
+Ceci ne dépend pas de la base $e$ choisie.
+
+De plus
+$
+  "Sp"(u) = Z_KK (chi_u)
+$
+
+*Démonstration*
+
+$
+  chi_A (X) = sum_(sigma in frak(S)_n) epsilon(sigma) underbrace(product_(j = 1)^n (X delta_(sigma(j) j) - A_(sigma(j) j)), P_sigma (X))
+$
+
+Pour tout $sigma in frak(S)_n$, $P_sigma in KK_n [X]$ donc $chi_A in KK_n [X]$. De plus
+$
+deg (P_sigma) = abs({k in [|1, n|] | sigma(k) = k}) \
+deg (P_sigma) = n <=> sigma = id
+$
+Donc $deg chi_A = n$ et $"cd" chi_A = 1$.
+
+Si $sigma != id, space deg (P_sigma) <= n - 2$, donc $a_(n-1)$ est le terme en $X^(n-1)$ de $P_id$.
+$
+  P_id = product_(j = 1)^n (X - A_(j j)) \
+  a_(n-1) = - sum_(j = 1)^n A_(j j) = - tr (A)
+$
+$
+  a_0 &= chi_A (0) = det(0 - A) \ &= (-1)^n det(A)
+$
+
+Soient $e, e'$ deux bases de $E$, $A = cal(M)_e (u), A' = cal(M)_e' (u), P = P_(e'->e)$.
+
+$
+  A' = P A P^(-1)
+$
+$
+  chi_A' (X) &= det(X I_n - A') \
+  &= det(X P I_n P^(-1) - P A P^(-1)) \
+  &= det(P) det(X I_n - A) det(P^(-1)) \
+  &= chi_A (X)
+$
+
+#card("multvp", "Multiplicités d'une valeur propre", ("Maths.Algèbre.Réduction",))
+
+Définitions des multiplicités d'une valeur propre.
+
+#answer
+
+Soit $lambda in KK$ une valeur propre de l'endomorphisme $u$.
+
+- On appelle multiplicité algébrique ($m_lambda$), ou juste multiplicité de $lambda$ sa multiplicité en tant que racine de $chi_u$.
+
+- On appelle multiplicité géométrique de $lambda$ la dimension de son espace propre.
+
+On a toujours
+
+$
+  dim E_lambda (u) <= m_lambda
+$
+
+*Démonstration*
+
+Soit $(e_1, dots, e_d)$ base de $E_lambda$ complété en $e = (e_1, dots, e_n)$ base de $E$.
+
+$
+  cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), lambda I_d, B; 0, C) \
+$
+$
+  chi_u &= chi_(cal(M)_e (u)) \
+  &= mat(delim: "|", augment: #("hline": 1, "vline": 1), (X - lambda) I_d, -B; 0, X I_(n - d) - C) \
+  &= (X-lambda)^d chi_C (X)
+$
+
+#card("proppolcaran", "Propriétés diverses du polynôme caractèristique", ("Maths.Algèbre.Réduction",))
+
+Cas particuliers de calculs du polynôme caractèristique, et lien avec les endomorphisme induit.
+
+#answer
+
+- Pour tout $T in T_n (KK)$ #h(1fr)
+
+  $
+    chi_T = product_(k = 1)^n T_(k k)
+  $
+
+- Pour tout $M = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C) in M_n (KK), A in M_r (KK), C in M_(n - r) (KK), B in M_(r,n-r) (KK)$
+
+  $
+    chi_M (X) = chi_A (X) chi_C (X)
+  $
+
+- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $tilde(u)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
+  $
+    chi_tilde(u) | chi_u
+  $
+
+*Démonstration*
+
+- L'écrire.
+
+- L'écrire.
+
+- Soit $e = (e_1, dots, e_n)$ base de $F$ complété en base de $E$.
+
+  $
+  cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C)
+  $
+
+  Avec $A = cal(M)_tilde(e) (tilde(u))$.
+
+#card("diag", "Diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Définition et premier critère de diagonalisabilité.
+
+#answer
+
+On dit que $u in cal(L)(E)$ est diagonalisable s'il existe une base $e$ de $E$ tel que $cal(M)_e (u)$ est diagonale.
+
+Une tel base est par définition formée de vecteurs propres de $u$.
+
+De plus
+$
+  u "diagonalisable" \
+  <=> E = plus.o.big_(lambda in "Sp"(u)) E_lambda (u) \
+  <=> sum_(lambda in "Sp"(u)) dim E_lambda (u) = dim E
+$
+
+En particulier
+- Les homothéties sont diagonales dans toutes les bases
+
+- Les projecteurs sont diagonalisables :
+  $
+    underbrace(ker (p - id), E_1 (p)) plus.o underbrace(ker p, E_0 (p)) = E
+  $
+
+- Les symétries sont diagonalisables :
+  $
+    underbrace(ker (s - id), E_1 (s)) plus.o underbrace(ker s + id, E_(-1) (s)) = E
+  $
+
+#card("autcrit", "Autre critère de diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Énoncer du critère de diagonalisabilité sur $chi_u$ et les multiplicités.
+
+#answer
+
+Soit $u in cal(L)(E)$
+$
+  u "diagonalisable" \
+  <=> cases(space chi_u "scindé", space forall lambda in "Sp"(u)\, dim E_lambda (u) = m_lambda)
+$
+Où $m_lambda$ est la multiplicité (algébrique) de $lambda$.
+
+Ainsi car $dim E_lambda (u) >= 1$ pour tout $lambda in "Sp"(u)$,
+
+$
+  chi_u "SARS" => u "diagonalisable"
+$
+
+*Démonstration*
+
+- Supposons $u$ diagonalisable, notons $e$ la base qui le diagonalise.
+
+  $
+  cal(M)_e (u) = dmat(alpha_1, dots.down, alpha_n)
+  $
+  Donc $chi_u$ est scindé
+  $
+    chi_u (X) &= product_(k = 1)^n (X- alpha_k) \
+    &= product_(k = 1)^p (X - lambda_k)^(m_lambda_k)
+  $
+  Ainsi
+  $
+    deg chi_u &= n = sum_(k = 1)^p m_lambda_k \
+    n = sum_(k=1)^p m_lambda_k &>= sum_(k = 1)^p dim E_lambda_k = n
+  $
+
+- Supposons $chi_u$ scindé et pour tout $lambda in "Sp"(u), dim E_lambda (u) = m_lambda$.
+
+  $
+    chi_u = underbrace(product_(lambda in "Sp"(u)) (X - lambda)^(m_lambda), deg = n) \
+    n = sum_(lambda in "Sp"(u)) m_lambda = sum_(lambda in "Sp"(u)) E_lambda (u)
+  $
+
+  Donc $u$ est diagonalisable.
+
+#card("trigonalisabilite", "Trigonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Définition et premier critères de la trigonalisabilité.
+
+#answer
+
+Soit $u in cal(L)(E)$. On dit que $u$ est trigonalisable s'il existe une base $e = (e_1, dots, e_n)$ de $E$ tel que $cal(M)_e (u) in T_n^+ (KK)$
+
+Dans ce cas
+- $u(e_1) = t_(1 1) e_1$, donc $e_1$ est un vecteur propre de $u$.
+
+- Notons $F_k = "Vect"(e_1, dots, e_k)$ le drapeau. #h(1fr)
+  $
+  forall k in [|1, n|], u(F_k) subset F_k
+  $
+
+- $chi_u (X) = product_(k = 1)^n (X - t_(k k)) space$ scindé.
+
+La réciproque est aussi vraie : $chi_u "scindé" => u "trigonalisable"$.
+
+Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $tilde(u)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_tilde(u) | chi_u$ scindé).
+
+Si $KK$ est algébriquement clos, toute matrice ou endomorphisme est trigonalisable.
+
+*Démonstration*
+
+Par récurrence sur $n = dim E$.
+
+Toute matrice de taille $1$ est supérieure.
+
+Supposons pour un $n in NN$
+$
+  forall A in M_n (KK), \ chi_A "scindé" => A "trigonalisable"
+$
+
+Soit $A in M_(n+1) (KK)$ tel que $chi_A$ scindé.
+
+$chi_A$ a au moins une racine, donc $A$ admet une valeur propre $lambda$.
+
+On dispose de $X_0 in KK^(n+1)$ tel que 
+$
+A X_0 = lambda X_0
+$
+Ainsi on peut construire la base $e' = (X_0, dots, X_n)$ de $KK^(n+1)$. Notons $P = P_("can" -> e')$.
+
+$
+  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,tilde(A);0) P^(-1)
+$
+
+Avec $tilde(A) in M_n (KK)$ et $chi_A = chi_tilde(A) (X - lambda)$ d'où $chi_tilde(A)$ scindé.
+
+Par hypothèse de récurrence $tilde(A)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
+
+$
+  A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
+$
+
+#card("carnilp", "Caractèrisation des endomorphismes nilpotents", ("Maths.Algèbre.Réduction",))
+
+Caractèrisation des endomorphisme nilpotents.
+
+#answer
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ $u$ nilpotent
+
++ $u$ trigonalisable en une matrice strictement supérieure.
+
++ $u$ trigonalisable et $"Sp"(u) = {0}$
+
++ $chi_u = X^n$
+
+*Démonstration*
+
+- (4 $=>$ 3) $chi_u = X^n$ est scindé donc $u$ est trigonalisable et $"Sp"(u) = Z(X^n) = {0}$.
+
+- (3 $<=>$ 2) Évident.
+
+- (3 $=>$ 4) On dispose de $e$ base de $E$ tel que
+
+  $
+    cal(M)_e (u) = mat(0,,*;,dots.down;,,0) \
+    "Donc" space chi_u = X^n
+  $
+
+- (2 $=>$ 1) On dispose de $e$ base de $E$ tel que $cal(M)_e (u) in T_n^(++) (KK)$, notons $F_k = "Vect"(e_1, dots, e_k)$.
+
+  $
+    u(F_k) subset.eq u(F_(k-1)) \
+    u^n (F_n = E) subset.eq F_0 = { 0 } \
+    u^n = 0
+  $
+
+- (1 $=>$ 2) $u$ est nilpotent d'indice $d$.
+
+  $
+    {0} subset.neq ker u subset.neq dots.c subset.neq ker u^d = E
+  $
+
+  Construisons une base adaptée
+
+  $
+    (overbrace(underbrace(e_1\, dots\, e_(i_1), "base de" ker u)\, dots\, e_(i_2), "base de" ker u^2), dots, e_(i_d))
+  $
+
+  Pour tout $x in ker u^k$ :
+  $
+  u(x) in ker u^(k-1)
+  $
+  Ainsi pour tout $k in [|1, n|]$ si $i_j + 1 <= k <= i_(j+1)$
+  $
+    e_k in ker u^j \
+    u(e_k) in ker u^(j-1) \
+    u(e_k) in "Vect"(e_1, dots, e_i_(j-1))
+  $
+
+#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractèristique", ("Maths.Algèbre.Réduction",))
+
+Lien entre racines du polynôme minimal et celles du polynôme caractèristique.
+
+#answer
+
+Soit $u in cal(L)(E)$, $P in KK[X]$ annulateur de $u$.
+
+$
+  "Sp"(u) subset.eq Z_KK (P) \
+  Z(chi_u) = "Sp"(u) = Z_KK (Pi_u)
+$
+
+*Démonstration*
+
+- Soit $lambda in "Sp"(u)$ et $x in E_lambda (u) \\ {0}$ : #h(1fr)
+  $
+    P(X) = sum_(k = 0)^d a_k X^k \
+  $
+  $
+    P(u)(x) &= sum_(k = 0)^d u^k (x) = sum_(k = 0)^d lambda^k x \
+    &= P(lambda) x = 0
+  $
+  Or $x != 0$, donc $P(lambda) = 0$.
+
+- $Pi_u$ annule $u$ d'où $"Sp"(u) subset.eq Z_KK (Pi_u)$
+
+- Soit $lambda in KK$ racine de $Pi_u$
+
+  $
+    Pi_u = (X - lambda) Q(X) \
+    0 = (u - lambda id) compose Q(u)
+  $
+
+  Donc $im Q(u) subset.eq ker (u - lambda id)$.
+
+  Mais $Q(u) != 0$ car $Pi_u$ minimal, donc 
+  $
+  dim (im Q(u)) >= 1 \
+  im Q(u) subset.eq ker (u - lambda id) = E_lambda (u) \
+  lambda in "Sp"(u)
+  $
+
+#card("tdn", "Théorème des noyaux", ("Maths.Algèbre.Réduction",))
+
+Énoncé et démonstrations du théorème des noyaux.
+
+#answer
+
+Soit $u in cal(L)(E)$ ($KK$-ev de dimension finie), $P in KK[X]$.
+
+Si $P = product_(k = 1)^N P_k$ avec $P_1, dots, P_N$ deux à deux premiers entre eux, alors
+$
+  ker P(u) = plus.o.big_(k = 1)^N ker P_k (u)
+$
+
+Si de plus $P$ annule $u$ alors
+$
+  E = ker P(u) = plus.o.big_(k = 1)^N ker P_k (u) \
+  cal(M)_e (u) = dmat(A_1,dots.down,A_N)
+$
+Où $e$ est la base construite par concaténation de bases des $ker P_k (u)$.
+
+*Démonstration*
+
+Par récurrence sur $N$.
+
+Pour $P = P_1 P_2$ avec $P_1 and P_2 = 1$ :
+$
+  P_1 V_1 + P_2 V_2 = 1 \
+  P_1 (u) compose V_1 (u) + P_2 (u) compose V_2 (u) = id quad (*)
+$
+En évaluant on trouve 
+$
+ker P_1 (u) inter ker P_2 (u) = {0}
+$
+De plus 
+$
+P_1 (u) compose P_2 (u) = P_2 (u) compose P_1 (u) = P(u) \
+"Donc" space cases(space ker P_1 (u) subset.eq ker P(u), space ker P_2 (u) subset.eq ker P(u)) \
+ker P_1 (u) plus.o ker P_2 (u) subset.eq ker P (u)
+$
+
+Soit $x in ker P(u)$, par $(*)$ on a
+$
+  x = underbrace(V_1 (u) compose P_1 (u) (x), x_2) + underbrace(V_2 (u) compose P_2 (u) (x), x_1)
+$
+$
+  P_1 (u) (x_1) &= (P_1 V_2 P_2) (u) (x) \
+  &= (V_1 P) (u) (x) \
+  &= 0 \
+  P_2 (u) (x_2) &= (P_2 V_1 P_1) (u) (x) \
+  &= (V_2 P) (u) (x) \
+  &= 0 \
+$
+$
+x = underbrace(x_1, in ker P_1 (u)) + underbrace(x_2, in ker P_2 (u))
+$
+D'où $ker P(u) = ker P_1 (u) plus.o ker P_2 (u)$.
+
+Supposons maintenant le résultat pour tout $P_1, dots, P_N$ respectant les conditions.
+
+Soient $P = P_1 dots.c P_(N+1) in KK[X]$ avec $P_1, dots, P_(N+1)$ deux à deux premiers entre eux.
+
+Donc $Q = P_1 P_2 dots.c P_N$ et $P_(N+1)$ sont premiers entre eux.
+
+Ainsi 
+$
+ker P (u) &= ker (P_(N+1) Q) (u) \
+&= underbrace(ker Q(u) plus.o ker P_(N+1) (u), "cas" N = 2) \
+&= underbrace(plus.o.big_(k = 1)^N ker P_k (u) plus.o ker P_(N+1) (u), "H.R.") \
+&= plus.o.big_(k = 1)^(N+1) ker P_k (u)
+$
+
+#card("projchelou", "Démonstration annexe du théorème des noyaux", ("Maths.Algèbre.Réduction",))
+
+Démonstration secondaire du théorème des noyaux dans le cas d'un polynôme annulateur.
+
+#answer
+
+Soit $u in cal(L)(E)$.
+
+On suppose $P = product_(k = 1)^N P_k$ annulateur de $u$, $P_1, dots, P_N$ premiers entre eux deux à deux. On pose
+$
+  Q_k = product_(i = 1 \ i != k)^N P_i
+$
+Qui sont premiers dans leur ensemble.
+$
+  sum_(k = 1)^N V_k Q_k = 1 \
+  sum_(k = 1)^N underbrace(V_k (u) compose Q_k (u), Pi_k) = id quad (1)\
+$
+On remarque que
+$
+  P_k (u) compose Pi_k = (V_k P_k Q_k) (u) = (V_k P) (u) = 0 \
+  "Donc" space im Pi_k subset.eq ker P_k (u)
+$
+Et pour $k != i, P | Q_i Q_k$ d'où
+$
+  P | (V_k P_k) (V_i P_i) \
+  Pi_i compose Pi_k = 0
+$
+Donc par $(1)$
+$
+sum_(i = 1)^N Pi_k compose Pi_i = Pi_k compose Pi_k = Pi_k
+$
+Donc les $Pi_k$ sont des projecteurs.
+
+Soit $x in ker P_k (u)$, pour tout $i != k$, $Pi_i (x) = 0$. Par $(1)$
+$
+  x = Pi_k (x) \
+  x in im Pi_k
+$
+Ainsi
+$
+  ker P_k (u) = im Pi_k  \
+  ker P_i (u) subset.eq ker Pi_k
+$
+Les $Pi_k$ projettent sur $ker P_k$.
+
+*Théorème des noyaux*
+
+Soient $(x_1, dots, x_N) in product_(k = 1)^N ker P_k (u)$ tels que $sum_(k = 1)^N x_k = 0$.
+
+Pour tout $i in [|1, N|]$
+$
+  Pi_i (sum_(k = 1)^N x_k) = x_i = 0
+$
+Donc les $ker P_k (u) = im Pi_k$ sont en somme directe.
+
+Soit $x in ker P(u) = E$, par $(1)$
+$
+  x = sum_(k = 1)^N Pi_k (x) in sum_(k = 1)^N ker P_k (u)
+$
+D'où
+$
+  E = plus.o.big_(k = 1)^N ker P_k (u)
+$
+Et de plus
+$
+  im Pi_k &= ker P_k (u) \
+  ker Pi_k &= plus.o.big_(i = 1 \ i != k)^N ker P_i (u) \
+  Pi_k &in KK[u]
+$
+
+#card("crtidiag", "Critère de Diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Démonstration d'une CNS de diagonalisabilité.
+
+#answer
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ $u$ diagonalisable.
+
++ $u$ annule un polynôme SARS.
+
++ $Pi_u$ est SARS
+
+*Démonstration*
+
+- (2 $<=>$ 3) #h(1fr)
+  $
+    exists P in KK[X], space P "SARS et" P(u) = 0 \
+    <=> exists P in KK[X], space P "SARS et" Pi_u | P \ 
+    <=> Pi_u "SARS"
+  $
+
+- (3 $=>$ 1) $Pi_u$ SARS donc
+  $
+    Pi_u = product_(lambda in "Sp"(u))^N (X - lambda)
+  $
+  Par le TDN
+  $
+    E &= plus.o.big_(lambda in "Sp"(u)) ker (u - lambda id) \
+    &= plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
+  $
+  Donc $u$ diagonalisable.
+
+- (1 $=>$ 3) $u$ diagonalisable
+  $
+    cal(M)_e (u) &= underbrace(inline(dmat(lambda_1, dots.down, lambda_1, dots.down, lambda_n, dots.down, lambda_n)), M) \
+    P(X) &= product_(k = 1)^N (X - lambda_k) space "SARS" \
+    P(M) &= inline(dmat(P(lambda_1), dots.down, P(lambda_1), dots.down, P(lambda_n), dots.down, P(lambda_n))) \
+    &= 0
+  $
+  Donc $Pi_u | P$ SARS.
+
+#card("diaginduit", "Diagonalisabilité d'un endomorphisme induit", ("Maths.Algèbre.Réduction",))
+
+Diagonalisabilité d'un endomorphisme induit.
+
+#answer
+
+Soit $u in cal(L)(E)$, $F$ un sev stable par $u$.
+
+Notons $tilde(u)$ l'endomorphisme induit par $u$ sur $F$.
+
+- $Pi_tilde(u) | Pi_u$
+
+- Si $u$ diagonalisable, alors $tilde(u)$ aussi.
+
+*Démonstration*
+
+- $Pi_u (tilde(u)) = 0$ donc $Pi_tilde(u) | Pi_u$.
+
+- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_tilde(u)$ aussi (car divise) donc $tilde(u)$ est diagonalisable.
+
+// TODO: M127 Dénombrement
+
+#card("seceng", "Sous-espaces cycliques", ("Maths.Algèbre.Réduction",))
+
+Définition de sous-espace cyclique et base associé.
+
+#answer
+
+Pour un $u in cal(L)(E)$ et $x_0 in E$ on appelle sous-espace cyclique engendré par $x_0$ (pour $u$)
+$
+  F_(x_0) = "Vect"(u^k (x_0))_(k in NN)
+$
+Cet espace admet comme base
+$
+  (x_0, u(x_0), dots, u^(d - 1) (x_0))
+$
+Où $d = deg Pi_(u,x_0)$ le polynôme minimal ponctuel, l'unique polynôme unitaire minimal tel que
+$
+  "Pour " theta_(x_0) : func(KK[X], E, P, P(u) (x_0)) \ \
+  ker theta_(x_0) = Pi_(u,x_0) KK[X]
+$
+
+*Démonstration*
+
+$theta_(x_0) in cal(L)(E)$, donc $ker theta_(x_0)$ est un sev, donc un sous-groupe de $(KK[X], +)$.
+
+Soit $P in ker theta_x_0, Q in KK[X]$
+$
+  theta_x_0 (Q P) &= Q(u) (P(u) (x_0)) \ &= Q(u) (0) = 0
+$
+Donc $ker theta_x_0$ est un idéal de $KK[X]$, qui est principal d'où $Pi_(u,x_0)$ existe. Notons $d_x_0 = deg Pi_(u,x_0)$.
+
+Par existance et unicité de la division euclidienne on a
+$
+  KK[X] = KK_(d_x_0 - 1) [X] plus.o ker theta_x_0
+$
+Donc $evaluated(theta_x_0)_(KK_(d_x_0 -1) [X])$ isomorphisme de $KK_(d_x_0 - 1) [X] -> im theta_x_0 = F_x_0$.
+
+Donc $F_x_0$ a pour base
+$
+  (theta_x_0 (1), theta_x_0 (X), dots, theta_x_0 (X^(d_x_0 - 1))) \
+  = (x_0, u(x_0), dots, u^(d - 1) (x_0))
+$
+
+#card("endocycl", "Endomorphismes cycliques", ("Maths.Algèbre.Réduction",))
+
+Définition, propriétés, démonstration autour des endomorphismes cycliques.
+
+#answer
+
+Soit $u in cal(L)(E)$, on dit que $u$ est cyclique si l'une des conditions équivalentes suivantes est vérifiée
+
++ $exists x_0 in E, space "Vect"(u^k (x_0))_(k in NN) = E$.
+
++ $exists x_0 in E, space (x_0, u(x_0), dots, u^(n-1) (x_0))$ base de $E$.
+
+*Propriétés en vrac (sans démonstration)*
+
+- Si $u$ cyclique, tout endomorphisme induit l'est aussi.
+
+- Si $u$ cyclique, $u$ admet un nombre fini de sev stables.
+// TODO: Reprendre démo M140
+- Si $KK$ est infini et $u$ admet un nombre fini de sev stables, alors $u$ est cyclique.
+
+*Démonstration équivalence*
+
+- (2 $=>$ 1) Évident.
+
+- (1 $=>$ 2) $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ est les sous-espace engendré par $x_0$ pour $u$, donc
+
+  $
+    (x_0, u(x_0), dots, u^(d-1) (x_0))
+  $
+  Où $d = deg Pi_(u,x_0)$ en est une base.
+
+  Or $F_x_0 = E$ par hypothèse, donc $dim F_x_0 = n$ et $d = n$.
+
+#card("cycmat", "Vision matricielle de la cyclicité", ("Maths.Algèbre.Réduction",))
+
+Lien entre endomorphisme cyclique et matrices de compagnon.
+
+#answer
+
+Soit $u in cal(L)(E)$, $u$ est cyclique ss'il existe une base $e$ de $E$ et $P$ unitaire de degré $n$ tel que $cal(M)_e (u) = C_P$.
+
+Dans ce cas $Pi_u = P$.
+
+*Démonstration*
+
+Soit $u in cal(L)(E)$ cyclique pour $x_0 in E$. Notons $e = (x_0, u(x_0), dots, u^(n-1) (x_0))$ la base associé.
+
+On dispose alors de $a_0, dots, a_(n-1) in KK$ tels que
+$
+  u^n (x_0) - sum_(k = 0)^(n-1) a_k u^k (x_0) = 0 \
+  P = X^n - sum_(k = 0)^(n - 1) a_k X^k \
+  P(u) (x_0) = 0
+$
+Et alors
+$
+  cal(M)_e (u) &= 
+    mat(delim: #none, #{
+      diagram(
+      spacing: 0pt,
+      cell-size: 0pt,
+      $
+        node(enclose: #("tl", "bl"), lr(size: #800%, \())
+        node(enclose: #("tr", "br"), lr(size: #800%, \))) \
+        && u(x_0) edge("rr", "..") & #h(0.6em) & u^n (x_0) & \
+        x_0 & node(name: "tl") & 0 edge("ddr", "..") && a_0 & node(name: "tr") \
+        u(x_0) edge("dd", "..") && 1 edge("ddr", "..") && a_1 edge("dd", "..") & \
+        &&& 0 && \
+        u^(n-1) (x_0) & node(name: "bl") && 1 & a_(n-1) & node(name: "br") \
+      $
+    )
+  }) \
+  &= C_P
+$
+
+Réciproquement :
+
+Soit $u in cal(L)(E)$ et $e = (e_1, dots, e_n)$ base de $E$ tel que
+
+$
+  cal(M)_e (u) = mat(augment: #3,
+    0,,,a_0;
+    1,dots.down,,a_1;
+    ,dots.down,0, dots.v;
+    ,,1, a_(n-1)
+  )
+$
+
+Alors pour $k in [|1, n-1|]$
+$
+  u(e_k) = u(e_(k+1)) \
+  "Donc" e = (e_1, u(e_1), dots, u^(n-1)(e_1))
+$
+Donc $u$ est cyclique.
+
+Ainsi :
+$
+  P(u) (x_0) = u^n (x_0) - underbrace(sum_(k = 0)^(n-1) a_k u^k (x_0), u^n (x_0)) = 0 \
+$
+Donc pour tout $m in [|0,n-1|]$
+$
+  P(u)  (u^m (x_0)) = u^m (P(u) (x_0)) = 0
+$
+Ainsi $P(u)$ annule une base, d'où $Pi_u | P$.
+
+Or $deg Pi_(u,x_0) = n$ car $u$ cyclique et $Pi_(u,x_0) | Pi_u$, donc 
+$
+n <= deg Pi_u <= deg P = n
+$
+Et comme $Pi_u$ et $P$ sont unitaires
+$
+  Pi_u = P
+$
+
+#card("matcomp", "Matrice compagnon", ("Maths.Algèbre.Réduction",))
+
+Définition de matrice compagnon.
+
+#answer
+
+Soit $P = X^d sum_(k = 0)^(d-1) a_k X^k in KK[X]$ un polynôme unitaire. On appelle matrice compagnon de $P$ la matrice
+$
+  C_P = mat(augment: #3,
+    0,,,-a_0;
+    1,dots.down,,-a_1;
+    ,dots.down,0, dots.v;
+    ,,1, -a_(d-1)
+  )
+$
+Ainsi (en développant selon la dernière colonne)
+$
+  chi_C_P (X) = P(X)
+$
+
+#card("exx0tqpiux0egpiu", "Exercice : vecteur dont le polynôme minimal ponctuel est le polynôme minimal", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$, montrer qu'il existe $x in E$ tel que $Pi_(u,x) = Pi_u$.
+
+En déduire que $u$ cyclique ssi $deg Pi_u = n$.
+
+#answer
+
+Soit $u in cal(L)(e)$.
+
+On pose
+$
+  Pi_u = product_(k = 1)^N P_k^d_k
+$
+Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
+
+*Démonstration $KK$ quelconque*
+
+Par le TDN
+$
+  E = plus.o.big_(k = 1)^N ker underbrace(P_k^d_k (u), F_k) \
+  ker P_k^(d_k - 1) (u) subset.eq ker P_k^d_k (u) = F_k
+$
+
+Supposons par l'absurde qu'on ai égalité pour un $k$.
+$
+  E &= plus.o.big_(j != k) ker P_j^d_j (u) plus.o ker P_k^(d_k - 1) (u) \
+  &= ker underbrace(( P_k^(d_k - 1) product_(j != k) P_j^d_j), "ne peut annuler" u \ "car" Pi_u "minimal") (u)
+$
+Donc $ker P_k^(d_k - 1) (u) subset.neq ker P_k^d_k (u)$.
+
+Pour tout $k in [|1, N|]$ on dispose de 
+$
+x_k in F_k \\ ker P_k^(d_k - 1) (u) \
+"Donc" cases(space P_k^d_k (u) (x_k) = 0, space P_k^(d_k - 1) (x_k) != 0) \
+"Donc" cases(space Pi_(u,x_k) | P_k^d_k, space Pi_(u,x_k) divides.not P_k^(d_k - 1) ) \
+"Donc" underbrace(Pi_(u, x_k) = P_k^(d_k), "car" P_k "irréductible")
+$
+On pose $x = sum_(k = 1)^N x_k$, alors pour tout $P in Pi_(u,x) KK[X]$
+$
+  P(u) (x) = 0 \
+  <=> sum_(k = 1)^N P(u) (x_k) = 0 \
+  underbrace(<=> forall k in [|1, N|]\, space P(u) (x_k) = 0, "somme directe") \
+  <=> forall k in [|1, N|], space P_k^d_k = Pi_(u,x_k) | P \
+  <=> product_(k = 1)^N P_k^d_k = Pi_u | P \
+  <=> P in Pi_u KK[X]
+$
+Donc $Pi_u | Pi_(u,x) | Pi_u$.
+
+*Démonstration $KK$ infini*
+
+Pour tout $x in E$, $Pi_(u,x) | Pi_u$ donc
+$
+  Pi_(u,x) in D = Set("Diviseurs unitaires de" Pi_u) \
+  abs(D) = product_(k = 1)^N (d_k + 1) \
+  D' = Set(Pi_(u,y), y in E) subset.eq D
+$
+Et $x in ker Pi_(u,x) (u)$ d'où
+$
+  E &= union.big_(x in E) ker Pi_(u,x) (u) \
+  &= underbrace(union.big_(P in D') ker P(u), "union finie de sev")
+$
+Donc on dipose de $Q = Pi_(u,y) in D'$ tel que (cf. exercice union de sev dans un corps infini)
+$
+  E = ker Q(u)
+$
+Par minimalité de $Pi_u$, $Pi_(u,y) = Pi_u$.
+
+*CNS de cyclicité*
+
+On sait que si $u$ cyclique, alors on dispose de $e$ base de $E$ tel que 
+$
+cal(M)_e (u) = C_(Pi_u)
+$
+Avec $Pi_u in KK[X]$ unitaire de degré $n$.
+
+Supposons maintenant que $deg Pi_u = n$. 
+
+On dispose de $x_0 in E$ tel que $Pi_(u,x_0) = Pi_u$, d'où 
+$
+deg Pi_(u,x_0) = n = dim underbrace("Vect"(u^k (x_0))_(k in NN), F_x_0)
+$ 
+D'où $F_x_0 = E$ et $u$ cyclique.
+
+#card("cayleyhamilton", "Théorème de Cayley-Hamilton", ("Maths.Algèbre.Réduction",))
+
+Énoncé et démonstration du théorème de Cayley-Hamilton.
+
+#answer
+
+Soit $u in cal(L)(E)$, on a $chi_u (u) = 0$ c'est à dire $Pi_u | chi_u$.
+
+*Démonstration*
+
+Soit $x_0 in E\\{0}$, on veut montrer $chi_u (u) (x_0) = 0$.
+
+On pose $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ sev de $E$ stable par $u$.
+
+Soit $tilde(u)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
+
+Soit $d in NN$ tel que 
+$
+e_0 = (x_0, u(x_0), dots, u^(d-1) (x_0))
+$
+Soit une base de $F_x_0$.
+$
+  cal(M)_e_0 (tilde(u)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
+$
+Où 
+$
+  tilde(u)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
+  P(X) = X^d - sum_(k = 0)^(d-1) a_k X^k \
+  P(u)(x_0) = 0
+$
+
+Or $P = chi_C_P = chi_tilde(u) | chi_u$ donc
+$
+  chi_u (u) (x_0) = Q(u) (P(u) (x_0)) = 0
+$
+
+#card("expropcycl", "Exercice : propriétés des endomorphismes cycliques", ("Maths.Exercice.Réduction",))
+
++ Soit $u in cal(L)(E)$ diagonalisable, CNS pour $u$ cyclique.
+
++ Soit $u in cal(L)(E)$ nilpotent, CNS pour $u$ cyclique.
+
++ Soit $u in cal(L)(E)$ cyclique, montrer que pour tout $lambda in "Sp"(u)$, $dim E_lambda (u) = 1$.
+
++ Soit $u in cal(L)(E)$ cyclique, montrer que $"Com" u = KK[u]$.
+
+#answer
+
++ Soit $u in cal(L)(E)$ diagonalisable.
+
+  $
+    Pi_u = product_(k = 1)^N (X - lambda_k)
+  $
+  Où les $lambda_1, dots, lambda_N$ sont deux à deux distincts ($Pi_u$ SARS).
+
+  $u$ cyclique ssi $N = n = dim E$.
+
+  - Si $u$ cyclique, $deg Pi_u = n = N$.
+
+  - Si $deg Pi_u = n$
+
+    Soit $e = (e_1, dots, e_n)$ base de vecteurs propres associés aux $lambda_1, dots, lambda_n$.
+
+    Posons $x = sum_(k = 1)^n e_k$.
+
+    $
+    cal(M)_e (x_0, u(x_0), dots, u^(n-1) (x_0)) \
+    = mat(1, lambda_1, lambda_1^2, dots.c, lambda_1^n; dots.v, dots.v, dots.v, dots.down, dots.v; 1, lambda_n, lambda_n^2, dots.c, lambda_n^n)
+    $
+
+    Matrice de Vandermonde inversible, d'où $(x_0, u(x_0), dots, u^(n-1) (x_0))$ base.
+
++ Soit $u in cal(L)(E)$ nilpotent d'indice $q$.
+
+  $
+    Pi_u = X^q
+  $
+
+  - Si $u$ cyclique, alors $deg Pi_u = q = n$.
+
+  - Si $q = n$, $u^(n - 1) != 0$, donc on dispose de $x_0 in E$ tel que $u^(n - 1) (x_0) != 0$.
+
+    Et $(x_0, u(x_0), dots, u^(n-1) (x_0))$ est libre et donc une base.
+
+    (En évaluant $u^i (sum_(k = 0)^(n-1) lambda_k u^k (x_0))$).
+
++ Soit $u in cal(L)(E)$ cyclique, donc on dispose de $e$ base de $E$ tel que pour $lambda in "Sp"(u)$
+
+  $
+    cal(M)_e (u - lambda id) = mat(augment: #("hline": 1, "vline": 4), -lambda,,,,a_0;1,-lambda,,,a_2;,1,dots.down,,dots.v;,,dots.down,-lambda,a_(n-2);,,,1,a_(n-1) - lambda)
+  $
+  Dont le quadrant inférieur gauche est une sous-matrice inversible de taille $n - 1$.
+  $
+    "rg" (u - lambda id) >= n - 1 \
+    1 <= dim E_lambda (u) = dim ker (u - lambda id) <= 1
+  $
+
++ Soit $u in cal(L)(E)$ cyclique. On dispose de $x_0 in E$ tel que
+  $
+    (x_0, u(x_0), dots, u^(n-1) (x_0))
+  $
+  Est une base.
+
+  On a déjà $KK[u] subset.eq "Com"(u)$. 
+
+  Soit $v in "Com"(u)$. On dispose de $alpha_0, dots, alpha_(n-1) in KK$ tels que
+  $
+    v(x_0) = sum_(k = 0)^(n-1) alpha_k u^k (x_0)
+  $
+  Soit $m in [|0, n - 1|]$
+  $
+    v(u^m (x_0)) &= u^m (v(x_0)) \ 
+    &= u^m (sum_(k = 0)^(n - 1) alpha_k u^k (x_0)) \
+    &= sum_(k = 0)^(n - 1) alpha_k u^k (u^m (x_0))
+  $
+  Donc $v$ et $sum_(k = 0)^(n-1) alpha_k u^k$ coincident sur une base, d'où $v in KK[u]$.
+
+#card("polmintz", "Critère de trigonalisabilité sur le polynôme minimal", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$, CNS de trigonalisabilité sur $Pi_u$.
+
+#answer
+
+Soit $u in cal(L)(E)$, $u$ est trigonalisable ssi $Pi_u$ scindé.
+
+*Démonstration*
+
+- Supposons $u$ trigonalisable, donc $chi_u$ est scindé or $Pi_u | chi_u$ donc $Pi_u$ est scindé.
+
+- Supposons $Pi_u$ scindé.
+  $
+    Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k)
+  $
+  Avec $lambda_1, dots, lambda_N in KK$ deux à deux distincts.
+
+  Par le TDN
+  $
+    E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), F_k)
+  $
+  Pour $k$ fixé, $F_k$ est stable par $u$ et $u - lambda id$, posons $u_k$ induit par $u$ sur $F_k$.
+
+  $u_k - lambda_k id$ est nilpotent, donc on dispose de $e_k$ base de $F_k$ tel que
+  $
+    cal(M)_(e_k) (u_k - lambda_k id) = mat(0,,*;,dots.down;,,0) \
+    cal(M)_(e_k) (u_k) = A_k = mat(lambda_k,,*;,dots.down;,,lambda_k)
+  $
+
+  Notons $e$ la base concatenant les bases $e_1, dots, e_N$.
+  $
+    cal(M)_e (u) &= dmat(A_1,dots.down,A_N) \
+  $
+  Où les $A_1, dots A_N$ sont triangulaires.
+
+- (Autre méthode) Par récurrence sur $n$.
+
+  Cas $n = 1$ évident.
+
+  Supposons le résultat pour $n in NN$. Soit $u in cal(L)(E)$ où $dim E = n + 1$ et $Pi_u$ scindé.
+
+  $Pi_u$ admet au moins une racine $lambda$, on dispose donc de $x in E$ vecteur propre associé.
+
+  On forme la base $(lambda, e_1, dots, e_(n-1))$ de $E$.
+  $
+    cal(M)_e (u) = A = mat(augment: #("hline": 1, "vline": 1), lambda,*,dots.c,*;0;dots.v,,A_1;0)
+  $
+  Or
+  $
+    0 &= cal(M)_e (Pi_u (u)) = Pi_u (A) \
+    &= mat(augment: #("hline": 1, "vline": 1), Pi_u (lambda),*,dots.c,*;0;dots.v,,Pi_u (A_1);0)
+  $
+  D'où $Pi_u (A_1) = 0$ donc $Pi_(A_1) | Pi_u$ et $Pi_(A_1)$ scindé, donc par hypothèse de récurrence $A_1$ est trigonalisable.
+
+#card("exchiudivpiun", "Exercice : polynôme caractèristique divisant une puissance du polynôme minimal", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$, $n = dim E$. Montrer que $chi_u | Pi_u^n$
+
+#answer
+
+Par récurrence forte sur $n$.
+
+Cas $n = 1$ évident.
+
+Supposons le résultat pour tout $m in [|1, n-1|]$.
+
+Si $u$ est cyclique, $Pi_u = chi_u$ d'où $chi_u | Pi_u^n$.
+
+Sinon on prend $x_0 in E\\{0}$, $k = deg Pi_(u,x_0) < n$ donc $(x_0, u(x_0), dots, u^(k-1) (x_0))$ est libre, on la complète en une base $e$ de $E$.
+$
+  cal(M)_e (u) = mat(augment: #(hline: 1, vline: 1), C_Pi_(u,x_0), *; 0, A)
+$
+Donc
+$
+chi_u = underbrace(chi_C_Pi_(u,x_0), Pi_(u,x_0)) chi_A \
+chi_u | Pi_u chi_A
+$
+Or par hypothèse de récurrence $chi_A | Pi_A^(n - k)$ et
+$
+  0 = cal(M)_e (Pi_u (u)) = mat(augment: #(vline: 1, hline: 1), Pi_u (C_Pi_(u,x_0)), *;0,Pi_u (A)) \
+  "Donc" Pi_A | Pi_u
+$
+Ainsi
+$
+  chi_u | Pi_u Pi_A^(n-k) | Pi_u^(n - k + 1) | Pi_u^n
+$
+
+#card("decompsec", "Décomposition en sous espaces caractèristiques", ("Maths.Algèbre.Réduction",))
+
+Définition et démonstration de la décomposition en sous-espaces caractèristiques.
+
+#answer
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, l'espace $E$ se décompose en somme directe de sev stables par $u$ :
+$
+  E = plus.o.big_(k = 1)^N F_k
+$
+Où pour tout $k in [|1,N|]$, $u_k$ induit par $u$ sur $F_k$ vérifie
+$
+  u_k = lambda_k id + n_k
+$
+Où $n_k$ est nilpotent et $lambda_k in "Sp"(u)$.
+
+Dé plus $dim F_k = m_k$ et $F_k = ker (u - lambda_k id)^(m_k)$.
+
+*Cas diagonalisable*
+
+Si $u$ est diagonalisable
+$
+  dim F_k = m_k = dim E_lambda_k (u) \
+$
+$
+  E_lambda_k (u) &= ker (u - lambda_k id) \ &subset.eq ker (u-lambda_k id)^(m_k) = F_k
+$
+$
+  E_lambda_k (u) = F_k
+$
+
+*Démonstration*
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé.
+$
+  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k)
+$
+Où $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
+Par le TDN on a
+$
+  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(m_k), F_k)
+$
+Les $F_k$ sont stables par $u$, on peut donc poser $u_k$ induit par $u$ sur $F_k$.
+
+On note $n_k = u_k - lambda_k id in cal(L)(F_k)$ qui est nilpotent d'ordre inférieur à $m_k$.
+
+Soit $e_k$ base de $F_k$ tel que $cal(M)_e_k (n_k) = N_k in T_(dim F_k)^(++) (KK)$.
+
+Ainsi $cal(M)_e_k (u_k) = lambda_k I_(dim F_k) + N_k$.
+
+En concatenant les bases $(e_k)_k$ en une base $e$ de $E$ on trouve
+$
+  cal(M)_e (u) = dmat(A_1, dots.down, A_N) \
+  forall k in [|1, N|], space A_k = mat(lambda_k,,*;,dots.down;,,lambda_k)
+$
+D'où
+$
+product_(k = 1)^N (X - lambda_k)^(m_k) = chi_u = product_(k = 1)^N (X - lambda_k)^(dim F_k) \
+m_k = dim F_k
+$
+
+#card("secarpolmin", "Sous-espaces caractèristiques et polynôme minimal", ("Maths.Algèbre.Réduction",))
+
+Lien entre la décomposition en sous-espaces caractèristiques et le polynôme minimal.
+
+#answer
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, à fortiori, $Pi_u$ est scindé.
+
+$
+  Pi_u &= product_(k = 1)^N (X - lambda_k)^(d_k) \ chi_u &= product_(k = 1)^N (X - lambda_k)^(m_k)
+$
+On peut décomposer par le TDN sur $Pi_u$ et en les espaces caractèristiques
+$
+  E &= plus.o.big_(k = 1)^N overbrace(ker (u - lambda_k id)^(m_k), F_k) \
+  &= plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), G_k) \
+$
+Or $d_k <= m_k$ (car $Pi_u | chi_u$), d'où
+$
+  G_k &= ker (u - lambda_k id)^(d_k) \ &subset.eq ker (u - lambda_k id)^(m_k) = F_k
+$
+Mais $plus.o.big_(k = 1)^N G_k = plus.o.big_(k = 1)^N F_k$ donc $G_k = F_k$.
+
+Soit $q_k <= d_k$ l'indice de nilpotence de $n_k = evaluated((u - lambda_k id))_(F_k)^(F_k)$.
+
+$
+F_k &subset.eq ker (u - lambda_k id)^(q_k) \ &subset.eq ker (u - lambda_k id)^(d_k) = F_k
+$
+
+Posons $Q = product_(k = 1)^N (X - lambda_k)^(q_k)$
+$
+  E &= plus.o.big_(k = 1)^N ker (u - lambda_k)^(d_k) \
+  &= plus.o.big_(k = 1)^N ker (u - lambda_k)^(q_k) \
+$
+Donc par le TDN $ker Q(u) = E$, $Pi_u | Q$ donc $d_k <= q_k <= d_k$.
+
+#card("expiuxdq", "Exercice : valuation X-adique du polynôme minimal.", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
+
++ Montrer que  #h(1fr)
+  $
+  d = min Set(k in NN^*, ker u^k = ker u^(k+1))
+  $
+
++ Montrer que
+  $
+    E = ker u^d plus.o im u^d
+  $
+
+#answer
+
+Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
+
++ Notons #h(1fr)
+  $
+    q = min Set(k in NN^*, ker u^k = ker u^(k+1))
+  $
+
+  Soit $tilde(u)$ l'induit par $u$ sur $ker u^q$.
+  $
+    cases(space tilde(u)^q = 0, space tilde(u)^(q - 1) != 0) " Donc " Pi_tilde(u) = X^q \
+    X^q | Pi_tilde(u) | Pi_u = X^d Q \
+    q <= d
+  $
+  Donc $ker u^q = ker u^d$
+  $
+    ker u^d compose Q(u) = E \
+    im Q(u) subset.eq ker u^d = ker u^q \
+    ker u^q compose Q(u) = E \
+    X^d Q | X^q Q \
+    q >= d
+  $
+
++ On a (TDN) #h(1fr)
+  $
+    E = ker u^d plus.o ker Q(u)
+  $
+  Soit $y in im u^d$, on dispose donc de $x in E$ tel que $y = u^d (x)$.
+  $
+    y = u^d (x) \
+    Q(u) (y) = (X^d Q) (u) (x) = 0 \
+    im u^d subset.eq ker Q(u)
+  $
+  Or par le théorème du rang 
+  $
+  dim im u^d &= dim E - dim ker u^d \ &= dim ker Q(u) \
+  $
+  D'où $im u^d = ker Q(u)$.
+
+#card("dunford", "Décomposition de Dunford", ("Maths.Algèbre.Réduction",))
+
+Définition et démonstration de la décomposition de Dunford.
+
+#answer
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé.
+
+On dispose de $d, n in cal(L)(E)$ tel que
+- $u = d + n$
+- $d$ diagonalisable
+- $n$ nilpotent
+- $d compose n = n compose d$
+
+De plus cette décomposition est unique.
+
+Elle peut entre autre servire pour les puissances de matrices :
+$
+  A^k = P dmat((lambda_1 I_m_1 + N_1)^k, dots.down, (lambda_n I_m_n + N_n)^k) P^(-1)
+$
+
+*Démonstration*
+
+On reprend la décomposition en sous-espaces caractèristiques
+$
+  Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k) \
+  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
+  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^m_k, F_k) \
+  forall k in [|1, n|], space F_k = ker (u - lambda_k id)^(d_k)
+$
+On note $u_k$ l'endomorphisme induit par $u$ sur $F_k$.
+$
+  F_k = ker (u - lambda_k id_E)^(m_k) \
+  "D'où " (u_k - lambda_k id_F_k)^(m_k) = 0_(cal(L) (F_k)) \
+$
+Posons
+$
+  n_k = u_k - lambda_k id_F_k \
+  "Donc" u_k = lambda_k id_F_k + n_k
+$
+Où $n_k$ est nilpotent d'ordre $d_k$ (cf démonstration sous-espaces caractèristiques).
+
+On pose alors $d, n in cal(L)(E)$ tel que
+$
+  forall k in [|1,n|], \ d|_(F_k)^(F_k) = lambda_k id_F_k \
+  n|_(F_k)^(F_k) = n_k \
+$
+Donc $d$ diagonalisable et $n$ nilpotent d'odre $max_(k in [|1;n|])(d_k)$.
+
+Matriciellement
+$
+  cal(M)_e (d) = dmat(lambda_1 I_m_k, dots.down, lambda_N I_m_k) in D_n (KK) \
+  cal(M)_e (n) = dmat(N_1, dots.down, N_N) in T_n^(++) (KK) \ \
+  D N = dmat(lambda_1 N_1, dots.down, lambda_N N_N) = N D
+$
+
+*Unicité*
+
+On prend $p_1, dots, p_N$ les projecteurs associés à la décomposition (cf. démonstration du TDN)
+$
+  E = plus.o.big_(k = 1)^N F_k = plus.o.big_(k = 1)^N ker (u - lambda_k id)^(d_k)
+$
+On avait montrer que $p_1, dots, p_N in KK[u]$.
+
+On a
+$
+  d = sum_(k = 1)^N lambda_k p_k in KK[u] \
+  n = u - d in KK[u] \
+$
+
+Soient $d', n' in cal(L)(E)$ respectent les conditions.
+
+Comme $u = d' + n'$, $d'$ commute avec $u$ et $n'$ aussi, donc $d'$ commute avec $d in KK[u]$ et $n'$ avec $n in KK[u]$.
+
+Ainsi $d'$ et $d$ sont codiagonalisables, d'où $d' - d$ est diagonalisable.
+
+Et $n - n'$ est nilpotent (binôme de Newton).
+
+Or $d' + n' = d + n$ d'où 
+$
+underbrace(d' - d, "diagonalisable") = underbrace(n - n', "nilpotent")
+$
+
+D'où $d' - d = 0$ et $n' - n = 0$.
+
+#card("codiag", "Codiagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Définition et critère de codiagonalisabilité.
+
+#answer
+
+Soient $(u_i)_i in cal(L)(E)^I$ une famille d'endomorphismes. 
+
+On dit que les $(u_i)_i$ sont codiagonalisables s'il existe une base $e$ de $E$ tels que pour tout $i in I$, $cal(M)_e (u_i) in D_n (KK)$.
+
+*Démonstration : deux endomorphismes*
+
+Soient $u, v in cal(L)(E)$ diagonalisables tels que $u compose v = v compose u$.
+$
+  E = plus.o.big_(k = 1)^N E_lambda_k (u) " où " "Sp"(u) = {lambda_1, dots, lambda_N}
+$
+Comme $u compose v = v compose u$, les $E_lambda_k (u)$ sont stables par $v$. 
+
+Soit $v_k$ l'induit de $v$ sur $E_lambda_k (u)$, qui est diagonalisable car $v$ l'est.
+
+Pour chaque $k in [|1, N|]$ on dispose de $e_k$ base de vecteurs propres de $v_k$ (donc de $v$ et $u$).
+
+En concatenant on obtient une base qui convient.
+
+*Démonstration famille quelconque*
+
+Par récurrence sur $n = dim E$.
+
+Cas $n = 1$ évident.
+
+Supposons la propriété pour tout $KK$-ev de dimension inférieur à $n$.
+
+Soit $(u_i)_i in cal(L)(E)^I$ diagonalisables commutant avec $dim E = n+1$.
+
+Si tout les $u_i$ sont des homothéties n'importe quelle base convient.
+
+Sinon on dispose de $j in I$ tel que $u_j$ n'est pas une homothétie.
+
+$
+  E = plus.o.big_(k = 1)^N E_lambda_k (u_j) " où " "Sp"(u_j) = {lambda_1, dots, lambda_N}
+$
+
+Pour tout $i in I$, les $E_lambda_k (u_j)$ sont stables par $u_i$ car $u_i compose u_j = u_j compose u_i$.
+
+Notons $u_(i,k)$ l'induit de $u_i$ sur $E_lambda_k (u_j)$ qui est de dimension inférieur à $n$ car $u_j$ n'est pas une homothétie. 
+
+Les $(u_(i,k))_i$ sont donc diagonalisables et commutent entre eux, on peut appliquer l'hypothèse de récurrence.
+
+On dispose donc de $e_k$ base de $E_lambda_k (u_j)$ formée de vecteurs propres commmun aux $(u_i)_i$. Il suffit alors de les concatener.
+
+// TODO: Ex 64 de la fiche réduction
+
+#card("comendo", "Commutant d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur le commutant d'un endomorphisme diagonalisable.
+
+#answer
+
+Soit $u in cal(L)(E)$ diagonalisable.
+
+- Pour tout $v in cal(L)(E)$, $v in "Com" (u)$ ssi les espaces propres de $u$ sont stables par $v$.
+
+- $dim "Com" (u) = display(sum_(lambda in "Sp"(u)) (dim E_lambda (u))^2)$
+
+*Démonstration*
+
+- L'implication directe est évidente. 
+
+  Supposons $v in cal(L)(E)$ qui stabilise les espaces propres de $u$.
+
+  Pour $lambda in "Sp"(u)$ soit $x in E_lambda (u)$, d'où $v(x) in E_lambda (u)$.
+  $
+    v(u(x)) &= v(lambda x) = lambda v(x) \
+    u(v(x)) &= lambda v(x)
+  $
+
+  Or $u$ diagonalisable, donc on dispose d'une base de vecteurs propres de $u$.
+
+  Ainsi $u compose v$ et $v compose u$ coincident sur une base d'où l'égalité.
+
+- On note $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
+  On considère
+  $
+    theta : func("Com"(u), product_(k = 1)^N cal(L)(E_lambda_k (u)), v, (evaluated(v)_(E_lambda_1 (u)), dots, evaluated(v)_(E_lambda_N (u))))
+  $
+  Qui est linéaire.
+
+  Soit $v in ker theta$ : pour tout $k in [|1, N|]$
+  $
+    v(E_lambda_k (u)) = 0 \
+    "Or " E = plus.o.big_(k = 1)^N E_lambda_k (u) \
+    "Donc " v = 0
+  $
+
+  Soit $(v_1, dots, v_k) in product_(k = 1)^N cal(L)(E_lambda_k (u))$.
+
+  Pour $k in [|1,N|]$, on note $e_k$ base de $E_lambda_k (u)$.
+
+  On définit $v in cal(L)(E)$ qui coincide avec $v_k$ sur tout les vecteurs de $e_k$.
+
+  Ainsi $theta(v) = (v_1, dots, v_k)$, et $theta$ isomorphisme.
+  $
+    dim "Com"(u) &= sum_(k = 1)^N dim cal(L)(E_lambda_k (u)) \
+    &= sum_(k = 1)^N (dim E_lambda_k (u))^2
+  $
+
+#card("exbicom", "Exercice : le bicommutant", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$ diagonalisable. On définit le bicommutant de $u$
+$
+B(u) = Set(w in cal(L)(E), vec(delim: #none, forall v in "Com"(u), space v compose w = w compose v) space)
+$
+Montrer que $B(u) = KK[u]$.
+
+#answer
+
+Comme $u in "Com" (u)$ on remarque
+$
+  KK[u] subset.eq B(u) subset.eq "Com"(u)
+$
+On construit $e$ concatenation de bases des $E_lambda_k (u)$ pour $k in [|1, N|]$ et $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
+Soit $w in B(u) subset.eq "Com"(u)$ donc les $(E_lambda_k)_k$ sont stables par $w$.
+$
+  M = cal(M)_e (w) = dmat(M_1, dots.down, M_N)
+$
+Pour tout $v in "Com"(u), w compose v = v compose w$.
+$
+A = cal(M)_e (v) = dmat(A_1, dots.down, A_N)
+$
+Or $A M = M A$ donc
+$
+  forall k in [|1, N|], A_k M_k = M_k A_k
+$
+Ainsi $M_k$ est une matrice qui commute avec toutes les autres. 
+
+On montre facilement grâce à $E_(i j)$ que $M_k = alpha_k I_(m_k)$.
+
+Par interpolation de Lagrange on dispose de $P in KK_(N+1) (X)$ tel que $P(lambda_k) = alpha_k$. Or
+$
+  cal(M)_e (u) &= dmat(lambda_1 I_(m_1), dots.down, lambda_N I_(m_N)) \
+  cal(M)_e (P(u)) &= dmat(P(lambda_1) I_(m_1), dots.down, P(lambda_N) I_(m_N)) \
+   &= dmat(alpha_1 I_(m_1), dots.down, alpha_N I_(m_N)) \
+   &= cal(M)_e (w)
+$
+D'où $w in KK[u]$.
+
+#card("projspect", "Projecteurs spectraux d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Définition et propriétés des projecteurs spectraux d'un endomorphisme diagonalisable.
+
+#answer
+
+Soit $u in cal(L)(E)$ diagonalisable.
+
+$
+  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
+  Pi_u = product_(k = 1)^N (X - lambda_k)
+$
+Soient $p_1, dots, p_N$ les projecteurs associés à la décomposition
+$
+  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
+$
+On a alors pour tout $i, j in [|1,N|]$
+$
+  evaluated(p_i)_(E_lambda_j (u)) = delta_(i j) lambda_i id \
+$
+Dans la base $e$ diagonalisant $u$ et pour tout $P in KK[X]$ on a 
+$
+  cal(M)_e (P(u)) = dmat(P(lambda_1) I_m_1, dots.down, P(lambda_N) I_m_N) \
+  cal(M)_e (p_k) = dmat(0, dots.down, I_m_k, dots.down, 0) \
+$
+Donc $p_k = L_k (u) in KK_(N-1) [u]$ avec $L_k$ polynôme de Lagrange associés aux $(lambda_i)_i$.
+
+Ainsi pour tout $q in NN$
+$
+  u = sum_(k = 1)^N lambda_k p_k \
+  u^p = sum_(k = 1)^N lambda_k^q p_k in KK_(N - 1) [u]
+$
+
+#card("sesendodiag", "Sous-espaces stables d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur les sous-espaces stables d'un endomorphisme diagonalisable.
+
+#answer
+
+Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
+
++ Si $G$ sev stable par $u$ alors #h(1fr)
+  $
+    G = plus.o.big_(k = 1)^N G inter E_lambda_k (u)
+  $
+
++ Réciproquement si $G_1, dots, G_N$ sont des sevs de $E_lambda_1 (u), dots, E_lambda_N (u)$ respectivements alors
+  $
+    G = plus.o.big_(k = 1) G_k
+  $
+  Est un sev stable par $u$.
+
+*Démonstration*
+
++ Soit $tilde(u)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
+  $
+    G &= plus.o.big_(lambda in "Sp"(tilde(u))) E_lambda (tilde(u)) \
+    &= plus.o.big_(k = 1)^N ker (tilde(u) - lambda_k id_G) \
+    &= plus.o.big_(k = 1)^N G inter underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
+  $
+
++ L'écrire.
+
+#card("dopsprev", "Existence d'une droite ou d'un plan stable dans un espace vectoriel réel", ("Maths.Algèbre.Réduction",))
+
+Démonstration de l'existence d'une droite ou d'un plan stable dans un espace vectoriel réel.
+
+#answer
+
+Soit $E$ un $RR$-ev et $u in cal(L)(E)$, $u$ admet une droite ou un plan stable.
+
+$
+  Pi_u = product_(k = 1)^N P_k^(m_k)
+$
+Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
+
+- Si l'un des $P_k$ est de degré $1$. #h(1fr)
+  $
+    P_k = X - lambda
+  $
+  Et $lambda$ est racine de $Pi_u$ et est donc une valeur propre de $u$ d'où l'existence d'une droite stable.
+
+- Si l'un des $P_k$ est de degré $2$.
+  $
+    P_k = X^2 - a X - b
+  $
+
+  Supposons par l'absurde que $ker P_k (u) = {0}$.
+  $
+    Pi_u (u) = P_k (u) compose Q(u) = 0
+  $
+  D'où $Q(u) = 0$ qui est absurde car $Pi_u$ est minimal.
+
+  On dispose donc de $x in ker P_k (u) \\ {0}$.
+
+  $
+    u^2 (x) = a u(x) + b x
+  $
+  D'où $F = "Vect"(x, u(x))$ stable par $u$.
+
+  Si $u(x) = alpha x$, $alpha in RR$.
+  $
+    alpha^2 x = (a alpha + b) x \
+    alpha | X^2 - a X - b
+  $
+  Absurde donc $F$ est un plan.
+
+#card("endosimple", "Endomorphismes simples", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ Les seuls sev stables de $u$ sont $E$ et ${0}$.
+
++ $chi_u$ irréductible.
+
++ $u$ est dit simple.
+
+#answer
+
++ (2 $=>$ 1) Par contraposé #h(1fr)
+
+  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $tilde(u)$ l'endomorphisme induit.
+
+  $
+    chi_tilde(u) | chi_u
+  $
+  Avec $chi_tilde(u) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
+
++ (1 $=>$ 2) Par contraposé : Soit $x in E\\{0}$ on note
+  $
+    F_x = "Vect"(u^k (x_0))_(k in NN)
+  $
+  Qui est stable par $u$.
+
+  Si $deg Pi_(u,x) = dim F_x <= n - 1$, alors $u$ possède un sev stable non trivial.
+
+  Sinon $Pi_(u,x) | Pi_u | chi_u$ tous unitaires de degré $n$, donc égaux. Ainsi
+  $
+    Pi_(u,x) = chi_u = P Q \
+    y = Q(u) (x) \
+    Pi_(u,y) = P \
+  $
+  D'où $F_y$ stable non trivial.
+
+#card("endosemsimple", "Endomorphismes semi-simples", ("Maths.Algèbre.Réduction",))
+
+Définition et propriétés des endomorphismes semi-simples.
+
+#answer
+
+Soit $u in cal(L)(E)$, il y a équivalence entre
+
++ Tout sev stable par $u$ admet un supplémentaire stable.
+
++ $Pi_u$ est sans carrés
+  $
+    Pi_u = product_(k = 1)^N P_k
+  $
+  Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
+
++ $u$ est semi-simple.
+
+*Démonstration*
+
++ (1 $=>$ 2) On pose #h(1fr)
+  $
+    Pi_u = product_(k = 1)^N P_k^(d_k)
+  $
+  Pour $i in [|1,N|]$, $F = ker P_k (u)$ admet un supplémentaire stable $G$.
+
+  Soient $u_F, u_G$ induient par $u$ sur $F$ et $G$.
+  $
+    Pi_(u_F)  = P_i
+  $
+  Car annule et irréductible.
+
+  De plus
+  $
+    P(u) = 0 \ <=> cases(space forall x in F\, space  P(u) (x) &= 0, space forall x in G\, space P(u) (x) &= 0) \
+    <=> Pi_(u_F) | P "et" Pi_(u_G) | P \
+    <=> Pi_u_F or Pi_u_G | P \
+    "Donc" Pi_u = Pi_u_F or Pi_u_G
+  $
+  Ainsi
+  $
+    Pi_u_G | product_(k = 1)^N P_k^(d_k) \
+    Pi_u = Pi_u_G or P_i
+  $
+  Mais 
+  $
+  G inter F = {0} \
+  G inter ker P_1 (u) = {0} \
+  0 != P_i (u_G) in "GL"(E) \
+  P_i divides.not Pi_u_G
+  $
+  Ainsi comme $Pi_u = P_i or Pi_u_G$
+  $
+  d_i = 1
+  $
+
++ (2 $=>$ 1) Cas $Pi_u$ irréductible.
+
+  On suppose $Pi_u$ irréductible de degré $d$.
+
+  Donc pour tout $x in E\\{0}$
+  $ 
+    Pi_(u,x) | Pi_u " d'où " Pi_u = Pi_(u,x) \ "et" dim F_x = d
+  $
+  
+  Soit $F$ sev stable par $u$, si $F = E$, $G = 0$ convient.
+
+  On dispose alors de $x_1 in E \\ F$.
+
+  Comme $F$ et $F_x_1$ sont stables par $u$, $F inter F_x_1$ l'est.
+
+  Supposons par l'absurde qu'il existe $x in F inter F_x_1 \\ {0}$.
+
+  $
+    underbrace(F_x, dim d) subset.eq underbrace(overbrace(F_x_1, dim d) inter F, dim <= d) \
+    F_x_1 subset.eq F \
+    x_1 in F
+  $
+  Qui est absurde : $F plus.o F_x_1 subset.eq E$.
+
+  Supposons construits $x_1, dots, x_k$ tels que
+  $
+    underbrace(F plus.o (plus.o.big_(i = 1)^k F_x_i), F_k "stable") subset.eq E
+  $
+
+  Si $F_k = E$ on a fini.
+
+  Sinon on choisit $x_(k+1) in E \\ F_k$ et on répéte.
+
+  $
+    F_x_(k+1) inter F_k = {0} \
+    F_k plus.o F_x_(k+1) subset.eq E \
+    F plus.o (plus.o.big_(i = 1)^(k+1) F_x_i) subset.eq E
+  $
+
+  Qui se termine en au plus $floor(n / d)$ étapes.
+// TODO: Que faire de la remarque Frobenius M142 ?
+
++ (2 $=>$ 1) Cas général.
+  $
+    Pi_u = product_(k = 1)^N P_k
+  $
+
+  Par le TDN
+  $
+    E = plus.o.big_(k = 1)^N ker P_k (u)
+  $
+  Soit $F$ sev stable par $u$, $tilde(u)$ induit par $u$ sur $F$. Par TDN 
+  $
+    F &= plus.o.big_(k = 1)^N ker P_k (tilde(u)) \
+     &= plus.o.big_(k = 1)^N underbrace((ker P_k (tilde(u))) inter F, F_k)
+  $
+  $F_k$ sev de $E_k = ker P_k (u)$ stable par $u_k$ induit par $u$ sur $E_k$.
+
+  De plus $Pi_u_k = P_k$ (annule et irréductible).
+
+  Donc par le premier cas on trouve $G_k$ sev de $E_k$ stable par $u$ tel que
+  $
+    E_k = G_k plus.o F_k
+  $
+  Enfin
+  $
+    E &= plus.o.big_(k = 1)^N E_k \
+    &= underbrace((plus.o.big_(k = 1)^N (F_k)), F "stable par" u) plus.o underbrace((plus.o.big_(k = 1)^N G_k), G "stable par" u)
+  $
+
+#card("diagsisevstabl", "Exercice : critère de diagonalisabilité sur l'existence de supplémentaires stables", ("Maths.Exercice.Réduction",))
+
+Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisable ssi tout sev stable par $u$ admet un supplémentaire stable.
+
+#answer
+
+- Supposons $u$ diagonalisable, soit $F$ un sev stable par $u$.
+
+  On dispose donc de $f = (f_1, dots, f_d)$ base de $F$ et $e = (e_1, dots, e_n)$ base de vecteurs propres de $E$.
+
+  On peut donc complétée la base $f$ par des vecteurs de $e$:
+  $
+    (f_1, dots, f_d, e_i_1, dots, e_i_(n - d)) "base de" E
+  $
+  Ainsi $G = "Vect"(e_i_1, dots, e_i_(n-d))$ est un supplémentaire de $F$ stable par $u$.
+
+- Supposons que tout sev stable par $u$ admettent un supplémentaire stable.
+
+  $
+    F = plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
+  $
+  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $tilde(u)$ l'induit sur $G$ de $u$.
+  $
+    Pi_tilde(u) | Pi_u "scindé"
+  $
+  Donc $tilde(u)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
+
+#card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur les endomorphismes de la forme $M |-> A M$ et $M |-> M A$ de $cal(L)(M_n (KK))$.
+
+#answer
+
+Soit $A in M_n (KK)$. Posons
+$
+  L_A : func(M_n (KK), M_n (KK), M, A M "ou" M A) in cal(L)(M_n (KK)) \
+$
+Pour tout $P in KK[X]$ et $M in M_n (KK)$
+$
+  P(L_A) (M) = cases(space P(A) M, space M P(A)) = L_P(A) (M) \
+$
+De plus $L_B = 0 => L_B (I_n) = B = 0$ d'où
+$
+  P(L_A) = 0 <=> P(A) = 0
+$
+C'est à dire $Pi_L_A = Pi_A$
+
+On en déduit
+
+- $L_A$ est nilpotent ssi $A$ l'est et est de même ordre.
+
+- $L_A$ est diagonalisable ssi $A$ l'est.
+
+- $"Sp"(A) = "Sp"(L_A)$
+
+De plus pour $lambda in "Sp"(A)$
+$
+dim E_lambda (L_A) = n dim E_lambda (A)
+$
+
+*Démonstration*
+
+- Pour $L_A (M) = A M$
+
+  Soit $M = (C_1, dots, C_n) in M_n (KK)$
+
+  $
+    M in E_lambda (L_A) <=> A M = lambda M \
+    <=> forall j in [|1,n|], space A C_j = lambda C_j \
+    <=> {C_1, dots, C_n} subset.eq E_lambda (A)
+  $
+  Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
+
+- Pour $L_A (M) = M A$ 
+
+  Soit $M = vec(L_1, dots.v, L_n) in M_n (KK)$
+
+  $
+    M in E_lambda (L_A) <=> M A = lambda M \
+    <=> forall i in [|1,n|], space A L_i = lambda L_i \
+    <=> {L_1, dots, L_n} subset.eq E_lambda (A)
+  $
+  Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
+
+#card("endodiffprodmat", "Endomorphisme différence de produits de matrices", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur l'endomorphisme $phi : M |-> A M - M B$ in $cal(L)(M_n (KK))$
+
+#answer
+
+Soit $A, B in M_n (KK)$, tel que $chi_A$ scindé et $B$ admet au moins une valeur propre. ($KK$ algébriquement clos suffit).
+
+Posons
+$
+  phi : func(M_n (KK), M_n (KK), M, A M - M B) in cal(L)(M_n (KK))
+$
+Il y a équivalence entre
+
++ $"Sp"(A) inter "Sp"(B) = emptyset$.
+
++ $chi_A (B) in "GL"_n (KK)$.
+
++ $phi$ injectif.
+
++ $phi$ est un automorphisme.
+
+De plus on a
+
+- $"Sp"(phi) = {lambda - mu, (lambda, mu) in "Sp"(A) times "Sp"(B)}$
+
+*Démonstration*
+
+- (3 $<=>$ 4) Argument dimensionnel.
+
+- (1 $=>$ 2) Pour tout $lambda in "Sp"(A)$ #h(1fr)
+  $
+    lambda in.not "Sp"(B) \
+    ker (B - lambda I_n) = E_lambda (B) = {0} \
+    B - lambda I_n in "GL"_n (KK)
+  $
+  Ainsi
+  $
+    chi_A (B) = product_(lambda in "Sp"(A)) (B - lambda I_n)^(m_lambda) in "GL"_n (KK)
+  $
+
+- (2 $=>$ 3) Soit $M in ker phi$
+
+  $
+    A M = M B \
+    forall k in NN, space A^k M = M B^k \
+    0 = chi_A (A) M = underbrace(chi_A (B), in "GL"_n (KK)) M \
+    M = 0
+  $
+
+- (3 $=>$ 1) Par contraposé, supposons qu'on dispose de $lambda in "Sp"(A) inter "Sp"(B)$.
+
+  On sait que $chi_B = chi_(B^TT)$ donc toute valeur propre de $B$ est valeur propre de $B^TT$.
+  
+  Soit $X, Y$ vecteurs propres non nuls de $A$ et $B^TT$.
+  $ 
+  phi(X Y^TT) &= A X Y^TT - X Y^TT B \
+  &= A X Y^TT - X (B^TT Y)^TT \
+  &= lambda X Y^TT - lambda X Y^TT \
+  &= 0
+  $
+  Or $X Y^TT != 0$ d'où $phi$ non injective.
+
+- Soit $lambda in "Sp"(A), mu in "Sp"(B)$. $X, Y$ vecteurs propres non nuls de $A$ et $B^TT$.
+  $
+  phi(X Y^TT) &= A X Y^TT - X Y^TT B \
+  &= lambda X Y^TT - mu X Y^TT \
+  &= (lambda - mu) X Y^TT
+  $
+  D'où $lambda - mu in "Sp"(phi)$
+
+- Soit $alpha in "Sp"(phi)$, $M$ vecteur propre non nul associé.
+
+  $
+    phi(M) = A M - M B = alpha M \
+    underbrace((A - alpha I_n), tilde(A)) M - M B = 0
+  $
+  Avec $chi_tilde(A)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $tilde(A)$)
+
+  Posons $phi' : N |-> tilde(A) N - N B$
+  $
+    phi' (M) = 0
+  $
+  Donc $phi'$ non injectif d'où $
+  {mu} subset.eq "Sp"(tilde(A)) inter "Sp"(B) != emptyset
+  $
+  Ainsi $alpha + mu in "Sp"(A)$.
+
+#card("endocommuta", "Endomorphisme commutateur de matrices", ("Maths.Algèbre.Réduction",))
+
+Propriétés sur les endomorphismes de la forme $M |-> A M - M A in cal(L)(M_n (KK))$.
+
+#answer
+
+Soit $A in cal(M)_n (KK)$ tel que $chi_A$ scindé.
+
+$
+  phi_A : func(M_n (KK), M_n (KK), M, A M - M A) in cal(L)(M_n (KK))
+$
+
+On a les propriétés de $M |-> A M - M B$, et de plus
+
+- Si $A$ est nilpotent alors $phi_A$ l'est.
+
+- Si $A$ est diagonalisable alors $phi_A$ aussi.
+
+*Démonstration*
+
+- Supposons $A$ nilpotent d'ordre $q$. Posons
+  $
+  mat(delim: #none,,M_n (KK), ->, M_n (KK);L_A :, M, |->, A M; R_A :, M, |->, M A)
+  $
+  On sait que $L_A$ et $R_A$ sont nilpotents d'ordre $q$ car $A$ l'est.
+
+  De plus $L_A compose R_A = A M A = R_A compose L_A$ d'où
+  $
+    phi_A = L_A - R_A \
+    phi_A^(2q) = sum_(k = 0)^(2q) vec(2q, k) (-1)^k R_A^k compose L_A^(2q - k) = 0
+  $
+
+- Supposons $A$ diagonalisable.
+
+  On sait que $L_A$ et $R_A$ commutent et sont diagonalisables, donc ils sont codiagonalisables :
+  $
+    phi_A = L_A - R_A
+  $
+  Est diagonalisable.
+
+#card("endonilpcyc", "Endomorphismes nilpotents cycliques", ("Maths.Algèbre.Réduction",))
+
+Caractèrisation des sev stables par un endomorphisme nilpotent cyclique.
+
+#answer
+
+Soit $u in cal(L)(E)$ nilpotent cyclique.
+
+Les seuls sev de $E$ stables par $u$ sont les $(ker u^k)_(k in [|0, n|])$.
+
+*Démonstration*
+
+Ils sont stables comme $ker$ d'un endomorphisme commutant avec $u$.
+
+Soit $F$ sev stable par $u$. Soit $tilde(u)$ induit par $u$ sur $F$ qui est nilpotent car car $tilde(u)^n = 0$.
+
+Or l'ordre de nilpotence de $tilde(u)$ est majoré par $d = dim F$ : $tilde(u)^d = 0$.
+
+Donc $F subset.eq ker u^d$.
+
+De plus par les noyaux itérées
+$
+underbrace(ker u, dim 1) subset.neq dots.c subset.neq underbrace(ker u^d, dim d) subset.neq dots.c subset.neq underbrace(ker u^n, dim n)
+$
+
+D'où $F = ker u^d$.
+
+#card("prodkroc", "Produit de Kronecker et diagonalisabilité", ("Maths.Algèbre.Réduction",))
+
+Diagonalisabilité du produit de Kronecker de matrices (dimension $2n$).
+
+#answer
+
+Soit $L = mat(alpha, beta; gamma, delta) in M_2 (KK)$ et $A in M_n (KK)$. On pose le produit de Kronecker
+$
+  M = L times.o A = mat(alpha A, beta A; gamma A, delta A) in M_(2n) (KK)
+$
+
+Alors
+
+- Si $L$ est diagonalisable, $M$ est diagonalisable ssi $A$ l'est.
+
+- Si $L = mat(1, 1; 0, 1)$, $M$ est diagonalisable ssi $A = 0$.
+
+*Démonstration*
+
+- On suppose $L$ diagonalisable :
+
+  $
+    L = P dmat(lambda, mu) P^(-1) quad vec(delim: #none, P = mat(a, b; c, d) in "GL"_2 (KK), P^(-1) = mat(a', b'; c', d'))
+  $
+  On remarque
+  $
+    Q = P times.o I_n = mat(a I_n, b I_n; c I_n, d I_n) \
+    Q' = P times.o I_n = mat(a' I_n, b' I_n; c' I_n, d' I_n) \ 
+    Q Q' = dmat(I_n, I_n) = I_(2n) \
+  $
+  $
+    Q' M Q &= mat(a' I_n, b' I_n; c' I_n, d' I_n) mat(alpha A, beta A; gamma A, delta A) mat(a I_n, b I_n; c I_n, d I_n) \
+    &= dmat(lambda A, mu A)
+  $
+
+  Donc $M$ est diagonalisable ssi $A$ l'est.
+
+- Pour $L = mat(1, 1; 0, 1)$.
+  $
+    M^k = mat(A^k, k A^k;0, A^k) quad "(récurrence)"
+  $
+  Donc pour tout $P in KK[X]$
+  $
+    P(M) = mat(P(A), A P'(A); 0, P(A))
+  $
+  Si $M$ est diagonalisable, $Pi_M$ est SARS.
+  $
+    Pi_M (M) = 0 <=> cases(space Pi_M (A) = 0, space A Pi_M (A) = 0)
+  $
+  Comme $Pi_M (A) = 0$, $A$ est diagonalisable.
+
+  Or $Pi_M$ est SARS : $Pi_M and Pi_M' = 1$ donc $P' and Pi_A = 1$ car $Pi_A | Pi_M$.
+
+  Donc $Pi_M'(A) in "GL"_n (KK)$ et $A Pi_M' (A) = 0$ d'où $A = 0$.
+// TODO: Exo 51 Reduc
+
+#card("cotz", "Cotrigonalisation", ("Maths.Algèbre.Réduction",))
+
+Critère de Cotrigonalisabilité d'une famille d'endomorphismes.
+
+#answer
+
+Soit $(u_i)_i in cal(L)(E)^I$ une famille d'endomorphismes trigonalisables qui commutent. 
+
+Il existe une base $e$ de $E$ tel que pour tout $i in I$, $cal(M)_e (u_i)$ soit triangulaire supérieure.
+
+*Démonstration : structure*
+
+On voudra toujours
++ Trouver un vecteur propre commun
++ Faire une récurrence sur la dimension.
+
+Faisons d'abord la 2#super[e] étape dans le cas général :
+
+Supposons que toute famille $(u_i)_i in cal(L)(E)^I$ d'endomorphismes trigonalisables qui commutent admete un vecteur propre commun.
+
+Cas $n = 1$ évident.
+
+Supposons la propriété sur tout $KK$-ev de dimension strictement inférieur à $n$.
+
+Soit $e_1$ vecteur propre commun aux éléments de $(u_i)_i$ associé aux valeurs propres $(lambda_i)_i in KK^I$.
+
+On complète $e_1$ en la base $(e_1, dots, e_n)$. Pour tout $i in I$
+
+$
+    cal(M)_e (u_i) = mat(augment: #(hline: 1, vline: 1), lambda_i, *; 0, A_i) quad chi_u_i = chi_A_i (X - lambda)\ 
+$
+Or $chi_u_i$ scindé donc $chi_A$ scindé : $chi_A$ est trigonalisable.
+
+De plus les $(A_i)_i$ commutent car mes $(u_i)_i$ aussi.
+
+Par hypothèse de récurrence on conclut.
+
+*Démonstration : deux endomorphismes*
+
+Soit $u, v in cal(L)(E)$ trigonalisables qui commutent.
+
+Soit $lambda in "Sp"(u)$, $E_lambda (u) != {0}$ est stable par $v$.
+
+Notons $tilde(v)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
+
+Puis récurrence.
+
+*Démonstration : famille finie*
+
+Par récurrence sur $d$ cardinal de la famille.
+
+Cas 1 et 2 endomorphismes traités.
+
+On suppose que toute famille de cardinal inférieur à $d$ admet un vecteur propre commun.
+
+Soit $u_1, dots, u_(d+1) in cal(L)(E)$ trigonalisables qui comuttent.
+
+Soit $x$ vecteur propre commun aux $u_1, dots, u_d$ associé aux valeurs propres $lambda_1, dots, lambda_d in KK$.
+
+$
+{x} in F = inter.big_(k = 1)^d underbrace(E_lambda_k (u_k), "stable par" v) != emptyset
+$
+Donc $F$ est stable par $v$, on peut donc y induire $tilde(v)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
+
+*Démonstration : famille infinie*
+
+Soit $(u_i)_i in cal(L)(E)^I$ une famille quelconqe d'endomorphismes trigonalisables qui commutent.
+
+$"Vect"(u_i)_(i in I)$ est un sev de $cal(L)(E)$ et admet donc une base $u_i_1, dots, u_i_d$.
+
+C'est une famille finie, donc cotrigonalisable dans une base $e$.
+
+Et pour tout $i in I$, $u_i in "Vect"(u_i_1, dots, u_i_d)$ donc $cal(M)_e (u_i)$ est triangulaire supérieur (comme combinaison linéaire de matrices qui le sont).
+
+#card("polcarsomme", "Exercice : polynôme caractèristique d'une somme d'endomorphismes", ("Maths.Exercice.Réduction",))
+
+Soit $E$ un $CC$-ev de dimension finie, $u, v in cal(L)(E)$ qui commutent, tel que $v$ est nilpotent. 
+
+Montrer que $chi_(u + v) = chi_u$ (Exercice 106).
+
+#answer
+
+Deux perspectives
+
++ Comme $E$ est un $CC$-ev, $u$ et $v$ sont trigonalisables, et commutent, donc sont cotrigonalisable.
+
+  Ainsi on dispose de $e$ base de $E$ tel que
+  $
+    cal(M)_e (u) &= mat(lambda_1,,*;,dots.down;,,lambda_n) \
+    cal(M)_e (v) &= mat(0,,*;,dots.down;,,0) \
+    cal(M)_e (u + v) &= mat(lambda_1,,*;,dots.down;,,lambda_n) \
+    chi_(u + v) &= chi_u
+  $
+
+#card("excomuveu", "Exercice : commutateur qui vaut l'un des opérande", ("Maths.Exercice.Réduction",))
+
+Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u = u$.
+
++ Montrer que $u$ est nilpotent.
+
++ Montrer que si $KK = CC$, $u$ et $v$ sont cotrigonalisable.
+
+#answer
+
++ Deux méthodes : #h(1fr)
+  - On considère
+    $
+      phi_v : func(cal(L)(E), cal(L)(E), w, w v - v w) \
+      phi_v (u^k) = k u^k \
+    $
+    Donc si $u^k != 0$, $k in "Sp"(phi_v)$ qui est fini, donc on dispose de $k in NN^*$ tel que $u^k = 0$.
+
+  - On remarque
+    $
+      P(u) v - v P(u) = u P'(u)
+    $
+    En particulier pour $P = Pi_u$
+    $
+    0 = u Pi'_u (u) \
+    underbrace(Pi_u, deg d) | underbrace(X Pi'_u, deg d) \
+    X Pi'_u = c Pi_u
+    $
+    Donc
+    $
+    d X^d + sum_(k = 0)^(d-1) k a_k X^k = c X^d + sum_(k = 0)^(d-1) c a_k X^k \
+    c = d \
+    forall k in [|0, d-1|], space d a_k = k a_k \
+    forall k in [|0, d-1|], a_k = 0 \
+    Pi_u = X^d
+    $
+
++ Comme $u$ est nilpotent, $"Sp"(u) = {0}$.
+  $
+    (u v - v u) (ker u) &= u (ker u) \
+    u (v (ker u)) &= 0 \
+    v(ker u) &subset.eq ker u
+  $
+  Donc $ker u$ est stable par $v$, posons $tilde(v)$ induit sur $ker u$. Or $tilde(v)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
+
+  Ainsi par récurrence sur la dimension de $E$ :
+
+  Supposons la propriété pour tout $CC$-ev de dimension inférieur strictement à $n$.
+
+  Soit $e_1$ vecteur propre commun à $u$ et $v$ associé aux valeurs propres $0$ et $lambda$.
+
+  Soit $e' = (e_1, e'_2 dots, e'_n)$ base de $E$.
+  $
+    cal(M)_e' (u) = mat(augment: #(hline: 1, vline: 1), 0, *; 0, A) \
+    cal(M)_e' (v) = mat(augment: #(hline: 1, vline: 1), lambda, *; 0, B) \
+  $
+  Et $A B - B A = A$ car $u v - v u = u$ donc on dispose de $(e_2, dots, e_n)$ qui cotrigonalisent $A$ et $B$.
+
+#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Algèbre.Réduction",))
+
+Soit $E$ un $KK$-ev de dimension $n$ ($KK subset.eq CC$).
+
++ Soit $u in cal(L)(E)$, montrer que $u$ est nilpotent ssi pour tout $k in NN^*$, $tr(u^k) = 0$.
+
++ Soit $u in cal(L)(E)$ tel que pour tout $k in NN^*$
+  $
+    tr u^k = sum_(i = 1)^n lambda_i^k quad lambda_1, dots, lambda_n in CC
+  $
+  Montrer que
+  $
+    chi_u = product_(k = 1)^n (X - lambda_k)
+  $
+
+#answer
+
+Dans les deux cas, $KK subset.eq CC$, donc $u$ est trigonalisable dans $CC$.
+$
+  cal(M)_e (u) = mat(mu_1,,*;,dots.down;,,mu_n) = D \
+  forall k in NN, space tr u^k = tr D^k = sum_(i = 1)^n mu_i^k
+$
+Posons ${mu_1, dots, mu_n} = {alpha_1, dots, alpha_d}$ deux à deux distincts.
+$
+  chi_u = product_(k = 1)^d (X - alpha_k)^(m_k) \
+  tr u^k = sum_(i = 1)^d m_i alpha_i^k quad (*)
+$
+
++ Par l'absurde : on suppose $d >= 2$ et $alpha_1 = 0$ (éventuellement $m_1 = 0$).
+
+  Par $(*)$ :
+  $
+    forall P in X KK[X], space sum_(k = 1)^d m_k P(alpha_k) = 0
+  $
+  Ainsi par interpolation de lagrange : pour $i in [|2, d|]$,
+  $
+    P(alpha_i) = 1 \
+    forall j != i, space P(alpha_j) = 0 \
+    P(alpha_i) = P(0) = 0 "d'où" X | P \
+    sum_(k = 1)^d m_k P(alpha_k) = m_i = 0
+  $
+
++ Pour tout $k in NN^*$
+  $
+    sum_(i = 1)^n mu_i^k = sum_(i = 1)^n lambda_i^k
+  $
+  On considère ${lambda_1, dots, lambda_n} union {mu_1, dots mu_n} = {beta_1, dots, beta_N}$ deux à deux distincts.
+
+  Pour $i in [|1, n|]$
+  $
+    n_i &= abs(Set(k in [|1,n|], mu_k &= beta_i)) \
+    m_i &= abs(Set(k in [|1,n|], lambda_k &= beta_i)) \
+  $
+  Donc pour tout $k in NN^*$
+  $
+    forall k in NN^*, space sum_(i = 1)^N n_i beta_i^k = sum_(k = 1)^N m_i beta_i^k \
+    <=> forall k in NN^*, space sum_(i = 1)^N (n_i - m_i) beta_i^k = 0
+  $
+  Or $V(beta_1, dots, beta_N) != 0$ d'où $m_i = n_i$.
+
+#card("calcpmatdz", "Calcul de puissance de matrice : cas diagonalisable", ("Maths.Algèbre.Réduction",))
+
+Méthodes de calcul des puissances d'une matrice diagonalisable.
+
+#answer
+
+Soit $A in M_n (KK)$ diagonalisable.
+
++ Matrice diagonale :
+
+  On dispose de $P in "GL"_n (KK)$ (à calculer) tel que
+  $
+    A &= P dmat(alpha_1, dots.down, alpha_n) P^(-1) \
+    A^k &= P dmat(alpha_1^k, dots.down, alpha_n^k) P^(-1)
+  $
+
++ Lagrange : notons $d = deg Pi_A$ #h(1fr)
+  $
+    A^k in KK[u] = "Vect"(I_n, A, dots, A^(d-1)) \
+  $
+  Donc on dispose de $P in KK_(d-1) [X]$ tel que $A^k = P(A)$.
+
+  Explicitons le :
+  $
+    KK^n = plus.o.big_(i = 1)^N E_lambda_i
+  $
+  Soit $X in KK^n$
+  $
+    X = underbrace(X_1, in E_lambda_1) + dots.c + underbrace(X_d, in E_lambda_d) \
+    A X = lambda_1 X_1 + dots.c + lambda_d X_d \
+    A^k X = lambda_1^k X_1 + dots.c + lambda_d^k X_d \
+    P(A) X = P(lambda_1) X_1 + dots.c + P(lambda_d) X_d \
+  $
+  Ainsi avec $P$ construit par interpolation de Lagrange afin de vérifier
+  $
+    forall i in [|1, d|], space P(lambda_i) = lambda_i^k \
+    P in KK_(d - 1) [X]
+  $
+  On a alors $P(A) X = A^k X$ pour tout $X$, d'où $P(A) = A^k$.
+
+#card("calcpmatde", "Calcul de puissance de matrice : polynôme annulateur", ("Maths.Algèbre.Réduction",))
+
+Méthodes de calcul des puissances d'une matrice grâce à un polynôme annulateur.
+
+#answer
+
+Soit $A in M_n (KK)$, $P in KK[X]$ annulateur de degré $d$.
+$
+  X^k = Q P + R \
+  A^k = underbrace(Q P (A), 0) + R(A)
+$
+Avec $R in KK_(d-1) [X]$.
+
+Si $P = (X - lambda)^m$ on trouve le reste de la division euclidienne grâce à la formule de Taylor :
+
+$
+  Q &= overbrace(sum_(k = 0)^(m-1) (Q^((k)) (lambda)) / k! (X - lambda)^k, "reste") \
+  &+ (X - lambda)^m underbrace(sum_(k = m)^(deg Q) (Q^((k)) (lambda)) / k! (X - lambda)^(k - m), "quotient") \
+  A^p &= sum_(k = 0)^(m - 1) vec(p, k) lambda^(p - k)(A - lambda I_n)^(k)
+$
+
+#card("eqmat", "Équations matricielles", ("Maths.Algèbre.Réduction",))
+
+Méthodes de résolutions d'équations matricielles.
+
+#answer
+
+Soit $A in M_n (KK), P in KK[X]$.
+
+On cherche à résoudre les équations de la forme
+$
+  P(M) = A
+$
+*Idées*
+- $M A = A M$ car $A in KK[M]$.
+
+- Ainsi $M$ laisse stable
+  - Les sous-espaces propres de $A$
+  - Les sous-espaces caractèristiques de $A$
+  - Tout les $ker Q(A)$
+
+- Pour $Q$ annulateur de $A$, $Q compose P$ est annulateur de $M$ : si $Q compose P$ est SARS, $M$ est diagonalisable.
+
+*Résolutions cas simple*
+
+Si $chi_A$ SARS :
+$
+  chi_A = product_(k = 1)^n (X - lambda_k) \
+  A = R dmat(lambda_1, dots.down, lambda_n) R^(-1) \
+  R = mat(C_1, dots.c, C_n)
+$
+Avec $C_1, dots, C_n$ vecteurs propres associés aux $lambda_1, dots, lambda_n$.
+
+Si $M$ est solution, $M$ laisse stable tout les $E_lambda_k = "Vect"(C_k)$
+$
+  M C_k = mu_k C_k \
+  M = R dmat(mu_1, dots.down, mu_n) R^(-1)
+$
+Or
+$
+  P(M) &= R dmat(P(mu_1), dots.down, P(mu_n)) R^(-1) \
+  &= A
+$
+D'où $P(mu_k) = lambda_k$ pour tout $k in [|1,n|]$.
+
+#card("eqmatxk", "Racine k-ème de matrices", ("Maths.Algèbre.Réduction",))
+
+Méthodes général de résolution de l'équation $M^p = A$.
+
+#answer
+
+Soit $A in M_n (KK)$ et $p in NN$.
+
+- Si $A$ est nilpotent : il peut ne pas exister de solutions, par exemple :
+
+  Si $A$ nilpotent d'ordre $n$ et $p >= 2$
+  $
+    A^n = (M^p)^n = 0
+  $
+  D'où $M$ nilpotent
+  $
+    M^n = A^ceil(n / p) = 0
+  $
+  Absurde.
+
+- Cas $A = I_n + N$ avec $N$ nilpotent.
+
+  Idée : DL de $(1+x)^(1/k)$
+  $
+    (1 + x)^(1/k) = P_k (x) + o_(x->0) (x^(n-1)) \
+    P_k (X) = 1 + sum_(j = 1)^(n-1) product_(i = 0)^(n-1) (1 / k - i) x^j / j! in RR_(n-1) [X] \
+  $
+  $
+    1 + x &= (P_k (x) + o_(x->0)(x^(n-1)))^k \
+    &= Q_k (x) + o_(x->0) (x^(n-1))
+  $
+  Par unicité de la partie principale du DL :
+  $
+    1 + X = Q_k (X)
+  $
+  Où $Q_k$ est $P_k^k$ tronqué à $n - 1$ termes
+  $
+    1 + X = P_k^k (X) - X^n R_k (X) \
+    A = I_n + N = P_k^k (N) - underbrace(N^n R_k (N), 0)
+  $
+  D'où $P_k (N)$ est solution.
+- Cas $A in M_n (CC)$ tel que $0 in.not "Sp"(A)$ :
+  Pour tout $k in NN^star$ :
+
+  $
+    chi_A = product_(k = 1)^q (X - lambda_k)^(m_k) \
+    A = P dmat(lambda_1 I_m_1 + N_1, dots.down, lambda_q I_m_q + N_q) P^(-1)
+  $
+  Pour tout $j in [|1, q|]$, on dispose de $tilde(M)_j$ et $mu_j$ tels que
+  $
+    mu_j^k = lambda_j \
+    tilde(M)_j^k = I_m_j + 1/lambda_j N_j \
+  $
+  On définit alors
+  $
+    M_j &= mu_j tilde(M)_j \
+    M_j^k &= mu_j^k I_m_j + mu_j^k / lambda_j N_j \
+    &= lambda_j I_m_j + N_j
+  $
+  Ainsi
+  $
+    M = P dmat(M_1, dots.down, M_q) P^(-1) \
+  $
+  Est solution :
+  $
+    M^k &= P dmat(M_1^k, dots.down, M_q^k) P^(-1) \
+    &= A
+  $
+
+#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Algèbre.Réduction",))
+
+Soit $u in cal(L)(E)$ où $E$ est un $CC$-ev, montrer que
+$
+  u "diagonalisable" \ <=> cases(space u^2 "diagonalisable", space ker u = ker u^2)
+$
+
+#answer
+
+- Supposons $u$ diagonalisable, on dispose de $e$ base de $E$ tel que
+  $
+    cal(M)_e (u) = dmat(lambda_1, dots.down, lambda_n) \
+    cal(M)_e (u^2) = dmat(lambda_1^2, dots.down, lambda_n^2) \
+  $
+  D'où $u^2$ diagonalisable, et de plus $ker u subset.eq ker u^2$.
+
+  Posons $k in [|0, n|]$ tel que 
+  $
+  lambda_1 = dots.c = lambda_k = 0 \
+  lambda_(k+1), dots, lambda_n != 0
+  $
+  On a bien $ker u^2 = ker u$ (Vision matricielle).
+
+- Supposons $0 in.not "Sp"(u)$, $u^2$ diagonalisable et $ker u^2 = ker u$.
+  $
+    Pi_(u^2) = product_(k = 1)^q (X - lambda_k) \
+    Pi_(u^2) (u^2) = product_(k = 1)^q (X - delta_k)(X + delta_k) (u) = 0
+  $
+  Avec $delta_k^2 = lambda_k$. Ainsi $u$ est annuler par un polynôme SARS, donc diagonalisable.
+
+- Supposons $0 = lambda_1 in "Sp"(u)$, $u^2$ diagonalisable et $ker u^2 = ker u$.
+  $
+    E &= plus.o.big_(k = 1)^q ker (u^2 - lambda_k id) \
+    &= plus.o.big_(k = 2)^q ker (u^2 - lambda_k id) plus.o ker u^2\
+    &= plus.o.big_(k = 2)^q ker (u - delta_k id)(u + delta_k id) \
+    &plus.o underbrace(ker u^2, ker u) \
+  $
+  D'où $u$ diagonalisable.
+// TODO: Exo 16/17 cf photos
+#card("rechhypstab", "Recherche d'hyperplans stables", ("Maths.Algèbre.Réduction",))
+
+Méthodes de recherche d'hyperplans stables.
+
+#answer
+
+Soit $A in M_n (KK)$, $H$ hyperplan de $KK^n$.
+
+On dispose de $L in M_(1 n) (KK)$ tel que
+$
+  H = Set(X in KK^n, L X = 0) = ker L
+$
+$H$ est stable par $A$ ssi
+$
+  L^T "vecteur propre de" A^TT
+$
+
+*Démonstration*
+
+$
+  A H subset.eq H <=> ker L subset.eq ker L A \
+  <=> exists lambda in KK, L A = lambda L \
+  <=> exists lambda in KK, A^TT L^TT = lambda L^TT
+$
+
+#card("polcarabba", "Pseudo-commutativité du polynôme caractèristique", ("Maths.Algèbre.Réduction",))
+
+Pour $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$, lien entre $chi_(A B)$ et $chi_(B A)$.
+
+#answer
+
+Soient $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$.
+$
+  A B in M_p (KK) quad quad B A in M_n (KK) \
+  X^n chi_(A B) = X^p chi_(B A) \
+  "Sp"(A B) \\ {0} = "Sp"(B A) \\ {0} \
+  forall lambda in KK\\{0}, \ dim E_lambda (A B) = dim E_lambda (B A)
+$
+Si $p = n$ ($A$ et $B$ sont carrés) alors
+$
+  chi_(A B) = chi_(B A)
+$
+
+*Démonstration*
+
+- Cas $A = J_r$ : #h(1fr)
+  $
+    A &= mat(augment: #(hline: 1, vline: 1), I_r, 0; 0, 0) quad quad
+    &B &= mat(augment: #(hline: 1, vline: 1), B_1, B_2; B_3, B_4) \
+    A B &= mat(augment: #(hline: 1, vline: 1), B_1, B_2; 0, 0)  quad quad
+    &B A &= mat(augment: #(hline: 1, vline: 1), B_1, 0; B_3, 0) \
+  $
+  $
+    chi_(A B) &= chi_B_1 X^(p - r) \
+    chi_(B A) &= chi_B_1 X^(n - r) \
+  $
+
+- Cas général : $A = P J_r Q$
+  $
+  A B &= P J_r Q B \
+  &= P (J_r Q B P) P^(-1) \
+  B A &= B P J_r Q \
+  &= Q^(-1) (Q B P J_r) Q
+  $
+  Donc
+  $
+    X^n chi_(A B) &= X^n chi_(J_r Q B P) \
+    &= X^p chi_(Q B P J_r) = X^p chi_(B A)
+  $
+
+- Pour tout $X in E_lambda (A B)$
+  $
+    A B X = lambda X \
+    B A B X = lambda B X \
+    B X in E_lambda (B A) \
+  $
+  Ainsi
+  $
+    theta : func(E_lambda (A B), E_lambda (B A), X, B X)
+  $
+  Est linéaire injectif, donc
+  $
+    dim E_lambda (B A) >= dim E_lambda (A B)
+  $
+  Avec égalité par symétrie.
+
+#card("redmatrg1", "Réduction de matrice dans rang 1", ("Maths.Algèbre.Réduction",))
+
+Propriétés de réduction de matrices de rang $1$. 
+
+#answer
+
+Soit $A in M_n (KK)$ tel que $"rg" A = 1$.
+
++ On dispose de $L in M_(1 n) (KK), C in M_(n 1) (KK)$ tels que $A = C L$.
+
++ $A^2 = (tr A) A$.
+
++ $X(X - tr A)$ annule $A$.
+
++ Si $tr A != 0$, $A$ est diagonalisable.
+
++ Si $tr A = 0$, $A$ est nilpotente.
+
+*Démonstration*
+
++ Comme $"rg" A = "rg" mat(C_1, dots.c, C_n) = 1$, on dispose de $k in [|1, n|]$ tel que ${C_1, dots, C_n} subset.eq "Vect"(C_k)$ : #h(1fr)
+  $
+    A &= mat(C_1, dots.c, C_n) = C_k mat(alpha_1, dots.c, alpha_n) \
+    &= underbrace(vec(x_1, dots.v, x_n), C) underbrace(mat(alpha_1, dots.c, alpha_n), L)
+  $
+
++ $
+  A^2 = C underbrace(L C, tr A) L = (tr A) A
+  $
+
++ Évident.
+
++ Si $tr A != 0$, $A$ est annuler par $X(X - tr A)$ SARS donc $A$ est diagonalisable.
+
++ Si $tr A = 0$, $X^2$ annule $A$, donc $A$ est nilpotente.
+
+#card("suitreclin", "Suites récurrentes linéaires", ("Maths.Algèbre.Réduction", "Maths.Analyse.Suites"))
+
+Propriétés, méthodes d'étude de suites récurrentes linéaires.
+
+#answer
+
+Pour tout $(x_0, dots, x_(p-1)) in KK^p$, pour tout $n in NN$ on définit la suite $(x_n)_n in KK^NN$
+$
+  x_(n + p) = sum_(k = 0)^(p-1) a_k x_(n + k) quad (*) \
+  cal(S) = Set((x_n)_n in KK^NN, (*)) \
+  dim cal(S) = p
+$
+Où $cal(S)$ est un $KK$-ev.
+
+$
+  A = mat(augment: #(hline: 3), 0, 1;,dots.down, dots.down;,,0,1;a_0, a_1, dots.c, a_(p - 1)) = C_P^TT \
+  P = X^p - sum_(k = 0)^(p-1) a_k X^k
+$
+Ainsi si $X_n = vec(X_n, dots.v, X_(n + p))$
+$
+  A X_n = X_(n+1) \
+  X_n = A^n X_0
+$
+Si $chi_A$ est SARS
+$
+  chi_A = product_(k = 1)^p (X - lambda_k) \
+ cal(S) = "Vect" ((lambda_k^n)_(n in NN))_(k in [|1, p|])
+$
+
+*Démonstration*
+
+- Si $P = chi_C_P = chi_A$ est SARS #h(1fr)
+  $
+    X^p - sum_(k = 0)^(p-1) a_k X^k = product_(k = 1)^p (X - lambda_k)
+  $
+  $A$ est diagonalisable comme $chi_A$ est SARS
+  $
+    A = Q dmat(lambda_1, dots.down, lambda_p) Q^(-1) \
+    A^n = sum_(k = 1)^p lambda_k^p Pi_k
+  $
+  Où les $Pi_k$ sont les projecteurs issus de la décomposition en sous-espaces propres.
+  $
+    vec(x_n, dots.v, x_(n+p)) &= X_n = A^n X_0 \
+    &= sum_(k = 1)^p lambda_k^n Pi_k X_0 \
+    x_n &= sum_(k = 1)^p lambda_k^n gamma_k \
+    (x_n)_n &= sum_(k = 1)^p gamma_k (lambda_k^n)_n \
+    &in "Vect" ((lambda_k^n)_(n in NN))_(k in [|1, p|])
+  $
+  Soit $k in [|1, p|]$
+  $
+    chi_A (lambda_k) = 0 \
+    "Donc " lambda_k^p = sum_(i = 0)^(p-1) a_i lambda_k^i \ 
+    forall n in NN, space lambda_k^(p + n) = sum_(i = 0)^(p-1) a_i lambda_k^(n + i) \
+    (lambda_k^n)_(n in NN) in cal(S)
+  $
+
+- Sinon 
+  $
+    P = product_(k = 1)^q (X - lambda_k)^(m_k)
+  $
+  Posons
+  $
+    delta : func(KK^NN, KK^NN, (y_n)_n, (y_(n+1))_n)
+  $
+  Ainsi on a
+  $
+    cal(S) &= ker P(delta) \
+    &= plus.o.big_(k = 1)^q ker (delta - lambda_k)^(m_k)
+  $
+  - Montrons que $(n^d lambda_k^n)_n in ker (delta - lambda_k id)^(m_k) subset.eq ker P(delta) = cal(S)$ :
+
+    Définissons d'abord
+    $
+      Delta : func(KK[X], KK[X], P(X), P(X+1) - P(X))
+    $
+    On remarque que
+    $
+      P = sum_(k = 0)^d a_k X^k \
+    $
+    $
+      Delta (P) &= sum_(k = 0)^d a_k [(X + 1)^k - X^k] \
+      &= sum_(k = 0)^d a_k [sum_(i = 0)^(k - 1) underbrace(X^(k - 1 - i) X^i, deg <= k - 1)] \
+      deg Delta (P) &<= deg P - 1
+    $
+    Ainsi $Delta^(d+1) P = 0$.
+    
+    Alors pour tout $k in [|1, q|]$, $P in KK_(m_k - 1) [X]$
+    $
+      (delta - lambda_k id) (P(n) lambda_k^n)_n \
+      = ([P(n+1) - P(n)] lambda_k^(n+1))_n \
+      = (Delta(P)(n) lambda_k^(n+1))_n
+    $
+    Donc 
+    $
+    (delta - lambda_k)^(m_k) (P(n) lambda_k^n)_n \
+      = (Delta^(m_k)(P)(n) lambda_k^(n+1))_n \
+      = 0
+    $
+    Ainsi pour $P(X) = X^d$ avec $d in [|0, m_k - 1|]$, $
+    (n^d lambda_k^n)_n in ker (delta - lambda_k id)^(m_k) 
+    $
+
+  - Montrons que la famille $((n^d lambda_k^n)_(n in NN))_(d in [|0, m_k - 1|])$ est libre.
+
+    Notons $u_d = (n^d lambda_k^n)_(n in NN) $.
+
+    Supposons
+    $
+      sum_(i = 0)^(m_k - 1) gamma_i u_i = 0
+    $
+    Alors pour tout $n in NN$
+    $
+      underbrace((sum_(i = 0)^(m_k - 1) gamma_i n^i), P_k (n)) underbrace(lambda_k^n, != 0) = 0
+    $
+    Et $P_k$ est un polynôme qui s'annule sur $NN$ entier, et est donc nul.
+
+  Donc on dispose de bases des $ker (delta - lambda_k id)^(m_k)$
+  $
+    cal(S) = "Vect"((n^d lambda_k^n)_(n in NN))_(d in [|0, m_k - 1|] \ k in [|1, q|])
+  $
+]
+#[
+
+#import "/utils.typ": *
+#import "@preview/tiptoe:0.3.1"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#import "@preview/physica:0.9.7": *
+
+#card("ptribu", "Tribu", ("Maths.Probabilités",))
+
+Définition et propriétés de tribu.
+
+#answer
+
+Soit $Omega$ un ensemble non vide. Une tribu sur $Omega$ est un $cal(T) subset.eq cal(P)(Omega)$ tel que
+
+- $emptyset in cal(T)$.
+
+- $cal(T)$ est stable par passage au complémentaire.
+
+- $cal(T)$ est stable par union dénombrable.
+
+$(Omega, cal(T))$ est appelé espace probabilisable.
+
+On a alors
+
+- $Omega in cal(T)$.
+- $cal(T)$ est stable par union finie.
+- $cal(T)$ est stable par intersection dénombrable.
+- Pour tout $A, B in cal(T)$, $A \\ B in cal(T)$.
+
+*Démonstration*
+
+- $Omega = overline(emptyset)$
+- Pour $(A_i)_i in cal(T)^I$, #h(1fr)
+  $
+    inter.big_(i in I) A_i = overline(union.big_(i in I) overline(A_i)) in cal(T)
+  $
+- Pour $A, B in cal(T)$
+  $
+    A \\ B = A inter overline(B) in cal(T)
+  $
+
+#card("espprob", "Espace probabilisé", ("Maths.Probabilités",))
+
+Définition et propriétés des espaces probabilisés.
+
+#answer
+
+Soit $(Omega, cal(T))$ un espace probabilisable. Une probabilité sur $(Omega, cal(T))$ est la donné d'un
+$
+  PP : cal(T) -> [0, 1]
+$
+Tel que
+
+- $PP(Omega) = 1$.
+
+- Pour tout $(A_n)_n in cal(T)^NN$ deux à deux disjoints
+  $
+    PP(union.plus.big_(n in NN) A_n) = sum_(n in NN) PP(A_n)
+  $
+  Avec convergence de la somme.
+
+Dans ce cas
+
+- $PP(emptyset) = 0$. #h(1fr)
+
+- Pour tout $A subset.eq B in cal(T)$
+  $
+    PP(A) <= PP(B) \
+    PP(B \\ A) = PP(B) - PP(A)
+  $
+
+- Pour tout $A in cal(T)$
+  $
+    PP(overline(A)) = 1 - PP(A)
+  $
+
+- Pour tout $(A_n)_n in cal(T)^NN$ une suite croissante d'évenements
+  $
+    PP(union.big_(n in NN) A_n) = lim_(n -> oo) PP(A_n)
+  $
+
+- Pour tout $(A_n)_n in cal(T)^NN$ une suite décroissante d'évenements
+  $
+    PP(inter.big_(n in NN) A_n) = lim_(n -> oo) PP(A_n)
+  $
+
+*Démonstration*
+
+- On pose $(A_n)_n = (emptyset)_n$ deux à deux disjoints #h(1fr)
+  $
+    PP(emptyset) = PP(union.plus.big_(n in NN) A_n) = sum_(n in NN) PP(emptyset)
+  $
+  Qui converge d'où $PP(emptyset) = 0$.
+
+- Soit $A subset.eq B in cal(T)$, on a
+  $
+    B = A union.plus (B \\ A) \
+    PP(B) = PP(A) + PP(B \\ A)
+  $
+
+- Cas croissant :
+  $
+  B_0 = A_0 \
+  B_(n + 1) = A_(n + 1) \\ A_n
+  $
+  Ainsi
+  $
+    A_n &= union.plus.big_(k = 0)^n B_k \
+    &= union.big_(k = 0)^n A_n
+  $
+  De même
+  $
+    union.big_(n in NN) A_n &= union.plus.big_(n in NN) B_n \
+    PP (union.big_(n in NN) A_n) &= sum_(n in NN) PP(B_n) \
+    &= lim_(n -> oo) sum_(k = 0)^n PP(B_k) \
+    &= lim_(n -> oo) PP(A_n)
+  $
+
+- Cas décroissant : On pose $B_n = overline(A_n)$, suite croissante.
+
+#card("borcant", "Lemme de Borel-Cantelli", ("Maths.Probabilités",))
+
+Énoncé et démonstration du lemme de Borel-Cantelli, version faible et version forte.
+
+#answer
+
+*Borel-Cantelli faible*
+
+Pour $(A_n)_in in cal(T)^NN$ où $(Omega, cal(T), PP)$ est un ep, on pose
+$
+  S &= inter.big_(N in NN) union.big_(n >= N) A_n \
+  &= lim sup A_n
+$
+Si $sum PP(A_n)$ converge, alors $PP(S) = 0$.
+
+*Démonstration*
+
+On pose $B_N = union.big_(n >= N) A_n$, une suite décroissante d'évenements, d'où
+$
+  PP(S) &= PP(inter.big_(N in NN) B_N) \ 
+  &= lim_(N -> oo) PP(B_N) \
+  &<= lim_(N -> oo) sum_(n = N)^(+oo) PP(A_n) = 0
+$
+
+*Borel-Cantelli fort*
+
+Avec les même notations, si $sum PP(a_n)$ diverge et $(A_n)_n$ mutuellement indépendants, alors $PP(S) = 1$.
+
+*Démonstration*
+
+On a
+$
+  overline(S) = union.big_(N in NN) inter.big_(n >= N) overline(A_n)
+$
+Ainsi
+$
+  PP(S) &= 1 - PP(overline(S)) \
+  &>= 1 - sum_(N in NN) PP(inter.big_(n >= N) overline(A_n))
+$
+Or
+$
+  PP(inter.big_(n >= N) overline(A_n)) &= lim_(n -> oo) PP(inter.big_(k = N)^(n) overline(A_k)) \
+  &= lim_(n -> oo) product_(k = N)^(n) (1 - PP(A_n))
+$
+Et
+$
+  product_(k = N)^(n) (1 - PP(A_n)) &<= product_(k = N)^n e^(-PP(A_k)) \
+  &= exp(-sum_(k = N)^n PP(A_k)) \
+  &tends(n -> oo) 0
+$
+
+#card("vadp", "Variables aléatoires discrètes", ("Maths.Probabilités",))
+
+Définition de variable aléatoire discrète.
+
+#answer
+
+Soit $(Omega, cal(T), PP)$ un ep, $E != emptyset$ un ensemble. Une variable aléatoire discrète sur $Omega$ à valeur dans $E$ est une application $X : Omega -> E$ tel que
+- $X(Omega)$ est fini ou dénombrable.
+
+- $forall x in X(Omega), X^(-1){x} in cal(T)$
+
+Qui détermine une distribution de probabilité discrète sur $E$ ou $X(Omega)$.
+
+// NOTE: Indépendance d'évenements, formules de probabilité totales, de Bayes, conditionelles...
+
+#card("loibas", "Lois classique de probabilité", ("Maths.Probabilités",))
+
+Lois classique de probabilité, définition, espérance, variance et série génératrice.
+
+#answer
+
+#align(center, table(
+  stroke: none,
+  columns: 1,
+  table.hline(),
+  [*Bernoulli* ($p in [0, 1]$)],
+  table.hline(),
+  $
+    X(Omega) &= {0, 1} quad quad& PP(X = 1) &= p\ 
+    EE(X) &= p quad quad& VV(X) &= p q \
+  $,
+  $
+    G_X (t) = p t + q \
+    X ~ cal(B)(p)
+  $,
+  table.hline(),
+  [*Binomiale* ($n in NN, p in [0, 1]$)],
+  table.hline(),
+  $
+    X(Omega) &= [|0, n|] quad& PP(X = k) &= vec(n, k) p^k q^(n - k) \
+    EE(X) &= n p quad quad& VV(X) &= n p quad \
+  $,
+  $
+    G_X (t) &= (p t + q)^n \
+    X &~ cal(B)(n, p)
+  $,
+  table.hline(),
+  [*Géométrique* ($p in Ioc(0, 1)$)],
+  table.hline(),
+  $
+    X(Omega) &= NN^* quad& PP(X = k) &= q^(n - 1) p \
+    EE(X) &= 1 / p quad quad& VV(X) &= q / p^2 quad \
+  $,
+  $
+    G_X (t) = (p t) / (1 - q t) \
+    X ~ cal(G)(p)
+  $,
+  table.hline(),
+  [*Poisson* ($lambda > 0$)],
+  table.hline(),
+  $
+    X(Omega) &= NN quad& PP(X = k) &= e^(-lambda) lambda^k / (k!) \
+    EE(X) &= lambda quad quad& VV(X) &= lambda quad \
+  $,
+  $
+    G_X (t) = e^(lambda (t - 1)) \
+    X ~ cal(P) (lambda)
+  $,
+))
+
+// NOTE: lois usuels - M287, resultats connus qui existent
+// - indépendance de variable à faire ?
+
+#card("lemdescoal", "Lemme des coalitions", ("Maths.Probabilités",))
+
+Lemme des coalitions.
+
+#answer
+
+Soit $(X_1, dots, X_(n + m))$ une famille de variables aléatoires discrètes indépendantes sur $(Omega, cal(T), PP)$.
+$
+  f : product_(i = 1)^n X_i (Omega) -> E \
+  g : product_(j = n+1)^(n + m) X_j (Omega) -> F \
+$
+Alors $f(X_1, dots, X_n)$ et $g(X_(n+1), dots, X_(n+m))$ sont des variables aléatoires discrètes indépendantes.
+
+*Démonstration*
+
+Calculs pas très beau, fubini.
+
+// NOTE: Interpretation des lois usuels M289
+
+#card("esppb", "Espérance d'une variable aléatoire", ("Maths.Probabilités",))
+
+Définition et propriétés élémentaires de l'ésperance d'une variable aléatoire.
+
+#answer
+
+- Pour $X$ une variable aléatoire sur $(Omega, cal(T), PP)$ complexe, on dit que $X$ est d'ésperance finie si $(x P(X = x))_(x in X^(-1) (Omega))$ est sommable, on note $X in LL^1$ et on pose
+  $
+    EE(X) = sum_(x in X^(-1) (Omega)) x PP(X = x)
+  $
+
+- Pour $X$ à valeur dans $RR_+$ on définit l'ésperance dans $RR_+ union {+oo}$, avec $EE(X) = +oo$ si la somme diverge.
+
+- Pour $X$ à valeur dans $NN$ on a
+  $
+    EE(X) = sum_(n = 0)^(+oo) PP(X >= n)
+  $
+
+- Si $X$ est à valeur dans $NN$ et $EE(X) < +oo$, alors
+  $
+    PP(X >= n) tends(n -> oo) 0 \
+    PP(X >= n) = o_(n -> oo) (1/n)
+  $
+
+*Démonstration*
+
+- $X$ à valeur dans $NN$ #h(1fr)
+  $
+    sum_(n = 0)^(+oo) PP(X >= n) &= sum_(n = 0)^(+oo) sum_(k = n)^(+oo) PP(X = k) \
+    &= sum_(k = 0)^(+oo) sum_(n = 0)^(k) PP(X = k) \
+    &= sum_(k = 0)^(+oo) k PP(X = k) \
+    &= EE(X)
+  $
+
+- La première ligne est toujours vraie car 
+  $
+    sum_(n = 0)^(+oo) PP(X >= n) = EE(X) < +oo
+  $
+  Pour la deuxième
+  $
+    n PP(X >= n) &= n sum_(k = n)^(+oo) PP(X = k) \
+    &<= sum_(k = n)^(+oo) k PP(X = k) tends(n -> oo) 0
+  $
+  Car série reste d'une série convergente.
+
+#card("ldtpb", "Lemme de tranfert", ("Maths.Probabilités",))
+
+Énoncé et démonstration du lemme de transfert.
+
+#answer
+
+Soit $X$ variable aléatoire discrète à valeur dans $E$, et $f : E -> CC$.
+
+Alors $f(X) in LL^1$ ssi $(f(x)P(X = x))_(x in X^(-1)(Omega))$ est sommable et 
+$
+  EE(f(X)) = sum_(x in X^(-1)(Omega)) f(x) PP(X = x)
+$
+
+On en déduit que $X in LL^1$ ssi $EE(abs(X)) < +oo$.
+
+*Démonstration*
+
+Sommation par paquets.
+
+#card("propesppb", "Propriétés de l'ésperance", ("Maths.Probabilités",))
+
+Propriétés de l'ésperance.
+
+#answer
+
+On a les propriétés suivantes
+
+- Toute variable aléatoire bornée est d'ésperance finie.
+- $EE$ est linéaire : #h(1fr)
+  $
+  EE(alpha A + beta B) = alpha EE(A) + beta EE(B)
+  $
+- $EE$ est croissante :
+  $
+    X <= Y => EE(X) <= EE(Y)
+  $
+- On à l'inégalité triangulaire
+  $
+    abs(EE(X)) <= EE(abs(X))
+  $
+- Pour $X tack.t.double Y$
+  $
+    EE(X Y) = EE(X) EE(Y)
+  $
+- Pour $A in cal(T)$
+  $
+    EE(bb(1)_A) = PP(A)
+  $
+- Pour $X, Y in LL^2$
+  $
+    EE(X Y)^2 <= EE(X^2) EE(Y^2)
+  $
+  avec égalité ssi $X = alpha Y$ ps.
+
+// NOTE: Démonstrations M294 et avant
+
+#card("varvapb", "Variance d'une variable aléatoire", ("Maths.Probabilités",))
+
+Définition et propriétés élémentaires de la variance d'une variable aléatoire.
+
+#answer
+
+*Variance*
+
+Pour $X$ une variable aléatoire discrète réelle, on note $X in LL^2$ si $X^2 in LL^1$.
+
+Dans ce cas $X in LL^1$, et on définie
+$
+  VV(X) &= EE((X - EE(X))^2) \
+  &= underbrace(EE(X^2) - EE(X)^2, "Koenig-Huygens")
+$
+
+On a alors
+
+- Si $Y = a X + b$ #h(1fr)
+  $
+    VV(Y) = a^2 VV(X)
+  $
+
+- $VV(X) = 0$ ssi $X$ ps constante.
+
+*Covariance*
+
+On définit de plus la covariance de $X, Y in LL^2$
+$
+"Cov" (X, Y) \ = EE((X - EE(X))(Y - EE(Y))) \
+= EE(X Y) - EE(X) EE(Y)
+$
+Qui est une forme bilinéaire, symétrique, positive.
+
+Si $"Cov"(X, Y) = 0$ on dit que $X$ et $Y$ sont décorélées, et dans ce cas
+$
+  VV(X + Y) = VV(X) + VV(Y)
+$
+
+- Deux variables indépendantes sont décorélées.
+
+- Pour $X, Y in LL^2$
+  $
+    "Cov"(X, Y)^2 <= VV(X) VV(Y)
+  $
+
+*Démonstration*
+
+- Pour $X in LL^2$ #h(1fr)
+  $
+    EE((X - EE(X))^2) \ = EE(X^2 - 2X EE(X) + EE(X)^2) \
+   = EE(X^2) - 2 EE(X) EE(X) + EE(X^2) \
+   = EE(X^2) - EE(X)^2
+  $
+
+- Pour $Y = a X + b$ \
+  $
+    VV(Y) &= EE((a X + b - EE(a X + b))^2) \ 
+    &= EE((a X - a EE(X))^2) \
+    &= a^2 EE((X - EE(x))^2) \
+    &= a^2 VV(X)
+  $
+
+#card("inegprob", "Premières inégalités de probabilités", ("Maths.Probabilités",))
+
+Premières inégalités de probabilités.
+
+#answer
+
+*Markov*
+
+Pour $X in LL^1$ reélle, et pour tout $delta > 0$
+$
+  EE(abs(X) >= delta) <= EE(|X|) / delta
+$
+Et de plus pour $f : RR_+ -> RR_+$ strictement croissante et $X >= 0$
+$
+  PP(X >= delta) <= EE(f(X)) / f(delta)
+$
+
+*Bienaymé-Tchebychev*
+
+Soit $X in LL^2$, $m = EE(X)$ et $delta > 0$
+$
+  PP(abs(X - m) >= delta) <= VV(X) / delta^2
+$
+
+*Démonstration*
+
+Pour $X >= 0$
+$
+  X = X bb(1)_(X < delta) + X bb(1)_(X >= delta)
+$
+$
+  EE(X) &= underbrace(EE(X bb(1)_(X < delta)), >= 0) + EE(X bb(1)_(X >= delta)) \ 
+  &>= EE(delta bb(1)_(X >= delta)) = delta PP(X >= delta)
+$
+
+Et ainsi pour $X in LL^2$
+$
+  PP(abs(X - m) >= delta) &= PP((X - m)^2 >= delta^2) \
+  &<= EE((X - m)^2) / delta^2 \
+  &= VV(X) / delta^2
+$
+
+#card("loigrandnmbr", "Loi des grands nombres", ("Maths.Probabilités",))
+
+Loi faible et loi forte des grands nombres.
+
+#answer
+
+*Faible*
+
+Soit $(X_n)_(n in NN^*)$ vaiid de $LL^2$. On note $m = EE(X_1)$ et $sigma = sigma(X_1)$, pour $n in NN, S_n = sum_(k = 1)^n X_k$.
+
+Pour tout $delta > 0$
+$
+  PP(abs(S_n / n - m) >= delta) tends(n -> oo) 0
+$
+$(S_n / n)_n$ converge en probabilité vers $m$.
+
+*Forte*
+
+*Démonstration*
+
+$
+  PP(abs(S_n / n - m) >= delta) \ <= VV(S_n / n) / delta^2 = VV(sum_(k = 1)^n X_k) / (n^2 delta^2) = delta^2 / (n delta^2) \
+  tends(n -> oo) 0
+$
+
+#card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercices.Probabilités",))
+
+Démonstration probabiliste du théorème de Weierstrass.
+
+#answer
+
+Soit $f in C^0 ([0, 1], RR)$, pour $n in NN$
+$
+  B_n = sum_(k = 0)^n vec(n, k) f(k / n) X^k (1 - X)^(n - k)
+$
+Montrons que $(B_n)_n$ CVU vers $f$ sur $[0, 1]$.
+
+Soit $x in [0, 1]$, $(X_n)_(n in NN^*)$ vaiid tel que $X_k ~ cal(B)(x)$. Et $S_n = sum_(k = 1)^n X_k ~ cal(B)(n, x)$. On remarque que
+$
+  B_n (x) &= sum_(k = 0)^n f(k / n) PP(S_n = k) \ &= EE(f(S_n / n))
+$
+
+Soit $epsilon > 0$, par uniforme continuité de $f$ sur $[0,1]$, on dispose de $delta > 0$ associé.
+
+$
+  abs(B_n (x) - f(x)) = abs(EE(f(S_n / n) - f(x))) \
+$
+$
+  = abs(EE[ &underbrace((f(S_n / n) - f(x)), <= 2 norm(f)_oo) bb(1)_(abs(S_n / n - x) >= delta) \
+  + &underbrace((f(S_n / n) - f(x)), < epsilon) bb(1)_(abs(S_n / n - x) < delta) ]) \
+  <= & 2norm(f)_oo PP(abs(S_n / n - x) >= delta) + epsilon \
+  <= & 2norm(f)_oo (x(1 - x)) / (n delta^2) + epsilon
+$
 ]
 #[
 
@@ -5832,5876 +12155,5 @@ $
   lambda_0 = lambda_1 = dots.c = lambda_(d-1) = 0
 $
 D'où $d <= n$.
-
-]
-#[
-
-#import "/utils.typ": *
-#import "@preview/tiptoe:0.3.1"
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-#import "@preview/physica:0.9.7": *
-
-#card("vpep", "Valeurs propres, espaces propres", ("Maths.Algèbre.Réduction",))
-
-Définitions, caractérisation, démonstration autour des valeurs propres et des espaces propres.
-
-#answer
-
-Soit $u in cal(L)(E), lambda in KK$, il y a équivalence entre
-
-+ $exists x_0 in E\\{0}, space u(x_0) = lambda x_0$
-
-+ $ker (u - lambda id) != {0}$
-
-+ $u - lambda id in.not "GL"(E)$
-
-On dit alors que $lambda$ est une valeur propre de $u$, on appelle sous-espace propre de $u$ pour la valeur propre $lambda$
-$
-  E_lambda (u) = {x in E | u(x) = lambda x}
-$
-
-*Démonstration*
-
-$
-  exists x_0 in E \\ {0}, space u(x_0) = lambda x_0 \
-  <=> exists x_0 in ker (u - lambda id) \\ {0} \
-  <=> u - lambda id in.not "GL"(E) quad script(vec("dimension", "finie"))
-$
-
-#card("somdirsep", "Somme directe des sous-espaces propres", ("Maths.Algèbre.Réduction",))
-
-Démonstration du fait que les sous-espaces propres d'un endomorphisme sont en somme directe.
-
-#answer
-
-Soit $u in cal(L)(E)$, $lambda_1, dots, lambda_p in KK$ ses valeurs propres deux à deux distinctes.
-
-Soit $(x_1, dots, x_p) in product_(k = 1)^p E_(lambda_k) (u)$ tels que $sum_(k = 1)^p x_k = 0$.
-
-Par recurrence on montre que pour tout $P(X) in KK [X]$.
-$
-  0 = sum_(k = 1)^p P(lambda_k) x_k
-$
-
-En particulier avec $P = L_i$ pour $i in [|1,n|]$ on a
-$
-  0 = sum_(k = 1)^p L_i (lambda_k) x_k = x_i
-$
-
-On appelle spèctre de $u$
-
-$
-  "Sp"(u) = {lambda in KK | lambda "valeur propre"}
-$
-
-Qui est finit ($abs("Sp"(u)) <= n = dim E$).
-
-// TODO: Stabilité des sous espaces propres, ça sert a quoique que ce soit ? I.5)
-
-#card("polcar", "Polynôme caractèristique d'un endomorphisme", ("Maths.Algèbre.Réduction",))
-
-Définitions, propriétés élémentaires et démonstrations autours du polynôme caractèristique d'un endomorphisme.
-
-#answer
-
-*Matrices*
-
-Soit $A in M_n (KK)$, on définit le polynôme caractèristique de $A$ comme
-$
-  chi_A (X) = det(X I_n - A)
-$
-Et on a
-$
-  chi_A (X) = sum_(k = 0)^n a_k X^k
-$
-$
-  a_n &= 1 quad & "("chi_A" unitaire)" \
-  a_(n-1) &= - tr(A) \
-  a_0 &= (-1)^n det(A)
-$
-
-*Endomorphismes*
-
-Soit $u in cal(L)(E)$, $e$ base de $E$, $A = cal(M)_e (u)$. On définit
-$
-  chi_u (X) = chi_A (X)
-$
-Ceci ne dépend pas de la base $e$ choisie.
-
-De plus
-$
-  "Sp"(u) = Z_KK (chi_u)
-$
-
-*Démonstration*
-
-$
-  chi_A (X) = sum_(sigma in frak(S)_n) epsilon(sigma) underbrace(product_(j = 1)^n (X delta_(sigma(j) j) - A_(sigma(j) j)), P_sigma (X))
-$
-
-Pour tout $sigma in frak(S)_n$, $P_sigma in KK_n [X]$ donc $chi_A in KK_n [X]$. De plus
-$
-deg (P_sigma) = abs({k in [|1, n|] | sigma(k) = k}) \
-deg (P_sigma) = n <=> sigma = id
-$
-Donc $deg chi_A = n$ et $"cd" chi_A = 1$.
-
-Si $sigma != id, space deg (P_sigma) <= n - 2$, donc $a_(n-1)$ est le terme en $X^(n-1)$ de $P_id$.
-$
-  P_id = product_(j = 1)^n (X - A_(j j)) \
-  a_(n-1) = - sum_(j = 1)^n A_(j j) = - tr (A)
-$
-$
-  a_0 &= chi_A (0) = det(0 - A) \ &= (-1)^n det(A)
-$
-
-Soient $e, e'$ deux bases de $E$, $A = cal(M)_e (u), A' = cal(M)_e' (u), P = P_(e'->e)$.
-
-$
-  A' = P A P^(-1)
-$
-$
-  chi_A' (X) &= det(X I_n - A') \
-  &= det(X P I_n P^(-1) - P A P^(-1)) \
-  &= det(P) det(X I_n - A) det(P^(-1)) \
-  &= chi_A (X)
-$
-
-#card("multvp", "Multiplicités d'une valeur propre", ("Maths.Algèbre.Réduction",))
-
-Définitions des multiplicités d'une valeur propre.
-
-#answer
-
-Soit $lambda in KK$ une valeur propre de l'endomorphisme $u$.
-
-- On appelle multiplicité algébrique ($m_lambda$), ou juste multiplicité de $lambda$ sa multiplicité en tant que racine de $chi_u$.
-
-- On appelle multiplicité géométrique de $lambda$ la dimension de son espace propre.
-
-On a toujours
-
-$
-  dim E_lambda (u) <= m_lambda
-$
-
-*Démonstration*
-
-Soit $(e_1, dots, e_d)$ base de $E_lambda$ complété en $e = (e_1, dots, e_n)$ base de $E$.
-
-$
-  cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), lambda I_d, B; 0, C) \
-$
-$
-  chi_u &= chi_(cal(M)_e (u)) \
-  &= mat(delim: "|", augment: #("hline": 1, "vline": 1), (X - lambda) I_d, -B; 0, X I_(n - d) - C) \
-  &= (X-lambda)^d chi_C (X)
-$
-
-#card("proppolcaran", "Propriétés diverses du polynôme caractèristique", ("Maths.Algèbre.Réduction",))
-
-Cas particuliers de calculs du polynôme caractèristique, et lien avec les endomorphisme induit.
-
-#answer
-
-- Pour tout $T in T_n (KK)$ #h(1fr)
-
-  $
-    chi_T = product_(k = 1)^n T_(k k)
-  $
-
-- Pour tout $M = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C) in M_n (KK), A in M_r (KK), C in M_(n - r) (KK), B in M_(r,n-r) (KK)$
-
-  $
-    chi_M (X) = chi_A (X) chi_C (X)
-  $
-
-- Soient $u in cal(L)(E)$, $F$ sev stable par $u$, $tilde(u)$ l'endomorphisme induit par $u$ sur $F$, on a toujours
-  $
-    chi_tilde(u) | chi_u
-  $
-
-*Démonstration*
-
-- L'écrire.
-
-- L'écrire.
-
-- Soit $e = (e_1, dots, e_n)$ base de $F$ complété en base de $E$.
-
-  $
-  cal(M)_e (u) = mat(augment: #("hline": 1, "vline": 1), A, B; 0, C)
-  $
-
-  Avec $A = cal(M)_tilde(e) (tilde(u))$.
-
-#card("diag", "Diagonalisabilité", ("Maths.Algèbre.Réduction",))
-
-Définition et premier critère de diagonalisabilité.
-
-#answer
-
-On dit que $u in cal(L)(E)$ est diagonalisable s'il existe une base $e$ de $E$ tel que $cal(M)_e (u)$ est diagonale.
-
-Une tel base est par définition formée de vecteurs propres de $u$.
-
-De plus
-$
-  u "diagonalisable" \
-  <=> E = plus.o.big_(lambda in "Sp"(u)) E_lambda (u) \
-  <=> sum_(lambda in "Sp"(u)) dim E_lambda (u) = dim E
-$
-
-En particulier
-- Les homothéties sont diagonales dans toutes les bases
-
-- Les projecteurs sont diagonalisables :
-  $
-    underbrace(ker (p - id), E_1 (p)) plus.o underbrace(ker p, E_0 (p)) = E
-  $
-
-- Les symétries sont diagonalisables :
-  $
-    underbrace(ker (s - id), E_1 (s)) plus.o underbrace(ker s + id, E_(-1) (s)) = E
-  $
-
-#card("autcrit", "Autre critère de diagonalisabilité", ("Maths.Algèbre.Réduction",))
-
-Énoncer du critère de diagonalisabilité sur $chi_u$ et les multiplicités.
-
-#answer
-
-Soit $u in cal(L)(E)$
-$
-  u "diagonalisable" \
-  <=> cases(space chi_u "scindé", space forall lambda in "Sp"(u)\, dim E_lambda (u) = m_lambda)
-$
-Où $m_lambda$ est la multiplicité (algébrique) de $lambda$.
-
-Ainsi car $dim E_lambda (u) >= 1$ pour tout $lambda in "Sp"(u)$,
-
-$
-  chi_u "SARS" => u "diagonalisable"
-$
-
-*Démonstration*
-
-- Supposons $u$ diagonalisable, notons $e$ la base qui le diagonalise.
-
-  $
-  cal(M)_e (u) = dmat(alpha_1, dots.down, alpha_n)
-  $
-  Donc $chi_u$ est scindé
-  $
-    chi_u (X) &= product_(k = 1)^n (X- alpha_k) \
-    &= product_(k = 1)^p (X - lambda_k)^(m_lambda_k)
-  $
-  Ainsi
-  $
-    deg chi_u &= n = sum_(k = 1)^p m_lambda_k \
-    n = sum_(k=1)^p m_lambda_k &>= sum_(k = 1)^p dim E_lambda_k = n
-  $
-
-- Supposons $chi_u$ scindé et pour tout $lambda in "Sp"(u), dim E_lambda (u) = m_lambda$.
-
-  $
-    chi_u = underbrace(product_(lambda in "Sp"(u)) (X - lambda)^(m_lambda), deg = n) \
-    n = sum_(lambda in "Sp"(u)) m_lambda = sum_(lambda in "Sp"(u)) E_lambda (u)
-  $
-
-  Donc $u$ est diagonalisable.
-
-#card("trigonalisabilite", "Trigonalisabilité", ("Maths.Algèbre.Réduction",))
-
-Définition et premier critères de la trigonalisabilité.
-
-#answer
-
-Soit $u in cal(L)(E)$. On dit que $u$ est trigonalisable s'il existe une base $e = (e_1, dots, e_n)$ de $E$ tel que $cal(M)_e (u) in T_n^+ (KK)$
-
-Dans ce cas
-- $u(e_1) = t_(1 1) e_1$, donc $e_1$ est un vecteur propre de $u$.
-
-- Notons $F_k = "Vect"(e_1, dots, e_k)$ le drapeau. #h(1fr)
-  $
-  forall k in [|1, n|], u(F_k) subset F_k
-  $
-
-- $chi_u (X) = product_(k = 1)^n (X - t_(k k)) space$ scindé.
-
-La réciproque est aussi vraie : $chi_u "scindé" => u "trigonalisable"$.
-
-Si $F != {0}$ est un sev stable par $u$ et $u$ trigonalisable, alors $tilde(u)$ (induit par $u$ sur $F$) est trigonalisable (car $chi_tilde(u) | chi_u$ scindé).
-
-Si $KK$ est algébriquement clos, toute matrice ou endomorphisme est trigonalisable.
-
-*Démonstration*
-
-Par récurrence sur $n = dim E$.
-
-Toute matrice de taille $1$ est supérieure.
-
-Supposons pour un $n in NN$
-$
-  forall A in M_n (KK), \ chi_A "scindé" => A "trigonalisable"
-$
-
-Soit $A in M_(n+1) (KK)$ tel que $chi_A$ scindé.
-
-$chi_A$ a au moins une racine, donc $A$ admet une valeur propre $lambda$.
-
-On dispose de $X_0 in KK^(n+1)$ tel que 
-$
-A X_0 = lambda X_0
-$
-Ainsi on peut construire la base $e' = (X_0, dots, X_n)$ de $KK^(n+1)$. Notons $P = P_("can" -> e')$.
-
-$
-  A = P mat(augment: #("vline": 1, "hline": 1), lambda, *, dots.c, *; 0; dots.v,,tilde(A);0) P^(-1)
-$
-
-Avec $tilde(A) in M_n (KK)$ et $chi_A = chi_tilde(A) (X - lambda)$ d'où $chi_tilde(A)$ scindé.
-
-Par hypothèse de récurrence $tilde(A)$ est trigonalisable et on peut donc construire $P_0 in "GL"_(n+1) (KK)$ tel que
-
-$
-  A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
-$
-
-#card("carnilp", "Caractèrisation des endomorphismes nilpotents", ("Maths.Algèbre.Réduction",))
-
-Caractèrisation des endomorphisme nilpotents.
-
-#answer
-
-Soit $u in cal(L)(E)$, il y a équivalence entre
-
-+ $u$ nilpotent
-
-+ $u$ trigonalisable en une matrice strictement supérieure.
-
-+ $u$ trigonalisable et $"Sp"(u) = {0}$
-
-+ $chi_u = X^n$
-
-*Démonstration*
-
-- (4 $=>$ 3) $chi_u = X^n$ est scindé donc $u$ est trigonalisable et $"Sp"(u) = Z(X^n) = {0}$.
-
-- (3 $<=>$ 2) Évident.
-
-- (3 $=>$ 4) On dispose de $e$ base de $E$ tel que
-
-  $
-    cal(M)_e (u) = mat(0,,*;,dots.down;,,0) \
-    "Donc" space chi_u = X^n
-  $
-
-- (2 $=>$ 1) On dispose de $e$ base de $E$ tel que $cal(M)_e (u) in T_n^(++) (KK)$, notons $F_k = "Vect"(e_1, dots, e_k)$.
-
-  $
-    u(F_k) subset.eq u(F_(k-1)) \
-    u^n (F_n = E) subset.eq F_0 = { 0 } \
-    u^n = 0
-  $
-
-- (1 $=>$ 2) $u$ est nilpotent d'indice $d$.
-
-  $
-    {0} subset.neq ker u subset.neq dots.c subset.neq ker u^d = E
-  $
-
-  Construisons une base adaptée
-
-  $
-    (overbrace(underbrace(e_1\, dots\, e_(i_1), "base de" ker u)\, dots\, e_(i_2), "base de" ker u^2), dots, e_(i_d))
-  $
-
-  Pour tout $x in ker u^k$ :
-  $
-  u(x) in ker u^(k-1)
-  $
-  Ainsi pour tout $k in [|1, n|]$ si $i_j + 1 <= k <= i_(j+1)$
-  $
-    e_k in ker u^j \
-    u(e_k) in ker u^(j-1) \
-    u(e_k) in "Vect"(e_1, dots, e_i_(j-1))
-  $
-
-#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractèristique", ("Maths.Algèbre.Réduction",))
-
-Lien entre racines du polynôme minimal et celles du polynôme caractèristique.
-
-#answer
-
-Soit $u in cal(L)(E)$, $P in KK[X]$ annulateur de $u$.
-
-$
-  "Sp"(u) subset.eq Z_KK (P) \
-  Z(chi_u) = "Sp"(u) = Z_KK (Pi_u)
-$
-
-*Démonstration*
-
-- Soit $lambda in "Sp"(u)$ et $x in E_lambda (u) \\ {0}$ : #h(1fr)
-  $
-    P(X) = sum_(k = 0)^d a_k X^k \
-  $
-  $
-    P(u)(x) &= sum_(k = 0)^d u^k (x) = sum_(k = 0)^d lambda^k x \
-    &= P(lambda) x = 0
-  $
-  Or $x != 0$, donc $P(lambda) = 0$.
-
-- $Pi_u$ annule $u$ d'où $"Sp"(u) subset.eq Z_KK (Pi_u)$
-
-- Soit $lambda in KK$ racine de $Pi_u$
-
-  $
-    Pi_u = (X - lambda) Q(X) \
-    0 = (u - lambda id) compose Q(u)
-  $
-
-  Donc $im Q(u) subset.eq ker (u - lambda id)$.
-
-  Mais $Q(u) != 0$ car $Pi_u$ minimal, donc 
-  $
-  dim (im Q(u)) >= 1 \
-  im Q(u) subset.eq ker (u - lambda id) = E_lambda (u) \
-  lambda in "Sp"(u)
-  $
-
-#card("tdn", "Théorème des noyaux", ("Maths.Algèbre.Réduction",))
-
-Énoncé et démonstrations du théorème des noyaux.
-
-#answer
-
-Soit $u in cal(L)(E)$ ($KK$-ev de dimension finie), $P in KK[X]$.
-
-Si $P = product_(k = 1)^N P_k$ avec $P_1, dots, P_N$ deux à deux premiers entre eux, alors
-$
-  ker P(u) = plus.o.big_(k = 1)^N ker P_k (u)
-$
-
-Si de plus $P$ annule $u$ alors
-$
-  E = ker P(u) = plus.o.big_(k = 1)^N ker P_k (u) \
-  cal(M)_e (u) = dmat(A_1,dots.down,A_N)
-$
-Où $e$ est la base construite par concaténation de bases des $ker P_k (u)$.
-
-*Démonstration*
-
-Par récurrence sur $N$.
-
-Pour $P = P_1 P_2$ avec $P_1 and P_2 = 1$ :
-$
-  P_1 V_1 + P_2 V_2 = 1 \
-  P_1 (u) compose V_1 (u) + P_2 (u) compose V_2 (u) = id quad (*)
-$
-En évaluant on trouve 
-$
-ker P_1 (u) inter ker P_2 (u) = {0}
-$
-De plus 
-$
-P_1 (u) compose P_2 (u) = P_2 (u) compose P_1 (u) = P(u) \
-"Donc" space cases(space ker P_1 (u) subset.eq ker P(u), space ker P_2 (u) subset.eq ker P(u)) \
-ker P_1 (u) plus.o ker P_2 (u) subset.eq ker P (u)
-$
-
-Soit $x in ker P(u)$, par $(*)$ on a
-$
-  x = underbrace(V_1 (u) compose P_1 (u) (x), x_2) + underbrace(V_2 (u) compose P_2 (u) (x), x_1)
-$
-$
-  P_1 (u) (x_1) &= (P_1 V_2 P_2) (u) (x) \
-  &= (V_1 P) (u) (x) \
-  &= 0 \
-  P_2 (u) (x_2) &= (P_2 V_1 P_1) (u) (x) \
-  &= (V_2 P) (u) (x) \
-  &= 0 \
-$
-$
-x = underbrace(x_1, in ker P_1 (u)) + underbrace(x_2, in ker P_2 (u))
-$
-D'où $ker P(u) = ker P_1 (u) plus.o ker P_2 (u)$.
-
-Supposons maintenant le résultat pour tout $P_1, dots, P_N$ respectant les conditions.
-
-Soient $P = P_1 dots.c P_(N+1) in KK[X]$ avec $P_1, dots, P_(N+1)$ deux à deux premiers entre eux.
-
-Donc $Q = P_1 P_2 dots.c P_N$ et $P_(N+1)$ sont premiers entre eux.
-
-Ainsi 
-$
-ker P (u) &= ker (P_(N+1) Q) (u) \
-&= underbrace(ker Q(u) plus.o ker P_(N+1) (u), "cas" N = 2) \
-&= underbrace(plus.o.big_(k = 1)^N ker P_k (u) plus.o ker P_(N+1) (u), "H.R.") \
-&= plus.o.big_(k = 1)^(N+1) ker P_k (u)
-$
-
-#card("projchelou", "Démonstration annexe du théorème des noyaux", ("Maths.Algèbre.Réduction",))
-
-Démonstration secondaire du théorème des noyaux dans le cas d'un polynôme annulateur.
-
-#answer
-
-Soit $u in cal(L)(E)$.
-
-On suppose $P = product_(k = 1)^N P_k$ annulateur de $u$, $P_1, dots, P_N$ premiers entre eux deux à deux. On pose
-$
-  Q_k = product_(i = 1 \ i != k)^N P_i
-$
-Qui sont premiers dans leur ensemble.
-$
-  sum_(k = 1)^N V_k Q_k = 1 \
-  sum_(k = 1)^N underbrace(V_k (u) compose Q_k (u), Pi_k) = id quad (1)\
-$
-On remarque que
-$
-  P_k (u) compose Pi_k = (V_k P_k Q_k) (u) = (V_k P) (u) = 0 \
-  "Donc" space im Pi_k subset.eq ker P_k (u)
-$
-Et pour $k != i, P | Q_i Q_k$ d'où
-$
-  P | (V_k P_k) (V_i P_i) \
-  Pi_i compose Pi_k = 0
-$
-Donc par $(1)$
-$
-sum_(i = 1)^N Pi_k compose Pi_i = Pi_k compose Pi_k = Pi_k
-$
-Donc les $Pi_k$ sont des projecteurs.
-
-Soit $x in ker P_k (u)$, pour tout $i != k$, $Pi_i (x) = 0$. Par $(1)$
-$
-  x = Pi_k (x) \
-  x in im Pi_k
-$
-Ainsi
-$
-  ker P_k (u) = im Pi_k  \
-  ker P_i (u) subset.eq ker Pi_k
-$
-Les $Pi_k$ projettent sur $ker P_k$.
-
-*Théorème des noyaux*
-
-Soient $(x_1, dots, x_N) in product_(k = 1)^N ker P_k (u)$ tels que $sum_(k = 1)^N x_k = 0$.
-
-Pour tout $i in [|1, N|]$
-$
-  Pi_i (sum_(k = 1)^N x_k) = x_i = 0
-$
-Donc les $ker P_k (u) = im Pi_k$ sont en somme directe.
-
-Soit $x in ker P(u) = E$, par $(1)$
-$
-  x = sum_(k = 1)^N Pi_k (x) in sum_(k = 1)^N ker P_k (u)
-$
-D'où
-$
-  E = plus.o.big_(k = 1)^N ker P_k (u)
-$
-Et de plus
-$
-  im Pi_k &= ker P_k (u) \
-  ker Pi_k &= plus.o.big_(i = 1 \ i != k)^N ker P_i (u) \
-  Pi_k &in KK[u]
-$
-
-#card("crtidiag", "Critère de Diagonalisabilité", ("Maths.Algèbre.Réduction",))
-
-Démonstration d'une CNS de diagonalisabilité.
-
-#answer
-
-Soit $u in cal(L)(E)$, il y a équivalence entre
-
-+ $u$ diagonalisable.
-
-+ $u$ annule un polynôme SARS.
-
-+ $Pi_u$ est SARS
-
-*Démonstration*
-
-- (2 $<=>$ 3) #h(1fr)
-  $
-    exists P in KK[X], space P "SARS et" P(u) = 0 \
-    <=> exists P in KK[X], space P "SARS et" Pi_u | P \ 
-    <=> Pi_u "SARS"
-  $
-
-- (3 $=>$ 1) $Pi_u$ SARS donc
-  $
-    Pi_u = product_(lambda in "Sp"(u))^N (X - lambda)
-  $
-  Par le TDN
-  $
-    E &= plus.o.big_(lambda in "Sp"(u)) ker (u - lambda id) \
-    &= plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
-  $
-  Donc $u$ diagonalisable.
-
-- (1 $=>$ 3) $u$ diagonalisable
-  $
-    cal(M)_e (u) &= underbrace(inline(dmat(lambda_1, dots.down, lambda_1, dots.down, lambda_n, dots.down, lambda_n)), M) \
-    P(X) &= product_(k = 1)^N (X - lambda_k) space "SARS" \
-    P(M) &= inline(dmat(P(lambda_1), dots.down, P(lambda_1), dots.down, P(lambda_n), dots.down, P(lambda_n))) \
-    &= 0
-  $
-  Donc $Pi_u | P$ SARS.
-
-#card("diaginduit", "Diagonalisabilité d'un endomorphisme induit", ("Maths.Algèbre.Réduction",))
-
-Diagonalisabilité d'un endomorphisme induit.
-
-#answer
-
-Soit $u in cal(L)(E)$, $F$ un sev stable par $u$.
-
-Notons $tilde(u)$ l'endomorphisme induit par $u$ sur $F$.
-
-- $Pi_tilde(u) | Pi_u$
-
-- Si $u$ diagonalisable, alors $tilde(u)$ aussi.
-
-*Démonstration*
-
-- $Pi_u (tilde(u)) = 0$ donc $Pi_tilde(u) | Pi_u$.
-
-- Si $u$ diagonalisable, $Pi_u$ est SARS, donc $Pi_tilde(u)$ aussi (car divise) donc $tilde(u)$ est diagonalisable.
-
-// TODO: M127 Dénombrement
-
-#card("seceng", "Sous-espaces cycliques", ("Maths.Algèbre.Réduction",))
-
-Définition de sous-espace cyclique et base associé.
-
-#answer
-
-Pour un $u in cal(L)(E)$ et $x_0 in E$ on appelle sous-espace cyclique engendré par $x_0$ (pour $u$)
-$
-  F_(x_0) = "Vect"(u^k (x_0))_(k in NN)
-$
-Cet espace admet comme base
-$
-  (x_0, u(x_0), dots, u^(d - 1) (x_0))
-$
-Où $d = deg Pi_(u,x_0)$ le polynôme minimal ponctuel, l'unique polynôme unitaire minimal tel que
-$
-  "Pour " theta_(x_0) : func(KK[X], E, P, P(u) (x_0)) \ \
-  ker theta_(x_0) = Pi_(u,x_0) KK[X]
-$
-
-*Démonstration*
-
-$theta_(x_0) in cal(L)(E)$, donc $ker theta_(x_0)$ est un sev, donc un sous-groupe de $(KK[X], +)$.
-
-Soit $P in ker theta_x_0, Q in KK[X]$
-$
-  theta_x_0 (Q P) &= Q(u) (P(u) (x_0)) \ &= Q(u) (0) = 0
-$
-Donc $ker theta_x_0$ est un idéal de $KK[X]$, qui est principal d'où $Pi_(u,x_0)$ existe. Notons $d_x_0 = deg Pi_(u,x_0)$.
-
-Par existance et unicité de la division euclidienne on a
-$
-  KK[X] = KK_(d_x_0 - 1) [X] plus.o ker theta_x_0
-$
-Donc $evaluated(theta_x_0)_(KK_(d_x_0 -1) [X])$ isomorphisme de $KK_(d_x_0 - 1) [X] -> im theta_x_0 = F_x_0$.
-
-Donc $F_x_0$ a pour base
-$
-  (theta_x_0 (1), theta_x_0 (X), dots, theta_x_0 (X^(d_x_0 - 1))) \
-  = (x_0, u(x_0), dots, u^(d - 1) (x_0))
-$
-
-#card("endocycl", "Endomorphismes cycliques", ("Maths.Algèbre.Réduction",))
-
-Définition, propriétés, démonstration autour des endomorphismes cycliques.
-
-#answer
-
-Soit $u in cal(L)(E)$, on dit que $u$ est cyclique si l'une des conditions équivalentes suivantes est vérifiée
-
-+ $exists x_0 in E, space "Vect"(u^k (x_0))_(k in NN) = E$.
-
-+ $exists x_0 in E, space (x_0, u(x_0), dots, u^(n-1) (x_0))$ base de $E$.
-
-*Propriétés en vrac (sans démonstration)*
-
-- Si $u$ cyclique, tout endomorphisme induit l'est aussi.
-
-- Si $u$ cyclique, $u$ admet un nombre fini de sev stables.
-// TODO: Reprendre démo M140
-- Si $KK$ est infini et $u$ admet un nombre fini de sev stables, alors $u$ est cyclique.
-
-*Démonstration équivalence*
-
-- (2 $=>$ 1) Évident.
-
-- (1 $=>$ 2) $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ est les sous-espace engendré par $x_0$ pour $u$, donc
-
-  $
-    (x_0, u(x_0), dots, u^(d-1) (x_0))
-  $
-  Où $d = deg Pi_(u,x_0)$ en est une base.
-
-  Or $F_x_0 = E$ par hypothèse, donc $dim F_x_0 = n$ et $d = n$.
-
-#card("cycmat", "Vision matricielle de la cyclicité", ("Maths.Algèbre.Réduction",))
-
-Lien entre endomorphisme cyclique et matrices de compagnon.
-
-#answer
-
-Soit $u in cal(L)(E)$, $u$ est cyclique ss'il existe une base $e$ de $E$ et $P$ unitaire de degré $n$ tel que $cal(M)_e (u) = C_P$.
-
-Dans ce cas $Pi_u = P$.
-
-*Démonstration*
-
-Soit $u in cal(L)(E)$ cyclique pour $x_0 in E$. Notons $e = (x_0, u(x_0), dots, u^(n-1) (x_0))$ la base associé.
-
-On dispose alors de $a_0, dots, a_(n-1) in KK$ tels que
-$
-  u^n (x_0) - sum_(k = 0)^(n-1) a_k u^k (x_0) = 0 \
-  P = X^n - sum_(k = 0)^(n - 1) a_k X^k \
-  P(u) (x_0) = 0
-$
-Et alors
-$
-  cal(M)_e (u) &= 
-    mat(delim: #none, #{
-      diagram(
-      spacing: 0pt,
-      cell-size: 0pt,
-      $
-        node(enclose: #("tl", "bl"), lr(size: #800%, \())
-        node(enclose: #("tr", "br"), lr(size: #800%, \))) \
-        && u(x_0) edge("rr", "..") & #h(0.6em) & u^n (x_0) & \
-        x_0 & node(name: "tl") & 0 edge("ddr", "..") && a_0 & node(name: "tr") \
-        u(x_0) edge("dd", "..") && 1 edge("ddr", "..") && a_1 edge("dd", "..") & \
-        &&& 0 && \
-        u^(n-1) (x_0) & node(name: "bl") && 1 & a_(n-1) & node(name: "br") \
-      $
-    )
-  }) \
-  &= C_P
-$
-
-Réciproquement :
-
-Soit $u in cal(L)(E)$ et $e = (e_1, dots, e_n)$ base de $E$ tel que
-
-$
-  cal(M)_e (u) = mat(augment: #3,
-    0,,,a_0;
-    1,dots.down,,a_1;
-    ,dots.down,0, dots.v;
-    ,,1, a_(n-1)
-  )
-$
-
-Alors pour $k in [|1, n-1|]$
-$
-  u(e_k) = u(e_(k+1)) \
-  "Donc" e = (e_1, u(e_1), dots, u^(n-1)(e_1))
-$
-Donc $u$ est cyclique.
-
-Ainsi :
-$
-  P(u) (x_0) = u^n (x_0) - underbrace(sum_(k = 0)^(n-1) a_k u^k (x_0), u^n (x_0)) = 0 \
-$
-Donc pour tout $m in [|0,n-1|]$
-$
-  P(u)  (u^m (x_0)) = u^m (P(u) (x_0)) = 0
-$
-Ainsi $P(u)$ annule une base, d'où $Pi_u | P$.
-
-Or $deg Pi_(u,x_0) = n$ car $u$ cyclique et $Pi_(u,x_0) | Pi_u$, donc 
-$
-n <= deg Pi_u <= deg P = n
-$
-Et comme $Pi_u$ et $P$ sont unitaires
-$
-  Pi_u = P
-$
-
-#card("matcomp", "Matrice compagnon", ("Maths.Algèbre.Réduction",))
-
-Définition de matrice compagnon.
-
-#answer
-
-Soit $P = X^d sum_(k = 0)^(d-1) a_k X^k in KK[X]$ un polynôme unitaire. On appelle matrice compagnon de $P$ la matrice
-$
-  C_P = mat(augment: #3,
-    0,,,-a_0;
-    1,dots.down,,-a_1;
-    ,dots.down,0, dots.v;
-    ,,1, -a_(d-1)
-  )
-$
-Ainsi (en développant selon la dernière colonne)
-$
-  chi_C_P (X) = P(X)
-$
-
-#card("exx0tqpiux0egpiu", "Exercice : vecteur dont le polynôme minimal ponctuel est le polynôme minimal", ("Maths.Exercice.Réduction",))
-
-Soit $u in cal(L)(E)$, montrer qu'il existe $x in E$ tel que $Pi_(u,x) = Pi_u$.
-
-En déduire que $u$ cyclique ssi $deg Pi_u = n$.
-
-#answer
-
-Soit $u in cal(L)(e)$.
-
-On pose
-$
-  Pi_u = product_(k = 1)^N P_k^d_k
-$
-Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
-
-*Démonstration $KK$ quelconque*
-
-Par le TDN
-$
-  E = plus.o.big_(k = 1)^N ker underbrace(P_k^d_k (u), F_k) \
-  ker P_k^(d_k - 1) (u) subset.eq ker P_k^d_k (u) = F_k
-$
-
-Supposons par l'absurde qu'on ai égalité pour un $k$.
-$
-  E &= plus.o.big_(j != k) ker P_j^d_j (u) plus.o ker P_k^(d_k - 1) (u) \
-  &= ker underbrace(( P_k^(d_k - 1) product_(j != k) P_j^d_j), "ne peut annuler" u \ "car" Pi_u "minimal") (u)
-$
-Donc $ker P_k^(d_k - 1) (u) subset.neq ker P_k^d_k (u)$.
-
-Pour tout $k in [|1, N|]$ on dispose de 
-$
-x_k in F_k \\ ker P_k^(d_k - 1) (u) \
-"Donc" cases(space P_k^d_k (u) (x_k) = 0, space P_k^(d_k - 1) (x_k) != 0) \
-"Donc" cases(space Pi_(u,x_k) | P_k^d_k, space Pi_(u,x_k) divides.not P_k^(d_k - 1) ) \
-"Donc" underbrace(Pi_(u, x_k) = P_k^(d_k), "car" P_k "irréductible")
-$
-On pose $x = sum_(k = 1)^N x_k$, alors pour tout $P in Pi_(u,x) KK[X]$
-$
-  P(u) (x) = 0 \
-  <=> sum_(k = 1)^N P(u) (x_k) = 0 \
-  underbrace(<=> forall k in [|1, N|]\, space P(u) (x_k) = 0, "somme directe") \
-  <=> forall k in [|1, N|], space P_k^d_k = Pi_(u,x_k) | P \
-  <=> product_(k = 1)^N P_k^d_k = Pi_u | P \
-  <=> P in Pi_u KK[X]
-$
-Donc $Pi_u | Pi_(u,x) | Pi_u$.
-
-*Démonstration $KK$ infini*
-
-Pour tout $x in E$, $Pi_(u,x) | Pi_u$ donc
-$
-  Pi_(u,x) in D = Set("Diviseurs unitaires de" Pi_u) \
-  abs(D) = product_(k = 1)^N (d_k + 1) \
-  D' = Set(Pi_(u,y), y in E) subset.eq D
-$
-Et $x in ker Pi_(u,x) (u)$ d'où
-$
-  E &= union.big_(x in E) ker Pi_(u,x) (u) \
-  &= underbrace(union.big_(P in D') ker P(u), "union finie de sev")
-$
-Donc on dipose de $Q = Pi_(u,y) in D'$ tel que (cf. exercice union de sev dans un corps infini)
-$
-  E = ker Q(u)
-$
-Par minimalité de $Pi_u$, $Pi_(u,y) = Pi_u$.
-
-*CNS de cyclicité*
-
-On sait que si $u$ cyclique, alors on dispose de $e$ base de $E$ tel que 
-$
-cal(M)_e (u) = C_(Pi_u)
-$
-Avec $Pi_u in KK[X]$ unitaire de degré $n$.
-
-Supposons maintenant que $deg Pi_u = n$. 
-
-On dispose de $x_0 in E$ tel que $Pi_(u,x_0) = Pi_u$, d'où 
-$
-deg Pi_(u,x_0) = n = dim underbrace("Vect"(u^k (x_0))_(k in NN), F_x_0)
-$ 
-D'où $F_x_0 = E$ et $u$ cyclique.
-
-#card("cayleyhamilton", "Théorème de Cayley-Hamilton", ("Maths.Algèbre.Réduction",))
-
-Énoncé et démonstration du théorème de Cayley-Hamilton.
-
-#answer
-
-Soit $u in cal(L)(E)$, on a $chi_u (u) = 0$ c'est à dire $Pi_u | chi_u$.
-
-*Démonstration*
-
-Soit $x_0 in E\\{0}$, on veut montrer $chi_u (u) (x_0) = 0$.
-
-On pose $F_x_0 = "Vect"(u^k (x_0))_(k in NN)$ sev de $E$ stable par $u$.
-
-Soit $tilde(u)$ endomorphisme induit par $u$ sur $F_x_0$, qui est donc cyclique.
-
-Soit $d in NN$ tel que 
-$
-e_0 = (x_0, u(x_0), dots, u^(d-1) (x_0))
-$
-Soit une base de $F_x_0$.
-$
-  cal(M)_e_0 (tilde(u)) = C_P = mat(augment: #3, 0,,,a_0;1,dots.down,,dots.v;,dots.down,0,a_(n-2);,,1,a_(n-1))
-$
-Où 
-$
-  tilde(u)^d (x_0) = u^d (x_0) = sum_(k = 0)^(d-1) a_k u^k (x_0) \
-  P(X) = X^d - sum_(k = 0)^(d-1) a_k X^k \
-  P(u)(x_0) = 0
-$
-
-Or $P = chi_C_P = chi_tilde(u) | chi_u$ donc
-$
-  chi_u (u) (x_0) = Q(u) (P(u) (x_0)) = 0
-$
-
-#card("expropcycl", "Exercice : propriétés des endomorphismes cycliques", ("Maths.Exercice.Réduction",))
-
-+ Soit $u in cal(L)(E)$ diagonalisable, CNS pour $u$ cyclique.
-
-+ Soit $u in cal(L)(E)$ nilpotent, CNS pour $u$ cyclique.
-
-+ Soit $u in cal(L)(E)$ cyclique, montrer que pour tout $lambda in "Sp"(u)$, $dim E_lambda (u) = 1$.
-
-+ Soit $u in cal(L)(E)$ cyclique, montrer que $"Com" u = KK[u]$.
-
-#answer
-
-+ Soit $u in cal(L)(E)$ diagonalisable.
-
-  $
-    Pi_u = product_(k = 1)^N (X - lambda_k)
-  $
-  Où les $lambda_1, dots, lambda_N$ sont deux à deux distincts ($Pi_u$ SARS).
-
-  $u$ cyclique ssi $N = n = dim E$.
-
-  - Si $u$ cyclique, $deg Pi_u = n = N$.
-
-  - Si $deg Pi_u = n$
-
-    Soit $e = (e_1, dots, e_n)$ base de vecteurs propres associés aux $lambda_1, dots, lambda_n$.
-
-    Posons $x = sum_(k = 1)^n e_k$.
-
-    $
-    cal(M)_e (x_0, u(x_0), dots, u^(n-1) (x_0)) \
-    = mat(1, lambda_1, lambda_1^2, dots.c, lambda_1^n; dots.v, dots.v, dots.v, dots.down, dots.v; 1, lambda_n, lambda_n^2, dots.c, lambda_n^n)
-    $
-
-    Matrice de Vandermonde inversible, d'où $(x_0, u(x_0), dots, u^(n-1) (x_0))$ base.
-
-+ Soit $u in cal(L)(E)$ nilpotent d'indice $q$.
-
-  $
-    Pi_u = X^q
-  $
-
-  - Si $u$ cyclique, alors $deg Pi_u = q = n$.
-
-  - Si $q = n$, $u^(n - 1) != 0$, donc on dispose de $x_0 in E$ tel que $u^(n - 1) (x_0) != 0$.
-
-    Et $(x_0, u(x_0), dots, u^(n-1) (x_0))$ est libre et donc une base.
-
-    (En évaluant $u^i (sum_(k = 0)^(n-1) lambda_k u^k (x_0))$).
-
-+ Soit $u in cal(L)(E)$ cyclique, donc on dispose de $e$ base de $E$ tel que pour $lambda in "Sp"(u)$
-
-  $
-    cal(M)_e (u - lambda id) = mat(augment: #("hline": 1, "vline": 4), -lambda,,,,a_0;1,-lambda,,,a_2;,1,dots.down,,dots.v;,,dots.down,-lambda,a_(n-2);,,,1,a_(n-1) - lambda)
-  $
-  Dont le quadrant inférieur gauche est une sous-matrice inversible de taille $n - 1$.
-  $
-    "rg" (u - lambda id) >= n - 1 \
-    1 <= dim E_lambda (u) = dim ker (u - lambda id) <= 1
-  $
-
-+ Soit $u in cal(L)(E)$ cyclique. On dispose de $x_0 in E$ tel que
-  $
-    (x_0, u(x_0), dots, u^(n-1) (x_0))
-  $
-  Est une base.
-
-  On a déjà $KK[u] subset.eq "Com"(u)$. 
-
-  Soit $v in "Com"(u)$. On dispose de $alpha_0, dots, alpha_(n-1) in KK$ tels que
-  $
-    v(x_0) = sum_(k = 0)^(n-1) alpha_k u^k (x_0)
-  $
-  Soit $m in [|0, n - 1|]$
-  $
-    v(u^m (x_0)) &= u^m (v(x_0)) \ 
-    &= u^m (sum_(k = 0)^(n - 1) alpha_k u^k (x_0)) \
-    &= sum_(k = 0)^(n - 1) alpha_k u^k (u^m (x_0))
-  $
-  Donc $v$ et $sum_(k = 0)^(n-1) alpha_k u^k$ coincident sur une base, d'où $v in KK[u]$.
-
-#card("polmintz", "Critère de trigonalisabilité sur le polynôme minimal", ("Maths.Algèbre.Réduction",))
-
-Soit $u in cal(L)(E)$, CNS de trigonalisabilité sur $Pi_u$.
-
-#answer
-
-Soit $u in cal(L)(E)$, $u$ est trigonalisable ssi $Pi_u$ scindé.
-
-*Démonstration*
-
-- Supposons $u$ trigonalisable, donc $chi_u$ est scindé or $Pi_u | chi_u$ donc $Pi_u$ est scindé.
-
-- Supposons $Pi_u$ scindé.
-  $
-    Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k)
-  $
-  Avec $lambda_1, dots, lambda_N in KK$ deux à deux distincts.
-
-  Par le TDN
-  $
-    E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), F_k)
-  $
-  Pour $k$ fixé, $F_k$ est stable par $u$ et $u - lambda id$, posons $u_k$ induit par $u$ sur $F_k$.
-
-  $u_k - lambda_k id$ est nilpotent, donc on dispose de $e_k$ base de $F_k$ tel que
-  $
-    cal(M)_(e_k) (u_k - lambda_k id) = mat(0,,*;,dots.down;,,0) \
-    cal(M)_(e_k) (u_k) = A_k = mat(lambda_k,,*;,dots.down;,,lambda_k)
-  $
-
-  Notons $e$ la base concatenant les bases $e_1, dots, e_N$.
-  $
-    cal(M)_e (u) &= dmat(A_1,dots.down,A_N) \
-  $
-  Où les $A_1, dots A_N$ sont triangulaires.
-
-- (Autre méthode) Par récurrence sur $n$.
-
-  Cas $n = 1$ évident.
-
-  Supposons le résultat pour $n in NN$. Soit $u in cal(L)(E)$ où $dim E = n + 1$ et $Pi_u$ scindé.
-
-  $Pi_u$ admet au moins une racine $lambda$, on dispose donc de $x in E$ vecteur propre associé.
-
-  On forme la base $(lambda, e_1, dots, e_(n-1))$ de $E$.
-  $
-    cal(M)_e (u) = A = mat(augment: #("hline": 1, "vline": 1), lambda,*,dots.c,*;0;dots.v,,A_1;0)
-  $
-  Or
-  $
-    0 &= cal(M)_e (Pi_u (u)) = Pi_u (A) \
-    &= mat(augment: #("hline": 1, "vline": 1), Pi_u (lambda),*,dots.c,*;0;dots.v,,Pi_u (A_1);0)
-  $
-  D'où $Pi_u (A_1) = 0$ donc $Pi_(A_1) | Pi_u$ et $Pi_(A_1)$ scindé, donc par hypothèse de récurrence $A_1$ est trigonalisable.
-
-#card("exchiudivpiun", "Exercice : polynôme caractèristique divisant une puissance du polynôme minimal", ("Maths.Exercice.Réduction",))
-
-Soit $u in cal(L)(E)$, $n = dim E$. Montrer que $chi_u | Pi_u^n$
-
-#answer
-
-Par récurrence forte sur $n$.
-
-Cas $n = 1$ évident.
-
-Supposons le résultat pour tout $m in [|1, n-1|]$.
-
-Si $u$ est cyclique, $Pi_u = chi_u$ d'où $chi_u | Pi_u^n$.
-
-Sinon on prend $x_0 in E\\{0}$, $k = deg Pi_(u,x_0) < n$ donc $(x_0, u(x_0), dots, u^(k-1) (x_0))$ est libre, on la complète en une base $e$ de $E$.
-$
-  cal(M)_e (u) = mat(augment: #(hline: 1, vline: 1), C_Pi_(u,x_0), *; 0, A)
-$
-Donc
-$
-chi_u = underbrace(chi_C_Pi_(u,x_0), Pi_(u,x_0)) chi_A \
-chi_u | Pi_u chi_A
-$
-Or par hypothèse de récurrence $chi_A | Pi_A^(n - k)$ et
-$
-  0 = cal(M)_e (Pi_u (u)) = mat(augment: #(vline: 1, hline: 1), Pi_u (C_Pi_(u,x_0)), *;0,Pi_u (A)) \
-  "Donc" Pi_A | Pi_u
-$
-Ainsi
-$
-  chi_u | Pi_u Pi_A^(n-k) | Pi_u^(n - k + 1) | Pi_u^n
-$
-
-#card("decompsec", "Décomposition en sous espaces caractèristiques", ("Maths.Algèbre.Réduction",))
-
-Définition et démonstration de la décomposition en sous-espaces caractèristiques.
-
-#answer
-
-Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, l'espace $E$ se décompose en somme directe de sev stables par $u$ :
-$
-  E = plus.o.big_(k = 1)^N F_k
-$
-Où pour tout $k in [|1,N|]$, $u_k$ induit par $u$ sur $F_k$ vérifie
-$
-  u_k = lambda_k id + n_k
-$
-Où $n_k$ est nilpotent et $lambda_k in "Sp"(u)$.
-
-Dé plus $dim F_k = m_k$ et $F_k = ker (u - lambda_k id)^(m_k)$.
-
-*Cas diagonalisable*
-
-Si $u$ est diagonalisable
-$
-  dim F_k = m_k = dim E_lambda_k (u) \
-$
-$
-  E_lambda_k (u) &= ker (u - lambda_k id) \ &subset.eq ker (u-lambda_k id)^(m_k) = F_k
-$
-$
-  E_lambda_k (u) = F_k
-$
-
-*Démonstration*
-
-Soit $u in cal(L)(E)$ tel que $chi_u$ scindé.
-$
-  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k)
-$
-Où $"Sp"(u) = {lambda_1, dots, lambda_N}$.
-
-Par le TDN on a
-$
-  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(m_k), F_k)
-$
-Les $F_k$ sont stables par $u$, on peut donc poser $u_k$ induit par $u$ sur $F_k$.
-
-On note $n_k = u_k - lambda_k id in cal(L)(F_k)$ qui est nilpotent d'ordre inférieur à $m_k$.
-
-Soit $e_k$ base de $F_k$ tel que $cal(M)_e_k (n_k) = N_k in T_(dim F_k)^(++) (KK)$.
-
-Ainsi $cal(M)_e_k (u_k) = lambda_k I_(dim F_k) + N_k$.
-
-En concatenant les bases $(e_k)_k$ en une base $e$ de $E$ on trouve
-$
-  cal(M)_e (u) = dmat(A_1, dots.down, A_N) \
-  forall k in [|1, N|], space A_k = mat(lambda_k,,*;,dots.down;,,lambda_k)
-$
-D'où
-$
-product_(k = 1)^N (X - lambda_k)^(m_k) = chi_u = product_(k = 1)^N (X - lambda_k)^(dim F_k) \
-m_k = dim F_k
-$
-
-#card("secarpolmin", "Sous-espaces caractèristiques et polynôme minimal", ("Maths.Algèbre.Réduction",))
-
-Lien entre la décomposition en sous-espaces caractèristiques et le polynôme minimal.
-
-#answer
-
-Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, à fortiori, $Pi_u$ est scindé.
-
-$
-  Pi_u &= product_(k = 1)^N (X - lambda_k)^(d_k) \ chi_u &= product_(k = 1)^N (X - lambda_k)^(m_k)
-$
-On peut décomposer par le TDN sur $Pi_u$ et en les espaces caractèristiques
-$
-  E &= plus.o.big_(k = 1)^N overbrace(ker (u - lambda_k id)^(m_k), F_k) \
-  &= plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), G_k) \
-$
-Or $d_k <= m_k$ (car $Pi_u | chi_u$), d'où
-$
-  G_k &= ker (u - lambda_k id)^(d_k) \ &subset.eq ker (u - lambda_k id)^(m_k) = F_k
-$
-Mais $plus.o.big_(k = 1)^N G_k = plus.o.big_(k = 1)^N F_k$ donc $G_k = F_k$.
-
-Soit $q_k <= d_k$ l'indice de nilpotence de $n_k = evaluated((u - lambda_k id))_(F_k)^(F_k)$.
-
-$
-F_k &subset.eq ker (u - lambda_k id)^(q_k) \ &subset.eq ker (u - lambda_k id)^(d_k) = F_k
-$
-
-Posons $Q = product_(k = 1)^N (X - lambda_k)^(q_k)$
-$
-  E &= plus.o.big_(k = 1)^N ker (u - lambda_k)^(d_k) \
-  &= plus.o.big_(k = 1)^N ker (u - lambda_k)^(q_k) \
-$
-Donc par le TDN $ker Q(u) = E$, $Pi_u | Q$ donc $d_k <= q_k <= d_k$.
-
-#card("expiuxdq", "Exercice : valuation X-adique du polynôme minimal.", ("Maths.Exercice.Réduction",))
-
-Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
-
-+ Montrer que  #h(1fr)
-  $
-  d = min Set(k in NN^*, ker u^k = ker u^(k+1))
-  $
-
-+ Montrer que
-  $
-    E = ker u^d plus.o im u^d
-  $
-
-#answer
-
-Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
-
-+ Notons #h(1fr)
-  $
-    q = min Set(k in NN^*, ker u^k = ker u^(k+1))
-  $
-
-  Soit $tilde(u)$ l'induit par $u$ sur $ker u^q$.
-  $
-    cases(space tilde(u)^q = 0, space tilde(u)^(q - 1) != 0) " Donc " Pi_tilde(u) = X^q \
-    X^q | Pi_tilde(u) | Pi_u = X^d Q \
-    q <= d
-  $
-  Donc $ker u^q = ker u^d$
-  $
-    ker u^d compose Q(u) = E \
-    im Q(u) subset.eq ker u^d = ker u^q \
-    ker u^q compose Q(u) = E \
-    X^d Q | X^q Q \
-    q >= d
-  $
-
-+ On a (TDN) #h(1fr)
-  $
-    E = ker u^d plus.o ker Q(u)
-  $
-  Soit $y in im u^d$, on dispose donc de $x in E$ tel que $y = u^d (x)$.
-  $
-    y = u^d (x) \
-    Q(u) (y) = (X^d Q) (u) (x) = 0 \
-    im u^d subset.eq ker Q(u)
-  $
-  Or par le théorème du rang 
-  $
-  dim im u^d &= dim E - dim ker u^d \ &= dim ker Q(u) \
-  $
-  D'où $im u^d = ker Q(u)$.
-
-#card("dunford", "Décomposition de Dunford", ("Maths.Algèbre.Réduction",))
-
-Définition et démonstration de la décomposition de Dunford.
-
-#answer
-
-Soit $u in cal(L)(E)$ tel que $chi_u$ scindé.
-
-On dispose de $d, n in cal(L)(E)$ tel que
-- $u = d + n$
-- $d$ diagonalisable
-- $n$ nilpotent
-- $d compose n = n compose d$
-
-De plus cette décomposition est unique.
-
-Elle peut entre autre servire pour les puissances de matrices :
-$
-  A^k = P dmat((lambda_1 I_m_1 + N_1)^k, dots.down, (lambda_n I_m_n + N_n)^k) P^(-1)
-$
-
-*Démonstration*
-
-On reprend la décomposition en sous-espaces caractèristiques
-$
-  Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k) \
-  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
-  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^m_k, F_k) \
-  forall k in [|1, n|], space F_k = ker (u - lambda_k id)^(d_k)
-$
-On note $u_k$ l'endomorphisme induit par $u$ sur $F_k$.
-$
-  F_k = ker (u - lambda_k id_E)^(m_k) \
-  "D'où " (u_k - lambda_k id_F_k)^(m_k) = 0_(cal(L) (F_k)) \
-$
-Posons
-$
-  n_k = u_k - lambda_k id_F_k \
-  "Donc" u_k = lambda_k id_F_k + n_k
-$
-Où $n_k$ est nilpotent d'ordre $d_k$ (cf démonstration sous-espaces caractèristiques).
-
-On pose alors $d, n in cal(L)(E)$ tel que
-$
-  forall k in [|1,n|], \ d|_(F_k)^(F_k) = lambda_k id_F_k \
-  n|_(F_k)^(F_k) = n_k \
-$
-Donc $d$ diagonalisable et $n$ nilpotent d'odre $max_(k in [|1;n|])(d_k)$.
-
-Matriciellement
-$
-  cal(M)_e (d) = dmat(lambda_1 I_m_k, dots.down, lambda_N I_m_k) in D_n (KK) \
-  cal(M)_e (n) = dmat(N_1, dots.down, N_N) in T_n^(++) (KK) \ \
-  D N = dmat(lambda_1 N_1, dots.down, lambda_N N_N) = N D
-$
-
-*Unicité*
-
-On prend $p_1, dots, p_N$ les projecteurs associés à la décomposition (cf. démonstration du TDN)
-$
-  E = plus.o.big_(k = 1)^N F_k = plus.o.big_(k = 1)^N ker (u - lambda_k id)^(d_k)
-$
-On avait montrer que $p_1, dots, p_N in KK[u]$.
-
-On a
-$
-  d = sum_(k = 1)^N lambda_k p_k in KK[u] \
-  n = u - d in KK[u] \
-$
-
-Soient $d', n' in cal(L)(E)$ respectent les conditions.
-
-Comme $u = d' + n'$, $d'$ commute avec $u$ et $n'$ aussi, donc $d'$ commute avec $d in KK[u]$ et $n'$ avec $n in KK[u]$.
-
-Ainsi $d'$ et $d$ sont codiagonalisables, d'où $d' - d$ est diagonalisable.
-
-Et $n - n'$ est nilpotent (binôme de Newton).
-
-Or $d' + n' = d + n$ d'où 
-$
-underbrace(d' - d, "diagonalisable") = underbrace(n - n', "nilpotent")
-$
-
-D'où $d' - d = 0$ et $n' - n = 0$.
-
-#card("codiag", "Codiagonalisabilité", ("Maths.Algèbre.Réduction",))
-
-Définition et critère de codiagonalisabilité.
-
-#answer
-
-Soient $(u_i)_i in cal(L)(E)^I$ une famille d'endomorphismes. 
-
-On dit que les $(u_i)_i$ sont codiagonalisables s'il existe une base $e$ de $E$ tels que pour tout $i in I$, $cal(M)_e (u_i) in D_n (KK)$.
-
-*Démonstration : deux endomorphismes*
-
-Soient $u, v in cal(L)(E)$ diagonalisables tels que $u compose v = v compose u$.
-$
-  E = plus.o.big_(k = 1)^N E_lambda_k (u) " où " "Sp"(u) = {lambda_1, dots, lambda_N}
-$
-Comme $u compose v = v compose u$, les $E_lambda_k (u)$ sont stables par $v$. 
-
-Soit $v_k$ l'induit de $v$ sur $E_lambda_k (u)$, qui est diagonalisable car $v$ l'est.
-
-Pour chaque $k in [|1, N|]$ on dispose de $e_k$ base de vecteurs propres de $v_k$ (donc de $v$ et $u$).
-
-En concatenant on obtient une base qui convient.
-
-*Démonstration famille quelconque*
-
-Par récurrence sur $n = dim E$.
-
-Cas $n = 1$ évident.
-
-Supposons la propriété pour tout $KK$-ev de dimension inférieur à $n$.
-
-Soit $(u_i)_i in cal(L)(E)^I$ diagonalisables commutant avec $dim E = n+1$.
-
-Si tout les $u_i$ sont des homothéties n'importe quelle base convient.
-
-Sinon on dispose de $j in I$ tel que $u_j$ n'est pas une homothétie.
-
-$
-  E = plus.o.big_(k = 1)^N E_lambda_k (u_j) " où " "Sp"(u_j) = {lambda_1, dots, lambda_N}
-$
-
-Pour tout $i in I$, les $E_lambda_k (u_j)$ sont stables par $u_i$ car $u_i compose u_j = u_j compose u_i$.
-
-Notons $u_(i,k)$ l'induit de $u_i$ sur $E_lambda_k (u_j)$ qui est de dimension inférieur à $n$ car $u_j$ n'est pas une homothétie. 
-
-Les $(u_(i,k))_i$ sont donc diagonalisables et commutent entre eux, on peut appliquer l'hypothèse de récurrence.
-
-On dispose donc de $e_k$ base de $E_lambda_k (u_j)$ formée de vecteurs propres commmun aux $(u_i)_i$. Il suffit alors de les concatener.
-
-// TODO: Ex 64 de la fiche réduction
-
-#card("comendo", "Commutant d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
-
-Propriétés sur le commutant d'un endomorphisme diagonalisable.
-
-#answer
-
-Soit $u in cal(L)(E)$ diagonalisable.
-
-- Pour tout $v in cal(L)(E)$, $v in "Com" (u)$ ssi les espaces propres de $u$ sont stables par $v$.
-
-- $dim "Com" (u) = display(sum_(lambda in "Sp"(u)) (dim E_lambda (u))^2)$
-
-*Démonstration*
-
-- L'implication directe est évidente. 
-
-  Supposons $v in cal(L)(E)$ qui stabilise les espaces propres de $u$.
-
-  Pour $lambda in "Sp"(u)$ soit $x in E_lambda (u)$, d'où $v(x) in E_lambda (u)$.
-  $
-    v(u(x)) &= v(lambda x) = lambda v(x) \
-    u(v(x)) &= lambda v(x)
-  $
-
-  Or $u$ diagonalisable, donc on dispose d'une base de vecteurs propres de $u$.
-
-  Ainsi $u compose v$ et $v compose u$ coincident sur une base d'où l'égalité.
-
-- On note $"Sp"(u) = {lambda_1, dots, lambda_N}$.
-
-  On considère
-  $
-    theta : func("Com"(u), product_(k = 1)^N cal(L)(E_lambda_k (u)), v, (evaluated(v)_(E_lambda_1 (u)), dots, evaluated(v)_(E_lambda_N (u))))
-  $
-  Qui est linéaire.
-
-  Soit $v in ker theta$ : pour tout $k in [|1, N|]$
-  $
-    v(E_lambda_k (u)) = 0 \
-    "Or " E = plus.o.big_(k = 1)^N E_lambda_k (u) \
-    "Donc " v = 0
-  $
-
-  Soit $(v_1, dots, v_k) in product_(k = 1)^N cal(L)(E_lambda_k (u))$.
-
-  Pour $k in [|1,N|]$, on note $e_k$ base de $E_lambda_k (u)$.
-
-  On définit $v in cal(L)(E)$ qui coincide avec $v_k$ sur tout les vecteurs de $e_k$.
-
-  Ainsi $theta(v) = (v_1, dots, v_k)$, et $theta$ isomorphisme.
-  $
-    dim "Com"(u) &= sum_(k = 1)^N dim cal(L)(E_lambda_k (u)) \
-    &= sum_(k = 1)^N (dim E_lambda_k (u))^2
-  $
-
-#card("exbicom", "Exercice : le bicommutant", ("Maths.Exercice.Réduction",))
-
-Soit $u in cal(L)(E)$ diagonalisable. On définit le bicommutant de $u$
-$
-B(u) = Set(w in cal(L)(E), vec(delim: #none, forall v in "Com"(u), space v compose w = w compose v) space)
-$
-Montrer que $B(u) = KK[u]$.
-
-#answer
-
-Comme $u in "Com" (u)$ on remarque
-$
-  KK[u] subset.eq B(u) subset.eq "Com"(u)
-$
-On construit $e$ concatenation de bases des $E_lambda_k (u)$ pour $k in [|1, N|]$ et $"Sp"(u) = {lambda_1, dots, lambda_N}$.
-
-Soit $w in B(u) subset.eq "Com"(u)$ donc les $(E_lambda_k)_k$ sont stables par $w$.
-$
-  M = cal(M)_e (w) = dmat(M_1, dots.down, M_N)
-$
-Pour tout $v in "Com"(u), w compose v = v compose w$.
-$
-A = cal(M)_e (v) = dmat(A_1, dots.down, A_N)
-$
-Or $A M = M A$ donc
-$
-  forall k in [|1, N|], A_k M_k = M_k A_k
-$
-Ainsi $M_k$ est une matrice qui commute avec toutes les autres. 
-
-On montre facilement grâce à $E_(i j)$ que $M_k = alpha_k I_(m_k)$.
-
-Par interpolation de Lagrange on dispose de $P in KK_(N+1) (X)$ tel que $P(lambda_k) = alpha_k$. Or
-$
-  cal(M)_e (u) &= dmat(lambda_1 I_(m_1), dots.down, lambda_N I_(m_N)) \
-  cal(M)_e (P(u)) &= dmat(P(lambda_1) I_(m_1), dots.down, P(lambda_N) I_(m_N)) \
-   &= dmat(alpha_1 I_(m_1), dots.down, alpha_N I_(m_N)) \
-   &= cal(M)_e (w)
-$
-D'où $w in KK[u]$.
-
-#card("projspect", "Projecteurs spectraux d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
-
-Définition et propriétés des projecteurs spectraux d'un endomorphisme diagonalisable.
-
-#answer
-
-Soit $u in cal(L)(E)$ diagonalisable.
-
-$
-  chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
-  Pi_u = product_(k = 1)^N (X - lambda_k)
-$
-Soient $p_1, dots, p_N$ les projecteurs associés à la décomposition
-$
-  E = plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
-$
-On a alors pour tout $i, j in [|1,N|]$
-$
-  evaluated(p_i)_(E_lambda_j (u)) = delta_(i j) lambda_i id \
-$
-Dans la base $e$ diagonalisant $u$ et pour tout $P in KK[X]$ on a 
-$
-  cal(M)_e (P(u)) = dmat(P(lambda_1) I_m_1, dots.down, P(lambda_N) I_m_N) \
-  cal(M)_e (p_k) = dmat(0, dots.down, I_m_k, dots.down, 0) \
-$
-Donc $p_k = L_k (u) in KK_(N-1) [u]$ avec $L_k$ polynôme de Lagrange associés aux $(lambda_i)_i$.
-
-Ainsi pour tout $q in NN$
-$
-  u = sum_(k = 1)^N lambda_k p_k \
-  u^p = sum_(k = 1)^N lambda_k^q p_k in KK_(N - 1) [u]
-$
-
-#card("sesendodiag", "Sous-espaces stables d'un endomorphisme diagonalisable", ("Maths.Algèbre.Réduction",))
-
-Propriétés sur les sous-espaces stables d'un endomorphisme diagonalisable.
-
-#answer
-
-Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
-
-+ Si $G$ sev stable par $u$ alors #h(1fr)
-  $
-    G = plus.o.big_(k = 1)^N G inter E_lambda_k (u)
-  $
-
-+ Réciproquement si $G_1, dots, G_N$ sont des sevs de $E_lambda_1 (u), dots, E_lambda_N (u)$ respectivements alors
-  $
-    G = plus.o.big_(k = 1) G_k
-  $
-  Est un sev stable par $u$.
-
-*Démonstration*
-
-+ Soit $tilde(u)$ induit par $u$ sur $G$ donc diagonalisable. #h(1fr)
-  $
-    G &= plus.o.big_(lambda in "Sp"(tilde(u))) E_lambda (tilde(u)) \
-    &= plus.o.big_(k = 1)^N ker (tilde(u) - lambda_k id_G) \
-    &= plus.o.big_(k = 1)^N G inter underbrace(ker (u - lambda_k id), E_lambda_k (u)) \
-  $
-
-+ L'écrire.
-
-#card("dopsprev", "Existence d'une droite ou d'un plan stable dans un espace vectoriel réel", ("Maths.Algèbre.Réduction",))
-
-Démonstration de l'existence d'une droite ou d'un plan stable dans un espace vectoriel réel.
-
-#answer
-
-Soit $E$ un $RR$-ev et $u in cal(L)(E)$, $u$ admet une droite ou un plan stable.
-
-$
-  Pi_u = product_(k = 1)^N P_k^(m_k)
-$
-Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
-
-- Si l'un des $P_k$ est de degré $1$. #h(1fr)
-  $
-    P_k = X - lambda
-  $
-  Et $lambda$ est racine de $Pi_u$ et est donc une valeur propre de $u$ d'où l'existence d'une droite stable.
-
-- Si l'un des $P_k$ est de degré $2$.
-  $
-    P_k = X^2 - a X - b
-  $
-
-  Supposons par l'absurde que $ker P_k (u) = {0}$.
-  $
-    Pi_u (u) = P_k (u) compose Q(u) = 0
-  $
-  D'où $Q(u) = 0$ qui est absurde car $Pi_u$ est minimal.
-
-  On dispose donc de $x in ker P_k (u) \\ {0}$.
-
-  $
-    u^2 (x) = a u(x) + b x
-  $
-  D'où $F = "Vect"(x, u(x))$ stable par $u$.
-
-  Si $u(x) = alpha x$, $alpha in RR$.
-  $
-    alpha^2 x = (a alpha + b) x \
-    alpha | X^2 - a X - b
-  $
-  Absurde donc $F$ est un plan.
-
-#card("endosimple", "Endomorphismes simples", ("Maths.Algèbre.Réduction",))
-
-Soit $u in cal(L)(E)$, il y a équivalence entre
-
-+ Les seuls sev stables de $u$ sont $E$ et ${0}$.
-
-+ $chi_u$ irréductible.
-
-+ $u$ est dit simple.
-
-#answer
-
-+ (2 $=>$ 1) Par contraposé #h(1fr)
-
-  Soit $F$ sev stable par $u$ de dimension dans $[|1, n - 1|]$, et $tilde(u)$ l'endomorphisme induit.
-
-  $
-    chi_tilde(u) | chi_u
-  $
-  Avec $chi_tilde(u) = dim F != deg chi_u$ d'où $chi_u$ non irréductible.
-
-+ (1 $=>$ 2) Par contraposé : Soit $x in E\\{0}$ on note
-  $
-    F_x = "Vect"(u^k (x_0))_(k in NN)
-  $
-  Qui est stable par $u$.
-
-  Si $deg Pi_(u,x) = dim F_x <= n - 1$, alors $u$ possède un sev stable non trivial.
-
-  Sinon $Pi_(u,x) | Pi_u | chi_u$ tous unitaires de degré $n$, donc égaux. Ainsi
-  $
-    Pi_(u,x) = chi_u = P Q \
-    y = Q(u) (x) \
-    Pi_(u,y) = P \
-  $
-  D'où $F_y$ stable non trivial.
-
-#card("endosemsimple", "Endomorphismes semi-simples", ("Maths.Algèbre.Réduction",))
-
-Définition et propriétés des endomorphismes semi-simples.
-
-#answer
-
-Soit $u in cal(L)(E)$, il y a équivalence entre
-
-+ Tout sev stable par $u$ admet un supplémentaire stable.
-
-+ $Pi_u$ est sans carrés
-  $
-    Pi_u = product_(k = 1)^N P_k
-  $
-  Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
-
-+ $u$ est semi-simple.
-
-*Démonstration*
-
-+ (1 $=>$ 2) On pose #h(1fr)
-  $
-    Pi_u = product_(k = 1)^N P_k^(d_k)
-  $
-  Pour $i in [|1,N|]$, $F = ker P_k (u)$ admet un supplémentaire stable $G$.
-
-  Soient $u_F, u_G$ induient par $u$ sur $F$ et $G$.
-  $
-    Pi_(u_F)  = P_i
-  $
-  Car annule et irréductible.
-
-  De plus
-  $
-    P(u) = 0 \ <=> cases(space forall x in F\, space  P(u) (x) &= 0, space forall x in G\, space P(u) (x) &= 0) \
-    <=> Pi_(u_F) | P "et" Pi_(u_G) | P \
-    <=> Pi_u_F or Pi_u_G | P \
-    "Donc" Pi_u = Pi_u_F or Pi_u_G
-  $
-  Ainsi
-  $
-    Pi_u_G | product_(k = 1)^N P_k^(d_k) \
-    Pi_u = Pi_u_G or P_i
-  $
-  Mais 
-  $
-  G inter F = {0} \
-  G inter ker P_1 (u) = {0} \
-  0 != P_i (u_G) in "GL"(E) \
-  P_i divides.not Pi_u_G
-  $
-  Ainsi comme $Pi_u = P_i or Pi_u_G$
-  $
-  d_i = 1
-  $
-
-+ (2 $=>$ 1) Cas $Pi_u$ irréductible.
-
-  On suppose $Pi_u$ irréductible de degré $d$.
-
-  Donc pour tout $x in E\\{0}$
-  $ 
-    Pi_(u,x) | Pi_u " d'où " Pi_u = Pi_(u,x) \ "et" dim F_x = d
-  $
-  
-  Soit $F$ sev stable par $u$, si $F = E$, $G = 0$ convient.
-
-  On dispose alors de $x_1 in E \\ F$.
-
-  Comme $F$ et $F_x_1$ sont stables par $u$, $F inter F_x_1$ l'est.
-
-  Supposons par l'absurde qu'il existe $x in F inter F_x_1 \\ {0}$.
-
-  $
-    underbrace(F_x, dim d) subset.eq underbrace(overbrace(F_x_1, dim d) inter F, dim <= d) \
-    F_x_1 subset.eq F \
-    x_1 in F
-  $
-  Qui est absurde : $F plus.o F_x_1 subset.eq E$.
-
-  Supposons construits $x_1, dots, x_k$ tels que
-  $
-    underbrace(F plus.o (plus.o.big_(i = 1)^k F_x_i), F_k "stable") subset.eq E
-  $
-
-  Si $F_k = E$ on a fini.
-
-  Sinon on choisit $x_(k+1) in E \\ F_k$ et on répéte.
-
-  $
-    F_x_(k+1) inter F_k = {0} \
-    F_k plus.o F_x_(k+1) subset.eq E \
-    F plus.o (plus.o.big_(i = 1)^(k+1) F_x_i) subset.eq E
-  $
-
-  Qui se termine en au plus $floor(n / d)$ étapes.
-// TODO: Que faire de la remarque Frobenius M142 ?
-
-+ (2 $=>$ 1) Cas général.
-  $
-    Pi_u = product_(k = 1)^N P_k
-  $
-
-  Par le TDN
-  $
-    E = plus.o.big_(k = 1)^N ker P_k (u)
-  $
-  Soit $F$ sev stable par $u$, $tilde(u)$ induit par $u$ sur $F$. Par TDN 
-  $
-    F &= plus.o.big_(k = 1)^N ker P_k (tilde(u)) \
-     &= plus.o.big_(k = 1)^N underbrace((ker P_k (tilde(u))) inter F, F_k)
-  $
-  $F_k$ sev de $E_k = ker P_k (u)$ stable par $u_k$ induit par $u$ sur $E_k$.
-
-  De plus $Pi_u_k = P_k$ (annule et irréductible).
-
-  Donc par le premier cas on trouve $G_k$ sev de $E_k$ stable par $u$ tel que
-  $
-    E_k = G_k plus.o F_k
-  $
-  Enfin
-  $
-    E &= plus.o.big_(k = 1)^N E_k \
-    &= underbrace((plus.o.big_(k = 1)^N (F_k)), F "stable par" u) plus.o underbrace((plus.o.big_(k = 1)^N G_k), G "stable par" u)
-  $
-
-#card("diagsisevstabl", "Exercice : critère de diagonalisabilité sur l'existence de supplémentaires stables", ("Maths.Exercice.Réduction",))
-
-Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisable ssi tout sev stable par $u$ admet un supplémentaire stable.
-
-#answer
-
-- Supposons $u$ diagonalisable, soit $F$ un sev stable par $u$.
-
-  On dispose donc de $f = (f_1, dots, f_d)$ base de $F$ et $e = (e_1, dots, e_n)$ base de vecteurs propres de $E$.
-
-  On peut donc complétée la base $f$ par des vecteurs de $e$:
-  $
-    (f_1, dots, f_d, e_i_1, dots, e_i_(n - d)) "base de" E
-  $
-  Ainsi $G = "Vect"(e_i_1, dots, e_i_(n-d))$ est un supplémentaire de $F$ stable par $u$.
-
-- Supposons que tout sev stable par $u$ admettent un supplémentaire stable.
-
-  $
-    F = plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
-  $
-  Est un sev stable, et admet donc $G$ comme supplémentaire stable. Notons $tilde(u)$ l'induit sur $G$ de $u$.
-  $
-    Pi_tilde(u) | Pi_u "scindé"
-  $
-  Donc $tilde(u)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
-
-#card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Réduction",))
-
-Propriétés sur les endomorphismes de la forme $M |-> A M$ et $M |-> M A$ de $cal(L)(M_n (KK))$.
-
-#answer
-
-Soit $A in M_n (KK)$. Posons
-$
-  L_A : func(M_n (KK), M_n (KK), M, A M "ou" M A) in cal(L)(M_n (KK)) \
-$
-Pour tout $P in KK[X]$ et $M in M_n (KK)$
-$
-  P(L_A) (M) = cases(space P(A) M, space M P(A)) = L_P(A) (M) \
-$
-De plus $L_B = 0 => L_B (I_n) = B = 0$ d'où
-$
-  P(L_A) = 0 <=> P(A) = 0
-$
-C'est à dire $Pi_L_A = Pi_A$
-
-On en déduit
-
-- $L_A$ est nilpotent ssi $A$ l'est et est de même ordre.
-
-- $L_A$ est diagonalisable ssi $A$ l'est.
-
-- $"Sp"(A) = "Sp"(L_A)$
-
-De plus pour $lambda in "Sp"(A)$
-$
-dim E_lambda (L_A) = n dim E_lambda (A)
-$
-
-*Démonstration*
-
-- Pour $L_A (M) = A M$
-
-  Soit $M = (C_1, dots, C_n) in M_n (KK)$
-
-  $
-    M in E_lambda (L_A) <=> A M = lambda M \
-    <=> forall j in [|1,n|], space A C_j = lambda C_j \
-    <=> {C_1, dots, C_n} subset.eq E_lambda (A)
-  $
-  Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
-
-- Pour $L_A (M) = M A$ 
-
-  Soit $M = vec(L_1, dots.v, L_n) in M_n (KK)$
-
-  $
-    M in E_lambda (L_A) <=> M A = lambda M \
-    <=> forall i in [|1,n|], space A L_i = lambda L_i \
-    <=> {L_1, dots, L_n} subset.eq E_lambda (A)
-  $
-  Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
-
-#card("endodiffprodmat", "Endomorphisme différence de produits de matrices", ("Maths.Algèbre.Réduction",))
-
-Propriétés sur l'endomorphisme $phi : M |-> A M - M B$ in $cal(L)(M_n (KK))$
-
-#answer
-
-Soit $A, B in M_n (KK)$, tel que $chi_A$ scindé et $B$ admet au moins une valeur propre. ($KK$ algébriquement clos suffit).
-
-Posons
-$
-  phi : func(M_n (KK), M_n (KK), M, A M - M B) in cal(L)(M_n (KK))
-$
-Il y a équivalence entre
-
-+ $"Sp"(A) inter "Sp"(B) = emptyset$.
-
-+ $chi_A (B) in "GL"_n (KK)$.
-
-+ $phi$ injectif.
-
-+ $phi$ est un automorphisme.
-
-De plus on a
-
-- $"Sp"(phi) = {lambda - mu, (lambda, mu) in "Sp"(A) times "Sp"(B)}$
-
-*Démonstration*
-
-- (3 $<=>$ 4) Argument dimensionnel.
-
-- (1 $=>$ 2) Pour tout $lambda in "Sp"(A)$ #h(1fr)
-  $
-    lambda in.not "Sp"(B) \
-    ker (B - lambda I_n) = E_lambda (B) = {0} \
-    B - lambda I_n in "GL"_n (KK)
-  $
-  Ainsi
-  $
-    chi_A (B) = product_(lambda in "Sp"(A)) (B - lambda I_n)^(m_lambda) in "GL"_n (KK)
-  $
-
-- (2 $=>$ 3) Soit $M in ker phi$
-
-  $
-    A M = M B \
-    forall k in NN, space A^k M = M B^k \
-    0 = chi_A (A) M = underbrace(chi_A (B), in "GL"_n (KK)) M \
-    M = 0
-  $
-
-- (3 $=>$ 1) Par contraposé, supposons qu'on dispose de $lambda in "Sp"(A) inter "Sp"(B)$.
-
-  On sait que $chi_B = chi_(B^TT)$ donc toute valeur propre de $B$ est valeur propre de $B^TT$.
-  
-  Soit $X, Y$ vecteurs propres non nuls de $A$ et $B^TT$.
-  $ 
-  phi(X Y^TT) &= A X Y^TT - X Y^TT B \
-  &= A X Y^TT - X (B^TT Y)^TT \
-  &= lambda X Y^TT - lambda X Y^TT \
-  &= 0
-  $
-  Or $X Y^TT != 0$ d'où $phi$ non injective.
-
-- Soit $lambda in "Sp"(A), mu in "Sp"(B)$. $X, Y$ vecteurs propres non nuls de $A$ et $B^TT$.
-  $
-  phi(X Y^TT) &= A X Y^TT - X Y^TT B \
-  &= lambda X Y^TT - mu X Y^TT \
-  &= (lambda - mu) X Y^TT
-  $
-  D'où $lambda - mu in "Sp"(phi)$
-
-- Soit $alpha in "Sp"(phi)$, $M$ vecteur propre non nul associé.
-
-  $
-    phi(M) = A M - M B = alpha M \
-    underbrace((A - alpha I_n), tilde(A)) M - M B = 0
-  $
-  Avec $chi_tilde(A)$ scindé (pour toute valeur propre $lambda$ de $A$, $lambda - alpha$ est valeur propre de $tilde(A)$)
-
-  Posons $phi' : N |-> tilde(A) N - N B$
-  $
-    phi' (M) = 0
-  $
-  Donc $phi'$ non injectif d'où $
-  {mu} subset.eq "Sp"(tilde(A)) inter "Sp"(B) != emptyset
-  $
-  Ainsi $alpha + mu in "Sp"(A)$.
-
-#card("endocommuta", "Endomorphisme commutateur de matrices", ("Maths.Algèbre.Réduction",))
-
-Propriétés sur les endomorphismes de la forme $M |-> A M - M A in cal(L)(M_n (KK))$.
-
-#answer
-
-Soit $A in cal(M)_n (KK)$ tel que $chi_A$ scindé.
-
-$
-  phi_A : func(M_n (KK), M_n (KK), M, A M - M A) in cal(L)(M_n (KK))
-$
-
-On a les propriétés de $M |-> A M - M B$, et de plus
-
-- Si $A$ est nilpotent alors $phi_A$ l'est.
-
-- Si $A$ est diagonalisable alors $phi_A$ aussi.
-
-*Démonstration*
-
-- Supposons $A$ nilpotent d'ordre $q$. Posons
-  $
-  mat(delim: #none,,M_n (KK), ->, M_n (KK);L_A :, M, |->, A M; R_A :, M, |->, M A)
-  $
-  On sait que $L_A$ et $R_A$ sont nilpotents d'ordre $q$ car $A$ l'est.
-
-  De plus $L_A compose R_A = A M A = R_A compose L_A$ d'où
-  $
-    phi_A = L_A - R_A \
-    phi_A^(2q) = sum_(k = 0)^(2q) vec(2q, k) (-1)^k R_A^k compose L_A^(2q - k) = 0
-  $
-
-- Supposons $A$ diagonalisable.
-
-  On sait que $L_A$ et $R_A$ commutent et sont diagonalisables, donc ils sont codiagonalisables :
-  $
-    phi_A = L_A - R_A
-  $
-  Est diagonalisable.
-
-#card("endonilpcyc", "Endomorphismes nilpotents cycliques", ("Maths.Algèbre.Réduction",))
-
-Caractèrisation des sev stables par un endomorphisme nilpotent cyclique.
-
-#answer
-
-Soit $u in cal(L)(E)$ nilpotent cyclique.
-
-Les seuls sev de $E$ stables par $u$ sont les $(ker u^k)_(k in [|0, n|])$.
-
-*Démonstration*
-
-Ils sont stables comme $ker$ d'un endomorphisme commutant avec $u$.
-
-Soit $F$ sev stable par $u$. Soit $tilde(u)$ induit par $u$ sur $F$ qui est nilpotent car car $tilde(u)^n = 0$.
-
-Or l'ordre de nilpotence de $tilde(u)$ est majoré par $d = dim F$ : $tilde(u)^d = 0$.
-
-Donc $F subset.eq ker u^d$.
-
-De plus par les noyaux itérées
-$
-underbrace(ker u, dim 1) subset.neq dots.c subset.neq underbrace(ker u^d, dim d) subset.neq dots.c subset.neq underbrace(ker u^n, dim n)
-$
-
-D'où $F = ker u^d$.
-
-#card("prodkroc", "Produit de Kronecker et diagonalisabilité", ("Maths.Algèbre.Réduction",))
-
-Diagonalisabilité du produit de Kronecker de matrices (dimension $2n$).
-
-#answer
-
-Soit $L = mat(alpha, beta; gamma, delta) in M_2 (KK)$ et $A in M_n (KK)$. On pose le produit de Kronecker
-$
-  M = L times.o A = mat(alpha A, beta A; gamma A, delta A) in M_(2n) (KK)
-$
-
-Alors
-
-- Si $L$ est diagonalisable, $M$ est diagonalisable ssi $A$ l'est.
-
-- Si $L = mat(1, 1; 0, 1)$, $M$ est diagonalisable ssi $A = 0$.
-
-*Démonstration*
-
-- On suppose $L$ diagonalisable :
-
-  $
-    L = P dmat(lambda, mu) P^(-1) quad vec(delim: #none, P = mat(a, b; c, d) in "GL"_2 (KK), P^(-1) = mat(a', b'; c', d'))
-  $
-  On remarque
-  $
-    Q = P times.o I_n = mat(a I_n, b I_n; c I_n, d I_n) \
-    Q' = P times.o I_n = mat(a' I_n, b' I_n; c' I_n, d' I_n) \ 
-    Q Q' = dmat(I_n, I_n) = I_(2n) \
-  $
-  $
-    Q' M Q &= mat(a' I_n, b' I_n; c' I_n, d' I_n) mat(alpha A, beta A; gamma A, delta A) mat(a I_n, b I_n; c I_n, d I_n) \
-    &= dmat(lambda A, mu A)
-  $
-
-  Donc $M$ est diagonalisable ssi $A$ l'est.
-
-- Pour $L = mat(1, 1; 0, 1)$.
-  $
-    M^k = mat(A^k, k A^k;0, A^k) quad "(récurrence)"
-  $
-  Donc pour tout $P in KK[X]$
-  $
-    P(M) = mat(P(A), A P'(A); 0, P(A))
-  $
-  Si $M$ est diagonalisable, $Pi_M$ est SARS.
-  $
-    Pi_M (M) = 0 <=> cases(space Pi_M (A) = 0, space A Pi_M (A) = 0)
-  $
-  Comme $Pi_M (A) = 0$, $A$ est diagonalisable.
-
-  Or $Pi_M$ est SARS : $Pi_M and Pi_M' = 1$ donc $P' and Pi_A = 1$ car $Pi_A | Pi_M$.
-
-  Donc $Pi_M'(A) in "GL"_n (KK)$ et $A Pi_M' (A) = 0$ d'où $A = 0$.
-// TODO: Exo 51 Reduc
-
-#card("cotz", "Cotrigonalisation", ("Maths.Algèbre.Réduction",))
-
-Critère de Cotrigonalisabilité d'une famille d'endomorphismes.
-
-#answer
-
-Soit $(u_i)_i in cal(L)(E)^I$ une famille d'endomorphismes trigonalisables qui commutent. 
-
-Il existe une base $e$ de $E$ tel que pour tout $i in I$, $cal(M)_e (u_i)$ soit triangulaire supérieure.
-
-*Démonstration : structure*
-
-On voudra toujours
-+ Trouver un vecteur propre commun
-+ Faire une récurrence sur la dimension.
-
-Faisons d'abord la 2#super[e] étape dans le cas général :
-
-Supposons que toute famille $(u_i)_i in cal(L)(E)^I$ d'endomorphismes trigonalisables qui commutent admete un vecteur propre commun.
-
-Cas $n = 1$ évident.
-
-Supposons la propriété sur tout $KK$-ev de dimension strictement inférieur à $n$.
-
-Soit $e_1$ vecteur propre commun aux éléments de $(u_i)_i$ associé aux valeurs propres $(lambda_i)_i in KK^I$.
-
-On complète $e_1$ en la base $(e_1, dots, e_n)$. Pour tout $i in I$
-
-$
-    cal(M)_e (u_i) = mat(augment: #(hline: 1, vline: 1), lambda_i, *; 0, A_i) quad chi_u_i = chi_A_i (X - lambda)\ 
-$
-Or $chi_u_i$ scindé donc $chi_A$ scindé : $chi_A$ est trigonalisable.
-
-De plus les $(A_i)_i$ commutent car mes $(u_i)_i$ aussi.
-
-Par hypothèse de récurrence on conclut.
-
-*Démonstration : deux endomorphismes*
-
-Soit $u, v in cal(L)(E)$ trigonalisables qui commutent.
-
-Soit $lambda in "Sp"(u)$, $E_lambda (u) != {0}$ est stable par $v$.
-
-Notons $tilde(v)$ induit par $v$ sur $E_lambda (u)$, qui est encore trigonalisable, et admet donc un vecteur propre $e_1$.
-
-Puis récurrence.
-
-*Démonstration : famille finie*
-
-Par récurrence sur $d$ cardinal de la famille.
-
-Cas 1 et 2 endomorphismes traités.
-
-On suppose que toute famille de cardinal inférieur à $d$ admet un vecteur propre commun.
-
-Soit $u_1, dots, u_(d+1) in cal(L)(E)$ trigonalisables qui comuttent.
-
-Soit $x$ vecteur propre commun aux $u_1, dots, u_d$ associé aux valeurs propres $lambda_1, dots, lambda_d in KK$.
-
-$
-{x} in F = inter.big_(k = 1)^d underbrace(E_lambda_k (u_k), "stable par" v) != emptyset
-$
-Donc $F$ est stable par $v$, on peut donc y induire $tilde(v)$ qui est trigonalisable et admet donc $e_1$ vecteur propre commun aux $u_1, dots, u_(d+1)$.
-
-*Démonstration : famille infinie*
-
-Soit $(u_i)_i in cal(L)(E)^I$ une famille quelconqe d'endomorphismes trigonalisables qui commutent.
-
-$"Vect"(u_i)_(i in I)$ est un sev de $cal(L)(E)$ et admet donc une base $u_i_1, dots, u_i_d$.
-
-C'est une famille finie, donc cotrigonalisable dans une base $e$.
-
-Et pour tout $i in I$, $u_i in "Vect"(u_i_1, dots, u_i_d)$ donc $cal(M)_e (u_i)$ est triangulaire supérieur (comme combinaison linéaire de matrices qui le sont).
-
-#card("polcarsomme", "Exercice : polynôme caractèristique d'une somme d'endomorphismes", ("Maths.Exercice.Réduction",))
-
-Soit $E$ un $CC$-ev de dimension finie, $u, v in cal(L)(E)$ qui commutent, tel que $v$ est nilpotent. 
-
-Montrer que $chi_(u + v) = chi_u$ (Exercice 106).
-
-#answer
-
-Deux perspectives
-
-+ Comme $E$ est un $CC$-ev, $u$ et $v$ sont trigonalisables, et commutent, donc sont cotrigonalisable.
-
-  Ainsi on dispose de $e$ base de $E$ tel que
-  $
-    cal(M)_e (u) &= mat(lambda_1,,*;,dots.down;,,lambda_n) \
-    cal(M)_e (v) &= mat(0,,*;,dots.down;,,0) \
-    cal(M)_e (u + v) &= mat(lambda_1,,*;,dots.down;,,lambda_n) \
-    chi_(u + v) &= chi_u
-  $
-
-#card("excomuveu", "Exercice : commutateur qui vaut l'un des opérande", ("Maths.Exercice.Réduction",))
-
-Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u = u$.
-
-+ Montrer que $u$ est nilpotent.
-
-+ Montrer que si $KK = CC$, $u$ et $v$ sont cotrigonalisable.
-
-#answer
-
-+ Deux méthodes : #h(1fr)
-  - On considère
-    $
-      phi_v : func(cal(L)(E), cal(L)(E), w, w v - v w) \
-      phi_v (u^k) = k u^k \
-    $
-    Donc si $u^k != 0$, $k in "Sp"(phi_v)$ qui est fini, donc on dispose de $k in NN^*$ tel que $u^k = 0$.
-
-  - On remarque
-    $
-      P(u) v - v P(u) = u P'(u)
-    $
-    En particulier pour $P = Pi_u$
-    $
-    0 = u Pi'_u (u) \
-    underbrace(Pi_u, deg d) | underbrace(X Pi'_u, deg d) \
-    X Pi'_u = c Pi_u
-    $
-    Donc
-    $
-    d X^d + sum_(k = 0)^(d-1) k a_k X^k = c X^d + sum_(k = 0)^(d-1) c a_k X^k \
-    c = d \
-    forall k in [|0, d-1|], space d a_k = k a_k \
-    forall k in [|0, d-1|], a_k = 0 \
-    Pi_u = X^d
-    $
-
-+ Comme $u$ est nilpotent, $"Sp"(u) = {0}$.
-  $
-    (u v - v u) (ker u) &= u (ker u) \
-    u (v (ker u)) &= 0 \
-    v(ker u) &subset.eq ker u
-  $
-  Donc $ker u$ est stable par $v$, posons $tilde(v)$ induit sur $ker u$. Or $tilde(v)$ admet un vecteur propre commun $x in ker u = E_0 (u)$.
-
-  Ainsi par récurrence sur la dimension de $E$ :
-
-  Supposons la propriété pour tout $CC$-ev de dimension inférieur strictement à $n$.
-
-  Soit $e_1$ vecteur propre commun à $u$ et $v$ associé aux valeurs propres $0$ et $lambda$.
-
-  Soit $e' = (e_1, e'_2 dots, e'_n)$ base de $E$.
-  $
-    cal(M)_e' (u) = mat(augment: #(hline: 1, vline: 1), 0, *; 0, A) \
-    cal(M)_e' (v) = mat(augment: #(hline: 1, vline: 1), lambda, *; 0, B) \
-  $
-  Et $A B - B A = A$ car $u v - v u = u$ donc on dispose de $(e_2, dots, e_n)$ qui cotrigonalisent $A$ et $B$.
-
-#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Algèbre.Réduction",))
-
-Soit $E$ un $KK$-ev de dimension $n$ ($KK subset.eq CC$).
-
-+ Soit $u in cal(L)(E)$, montrer que $u$ est nilpotent ssi pour tout $k in NN^*$, $tr(u^k) = 0$.
-
-+ Soit $u in cal(L)(E)$ tel que pour tout $k in NN^*$
-  $
-    tr u^k = sum_(i = 1)^n lambda_i^k quad lambda_1, dots, lambda_n in CC
-  $
-  Montrer que
-  $
-    chi_u = product_(k = 1)^n (X - lambda_k)
-  $
-
-#answer
-
-Dans les deux cas, $KK subset.eq CC$, donc $u$ est trigonalisable dans $CC$.
-$
-  cal(M)_e (u) = mat(mu_1,,*;,dots.down;,,mu_n) = D \
-  forall k in NN, space tr u^k = tr D^k = sum_(i = 1)^n mu_i^k
-$
-Posons ${mu_1, dots, mu_n} = {alpha_1, dots, alpha_d}$ deux à deux distincts.
-$
-  chi_u = product_(k = 1)^d (X - alpha_k)^(m_k) \
-  tr u^k = sum_(i = 1)^d m_i alpha_i^k quad (*)
-$
-
-+ Par l'absurde : on suppose $d >= 2$ et $alpha_1 = 0$ (éventuellement $m_1 = 0$).
-
-  Par $(*)$ :
-  $
-    forall P in X KK[X], space sum_(k = 1)^d m_k P(alpha_k) = 0
-  $
-  Ainsi par interpolation de lagrange : pour $i in [|2, d|]$,
-  $
-    P(alpha_i) = 1 \
-    forall j != i, space P(alpha_j) = 0 \
-    P(alpha_i) = P(0) = 0 "d'où" X | P \
-    sum_(k = 1)^d m_k P(alpha_k) = m_i = 0
-  $
-
-+ Pour tout $k in NN^*$
-  $
-    sum_(i = 1)^n mu_i^k = sum_(i = 1)^n lambda_i^k
-  $
-  On considère ${lambda_1, dots, lambda_n} union {mu_1, dots mu_n} = {beta_1, dots, beta_N}$ deux à deux distincts.
-
-  Pour $i in [|1, n|]$
-  $
-    n_i &= abs(Set(k in [|1,n|], mu_k &= beta_i)) \
-    m_i &= abs(Set(k in [|1,n|], lambda_k &= beta_i)) \
-  $
-  Donc pour tout $k in NN^*$
-  $
-    forall k in NN^*, space sum_(i = 1)^N n_i beta_i^k = sum_(k = 1)^N m_i beta_i^k \
-    <=> forall k in NN^*, space sum_(i = 1)^N (n_i - m_i) beta_i^k = 0
-  $
-  Or $V(beta_1, dots, beta_N) != 0$ d'où $m_i = n_i$.
-
-#card("calcpmatdz", "Calcul de puissance de matrice : cas diagonalisable", ("Maths.Algèbre.Réduction",))
-
-Méthodes de calcul des puissances d'une matrice diagonalisable.
-
-#answer
-
-Soit $A in M_n (KK)$ diagonalisable.
-
-+ Matrice diagonale :
-
-  On dispose de $P in "GL"_n (KK)$ (à calculer) tel que
-  $
-    A &= P dmat(alpha_1, dots.down, alpha_n) P^(-1) \
-    A^k &= P dmat(alpha_1^k, dots.down, alpha_n^k) P^(-1)
-  $
-
-+ Lagrange : notons $d = deg Pi_A$ #h(1fr)
-  $
-    A^k in KK[u] = "Vect"(I_n, A, dots, A^(d-1)) \
-  $
-  Donc on dispose de $P in KK_(d-1) [X]$ tel que $A^k = P(A)$.
-
-  Explicitons le :
-  $
-    KK^n = plus.o.big_(i = 1)^N E_lambda_i
-  $
-  Soit $X in KK^n$
-  $
-    X = underbrace(X_1, in E_lambda_1) + dots.c + underbrace(X_d, in E_lambda_d) \
-    A X = lambda_1 X_1 + dots.c + lambda_d X_d \
-    A^k X = lambda_1^k X_1 + dots.c + lambda_d^k X_d \
-    P(A) X = P(lambda_1) X_1 + dots.c + P(lambda_d) X_d \
-  $
-  Ainsi avec $P$ construit par interpolation de Lagrange afin de vérifier
-  $
-    forall i in [|1, d|], space P(lambda_i) = lambda_i^k \
-    P in KK_(d - 1) [X]
-  $
-  On a alors $P(A) X = A^k X$ pour tout $X$, d'où $P(A) = A^k$.
-
-#card("calcpmatde", "Calcul de puissance de matrice : polynôme annulateur", ("Maths.Algèbre.Réduction",))
-
-Méthodes de calcul des puissances d'une matrice grâce à un polynôme annulateur.
-
-#answer
-
-Soit $A in M_n (KK)$, $P in KK[X]$ annulateur de degré $d$.
-$
-  X^k = Q P + R \
-  A^k = underbrace(Q P (A), 0) + R(A)
-$
-Avec $R in KK_(d-1) [X]$.
-
-Si $P = (X - lambda)^m$ on trouve le reste de la division euclidienne grâce à la formule de Taylor :
-
-$
-  Q &= overbrace(sum_(k = 0)^(m-1) (Q^((k)) (lambda)) / k! (X - lambda)^k, "reste") \
-  &+ (X - lambda)^m underbrace(sum_(k = m)^(deg Q) (Q^((k)) (lambda)) / k! (X - lambda)^(k - m), "quotient") \
-  A^p &= sum_(k = 0)^(m - 1) vec(p, k) lambda^(p - k)(A - lambda I_n)^(k)
-$
-
-#card("eqmat", "Équations matricielles", ("Maths.Algèbre.Réduction",))
-
-Méthodes de résolutions d'équations matricielles.
-
-#answer
-
-Soit $A in M_n (KK), P in KK[X]$.
-
-On cherche à résoudre les équations de la forme
-$
-  P(M) = A
-$
-*Idées*
-- $M A = A M$ car $A in KK[M]$.
-
-- Ainsi $M$ laisse stable
-  - Les sous-espaces propres de $A$
-  - Les sous-espaces caractèristiques de $A$
-  - Tout les $ker Q(A)$
-
-- Pour $Q$ annulateur de $A$, $Q compose P$ est annulateur de $M$ : si $Q compose P$ est SARS, $M$ est diagonalisable.
-
-*Résolutions cas simple*
-
-Si $chi_A$ SARS :
-$
-  chi_A = product_(k = 1)^n (X - lambda_k) \
-  A = R dmat(lambda_1, dots.down, lambda_n) R^(-1) \
-  R = mat(C_1, dots.c, C_n)
-$
-Avec $C_1, dots, C_n$ vecteurs propres associés aux $lambda_1, dots, lambda_n$.
-
-Si $M$ est solution, $M$ laisse stable tout les $E_lambda_k = "Vect"(C_k)$
-$
-  M C_k = mu_k C_k \
-  M = R dmat(mu_1, dots.down, mu_n) R^(-1)
-$
-Or
-$
-  P(M) &= R dmat(P(mu_1), dots.down, P(mu_n)) R^(-1) \
-  &= A
-$
-D'où $P(mu_k) = lambda_k$ pour tout $k in [|1,n|]$.
-
-#card("eqmatxk", "Racine k-ème de matrices", ("Maths.Algèbre.Réduction",))
-
-Méthodes général de résolution de l'équation $M^p = A$.
-
-#answer
-
-Soit $A in M_n (KK)$ et $p in NN$.
-
-- Si $A$ est nilpotent : il peut ne pas exister de solutions, par exemple :
-
-  Si $A$ nilpotent d'ordre $n$ et $p >= 2$
-  $
-    A^n = (M^p)^n = 0
-  $
-  D'où $M$ nilpotent
-  $
-    M^n = A^ceil(n / p) = 0
-  $
-  Absurde.
-
-- Cas $A = I_n + N$ avec $N$ nilpotent.
-
-  Idée : DL de $(1+x)^(1/k)$
-  $
-    (1 + x)^(1/k) = P_k (x) + o_(x->0) (x^(n-1)) \
-    P_k (X) = 1 + sum_(j = 1)^(n-1) product_(i = 0)^(n-1) (1 / k - i) x^j / j! in RR_(n-1) [X] \
-  $
-  $
-    1 + x &= (P_k (x) + o_(x->0)(x^(n-1)))^k \
-    &= Q_k (x) + o_(x->0) (x^(n-1))
-  $
-  Par unicité de la partie principale du DL :
-  $
-    1 + X = Q_k (X)
-  $
-  Où $Q_k$ est $P_k^k$ tronqué à $n - 1$ termes
-  $
-    1 + X = P_k^k (X) - X^n R_k (X) \
-    A = I_n + N = P_k^k (N) - underbrace(N^n R_k (N), 0)
-  $
-  D'où $P_k (N)$ est solution.
-- Cas $A in M_n (CC)$ tel que $0 in.not "Sp"(A)$ :
-  Pour tout $k in NN^star$ :
-
-  $
-    chi_A = product_(k = 1)^q (X - lambda_k)^(m_k) \
-    A = P dmat(lambda_1 I_m_1 + N_1, dots.down, lambda_q I_m_q + N_q) P^(-1)
-  $
-  Pour tout $j in [|1, q|]$, on dispose de $tilde(M)_j$ et $mu_j$ tels que
-  $
-    mu_j^k = lambda_j \
-    tilde(M)_j^k = I_m_j + 1/lambda_j N_j \
-  $
-  On définit alors
-  $
-    M_j &= mu_j tilde(M)_j \
-    M_j^k &= mu_j^k I_m_j + mu_j^k / lambda_j N_j \
-    &= lambda_j I_m_j + N_j
-  $
-  Ainsi
-  $
-    M = P dmat(M_1, dots.down, M_q) P^(-1) \
-  $
-  Est solution :
-  $
-    M^k &= P dmat(M_1^k, dots.down, M_q^k) P^(-1) \
-    &= A
-  $
-
-#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Algèbre.Réduction",))
-
-Soit $u in cal(L)(E)$ où $E$ est un $CC$-ev, montrer que
-$
-  u "diagonalisable" \ <=> cases(space u^2 "diagonalisable", space ker u = ker u^2)
-$
-
-#answer
-
-- Supposons $u$ diagonalisable, on dispose de $e$ base de $E$ tel que
-  $
-    cal(M)_e (u) = dmat(lambda_1, dots.down, lambda_n) \
-    cal(M)_e (u^2) = dmat(lambda_1^2, dots.down, lambda_n^2) \
-  $
-  D'où $u^2$ diagonalisable, et de plus $ker u subset.eq ker u^2$.
-
-  Posons $k in [|0, n|]$ tel que 
-  $
-  lambda_1 = dots.c = lambda_k = 0 \
-  lambda_(k+1), dots, lambda_n != 0
-  $
-  On a bien $ker u^2 = ker u$ (Vision matricielle).
-
-- Supposons $0 in.not "Sp"(u)$, $u^2$ diagonalisable et $ker u^2 = ker u$.
-  $
-    Pi_(u^2) = product_(k = 1)^q (X - lambda_k) \
-    Pi_(u^2) (u^2) = product_(k = 1)^q (X - delta_k)(X + delta_k) (u) = 0
-  $
-  Avec $delta_k^2 = lambda_k$. Ainsi $u$ est annuler par un polynôme SARS, donc diagonalisable.
-
-- Supposons $0 = lambda_1 in "Sp"(u)$, $u^2$ diagonalisable et $ker u^2 = ker u$.
-  $
-    E &= plus.o.big_(k = 1)^q ker (u^2 - lambda_k id) \
-    &= plus.o.big_(k = 2)^q ker (u^2 - lambda_k id) plus.o ker u^2\
-    &= plus.o.big_(k = 2)^q ker (u - delta_k id)(u + delta_k id) \
-    &plus.o underbrace(ker u^2, ker u) \
-  $
-  D'où $u$ diagonalisable.
-// TODO: Exo 16/17 cf photos
-#card("rechhypstab", "Recherche d'hyperplans stables", ("Maths.Algèbre.Réduction",))
-
-Méthodes de recherche d'hyperplans stables.
-
-#answer
-
-Soit $A in M_n (KK)$, $H$ hyperplan de $KK^n$.
-
-On dispose de $L in M_(1 n) (KK)$ tel que
-$
-  H = Set(X in KK^n, L X = 0) = ker L
-$
-$H$ est stable par $A$ ssi
-$
-  L^T "vecteur propre de" A^TT
-$
-
-*Démonstration*
-
-$
-  A H subset.eq H <=> ker L subset.eq ker L A \
-  <=> exists lambda in KK, L A = lambda L \
-  <=> exists lambda in KK, A^TT L^TT = lambda L^TT
-$
-
-#card("polcarabba", "Pseudo-commutativité du polynôme caractèristique", ("Maths.Algèbre.Réduction",))
-
-Pour $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$, lien entre $chi_(A B)$ et $chi_(B A)$.
-
-#answer
-
-Soient $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$.
-$
-  A B in M_p (KK) quad quad B A in M_n (KK) \
-  X^n chi_(A B) = X^p chi_(B A) \
-  "Sp"(A B) \\ {0} = "Sp"(B A) \\ {0} \
-  forall lambda in KK\\{0}, \ dim E_lambda (A B) = dim E_lambda (B A)
-$
-Si $p = n$ ($A$ et $B$ sont carrés) alors
-$
-  chi_(A B) = chi_(B A)
-$
-
-*Démonstration*
-
-- Cas $A = J_r$ : #h(1fr)
-  $
-    A &= mat(augment: #(hline: 1, vline: 1), I_r, 0; 0, 0) quad quad
-    &B &= mat(augment: #(hline: 1, vline: 1), B_1, B_2; B_3, B_4) \
-    A B &= mat(augment: #(hline: 1, vline: 1), B_1, B_2; 0, 0)  quad quad
-    &B A &= mat(augment: #(hline: 1, vline: 1), B_1, 0; B_3, 0) \
-  $
-  $
-    chi_(A B) &= chi_B_1 X^(p - r) \
-    chi_(B A) &= chi_B_1 X^(n - r) \
-  $
-
-- Cas général : $A = P J_r Q$
-  $
-  A B &= P J_r Q B \
-  &= P (J_r Q B P) P^(-1) \
-  B A &= B P J_r Q \
-  &= Q^(-1) (Q B P J_r) Q
-  $
-  Donc
-  $
-    X^n chi_(A B) &= X^n chi_(J_r Q B P) \
-    &= X^p chi_(Q B P J_r) = X^p chi_(B A)
-  $
-
-- Pour tout $X in E_lambda (A B)$
-  $
-    A B X = lambda X \
-    B A B X = lambda B X \
-    B X in E_lambda (B A) \
-  $
-  Ainsi
-  $
-    theta : func(E_lambda (A B), E_lambda (B A), X, B X)
-  $
-  Est linéaire injectif, donc
-  $
-    dim E_lambda (B A) >= dim E_lambda (A B)
-  $
-  Avec égalité par symétrie.
-
-#card("redmatrg1", "Réduction de matrice dans rang 1", ("Maths.Algèbre.Réduction",))
-
-Propriétés de réduction de matrices de rang $1$. 
-
-#answer
-
-Soit $A in M_n (KK)$ tel que $"rg" A = 1$.
-
-+ On dispose de $L in M_(1 n) (KK), C in M_(n 1) (KK)$ tels que $A = C L$.
-
-+ $A^2 = (tr A) A$.
-
-+ $X(X - tr A)$ annule $A$.
-
-+ Si $tr A != 0$, $A$ est diagonalisable.
-
-+ Si $tr A = 0$, $A$ est nilpotente.
-
-*Démonstration*
-
-+ Comme $"rg" A = "rg" mat(C_1, dots.c, C_n) = 1$, on dispose de $k in [|1, n|]$ tel que ${C_1, dots, C_n} subset.eq "Vect"(C_k)$ : #h(1fr)
-  $
-    A &= mat(C_1, dots.c, C_n) = C_k mat(alpha_1, dots.c, alpha_n) \
-    &= underbrace(vec(x_1, dots.v, x_n), C) underbrace(mat(alpha_1, dots.c, alpha_n), L)
-  $
-
-+ $
-  A^2 = C underbrace(L C, tr A) L = (tr A) A
-  $
-
-+ Évident.
-
-+ Si $tr A != 0$, $A$ est annuler par $X(X - tr A)$ SARS donc $A$ est diagonalisable.
-
-+ Si $tr A = 0$, $X^2$ annule $A$, donc $A$ est nilpotente.
-
-#card("suitreclin", "Suites récurrentes linéaires", ("Maths.Algèbre.Réduction", "Maths.Analyse.Suites"))
-
-Propriétés, méthodes d'étude de suites récurrentes linéaires.
-
-#answer
-
-Pour tout $(x_0, dots, x_(p-1)) in KK^p$, pour tout $n in NN$ on définit la suite $(x_n)_n in KK^NN$
-$
-  x_(n + p) = sum_(k = 0)^(p-1) a_k x_(n + k) quad (*) \
-  cal(S) = Set((x_n)_n in KK^NN, (*)) \
-  dim cal(S) = p
-$
-Où $cal(S)$ est un $KK$-ev.
-
-$
-  A = mat(augment: #(hline: 3), 0, 1;,dots.down, dots.down;,,0,1;a_0, a_1, dots.c, a_(p - 1)) = C_P^TT \
-  P = X^p - sum_(k = 0)^(p-1) a_k X^k
-$
-Ainsi si $X_n = vec(X_n, dots.v, X_(n + p))$
-$
-  A X_n = X_(n+1) \
-  X_n = A^n X_0
-$
-Si $chi_A$ est SARS
-$
-  chi_A = product_(k = 1)^p (X - lambda_k) \
- cal(S) = "Vect" ((lambda_k^n)_(n in NN))_(k in [|1, p|])
-$
-
-*Démonstration*
-
-- Si $P = chi_C_P = chi_A$ est SARS #h(1fr)
-  $
-    X^p - sum_(k = 0)^(p-1) a_k X^k = product_(k = 1)^p (X - lambda_k)
-  $
-  $A$ est diagonalisable comme $chi_A$ est SARS
-  $
-    A = Q dmat(lambda_1, dots.down, lambda_p) Q^(-1) \
-    A^n = sum_(k = 1)^p lambda_k^p Pi_k
-  $
-  Où les $Pi_k$ sont les projecteurs issus de la décomposition en sous-espaces propres.
-  $
-    vec(x_n, dots.v, x_(n+p)) &= X_n = A^n X_0 \
-    &= sum_(k = 1)^p lambda_k^n Pi_k X_0 \
-    x_n &= sum_(k = 1)^p lambda_k^n gamma_k \
-    (x_n)_n &= sum_(k = 1)^p gamma_k (lambda_k^n)_n \
-    &in "Vect" ((lambda_k^n)_(n in NN))_(k in [|1, p|])
-  $
-  Soit $k in [|1, p|]$
-  $
-    chi_A (lambda_k) = 0 \
-    "Donc " lambda_k^p = sum_(i = 0)^(p-1) a_i lambda_k^i \ 
-    forall n in NN, space lambda_k^(p + n) = sum_(i = 0)^(p-1) a_i lambda_k^(n + i) \
-    (lambda_k^n)_(n in NN) in cal(S)
-  $
-
-- Sinon 
-  $
-    P = product_(k = 1)^q (X - lambda_k)^(m_k)
-  $
-  Posons
-  $
-    delta : func(KK^NN, KK^NN, (y_n)_n, (y_(n+1))_n)
-  $
-  Ainsi on a
-  $
-    cal(S) &= ker P(delta) \
-    &= plus.o.big_(k = 1)^q ker (delta - lambda_k)^(m_k)
-  $
-  - Montrons que $(n^d lambda_k^n)_n in ker (delta - lambda_k id)^(m_k) subset.eq ker P(delta) = cal(S)$ :
-
-    Définissons d'abord
-    $
-      Delta : func(KK[X], KK[X], P(X), P(X+1) - P(X))
-    $
-    On remarque que
-    $
-      P = sum_(k = 0)^d a_k X^k \
-    $
-    $
-      Delta (P) &= sum_(k = 0)^d a_k [(X + 1)^k - X^k] \
-      &= sum_(k = 0)^d a_k [sum_(i = 0)^(k - 1) underbrace(X^(k - 1 - i) X^i, deg <= k - 1)] \
-      deg Delta (P) &<= deg P - 1
-    $
-    Ainsi $Delta^(d+1) P = 0$.
-    
-    Alors pour tout $k in [|1, q|]$, $P in KK_(m_k - 1) [X]$
-    $
-      (delta - lambda_k id) (P(n) lambda_k^n)_n \
-      = ([P(n+1) - P(n)] lambda_k^(n+1))_n \
-      = (Delta(P)(n) lambda_k^(n+1))_n
-    $
-    Donc 
-    $
-    (delta - lambda_k)^(m_k) (P(n) lambda_k^n)_n \
-      = (Delta^(m_k)(P)(n) lambda_k^(n+1))_n \
-      = 0
-    $
-    Ainsi pour $P(X) = X^d$ avec $d in [|0, m_k - 1|]$, $
-    (n^d lambda_k^n)_n in ker (delta - lambda_k id)^(m_k) 
-    $
-
-  - Montrons que la famille $((n^d lambda_k^n)_(n in NN))_(d in [|0, m_k - 1|])$ est libre.
-
-    Notons $u_d = (n^d lambda_k^n)_(n in NN) $.
-
-    Supposons
-    $
-      sum_(i = 0)^(m_k - 1) gamma_i u_i = 0
-    $
-    Alors pour tout $n in NN$
-    $
-      underbrace((sum_(i = 0)^(m_k - 1) gamma_i n^i), P_k (n)) underbrace(lambda_k^n, != 0) = 0
-    $
-    Et $P_k$ est un polynôme qui s'annule sur $NN$ entier, et est donc nul.
-
-  Donc on dispose de bases des $ker (delta - lambda_k id)^(m_k)$
-  $
-    cal(S) = "Vect"((n^d lambda_k^n)_(n in NN))_(d in [|0, m_k - 1|] \ k in [|1, q|])
-  $
-]
-#[
-
-#import "/utils.typ": *
-#import "@preview/tiptoe:0.3.1"
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-#import "@preview/physica:0.9.7": *
-#import "@preview/cetz:0.4.2"
-
-#card("norm", "Norme", ("Maths.Topologie",))
-
-Définition d'une norme sur un $KK$-ev $E$.
-
-#answer
-
-Une norme sur un $KK$-ev $E$ est une application $N : E -> RR_+$ tel que
-
-+ Homogénéité : $forall lambda in KK, x in E$ #h(1fr)
-  $
-    N(lambda x) = abs(lambda) N(x)
-  $
-
-+ Inégalité triangulaire : $forall x, y in E$
-  $
-    N(x + y) <= N(x) + N(y)
-  $
-
-+ Séparation : $forall x in E$
-  $
-    N(x) = 0 => x = 0
-  $
-
-#card("normeeuclidienne", "Norme euclidienne", ("Maths.Topologie",))
-
-Définition et propriétés des normes euclidiennes.
-
-#answer
-
-Pour $E$ un $RR$-ev un produit scalaire est une forme bilinéaire symétrique définie positive.
-
-Pour un produit scalaire $scl(dot, dot)$ on a l'Inégalité de Cauchy-Schwartz :
-$
-  forall x, y in E \
-  scl(x, y)^2 <= scl(x, x) dot scl(y, y)
-$
-Avec cas d'égalité si $(x, y)$ liée.
-
-D'un produit scalaire dérive une norme (euclidienne)
-$
-  norm(dot) : func(E, RR_+, x, sqrt(scl(x, x)))
-$
-
-*Démonstration*
-
-- Si $x = 0$ ou $y = 0$ : évident. Sinon pour $x, y in E\\{0}, t in RR$ : #h(1fr)
-  $
-    scl(x + t y, x + t y) \ = t^2 scl(y, y) + 2 t scl(x, y) + scl(x, x) \ = P(t)
-  $
-  Comme $scl(y, y) > 0$, $deg P = 2$. De plus par positivité de $scl(dot, dot)$ :
-  $
-    Delta = 4scl(x, y)^2 - 4 scl(x, x) dot scl(y, y) &<= 0 \
-    scl(x, y)^2 <= scl(x, x) dot scl(y, y)
-  $
-  Avec cas d'égalité si $Delta = 0$, c'est à dire $x + t y = 0$.
-
-- Vérifions les axiomes
-
-  + Soit $lambda in RR, x in E$ #h(1fr)
-    $
-      norm(lambda x) &= sqrt(scl(lambda x, lambda x)) \
-      &= abs(lambda) sqrt(scl(x, x))  \
-      &= abs(lambda) norm(x)
-    $
-
-  + Soit $x in E$ tel que $norm(x) = 0$
-    $
-      sqrt(scl(x, x)) &= 0 \
-      scl(x, x) &= 0 \
-      x &= 0
-    $
-
-  + Soit $x, y in E$ \
-    $
-      & space norm(x + y)^2 \
-      &= scl(x + y, x + y) \
-      &= norm(x)^2 + norm(y)^2 + 2 scl(x, y) \
-      &<= norm(x)^2 + norm(y)^2 + 2 underbrace(abs(scl(x, y)), "C-S") \
-      &<= norm(x)^2 + norm(y)^2 + 2 norm(x) norm(y) \
-      &= (norm(x) + norm(y))^2
-    $
-
-  Avec égalité ssi $scl(x, y) >= 0$ et égalité dans C-S : ssi $x, y$ positivement liés.
-
-#card("normprod", "Norme produit", ("Maths.Topologie",))
-
-Définition de la norme produit.
-
-#answer
-
-Soit $(E_1, norm(dot)_1), dots, (E_d, norm(dot)_d)$ des $KK$-evn.
-
-On définit la norme produit sur $product_(k = 1)^d E_k$ comme
-$
-  N : func(display(product_(k = 1)^d E_k), RR_+, vec(x_1, dots, x_n), display(max_(k in [|1, n|]) norm(x_k)_k))
-$
-
-#card("dist", "Distance", ("Maths.Topologie",))
-
-Définition de distance.
-
-#answer
-
-Soit $X$ un ensemble non vide. On appelle distance une application $d : X^2 -> RR_+$ tel que
-
-+ Symétrie : $forall x, y in X$ #h(1fr)
-  $
-    d(x, y) = d(y, x)
-  $
-
-+ Inégalité triangulaire : $forall x, y, z in X$
-  $
-    d(x, z) <= d(x, y) + d(y, z)
-  $
-
-+ Séparation : $forall x, y in X$
-  $
-    d(x, y) = 0 => x = y
-  $
-
-Dans un evn $(E, norm(dot))$ on peut définir la distance sur $E$ associé à la norme $norm(dot)$ :
-$
-  d : func(E^2, RR_+, (x, y), norm(x - y))
-$
-
-#card("bouleetbil", "Boules et sphères", ("Maths.Topologie",))
-
-Définition, propriétés des boules et sphères.
-
-#answer
-
-Soit $E$ un espace métrique, $a in E$ et $r in RR_+$. On définit les ensembles suivants
-$
-  B(a, r) &= {x in E | d(a, x) < r} \
-  B_f (a, r) &= {x in E | d(a, x) <= r} \
-  SS(a, r) &= {x in E | d(a, x) = r} \
-$
-
-Si $E$ est un $KK$-evn alors on a de plus la convexité de $B(a, r)$ et $B_f (a, r)$.
-
-#card("ptsextremaux", "Points extrémaux d'un convexe", ("Maths.Topologie.Connexité",))
-
-Définition des points extrémaux d'un convexe et points extrémaux d'une boule.
-
-#answer
-
-Soit $(E, norm(dot))$ un evn, $K subset.eq E$ convexe. On dit que $x in K$ est extrémal si
-$
-  forall y, z in K, forall t in Ioo(0,1), \ x = (1 - t) y + t z => x = y = z
-$
-
-Si $norm(dot)$ dérive d'un produit scalaire, alors pour tout $a in E$ et $r in RR_+$, l'ensemble des points extrémaux de $B_f (a, r)$ est $SS(a, r)$.
-
-*Démonstration*
-
-Pour $r = 1$ et $a = 0$ : (auxquels on peut se ramener)
-
-- Soit $x in B(0, 1)$ #h(1fr)
-  $
-    x = (1 - norm(x)) 0 + norm(x) x / norm(x)
-  $
-  D'où $x$ pas extrémal (on traite le cas $x = 0$ séparément).
-
-- Soit $x in SS(0, 1)$, $y, z in B_f (0, 1), t in Ioo(0, 1)$ tel que
-  $
-    x = (1 - t) y + t z \
-    norm(x) = 1 <= (1 - t) underbrace(norm(y), <= 1) + t underbrace(norm(z), <= 1)
-  $
-  On a égalité dans l'inégalité triangulaire : $y$ et $z$ positivement liés (car produit scalaire) et $norm(y) = norm(z)$ d'où $y = z = x$.
-
-#card("topologies", "Topologie, espace topologique", ("Maths.Topologie",))
-
-Définition d'une topologie.
-
-#answer
-
-Soit $X$ un ensemble, $T subset.eq cal(P)(X)$ est une topologie sur $X$ si
-
-+ ${emptyset, X} subset.eq T$
-
-+ Pour toute famille $(Omega_i)_i in T^I$
-  $
-    union.big_(i in I) Omega_I in T
-  $
-
-+ Pour tout $Omega_1, dots, Omega_n in T$
-  $
-    inter.big_(k = 1)^n Omega_k in T
-  $
-
-Les éléments de $T$ sont appelés ouverts de $X$.
-
-$X$ muni de $T$ est appelé espace topologique.
-
-#card("topem", "Topologie sur un espace métrique", ("Maths.Topologie",))
-
-Définitions des ouverts / fermés d'un espace métrique.
-
-#answer
-
-Soit $(E, d)$ un espace métrique.
-
-On dit que $Omega subset.eq E$ est un ouvert de $E$ si
-$
-  forall x in Omega, exists delta > 0, B(x, r) subset.eq Omega
-$
-De manière équivalente
-$
-  forall x in Omega, Omega in cal(V)(x)
-$
-L'ensemble $T$ des ouverts de $E$ forme une topologie :
-
-+ $emptyset$ et $E$ sont ouverts.
-
-+ $T$ est stable par union quelconque.
-
-+ $T$ est stable par intersection finie.
-
-On définit de plus les fermés : le complémentaire d'un ouvert.
-
-*Démonstration*
-
-+ Évident.
-
-+ Soit $(Omega_i)_i in T^I$ une famille d'ouverts. Soit $x in W = union.big_(i in I) Omega_i$.
-
-  On dispose de $i in I$ tel que $x in Omega_i$, ainsi on dispose de plus de $delta > 0$ tel que
-  $
-    B(x, delta) subset.eq Omega_i subset.eq W
-  $
-
-  Donc $W in T$ : c'est un ouvert.
-
-+ Soit $F_1, dots, F_n in T$, soit $x in W = inter.big_(k = 1)^n F_k$. Pour tout $k in [|1, n|]$ on dispose de $delta_k > 0$ tel que
-  $
-    B(x, delta_k) subset.eq F_k \
-    delta = min_(k in [|1; n|]) delta_k \
-  $
-  Ainsi on a pour tout $k in [|1,n|]$ :
-  $
-    B(x, delta) subset.eq B(x, delta_k) subset.eq F_k \
-  $
-  Donc
-  $
-    B(x, delta) subset.eq W
-  $
-
-#card("limsuit", "Limites de suites", ("Maths.Topologie",))
-
-Définitions équivalentes de limites d'une suite.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$. On dit que $l in E$ est limite de la suite $u$ si l'une des définitions suivantes équivalentes s'applique :
-
-+ $forall epsilon > 0, exists N in NN, forall n >= N, d(u_n, l) < epsilon$.
-
-+ $forall epsilon > 0, exists N in NN, forall n >= N, u_n in B(l, epsilon)$.
-
-+ $(d(u_n, l))_n tends(n -> oo) 0$.
-
-+ $forall V in cal(V)(l), exists N in NN, forall n >= N, u_n in V$.
-
-Si la limite existe, alors elle est unique.
-
-*Démonstration*
-
-- Équivalence : l'écrire.
-
-- Si $l = lim_(n -> oo) u_n$, prendre $l' != l$ et montrer que $(d(l', u_n))_n tendsnot(n->oo) 0$.
-
-#card("vadh", "Valeurs d'adhérance d'une suite", ("Maths.Topologie",))
-
-Définitions et propriétés sur les valeurs d'adhérance d'une suite.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
-
-On dit que $l in E$ est une valeur d'adhérance de $u$ s'il existe $phi$ extractrice tel que $(u_(phi(n)))_n tends(n -> oo) l$.
-
-Une suite qui à deux valeurs d'adhérance diverge.
-
-#card("compnorm", "Comparaison de normes", ("Maths.Topologie",))
-
-Définitions de comparaison de normes, propriétés.
-
-#answer
-
-Soit $E$ un $KK$-ev, $norm(dot)_1$ et $norm(dot)_2$ deux normes sur $E$.
-
-On dit que $norm(dot)_2$ est plus fine de $norm(dot)_1$ s'il existe $alpha > 0$ tel que
-$
-  forall x in E, space norm(x)_1 <= alpha norm(x)_2
-$
-
-Dans ce cas :
-
-+ Pour tout $a in E$ et $r > 0$ #h(1fr)
-  $
-    B_2 (a, r) subset.eq B_1 (a, alpha r)
-  $
-
-+ Si $Omega subset.eq E$ est ouvert pour $norm(dot)_1$ est ouvert pour $norm(dot)_2$
-
-+ Toute suite bornée pour $norm(dot)_1$ l'est pour $norm(dot)_2$.
-
-+ Toute suite convergente pour $norm(dot)_1$ l'est pour $norm(dot)_2$.
-
-On dit que $norm(dot)_1$ et $norm(dot)_2$ sont équivalentes si chacune est plus fine que l'autre. C'est une relation d'équivalence.
-
-#card("adh", "Adhérance", ("Maths.Topologie",))
-
-Définition de l'adhérance, caractérisation séquentielle.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $A subset.eq E$ une partie. Un point $x in A$ est dit adhérant à $A$ s'il vérifit une des conditions équivalentes suivantes :
-
-+ $forall r > 0, B(x, r) inter A != emptyset$
-
-+ $exists (u_n)_n in A^NN, lim_(n -> oo) u_n = x$
-
-+ $d(x, A) = 0$
-
-On définit alors l'adhérance d'un ensemble (noté $overline(A)$) comme l'ensemble de ses points d'adhérance.
-
-- $A subset.eq overline(A)$.
-
-- $A$ est fermée ssi $A = overline(A)$.
-
-- $overline(A)$ est le plus petit (au sens de l'inclusion) fermé contenant $A$ :
-  $
-    overline(A) = inter.big_(A subset.eq B subset.eq E \ B "fermé") B
-  $
-
-- $overline(E \\ A) = E \\ circle(A)$
-
-*Démonstration*
-
-- (1 $=>$ 2) Pour tout $n in NN$, on pose $x_n$ tel que $x_n in B(x, 1/(n+1))$, qui existe par hypothèse.
-
-  Ainsi $d(x_n, x) < 1/(n+1)$ d'où $(d(x_n, x))_n -> 0$ donc $(x_n)_n -> x$.
-
-- (2 $=>$ 1) Par hypothèse on dispose de $(x_n)_n in A^NN -> x$. Soit $r > 0$.
-
-  On dispose de $N in NN$ tel que $d(x_N, x) < r$, donc
-  $
-    x_N in B(x, r) inter A != emptyset
-  $
-
-- (2 $<=>$ 3) 
-  $
-    x in overline(A) &<=> exists (a_n)_n in A^NN, space a_n -> x \
-    &<=> exists (a_n)_n in A^NN, space d(x, a_n) -> 0 \
-    &<=> d(x, A) <= 0 \
-    &<=> d(x, A) = 0
-  $
-
-- Supposons que $F != overline(F)$, on dispose donc de $x in overline(F) \\ F$.
-
-  Soit $epsilon > 0$, comme $x in overline(F)$
-  $
-    B(x, epsilon) inter F != emptyset \
-    B(x, epsilon) subset.eq.not E \\ F
-  $
-  Donc $E \\ F$ n'est pas un ouvert : $F$ n'est pas fermée.
-
-- Supposons que $F$ n'est pas fermée, on dispose donc de $x in E \\ F$ tel que
-  $
-    forall epsilon > 0, B(x, epsilon) subset.eq.not E \\ F
-  $
-  Donc pour tout $epsilon > 0$
-  $
-    B(x, epsilon) inter F != emptyset
-  $
-  D'où $x in overline(F)$, mais $x in.not F$ : $F != overline(F)$.
-
-#card("vois", "Voisinage", ("Maths.Topologie",))
-
-Définition de voisinage.
-
-#answer
-
-Soit $(E, d)$ un espace métrique et $x in E$.
-
-On dit que $V subset.eq E$ est un voisinage de $x$ dans $E$ s'il existe $r > 0$ tel que $B(x, r) subset.eq V$.
-
-On note $cal(V)(x)$ l'ensemble des voisinages de $x$ dans $E$.
-
-#card("densite", "Densité", ("Maths.Topologie",))
-
-Définition de densité.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, on dit que $A subset.eq E$ est dense dans $E$ si
-$
-  overline(A) = E
-$
-
-#card("interieur", "Interieur", ("Maths.Topologie",))
-
-Définition de l'interieur d'une partie.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $A subset.eq E$ et $x in E$.
-
-On dit que $x$ est un point interieur de $A$ s'il existe $r > 0$ tel que
-$
-  B(x, r) subset.eq A
-$
-C'est à dire $A in cal(V)(x)$.
-
-On note $circle(A)$ l'ensemble des points interieurs de $A$.
-
-- $circle(A) subset.eq A$
-
-- $A$ est ouvert ssi $circle(A) = A$
-
-- $circle(A)$ est le plus grand ouvert inclus dans $A$
-
-- $circle(overparen(E \\ A)) = E \\ overline(A)$
-
-On définie aussi la frontière d'une partie $partial A = "Fr" A = overline(A) \\ circle(A)$ qui est un fermé.
-
-#card("limfunctop", "Limite d'une fonction", ("Maths.Topologie",))
-
-Définition de la limite d'une fonction.
-
-#answer
-
-Soit $(E, d_E), (F, d_F)$ deux espaces métriques et $X subset.eq E$.
-
-Soit $f in cal(F)(X, F)$, $a in overline(X)$, on dit que $f$ admet $l in F$ comme limite en $a$ si l'une des conditions équivalentes suivantes est vérifiée.
-
-+ $forall epsilon > 0, exists delta > 0, f(B(a, delta) inter X) subset.eq B(l, epsilon)$
-
-+ $forall V in cal(V)(l), exists W in cal(V)(a), f(W inter X) subset.eq V$.
-
-+ $forall (x_n)_n in X^NN -> a, lim_(n -> oo) f(x_n) = l$.
-
-*Démonstration*
-
-- (1 $=>$ 2) Soit $V in cal(V)(l)$, on dispose donc de $B(l, epsilon) subset.eq V$, et donc de $delta > 0$ tel que 
-  $
-  f(underbrace(B(a, delta), W in cal(V)(a)) inter X) subset.eq B(l, epsilon) subset.eq V
-  $
-
-- (2 $=>$ 1) Soit $epsilon > 0$, comme $V = B(epsilon, l) in cal(V)(l)$, on dispose de $W in cal(V)(a)$, et donc de $delta > 0$ tel que 
-  $
-  f(B(a, delta) inter X) subset.eq f(W inter X) subset.eq V
-  $
-
-- L'écrire.
-
-#card("continuite", "Continuité d'une fonction en un point", ("Maths.Topologie",))
-
-Définition de continuité en un point.
-
-#answer
-
-Soit $(E, d_E), (F, d_F)$ deux espaces métriques, $X subset.eq E$ et $f in cal(F)(X, F)$.
-
-On dit que $f$ est continue en $a in X$ si:
-$
-  lim_(x -> a) f(x) = f(a)
-$
-
-Ce qui équivaut à
-$
-  forall V in cal(V)(f(a)), f^(-1) (V) in cal(V)(a)
-$ 
-
-Il suffit d'ailleur que $f$ admette une limite en $a$, car dans ce cas cette limite est forcément $f(a)$.
-
-*Démonstration*
-
-- Supposons $f$ continue en $a$ : comme $lim_(x -> a) f(x) = f(a)$, pour tout $V in cal(V)(f(a))$ on dispose de $W in cal(V)(a)$ tel que #h(1fr)
-  $
-    f(W inter X) subset.eq V \
-    cal(V) (a) in.rev W inter X supset.eq f^(-1) (V)
-  $
-
-- Soit $V in cal(V)(f(a))$ :
-  $
-    W = f^(-1)(V) in cal(V)(a) \
-    f(W inter X) subset.eq V
-  $
-
-#card("contglob", "Continuité d'une fonction", ("Maths.Topologie",))
-
-Définition de continuité (sur un ensemble) d'une fonction.
-
-#answer
-
-Soit $(E, d_E), (F, d_F)$ deux espaces métriques, $X subset.eq E$ et $f in cal(F)(X, F)$.
-
-On dit que $f$ est continue sur $X$ ($f in C^0 (X, F)$) si pour tout $a in X$, $f$ est continue en $a$.
-
-Ce qui est équivalent à
-$
-  forall Omega "ouvert de" F, f^(-1) (Omega) "ouvert de" X
-$
-On en déduit que
-$
-  forall F "fermé de" F, f^(-1) (F) "fermé de" X
-$
-
-*Démonstration*
-
-- Supposons $f in C^0 (X, F)$, soit $Omega subset.eq F$ ouvert et $a in f^(-1)(Omega)$.
-
-  Comme $f(a) in Omega$, $Omega in cal(V)(f(a))$, et par continuité en $a in X$ : $f^(-1)(Omega) in cal(V)(a)$.
-
-- Soit $a in X, epsilon > 0$, comme $B(f(a), epsilon)$ est ouvert, $f^(-1)(B(f(a), epsilon))$ est un ouvert contenant $a$ : on dispose de $delta > 0$ tel que
-  $
-    B(a, delta) subset.eq f^(-1)(B(f(a), epsilon)) \
-    f(B(a, delta) inter X) subset.eq B(f(a), epsilon)
-  $
-
-#card("lipschitz", "Fonctions K-Lipschitziennes", ("Maths.Topologie",))
-
-Définition des fonctions $K$-lipschitziennes.
-
-#answer
-
-Soit $(E, d_E), (F, d_F)$ deux espaces métriques et $X subset.eq E$.
-
-Une fonction $f in cal(F)(X, F)$ est dite $k$-lipschitzienne pour un $k > 0$ si
-$
-  forall x, y in X, \ d_F (f(x), f(y)) <= k d_E (x, y)
-$
-
-Toute fonction lipschitzienne est uniformement continue, donc continue.
-
-Exemples (notons $d = d_E$) :
-
-- Pour tout $a$ in $E$, $x |-> d (x, a)$ est $1$-lipschitzienne.
-
-- Pour tout $A subset.eq E$, $x |-> d (x, A)$ est $1$-lipschitzienne.
-
-Si $E = KK^n$ un $KK$-ev de dimension finie muni de $norm(dot)_oo$ et $d$ qui en dérive.
-
-- Pour tout $k in [|1, n|]$ : #h(1fr)
-  $
-    phi_k : func(KK^n, KK, x = vec(x_1, dots.v, x_n), x_k)
-  $
-  Est $1$-lipschitzienne.
-
-- Pour tout $P in KK[X_1, dots, X_n]$
-  $
-    func(KK^n, KK, x = vec(x_1, dots.v, x_n), P(x_1, dots, x_n))
-  $
-  Est continue (par somme et produit de fonctions qui le sont).
-
-*Démonstration*
-
-- Soit $a in E, x, y in X$ #h(1fr)
-  $
-    abs(d(x, a) - d(y, a)) \ <= abs(d(x, y) + d(y, a) - d(y , a)) \
-    <= d(x, y)
-  $
-
-- Soit $A subset.eq E, x, y in X$. Soit $a in A$
-  $
-    d(x, A) <= d(x, a) <= d(x, y) + d(y, a) \
-    d(x, A) - d(x, y) <= d(y, a) \
-  $
-  Ceci pour tout $a$ d'où
-  $
-    d(x, A) - d(x, y) <= d(y, A) \
-    d(x, A) - d(y, A) <= d(x, y) \
-  $
-  Et par symétrie
-  $
-    abs(d(x, A) - d(y, A)) <= d(x, y)
-  $
-
-- Soit $k in [|1, n|]$ et $x, y in KK^n$
-  $
-    abs(x_k - y_k) &<= max_(i in [|1, n|]) abs(x_i - y_i) \ &= norm(x - y)_oo
-  $
-
-#card("contapplin", "Continuité des applications linéaires", ("Maths.Topologie",))
-
-Conditions de continuité d'une application linéaire.
-
-#answer
-
-Soit $E, F$ deux $KK$-evn, $f in cal(L)(E, F)$.
-
-On a équivalence entre
-
-+ $f$ continue sur $E$.
-
-+ $f$ continue en $0$.
-
-+ $exists k > 0, forall x in E, space norm(f(x)) <= k norm(x)$
-
-+ $f$ est lipschitzienne.
-
-Enfin en dimension finie toute application linéaire est continue.
-
-*Applications multi-linéaires*
-
-Similairement (démonstrations calculatoires), pour
-$
-  f : func(product_(k = 1)^d (E_k, norm(dot)_k), (F, norm(dot)_F), (x_1, dots, x_d), f(x_1, dots, x_d))
-$
-on a équivalence entre
-
-+ $f$ est $C^0$ sur $product_(k = 1)^d E_k$ (muni de la norme produit).
-
-+ $exists k in RR_+^*, forall (x_1, dots, x_n) in product_(k = 1)^d E_k$
-
-  $ norm(f(x_1, dots, x_d)) <= k norm((x_1, dots, x_d))$
-
-*Démonstration*
-
-- (1 $=>$ 2) Par définition.
-
-- (2 $=>$ 3) Par continuité de $f$ en $0$ on dispose de $delta > 0$ tel que
-  $
-    f(B_E (0, delta)) subset.eq B_F (0, epsilon)
-  $
-  Donc pour tout $x in E$
-  $
-    norm(f(delta / 2 x / norm(x))) <= 1 \
-    norm(f(x)) <= 2 / delta norm(x)
-  $
-
-- (3 $=>$ 4) Soit $x, y in E$
-  $
-    norm(f(x) - f(y)) &= norm(f(x - y)) \ &<= k norm(x - y)
-  $
-
-- (4 $=>$ 1) Immédiat.
-
-En dimension finie, on prend une base $e = (e_1, dots, e_n)$ et la norme $norm(dot)_oo$, et pour $f in cal(L)(E, F)$ et $x in 
-E$ on a
-$
-  norm(f(x)) &= norm(sum_(k = 1)^n x_k f(e_k)) \
-  &<= sum_(k = 1)^n norm(x)_oo norm(f(e_k)) \
-  &= (sum_(k = 1)^n norm(f(e_k))) norm(x)_oo
-$
-
-#card("nonconttopal", "Non continuité d'une application linéaire", ("Maths.Topologie",))
-
-Critères de non continuité d'une application linéaire.
-
-#answer
-
-+ $f$ n'est pas continue sur $E$
-
-+ Il existe $(x_n)_n in E^NN$ tel que #h(1fr)
-  $
-    forall n in NN, norm(x_n) = 1 \
-    (norm(f(x_n)))_n tends(n->oo) +oo
-  $
-
-+ Il existe $(x_n)_n in E^NN$ tel que
-  $
-    (x_n)_n tends(n->oo) 0 \
-    forall n in NN, norm(f(x_n)) = 1
-  $
-
-*Démonstration*
-
-- (1 $=>$ 2) Comme $f$ n'est pas continue on a #h(1fr)
-  $
-    forall k > 0, exists x in E, norm(f(x)) > k norm(x)
-  $
-  Donc pour tout $n in NN$ on dispose de $tilde(x)_n in E$ tel que 
-  $
-  norm(f(tilde(x)_n)) > n norm(tilde(x)_n) \
-  x_n = tilde(x)_n / norm(tilde(x)_n) quad quad norm(x_n) = 1 \
-  norm(f(x_n))  > n " donc " norm(f(x_n)) -> oo
-  $
-
-- (2 $=>$ 3) Soit $(tilde(x)_n)_n in E^NN$ une telle suite.
-  $
-    x_n = tilde(x)_n / norm(f(tilde(x)_n)) quad quad norm(f(x_n)) = 1 \
-    norm(x_n) = 1 / norm(f(tilde(x)_n)) -> 0
-  $
-
-- (3 $=>$ 1) $f$ n'est pas continue en $0$.
-
-
-
-#card("hyptopo", "Nature topologique d'un hyperplan", ("Maths.Topologie",))
-
-Nature topologique d'un hyperplan.
-
-#answer
-
-Soit $E$ un $KK$-evn, $H$ un hyperplan de $E$.
-
-$H$ est soit fermé soit dense dans $E$.
-
-*Démonstration*
-
-Supposons que $H$ n'est pas fermé. On dispose de 
-$
-(h_n)_n in H^NN tends(n -> oo) z in.not H
-$
-Comme $H$ est un hyperplan, 
-$
-H plus.o "Vect"(z) = E
-$
-Ainsi pour tout $x in E$
-$
-  x = h + alpha z quad quad (h, alpha) in H times KK \
-  (h + alpha h_n)_n in H^NN tends(n -> oo) x
-$
-
-#card("hypcontfl", "Continuité des formes linéaires", ("Maths.Topologie",))
-
-Condition de continuité d'une forme linéaires, lien avec les hyperplans.
-
-#answer
-
-Soit $E$ un $KK$-evn.
-
-Si $f in cal(L)(E, KK)$ est une forme linéaire alors $f$ est continue ssi $ker f$ est fermé.
-
-*Démonstration*
-
-- Si $f$ est continue, $ker f = f^(-1) {0}$ est fermé comme image reciproque d'un fermé par une application continue.
-
-- Si $f$ n'est pas continue, on dispose de $(x_n)_n in E^NN$ tel que #h(1fr)
-  $
-    forall n in NN, abs(f(x_n)) = 1 \
-    (x_n)_n tends(n->oo) 0
-  $
-  Quitte à poser $(x'_n)_n$ on peut suppposer $f(x_n) = 1 = f(x_0)$.
-  $
-    h_n = x_n - x_0 in ker f \
-    lim_(n -> oo) h_n = -x_0 in.not ker f
-  $
-  Donc $ker f$ n'est pas fermé.
-
-#card("normop", "Norme opérateur", ("Maths.Topologie",))
-
-Définition de la norme opérateur.
-
-#answer
-
-Soit $E, F, G$ trois $KK$-evn, on définit
-$
-  cal(L)_C (E, F) = cal(L)(E, F) inter C^0 (E, F)
-$
-Qui est une $KK$-algèbre.
-
-Pour $f in cal(L)_C (E, F)$ on définit
-$
-  norm(f)_"op" = lr(class("opening", bar.triple) f class("closing", bar.triple)) &= sup_(x in E\\{0}) norm(f(x)) / norm(x) \ &= sup_(x in SS(0, 1)) norm(f(x))
-$
-Qui est une norme d'algèbre sur $cal(L)_C (E, F)$, elle est donc sous-multiplicative :
-$
-  forall f, g in cal(L)_C (E, F), \
-  norm(f compose g)_"op" <= norm(f)_"op" dot norm(g)_"op"
-$
-
-*Démonstration*
-
-- Comme $f$ est linéaire et continue on dispose de $k > 0$ tel que #h(1fr)
-  $
-    forall x in E, norm(f(x)) <= k norm(x)
-  $
-  Ainsi
-  $
-  Gamma = {norm(f(x)) / norm(x), x in E\\{0}}
-  $
-  Est non vide majoré, donc le $sup$ existe.
-
-- De plus
-  $
-    & space space space space space space lambda in Gamma  \
-    &<=> exists x in E \\ {0}, lambda = norm(f(x)) / norm(x) \
-    &<=> exists x in E \\ {0}, lambda = norm(f(x / norm(x))) \
-    &<=> exists x in SS(0, 1), lambda = norm(f(x))
-  $
-  Ainsi $Gamma = {norm(f(x)), x in SS(0,1)}$.
-
-- C'est bien une norme :
-
-  + Soit $lambda in KK, f in cal(L)_C (E, F)$ #h(1fr)
-    $
-      norm(lambda f)_"op" &= sup_(x in SS(0, 1)) norm(lambda f(x)) \
-      &= abs(lambda) norm(f)_"op"
-    $
-
-  + Soit $f in cal(L)_C (E, F)$ tel que $norm(f)_"op" = 0$, soit $x in E \\ {0}$
-    $
-      norm(f(x)) <= norm(f)_"op" dot norm(x) = 0 \
-      f(x) = 0 " donc " f = 0
-    $
-
-  + Soit $f, g in cal(L)_C (E, F)$
-    $
-      & quad norm(f + g)_"op" \ &= sup_(x in SS(0, 1)) norm(f(x) + g(x)) / norm(x) \ 
-      &<= sup_(x in SS(0,1)) [norm(f(x)) / norm(x) + norm(g(x)) / norm(x)] \
-      &<= norm(f)_"op" + norm(g)_"op"
-    $
-
-- Soit $f in cal(L)_C (E, F), g in cal(L)_C (F, G)$ et $x in E$ :
-  $
-    norm(g(f(x))) &<= norm(g)_"op" norm(f(x)) \
-    &<= norm(g)_"op" norm(f)_"op" norm(x)
-  $
-  D'où $norm(g compose f)_"op" <= norm(g)_"op" dot norm(f)_"op"$.
-
-#card("exjaugeconvex", "Exercice : jauge d'un convexe", ("Maths.Exercice.Topologie",))
-
-Soit $(E, norm(dot))$ un $RR$-evn et $K subset.eq E$ convexe, symétrique par rapport à l'origine (c'est à dire stable par $-$), d'intérieur non vide et borné.
-
-On pose
-$
-  N : func(E, RR_+, x, inf space Set(lambda > 0, x / lambda in K))
-$
-
-+ Montrer que $N$ est bien définit.
-+ Montrer que $N$ est une norme
-+ Montrer que $N$ est équivalente à $norm(dot)$.
-+ Montrer que $overline(B_N) (0, 1) = overline(K)$
-
-#answer
-
-Montrons d'abord qu'on dispose de $delta > 0$ tel que $B(0, delta) subset.eq K$.
-
-Soit $a in circle(K)$, on dispose donc de $delta > 0$ tel que 
-$
-B(a, delta) subset.eq K
-$
-Par symétrie, on a alors 
-$
-B(-a, delta) subset.eq K
-$
-Soit $x in B(0, delta)$
-$
-  x + a in B(a, delta) subset.eq K \
-  x - a in B(-a, delta) subset.eq K \
-  1/2 (x + a) + 1/2 (x - a) = x in K
-$
-Par convexité.
-
-+ Soit $x in E$ #h(1fr)
-  $
-    delta / (2 norm(x)) x < delta \
-    (delta x) / (2 norm(x)) in B(0, delta) subset.eq K
-  $
-  D'où $Set(lambda > 0, x / lambda in K)$ non vide minoré par $0$ : $N(x)$ qui en est l'$inf$ existe et est positif.
-
-+ + Comme $K$ est borné, on dispose de $R > 0$ tel que #h(1fr)
-    $
-      K subset.eq B(0, R)
-    $
-    Soit $x in E$ tel que $N(x) = 0$.
-
-    Par caractérisation de la borne inférieur, on dispose de
-    $
-    (lambda_n)_n in RR_+^NN tends(n->oo) 0 \
-    $
-    Et pour tout $n in NN$
-    $
-      x / lambda_n in K subset.eq B(0, R) \
-      norm(x) / lambda_n <= R \
-      norm(x) / R <= lambda_n tends(n -> oo) 0
-    $
-    Donc $x = 0$
-  + Soit $mu in RR, x in E$.
-    - Si $mu = 0, N(mu x) = N(0) = 0$.
-    - Si $mu > 0$
-      $
-        N(mu x) &= inf Set(lambda > 0, (mu x) / lambda in K) \
-        &= mu N(x)
-      $
-    - Si $mu < 0$, par symétrie
-      $
-        N(mu x) = N(-mu x) = -mu N(x)
-      $
-  + Soit $x, y in E$, $lambda, mu > 0$ tels que $x / lambda, y / mu in K$ on a alors
-    $
-      (x + y) / (lambda + mu) &= underbrace(lambda /(lambda + mu), 1 - t) underbrace(x / lambda, in K) + underbrace(mu / (lambda + mu), t) underbrace(y / mu, in K) \
-      &in K
-    $
-    Ainsi
-    $
-      N(x + y) <= lambda + mu
-    $
-    Et avec $lambda -> N(x), mu -> N(y)$ \
-    $
-      N(x + y) <= N(x) + N(y)
-    $
-+ Soit $x in E$, $lambda > 0$ tel que $x / lambda in K$.
-  $
-    norm(x) / lambda < R \
-    norm(x) <= R dot N(x)
-  $
-  Et
-  $
-    (delta x) / (2 norm(x)) in K \
-    N(x) <= 2 / delta norm(x)
-  $
-+ Soit $x in K, x / 1 in K$ donc $X in overline(B_N)(0, 1)$.
-
-  Soit $x in overline(B_N)(0, 1)$.
-  - Si $N(x) = 1$, on dispose de
-    $
-    (lambda_n)_n in RR_+^NN tends(n->oo) 1 \
-    forall n in NN, x / lambda_n in K \
-    x = lim_(n -> oo) x / lambda_n in overline(K)
-    $
-  - Si $N(x) < 1$, on dispose par propriété de la borne inférieur de $lambda in Ico(N(x), 1)$ tel que
-    $
-      x / lambda in K \
-      x = (1 - lambda) dot 0 + lambda dot (x / lambda) in K
-    $
-
-#card("adhsuiteens", "Points d'adhérance d'une suite", ("Maths.Topologie",))
-
-Définition et propriétés sur les points d'adhérance d'une suite.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
-
-On dit que $l in E$ est un point d'adhérance de $u$ s'il existe $phi$ extractrice tel que
-$
-  (u_phi(n))_n -> l
-$
-
-Notons $cal(V)(u)$ l'ensemble de ces points. On a
-
-$
-  cal(V)(u) = inter.big_(p in NN) overline({u_n, n >= p})
-$
-
-Qui est donc fermé.
-
-De plus si $(u_n)$ converge vers $l in E$.
-$
-  K = {u_n, n in NN} union {l}
-$
-Est compact.
-
-*Démonstration*
-
-- Soit $l = lim_(n -> oo) u_phi(n)$, $p in NN$ #h(1fr)
-  $
-    (u_phi(n))_(n >= p) -> l in overline({u_n, n >= p}) \
-  $
-  Donc
-  $
-    l in inter.big_(p in NN) overline({u_n, n >= p})
-  $
-
-- Soit $l in inter.big_(p in NN) overline({u_n, n>=p})$, on pose $delta_n = 1 / (n+1)$.
-
-  Comme $l in overline({u_n, n in NN})$, on dispose de $phi(0)$ tel que $d(u_phi(0), l) <= delta_0$.
-
-  Supposons construits $phi(0), dots, phi(k)$, comme $l in overline({u_n, n >= phi(k) + 1})$, on dispose de $phi(k + 1)$ tel que
-  $
-    d(u_phi(k+1), l) < delta_(k+1)
-  $
-  Ainsi $phi$ extractrice et $(u_phi(n))_n -> l$.
-
-- Soit $(x_n)_n in K^NN$, on pose
-  $
-    Gamma = {n in NN, exists k in NN, x_k = u_n} 
-  $
-  Si $Gamma$ est fini, alors $x_n$ prend une valeur une infinité de fois qui est valeur d'adhérance de $(x_n)$.
-
-  Sinon on construit : on prend $psi(0) in Gamma$ et $phi(0)$ tel que $u_psi(0) = x_phi(0)$.
-
-  Supposons construits $psi(0), dots, psi(k)$ et $phi(0), dots, phi(k)$, on considère
-  $
-    Gamma_(k+1) = Set(n > psi(k), exists q > phi(k)\, x_q = u_n)
-  $
-  Qui est infini, donc on prend $psi(k+1) in Gamma_(k+1)$ et $phi(k+1)$ tel que
-  $
-    u_psi(k+1) = x_phi(k+1)
-  $
-  D'où $l$ est valeur d'adhérance de $(x_n)$.
-
-#card("compact", "Compacité", ("Maths.Topologie",))
-
-Définition de compacité.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $K subset.eq E$ est dit compacte si de toute suite
-$
-  (u_n)_n in K^NN
-$
-On peut extraire une sous suite convergente
-$
-  (u_phi(n))_n -> l in K
-$
-La compacité ne dépend pas de l'espace ($E$), mais dépend de $d$.
-
-Si $K$ est compacte :
-
-- $K$ est bornée dans $E$.
-
-- Si $K subset.eq X$, $K$ est fermé dans $X$.
-
-- Si $F subset.eq K$ est fermé, alors $F$ est compact.
-
-- Si $(u_n)$ est une suite à valeur dans $K$, alors elle converge ssi elle n'a qu'une seul valeur d'adhérance.
-
-- Si $f in C^0 (K, F)$ avec $F$ un espace métrique, alors $f(K)$ est compacte.
-
-- Un produit fini de compacts est compact.
-
-- Toute intersection décroissante de compacts non vide est non vide.
-
-*Démonstration*
-
-- Supposons $K$ non bornée, soit $a in K$, posons $(x_n)_n in K^NN$ tel que pour tout $n in NN$ #h(1fr)
-  $
-    d(a, x_n) >= n
-  $
-  Donc $(x_n)$ ne peut converger, et $K$ n'est pas compacte.
-
-- Soit $(x_n)_n in K^NN -> l in overline(X)$, par compacité on peut éxtraire
-  $
-    (u_phi(n))_n -> z in K
-  $
-  Et $z = l$ par unicité de la limite, donc $K$ est fermé.
-
-- Soit $(x_n)_n in F^NN$, par compacité de $K supset.eq F$, on a #h(1fr)
-  $
-    (u_phi(n))_n -> l in K
-  $
-  Or comme $F$ est fermé et $(u_phi(n))_n in F^NN$, $l in F$ d'où $F$ compact.
-
-- Par contraposée, soit $(x_n)_n in K^NN$ qui diverge, par compacité, elle admet une valeur d'adhérance $l$, mais $(x_n) arrow.r.not l_1$ c'est à dire #h(1fr)
-  $
-    exists epsilon>0, forall N in NN, exists n >= N, d(x_n, l_1) >= epsilon
-  $
-  On fixe $epsilon$, on dispose d'une suite $(x_phi(n))$ tel que
-  $
-    forall n in NN, d(x_phi(n), l) >= epsilon
-  $
-  Or cette suite admet une valeur d'adhérance $l_2 != l_1$.
-
-- Soit $(y_n)_n in f(K)^NN$, on dispose de $(x_n)_n in K^NN$ tel que #h(1fr)
-  $
-    forall n in NN, f(x_n) = y_n
-  $
-  Et par compacité on peut éxtraire
-  $
-    (x_phi(n))_n -> l in K \
-    (f(x_phi(n)))_n = (y_phi(n))_n -> f(l) in f(K)
-  $
-
-- Soit $(K_n)_n$ une suite décroissante de compacts non vides. 
-
-  On construits une suite $(u_n)$ tel que $forall n in NN, u_n in K_n subset.eq K_0$, on peut donc en extraire une sous-suite convergente $(x_phi(n))_n -> z$.
-
-  Ainsi pour tout $n in NN$ :
-  $
-    forall k >= n, x_phi(k) in K_phi(k) subset.eq K_n \
-    z = lim_(k -> oo) x_phi(k) in K_n
-  $
-  Car $K_n$ est fermé, donc $z in inter.big_(n in NN) K_n$.
-#card("thbatttop", "Théorème des bornes atteintes", ("Maths.Topologie",))
-
-Théorème des bornes atteintes en sur un espace métrique.
-
-#answer
-
-Soit $K$ compact et $f in C^0(K, RR)$.
-
-Comme $f(K)$ est compact, $f$ est bornée et atteint ses bornes.
-
-Ainsi pour tout $x in E supset.eq K$
-$
-  d(x, K) = inf_(y in K) d(x, y)
-$
-Admet un $min$ : la distance est atteinte.
-
-*Démonstration*
-
-$f(K)$ est bornée et fermé car compact, ainsi il existe un $inf$ et un $sup$, et ce sont un $min$ et un $max$.
-
-#card("ptsfixes", "Théorèmes du point fixe", ("Maths.Topologie",))
-
-Énoncés et démonstrations des différents théorèmes du points fixe.
-
-#answer
-
-+ Soit $K$ compact, $f : K -> K$, si pour tout $x != y in K$
-  $
-    d(f(x), f(y)) < d(x, y)
-  $
-  Alors $f$ admet un unique point fixe.
-
-+ Soit $A subset.eq E$ complet, fermé, avec $E$ evn) et $f : A -> A$. 
-
-  Si $f$ est $k$-lipschitzienne avec $k < 1$, alors $f$ admet un unique point fixe.
-
-+ Soit $K$ compact, convexe non vide, si $f : K -> K$ $1$-lipschitzienne, alors $f$ admet un point fixe.
-
-// TODO: Points fixes linéaire (M205)
-
-*Démonstration*
-
-+ On pose #h(1fr)
-  $
-    phi : func(K, RR_+, x, d(f(x), x))
-  $
-  Par compacité de $K$, $phi$ admet un $min$ atteint en $x_0 in K$ 
-  Supposons par l'absurde que $f(x_0) != x_0$ :
-  $
-    phi(f(x_0)) &= d(f(f(x_0)), f(x_0))  \
-    &< d(f(x_0), x_0) \ &< min phi
-  $
-  Absurde.
-
-  Soit $x != x_0$
-  $
-    d(f(x), x_0) < d(x, x_0)
-  $
-  Donc $f(x) != x$.
-
-+ On pose $x_n = f^n ( x_0 )$ avec $x_0 in A$ quelconque. Ainsi
-  $
-    norm(x_(n+1) - x_n) <= k^n norm(x_1 - x_0)
-  $
-  D'où $sum (x_(n+1) - x_n)$ absolument convergente, donc convergente.
-
-  Donc par continuité de $f$ et unicité de la limite $f(x_oo) = x_oo$.
-
-  Soient $z, z'$ deux points fixes 
-  $
-    norm(f(z) - f(z')) &= norm(z - z) \
-    &<= underbrace(k, <1) norm(z - z')
-  $
-  D'où $norm(z - z') = 0$.
-
-+ Soit $x_0 in K$, pour $lambda in Ioo(0, 1)$ on considère
-  $
-    g_lambda : func(K, K, x, f(lambda x + (1 - lambda) x_0))
-  $
-  Soit $x, y in K$
-  $
-    norm(g_lambda (x) - g_lambda (y)) \
-    = norm(f(script(lambda x + (1 - lambda) x_0)) - f(script(lambda y + (1 - lambda) x_0))) \
-    <= norm(lambda x - lambda y) = lambda norm(x - y)
-  $
-  Donc $g_lambda$ est $lambda$-lipschitzienne, avec $lambda < 1$, donc $g_lambda$ admet un point fixe $x_lambda$.
-
-  On considère $lambda_n = 1 - 1 / n$, comme $(x_lambda_n)_n in K^NN$, on dispose de $x_1$ valeur d'adhérance : 
-  $
-    (x_lambda_phi(n))_n -> x_1 in K
-  $
-  Or pour tout $lambda in Ioo(0, 1)$ :
-  $
-    norm(f(x_lambda) - x_lambda) 
-    = norm(f(x_lambda) - g_lambda (x_lambda)) \
-    = norm(f(x_lambda) - f(lambda x_lambda + (1 - lambda) x_0)) \
-    <= (1 - lambda) underbrace(norm(x_lambda - x_0), "borné")
-  $
-  D'où
-  $
-    norm(f(x_lambda_phi(n)) - x_lambda_phi(n)) tends(n -> oo) 0
-  $
-  Et donc $f(x_1) = x_1$.
-
-#card("cpctdf", "Compacité en dimension finie", ("Maths.Topologie",))
-
-Propriétés de compacité en dimension finie.
-
-#answer
-
-Soit $E$ un $KK$-ev de dimension finie muni de $norm(dot)_(oo,e)$ pour la base $e$.
-$
-  norm(dot)_(oo,e) : func(E, RR_+, display(x = sum_(k = 1)^d x_k e_k), display(max_(k in [|1,d|]) abs(x_k)))
-$
-
-- Pour tout $R > 0$, $overline(B_norm(dot)_(oo,e) (0, R))$ est compact.
-
-- $K subset.eq E$ est compact ssi $K$ est fermé borné.
-
-*Démonstration*
-
-- On considère #h(1fr)
-  $
-    theta : func((RR^d, norm(dot)_oo), (E, norm(dot)_(oo,e)), vec(x_1, dots.v, x_d), sum_(k = 1)^d x_k e_d)
-  $
-  Qui est $1$-lipschitzienne et
-  $
-    overline(B_norm(dot)_(oo,e) (0, R)) = theta ([-R, R]^d)
-  $
-  Or $[-R, R]$ est compact (Bolzano-Weierstrass), d'où le résultat.
-
-- Soit $K subset.eq E$ fermé borné, on dispose donc de $R > 0$ tel que #h(1fr)
-  $
-    K subset.eq underbrace(overline(B_norm(dot)_(oo,e) (0, R)), "compacte")
-  $
-  Donc $K$ est fermé dans un compact d'où le résultat.
-
-#card("thheinetop", "Théorème de Heine", ("Maths.Topologie",))
-
-Théorème de Heine sur un espace métrique.
-
-#answer
-
-Soit $K$ compact et $F$ un espace métrique.
-
-Si $f in C^0(K, F)$ alors $f$ est uniformement continue.
-
-*Démonstration*
-
-Supposons par l'absurde que $f$ ne le soit pas.
-$
-  exists epsilon > 0, forall delta > 0, exists x, y in K, \
-  cases(space d(x, y) < delta,space d(f(x), f(y)) >= epsilon)
-$
-
-On fixe un tel $epsilon$, on pose $delta_n = 1 / (n+1)$, et on construit $(x_n)_n, (y_n)_n in K^NN$ tels que
-$
-  forall n in NN, cases(space d(x_n, y_n) < delta_n, space d(f(x_n), f(y_n)) >= epsilon)
-$
-Par compacité, on peut éxtraire
-$
-  (x_phi(n))_n -> l in K \
-  "Or " d(x_n, y_n) -> 0 " donc" \
-  (y_phi(n))_n -> l
-$
-Or comme $f$ continue
-$
-  d(f(x_n), f(y_n)) -> d(f(l), f(l)) = 0 >= epsilon
-$
-Absurde.
-
-#card("eqnormdf", "Équivalence des normes en dimension finie", ("Maths.Topologie",))
-
-Démonstration de l'équivalence des normes en dimension finie.
-
-#answer
-
-Soit $(E, norm(dot))$ un $KK$-evn de dimension finie.
-
-On prend $e = (e_1, dots, e_d)$ base de $E$. On montre que toute norme $N$ sur $E$ est équivalente à $norm(dot)_(e,oo)$.
-
-Comme $N$ est une application linéaire, $N$ est continue donc lipschitzienne sur $E$ :
-$
-  forall x = sum_(k = 1)^d x_k e_k in E, \
-  N(x) <= sum_(k = 1)^d abs(x_k) N(e_k) <= beta norm(x)_(e,oo) \
-  "Où " beta = sum_(k = 1)^d N(e_k)
-$
-
-De plus comme $SS_(e,oo) (0,1)$ est fermée et bornée, elle est donc compacte comme $E$ est de dimension finie. Ainsi
-$
-  alpha = min_(x in SS_(e,oo) (0,1)) N(x) = N(x_0) > 0  \
-  "avec " x_0 in SS_(e,oo) (0,1)
-$
-Ainsi pour tout $x in E \\ {0}$
-$
-  alpha <= N(x / norm(x)_(e,oo)) \
-  alpha norm(x)_(e,oo) <= N(x) <= beta norm(x)_e(oo)
-$
-
-*Conséquences*
-
-En dimension finie, pour toute norme :
-
-- Toute application linéaire est continue.
-
-- Les compacts sont les fermés bornés.
-
-- Toute suite bornée admet au moins une valeur d'adhérance, et converge ssi elle n'en a qu'une.
-
-- Tout espace de dimension finie est fermé (caractère séquentielle).
-
-- La distance à un fermé est atteinte.
-
-#card("proptopgln", "Propriétés topologiques du groupe linéaire", ("Maths.Topologie.Réduction",))
-
-Propriétés topologiques du groupe linéaire.
-
-#answer
-
-$"GL"_n (KK)$ est un ouvert dense de $M_n (KK)$
-
-Et plus généralement pour tout $p in [|0, n|]$, $Set(M in M_n (KK), "rg" M >= p)$ est un ouvert.
-
-*Démonstration*
-
-- $"GL"_n$ est ouvert comme image reciproque de $KK\\{0}$ par $det$ (qui est continue).
-
-- Soit $P in "GL"_n (KK), delta > 0$, Soit $lambda = min "Sp" (P)$, afin que $lambda / 2$ ne soit pas valeur propre, c'est à dire $P - lambda / 2 I_n in "GL"_n (KK)$.
-
-- Soit $p in [|0, n|]$, pour $norm(dot) : M |-> "tr" (M^TT M)$. Soit $M in M_n (KK)$ tel que $"rg" M >= p$, on dispose d'une sous matrice inversible extraite de taille $p$, or $"GL"_p (KK)$ est un ouvert, donc on dispose d'une boule bien choisie qui marche.
-
-#card("proptopdiag", "Nature topologique des matrices diagonales", ("Maths.Topologie.Réduction",))
-
-Nature topologique des matrices diagonales.
-
-#answer
-
-Notons $"DZ"_n (KK) = Set(A in M_n (KK), A "diagonalisable")$ et $"TZ"_n (KK) = Set(A in M_n (KK), A "trigonalisable")$.
-
-On a
-
- - $"DZ"_n (CC)$ est dense dans $M_n (CC)$.
-
- - $"DZ"_n (RR)$ est dense dans $"TZ"_n (RR)$.
-
-*Démonstration*
-
-Montrons que $Set(A in M_n (KK), chi_A "SARS")$ est dense dans $M_n (CC)$.
-
-Soit $A in M_n (CC)$
-$
-  A &= P underbrace(mat(t_11,, (*);,dots.down;,,t_(n n) ), T) P^(-1) \
-
-  A_k &= P mat(t_11 + 1 / k,, (*);,dots.down;,,t_(n n) + n / k)
-$
-
-À partir d'un rang assez grand on a $chi_A_k$ SARS.
-
-Même démonstration pour $"DZ"_n (RR)$ dans $"TZ"_n (RR)$.
-
-#card("nattopcycl", "Nature topologique de l'ensemble des matrices cycycliques", ("Maths.Topologie.Réduction",))
-
-Nature topologique de l'ensemble des matrices cycycliques.
-
-#answer
-
-$Omega = Set(A in M_n (CC), A "cyclique")$ est un ouvert dense de $M_n (CC)$.
-
-Et de plus
-$
-  Pi : func(M_n (CC), CC_n [X], A, Pi_A)
-$
-N'est continue que sur $Omega$.
-
-*Démonstration*
-
-- $Omega$ est un ouvert : #h(1fr)
-  $
-    A in Omega \ <=> exists x_0 in CC^n, "Vect"(x_0, dots, A^(n - 1) x_0)  = CC^n \
-    <=> exists x_0 in CC^n, det (x_0, dots, A^(n-1) x_0) != 0
-  $
-
-  Ainsi 
-  $
-    phi_x_0 : func(M_n (CC), CC, A, det(x_0, dots, A^(n-1) x_0)) \
-    Omega = union.big_(x_0 in CC^n) phi_(x_0)^(-1) (CC^*)
-  $
-
-- De plus $cal(S) = Set(A in M_n (CC), chi_A "SARS") subset.eq Omega$  est dense dans $M_n (CC)$, donc $Omega$ aussi.
-
-- Soit $A in Omega$, on dispose donc de $V = B(A, delta) subset.eq Omega$, or $Pi|_V = chi|_V$ (par cyclicité : $Pi_M = chi_M$), et $chi$ est continue, donc $Pi$ aussi (en $A$).
-
-- Soit $A in.not Omega$, alors $deg Pi_A < n$, or on dispose de $(A_k)_k in Omega^NN -> A$, mais pour tout $k in NN$, $Pi_A_k = chi_A_k$ (unitaire de degré $n$), d'où $Pi_A_k arrow.r.not Pi_A$.
-
-#card("etclassimtopred", "Étude de la classe de similitude d'une matrice", ("Maths.Topologie.Réduction",))
-
-Étude de la classe de similitude d'une matrice.
-
-#answer
-
-Pour $A in M_n (CC)$, notons $cal(C)(A) = { P A P^(-1), P in "GL"_n(CC) }$. On a alors
-
-- $A$ est diagonalisable ssi $cal(C)$ est fermé.
-
-- $A$ est nilpotente ssi $0 in overline(cal(C)(A))$.
-
-*Démonstration*
-
-- On utilise le résultat suivant, si $M in T_n^+ (CC)$ on peut poser #h(1fr)
-  $
-    underbrace(dmat(1, k, dots.down, k^(n-1)), Q_k) quad quad underbrace(dmat(1, epsilon, dots.down, epsilon^(n-1)), P_epsilon) \
-    underbrace(mat(t_11,,,(*);,t_22;,,dots.down;,,,t_(n n)), M) quad quad underbrace(dmat(t_11, t_22, dots.down, t_(n n)), D) \
-  $
-  On a alors
-  $
-    Q_k M Q_k^(-1) = mat(t_11,,A_(i j) k^(i - j);,dots.down;,,t_(n n)) tends(k -> oo) D \
-    P_epsilon^(-1) M P_epsilon = mat(t_11,,A_(i j) epsilon^(j - i);,dots.down;,,t_(n n)) tends(epsilon -> 0) D
-  $
-
-- Supposons $cal(C)(A)$ fermé. Comme $A in cal(M)_n (CC)$, on dispose de $T in cal(C)(A) inter T_n^+ (CC)$, et on peut donc poser
-  $
-    A_k = Q_k T Q_k^(-1) in cal(C) \
-    lim_(k -> oo) A_k = D in cal(C) \
-  $
-  D'où $A$ est diagonalisable.
-
-- Soit $A in M_n (CC)$ diagonalisable. Soit $(R_k)_k in "GL"_n (CC)^NN$ tel que $A_k = R_k A R_k^(-1) -> B in M_n (CC)$.
-
-  Comme $chi$ est un invarient de similitude et une application continue, on a $chi_A = chi_B$.
-
-  De plus $Pi_A (A_k) = R_k Pi_A (A) R_k^(-1) = 0$ et $M |-> Pi_A (M)$ est continue, d'où $Pi_A (B) = 0$ (qui est SARS), ainsi $B$ est diagonalisable.
-
-  Donc $B in cal(C)(A)$.
-
-- Supposons que $0 in overline(cal(C)(A))$, on dispose de $(A_k)_k in C(A)^NN -> 0$, or $chi_A_k = chi_A$ et par continuité de $chi$, $chi_A = X^n$, d'où $A$ nilpotente.
-
-- Supposons $A$ nilpotente, donc on dispose de $T in cal(C)(A) inter T_n^(++) (CC)$
-  $
-    Q_k T Q_k^(-1) tends(k -> oo) 0
-  $
-  D'où $0 in overline(cal(C)(A))$.
-
-#card("ex42top", "Exercice : liens entre spectre norme subordonnée", ("Maths.Exercice.Topologie",))
-
-Soit $n in NN^*$, $norm(dot)$ une norme sur $CC^*$. On note 
-$
-norm(dot)_"op" : func(M_n (CC), RR_+, A, sup_(X in CC^n \\ {0}) norm(A X) / norm(X))
-$ 
-
-Pour $A in M_n (CC)$, on note $rho (A) = max_(lambda in "Sp" (A)) abs(lambda)$.
-
-+ Montrer que pour toute matrice $A$, $rho(A) <= norm(A)_"op"$.
-
-+ Montrer que $rho(A^k) = rho(A)^k$ pour $k in NN^*$. Montrer que $rho(A) <= norm(A^k)^(1 / k)_"op"$ pour $k in NN^*$.
-
-+ Montrer que $norm(dot)_"op"$ est sous-multiplicative.
-
-+ Donner un exemple de norme sur $M_n (CC)$ qui ne soit pas une norme d'opérateur.
-
-+ Soit $norm(dot)_(oo,"op")$ la norme d'opérateur associé à la norme $norm(dot)_oo$ sur $CC^n$. Montrer que $norm(A)_(oo,"op") = max_(1 <= i <= n) sum_(j = 1)^n abs(a_(i,j))$.
-
-+ Soit $T in T_n^+(CC))$. Pour $mu > 0$ on pose $Q_mu = dmat(1, dots.down, mu^(n - 1))$, calculer $lim_(mu -> +oo) norm(Q_mu T Q_mu^(-1))_(oo,"op")$.
-
-+ Soient $A in M_n (CC)$ et $epsilon > 0$. Montrer qu'il existe une norme d'opérateur $N$ sur $M_n (CC)$ telle que $N(A) <= rho(A) + epsilon$.
-
-+ Montrer que $rho(A) = lim_(k -> oo) norm(A^k)^(1/k)_"op"$.
-
-+ En déduire l'équivalence entre
-
-  - $lim_(k -> oo) A^k = 0$.
-  - $forall X in M_(n,l) (CC), lim_(k -> oo) A^k X = 0$.
-  - $rho(A) < 1$
-  - Il existe sur $C^n$ une norme $norm(dot)$ tel que $norm(A)_"op" < 1$.
-  - Il existe $M$ semblable à $A$ telle que $norm(M)_(oo,"op") < 1$.
-
-#answer
-
-// TODO: vraiment la grosse flemme là je vais pas te mentir. (M196)
-
-#card("precomp", "Précompacité", ("Maths.Topologie",))
-
-Définition de précompacité.
-
-#answer
-
-On dit que $A subset.eq E$ est précompacte si
-$
-  forall epsilon > 0, exists N in NN, exists (x_1, dots, x_n) in E^n, \ A subset.eq union.big_(k = 1)^n B(x_k, epsilon)
-$
-
-Toute partie compacte est précompacte.
-
-*Démonstration*
-
-- Par contraposée. Soit $A$ non précompacte :
-  $
-    exists epsilon > 0, forall N in NN, forall (x_1, dots, x_n) in E^n \
-    A subset.eq.not union.big_(k = 1)^n B(x_k, epsilon)
-  $
-  Fixons un tel $epsilon$, et construisons une suite par récurrence : $u_0 in A$ quelconque, et
-  $
-   forall n in NN^*, u_n in A \\ union.big_(k = 0)^(n-1) B(u_k, epsilon)
-  $
-  Ainsi $(u_n)_n$ ne peut admettre de valeur d'adhérance, donc $A$ n'est pas compacte.
-
-// TODO: Peut être procéssus diagonal d'extraction ? (M198)
-
-#card("borellebesgueseg", "Borel Lebesgue sur un segment", ("Maths.Topologie",))
-
-Énoncé et démonstration de Borel-Lebesgue sur un segment.
-
-#answer
-
-Pour $K = [a, b] subset.eq RR$ tel que $K subset.eq union.big_(i in I) Omega_i$, où $(Omega_i)_(i in I)$ est une famille quelconque d'ouverts de $RR$. 
-
-On dispose de $J subset.eq I$ fini tel que $K subset.eq union.big_(j in J) Omega_j$.
-
-*Démonstration*
-
-Posons
-
-$
-  Gamma = Set(c in [a, b], exists J subset.eq I\, cases( space J "fini", space [a, c] subset.eq union.big_(j in J) Omega_j))
-$
-
-Qui est non vide ($a in Gamma$) et majoré, posons $beta = sup Gamma$.
-
-Or $beta in [a, b]$, donc on dispose de $i_0 in I$ tel que $beta in Omega_i_0$, donc il existe $delta_0$ tel que
-$
-  [beta - delta_0, beta + delta_0] subset.eq Omega_i_0
-$
-Par propriété de la borne sup, on dispose aussi de $c in Gamma inter Ioc(beta - delta_0, beta)$.
-
-Ainsi on a $J subset.eq I$ fini tel que $[a, c] subset.eq union.big_(j in J) Omega_j$.
-
-Supposons par l'absurde que $beta < b$. 
-
-Posons $beta' = min(b, beta + delta_0)$ et $J' = J union {i_0}$. Ainsi $[a, beta'] subset.eq union.big_(j in J') Omega_j$, or $beta' in Ioc(beta, b)$, qui est absurde.
-
-Donc $beta = b$.
-
-#card("borellebesgue", "Borel-Lebesgue", ("Maths.Topologie",))
-
-Énoncé et démonstration de Borel-Lebesgue.
-
-#answer
-
-On définit un compact au sens de Borel-Lebesgue comme une partie $K$ tel que si $(Omega_i)_(i in I)$ est une famille quelconque d'ouverts de $E$ tel que $K subset.eq union.big_(i in I) Omega_i$, alors
-$
-  exists J subset.eq I, J "finie et" K subset.eq union.big_(j in J) Omega_j
-$
-
-De manière équivalente (Borel-Lebesgue version fermé) : si $(G_i)_(i in I)$ est une famille quelconque de fermés de $K$ tels que $inter.big_(i in I) G_i = emptyset$ alors
-$
-  exists J subset.eq I, J "finie et" inter.big_(j in J) G_j = emptyset
-$
-
-*Équivalence*
-
-Soit $(E, d)$ un espace métrique. Toute partie compacte au sens de Bolzano-Weierstrass, est compacte au sens de Borel-Lebesgue (et vis-versa).
-
-*Démonstration*
-
-Soit $K subset.eq union.big_(i in I) Omega_i$ compacte (au sens de Bolzano-Weierstrass).
-
-- Montrons que
-  $
-    (exists epsilon > 0, forall x in K, exists i in I, B(x, epsilon) subset.eq Omega_i) \
-    eq.triple not (forall epsilon > 0, exists x in K, forall i in I, B(x, epsilon) subset.eq.not Omega_i)
-  $
-
-  Par l'absurde, posons $epsilon_n = 1/(n+1)$, on dispose donc de $(x_n) in K^NN$ tel que
-  $
-    forall i in I, B(x_k, 1 / (k+1)) subset.eq.not Omega_i
-  $
-  Qu'on peut extraire $(x_phi(n))_n -> z in K$.
-
-  Soit $j in I, delta > 0$ tels que $B(z, delta) subset.eq Omega_j$. Pour $N$ assez grand on a pour tout $n >= N$ :
-  $ 
-    d(x_phi(n), z) < delta / 2 quad quad 1 / (N + 1) <= delta / 2 \
-    B(x_phi(n), 1 / (phi(n) + 1)) subset.eq B(z, delta) subset.eq Omega_j
-  $
-  Qui est absurde.
-
-- Donc on dispose bien d'un tel $epsilon$. Par précompacité de $K$ on dispose de $x_1, dots, x_n in K$ tels que $K subset.eq union.big_(k = 1)^n B(x_k, epsilon)$.
-
-  Or pour tout $k in [|1, n|]$ on dispose de $i_k in I$ tel que $B(x_k, epsilon) subset.eq Omega_i_k$ d'où
-  $
-    K subset.eq union.big_(k = 1)^n Omega_i_k
-  $
-
-- La version fermé s'obtient en prenant $G_i = K\\Omega_i$.
-
-- La reciproque découle de la version fermée :
-
-  Soit $K$ compact au sens de Borel-Lebesgue, $(x_n)_n in K^NN$ une suite.
-
-  On a montrer que $S = {"valeurs d'adhérance de" (x_n)} = inter.big_(n in NN) overline({x_k, k >= n})$.
-
-  On note $F_n = overline({x_k, k >= n})$ fermé dans $KK$.
-  
-  Pour tout $n_1 < dots.c < n_d in NN$
-  $
-    x_n_d in inter.big_(k = 1)^d F_n_k
-  $
-  Donc comme $K$ compacte $inter.big_(n in NN) F_n != emptyset$, donc $(x_n)$ admet au moins une valeur d'adhérance dans $K$.
-
-// TODO: Tout idéal stricte de C°(K, K) (K compacte) est inclus dans { f ∈ E | f(c) = 0 } pour un c ∈ K. (B-L ouvert, pabs).
-
-#card("suitcauch", "Suites de Cauchy", ("Maths.Topologie",))
-
-Définition, propriétés des suites de Cauchy.
-
-#answer
-
-Soit $(E, d)$ un espace métrique, $(u_n)_n in E^NN$ une suite.
-
-On dit que $(u_n)_n$ est de Cauchy si
-$
-  forall epsilon > 0, exists N in NN, \ forall p, q >= N, d(u_p, u_q) < epsilon
-$
-
-Propriétés :
-
-- Toute suite convergente est de Cauchy.
-
-- Toute suite de Cauchy ayant une valeur d'adhérance converge.
-
-- Toute suite de Cauchy est bornée.
-
-- Si $E$ est un $KK$-evn de dimension finie, toute suite de cauchy converge.
-
-On appelle espace complet un espace métrique où les suites de Cauchy converge, et espace de Banach un evn complet.
-
-*Démonstration*
-
-- L'écrire.
-
-- Supposons $(u_n)_n$ de Cauchy et $(u_phi(n))_n -> l in E$. Soit $epsilon > 0$. #h(1fr)
-
-  On dispose de $k in NN$ tel que $d(u_phi(k) - l) < epsilon / 2$.
-
-  On dispose de $N in NN$ tel que pour tout $n >= N$
-  $
-    d(u_n, u_phi(k)) < epsilon
-  $
-  Ainsi
-  $
-    d(u_n, l) &<= d(u_n, u_phi(k)) + d(u_phi(k), l) \ &< epsilon
-  $
-
-- Supposons $(u_n)_n$ de Cauchy. Pour $epsilon = 1$ on dispose de $N in NN$ tel que pour tout $n >= N$
-  $
-    abs(u_n) <= d(u_n, u_0) + abs(u_0) < 1 + abs(u_0)
-  $
-
-- Supposons $(u_n)_n$ de Cauchy et $(E, norm(dot))$ un evn de dimension finie. Comme $(u_n)_n$ est de Cauchy, elle est bornée : $(u_n)_n in B(0, M)^NN$, qui est compacte, $(u_n)_n$ admet donc une valeur d'adhérance, et converge.
-
-#card("seriesevn", "Séries dans un espace vectoriel normé", ("Maths.Topologie",))
-
-Propriétés des séries dans une espace vectoriel normé.
-
-#answer
-
-Soit $(E, norm(dot))$ un $KK$-evn.
-
-Toute séries absolument convergente est convergente ssi $E$ est un espace de Banach.
-
-*Démonstration*
-
-- En dimension finie (sans les suites de Cauchy) :
-
-  Soit $u in E^NN$ tel que $sum norm(u_n)$ converge. #h(1fr)
-  $
-    norm(S_n) = norm(sum_(k = 0)^n u_n) <= S = sum_(k = 0)^(+oo) norm(u_k)
-  $
-  Donc $(S_n)_n$ est bornée et admet au moins une valeur d'adhérance.
-
-  Soit $phi, psi$ tels que $(u_phi(n))_n -> l_1$, $(u_psi(n))_n -> l_2$.
-  $
-    norm(S_psi(n) - S_phi(n)) &<= sum_(k in [|psi(n), phi(n)|]) norm(u_k)  \
-    &<= sum_(k = min(psi(n), phi(n)))^(+oo) norm(u_k) \ &tends(n -> +oo) 0
-  $
-  D'où $l_1 = l_2$.
-
-- Soit $u in E^NN$, $E$ un espace de Banach, tel que $sum norm(u_n)$ converge.
-
-  Pour tout $p >= q$
-  $
-    norm(S_p - S_q) &<= sum_(k = q + 1)^p norm(u_k) \
-    &<= sum_(k = q + 1)^(+oo) norm(u_k) \
-    &tends(q -> oo) 0
-  $
-  Donc $(S_n)$ est de Cauchy, et converge.
-
-- Soit $(u_n)$ une suite de Cauchy. On construit $phi$ extractrice tel que $norm(u_phi(n+1) - u_phi(n)) <= 1 / n^2$ (qui est possible car $(u_n)$ est de Cauchy).
-
-  Ainsi $sum (u_phi(n+1) - u_phi(n))$ est absolument convergente donc convergente et $(u_phi(n))_n$ converge, donc $(u_n)$ admet une valeur d'adhérance et converge.
-
-#card("thmbaire", "Théorème de Baire", ("Maths.Topologie",))
-
-Énoncé, démonstrations du théorème de Baire.
-
-#answer
-
-Dans $(E, norm(dot))$ espace de Banach, soit $A subset.eq E$ complet, et $(Omega_n)_(n in NN)$ une suite dénombrable d'ouverts denses dans $A$. Alors
-$
-  inter.big_(n in NN) Omega_n
-$
-Est dense dans $A$.
-
-*Éléments de démonstration*
-
-Suite de boules emboîtées, en alternant caractère ouvert et densité dans une récurrence bien construite pour trouver un point dans l'intersection à toute distance.
-
-// TODO: Vraie démo
-
-#card("conpararc", "Connexité par arcs", ("Maths.Topologie",))
-
-Définition, propriétés de connexité par arcs.
-
-#answer
-
-Pour $X subset.eq E$ ($E$ espace métrique) et $a, b in X$, on appelle chemin continue reliant $a$ et $b$ une fonction
-$
-  gamma : func([0, 1], E, 0, a, 1, b, t, gamma(t) in X)
-$
-
-L'existence d'un chemin continue forme une relation d'équivalence.
-
-- On appelle composentes connexes par arcs les classes d'équivalence pour cette relation.
-
-- On dit que $X$ est connexe par arcs s'il n'y à qu'une seule classe d'équivalence pour cette relation.
-
-- Si $f in C^0(X, F)$ et $X$ est connexe par arcs, alors $f(X)$ aussi.
-
-*Démonstration*
-
-- Soit $f(x) = a, f(y) = b in f(X)$, comme $X$ est connexe par arcs on dispose de $gamma$ chemin continue de $x$ à $y$.
-
-  Posons $gamma' = f compose gamma$, continue par composition de fonctions qui le sont, et forme un chemin continue de $a$ à $b$.
-
-  Donc $f(X)$ est connexe par arcs.
-
-#card("condeglnc", "Connexité par arcs du groupe linéaire complexe", ("Maths.Topologie",))
-
-Démonstrations de la connexité par arcs de $"GL"_n (CC)$.
-
-#answer
-
-+ Soit $A in "GL"_n (CC)$, pour tout $t in CC$ #h(1fr)
-  $
-    (1 - t) I_n + t A in.not "GL"_n (CC) \
-    <=> A - (t - 1) / t in.not "GL"_n (CC) \
-    <=> 1 - 1 / t in "Sp" (A)
-  $
-  Notons $D = { 1 / lambda - 1, lambda in "Sp"(A) }$ qui est fini, donc $CC^* \\ D$ est connexe par arcs, et on dispose de $gamma$ chemin continue de $0$ à $1$ dans $CC^*\\D$.
-  $
-    tilde(gamma) : t |-> (1 - gamma(t)) I_n + gamma(t) A
-  $
-  Convient.
-
-+ En trigonalisant :
-  $
-    gamma : s -> P mat(gamma_1 (s),,(s t_(i j));,dots.down;,,gamma_n (s)) P^(-1)
-  $
-  Avec $gamma_i : [0, 1] -> CC^*$ chemin continue de $1$ à $gamma_i$.
-
-+ On écrit $A$ comme produit de transvections et d'une dilatation, et on relie les termes. (Marche pour montrer la connexité par arcs de $"GL"_n^+ (RR)$ et $"GL"_n^-(RR)$).
-
-#card("connexite", "Connexité", ("Maths.Topologie",))
-
-Définition et propriétés de la connexité.
-
-#answer
-
-Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules parties ouvertes et fermés de $X$ sont $emptyset$ et $X$.
-
-- Si $X$ connexe par arcs, alors $X$ est connexe.
-
-- $X$ est connexe ssi toute fonction $C^0(X, ZZ)$ est constante.
-
-- Si $X$ est connexe, $overline(X)$ aussi.
-
-Contre exemple de la reciproque de connexe par arcs implique connexe :
-
-$
-  X = { (x, sin(1/x)), x in Ioc(0, 1) } \
-  overline(X) = X union {0} times [-1, 1]
-$
-
-- $X$ est connexe par arcs, donc connexe.
-- $overline(X)$ est connexe car $X$ l'est.
-- $overline(X)$ n'est pas connexe par arcs.
-
-*Démonstration*
-
-- + Supposons $X$ connexe par arcs, soit $A subset.eq X$ non vide ouverte et fermé.
-
-    On dispose donc de $a in A$, supposons par l'absurde qu'on dispose de $b in X \\ A$.
-
-    Comme $X$ est connexe par arcs, on dispose de $gamma$ chemin continue de $a$ à $b$.
-    $
-      t_0 = sup underbrace([0, 1] inter gamma^(-1) (A), Gamma)
-    $
-    Qui existe car $Gamma$ est non vide et majoré.
-
-    On dispose donc de $(t_n)_n in Gamma^NN ->  t_0$
-    $
-      gamma(t_0) = lim_(n -> oo) underbrace(gamma(t_n), in A) in overline(A) = A
-    $
-    Or $A$ est ouvert, donc on dispose de $B_X (gamma(t_0), delta) subset.eq A$.
-
-    Par continuité de $gamma$ on a $eta > 0$ tel que 
-    $
-    gamma(B(t_0, eta)) subset.eq B(gamma(t_0), delta) subset.eq A
-    $
-    Absurde.
-
-  + Montrons que $bb(1)_A$ est continue.
-
-    Soit $Omega subset RR$ ouvert
-    $
-      bb(1)^(-1)_A (Omega) \ = cases(
-        space A &"si" 1 in Omega "et" 0 in.not Omega,
-        space X\\A &"si" 1 in.not Omega "et" 0 in Omega,
-        space emptyset &"si" 1 in.not Omega "et" 0 in.not Omega,
-        space X &"si" 1 in Omega "et" 0 in.not Omega,
-      )
-    $
-    Qui sont tous ouverts. Donc $bb(1)_A$ est continue, $bb(1)_A (X) subset.eq {0, 1}$ est connexe par arcs.
-
-    Donc $bb(1)_A (X) = {0}$ ou $bb(1)_A (X) = {1}$
-
-- ($arrow.double.l$) Soit $A subset.eq X$ ouvert et fermé, $bb(1)_A$ est continue (voir ci dessus) donc constante.
-
-  ($=>$) Soit $f in C^0(X, ZZ)$, soit $k = f(x) in ZZ$,
-  $
-    f^(-1) {k} = f^(-1) Ioo(k - 1/2, k + 1/2)
-  $
-  Qui est ouvert et fermé.
-
-- Supposons $X$ connexe, soit $f in C^0(overline(X), ZZ)$, et $tilde(f) = evaluated(f)_X$.
-
-  Par connexité de $X$, $tilde(f)$ est constante et donc $f$ aussi sur $X$, et par continuité elle l'est sur $overline(X)$.
-
-// TODO: Écrire cette fiche (M210 - M214)
-#card("barycentres", "Barycentres", ("Maths.Topologie",))
-
-Barycentres - revoir le cours / écrire la fiche.
-
-#answer
-
-Barycentres - revoir le cours / écrire la fiche.
-
-Rapidement :
-
-- À $(A_1, dots, A_n) in cal(E)^n$ (avec $E$ espace affine) et $lambda_1, dots, lambda_n in RR^n$ on associe $G in cal(E)$ l'unique point tel que #h(1fr)
-  $
-    sum_(k = 1)^n lambda_k va(G A_k) = va(0) \
-    "i.e" sum_(k = 1)^n lambda_k (a_k - g) = 0
-  $
-  Qu'on appelle barycentre :
-  $
-    G = "Bar" { (A_k, lambda_k), k in [1, n] }
-  $
-
-- Les pondérations sont unique à facteur multiplicatif près, il en existe une unique tel que
-  $
-    sum_(k = 1)^n lambda_k = 1
-  $
-
-- Associativité du barycentre :
-
-  Soit $(A_k)_k in cal(E)^(n + m)$ et $(lambda_k)_k in RR^(n + m)$ tel que 
-  $
-  alpha = sum_(k = 1)^n lambda_k != 0 != sum_(k = n + 1)^(n + m) lambda_k
-  $
-  Alors en posant
-  $
-    G_1 = "Bar" { (A_k, lambda_k), k in [|1, n|] } \
-    G_2 = "Bar" { (A_k, lambda_k), k in [|n + 1, n + m|] } \
-  $
-  On a
-  $
-    G &= "Bar" { (A_k, lambda_k), k in [|1, n + m|] } \
-    &= "Bar" { (G_1, alpha), (G_2, beta) }
-  $
-
-- $cal(F) subset.eq cal(E)$ est un sea ssi il est stable par barycentre.
-
-- On dit que $d+1$ points sont en position général (dans un espace de dimension $d$) si $(va(A_0 A_k))_(k in [|1, d|])$ est libre.
-
-- $cal(C) subset.eq cal(E)$ est convexe ssi pour tout $A_1, dots, A_n in cal(C)$ et $lambda_1, dots, lambda_n in RR_+$ tels que $sum_(k = 1)^n lambda_k != 0$
-  $
-    "Bar" { (A_k, lambda_k), k in [|1, n|] } in cal(C)
-  $
-
-- Pour $X subset.eq cal(E)$, il existe un plus petit convexe contenant $X$. On l'appelle enveloppe convexe de $X$ et
-  $
-    "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, n|] }\, n in NN\, \ (A_1, dots, A_n) in X^n\, (lambda_1, dots, lambda_n) in RR_+^n \ , sum_(k = 1)^n lambda_k != 0 ) = cal(C)
-  $
-
-- (Carathéoodory) Soit $d = dim cal(E)$, $X subset.eq cal(E)$
-  $
-    "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, d+1|] }\, \ (A_1, dots, A_(d+1)) in X^(d+1)\, \ (lambda_1\, dots, lambda_(d+1)) in RR_+^(d+1) \ , sum_(k = 1)^n lambda_k = 1)
-  $
-
-- Donc si $X$ est compact, $"Conv" X$ aussi.
-
-#card("projconv", "Projection sur un convexe fermé", ("Maths.Topologie",))
-
-Propriétés de projection sur un convexe fermé.
-
-#answer
-
-Soit $(E, scl(dot, dot))$ un espace euclidien, $C subset.eq E$ un convexe fermé.
-
-$
-  forall x in E, exists! p(x) in C, \ d(x, C) = d(x, p(x))
-$
-
-Et de plus pour tout $x in E$, et $z in C$, on a équivalence entre
-
-+ $z = p(x)$
-
-+ $forall y in C, scl(y - z, x - z) <= 0$
-
-On a alors que $x |-> p(x)$ est $1$-lipschitzienne.
-
-*Démonstration*
-
-- Existence : la distance à un fermé est atteinte en dimension finie (ou dans un espace de Banach).
-
-- Unicité : #h(1fr)
-
-  #align(center, cetz.canvas({
-    import cetz.draw: *
-
-    let rad = _sizes.text * 20%
-    let stroke = _sizes.text * 10%
-    let col = _colors.text
-
-    set-style(stroke: none, fill: col)
-    circle((-1, 0), name: "z1", radius: rad)
-    circle((1, 0), name: "z2", radius: rad)
-    circle((0, -2), name: "x", radius: rad)
-
-    set-style(stroke: col + stroke, fill: none)
-
-    line("z1", "z2", "x", "z1")
-
-    circle((0, 0), name: "c", radius: rad, fill: red, stroke: none)
-    line("c", "x", stroke: red, fill: none)
-
-    content((rel: (-0.3, 0), to: "z1"), $z_1$)
-    content((rel: (0.3, 0), to: "z2"), $z_2$)
-    content((rel: (0, -0.3), to: "x"), $x$)
-  }))
-
-  Soit $z_1, z_2 in C$ tels que $d(x, C) = d(x, z_1) = d(x, z_2)$.
-  $
-    d(x, C) &<= d(x, (z_1 + z_2) / 2) \
-    &= 1/2 norm((x - z_1) + (x - z_2)) \
-    &<= d(x, C)
-  $
-  On a égalité dans l'inégalité triangulaire pour une norme issue d'un produit scalaire : $(x - z_1)$ et $(x - z_2)$ sont positivement liés et de même norme (par hypothèse), d'où $z_1 = z_2$.
-
-- Tangente :
-  #align(center, cetz.canvas({
-    import cetz.draw: *
-
-    let rad = _sizes.text * 20%
-    let stroke = _sizes.text * 10%
-    let col = _colors.text
-
-    set-style(stroke: col + stroke, fill: none)
-
-    circle((0, 0), name: "C", radius: 1)
-
-    circle((name: "C", anchor: 45deg), radius: rad, name: "z", fill: red, stroke: none)
-    line((to: "z", rel: (-1, 1)), (to: "z", rel: (1, -1)), stroke: red + stroke)
-
-    circle((0, 0.5), name: "y", radius: rad, fill: col, stroke: none)
-
-    circle((1.5, 1.5), name: "x", radius: rad, fill: black, stroke: none)
-
-    line("y", "z", "x")
-
-    cetz.angle.angle("z", "x", "y", radius: 0.2)
-
-    content((to: "z", rel: (0, 0.5)), $script(>= pi / 2)$)
-    content((to: "z", rel: (0.6, 0)), text(fill: red)[$p(x)$])
-    content((to: "x", rel: (0.3, 0)), $x$)
-    content((to: "y", rel: (-0.3, 0)), $y$)
-    content((to: "C.south", rel: (0, 0.5)), $C$)
-  }))
-  
-  (i $=>$ ii) Soit $y in C$, on considère pour $t in [0, 1]$ :
-  $
-    y_t = (1 - t) z + t y \
-  $
-  $
-    f(t) &= norm(x - y_t)^2  \
-    &= norm((x - z) - t(y - z))^2 \
-    &= norm(x - z)^2 - 2 t scl(x-z, y-z) \  &quad + t^2 norm(y - z)^2
-  $
-  Une fonction de $[0, 1] -> RR$ minimale en $0$ d'où
-  $
-    f'(0) >= 0 \
-    -2 scl(x - z, y - z) >= 0
-  $
-
-  (ii $=>$ i) Pour $y = p(x)$ :
-  $
-    scl(p(x) - z, x - z) <= 0
-  $
-  Or par (i $=>$ ii) (avec $z' = p(x)$ et $y' = z$) on a
-  $
-    scl(z - p(x), x - p(x)) <= 0 \
-    scl(p(x) - z, p(x) - x) <= 0 \
-  $
-  Donc par bilinéarité :
-  $
-    scl(z - p(x), z - p(x)) &= norm(z - p(x))^2 \ &<= 0
-  $
-  D'où $z = p(x)$.
-
-- Soit $x, y in E$ :
-  $
-    scl(p(y) - p(x), x - p(x)) <= 0 \
-    scl(p(x) - p(y), y - p(y)) <= 0 \ \
-  $
-  Donc
-  $
-    scl(p(y) - p(x), x - y + p(y) - p(x)) <= 0 \
-    norm(p(y) - p(x))^2 \ + scl(p(y) - p(x), x - y) <= 0 \
-    norm(p(y) - p(x))^2 <= scl(p(y) - p(x), y - x) \
-    <= norm(p(y) - p(x)) dot norm(y - x) \
-    norm(p(y) - p(x)) <= norm(y - x)
-  $
-
-#card("relcpct", "Relative compacité", ("Maths.Topologie",))
-
-Définition de relative compacité.
-
-#answer
-
-Soit $E$ un $KK$-evn, $A subset.eq E$, on a équivalence entre
-
-+ $overline(A)$ est compact.
-
-+ Il existe $K$ compact tel que $A subset.eq K$.
-
-+ $forall (x_n)_n in A^NN$, $exists phi "extractrice"$, $(x_phi(n))_n -> l in E$.
-
-On dit dans ce cas que $A$ est relativement compact.
-
-Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
-
-*Démonstration*
-
-- (i $=>$ ii) $A subset.eq overline(A)$ compact.
-
-- (ii $=>$ i) $A subset.eq K$, donc $overline(A) subset.eq overline(K) = K$, $overline(A)$ est fermé dans un compact donc compact.
-
-- (i $=>$ iii) Soit $(x_n)_n in A^NN subset.eq overline(A)^NN$, qu'on peut donc extraire par compacité.
-
-- (iii $=>$ i) Soit $(y_n)_n in overline(A)^NN$, pour $n in NN$, $y_n in overline(A)$, on prend #h(1fr)
-  $
-    x_n in A inter B(y_n, 1 / 2^n)
-  $
-  Donc $(x_n)_n in A^NN$, par hypothèse $(x_phi(n)) -> l in overline(A)$.
-  $
-    norm(y_phi(n) - l) &<= underbrace(norm(y_phi(n) - x_phi(n)), < 1 / 2^n -> 0) \ &+ underbrace(norm(x_phi(n) - l), -> 0)
-  $
-
-- Soit $epsilon > 0$, $x_0 in A$, construisons par récurrence :
-  $
-    x_(n+1) in A \\ union.big_(k = 0)^n B(x_k, epsilon)
-  $
-  Comme une tel suite ne peut admètre de valeur d'adhérance, le procéssus doit se terminer.
-
-  Ainsi on dispose de $x_0, dots, x_n$ tels que $A subset.eq union.big_(k = 0)^n B(x_k, epsilon)$ et $A$ est précompacte.
-
-]
-#[
-
-#import "/utils.typ": *
-#import "@preview/tiptoe:0.3.1"
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-#import "@preview/physica:0.9.7": *
-
-#card("derivevn", "Dérivabilité", ("Maths.Analyse.Espaces vectoriels normés",))
-
-Définition de dérivabilité pour une fonction à valeur dans un evn.
-
-#answer
-
-Pour $f in cal(F)(I, E)$, où $I$ est un intervalle et $E$ un $RR$ ou $CC$-evn.
-
-Soit $a in I$, on a équivalence entre
-
-+ #h(1fr)
-  $
-    tau_a : func(I \\ {a}, E, x, (f(x) - f(a)) / (x - a)) 
-  $
-  Admet une limite finie $l in E$ en $a$.
-
-+ On dispose de $l in E$ et $epsilon in cal(F)(I, E)$ tel que
-  $
-    f(x) = f(a) + (x - a)l + (x - a) epsilon(x) \
-    "et " lim_(x -> a) epsilon(x) = 0
-  $
-
-Dans ce cas on dit que $f$ est dérivable en $a$ et on note
-$
-  l = f'(a) = lim_(x -> a) (f(x) - f(a)) / (x - a)
-$
-
-#card("linder", "Applications multi-linéaires et dérivation", ("Maths.Analyse.Espaces vectoriels normés",))
-
-Formules de dérivation de $L(f)$, $B(f, g)$ et $M(f_1, dots, f_n)$.
-
-#answer
-
-Soient $E_1, dots, E_n, F$ des evn de dimension finie.
-
-- Soit $L in cal(L)(E_1, F)$ et $f in cal(F)(I, E)$, si $f$ dérivable en $a in I$ :
-  $
-    (L compose f)'(a) = L(f') (a)
-  $
-
-- Soit $B : E_1 times E_2 -> F$ bilinéaire, $f, g in cal(F)(I, F)$, si $f$ et $g$ sont dérivables en $a in I$ :
-  $
-    (B(f, g))'(a) \ = B(f', g)(a) + B(f, g')(a)
-  $
-
-- Soit $M : product_(k = 1)^n E_k -> F$ $n$-linéaire, $f_1, dots, f_n in cal(F)(I, F)$. Si $f_1, dots, f_n$ sont dérivables en $a in I$ alors :
-  $
-    (M(f_1, dots, f_n))'(a) \
-      = sum_(k = 1)^n M(f_1, dots, f_(k - 1), f'_k, f_(k+1), dots, f_n)(a)
-  $
-
-#card("derbout", "Théorème de Darboux", ("Maths.Analyse.Espaces vectoriels normés",))
-
-Énoncé et démonstration du théorème de Darboux.
-
-#answer
-
-Soit $F in D^1(I, RR)$, pour tout $gamma in [F'(a), F'(b)]$ pour $a, b in I$ on dispose de $x in [a, b]$ tel que $F'(x) = gamma$.
-
-*Démonstration*
-
-Pour $gamma = 0$, supposons $F'(a) < 0, F'(b) > 0$
-$
-  min_[a,b] F in.not {F(a), F(b)}
-$
-Et $F C^0$ sur $[a, b]$
-
-Donc on dispose de $x in [a, b]$ tel que $F(x) = min_[a, b] F$ et ainsi $F'(x) = 0$.
-
-#card("inegevnfun", "Inégalités utiles", ("Maths.Analyse.Espaces vectoriels normés",))
-
-Inégalités utiles qui tiennent pour les fonctions à valeur dans un evn de dimension finie.
-
-#answer
-
-+ Soit $f in C^1(I, E)$, pour tout $a, b in I$ : #h(1fr)
-  $
-    norm(f(a) - f(b)) <= abs(b - a) dot sup_[a, b] norm(f')
-  $
-
-+ Soit $f in C^(n+1)(I, E)$, pour tout $a, b in I$ :
-  $
-    norm(f(b) - sum_(k = 0)^n (b - a)^k / k! f^((k)) (a)) \
-    <= abs(b - a) / (n+1)! sup_[a, b] norm(f^((n+1)))
-  $
-
-#card("cvs", "Convergence simple", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Propriétés, définition de la convergence simple.
-
-#answer
-
-Soit $(f_n)_n in cal(F) (A, E)^NN$, on dit que $(f_n)_n$ converge simplement vers $f in cal(F)(A, E)$ si
-$
-  forall x in A, lim_(n -> oo) f_n (x) = f(x)
-$
-
-La convergence simple conserve les propriétés suivantes :
-
-- Si les $f_n$ sont croissants, $f$ aussi.
-- Si les $f_n$ sont $k$-lipschitzien, $f$ aussi.
-Si $A = I$ intervalle et $E = RR$
-
-- Si les $f_n$ sont bornés par $M$, $f$ aussi.
-- Si les $f_n$ sont convexes, $f$ aussi.
-
-#card("exsuitesdepol", "Exercice : suite de polynômes, convergence uniforme", ("Maths.Exercice.Analyse",))
-
-+ Soit $(P_n)_n in RR[X]^NN tends(n -> oo, above: "CVU") f in cal(F)(RR, RR)$, montrer que $f$ est polynômiale.
-
-+ Soit $(P_n)_n in RR_d [X]^NN tends(n -> oo, above: "CVS") Q in RR_d [X]$, montrer que $(P_n)_n$ converge uniformement sur tout segment.
-
-+ Soit $(P_n)_n in RR_d [X]^NN tends(n -> oo, above: "CVS") f in cal(F)(RR, RR)$, montrer que $f in RR_d [X]$.
-
-#answer
-
-+ Soit $N in NN$ tel que pour tout $n >= N$, $P_n - f$ bornée (possible car $norm(P_n - f)_oo -> 0$).
-
-  $
-    P_N - P_n = (P_N - f) - (P_n - f)
-  $
-  Différence de fonctions bornées, donc bornée et somme de polynômes de polynômiale.
-
-  D'où
-  $
-    P_N - P_n &= alpha_n in RR \
-    &tends(n -> oo) P_N - f = beta in RR
-  $
-  Donc $f = P_N + beta in RR[X]$.
-
-+ Soit $[a, b] subset.eq RR$, $alpha_0, dots, alpha_d in [a, b]$ distincts.
-  $
-    N_d : func(RR_d [X], RR_+, P, max_(k in [|0, d|]) abs(P(alpha_k)))
-  $
-  Par CVS, $(P_n)_n$ converge vers $Q$ au sens de la norme $N_d$, qui est équivalente à la norme infinie car en dimension finie.
-
-+ De même, par interpollation de Lagrange on prend $Q$ coincident avec $f$ en $d + 1$ points, et on définit la même norme :
-  $
-    N_d (P_n - Q) tends(n -> oo) 0
-  $
-  Donc au sens de la norme infinie : $P_n -> Q = f$.
-
-#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de continuité pour les suites de fonctions.
-
-#answer
-
-Soit $(f_n)_n in cal(F)(A, F)^NN tends(n -> oo, above: "CVS") f in cal(F)(A, F)$, $a in A$. Si
-
-+ $(f_n)_n$ CVU sur un voisinage de $a$.
-
-+ $forall n in NN, f_n C^0$ en $a$.
-
-Alors $f$ est $C^0$ en $a$.
-
-*Démonstration*
-
-Soit $epsilon > 0$, $N in NN$ associé par CVU, $delta > 0$ associé par continuité de $f_N$, ainsi pour tout $x in B(a, delta) inter A$
-$
-  norm(f(x) - f(a))  <=& underbrace(norm(f(x) - f_N (x)), < epsilon)\ +& underbrace(norm(f_N (x) - f_N (a)), < epsilon) \ +& underbrace(norm(f_N (a) - f(a)), < epsilon) \
-  < & 3 epsilon
-$
-
-#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de la double limite pour les suites de fonctions.
-
-#answer
-
-Soit $(f_n)_n in cal(F)(A, F)^NN tends(n -> oo, above: "CVS") f in cal(F)(A, F)$, $a in overline(A)$. Si
-
-+ $(f_n)_n$ CVU sur un voisinage de $a$.
-
-+ $forall n in NN, lim_(x -> a) f_n (x) = l_n$.
-
-Alors
-$
-  lim_(n -> oo) l_n &= l in overline(F) \ &= lim_(n -> oo) lim_(x -> a) f_n (x) \ &= lim_(x -> a) lim_(n -> oo) f_n (x)
-$
-
-*Démonstration (Idée)*
-
-$
-  norm(l_n - l_m) <= norm(f_n - f_m)_oo "de Cauchy"
-$
-
-#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de primitivation pour les suites de fonctions.
-
-#answer
-
-Soit $(f_n)_n in C^0_"pm" (I, G)^NN$ ($G$ evn de dimension finie, $I$ intervalle de $RR$), $a in A$. Si
-
-+ $(f_n)_n$ CVU sur tout segment de $I$ vers $f in C^0_"pm"$.
-
-En notant 
-$
-  F_n : func(I, G, x, integral_a^x f_n (t) dif t) \
-  F : func(I, G, x, integral_a^x f(t) dif t) \
-$
-
-Alors $F_n$ CVU sur tout segment vers $F$
-
-*Corolaire*
-
-Pour $(f_n)_n in C^0_"pm" ([a, b], F)^NN tends([a, b], above: "CVU") f in C^0_"pm" ([a, b], F)$.
-
-$
-  integral_a^b f_n (t) dif t tends(n -> oo) integral_a^b f(t) dif t
-$
-
-*Démonstration*
-
-Soit $K$ segment, $M = abs(sup K - inf K)$, quitte à le grandire, $a in K$.
-
-Soit $epsilon > 0$, on dispose de $N in NN$ tel que pour tout $n >= N$,
-$
-  norm(f_n - f)_oo < epsilon
-$
-Ainsi
-$
-  norm(F(x) - F_n (x)) &= norm(integral_a^x (f(t) - f_n (t) ) dif t) \
-  &<= abs(x - a) epsilon \
-  &<= M epsilon
-$
-
-#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de dérivation pour les suites de fonctions.
-
-#answer
-
-Soit $(f_n)_n in C^1(I, G)^NN tends(n -> oo, above: "CVS") f$. Si
-
-+ $(f'_n)_n$ CVU sur tout segment vers $g$.
-
-Alors $(f_n)_n$ CVU vers $f$ sur tout segment et $f in C^1$ et $f' = g$ :
-$
-  (lim_(n -> oo) f_n)' = lim_(n -> oo) f'_n
-$
-
-*Démonstration*
-
-Par théorème de primitivation.
-
-#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de dérivation k-ème pour les suites de fonctions.
-
-#answer
-
-Soit $(f_n)_n in C^k (I, F)^NN$, si
-
-+ Pour tout $j in [|0, k-1|]$, $(f^((j))_n)_n$ CVS vers $g_j$.
-
-+ $(f^((k))_n)_n$ CVU sur tout segment vers $g_k$.
-
-Alors
-
-Pour tout $j in [|0, k|]$, $(f^((j))_n)_n$ CVU sur tout segment vers $g_j = g_0^((j))$, $g_0$ qui est $C^k$.
-
-*Démonstration*
-
-Récurrence à l'aide du théorème de dérivation.
-
-#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de continuité pour les séries de fonctions.
-
-#answer
-
-Soit $(f_n)_n in cal(F) (A, F)^NN$, $a in A$. Si
-
-+ $sum f_n$ CVS.
-
-+ $sum f_n$ CVU sur un voisinage de $a$.
-
-+ Pour tout $n in NN$, $f_n$ est continue en $a$.
-
-Alors $S : x |-> sum_(n = 0)^(+oo) f_n (x)$ est continue en $a$.
-
-*Démonstration*
-
-On applique le théorème de continuité pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
-
-#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de la doulbe limite pour les séries de fonctions.
-
-#answer
-
-Soit $(f_n)_n in cal(F)(A, F)^NN$, $a in overline(A)$. Si
-
-+ $sum f_n$ CVS.
-
-+ Pour tout $n in NN$, $lim_(x -> a) f_n (x) = l_n in overline(F)$.
-
-+ $sum f_n$ CVU sur un voisinage de $a$.
-
-Alors $sum l_n$ converge et
-$
-  sum_(n = 0)^(+oo) l_n &= sum_(n = 0)^(+oo) lim_(x -> a) f_n (x) \ &= lim_(x -> a) sum_(n = 0)^(+oo) f_n (x)
-$
-
-*Démonstration*
-
-On applique le théorème de la double limite pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
-
-#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de dérivation pour les séries de fonctions.
-
-#answer
-
-Soit $(f_n)_n in C^1 (I, F)^NN tends(n -> oo, above: "CVS") S$. Si
-
-+ $sum f'_n$ CVU sur tout segment de $I$.
-
-Alors $sum f_n$ CVU sur tout segment de $I$, et $S in C^1 (I, F)$ et $S' = sum_(n = 0)^(+oo) f'_n$.
-
-*Démonstration*
-
-On applique le théorème de dérivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
-
-#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de dérivation k-ème pour les séries de fonctions.
-
-#answer
-
-Soit $(f_n)_n in C^1 (I, F)^NN$. Si
-
-+ Pour tout $j in [|0, k - 1|]$, $sum f^((j))_n$ CVS sur $I$.
-
-+ $sum f^((k))_n$ CVU sur tout segment de $I$.
-
-Alors pour tout $j in [|0, k|]$, $sum f^((j))_n$ CVU sur tout segment de $I$ et 
-$
-  S = sum_(n = 0)^(+oo) f_n in C^k (I, F) \
-  forall j in [|0, k|], space S^((j)) = sum_(n = 0)^(+oo) f^((j))_n
-$
-
-*Démonstration*
-
-On applique le théorème de dérivation k-ème pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
-
-#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé, démonstration du théorème de primitivation pour les séries de fonctions.
-
-#answer
-
-Soit $(f_n)_n in C^0_"pm" (I, F)^NN$, $a in I$. Si
-
-+ $sum f_n$ CVU sur tout segment.
-
-+ $s = sum_(n = 0)^(+oo) f_n in C^0_"pm" (I, F)$.
-
-En notant
-$
-  F_n (x) = integral_a^x f_n (t) dif t \
-  S(x) = integral_a^x s (t) dif t
-$
-
-Alors $sum F_n$ CVU sur tout segment vers $S$
-
-*Corolaire*
-
-Pour $(f_n)_n in C^0_"pm" ([a, b], F)^NN$ tel que $sum f_n$ CVU sur $[a, b]$ et $S = sum_(n = 0)^(+oo) f_n$ est $C^0_"pm"$.
-
-$
-  integral_a^b sum_(n = 0)^(+oo) f_n (t) dif t = sum_(n = 0)^(+ oo) integral_a^b f_n (t) dif t
-$
-
-*Démonstration*
-
-On applique le théorème de primitivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
-
-#card("thcvd", "Théorème de convergence dominée", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé du théorème de convergence dominée.
-
-#answer
-
-Soit $(f_n)_n in C^0_"pm" (I, KK)^NN$, avec $I$ un intervalle. Si
-
-+ $f_n tends(n -> oo, above: "CVS") f$ sur I.
-
-+ $f C^0_"pm"$.
-
-+ Il existe $phi in C^0_"pm" (I, RR_+)$ intégrable sur $I$ tel que #h(1fr)
-  $
-    forall n in NN, forall t in I, abs(f_n (t)) <= phi(t)
-  $
-
-Alors $f_n$ et $f$ sont intégrables sur $I$ et
-$
-  lim_(n -> oo) integral_I f_n (t) dif t &= integral_I f(t) dif t \ &= integral_I lim_(n -> oo) f_n (t) dif t
-$
-
-#card("thtat", "Théorème d'intégration terme à terme", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé du théorème d'intégration terme à terme.
-
-#answer
-
-- Version positive : #h(1fr)
-
-  Soit $(f_n)_n in C^0_"pm" (I, RR_+)^NN$, avec $I$ un intervalle. Si
-
-  + $sum f_n$ CVS sur $I$.
-
-  + $t |-> sum_(n = 0)^(+oo) f_n (t)$ est $C^0_"pm"$ sur $I$.
-
-  Alors dans $RR_+ union {+oo}$ :
-  $
-    integral_I sum_(n = 0)^(+oo) f_n (t) dif t = sum_(n = 0)^(+oo) integral_I f_n (t) dif t
-  $
-
-- Version générale :
-
-  Soit $(f_n)_n in C^0_"pm" (I, KK)^NN$, avec $I$ un intervalle. Si
-
-  + $sum f_n$ CVS sur $I$.
-
-  + $S : t |-> sum_(n = 0)^(+oo) f_n (t)$ est $C^0_"pm"$ sur $I$.
-
-  + Pour tout $n in NN$, $f_n$ est intégrable sur $I$ et
-    $
-      sum_(n = 0)^(+oo) integral_I abs(f_n (t)) dif t < +oo
-    $
-
-  Alors $S$ est intégrable sur $I$ et
-  $
-    integral_I S(t) dif t &= integral_I sum_(n = 0)^(+oo) f_n (t) dif t \
-    &= sum_(n = 0)^(+oo) integral_I f_n (t) dif t
-  $
-
-#card("thcvscont", "Théorème de convergence dominée par un paramètre continue", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé et démonstration du théorème de convergence dominée par un paramètre continue.
-
-#answer
-
-Soit $A subset.eq RR$, $(f_lambda)_lambda in C^0_"pm" (I, KK)^A$, $a in overline(A)$. Si
-
-+ $forall x in I, f_lambda (x) tends(lambda -> a) f(x)$.
-
-+ $f$ est $C^0_"pm"$ sur $I$.
-
-+ Il existe $phi in C^0_"pm" (I, RR_+)$ intégrable sur $I$ tel que
-  $
-    forall t in I, forall lambda in A, abs(f_lambda (t)) <= phi(t)
-  $
-
-Alors les $f_lambda$ et $f$ sont intégrables sur $I$ et
-$
-  lim_(lambda -> a) integral_I f_lambda (t) dif t = integral_I lim_(lambda -> a) f_lambda (t) dif t
-$
-
-*Démonstration*
-
-Critère séquentiel, on montre que le résultat est vrai pour toute suite $(lambda_n)_n tends(n -> oo) a$.
-
-#card("thc0intp", "Théorème de continuité pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé et démonstration du théorème de continuité pour les intégrales à paramètre.
-
-#answer
-
-Soit $f: func(A times I, KK, (x, t), f(x, t))$, avec $A subset.eq E$ evn de dimension finie et $I$ intervalle. Si
-
-+ $forall t in I$, $x |-> f(x, t)$ est $C^0$ sur $A$.
-
-+ $forall x in A$, $t |-> f(x, t)$ est $C^0_"pm"$ sur $I$.
-
-+ $forall a in A, exists V_a in cal(V)(a), exists phi_a in C^0_"pm" (I, RR_+), integral_I abs(phi(t)) dif t < +oo$,
-  $
-    forall t in I, forall x in V_a, abs(f(x, t)) <= phi(t)
-  $
-
-Alors
-$
-  g: func(A, KK, x, integral_I f(x, t) dif t)
-$
-Est bien définie et continue sur $A$.
-
-*Démonstration*
-
-Critère séquentiel et théorème de convergence dominée.
-
-#card("thc1intp", "Théorème de dérivation pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé et démonstration du théorème de dérivation pour les intégrales à paramètre.
-
-#answer
-
-Soit $f : func(J times I, KK, (x, t), f(x, t))$, avec $I, J$ des intervalles. Si
-
-+ $forall t in I, x |-> f(x, t)$ est $C^1$ sur $J$.
-
-+ $forall x in J, t |-> f(x, t)$ est $C^0_"pm"$ et intégrable sur $I$.
-
-+ $forall x in J, t |-> pdv(f, x) (x, t)$ est $C^0_"pm"$ sur $I$.
-
-+ $forall K = [a, b] subset.eq J, exists phi_K in C^0_"pm" (I, RR_+)$,$integral_I phi_K (t) dif t < +oo$,
-  $
-    forall x in K, forall t in I, space abs(pdv(f, x) (x, t)) <= phi_K (t)
-  $
-
-Alors
-$
-  g : func(J, KK, x, integral_I f(x, t) dif t)
-$
-Est bien définie, est $C^1$ sur $J$ et 
-$
-g' : func(J, KK, x, integral_I pdv(f, x) (x, t) dif t)
-$
-
-*Démonstration*
-
-Récurrence avec le théorème de dérivation.
-
-#card("thckintp", "Théorème de dérivation k-ème pour les intégrales à paramètre", ("Maths.Analyse.Intégration", "Maths.Analyse.Théorèmes d'interversion"))
-
-Énoncé et démonstration du théorème de dérivation k-ème pour les intégrales à paramètre.
-
-#answer
-
-Soit $f : func(J times I, KK, (x, t), f(x, t))$, avec $I, J$ des intervalles. Si
-
-+ $forall t in I, x |-> f(x, t)$ est $C^k$ sur $J$.
-
-+ $forall x in J, forall j in [|0, k - 1|]$, $t |-> pdv(f, x, [j])(x, t)$ est $C^0_"pm"$ et intégrable sur $I$.
-
-+ $forall x in J, t |-> pdv(f, x, [k]) (x, t)$ est $C^0_"pm"$ sur $I$.
-
-+ $forall K = [a, b] subset.eq J, exists phi_K in C^0_"pm" (I, RR_+)$,$integral_I phi_K (t) dif t < +oo$,
-  $
-    forall x in K, forall t in I, space abs(pdv(f, x, [k]) (x, t)) <= phi_K (t)
-  $
-
-Alors
-$
-  g : func(J, KK, x, integral_I f(x, t) dif t)
-$
-Est bien définie, est $C^k$ sur $J$ et pour tout $j in [|0, k|]$, 
-$
-g^((j)) : func(J, KK, x, integral_I pdv(f, x, [j]) (x, t) dif t)
-$
-
-*Démonstration*
-
-On montre $C^0$ avec le théorème de continuité, puis on montre la dérivabilité par le théorème de convergence dominée en calculant la limite usuelle.
-
-#card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Exemples d'espaces denses de fonctions.
-
-#answer
-
-*Fonctions en escaliers*
-
-Les fonctions en escalier sont denses dans les fonctions $(C^0_"pm" ([a,b], E), norm(dot)_oo)$.
-
-*Fonctions polynômiales (Théorème de Weierstrass)*
-
-Les fonctions polynômiales sur $[a, b]$ sont denses dans $(C^0 ([a, b], KK), norm(dot)_oo)$.
-
-// TODO: Exos M230-231
-
-#card("dini1", "Premier théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Énoncé et démonstration du premier théorèmes de dini (HP).
-
-#answer
-
-Soit $K$ compact, $(f_n)_n in C^0(K, RR)^NN tends(n -> oo, above: "CVS") f in C^0(K, RR)$.
-
-Si pour tout $x in KK$, $(f_n (x))_n$ est monotone, alors $(f_n)_n$ CVU vers $f$.
-
-*Démonstration*
-
-On note
-$
-  g_n = cases(space f_n - f " si " (f_n (x))_n arrow.br, space f - f_n " sinon" )
-$
-Ainsi $g_n >= 0$, décroit et CVS vers $0$. On veut montrer que $norm(f_n - f)_oo = norm(g_n)_oo tends(n -> oo) 0$.
-
-Soit $epsilon > 0$, $K_n = Set( x in K, g_n (x) >= epsilon ) = g_n^(-1) Ico(epsilon, +oo)$, fermé dans $K$ donc compact par continuité de $g_n$.
-
-Par décroissance de $g_n$, $(K_n)_n$ est une suite décroissante de compacts.
-
-Supposons que les $K_n$ soient tous non vide, alors on dispose de $x_0 in inter.big_(n in NN) K_n$ (Intersection décroissante de compacts non vide).
-
-Or
-$
-  inter.big_(n in NN) K_n &= Set(x in K \, forall n in NN, g_n (x) >= epsilon) \
-  &= emptyset quad "Par CVS de" (g_n)_n
-$
-
-Absurde. Donc on dispose de $N in NN$ tel que pour tout $n >= N$, $K_n = emptyset$, c'est à dire $norm(g_n)_oo < epsilon$.
-
-#card("dini2", "Deuxième théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Énoncé et démonstration du deuxième théorèmes de dini (HP).
-
-#answer
-
-Soit $(f_n)_n in C^0([a, b], RR)^NN tends(n -> oo, above: "CVS") f in C^0([a, b], RR)$.
-
-Si pour tout $n in NN$, $f_n$ est croissante (ou décroissante), alors $(f_n)_n$ CVU vers $f$.
-
-*Démonstration*
-
-Quitte à prendre $-f_n$ on suppose les $f_n$ croissants, et par CVS $f$ aussi.
-
-Par le théorème de Heine, $f$ est uniformement continue sur $[a, b]$.
-
-Soit $epsilon > 0$, $delta > 0$ associé, et $N in NN^*$ tel que $(b - a) / N < delta$. On pose pour $k in [|0, N|], a_k = a + k (b - a) / N$.
-
-Pour tout $x in [a, b]$, on dispose de $k in [|0, N|]$ tel que $x in [a_k, a_(k + 1)]$.
-
-Par CVS de $(f_n)_n$ vers $f$, pour tout $k in [|0, N|]$, on dispose de $n_k in NN$ tel que pour tout $n >= n_k$
-$
-  abs(f_n (a_k) - f(a_k)) < epsilon
-$
-On pose $N_0 = max_(k in [|0, N|]) n_k$.
-
-Ainsi pour tout $n >= N_0$
-$
-  underbrace(f_n (a_k) - f(a_k), -epsilon < " par CVS") + underbrace(f(a_k) - f(a_(k+1)), - epsilon < " par UC") \
-  = f_n (a_k) - f(a_(k+1)) <= f_n (x) - f(x) \
-  <= underbrace(f_n (a_(k+1)) - f(a_(k + 1)), < epsilon " par CVS") + underbrace(f(a_(k + 1)) - f(a_k), < epsilon " par UC") \
-  - 2 epsilon < f_n (x) - f(x) < 2 epsilon
-$
-
-#card("equicont", "Équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Définitions, propriétés de (uniforme) équicontinuité.
-
-#answer
-
-Soit $cal(F) : (f_i)_i in C^0 (A, F)^I$ une famille de fonctions continues, on dit que $cal(F)$ est équicontinue en $a in A$ si
-$
-  forall epsilon > 0, exists delta > 0, forall i in I, \ forall x in B(a, delta), d(f_i (x), f_i (a)) < epsilon
-$
-
-On dit de plus que $cal(F)$ est uniformement équicontinue si
-$
-  forall epsilon > 0, exists delta > 0, forall i in I,
-  forall x, y in A, \ d(x, y) < delta => d(f_i (x), f_i (y)) < epsilon
-$
-
-*Propriétés*
-
-- Si $(f_n)_n in C^0 (A, F)^NN tends("sur " A, above: "CVU") f in C^0 (A, F)$, alors $(f_n)_n$ est équicontinue sur $A$.
-
-- Soit $K$ compact, si $(f_n)_n in C^0 (K, F)^NN tends("sur " K, above: "CVU") f in C^0 (A, F)$, alors $(f_n)_n$ est uniformement équicontinue.
-
-- Soit $(f_i)_i in cal(F)(A, F)^I$, si les $f_i$ sont tous $k$-lipschitz, alors $(f_i)_i$ est uniformement équicontinue.
-
-*Démonstration*
-
-- Découpage : on fixe $N$ par CVU associé à $epsilon$, et on prend $delta$ le min des $delta_k$ associés aux $f_k$ pour $k in [|0, N - 1|]$ et $delta_N$ associé à $f$.
-
-- La même avec Heine pour en déduire l'uniforme continuité des $(f_n)$ et de $f$.
-
-- Soit $epsilon > 0$, on pose $delta = epsilon / k$ qui convient pour tout $i in I$.
-
-#card("cvscvuuec", "Convergence uniforme par convergence simple et uniforme équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Démonstration de la convergence uniforme par convergence simple et uniforme équicontinuité.
-
-#answer
-
-Soit $(f_n)_n in C^0 ([a, b], F)^NN tends(n -> oo, above: "CVS") f$.
-
-Si $(f_n)_n$ est uniformement équicontinue, alors $(f_n)_n$ CVU vers $f$.
-
-($f_n$ $k$-lipschitz pour tout $n in NN$ suffit car implique uniforme équicontinue).
-
-*Démonstration*
-
-Soit $epsilon > 0$, $delta > 0$ associé par uniforme équicontinuité. $N in NN$ tel que $(b - a) / N < delta$, et pour $k in [|0, N|]$, $a_k = a + k (b - a) / N$.
-
-Pour tout $x, y in [a, b]$ tel que $abs(x - y) < delta$, comme pour tout $n in NN$
-$
-  norm(f_n (x) - f_n (y)) < epsilon
-$
-Par CVS, à la limite
-$
-  norm(f(x) - f(y)) < epsilon
-$
-
-Soit $N_0 in NN$ tel que pour tout $n >= 0, k in [|0, N|]$,
-$
-  norm(f(a_k) - f_n (a_k)) < epsilon
-$
-
-Soit $x in [a, b]$, $k in [|0, N|]$ tel que $x in [a_k, a_(k + 1)]$.
-
-$
-  norm(f(x) - f_n (x)) &<= underbrace(norm(f(x) - f(a_k)), < epsilon) \ &+ underbrace(norm(f(a_k) - f_n (a_k)), < epsilon) \ &+ underbrace(norm(f_n (a_k) - f_n (x)), < epsilon) \ &< 3 epsilon
-$
-
-On peut montrer ce resultat pour $K$ compact quelconque (au lieu de $[a, b]$), le découpage se faisant par précompacité.
-
-#card("modeconvseries", "Modes de convergence des séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Modes de convergence des séries de fonctions.
-
-#answer
-
-Soit $(f_n)_n in cal(F)(A, F)^NN$, pour tout $n in NN$
-$
-  S_n = sum_(k = 0)^n f_n
-$
-
-- On dit que $sum f_n$ CVS (simplement) sur $A$ si pour tout $x in A$, $sum f_n (x)$ converge.
-  
-  On peut alors écrire #h(1fr)
-  $
-    S : func(A, F, x, sum_(n = 0)^(+oo) f_n (x))
-  $
-
-- On dit que $sum f_n$ CVU (uniformement) sur $A$ si $(S_n)$ CVU sur $A$.
-
-  Ce qui est équivalent à $sum f_n$ CVS et
-  $
-    R_n = sum_(k = n + 1)^(+oo) f_k tends(n -> oo, above: "CVU") 0
-  $
-
-- On dit que $sum f_n$ CVA (absolument) sur $A$ si pour tout $x in A$, $sum f_n (x)$ est ACV.
-
-  Si $F$ est de dimension finie, alors CVA implique CVS.
-
-- On dit que $sum f_n$ CVN (normalement) sur $A$ si
-  - Pour tout $n in NN$, $f_n$ est bornée.
-  - $sum norm(f_n)_(oo, A)$ converge.
-
-  La CVN implique la CVA et CVU, donc CVS.
-
-// TODO: exp matrices, (voir chapitre suivant ?) (M236)
-
-// TODO: Méthodes équivalents / limites séries de fonctions (M240-241)
-
-// TODO: Développement en série de cotan (M241-242)
-
-#card("ascoli", "Théorème d'Ascoli", ("Maths.Analyse.Suites et séries de fonctions",))
-
-Énoncé, démonstration du Théorème d'Ascoli.
-
-#answer
-
-Soit $F$ de dimension finie, $K$ compact et $E = C^0 (K, F)$ muni de $norm(dot)_oo$. Soit $cal(F) subset.eq E$, on a équivalence entre
-
-+ $cal(F)$ relativement compact.
-
-+ $cal(F)$ est uniformement équicontinue et pour tout $x in K$, $Gamma(x) = {f(x), f in cal(F)}$ est bornée (c'est à dire relativement compact).
-
-*Démonstration*
-
-- (i $=>$ ii) On suppose $overline(cal(F))$ compact, soit $x in K$. On pose #h(1fr)
-  $
-    theta_x : func(E, F, f, f(x)) 
-  $
-  Qui est linéaire et $norm(theta_x (f)) <= norm(f)_oo$ donc continue.
-
-  Comme $Gamma(x) = theta_x (cal(F)) subset.eq theta_x (overline(cal(F)))$, $Gamma(x)$ est relativement compact.
-
-  $cal(F)$ est relativement compact donc donc précompact. 
-
-  Soit $epsilon > 0$, on dispose alors de $f_1, dots, f_d subset.eq cal(F)$ tels que $cal(F) subset.eq union.big_(k = 0)^d B(f_k, epsilon)$.
-
-  Les $f_k$ sont continue sur $K$, donc uniformement continue, soit $delta > 0$ associé à $epsilon$ pour l'ensemble.
-
-  Soit $x, y in K$ tel que $norm(x - y) < delta$, $f in cal(F)$, on dispose donc de $k in [|0, d|]$ tel que $norm(f - f_k)_oo < epsilon$ 
-  $
-    norm(f(x) - f(y)) &<= underbrace(norm(f(x) - f_k (x)), < epsilon) \
-    &+ underbrace(norm(f_k (x) - f_k (y)), < epsilon) \
-    &+ underbrace(norm(f_k (y) - f(y)), < epsilon) \
-    &< 3 epsilon
-  $
-
-  Donc $cal(F)$ est uniformement équicontinue.
-
-- (ii $=>$ i) On introduit $(a_n)_n in K^NN$ dense.
-
-  Si $K = [a, b]$, $K inter QQ$ convient.
-
-  Sinon par précompacité, avec $epsilon_n = 1 / 2^n$, on dispose de $D_n$ fini tel que $K subset.eq union.big_(x in D_n) B(x, epsilon_n)$, d'où $D = union.big_(n in NN) D_n$ convient.
-
-  Montrons que $cal(F)$ est relativement compact.
-
-  Soit $(f_n)_n in cal(F)^NN$.
-
-  + On construit $psi$ tel que pour tout $k in NN$, $(f_psi(n) (a_k))_n$ converge.
-
-    $(f_n (a_0)) in Gamma (a_0)^NN$, par hypothèse on dispose de $phi_0$ tel que $(f_(phi_0 (n)) (a_0)) -> z_0 = g(a_0)$.
-
-    Supposons construits $phi_0, dots, phi_(k - 1)$ tel que pour tout $j in [|0, k - 1|]$.
-    $
-      (f_(phi_0 compose dots.c compose phi_(k - 1) (n)) (a_j))_n -> z_j = g(a_j)
-    $
-    Comme $Gamma(a_(k +1))$ est relativement compact, on dispose de $phi_(k + 1)$ tel que
-    $
-      (f_(phi_0 compose dots.c compose phi_k (n)) (a_k))_n -> z_k = g(a_k)
-    $
-    On pose
-    $
-    psi : func(NN, NN, n, phi_0 compose dots.c compose phi_n (n) )
-    $
-    Qui est strictement croissante et pour tout $k in NN$
-    $
-    (f_psi(n) (a_k)) tends(n -> oo) z_k = g(a_k)
-    $
-
-  + Par uniforme équicontinuité et densité de $(a_k)_k$, montrons que $(f_psi(n))_n$ CVS sur $K$.
-
-    Soit $x in K$, posons $g_n = f_psi(n)$.
-
-    On sait que $(g_n (x))_n in Gamma(x)^NN$ donc on dispose de $theta$ tel que
-    $
-      g_theta(n) (x) tends(n -> oo) y in F
-    $
-    Soit $epsilon > 0$, $delta > 0$ associé par uniforme équicontinuité de $cal(F)$, et par densité de $(a_k)_k$, on dispose de $k in NN$ tel que $norm(a_k - x) < delta$.
-
-    Comme $g_n (a_k) tends(n -> oo) z_k$, on dispose de $N in NN$ tel que pour tout $n >= N$.
-
-    Ainsi pour tout $n >= N$
-    $
-      &norm(g_n (x) - g_theta(n) (x)) \
-      <=& underbrace(norm(g_n (x) - g_n (a_k)), < epsilon) \
-      +& underbrace(norm(g_n (a_k) - z_k), < epsilon) \
-      +& underbrace(norm(z_k - g_theta(n) (a_k)), < epsilon) \
-      +& underbrace(norm(g_theta(n) (a_k) - g_theta(n) (x)), < epsilon) \
-      <& 4 epsilon
-    $
-
-    Soit $N_0 >= N$ tel que pour tout $n >= N_0$
-    $
-      norm(g_theta(n) (x) - y) < epsilon \
-      norm(g_n (x) - y) < 5 epsilon
-    $
-
-    Ainsi pour tout $x in K$, $(f_psi(n) (x))_n$ converge vers un $y = g(x)$.
-
-  + On a $(f_psi(n))_n$ uniforme équicontinue qui CVS vers $g$, donc qui CVU, c'est à dire qui converge au sens de la norme infinie : $cal(F)$ est relativement compact.
-
-// TODO: Exos (M244.1-246)
-
-// TODO: Fourier (M253)
-
-#card("methequiintp", "Méthodes de recherche de limite ou d'équivalent pour les intégrales à paramètre", ("Maths.Analyse.Intégration",))
-
-Méthodes de recherche de limite ou d'équivalent pour les intégrales à paramètre.
-
-#answer
-
-- Théorème de convergence dominée, ou domination "à la main" (Limite).
-
-- Changement de variable.
-
-- Intuition (i.e intégration d'équivalent).
-
-- IPP : séparation en un terme plus simple et un terme négligeable.
-
-- Méthode de Laplace // Cf M256
-
-// TODO: Carte inutile ? (M255)
-
-// TODO: Gamma (M257)
-
-#card("rayconv", "Rayon de convergence d'une séries entière", ("Maths.Analyse.Séries entières",))
-
-Propriétés, définition du convergence d'une séries entière.
-
-#answer
-
-Soit $sum a_n z^n$ une série entière. On appelle $R = R_"cv" (sum a_n z^n)$ le rayon de convergence de $sum a_n z^n$
-$
-  R = sup space Set(r in RR_+, (a_n r^n) "bornée")
-$
-
-- (Lemme d'Abel) : Si $(a_n z_0^n)$ est bornée, alors pour tout $z in CC$ tel que $abs(z) < abs(z_0)$, $sum a_n z^n$ est ACV.
-
-- Pour tout $z in CC$ (conséquence) : #h(1fr)
-  $
-    abs(z) < R quad quad sum a_n z^n "ACV" \
-    abs(z) > R quad quad sum a_n z^n "DVG" \
-  $
-
-- Pour tout $alpha in CC^*$
-  $
-    R_"cv" (sum alpha a_n z^n) = R_"cv" (sum a_n z^n)
-  $
-
-- Pour tout $alpha in CC^*$
-  $
-    R_"cv" (sum a_n alpha^n z^n) = (R_"cv" (sum a_n z^n)) / abs(alpha)
-  $
-
-- Si pour tout $n in NN$, $abs(a_n) <= abs(b_n)$
-  $
-    R_"cv" (sum a_n z^n) >= R_"cv" (sum b_n z^n)
-  $
-
-- Si $a_n = O_(n -> oo)(b_n)$
-  $
-    R_"cv" (sum a_n z^n) >= R_"cv" (sum b_n z^n)
-  $
-
-- Si $a_n eqv(n -> oo) b_n$
-  $
-    R_"cv" (sum a_n z^n) = R_"cv" (sum b_n z^n)
-  $
-
-- Soient $(a_n)_n, (b_n)_n in CC^NN$
-  $
-    R_"cv" (sum (a_n + b_n) z^n) >= min(R_a, R_b)
-  $
-  Avec égalité si $R_a != R_b$.
-
-- Soient $(a_n)_n, (b_n)_n in CC^NN$.
-  $
-      c_n = sum_(k = 0)^n a_k b_(n - k) \
-
-      R_"cv"(sum c_n z^n) >= min (R_a, R_b) \
-
-      forall z in DD(0, R_"cv"), \ sum_(n = 0)^(+oo) c_n z^n = (sum_(n = 0)^(+oo) a_n z^n) (sum_(n = 0)^(+oo) b_n z^n)
-  $
-
-#card("regse", "Régularité des séries entières", ("Maths.Analyse.Séries entières",))
-
-Régularité des séries entières.
-
-#answer
-
-Soit $(a_n)_n in CC^NN$ et $R = R_"cv" (sum a_n z^n)$.
-
-Pour tout $0 < r < R$
-$
-  f : func(DD(0, r), CC, z, sum_(n = 0)^(+oo) a_n z^n)
-$
-Est $C^0$ sur $DD(0, r)$,
-$
-  g : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
-$
-Est $C^oo$ sur $Ioo(-R, R)$. Et pour tout $k in NN$
-$
-  f^((k)) : x |-> sum_(n = 0)^(+oo) (n + k)! / n! a_(n + k) x^n
-$
-
-*Démonstration*
-
-- Pour tout $r < R$ on a CVU de 
-  $
-    f : func(DD(0, r), CC, z, sum_(n = 0)^(+oo) a_n z^n)
-  $
-  Et donc par le théorème de continuité des séries de fonctions, $f$ est $C^0$ sur $DD(0, r)$.
-
-- $R_"cv" (sum n a_n z^n) = R_"cv" (sum a_n z^n)$ :
-
-  Soit $z in DD(0, R), r = abs(z)$, pour $r_0 in Ioo(r, R)$, $(a_n r_0^n)$ est bornée.
-  $
-    abs(n a_n z^n) = underbrace(abs(a_n r_0^n), "bornée") dot underbrace(n (r / r_0)^n, -> 0) \
-    R_"cv" (sum n a_n z^n) >= R_"cv" (sum a_n z^n)
-  $
-  L'autre sens est évident :
-  $
-    R_"cv" (sum n a_n z^n) = R_"cv" (sum a_n z^n)
-  $
-
-- On applique le théorème $C^1$, qui donne la dérivée comme un série entière de même rayon de convergence (puis récurrence).
-
-#card("regidse", "Rigidité des séries entières", ("Maths.Analyse.Séries entières",))
-
-Rigidité des séries entières.
-
-#answer
-
-Soit $sum a_n z^n$ une série entière de rayon de convergence $R$.
-$
-  f : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
-$
-Pour tout $n in NN$
-$
-  a_n = (f^((n)) (0)) / n!
-$
-*Corolaire*
-
-Si deux séries entières coincident sur un intervalle $Ico(0, delta)$ avec $delta > 0$, alors ce sont les mêmes.
-
-*Démonstration*
-
-- Pour tout $k in NN$ #h(1fr)
-  $
-    f^((k)) (x) = sum_(n = 0)^(+oo) (n + k)! / n! a_(n + k) x^n \
-    f^((k)) (0) = k! a_k 
-  $
-
-- Soit 
-  $
-  g : func(Ioo(-R', R'), CC, x, sum_(n = 0)^(+oo) b_n x^n)
-  $
-  et $delta in Ioc(0, min(R, R'))$ tel que
-  $
-    forall x in Ico(0, delta), space f(x) = g(x)
-  $
-  Alors pour tout $k in NN$
-  $
-    f^((k)) = g^((k))
-  $
-  D'où (par continuité)
-  $
-    a_k = b_k
-  $
-
-#card("lemradabel", "Lemme radiale d'Abel", ("Maths.Analyse.Séries entières",))
-
-Lemme radiale d'Abel.
-
-#answer
-
-Soit $sum a_n z^n$ une série entière de rayon de convergence $R > 0$.
-$
-  f : func(Ioo(-R, R), CC, x, sum_(n = 0)^(+oo) a_n x^n)
-$
-Si $sum a_n R^n$ converge alors $f$ CVU sur $[0, R]$. Ainsi
-$
-  lim_(x -> R) f(x) = sum_(n = 0)^(+oo) a_n R^n
-$
-
-*Démonstration*
-
-- Cas $R = 1$ : #h(1fr)
-
-  On a $sum a_n$ qui converge, et $x |-> sum a_n x^n$ CVS sur $[0, 1]$.
-
-  $
-  rho_n = sum_(k = n+1)^(+oo) a_k tends(n -> oo) 0 \
-  $
-  Soit $epsilon > 0$ et $N in NN$ tel que pour tout $n >= N$, $abs(rho_n) < epsilon$. Pour tout $x in Ico(0, 1)$
-  $
-  abs(R_n (x)) &= abs(sum_(k = n + 1)^(+oo) a_k x^k) \
-  &= abs(rho_n x^(n+1) + sum_(k = n+1)^(+oo) rho_k (x^(k+1) - x^k) ) \
-  &<= abs(rho_n) + sum_(k = n + 1)^(+oo) abs(rho_k) (x^k - x^(k+1)) \
-  &< epsilon + epsilon sum_(k = n+1)^(+oo) (x^k - x^(k-1)) \
-  &< epsilon + epsilon x^(n + 1) < 2 epsilon
-  $
-  Et
-  $
-    abs(R_n (1)) = abs(rho_n) < epsilon
-  $
-  D'où
-  $
-    sup_(x in [0, 1]) abs(R_n) < 2 epsilon
-  $
-  Donc CVN sur $[0, 1]$.
-
-- Cas général :
-  $
-    b_n = a_n R^n quad quad R_"cv" (sum b_n x^n) = 1
-  $
-  Comme $sum b_n$ converge, le cas $R = 1$ s'applique et
-  $
-    sup_(x in [0, R]) abs(sum_(k = n + 1)^(+oo) a_n x^n) = sup_(t in [0, 1]) abs(sum_(k = n+1)^(+oo) underbrace(a_n R^n, b_n) x^n)
-  $
-
 
 ]
