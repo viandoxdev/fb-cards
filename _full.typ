@@ -416,6 +416,7 @@ $
 
 #import "/utils.typ": *
 #import "@preview/tiptoe:0.3.1"
+#import "@preview/cetz:0.4.2"
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
@@ -1492,7 +1493,301 @@ $
     sup_(x in [0, R]) abs(sum_(k = n + 1)^(+oo) a_n x^n) = sup_(t in [0, 1]) abs(sum_(k = n+1)^(+oo) underbrace(a_n R^n, b_n) x^n)
   $
 
+// NOTE: M169 Fractions rationnelles (+ Exo)
 
+#card("somosurlebord", "Sommation des petit o sur le bord", ("Maths.Analyse.Séries entières",))
+
+Sommation des petit $o$ sur le bord (HP).
+
+#answer
+
+Pour
+$
+  f : func(Ioo(-1, -1), RR, x, sum_(n = 0)^(+oo) alpha_n x^n) \
+  g : func(Ioo(-1, -1), RR, x, sum_(n = 0)^(+oo) a_n x^n) \
+  forall n in NN, alpha_n >= 0 quad quad sum alpha_n "diverge" \
+$
+Alors
+- Si $a_n = o_(n -> oo) (alpha_n)$ : #h(1fr)
+  $
+    g(x) = o_(x -> 1^-) (f(x))
+  $
+- Si $a_n eqv(n -> +oo) alpha_n$ : #h(1fr)
+  $
+    g(x) eqv(x -> 1^-) f(x)
+  $
+
+*Démonstration*
+
+On montre que le cas du $o$ car il implique l'équivalent.
+
+Soit $epsilon > 0$, on dispose de $N in NN$ tel que pour tout $n >= N$, 
+$
+  abs(a_n) <= epsilon alpha_n
+$
+Pour tout $x in Ico(0, 1)$
+$
+  abs(g(x)) &<= (sum_(n = 0)^(N - 1) abs(a_n)) + sum_(n = N)^(+oo) underbrace(abs(a_n), <= epsilon alpha_n) x^n \
+  &<= C_N + epsilon f(x)
+$
+Comme $f(x) tends(x -> 1) +oo$, on dispose de $delta > 0$ tel que pour tout $x in Ioo(1 - delta, 1)$
+$
+  f(x) >= C_N / epsilon
+$
+Ainsi
+$
+  abs(g(x)) <= 2epsilon f(x) \
+  g(x) = o_(x -> 1^-) (f(x))
+$
+
+#card("exabelcesaro", "Exercice : Lemme radiale d'Abel version Césaro", ("Maths.Exercices.Séries entières",))
+
+Soit
+$
+  f : func(Ioo(-1, 1), RR, x, sum_(n = 0)^(+oo) a_n x^n) \
+  forall k in NN, s_k = sum_(n = 0)^(k) a_k \
+  forall N in NN, sigma_k = 1 / (N+1) sum_(k = 0)^(N) s_k
+$
+On suppose que $sigma_n tends(n -> oo) l$, montrer que $f(x) tends(x -> 1^-) l$
+
+#answer
+
+On pose
+$
+  g(x) &= sum_(n = 0)^(+oo) s_n x^n \
+  &= sum_(n = 0)^(+oo) sum_(k = 0)^n a_k x^k x^(n - k) \
+  &= f(x) / (1 - x)
+$
+Avec un rayon de convergence de $1$. Et
+$
+  h(x) &= sum_(n = 0)^(+oo) (n+1) sigma_n x^n \
+  &= g(x) / (1 - x) = f(x) / (1 - x)^2
+$
+Or $sigma_n = l + o(1)$
+$
+  (n+1) sigma_n = (n+1) l + o(n + 1) \
+  h(x) = sum_(n = 0)^(+oo) (n+1) l x^n + sum_(n = 0)^(+oo) c_n x^n
+$
+Avec $c_n = o(n + 1)$, or $sum_(n = 0)^(+oo) (n+1) x^n = 1 / (1 - x)^2$ et comme $sum (n+1)$ diverge, par sommation des petits $o$ sur le bord (à redémontrer)
+$
+  sum_(n = 0)^(+oo) c_n x^n = o_(x -> 1)( 1 /(1 - x)^2) \
+$
+$
+  h(x) &= l / (1 - x)^2 + o (1 / (1 - x)^2) \
+  &= f(x) / (1 - x)^2
+$
+Donc
+$
+  f(x) = l + o(1)
+$
+
+#card("premformcauch", "Première formule de Cauchy", ("Maths.Analyse.Séries entières",))
+
+Première formule de Cauchy (HP).
+
+#answer
+
+Soit ($R in RR^*_+ union {+oo}$)
+$
+  f : func(DD(0, R), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+$
+On a
+$
+  1 / (2 pi) integral_0^(2pi) f(r e^(i n theta)) dif theta = a_n r^n bb(1)_(n >= 0)
+$
+
+*Démonstration*
+
+Montrons la CVN de la série
+$
+  sup_(theta i [0, 2pi]) abs(a_n r^n e^(i n theta)) = abs(a_n) r^n
+$
+Qui est le terme général d'une série convergente ($r < R$). Et
+$
+  integral_0^(2pi) abs(a_n r^n e^(i n theta)) dif theta = 2pi abs(a_n) r^n
+$
+Qui est aussi le terme général d'une série convergente.
+
+Par le théorème d'intégration terme à terme (verifier les hypothèses) :
+
+$
+  space& 1 / (2pi) integral_0^(2pi) f(r e^(i n theta)) e^(- i n theta) dif theta \
+  =& 1 / (2pi) integral_0^(2pi) sum_(k = 0)^(+oo) a_k r^k e^(i k theta) e^(- i n theta) dif theta \
+  =& 1 / (2pi) sum_(k = 0)^(+oo) a_k r^k underbrace(integral_0^(2pi) e^(i(k - n) theta) dif theta, 2 pi delta_(k,n)) \
+  =& a_n r^n bb(1)_(n >= 0)
+$
+
+#card("formparce", "Formule de Parseval", ("Maths.Analyse.Séries entières",))
+
+Formule de Parseval.
+
+#answer
+
+Soit ($R in RR^*_+ union {+oo}$)
+$
+  f : func(DD(0, R), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+$
+Pour tout $r in Ioo(0, R)$ on a
+$
+  1 / (2pi) integral_0^(2pi) abs(f(r e^(i theta)))^2 dif theta = sum_(n = 0)^(+oo) abs(a_n)^2 r^(2n)
+$
+
+*Démonstration*
+
+Pour tout $r < R$ et $theta in RR$
+$
+  abs(f(r e^(i theta)))^2 &= f(r e^(i theta)) overline(f(r e^(i theta))) \
+$
+$
+  &= (sum_(k = 0)^(+oo) a_k r^k e^(i k theta)) (sum_(k = 0)^(+oo) overline(a_k) r^k e^(- i k theta)) \
+  &= sum_(k, n in NN) a_k overline(a_n) r^(k +n) e^(i (k - n) theta)
+$
+Puis on applique le théorème d'intégration terme à terme (par bijection de $NN^2$ dans $NN$)
+$
+  & 1 / (2 pi) integral_0^(2pi) abs(a_k overline(a_n) r^(k + n) e^(i (k - n) theta)) dif theta  \
+  =& abs(a_k) abs(a_n) r^(k + n)
+$
+Et 
+$
+sum_(k, n in NN) abs(a_k) abs(a_n) r^(k + n) &= (sum_(k = 0)^(+oo) abs(a_k) r^k)^2 \  &< +oo
+$
+D'où
+$
+& 1 / (2pi) integral_0^(2pi) abs(f(r e^(i theta)))^2 dif theta \ 
+=& sum_(k,n in NN) a_k overline(a_n) r^(k + n) 1 / (2pi) underbrace(integral_0^(2pi) e^(i (k - n) theta) dif theta, delta_(k,n)) \
+=& sum_(n = 0)^(+oo) abs(a_n)^2 r^(2n)
+$
+
+#card("princmax", "Principe du maximum", ("Maths.Analyse.Séries entières",))
+
+Principe du maximum.
+
+#answer
+
+Soit ($R in RR^*_+ union {+oo}$)
+$
+  f : func(DD(0, R), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+$
+
++ Si $abs(f)$ admet un maximum local en $0$, alors $f$ est constante sur $DD(0, R)$.
+
++ Si $abs(f)$ admet un maximum local en $z_0 in DD(0, R)$, alors $f$ est constante sur $DD(0, R)$.
+
++ Si $f$ est prolongeable par continuité sur $overline(DD(0, R))$, alors #h(1fr)
+  $
+    max_DD(0, R) abs(f) = max_(SS(0, R)) abs(f)
+  $
+
+*Démonstration*
+
++ On suppose (pour un $epsilon in Ioo(0, R)$) #h(1fr)
+  $
+  abs(a_0) = abs(f(0)) = max_(overline(DD(0, epsilon))) abs(f)
+  $
+  Pour tout $r in Ioc(0, epsilon)$
+  $
+    abs(a^0)^2 &= abs(f(0))^2  \ 
+    &>= 1/(2pi) integral_0^(2pi) abs(f(r e^(i theta)))^2 dif theta \
+    &= sum_(n = 0)^(+oo) abs(a_n)^2 r^(2n) >= abs(a_0)^2
+  $
+  Donc $forall n in NN^*, a_n = 0$, et $f$ est constante.
+
++ On suppose que $abs(f)$ admet un maximum local en $z_0 in DD(0, R)$.
+
+  On redemontre que $f$ est DSE en $z_0$ :
+
+  Pour tout $h in DD(0, delta)$ ou $delta = R - abs(z_0)$
+  $
+    f(z_0 + h) = sum_(n = 0)^(+oo) b_n h^n
+  $
+  Où $(b_n) in CC^n$, et $h |-> f(z_0 + h)$ vérifie 1. donc est constante sur $DD(0, delta)$, et tout point de $overline(DD(0, delta))$ est un maximum local. On peut dont repéter ce raisonnement pour atteindre $0$ puis appliquer 1.
+
+  #align(center, cetz.canvas(length: 4em, {
+    import cetz.draw: *
+
+    let r = 0.8
+    let i = 0
+    let a = 45deg
+
+    circle((0, 0), radius: 1, stroke: _colors.text)
+
+    while r >= 0.25 {
+      circle((angle: a, radius: r), radius: 0.02, fill: _colors.text)
+      content((), anchor: "north-west", $z_#i$)
+      circle((angle: a, radius: r), radius: 1.0 - r, stroke: red)
+      
+      r = (3 * r - 1) / 2
+      r = calc.floor(r * 1024) / 1024.0
+      i = i + 1
+    }
+
+    circle((0, 0), radius: 0.02, fill: _colors.text)
+    content((), anchor: "north-west", $O$)
+
+  }))
+
++ Par disjonction de cas :
+  - Si le $max_(overline(DD(0, R))) abs(f)$ est atteint dans $DD(0, R)$, alors par 2., $f$ est constante, donc il est aussi atteint sur $SS(0, R)$
+  - Sinon il ne peut être atteint que sur $SS(0, R)$.
+
+#card("deuxformca", "Deuxième formule de Cauchy", ("Maths.Analyse.Séries entières",))
+
+Deuxième formule de Cauchy.
+
+#answer
+
+Soit $f in C^0(DD(0, R), CC)$, $r < R$, $z in DD(0, r)$.
+$
+  g(z) = 1/(2pi) integral_0^(2pi) (f(r e^(i theta))) / (r e ^(i theta) - z) r e^(i theta) dif theta
+$
+
+Alors $g : DD(0, r) -> CC$ est DSE et si $f$ est DSE sur $DD(0, R)$, alors $g(z) = f(z)$ sur $DD(0, r)$.
+
+On en déduit que si pour $n in NN$ on a
+$
+  f_n : func(DD(0, R), CC, z, sum_(k = 0)^(+oo) a_(n,k) x^k)
+$
+Et $r < R$, $(f_n)$ CVU sur $overline(DD(0, R))$ vers $f$, alors $f$ est DSE sur $DD(0, r)$.
+
+*Démonstration*
+
+Soit $z in DD(0, r)$, comme $abs(z) / abs(r e^(i theta)) < 1$
+$
+  r e^(i theta) / (r e^(i theta) - z) = 1 / (1 - z / (r e^(i theta))) = sum_(n = 0)^(+oo) z^n / r^n e^(-i n theta)
+$
+On pose $f_n : theta |-> z^n / r^n e^(-i n theta) f(r e^(i theta))$
+$
+theta |-> sum_(n = 0)^(+oo) f_n (theta) = f(r e^(i theta)) / (r e^(i theta) - z) r e^(i theta)
+$
+Qui est continue sur $[0, 2pi]$
+$
+  integral_0^(2pi) abs(f_n (theta)) dif theta <= 2 pi norm(f)_(oo, overline(DD(0, R))) dot abs(z / r)^n 
+$
+Qui est le terme général d'une série convergente, donc par intégration terme à terme :
+$
+g(z) = sum_(n = 0)^(+oo) ( 1 / (2pi r^n) integral_0^(2pi) f(r e^(i theta)) e^(- i n theta) dif theta) z^n
+$
+Et $g$ est bien DSE sur $DD(0, r)$
+
+On suppose de plus que
+$
+  f : func(DD(0, R), CC, z, sum_(n = 0)^(+oo) a_n z^n)
+$
+Alors par la première formule de cauchy, $f(z) = g(z)$ pour $z in DD(0, r)$.
+
+Ainsi pour
+$
+  f_n : func(DD(0, R), CC, z, sum_(k = 0)^(+oo) a_(n,k) x^k)
+$
+avec $r < R$ et $(f_n)$ CVU vers $f$ sur $overline(DD(0, R))$, on a pour tout $n in NN, z in DD(0, r)$
+$
+  f_n (z) = 1 / (2pi) integral_0^(2pi) (f_n (r e^(i theta))) / (r e^(i theta) - z) r e^(i theta) dif theta
+$
+Donc par CVU sur $[0, 2pi]$ quand $n$ tends vers $+oo$
+$
+ f(z) = 1 / (2pi) integral_0^(2pi) (f(r e^(i theta)) / (r e^(i theta) - z)) r e^(i theta) dif theta
+$
+Et par 1. $f$ est DSE.
 ]
 #[
 
