@@ -1130,7 +1130,7 @@ $
   g(x) = o_(x -> 1^-) (f(x))
 $
 
-#card("exabelcesaro", "Exercice : Lemme radiale d'Abel version Césaro", ("Maths.Exercices.Séries entières",))
+#card("exabelcesaro", "Exercice : Lemme radiale d'Abel version Césaro", ("Maths.Exercice.Séries entières",))
 
 Soit
 $
@@ -1378,3 +1378,380 @@ $
  f(z) = 1 / (2pi) integral_0^(2pi) (f(r e^(i theta)) / (r e^(i theta) - z)) r e^(i theta) dif theta
 $
 Et par 1. $f$ est DSE.
+
+#card("exprodcauch", "Exercice : Produit de cauchy par les séries entières", ("Maths.Exercice.Séries entières",))
+
+Soient $(a_n)_n, (b_n)_n in CC^NN$ et
+$
+  forall n in NN, c_n = sum_(k = 0)^n a_n b_(n - k)
+$
+On suppose que $sum a_n$, $sum b_n$ et $sum c_n$ convergent, montrer que
+$
+  sum_(n = 0)^(+oo) c_n = (sum_(n = 0)^(+oo) a_n)(sum_(n = 0)^(+oo) b_n)
+$
+
+#answer
+
+Par hypothèse, pour $u in {a, b, c}$ :
+$
+  R_u = R_"cv" (sum u_n z^n) >= 1 \
+  f_u : func(DD(0, 1), CC, z, sum_(n = 0)^(+oo) u_n z^n)
+$
+Et par produit de Cauchy :
+$
+  forall z in DD(0,1), quad f_c (z) = f_a (z) f_b (z)
+$
+Or par le lemme radiale d'Abel, pour $u in {a, b, c}$
+$
+  sum_(n = 0)^(+oo) u_n = lim_(z -> 1^-) f_u (z)
+$
+Ainsi
+$
+  sum_(n = 0)^(+oo) c_n &= lim_(z -> 1^-) f_c (z) \
+  &= lim_(z -> 1^-) f_a (z) f_b (z) \
+  &= (sum_(n = 0)^(+oo) a_n) (sum_(n = 0)^(+oo) b_n) \
+$
+
+#card("exsederang", "Exercice : nombre de dérangements par les séries entières", ("Maths.Exercice.Séries entières",))
+
+On pose 
+$
+  D_n = Set(sigma in frak(S)_n, "Fix" (sigma) = emptyset) \
+  d_n = abs(D_n)
+$
+Donner une formule pour $d_n$ en utilisant les séries entières.
+
+#answer
+
+On cherche une relation sur $d_k$ :
+
++ On peut écrire #h(1fr)
+  $
+    frak(S)_n = union.big.plus_(k = 0)^(n) union.big.plus_(A subset.eq [|1, n|] \ abs(A) = k) Set(sigma in frak(S)_n, "Fix" (sigma) = A) \
+    n! = sum_(k = 0)^n vec(n, k) d_(n - k) = sum_(k = 0)^n vec(n, k) d_k \
+    1 = sum_(k = 0)^n 1 / (n - k)! dot d_k / k!
+  $
+  Ainsi en posant
+  $
+    f : func(Ioo(-1, 1), RR, x, sum_(n = 0)^(+oo) d_n / n! x^n)
+  $
+  On trouve, pour $x in Ioo(-1, 1)$
+  $
+    1 / (1 - x) &= sum_(n = 0)^(+oo) 1 dot x^n \
+    &= sum_(n = 0)^(+oo) (sum_(k = 0)^n 1 / (n - k)! d_k / k!) x^n \
+    &= (sum_(n = 0)^(+oo) x^n / n!) (sum_(n = 0)^(+oo) d_n / n! x^n) \
+    &= f(x) e^x
+  $
+  Ainsi
+  $
+    f(x) &= e^(-x) / (1 - x) \ 
+    &= (sum_(n = 0)^(+oo) (-1)^n / n! x^n) (sum_(n = 0)^(+oo) x^n) \
+    d_n / n! &= sum_(k = 0)^(n) (-1)^k / k!
+    
+  $
+
++ On construit une bijection 
+  $
+  theta : D_(n+1) -> [|1, n|] times (d_(n-1) union.plus d_n)
+  $
+
+  Soit $sigma in D_(n+1)$, on pose $k = sigma(n+1)$.
+
+  - Si $sigma(k) = n+1$ : on pose #h(1fr)
+    $
+      tilde(sigma) = sigma|_([|1, n|]\\{k}) in D_(n-1)
+    $
+  - Sinon, $j = sigma^(-1) (n+1)$ : on pose
+    $
+      tilde(sigma) = func([|1, n|], [|1,n|], i != j, sigma(i), j, k) in D_n
+    $
+  Ainsi
+  $
+    theta(sigma) = (k, tilde(sigma))
+  $
+
+  On montre que c'est une bijection (l'écrire).
+
+  Ainsi
+  $
+  d_(n+1) = n (d_n + d_(n-1))
+  $
+
+  On en déduit
+  $
+    (1 - x)f'(x) = x f(x) 
+  $
+  D'où
+  $
+    f(x) = e^(-x) / (1 - x)
+  $
+  Et on conclut de même.
+
+#card("excatalan", "Exercice : nombres de Catalan avec les séries entières", ("Maths.Exercice.Séries entières",))
+
+On définit le $n$-ème nombre de Catalan
+$
+  C_0 = 1, forall n in NN^*, C_n = sum_(k = 0)^(n - 1) C_k C_(n - k) \
+  f : func(Ioo(-R, R), RR, x, sum_(n = 0)^(+oo) C_n x^n)
+$
+Donner une forme explicite de $f$ et son rayon de convergence, en déduire une expression de $C_n$.
+
+#answer
+
+*Analyse*
+
+On suppose que $R > 0$, pour tout $x in Ioo(-R, R)$
+$
+  f(x) &= 1 + x sum_(n = 0)^(+oo) C_(n+1)x^n \
+  &= 1 + x sum_(n = 0)^(+oo) (sum_(k = 0)^n C_n C_(n - k)) x^n \
+  &= 1 + x f(x)^2
+$
+D'où pour $x in Ioo(-1/4, 1/4)$
+$
+  f(x) = (1 - sqrt(1 - 4x)) / (2 x)
+$
+
+*Synthèse*
+
+On considère
+$
+  f : x |-> (1 - sqrt(1 - 4x)) / (2 x)
+$
+On sait que $x |-> sqrt(1 - 4x)$ est DSE sur $Ioo(-1/4, 1/4)$ :
+$
+  sqrt(1 - 4x) = 1 + sum_(n = 1)^(+oo) b_n x^n
+$
+D'où
+$
+f(x) = - sum_(n = 1)^(+oo) b_n / 2 x^(n-1) = sum_(n = 0)^(+oo) c_n x^n
+$
+Or $x f(x)^2 - f(x) + 1 = 0$, donc par unicité du DSE
+$
+  c_n = sum_(k = 0)^(n-1) c_k c_(n - k) \
+  c_0 = 1
+$
+Donc $c_n = C_n$ et $R = 1/4$.
+
+On peut ensuite calculer $c_n$ à partire du DSE de $sqrt(1 + x)$.
+
+#card("compdse", "Composée du développement en série entière", ("Maths.Analyse.Séries entières",))
+
+Composée du développement en série entière.
+
+#answer
+
+Soient
+$
+  f : func(DD(0, R), CC, z, sum_(n = 0)^(+oo) a_n z^n) \
+  g : func(DD(0, R'), CC, z, sum_(n = 0)^(+oo) b_n z^n) \
+  g(0) = 0
+$
+Alors $f compose g$ est DSE en $0$ pour un rayon de convergence $r > 0$.
+
+*Démonstration*
+
+Pour tout $z in DD(0, R)$, $sum abs(b_n z^n)$ converge et
+$
+  g_0 : func(Ico(0, R'), RR, x, sum_(n = 0)^(+oo) abs(b_n) x^n)
+$
+Est continue et $g_0 (0) = 0$. 
+
+Donc on dispose de $r > 0$ tel que $g_0 ([0, r]) subset.eq Ico(0,R)$.
+
+Ainsi pour tout $z in DD(0, r)$, $g(z) in DD(0, R)$ et
+$
+  f(g(z)) = sum_(n = 0)^(+oo) a_n (sum_(k = 0)^(+oo) b_k z^k)^n
+$
+Par produit de Cauchy
+$
+  (sum_(k = 0)^(+oo) b_k z^k)^n = sum_(k = 0)^(+oo) c_(k,n) z^k \
+  c_(k,n) = sum_(i_1, dots, i_n \ sum_(j = 1)^n i_j = k) product_(j = 1)^n b_i_j
+$
+Or
+$
+  abs(c_(k,n)) <= sum_(i_1, dots, i_n \ sum_(j = 1)^n i_j = k) product_(j = 1)^n abs(b_i_j)
+$
+Donc
+$
+  sum_(k = 0)^(+oo) abs(c_(k,n)) dot abs(z^k) <= (underbrace(sum_(k = 0)^(+oo) abs(b_k) dot abs(z^k), alpha in Ico(0, R)))^n
+$
+Et donc pour tout $z in DD(0, r)$
+$
+  & sum_(n = 0)^(+oo) sum_(k = 0)^(+oo) abs(a_n c_(k,n)) dot abs(z^k) \
+  =& sum_(n = 0)^(+oo) abs(a_n) (sum_(k = 0)^(+oo) abs(c_(k,n)) dot abs(z^k)) \
+  =& sum_(n = 0)^(+oo) abs(a_n) alpha^n
+$
+Qui converge, et donc par Fubini
+$
+  f(g(z)) &= sum_(n = 0)^(+oo) a_n sum(k = 0)^(+oo) c_(k,n) z^k \
+  &= sum_(k = 0)^(+oo) (sum_(n = 0)^(+oo) a_n c_(k,n)) z^k
+$
+Donc $f compose g$ est bien DSE.
+
+#card("fekete", "Suites sous-additive et lemme de Fekète", ("Maths.Analyse.Suites Réelles",))
+
+Soit $(a_n)_n in RR^NN$ sous-additive :
+$
+  forall n, m in NN, a_(n + m) <= a_n + a_m
+$
+Montrer que 
+$
+lim_(n -> oo) a_n / n &= inf {a_k / k, k in NN^*} \ &= alpha in RR union {-oo}
+$
+
+#answer
+
+Soit $epsilon > 0$, on pose
+$
+  A = cases(space 0 "si" alpha = -oo, space alpha + epsilon "sinon")
+$
+Par caractérisation de la borne inférieur, on dispose de $q in NN^*$ tel que
+$
+  a_q / q < A - epsilon / 2
+$
+Pour $n >= q$ on fait la division euclidienne de $n$ par $q$ : 
+$
+n = k_n q + r_n
+$
+Et ainsi
+$
+  a_n <= a_(k_n q) + a_r_n <= k_n a_q + a_r_n \
+$
+$
+  a_n / n &<= k_n / n a_q +  a_r_n / n \
+  &= a_q / q + underbrace((-(r_n a_q) / q + a_r_n), "bornée par" M "car" r_n in [|0, q-1|]) 1 / n
+$
+Donc pour $n >= N$ avec $N$ assez grand
+$
+  M / n <= epsilon / 2 \
+  alpha <= a_n / n <= A - epsilon / 2 + epsilon / 2 = A
+$
+
+#card("exinttnpol", "Exercice : integrale nulle sur un ségment du produit d'une fonction continue avec une puissance", ("Maths.Exercice.Intégration",))
+
+Deux exercices à ne pas confondre :
+
+Soit $f in C^0 ([a, b], RR)$
+
++ Pour tout $n in NN$ #h(1fr)
+  $
+    integral_a^b f(t) t^n dif t = 0
+  $
+  Montrer que $f = 0$
+
++ Pour tout $n in [|0, d|]$
+  $
+    integral_a^b f(t) t^n dif t = 0
+  $
+  Montrer que $f$ s'annule en $d+1$ points.
+
+#answer
+
+Par linéarité de l'intégrale on a
+
++ Pour tout $P in RR[X]$ #h(1fr)
+  $
+    integral_a^b f(t) P(t) dif t = 0
+  $
+
+  On dispose de $(P_n)_n in RR[X]^NN$ tel que
+  $
+    norm(f - P_n)_(oo,[a,b]) tends(n -> oo) 0
+  $
+  Or pour tout $t in [a, b]$
+  $
+    &abs(f^2(t) - P_n (t) f(t)) \ =& abs(f(t)) abs(P_n(t) - f(t)) \
+    <=& norm(f)_oo norm(f - P_n)_oo
+  $
+  D'où
+  $
+    norm(f^2 - P_n f)_oo tends(n -> oo) 0
+  $
+  Et par CVU sur $[a, b]$
+  $
+    integral_a^b f^2(t) dif t = lim_(n -> oo) integral_a^b P_n (t) dif t = 0
+  $
+  Donc $f^2 = 0 = f$.
+
++ Pour tout $P in RR_d [X]$
+  $
+    integral_a^b f(t) P(t) dif t = 0
+  $
+
+  Par l'aburde supposons que
+  $
+    abs(f^(-1) {0}) <= d
+  $
+  Soient $a_1 < dots.c < a_q$ les points où $f$ s'annule en changeant de signe ($0 <= q <= d$).
+  $
+    P(X) = product_(j = 1)^q (X - a_j) in RR_d [X]
+  $
+  Et $t |-> f(t)P(t)$ s'annule en au plus $d$ points et ne change pas de signe. Or
+  $
+    integral_a^b f(t) P(t) dif t = 0
+  $
+  Donc $f P = 0$ et $f$ est presque nulle, absurde.
+
+#card("ex63dse", "Exercice : CNS de DSE en bornant les dérivées successives", ("Maths.Exercice.Séries entières",))
+
+Soit $f in C^oo (Ioo(-delta, delta), RR)$, montrer que $f$ est DSE en $0$ ssi
+$
+  exists a, M in RR^*_+, V in cal(V)(0), \ forall x in V, n in NN, \
+  abs(f^(n) (x)) <= M a^n n!
+$
+
+#answer
+
+*Sens indirecte*
+
+On dispose de $a, M$ et $V$ comme énoncé, pour tout $x in V$ on a
+$
+  & abs(f(x) - sum_(k = 0)^n f^((k)) (0) / k! x^k) \ <=& sup_V abs(f^((n+1))) dot abs(x^(n+1)) / (n+1)! \ 
+  <=& M abs(a x)^(n+1)
+$
+Soit $eta > 0$ tel que $a eta < 1$ et $Ioo(-eta, eta) subset.eq V$.
+
+Pour tout $x in Ioo(-eta, eta)$
+$
+  abs(f(x) - sum_(k = 0)^n f^((k)) (0) / k! x^k) &<= M abs(a eta)^n+1 \
+  &tends(n -> oo) 0
+$
+D'où
+$
+  f(x) = sum_(k = 0)^(+oo) f^((k)) (0) / k! x^k
+$
+Avec convergence de la série.
+
+*Sens directe*
+
+On suppose que pour tout $x in Ioo(-eta, eta)$
+$
+  f(x) = sum_(k = 0)^(+oo) b_k x^k \
+  f^((n)) (x) = sum_(k = n)^(+oo) b_k k! / (k - n)! x^(k - n)
+$
+
+Or la suite $(b_k (eta / 2)^k)_(k in NN)$ est bornée par $M$.
+
+Ainsi pour tout $k in NN$, $abs(b_k) <= M (2 / eta)^k$.
+$
+  abs(f^((k))(x)) &<= M sum_(k = n)^(+oo) k! (k - n)! (2 / eta)^k abs(x)^(k - n) \
+  &<= M (2 / eta)^n sum_(k = n)^(+oo) k! / (k - n)! abs((2 x) / eta)^(k - n)
+$
+Or pour $y in Ioo(-1, 1)$
+$
+  sum_(k = n)^(+oo) k! (k - n)! y^(k - n) = g^((n))(y) \
+  g(y) = 1 / (1 - y) \
+  g^((n)) (y) = n! / (1 - y)^(n + 1)
+$
+D'où pour tout $n in NN$, $x in Ioo(-eta / 2, eta/2)$
+$
+  abs(f^((n))(x)) <= M (2 / eta)^n n! / (1 - (2 abs(x)) / eta)^(n+1)
+$
+Ainsi pour tout $x in Ioo(-eta / 4, eta / 4)$
+$ 
+  (2 abs(x)) / eta < 1/2
+$
+Donc pour tout $n in NN$
+$
+  abs(f^((n))(x)) <= (2 M) n! (4 / eta)^n
+$
