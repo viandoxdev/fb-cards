@@ -1,5 +1,7 @@
 //![FLASHBANG INCLUDE]
 
+#let ch = $"ch"$
+#let sh = $"sh"$
 #let gen(content) = $lr(class("opening", <) #content class("closing", >))$
 #let tends(content, above: []) = $stretch(->)_script(#content)^script(#above)$
 #let tendsnot(content) = math.attach($arrow.r.not$, b: math.script(content))

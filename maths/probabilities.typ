@@ -526,3 +526,422 @@ $
   <= & 2norm(f)_oo PP(abs(S_n / n - x) >= delta) + epsilon \
   <= & 2norm(f)_oo (x(1 - x)) / (n delta^2) + epsilon
 $
+
+#card("exinegconc1", "Exercice : première inégalité de concentration", ("Maths.Exercice.Probabilités",))
+
+Première inégalité de concentration (Exercice 57) :
+
+Soit $(X_k)_(1 <= k <= n)$ vad réelles centrées indépendantes tel que pour tout $k in [|1, n|]$, $abs(X_k) < 1$.
+
+On pose $S_n = sum_(k = 1)^n X_k$, montrer que
+$
+  PP(S_n / n >= epsilon) <= e^(-(epsilon^2 n) / 2) \
+  "puis" \
+  PP(abs(S_n / n) >= epsilon) <= 2 e^(-(epsilon^2 n) / 2)
+$
+
+#answer
+
++ Pour tout $x in [-1, 1]$, $t in RR$, #h(1fr)
+  $
+    s = (1 - x) / 2 in [0, 1] \
+    t x = s (-t) + (1 - s) t 
+  $
+  D'où
+  $
+    e^(t x) &= e^(s (-t) + (1 - s) t) \
+    &<= s e^(-t) + (1 - s) e^t \
+    &= (1 - x) / 2 e^(-t) + (1 + x) / 2 e^t
+  $
+
++ Soit $t in RR^+$, $X$ vad réelle centrée à valeur dans $[-1, 1]$
+  $
+    EE(e^(t X)) &<= EE((1 - X) / 2 e^(-t) + (1 + X) / 2 e^t) \
+    &= (1 - EE(X)) / 2 e^(-t) + (1 + EE(X)) / 2 e^t \
+    &= ch(t)
+  $
+  Donc
+  $
+    EE(e^(t S_n)) &= EE(product_(k = 1)^n e^(t X_k)) \
+    (tack.t.double) quad &= product_(k = 1) EE(e^(t X_k)) \
+    &<= ch(t)^n
+  $
+
+  Or pour tout $t in RR^+$
+  $
+    ch(t) = sum_(n = 0)^(+oo) t^(2 n) / (2 n)! quad e^(t^2 / 2) = sum_(n = 0)^(+oo) t^(2 n) / (2^n n!) \
+    (2 n)! / (2^n n!) = product_(k = 0)^(n - 1) (2 k + 1) >= 1 \
+  $
+  Donc $ch(t) <= e^(t^2 / 2)$
+
+  Et ainsi
+  $
+    EE(e^(t S_n)) <= e^((t^2 n) / 2)
+  $
+
++ Soit $a > 0$
+  $
+    PP(abs(S_n) >= a) = PP(S_n >= a) + PP(-S_n >= a)
+  $
+  Soit $t in RR^+$
+  $
+    PP(S_n >= a) &= PP(e^(t S_n) >= e^(t a)) \
+    ("Markov") space &<= EE(e^(t S_n)) / e^(t a) \
+    &<= e^((t^2 n) / 2 - t a)
+  $
+  Pour $t = a / n$
+  $
+    PP(S_n >= a) <= e^(- a^2 /( 2 n))
+  $
+  Et comme les $(-X_k)_k$ verifient les mêmes hypothèses
+  $ 
+    PP(-S_n >= a) <= e^(- a^2 / (2 n)) 
+  $
+  Ainsi
+  $
+    PP(abs(S_n) >= a) <= 2 e^(- a^2 / (2 n)) 
+  $
+
++ Avec $a = n epsilon$
+  $
+    PP(abs(S_n / n) >= epsilon) &= PP(abs(S_n) >= n epsilon) \
+    &<= 2 e^(- (n  epsilon^2) / 2)
+  $
+
+*Remarque*
+
+$
+  PP(abs(S_n / n - 0) >= epsilon ) &= PP(abs(S_n - EE(S_n)) >= n epsilon) \
+  &<= (sum_(k = 1)^n VV(X_k)) / (n^2 epsilon^2) <= 1 / (n epsilon^2)
+$
+
+#card("exinegconc2", "Exercice : quelques inégalités", ("Maths.Exercice.Probabilités",))
+
++ Exercice 62.1 : #h(1fr)
+
+  Soit $X$ une vad réelle positive de $LL^2$ tel que $EE(X^2) > 0$, montrer que
+  $
+    PP(X > 0) >= EE(X)^2 / EE(X^2)
+  $
+
++ Exercice 56 :
+
+  Soit $X$ une vad réelle positive de $LL^2$ tel que $PP(X > 0) > 0$, et $theta in Ioo(0, 1)$, montrer que
+  $
+    PP(X >= theta EE(X)) >= ((1 - theta)^2 EE(X)^2) / (EE(X^2))
+  $
+
+#answer
+
++ Par Cauchy-Schwartz #h(1fr)
+  $
+    EE(X)^2 &= EE(X bb(1)_(X > 0))^2 \
+    &<= EE(X^2) EE(bb(1)_(X > 0)) \
+    &= EE(X^2) PP(X > 0)
+  $
+
++ Similairement
+  $
+    EE(X bb(1)_(X >= theta EE(X)))^2 <= EE(X^2) PP(X >= theta EE(X))
+  $
+  Et
+  $
+    X bb(1)_(X >= theta EE(X)) = X - underbrace(X bb(1)_(X < theta EE(X)), <= theta EE(X)) \
+    EE(X bb(1)_(X >= theta EE(X))) >= (1 - theta) EE(X)
+  $
+  Ainsi
+  $
+  (1 - theta)^2 EE(X)^2 <= EE(X^2) PP(X >= theta EE(X))
+  $
+
+#card("expilepile", "Exercice : probabilité de pile pile, calcul d'espérance par récurrence", ("Maths.Exercice.Probabilités",))
+
+Exercice 14 :
+
+Soit $(X_n)_(n in NN^*)$ vaiid tel que $X_k ~ cal(B)(1/2)$. On note
+$
+  T &= min Set(k >= 2, X_k = 1 "et" X_(k-1) = 1) \ &in NN union {+oo}
+$
+
++ Montrer que $T$ est une vad.
+
++ Montrer que $T$ est ps fini.
+
++ Calculer $EE(T)$.
+
+#answer
+
++ On sait que $T(Omega) subset.eq NN union {+oo}$ qui est fini ou dénombrable.
+
+  Pour tout $n in NN$
+  $
+    (T > n) &= inter.big_(k = 2)^(n)  overline((X_k = X_(k - 1) = 1)) in cal(T) \
+
+    (T = n) &= (T > n - 1) \\ (T > n) in cal(T) \ \
+    
+    (T = +oo) &= inter.big_(n = 1)^(+oo) (T > n) in cal(T)
+  $
+
++ Calculons la loi de $T$ (on note $p_n = PP(T = n)$) :
+  $
+    p_1 = 0 quad quad p_2 = 1 /4
+  $
+  Soit $n >= 3$
+  $
+    p_n = &PP(T = n, X_1 = 1) \ +  &PP(T = n, X_1 = 0)
+  $
+  On pose $(tilde(X)_k)_(k >= 1) = (X_(k + 1))_k$ et $tilde(T)$ associé aux $(tilde(X)_k)_k$.
+
+  Ainsi pour tout $m >= 2$ (Par le lemme des coalitions)
+  $
+    (tilde(T) = m) tack.t.double (X_1 = 0)
+  $
+  D'où
+  $
+   & PP(T = n, X_1 = 0) \ =& PP(tilde(T) = n - 1, X_1 = 0) \
+   =& PP(tilde(T) = n - 1) PP(X_1 = 0)
+  $
+  Or $tilde(T) ~ T$, d'où
+  $
+    p_n = p_(n - 1) PP(X_1 = 0)
+  $
+
+  De même, on pose $(tilde(tilde(X))_k)_(k >= 1) = (X_(k + 2))_k$ et $tilde(tilde(T))$ associé.
+  $
+    & PP(T = n, X_1 = 1) \
+    =& PP(T = n, X_1 = 1, X_2 = 0) \
+    =& PP(tilde(tilde(T)) = n - 2) PP(X_1 = 1) PP(X_2 = 0) \
+    =& p_(n - 2) PP(X_1 = 1) PP(X_2 = 0)
+  $
+
+  D'où pour $n >= 3$
+  $
+    p_n = 1/2 p_(n - 1) + 1/4 p_(n - 2) \
+    2^n p_n = 2^(n - 1) p_(n - 1) + 2^(n - 2) p_(n - 2)
+  $
+  Et $(2^n) p_n$ suit la relation de récurrence de Fibonnaci.
+
+  Posons maintenant
+  $
+    s &= sum_(n = 2)^(+oo) p_n = 1 - PP(T = +oo) \
+    &= p_2 + sum_(n = 3)^(+oo) (1/2 p_(n - 1) + 1/4 p_(n - 2)) \
+    &= 1/4 + 1/2 s + 1/4 s
+  $
+  D'où $1/4 s = 1/4$ et $s = 1$, $PP(T = +oo) = 0$.
+
++ De même
+  $
+    EE(T) &= sum_(n = 2)^(+oo) n p_n \
+    &= 2 p_2 + sum_(n = 3)^(+oo) n(1/2 p_(n - 1) + 1/4 p_(n - 2)) \
+    &= 1/2 + 1/2 sum_(n = 3)^(+oo) (n - 1) p_(n - 1) \
+    &+ 1/2 sum_(n = 3)^(+oo) p_(n - 1) + 1/4 sum_(n = 3)^(+oo) (n - 2) p_(n - 2) \
+    &+ 1/4 sum_(n = 3)^(+oo) 2 p_(n - 2) \
+    &= 3/2 + 3/4 EE(T) \
+    &= 6
+  $
+
+#card("foncgen", "Fonction génératrice d'une variable aléatoire entière naturelle", ("Maths.Probabilités",))
+
+Fonction génératrice d'une variable aléatoire entière naturelle.
+
+#answer
+
+Si $X$ est une vad à valeur dans $NN$, alors $R_"cv" (sum PP(X=n) t^n) >= 1$ et la série entière converge normalement sur $overline(DD(0,1))$
+$
+  G_X : func([0,1], RR, t, sum_(n = 0)^(+oo) PP(X = n) t^n)
+$
+Est appelée fonction génératrice de $X$, et les valeurs de $G_X$ sur un $[0, delta]$ avec $delta > 0$ detérminent de manière unique la loi de $X$.
+
+On a de plus
+
+- $G_X (1) = 1$.
+
+- $G_X$ est $C^oo$ sur $Ico(0,1)$ et pour tout $n in NN$
+  $
+    G_X^((n)) >= 0
+  $
+
+- $X$ est d'ésperance finie ssi $G_X$ est dérivable en $1$ et dans ce cas #h(1fr)
+  $
+    G'_X (1) = EE(X)
+  $
+
+- $X^2$ est d'ésperance finie ssi $G_X$ est dérivable deux fois en $1$ et dans ce cas
+  $
+    G''_X (1) &= EE(X(X-1)) = EE(X^2) - EE(X) \
+    VV(X) &= G''_X (1) + G'_X (1) - G'_X (1)^2
+  $
+
+- Pour $X, Y$ vad entières naturelles indépendantes sur le même ep
+  $
+    G_(X+Y) = G_X G_Y
+  $
+
+*Démonstration*
+
+Pour la pluspart : les écrires.
+
+- On suppose que $EE(X) < +oo$ #h(1fr)
+
+  On considère $G_X$ comme une série de fonctions, on montre que $sum f'_n$ CVN sur $[0, 1]$ et on applique le théorème de dérivation des séries de fonctions.
+
+- On suppose que $EE(X) = +oo$ (contraposée)
+
+  On exprime le taux d'accroissement en $1$, on le developpe et on montre qu'il diverge.
+
+- Même shéma de preuve pour $X^2$.
+
+- Par le lemme de transfer
+  $
+    G_X (t) = EE(t^X)
+  $
+  D'où
+  $
+    G_(X+Y) (t) &= EE(t^(X + Y)) = EE(t^X t^Y) \
+    &= EE(t^X) EE(t^Y) = G_X (t) G_Y (t)
+  $
+
+#card("exnbcyclper", "Exercie : nombre de cycles d'une permutation aléatoire", ("Maths.Probabilités",))
+
+Soit $sigma_n ~ cal(U) (frak(S)_n)$ et $X_n$ le nombre de cycle de $sigma_n$.
+
++ Calculer $G_X_n$.
+
++ En déduire $EE(X_n)$, $VV(X_n)$.
+
+#answer
+
++ Soit $k in [|1, n|]$
+
+  $
+    X^(-1)_(n+1) {k} &= Set(sigma in frak(S)_n, cases(delim: #none, script(sigma(n+1) = n+1), script(sigma|_([|1,n|]) "a" k - 1 "cycles"))) \
+    &union.plus union.plus.big_(l = 1)^n underbrace(Set(sigma in frak(S)_(n+1), cases(delim: #none, script(sigma^(-1)(n+1) = l), script(sigma "a" k "cycles"))), Gamma_l) \
+  $
+  Avec $Gamma_l tilde.eq X^(-1)_n {k}$ par la bijection
+  $
+    func(Gamma_l, X^(-1)_n {k}, sigma, func([|1,n |], [|1,n|], j != l, sigma(j), l, sigma(n+1)))
+  $
+
+  Ainsi
+  $
+    abs(X^(-1)_(n+1) {k}) = abs(X^(-1)_n {k - 1}) + n abs(X^(-1)_n {k}) \
+  $
+  $
+    PP(X_(n+1) = k) &= 1/(n+1) PP(X_n = k - 1) \ &+ n / (n+1) PP(X_n = k)
+  $
+  Qui est aussi vrai pour $k = n+1$.
+
+  Ainsi pour tout $t in [0, 1]$
+  $
+    G_X_(n+1) (t) &= sum_(n = 1)^(n+1) PP(X_(n+1) = k) t^k \
+    &= 1/(n+1) (sum_(k = 1)^(n+1) PP(X_n = k - 1) t^k \ &+ n sum_(k = 1)^(n+1) PP(X_n = k) t^k) \
+    &= 1/(n+1) (sum_(k = 1)^(n) PP(X_n = k) t^(k+1) \ &+ n sum_(k = 1)^(n+1) PP(X_n = k) t^k) \
+    &= (t + n) / (n+1) G_X_n (t) \
+    G_X_1 (t) &= t
+  $
+
+  D'où
+  $
+    G_X_n (t) = 1 / n! product_(k=0)^(n-1) (t + k)
+  $
+
++ On calcul
+  $
+    G'_X (t) &= 1/n! sum_(j = 0)^(n - 1) (product_(k = 0)^(n-1) (t + k)) / (t + j) \
+    G'_X (1) &= 1/n! sum_(j = 0)^(n - 1) n! / (1 + j) = H_n
+    
+  $
+  D'où $EE(X_n) = H_n eqv(n -> oo) ln(n)$.
+
+  Et
+  $
+    G''_n (t) &= 1/n! sum_(0 <= i, j <= n - 1 \ i != j) (product_(k = 0)^(n-1) (t + k)) / ((t+j)(t+i)) \
+    G''_n (1) &= sum_(1 <= i, j <= n - 1 \ i != j) 1 / (i j) = H_n^2 - underbrace(sum_(k = 1)^n 1/k^2, K_n)
+  $
+  D'où $VV(X_n) = H_n - K_n eqv(n -> oo) ln(n)$.
+
+// NOTE: Dés pipés M304 
+
+#card("loisomvar", "Loi d'une somme de variables aléatoires paramétrée par une variable aléatoire", ("Maths.Probabilités",))
+
+Loi d'une somme de variables aléatoires paramétrée par une variable aléatoire :
+$
+  sum_(k = 1)^T X_k
+$
+Avec $(X_k)_(k >= 1)$ et $T$ des variables aléatoires.
+
+#answer
+
+Soient $(X_k)_(k >= 1)$ vaiid à valeur dans $NN$ et $T$ une vad à valeur dans $NN$ indépendante des $X_k$. On pose
+$
+  S_T = sum_(k = 1)^T X_k quad quad S_n = sum_(k = 1)^n X_k
+$
+
+Alors
+
++ $S_T$ est une vad.
+
++ $G_S_T = G_T compose G_X_1$
+
+*Démonstration*
+
++ $S_T (Omega) subset.eq NN$ qui est dénombrable, et pour tout $k in NN$
+  $
+    S^(-1)_T {k} &= union.plus.big_(j = 0)^(+oo) S^(-1)_T {k} inter (T = j) \
+    &= union.plus.big_(j = 0)^(+oo) (S_j = k) inter (T = j) in cal(T) \
+  $
+
++ Pour tout $t in [0,1]$
+
+  $
+    G_S_T (t) &= sum_(k = 0)^(+oo) PP(S_T = k) t^k \
+    &= sum_(k = 0)^(+oo) (sum_(n = 0)^(+oo) PP(T = n, S_n = k))t^k \
+    ("LdC") &= sum_(k = 0)^(+oo) sum_(n = 0)^(+oo) PP(T = n)PP(S_n = k) t^k \
+    (>=0) &= sum_(n = 0)^(+oo) PP(T = n) sum_(k = 0)^(+oo) PP(S_n = k) t^k \
+    &= sum_(n = 0)^(+oo) PP(T = n) G_S_n (t) \
+    (tack.t.double) &= sum_(n = 0)^(+oo) PP(T = n) G_X_1 (t)^n \
+    &= G_T (G_X_1 (t))
+  $
+
+// NOTE: Galton Watson M306
+
+// TODO: Peut être découper ? Il y a beaucoup sur les marches aléatoires
+
+#card("marchal", "Marches aléatoires sur les entiers relatifs", ("Maths.Probabilités",))
+
+Marches aléatoires sur les entiers relatifs.
+
+#answer
+
+Soit $(X_k)_(k >= 1)$ vaiid et $S_n = sum_(k = 1)^n X_k$ tel que
+$
+  PP(X_k = 1) = PP(X_1 = 1) = p \
+  PP(X_k = -1) = PP(X_1 = -1) = 1 - p \
+$
+
++ On remarque tout d'abord #h(1fr)
+  $
+    Y_k = (X_k + 1) / 2 quad quad Y_k ~ cal(B)(p)
+  $
+  Et
+  $
+    X_k eq.triple 1 space [2] quad quad S_n eq.triple n space [2]
+  $
+  D'où
+  $
+    PP(S_(2 n) = 2k + 1) = 0 \
+    PP(S_(2 n + 1) = 2k) = 0 \
+  $
+
++ On peut calculer $PP(S_(2 n) = 0)$
+  $
+    S_(2 n) &= sum_(k = 1)^(2 n) X_k \
+    &= 2 sum_(k = 1)^(2 n) Y_k - 2 n
+  $
+  D'où
+  $
+    PP(S_(2 n) = 0) &= PP(sum_(k = 1)^(2n) Y_k = n) \
+    &= vec(2n, n) p^n (1 - p)^n
+  $
+
+// TODO: Le reste...
