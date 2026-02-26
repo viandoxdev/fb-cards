@@ -479,9 +479,9 @@ Loi faible et loi forte des grands nombres.
 
 #answer
 
-*Faible*
-
 Soit $(X_n)_(n in NN^*)$ vaiid de $LL^2$. On note $m = EE(X_1)$ et $sigma = sigma(X_1)$, pour $n in NN, S_n = sum_(k = 1)^n X_k$.
+
+*Faible*
 
 Pour tout $delta > 0$
 $
@@ -491,12 +491,44 @@ $(S_n / n)_n$ converge en probabilité vers $m$.
 
 *Forte*
 
-*Démonstration*
+$(S_n / n)_n$ converge presque surement vers $m$.
+
+*Démonstration : faible*
 
 $
-  PP(abs(S_n / n - m) >= delta) \ <= VV(S_n / n) / delta^2 = VV(sum_(k = 1)^n X_k) / (n^2 delta^2) = delta^2 / (n delta^2) \
+  PP(abs(S_n / n - m) >= delta) \ <= VV(S_n / n) / delta^2 = VV(sum_(k = 1)^n X_k) / (n^2 delta^2) = sigma^2 / (n delta^2) \
   tends(n -> oo) 0
 $
+
+*Démonstration : forte*
+
+Si $VV(X) = 0$, $X = m$ presque surement et le résultat est évident.
+
+On peut alors centrer et réduire $X_n$ afin de se ramener à $m = 0$ et $sigma = 1$.
+
+Par la version faible
+$
+  PP(abs(S_(n^2) / n^2) >= delta) <= 1 / (n^2 delta^2)
+$
+Qui est le terme général d'une série convergente. Donc par le lemme de Borel-Cantelli faible, on montre que $abs(S_(n^2) / n^2)$ converge presque surement vers $0$.
+
+Soit $m in [|n_m^2, (n_m + 1)^2 - 1|]$
+$
+  abs(S_m / m) <= underbrace(abs(S_(n_m^2) / m), <= abs(S_(n^2_m)) / n^2_m) + 1/m abs(sum_(j = n_m^2 +1)^m X_j)
+$
+Or
+$
+  &PP(abs(1/m sum_(j = n_m^2+1)^m X_j) >= delta) \
+  =& PP((sum_(j = n_m^2+1)^m X_j)^2 >= m^2 delta^2) \
+  <=& EE((sum_(j = n^2_m + 1)^m X_j)^2) / (m^2 delta^2) \
+  =& (m - n^2_m) / (m^2 delta^2) = (sqrt(m)^2 - floor(sqrt(m))^2) / (m^2 delta^2) \
+  <=& (2sqrt(m) - 1) / (m^2 delta^2) = O(1/m^(3/2))
+$
+Qui est le terme général d'une série convergente
+$
+  PP(abs(1/m sum_(j = n_m^2+1)^m X_j) tends(m -> oo) 0) = 1
+$
+Et en sommant on a le resultat demandé.
 
 #card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercices.Probabilités",))
 
@@ -944,4 +976,221 @@ $
     &= vec(2n, n) p^n (1 - p)^n
   $
 
-// TODO: Le reste...
++ Temps de retour en $0$ :
+
+  On étudie
+  $
+    T_0 = min Set(n in NN^*, S_n (omega) = 0)
+  $
+  On note
+  $
+    S^((k))_n = sum_(i = k + 1)^(k + n) X_i ~ S_n \
+    forall a <= b, n in NN, space ("LdC")\ 
+    (T_0 = a) tack.t.double (S^((b))_n = 0)
+  $
+
+  Pour $n in NN^*$
+  $
+    &PP(S_(2 n) = 0)  \
+    =& PP(S_(2 n) = 0, T_0 <= 2 n) \
+    =& sum_(k = 1)^n  PP(S_(2n) = 0, T_0 = 2k) \
+    =& sum_(k = 1)^n  PP(T_0 = 2k, S^((2k))_(2(n - k)) = 0) \
+    =& sum_(k = 1)^n  PP(T_0 = 2k) PP(S^((2k))_(2(n - k)) = 0) \
+    =& sum_(k = 1)^n  PP(T_0 = 2k) PP(S_(2(n - k)) = 0) \
+  $
+  On introduit
+  $
+    F : t |-> sum_(n = 0)^(+oo) PP(S_n = 0) t^n \
+    tilde(F) : t |-> sum_(n = 0)^(+oo) PP(S_(2n) = 0) t^n \ 
+    F(t) = tilde(F) (t^2) \
+    G : t |-> sum_(n = 0)^(+oo) PP(T_0 = n) t^n \
+    tilde(G) : t |-> sum_(n = 0)^(+oo) PP(T_0 = 2n) t^n \ 
+    G(t) = tilde(G) (t^2)
+  $
+  Ainsi
+  $
+    tilde(F) (t) &= sum_(n = 0)^(+oo) vec(2n,n) p^n (underbrace(1 - p, q))^n t^n \
+    &= sum_(n = 0)^(+oo) (2n)! / n!^2 (p q t)^n \
+    &= sum_(n = 0)^(+oo) (2n)! / (2^n n!)^2 (4 p q t)^n \
+    &= 1 / sqrt(1  - 4 p q t)
+  $
+  Avec $R_"cv" (tilde(F)) = 1 / (4 p q t)$ donc $1$ si $p = 1/2$ et $>1$ sinon.
+
+  Or
+  $
+    0 <= PP(T_0 = 2 n) <= PP(S_(2n) = 0)
+  $
+  D'où $R_"cv" (tilde(G)) >= R_"cv" (tilde(F))$. Ainsi pour tout $t in Ioo(-1/(4 p q), 1 / (4 p q)) = I$
+  $
+    & tilde(F)(t) tilde(G)(t) 
+    = sum_(n = 0)^(+oo) u_n t^n \
+    =& sum_(n = 0)^(+oo) sum_(k = 0)^n PP(T_0 = 2k) PP(S_(2(n - k)) = 0) t^n \
+    =& sum_(n = 0)^(+oo) PP(S_(2n) = 0) bb(1)_(n >= 1) t^n 
+    = tilde(F)(t) - 1
+  $
+  D'où
+  $
+    tilde(G)(t) &= 1 - 1 / (tilde(F)(t)) \
+    &= 1 - sqrt(1 - 4 p q t)
+  $
+  On a alors
+  $
+    PP(T_0 < +oo) &= sum_(k = 0)^(+oo) PP(T_0 = 2n) \
+    &= tilde(G)(1) \ 
+    &= 1 - sqrt(1 - 4 p q) \
+    &= cases(space 1 "si" p = 1/2, space < 1 "si" p != 1/2)
+  $
+
+  Dans le cas $p = 1/2$
+  $
+    G(t) = G_T_0 (t) = 1 - sqrt(1 - t^2)
+  $
+
++ On peut alors determiner $EE(T_0)$
+
+  Si $p != 1/2$, $PP(T_0 = +oo) > 0$ et $EE(T_0) = +oo$.
+
+  Sinon $p = 1/2$, or $G_T_0 (t) = 1 - sqrt(1 - t^2)$, qui n'est pas dérivable en $1$, donc $EE(T_0) = +oo$.
+
++ Temps du $k$-ème retour en $0$
+  #let TR(j,k,a) = $attach(tl: #j, tr: #k, br: #a, T)$
+
+  On note
+  $
+    TR(j,1,a) = min Set(n in NN^*, S^((j))_n = a) \
+    TR(j,k,a) = min Set(n > TR(j,k-1,a), S^((j))_n = a) \
+    TR(,k,a) = TR(0,k,a) quad quad TR(,,a) = TR(0,1,a)
+  $
+  Ainsi $TR(j,k,a)$ correspond au temps du $k$-ème retour en $a$ sur la marche decalée de $j$.
+  $
+    &PP(T^k_0 < +oo)\
+    =& PP(T^k_0 < +oo, T^(k-1)_0 < +oo) \
+    =& sum_(j = 1)^(+oo) PP(T^k_0 < +oo, T^(k - 1)_0 = j) \
+    =& sum_(j = 1)^(+oo) PP(TR(j,1,0) < +oo, T^(k-1)_0 = j) \
+    =& sum_(j = 1)^(+oo) PP(TR(j,1,0) < +oo) PP(T^(k-1)_0 = j) \
+    =& PP(T_0 < +oo) sum_(j = 1)^(+oo) PP(T^(k-1)_0 = j) \
+    =& PP(T_0 < +oo) PP(T^(k-1)_0 < +oo) \
+    =& PP(T_0 < +oo)^k \
+  $
+
++ On peut de plus dans le cas symétrique calculer $EE(abs(S_n))$.
+
+  $
+    abs(S_(N+1)) = &abs(S_N + 1) bb(1)_(X_(N+1) = 1) \ + &abs(S_N - 1) bb(1)_(X_(N+1) = -1) \
+    EE(abs(S_(N+1))) = &EE(abs(S_N + 1)) PP(X_(N+1) = 1) \ + &EE(abs(S_N - 1)) PP(X_(N+1) = -1) \
+    = &EE(1/2 (abs(S_N +1) + abs(S_N - 1))) \
+    = &EE(abs(S_N) + bb(1)_(S_N = 0)) \
+    = &EE(abs(S_N)) + PP(S_N = 0) \
+  $
+  Ainsi
+  $
+    EE(abs(S_n)) = sum_(k = 0)^(n - 1) PP(S_n = 0) \
+    PP(S_(2 n) = 0) = (2 n)! / (2^n n!)^2 eqv(n -> oo) 1 / sqrt(pi n)
+  $
+  Qui est le terme général d'une série divergente
+  $
+    EE(abs(S_(2n))) &eqv(n -> oo) 1/sqrt(pi) sum_(k = 0)^(n - 1) 1/ sqrt(k) \
+    &eqv(n -> oo) 2 sqrt(n) / sqrt(pi)
+  $
+
+// TODO: Plus de dimensions, cas uniforme, et temps de retour en a (M309-311)
+
+#card("modeconvvad", "Modes de convergence des variables aléatoires", ("Maths.Probabilités",))
+
+Modes de convergence des variables aléatoires.
+
+#answer
+
+On définit deux modes de convergence des variables aléatoires :
+
++ On dit que $(X_n)_(n in NN)$ converge en probabilité vers $X$ si #h(1fr)
+  $
+    forall delta > 0, PP(abs(X_n - X) >= delta) tends(n -> oo) 0
+  $
+
++ On dit que $(X_n)_(n in NN)$ converge presque surement vers $X$ si
+  $
+    PP(X_n tends(n -> oo) X) = 1
+  $
+  Il s'agit bien d'un évenement : pour tout $omega in Omega$
+  $
+    &X_n (omega) tends(n -> oo) X(omega) \
+    <=> & forall epsilon > 0, exists N in NN, forall n >= N, \ & abs(X_n (omega) - X(omega)) < epsilon \
+    <=> & forall k in NN^*, exists N in NN, forall n >= N, \ & abs(X_n (omega) - X(omega)) < 1/k \
+  $
+  Ainsi
+  $
+    &(X_n tends(n -> oo) X) \ =& inter.big_(k in NN^*) union.big_(N in NN) inter.big_(n >= N) (abs(X_n - X) <= 1/k) \ in& cal(T)
+  $
+
++ Si on se ramène à $X = 0$, notons pour tout $delta > 0$
+  $
+    A_(delta,n) = (abs(X_n) >= delta)
+  $
+  On veut
+  $
+    &PP(union.big_(N in NN) inter.big_(n >= N) abs(X_n) < delta) = 1 \
+    <=>& PP(inter.big_(N in NN) union.big_(n >= N) A_(delta,n)) = 0
+  $
+  Donc par Borel-Cantelli faible, pour montrer $X_n tends("ps") X$, il suffit de montrer que
+  $
+    forall delta > 0, sum PP(A_(delta,n)) "converge"
+  $
+
+#card("chainmarko", "Chaînes de Markov", ("Maths.Probabilités",))
+
+Chaînes de Markov.
+
+#answer
+
+On considère un ensemble fini d'état $E$, qu'on peut représenter par $[|1, N|]$.
+
+Une chaîne de Markov sur $E$ est une suite $(X_n)_(n in NN)$ de variables aléatoires discrètes à valeur dans $E$ tel que si $n in NN$ et $i_0, dots, i_n in E^(n+1)$ tels que 
+$
+PP(X_0 = i_0, dots, X_n = i_n) > 0
+$
+Alors
+$
+  forall i_(n+1) in E, \
+  PP(X_(n+1) = i_(n+1) | X_1 = i_1, dots, X_n = i_n) \
+  = PP(X_(n+1) = i_(n+1) | X_n = i_n)
+$
+On dit de plus que la chaîne est homogène si
+$
+  forall i,j in E, n in NN, \
+  PP(X_0 = j) > 0 \ => PP(X_(n+1) = i | X_n = j) = p_(i,j)
+$
+Ainsi par la formule des probabilités totales
+$
+  &PP(X_(n+1) = i) \ 
+  =& sum_(j = 1)^N PP(X_(n+1) = i | X_n = j) PP(X_n = j) \
+  =& sum_(j = 1)^N p_(i,j) PP(X_n = j)
+$
+Et donc en notant
+$
+  V_n = vec(PP(X_n = 1), dots.v, PP(X_n = N))
+$
+On a $V_(n+1) = P V_n$ avec
+$
+  P = (p_(i,j))_(i,j) in cal(M)_N (RR) \
+$
+
+*Propriétés*
+
+On remarque que pour tout $j in [|1, N|]$
+$
+  sum_(i = 1)^N p_(i,j) &= sum_(i = 1)^N PP(X_1 = i | X_0 = j) \
+  &= PP(X_1 in E | X_0 = j) = 1
+$
+Donc $P$ est une matrice stochastique, ainsi
+$
+  P^TT vec(1, dots.v, 1) = vec(1, dots.v, 1) \ 1 in "Sp"(P^TT) = "Sp"(P)
+$
+Et pour tout $lambda in "Sp"(P)$ et $vec(x_1, dots.v, x_N)$ vecteur propre non nul associé.
+$
+  P^TT vec(x_1, dots.v, x_N) = lambda vec(x_1, dots.v, x_N) quad abs(x_i_0) = max_(i in [|1, N|]) abs(x_i) \
+  abs(lambda) dot abs(x_i_0) <= sum_(j = 1)^N abs(p_(j, i_0)) abs(x_i_0) = abs(x_i_0)
+$
+D'où $abs(lambda) <= 1$
+
+// TODO: Exemple Markov M313
