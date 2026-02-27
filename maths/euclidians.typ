@@ -352,3 +352,50 @@ $
   S = ker ((u |-> u^*) - id)
 $
 Qui est donc un sev de $cal(L)(E)$ et $dim S(E) = (n (n+1)) / 2$.
+
+#card("thspectral", "Théorème spectrale", ("Maths.Algèbre.Euclidiens",))
+
+Théorème spectrale.
+
+#answer
+
+Soit $A in M_n (RR)$, il y a équivalence entre
+
++ $A in S_n (RR)$.
+
++ $A$ est diagonalisable dans une BON.
+
++ $E$ s'écrit comme une somme directe orthogonale des sous espaces propres de $A$.
+
+*Démonstration*
+
+On suppose $A in S_n (RR)$
+
+- Montrons d'abord que $"Sp"_CC (A) subset.eq RR$.
+
+  Soit $lambda in "Sp"_CC (A), Z in CC^n \\ {0}$ vecteur propre associé. #h(1fr)
+  $
+    A Z &= lambda Z \
+    overline(Z)^TT A Z &= lambda overline(Z)^TT Z = lambda sum_(k = 1)^n abs(z_k) in lambda RR^*_+ \
+    overline(overline(Z)^T A Z) &= Z^TT overline(A) overline(Z) = Z^TT A overline(Z) in cal(M)_(11) (CC) \
+    &= (Z^T A overline(Z))^TT = overline(Z)^TT A^TT Z \
+    &= overline(Z)^TT A Z in RR
+  $
+  D'où $lambda in RR$ et $chi_A$ est scindé sur $RR$.
+
+- Par recurrence sur $n$.
+
+  Le cas $n = 1$ est évident.
+
+  On suppose le résultat pour tout $k <= n in NN$, et $A in S_(n+1) (RR)$.
+
+  Comme $chi_A$ est scindé sur $RR$, on dispose de $lambda_1 in RR in "Sp" (A)$.
+
+  Ainsi $E_lambda_1 (A) = F$ est stable par $A$, donc $F^perp$ aussi.
+
+  En considérent la bonne BON on a alors
+  $
+    P A P^T = mat(lambda_1 I_m, 0; 0, tilde(A)) = (P A P^T)^TT \
+    tilde(A) = tilde(A)^TT in S_n (RR)
+  $
+  Et on conclus par hypothèse de récurrence.

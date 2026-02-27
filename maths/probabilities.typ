@@ -245,7 +245,7 @@ Lois classique de probabilité, définition, espérance, variance et série gén
   $,
 ))
 
-// NOTE: lois usuels - M287, resultats connus qui existent
+// NOTE: lois usuels - M287, résultats connus qui existent
 // - indépendance de variable à faire ?
 
 #card("lemdescoal", "Lemme des coalitions", ("Maths.Probabilités",))
@@ -528,7 +528,7 @@ Qui est le terme général d'une série convergente
 $
   PP(abs(1/m sum_(j = n_m^2+1)^m X_j) tends(m -> oo) 0) = 1
 $
-Et en sommant on a le resultat demandé.
+Et en sommant on a le résultat demandé.
 
 #card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercices.Probabilités",))
 
@@ -1194,3 +1194,154 @@ $
 D'où $abs(lambda) <= 1$
 
 // TODO: Exemple Markov M313
+
+#card("jensenine", "Inégalité de Jensen pour les espérances", ("Maths.Probabilités",))
+
+Inégalité de Jensen pour les espérances.
+
+#answer
+
+Soit $f : I -> RR$ convexe, et $X$ une vad à valeur dans $I$. Alors
+$
+  EE(f(X)) >= f(EE(X))
+$
+*Démonstration*
+
++ Cas $f$ $C^1$, pour tout $x in I$ #h(1fr)
+  $
+    f(x) >= f'(EE(X)) (x - EE(X)) + f(EE(X))
+  $
+  Ainsi, comme $X(Omega) subset.eq I$
+  $
+    f(X) >= f'(EE(X)) (X - EE(X)) + f(EE(X)) \
+    EE(f(X)) >= f(EE(X))
+  $
+
++ Dans le cas général, $f$ admet une droite d'appuis en tout points
+
+  Pour tout $x in I$
+  $
+    f(x) >= f(EE(X)) + alpha(x - EE(X))
+  $
+  Avec $alpha in [f'_g (EE(X)), f'_d (EE(X))]$.
+
+  Et on conclus de même.
+
+#card("exingedf", "Exercice : troisième inégalité classique", ("Maths.Exercice.Probabilités",))
+
+Soit $(X_k)_k in (LL^2)^NN^*$ indépendantes et centrées. 
+
+On pose $S_n = sum_(k = 0)^n X_k$ et on suppose que
+$
+  sum_(k = 1)^(+oo) VV(X_k) = sum_(k = 1)^(+oo) EE(X_k^2) = sigma^2
+$
+Montrer que
+$
+  PP(max_(k in NN^*) abs(S_k) >= c) <= sigma^2 / c^2
+$
+
+#answer
+
+Soit $(X_k)_k in (LL^2)^NN^*$ indépendantes et centrées.
+
+On pose $S_n = sum_(k = 0)^n X_k$ et on suppose que
+$
+  sum_(k = 1)^(+oo) VV(X_k) = sum_(k = 1)^(+oo) EE(X_k^2) = sigma^2
+$
+
+On a déjà
+$
+  PP(abs(S_n) >= c) &= PP(S_n^2 >= c^2) <= EE(S_n^2) / c^2 \
+  &= VV(S_n) / c^2 = sigma^2 / c^2
+$
+
+On pose
+$
+  A_k = (inter.big_(1 <= j <= k - 1) abs(S_j) <= c) inter (abs(S_k) > c) \
+  B_n = (max_(1 <= k <= n) abs(S_n) > c) = union.plus.big_(k = 1)^n A_k
+$
+Ainsi
+$
+  bb(1)_B_n = sum_(k = 1)^n bb(1)_A_k \
+  EE(S^2_n bb(1)_B_n) = sum_(k = 1)^n EE(S^2_n bb(1)_A_k)
+$
+Or
+$
+  S^2_n &= (S_k + sum_(j = k + 1)^n X_j)^2 \
+  &= S_k^2 + 2 S_k (sum_(j = k + 1)^n X_j) + underbrace((sum_(j = k + 1)^n X_j)^2, >= 0)
+$
+D'où
+$
+  EE(S^2_n bb(1)_A_k) &>= EE(S^2_k bb(1)_A_k) \ 
+  &+ 2 EE((S_k bb(1)_A_k) (sum_(j = k +1)^n X_j)) \
+  &= EE(S^2_k bb(1)_A_k) \
+  &+ 2 EE(S_k bb(1)_A_k) underbrace(EE(sum_(j = k +1)^n X_j), 0) \
+  &= EE(S^2_k bb(1)_A_k)
+  >= EE(c^2 bb(1)_A_k) \
+  &>= c^2 PP(A_k)
+$
+Ainsi
+$
+  EE(S^2_n) &>= EE(S^2_n bb(1)_B_n) = sum_(k = 1)^n EE(S^2_n bb(1)_A_k) \
+  &>= c^2 sum_(k = 1)^n PP(A_k) = c^2 PP(B_k)
+$
+D'où
+$
+  PP(B_k) <= EE(S_n^2) / c^2 = sigma^2 / c^2
+$
+Et par continuité croissante des probabilité on a le résultat.
+
+#card("espsomein", "Espérance d'une série", ("Maths.Probabilités",))
+
+Espérance d'une série.
+
+#answer
+
+Si $(A_k)_k in cal(T)^NN$ est une suite d'évenements, alors
+$
+  S = sum_(k = 0)^(+oo) bb(1)_A_k
+$
+Est une variable aléatoire discrète à valeur dans $NN union {+oo}$ et
+$
+  EE(sum_(k = 0)^(+oo) bb(1)_A_k) = EE(S) = sum_(k = 0)^(+oo) EE(bb(1)_A_k)
+$
+
+On peut généraliser ce résultat à $(X_k)_(k in NN)$ une suite de vad à valeur dans $NN$.
+
+*Démonstration*
+
+On pose
+$
+  S_n = sum_(k = 0)^n bb(1)_A_k
+$
+
++ Montrons que $S$ est une variable aléatoire discrète. #h(1fr)
+  $
+    S(Omega) = underbrace(NN union {+oo}, "au plus dénombrable") \
+    (S = k) = underbrace(union.big_(n >= k) (script(sum_(j = 0)^n bb(1)_A_j = k)) inter inter.big_(j >= n+1) overline(A_j), in cal(T)) \
+    (S = +oo) = inter.big_(N in NN) union_(n >= N) A_n in cal(T)
+  $
+
++ On remarque déjà que
+  $
+    sum_(k = 0)^n PP(A_k) = EE(S_n) <= EE(S)
+  $
+  Donc si $EE(S) < +oo$, $sum PP(A_n)$ converge.
+
+  On suppose que $sum PP(A_n)$ converge.
+
+  Par le lemme de Borel-Cantelli faible
+  $
+    PP(S = +oo) = PP(lim sup A_n) = 0
+  $
+  Or $EE(S) = sum_(n = 1)^(+oo) PP(S >= n)$, d'où par union croissante d'évenements
+  $
+    PP(S >= n) &= lim_(k -> oo) PP(S_k >= n) \
+    sum_(n = 1)^N PP(S >= n) &= lim_(k -> oo) underbrace(sum_(n = 1)^N PP(S_k >= n), <= EE(S_k) = sum_(j = 0)^k PP(A_j)) \
+    &<= sum_(k = 0)^(+oo) PP(A_k)
+  $
+  Donc $EE(S) <= sum_(n = 0)^(+oo) PP(A_n) < +oo$.
+
+  On a ainsi l'équivalence de la convergence des deux sommes et leur égalité.
+
+// NOTE: Correction marche aléatoires M316

@@ -12,6 +12,7 @@
 #let Icc(a, b) = $lr(class("opening", \[) #a, #b class("closing", \]))$
 #let scl(a, b) = $lr(class("opening", chevron.l) #a mid(|) #b class("closing", chevron.r))$
 #let dperp = $limits(plus.o)^perp$
+#let bdperp = $limits(plus.o.big)^perp$
 #let func(delim: ("{", "}"), ..args) = {
   let cells = args
     .pos()
