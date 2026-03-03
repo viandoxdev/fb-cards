@@ -11565,7 +11565,7 @@ On dit que $phi$ est non dégénérée si $psi$ est unjective.
 
 On a alors
 
-- Si $phi$ bilinéaire symmétrique positive, $phi$ est un produit scalaire sur $E$ ssi $phi$ est non dégénérée.
+- Si $phi$ bilinéaire symétrique positive, $phi$ est un produit scalaire sur $E$ ssi $phi$ est non dégénérée.
 
 *Démonstration*
 
@@ -11851,14 +11851,14 @@ Soit $(E, scl(dot, dot))$ euclidiens.
 
 *Symmétries orthogonales*
 
-Soit $s in cal(L)(E)$ tel que $s^2 = id$, on dit que $s$ est une symmétrie orthogonale si
+Soit $s in cal(L)(E)$ tel que $s^2 = id$, on dit que $s$ est une symétrie orthogonale si
 $
   ker (s - id) perp ker (s + id) \ => E = ker (s - id) dperp ker(s + id)
 $
 
 Ou de manière équivalente, si $s$ est une isométrie vectorielle.
 
-On appelle réflexion une symmétrie orthogonale par rapport à un hyperplan.
+On appelle réflexion une symétrie orthogonale par rapport à un hyperplan.
 
 *Projecteurs orthogonaux*
 
@@ -11871,7 +11871,7 @@ Ou de manière équivalente si $p$ est autoadjoint.
 
 *Démonstration*
 
-- ($=>$) Soit $s$ une symmétrie orthogonales, $x in E$, $F = ker (s - id)$
+- ($=>$) Soit $s$ une symétrie orthogonales, $x in E$, $F = ker (s - id)$
   $
     x = y + z quad quad y in F, z in F^perp \
   $
@@ -11881,21 +11881,21 @@ Ou de manière équivalente si $p$ est autoadjoint.
     &= norm(x)^2
   $
 
-- ($arrow.l.double$) Soit $s$ une symmétrie qui conserve la norme, et donc le produit scalaire. Soit $x in F = ker (s - id)$ et $y in G = ker (s + id)$.
+- ($arrow.l.double$) Soit $s$ une symétrie qui conserve la norme, et donc le produit scalaire. Soit $x in F = ker (s - id)$ et $y in G = ker (s + id)$.
   $
     scl(x, y) = scl(s(x), s(y)) = scl(x, -y) \
     scl(x, y) = 0
   $
 
-#card("endosym", "Endomorphismes symmétriques ou autoadjoints", ("Maths.Algèbre.Euclidiens",))
+#card("endosym", "Endomorphismes symétriques ou autoadjoints", ("Maths.Algèbre.Euclidiens",))
 
-Endomorphismes symmétriques ou autoadjoints.
+Endomorphismes symétriques ou autoadjoints.
 
 #answer
 
-Soit $(E, scl(dot, dot))$ euclidiens, on dit que $u in cal(L)(E)$ est autoadjoint (ou symmétrique) si $u^* = u$.
+Soit $(E, scl(dot, dot))$ euclidiens, on dit que $u in cal(L)(E)$ est autoadjoint (ou symétrique) si $u^* = u$.
 
-Pour toute BON $e$ (d'où symmétrique)
+Pour toute BON $e$ (d'où symétrique)
 $
   cal(M)_e (u) = A = A^TT in S_n (RR)
 $
@@ -12079,6 +12079,11 @@ On en déduit
 
 Et de plus
 
+- Pour tout $u in S^+ (E)$
+  $
+    forall x in E, scl(u(x), x) = 0 <=> u(x) = 0
+  $
+
 - Pour tout $A in S_n^+ (RR)$, pour tout $i in [|1,n|]$
   $
     a_(i i) = E_i^TT A E_i >= 0
@@ -12122,6 +12127,14 @@ Matriciellement, pour $A in S_n (RR)$, on regarde le signe de $X^TT A X$.
 
 - La même avec des inégalités strictes.
 
+- Le sens indirecte est évident. Par théorème spectrale
+  $
+    x = sum_(k = 1)^n x_k e_k \
+    scl(u(x), x) = sum_(k = 1)^n underbrace(lambda_k x_k^2, >= 0) = 0 \
+    forall k in [|1, n|], space lambda_k x_k = 0 \
+    u(x) = sum_(k = 1)^n lambda_k x_k e_k = 0
+  $
+
 - Comme $"Sp"(A) subset.eq RR_+$, $det(A) >= 0$.
 
   On peut écrire $A = M^TT M$ avec
@@ -12137,9 +12150,9 @@ Matriciellement, pour $A in S_n (RR)$, on regarde le signe de $X^TT A X$.
 
 // TODO: Vérifier
 
-#card("decompensympos", "Décomposition des Endomorphismes symmétriques positifs", ("Maths.Algèbre.Euclidiens",))
+#card("decompensympos", "Décomposition des Endomorphismes symétriques positifs", ("Maths.Algèbre.Euclidiens",))
 
-Décomposition des Endomorphismes symmétriques positifs.
+Décomposition des Endomorphismes symétriques positifs.
 
 #answer
 
@@ -12350,9 +12363,9 @@ $
   =& product_(k = p + 1)^(p + q) S_k dot product_(k = 1)^r (T_(p + q + 2r - 1) (theta_k) S_(p + q + 2 r))
 $
 
-#card("raccarendos", "Racine carrée d'une matrice symmétrique positive", ("Maths.Algèbre.Euclidiens",))
+#card("raccarendos", "Racine carrée d'une matrice symétrique positive", ("Maths.Algèbre.Euclidiens",))
 
-Racine carrée d'une matrice symmétrique positive.
+Racine carrée d'une matrice symétrique positive.
 
 #answer
 
@@ -12465,6 +12478,557 @@ Et si $A in "GL"_n (RR)$, $R in S_n^(++) (RR)$ et cette décomposition est uniqu
     B = underbrace(V, in O_n (RR)) dot underbrace(V^TT B, in S_n^(++) (RR))
   $
   Avec unicité de $R$ car $B^TT B = R^2$.
+
+#card("normadj", "Norme et adjoint d'un endomorphisme", ("Maths.Algèbre.Euclidiens",))
+
+Norme et adjoint d'un endomorphisme.
+
+#answer
+
+Soit $(E, scl(dot, dot))$ un euclidien.
+
+- Pour tout $x in E$ #h(1fr)
+  $
+    norm(x) = max_(a in SS(0, 1)) scl(a, x)
+  $
+- Pour tout $u in cal(L)(E)$
+  $
+    norm(u)_"op" = norm(u^*)_"op"
+  $
+- Pour tout $u in cal(L)(E)$
+  $
+    norm(u)_"op"^2 = max_(lambda in "Sp" (u^* compose u)) lambda
+  $
+
+*Démonstration*
+
+- Par Cauchy-Schwartz, pour tout $a in SS(0, 1)$
+  $
+    scl(a, x) <= norm(a) dot norm(x) = norm(x)
+  $
+  Et pour $a = x / norm(x)$
+  $
+    scl(a, x) = norm(x)^2 / norm(x) = norm(x)
+  $
+
+- Soit $u in cal(L)(E)$
+  $
+    norm(u)_"op" &= max_(x in SS(0,1)) norm(u(x)) \
+    &= max_(x in SS(0,1)) max_(a in SS(0,1)) scl(a, u(x)) \
+    &= max_(a in SS(0,1)) max_(x in SS(0,1)) scl(u^*(a), x) \
+    &= max_(a in SS(0,1)) norm(u^* (a)) = norm(u^*)_"op"
+  $
+
+- Soit $u in cal(L)(E)$
+  $
+    norm(u)^2_"op" &= max_(x in SS(0,1)) norm(u(x))^2 \
+    &= max_(x in SS(0,1)) scl(u(x), u(x)) \
+    &= max_(x in SS(0,1)) scl(u^* compose u(x), x) \
+    &= max_(lambda in "Sp"(u^* compose u)) lambda
+  $
+
+#card("exennomopleto", "Exercice : endomorphisme de norme triple inférieur à un", ("Maths.Exercice.Euclidiens",))
+
+Soit $u in cal(L)(E)$ avec $(E, scl(dot, dot))$ euclidien tel que $norm(u)_"op" <= 1$.
+
++ Montrer que #h(1fr)
+  $
+    E = ker (u - id) dperp im (u - id)
+  $
++ En déduire que
+  $
+    w_k = 1/k sum_(j = 0)^(k - 1) u^j
+  $
+  Converge vers le projecteur orthogonale sur $ker (u - id)$.
+
+#answer
+
++ On remarque que
+  $
+    im (u - id)^perp &= ker (u - id)^* \
+    &= ker (u^* - id)
+  $
+  Il suffit donc de montrer que
+  $
+    ker (u - id) = ker (u^* - id)
+  $
+
+  Soit $x in ker(u^* - id)$
+  $
+    &norm(u(x) - x)^2 \ 
+    =& norm(u(x))^2 - 2scl(x, u(x)) + norm(x)^2 \
+    =& norm(u(x))^2 - 2scl(underbrace(u^*(x), x), x) + norm(x)^2 \
+    =& norm(u(x))^2 - norm(x)^2 <= 0 \
+    =& 0
+  $
+  D'où $ker (u^* - id) subset.eq ker (u - id)$, et comme 
+  $
+  norm(u^*)_"op" = norm(u)_"op" <= 1
+  $
+  On à l'autre sens.
+
++ Pour tout $x in ker (u - id)$ et $k in NN$
+  $
+    w_k (x) = 1/k sum_(j = 0)^(k - 1) u^j (x) = 1/k sum_(j = 0)^(k - 1) x = x
+  $
+  Et pour tout $x in ker(u - id)^perp = im(u - id)$, on dispose de $y in E$
+  $
+    x = u(y) - y
+  $
+  $
+    w_k (x) &= (w_k compose (u - id)) (y) \
+    &= (u^k (y) - y) / k tends(k -> oo) 0
+  $
+  On a la CVS, et on peut en déduire la CVU en appliquant la CVS sur une BON.
+
+#card("prodmatsym", "Produit de matrices symétriques", ("Maths.Algèbre.Euclidiens",))
+
+Produit de matrices symétriques.
+
+#answer
+
+Soit $A in S_n^(++)(RR)$ et $B in S_n (RR)$, alors $A B$ est diagonalisable, et si $B in S_n^+ (RR)$, $"Sp"(A B) subset.eq RR_+$.
+
+*Démonstration*
+
+On note $R in S_n^(++)(RR)$ la racine carrée de $A$.
+$
+  A B = R underbrace((R B R^TT), S in S_n (RR)) R^(-1)
+$
+Donc $S$ est diagonalisable et $A B$ aussi
+
+Si $B in S_n^+ (RR)$, $S in S_n^+ (RR)$ :
+$
+  X^TT S X = (R X)^TT B (R X) >= 0
+$
+
+#card("exendopreortho", "Exercice : endomorphisme qui preserve l'orthogonalité", ("Maths.Exercice.Euclidiens",))
+
+Soit $u in cal(L)(E)$ où $(E, scl(dot, dot))$ euclidien  tel que
+$
+  forall x, y in E, scl(x, y) = 0 \ => scl(u(x), u(y)) = 0
+$
+Montrer que $u = alpha v$ avec $v in O(E)$ et $alpha in RR$.
+
+#answer
+
+Soit $e = (e_1, dots, e_n)$ une BON, ainsi $(u(e_1), dots, u(e_n))$ est une famille orthogonale.
+
+Pour tout $i != j in [|1, n|]$
+$
+  scl(e_i + e_j, e_i - e_j) &= norm(e_i)^2 - norm(e_j)^2 \
+  &= 0 \
+$
+Donc
+$
+  scl(u(e_i) + u(e_j), u(e_i) - u(e_j)) = 0 \
+  norm(u(e_i))^2 = norm(u(e_j))^2
+$
+
+On pose $alpha = norm(e_1)$
+
+- Si $alpha = 0$, $u = 0 = 0 id$ et $id in O(E)$.
+
+- Sinon on pose $v = 1 / alpha u$ et $(v(e_1), dots, v(e_n))$ est une BON, donc $v in O(E)$.
+
+#card("expresprodfam", "Exercice : isométries vectorielles et conservation du produit scalaire entre familles de vecteurs", ("Maths.Exercice.Euclidiens",))
+
+Soit $(E, scl(dot, dot))$ un euclidien de dimension $n$, $(a_i)_i, (b_i)_i in E^n$ deux familles de vecteurs.
+
++ Montrer l'équivalence suivante
+  + $forall i, j in [|1, n|], space scl(a_i, a_j) = scl(b_i, b_j)$.
+  + Il existe une isométrie vectorielle $phi$ tel que $forall i in [|1, n|], space phi(a_i) = b_i$.
+
++ Pour $E = RR^n$ et $k in NN^*$, $u_1, dots, u_k, v_1, dots, v_k in RR^n$ des vecteurs, on suppose que pour tout $i, j in [|1, k|]$
+  $
+    scl(u_i, u_j) = scl(v_i, v_j)
+  $
+  Montrer qu'il existe $W in O_n (RR)$ tel que pour tout $i in [|1, k|]$, $v_k = W u_k$.
+
++ Soit $A, B in M_n (RR)$, montrer que $A^TT A = B^TT B$ ssi il existe $P in O_n (RR)$ tel que $A = P B$.
+
+#answer
+
++ Un des sens est évident car les isométries vectorielles conservent le produit scalaire.
+
+  - On suppose d'abord que $(a_1, dots, a_n)$ est une base. On pose alor $phi$ l'unique application linéaire qui peut marcher.
+
+    Soit $x in E$ #h(1fr)
+    $
+      x = sum_(k = 1)^n x_k a_k
+    $
+    $
+      norm(phi(x))^2 &= sum_(1 <= i, j <= n) x_i x_j scl(b_i, b_j) \
+      &= sum_(1 <= i, j <= n) x_i x_j scl(a_i, a_j) \
+      &= norm(x)^2
+    $
+    D'où $phi in O(E)$.
+
+  - Sinon, quitte à renuméroter, on suppose $(a_1, dots, a_k)$ libre.
+
+    Soit $j in [|k+1, n|]$.
+    $
+      a_j = sum_(i = 1)^k lambda_i a_i \
+    $
+    Ainsi (en développant)
+    $
+      norm(b_j - sum_(i = 1)^k lambda_i b_i)^2 = underbrace(norm(a_j - sum_(i = 1)^k lambda_i a_i)^2, 0)
+    $
+    En notant $F = "Vect"(a_1, dots, a_k)$ et $G = "Vect"(b_1, dots, b_n)$, par le cas 1, on dispose de 
+    $
+    phi_0 : func(F, G, a_i, b_i) "pour" i in [|1,k|]
+    $
+    Qu'on étend en $phi in O(E)$ (en posant des BON).
+
++ Il s'agit de la même chose, le fait qu'il peut y avoir plus de $n$ vecteurs n'est pas dérrangeant car on extrait une famille libre dans tous les cas.
+
++ Soit $A, B in M_n (RR)$
+  $
+    A &= (a_1 space dots.c space a_n) \
+    B &= (b_1 space dots.c space b_n) \
+    A^TT A &= (scl(a_i, a_j))_(i j) \
+    &= B^TT B = (scl(b_i, b_j))_(i j)
+  $
+  Par le 1 on dispose donc de $P in O_n (RR)$ tel que
+  $
+    forall k in [|1, n|], b_k = P a_k
+  $
+  D'où
+  $
+    A = P^(-1) B
+  $
+
+#card("actionparcongr", "Action par congruence", ("Maths.Algèbre.Euclidiens",))
+
+Action par congruence.
+
+#answer
+
+Pour tout $P in "GL"_n (RR)$ on pose
+$
+  rho_P : func(S_n (RR), S_n (RR), M, P M P^TT)
+$
+
+- Pour tout $P, Q in "GL"_n (RR)$ #h(1fr)
+  $
+    rho_P compose rho_Q = rho_(P Q)
+  $
+
+- Si $M in S_n^+ (RR)$ alors $rho_P (M) in S_n^+ (RR)$.
+
+*Interpretation*
+
+Si $phi$ une forme bilinéaire symétrique sur $E$, $e$ et $f$ des bases.
+$
+  A = cal(M)_e (phi) = (phi(e_i, e_j))_(i j) \
+  B = cal(M)_f (phi) = (phi(f_i, f_j))_(i j) \
+  B = P A P^TT
+$
+Avec $P = cal(M)_e (f) in "GL"_n (RR)$.
+
+Pour tout $x, y in E$ si 
+$
+  X = cal(M)_e (x) quad quad Y = cal(M)_e (y) \
+  X' = cal(M)_f (x) quad quad Y' = cal(M)_f (y) \
+$
+Alors
+$
+  phi(x, y) &= X^TT A Y \
+  &= X'^TT B Y'
+$
+
+*Démonstration*
+
+- L'écrire.
+
+- Soit $M in S_n^+ (RR)$ et $X in RR^n$ #h(1fr)
+  $
+    X^TT P M P^TT X = (P^T X)^TT M (P^TT X) >= 0
+  $
+
+- Les écrires.
+
+#card("coredmatsym", "Coréduction des matrices symétriques", ("Maths.Algèbre.Euclidiens",))
+
+Coréduction des matrices symétriques.
+
+#answer
+
+Soit $A in S_n^(++) (RR)$ et $B in S_n (RR)$. Il existe $P in "GL"_n (RR)$ et $D in D_n (RR)$ tels que
+$
+  A = P^TT P quad quad B = P^TT D P
+$
+
+*Démonstration*
+
+Comme $A in S_n^(++) (RR)$ on dispose de $Q in "GL"_n (RR)$ tel que 
+$
+A = Q^TT Q
+$
+On pose alors
+$
+B_0 = (Q^TT)^(-1) B Q^(-1) in S_n (RR)
+$
+Donc par théorème spectrale, on dispose de $P in O_n (RR)$ et $D in D_n (RR)$ tels que 
+$
+  B_0 = P^TT D P
+$
+Ainsi
+$
+  B = Q^TT P^TT D P Q = (P Q)^TT D (P Q) \
+  (P Q)^TT P Q = Q^TT underbrace(P^TT P, I_n) Q = A
+$
+
+// NOTE: Nouvelle interpretation du théorème spectrale M338
+
+// NOTE: Applications que j'ai pas compris M339
+
+#card("decomsing", "Décomposition en valeurs singulières", ("Maths.Algèbre.Euclidiens",))
+
+Décomposition en valeurs singulières.
+
+#answer
+
+Soit $A in M_(n p) (RR)$, il existe $P in O_n (RR)$, $Q in O_p (RR)$ et
+$
+  mu_1 >= dots >= mu_r > 0
+$
+tels que
+$
+  A = P underbrace(dmat(mu_1, dots.down, mu_r, 0), in M_(n p) (RR)) Q
+$
+Avec $r = "rg" A$.
+
+*Démonstration (cas carré)*
+
+On note $A = cal(M)_"can" (u)$ où $u in cal(L)(RR^n)$.
+
+Soit $lambda in "Sp" (u^* compose u) \\ {0}$, $x in E_lambda = E_lambda (u^* compose u)$ vecteur propre non nul.
+$
+  u^* compose u (x) = lambda x != 0
+$
+Or $u(x) != 0$ donc
+$
+  u compose u^* (u(x)) = lambda u(x)
+$
+Et $u(x) in F_lambda = E_lambda (u compose u^*)$.
+
+Par symétrie
+$
+  "Sp" (u compose u^*) \\ {0} = "Sp" (u^* compose u) \
+  forall lambda in "Sp" (u compose u^*), space dim E_lambda = dim F_lambda
+$
+Soit un tel $lambda$ et $(e_1, dots, e_d)$ une bon de $E_lambda$. Pour tout $i, j in [|1, d|]$
+$
+  scl(u(e_i), u(e_j)) &= scl(u^* compose u (e_i), e_j) \
+  &= lambda scl(e_i, e_j) = lambda delta_(i j)
+$
+Ainsi $(u(e_1), dots, u(e_d))$ est OG et $norm(u(e_i)) = sqrt(lambda)$.
+
+On pose alors $f_i = u(e_i) / sqrt(lambda)$ BON de $F_lambda$.
+
+Donc
+$
+  RR^n = (bdperp_(k in [|1,p|]) E_lambda_k) dperp ker (u^* compose u)
+$
+Avec
+$
+  lambda_1 > lambda_2 > dots.c > lambda_p > 0
+$
+On en extrait une BON $cal(B)$ par concatenation des $cal(B)_1, dots, cal(B)_p, cal(B)_(p+1)$.
+
+À chaque $cal(B)_k$ on associe $cal(C)_k$ BON de $F_lambda_k$ associé.
+
+Ainsi
+$
+  cal(M)_(cal(B), cal(C)) (u) = dmat(sqrt(lambda_1) I_d_1, dots.down, sqrt(lambda_p) I_d_p, 0)
+$
+
+Et les valeurs sinngulières de $A$ sont les racines carrées des valeurs propres non nulles de $A^TT A$ avec multiplicité.
+
+*Démonstration (cas non carré)*
+
+La même en introduisant $u^*$ l'endomorphisme associé à $A^TT$ (car pas adjoit tel qu'on la définit sur les endomorphismes).
+
+#card("matcov", "Matrice de covariance", ("Maths.Algèbre.Euclidiens", "Maths.Probabilités"))
+
+Matrice de covariance.
+
+#answer
+
+Soient $X_1, dots, X_n in LL^2$ sur $(Omega, cal(T), PP)$ ep. On appelle matrice de covariance des $X_1, dots, X_n$
+$
+  C &= Cov(X_1, dots, X_n) \ &= (Cov(X_i, X_j))_(i, j) in S_n^+ (RR)
+$
+
+Toute matrice de $S_n^+ (RR)$ est une matrice de covariance.
+
+*Démonstration*
+
+- Cas $I_n$ :
+
+  Soient $X_1, dots, X_n$ vaiid de Rademarcher, par indépendance pour tout $i, j in [|1, n|]$ #h(1fr)
+  $
+    Cov(X_i, X_j) = delta_(i j)
+  $
+  Ainsi
+  $
+    I_n = Cov(X_1, dots, X_n)
+  $
+
+- Cas général :
+
+  Soit $S in S_n^+ (RR)$, on dispose de $A in M_n (RR)$ tel que
+  $
+    S &= A^TT A = A^TT Cov(X_1, dots, X_n) A \
+    S_(i j) &= sum_(1 <= k, l <= n) a_(k i) Cov(X_k, X_l) a_(l j) \
+    &= Cov(sum_(k = 1)^n a_(k i) X_k, sum_(l = 1)^n a_(l j) X_l) \
+    &= Cov(Y_i, Y_j)
+  $
+  Où
+  $
+    Y_i = sum_(k = 1)^n a_(k i) X_k
+  $
+
+*Application*
+
+Soit $A, B in M_n (RR)$, on note le produit de Hadamard de $A$ et $B$
+$
+  A dot.o B = (a_(i j) b_(i j))_(i j)
+$
+Monrons que si $A, B in S_n^+ (RR)$ alors $A dot.o B$ aussi.
+
+On refait la démo : soit $X_1, dots, X_(2n)$ vaiid de Rademarcher.
+$
+  A = S^TT S = Cov(Y_1, dots, Y_n) \
+  B = R^TT R = Cov(Z_1, dots, Z_n) \
+  Y_i = sum_(j = 1)^n s_(j i) X_i quad quad Z_i = sum_(j = 1)^n s_(j i) X_(i + n) \
+$
+Or $EE(Y_i) = EE(Z_i) = 0$ d'où
+$
+  A = (EE(Y_i Y_j))_(i j) quad quad B = (EE(Z_i Z_j))_(i j) \
+$
+$
+  A dot.o B &= (EE(Y_i Y_j) EE(Z_i Z_j))_(i j) \
+  &= (EE(underbrace(Y_i Z_i, W_i) underbrace(Y_j Z_j, W_j)))_(i j) \
+  &= Cov(W_1, dots, W_n) in S_n^+ (RR)
+$
+
+#card("matantisym", "Endomorphismes et matrices antisymétriques", ("Maths.Algèbre.Euclidiens",))
+
+Endomorphismes et matrices antisymétriques.
+
+#answer
+
+Soit $u in cal(L)(E)$ où $(E, scl(dot, dot))$ euclidien. On a équivalence entre
+
++ $forall x in E, scl(u(x), x) = 0$.
+
++ $forall x, y in E, scl(u(x), y) = - scl(x, u(y))$.
+
++ $u^* = -u$
+
+On dit dans ce cas que $u$ est antisymétrique. On note $A(E)$ leur ensemble.
+
+$
+  cal(L)(E) = S(E) plus.o A(E)
+$
+
+Ainsi
+
+$
+  S(E) inter A(E) = {0}
+$
+
+Et de plus
+
+- Si $dim E in 2 NN + 1$, $det u = 0$.
+
+- Pour tout $u in A(E)$, $"rg" u in 2 NN$.
+
+- Pour tout $A in A_n (RR)$, $"Sp" (A) subset.eq i RR$.
+
+- Pour tout $A in A_n (RR)$, $A$ est diagonalisable dans $M_n (CC)$.
+
+*Démonstration*
+
+- (2 $<=>$ 3) Par définition.
+
+- (2 $=>$ 1) Avec $y = x$ : #h(1fr)
+  $
+    scl(u(x), x) = -scl(x, u(x)) = 0
+  $
+
+- (1 $=>$ 2) Soit $x, y in E$
+  $
+    0 = &scl(u(x + y), x + y) \
+    = &underbrace(scl(u(x), x), 0) + underbrace(scl(u(y), y), 0) \ + &scl(u(x), y) + scl(x, u(y))
+  $
+  D'où
+  $
+    scl(u(x), y) = -scl(x, u(y))
+  $
+
+- Découle de
+  $
+    M_n (RR) = S_n (RR) dperp A_n (RR)
+  $
+
+- Soit $u in A(E)$
+  $
+    u^* = -u \
+    det(u) = det(u^*) = det(-u) \
+    det(u) = (-1)^(dim E) det (u)
+  $
+  Donc si $dim E in 2 NN + 1$
+  $
+    det(u) = 0
+  $
+
+- Pour tout $u in A(E)$
+  $
+    E &= ker (u) dperp im (u^*) \
+    &= ker (u) dperp im (u)
+  $
+  Ainsi $im (u)$ est stable par $u$ et est un supplémentaire de $ker (u)$ donc $tilde(u)$ induit est un automorphisme et $tilde(u) in A(im u)$, nécéssairement $dim (im u) in 2 NN$.
+
+- Soit $A in A_n (RR)$, $lambda in "Sp" (A)$ et $X in C^n$ vecteur propre associé non nulle.
+  $
+    A Z &= lambda Z \
+    overline(Z)^TT A Z &= lambda overline(Z)^TT Z = lambda sum_(k = 1)^n abs(z_k) in lambda RR^*_+ \
+    overline(overline(Z)^T A Z) &= Z^TT overline(A) overline(Z) = Z^TT A overline(Z) in cal(M)_(11) (CC) \
+    &= (Z^T A overline(Z))^TT = overline(Z)^TT A^TT Z \
+    &= -overline(Z)^TT A Z in i RR
+  $
+  D'où $lambda in i RR$.
+
+- Soit $A in A_n (RR)$, comme $A^2 in S_n (RR)$, $A^2$ est diagonalisable dans $M_n (RR)$.
+
+  Or $ker A^2 = ker (- A^2) = ker (A^TT A) = ker A$, donc par un exercice de réduction, $A$ est diagonalisable dans $M_n (CC)$.
+
+#card("reducantisym", "Réduction des endomorphismes antisymétriques", ("Maths.Algèbre.Euclidiens",))
+
+Réduction des endomorphismes antisymétriques.
+
+#answer
+
+Soit $u in A(E)$ où $(E, scl(dot, dot))$ est un euclidien. On dispose de $e$ BON, $p + q = n$ et $a_1, dots, a_p in RR$ tels que
+$
+  cal(M)_e (u) = dmat(0 I_q,a_1 A, dots.down, a_p A) \
+  A = mat(0, -1; 1, 0)
+$
+
+*Démonstration*
+
+Par récurrence sur $n = dim E$. Initialisation ($n in {1, 2}$) facile.
+
+Soit $E$ de dimension $n + 1$.
+
+- Si $u in.not "GL"(E)$, $F = ker u$ est stable par $u$ et $F^perp$ aussi, on peut induire sur les deux et utiliser l'hypothèse de récurrence.
+
+- Sinon $u in "GL"(E)$, ($dim E in 2 NN$) et $"Sp"_RR (u) = emptyset$. Mais comme $E$ est un $RR$-ev, $u$ admet un plan stable, donc on peut induire et utiliser l'hypothèse de récurrence.
+
+// NOTE: Exercice M343
 ]
 #[
 
