@@ -887,7 +887,7 @@ Méthodes de recherche de limite ou d'équivalent pour les intégrales à param�
 
 // TODO: Gamma (M257)
 
-#card("rayconv", "Rayon de convergence d'une séries entière", ("Maths.Analyse.Séries entières",))
+#card("rayconv", "Rayon de convergence d'une séries entière", ("Maths.Analyse.Séries.Séries entières",))
 
 Propriétés, définition du convergence d'une séries entière.
 
@@ -946,7 +946,7 @@ $
       forall z in DD(0, R_"cv"), \ sum_(n = 0)^(+oo) c_n z^n = (sum_(n = 0)^(+oo) a_n z^n) (sum_(n = 0)^(+oo) b_n z^n)
   $
 
-#card("regse", "Régularité des séries entières", ("Maths.Analyse.Séries entières",))
+#card("regse", "Régularité des séries entières", ("Maths.Analyse.Séries.Séries entières",))
 
 Régularité des séries entières.
 
@@ -989,7 +989,7 @@ $
 
 - On applique le théorème $C^1$, qui donne la dérivée comme un série entière de même rayon de convergence (puis récurrence).
 
-#card("regidse", "Rigidité des séries entières", ("Maths.Analyse.Séries entières",))
+#card("regidse", "Rigidité des séries entières", ("Maths.Analyse.Séries.Séries entières",))
 
 Rigidité des séries entières.
 
@@ -1032,7 +1032,7 @@ Si deux séries entières coincident sur un intervalle $Ico(0, delta)$ avec $del
     a_k = b_k
   $
 
-#card("lemradabel", "Lemme radiale d'Abel", ("Maths.Analyse.Séries entières",))
+#card("lemradabel", "Lemme radiale d'Abel", ("Maths.Analyse.Séries.Séries entières",))
 
 Lemme radiale d'Abel.
 
@@ -1085,7 +1085,7 @@ $
 
 // NOTE: M169 Fractions rationnelles (+ Exo)
 
-#card("somosurlebord", "Sommation des petit o sur le bord", ("Maths.Analyse.Séries entières",))
+#card("somosurlebord", "Sommation des petit o sur le bord", ("Maths.Analyse.Séries.Séries entières",))
 
 Sommation des petit $o$ sur le bord (HP).
 
@@ -1171,7 +1171,7 @@ $
   f(x) = l + o(1)
 $
 
-#card("premformcauch", "Première formule de Cauchy", ("Maths.Analyse.Séries entières",))
+#card("premformcauch", "Première formule de Cauchy", ("Maths.Analyse.Séries.Séries entières",))
 
 Première formule de Cauchy (HP).
 
@@ -1207,7 +1207,7 @@ $
   =& a_n r^n bb(1)_(n >= 0)
 $
 
-#card("formparce", "Formule de Parseval", ("Maths.Analyse.Séries entières",))
+#card("formparce", "Formule de Parseval", ("Maths.Analyse.Séries.Séries entières",))
 
 Formule de Parseval.
 
@@ -1248,7 +1248,7 @@ $
 =& sum_(n = 0)^(+oo) abs(a_n)^2 r^(2n)
 $
 
-#card("princmax", "Principe du maximum", ("Maths.Analyse.Séries entières",))
+#card("princmax", "Principe du maximum", ("Maths.Analyse.Séries.Séries entières",))
 
 Principe du maximum.
 
@@ -1320,7 +1320,7 @@ $
   - Si le $max_(overline(DD(0, R))) abs(f)$ est atteint dans $DD(0, R)$, alors par 2., $f$ est constante, donc il est aussi atteint sur $SS(0, R)$
   - Sinon il ne peut être atteint que sur $SS(0, R)$.
 
-#card("deuxformca", "Deuxième formule de Cauchy", ("Maths.Analyse.Séries entières",))
+#card("deuxformca", "Deuxième formule de Cauchy", ("Maths.Analyse.Séries.Séries entières",))
 
 Deuxième formule de Cauchy.
 
@@ -1534,7 +1534,7 @@ Donc $c_n = C_n$ et $R = 1/4$.
 
 On peut ensuite calculer $c_n$ à partire du DSE de $sqrt(1 + x)$.
 
-#card("compdse", "Composée du développement en série entière", ("Maths.Analyse.Séries entières",))
+#card("compdse", "Composée du développement en série entière", ("Maths.Analyse.Séries.Séries entières",))
 
 Composée du développement en série entière.
 
