@@ -1307,7 +1307,7 @@ Et plus généralement pour tout $p in [|0, n|]$, $Set(M in M_n (KK), "rg" M >= 
 
 - $"GL"_n$ est ouvert comme image reciproque de $KK\\{0}$ par $det$ (qui est continue).
 
-- Soit $P in "GL"_n (KK), delta > 0$, Soit $lambda = min "Sp" (P)$, afin que $lambda / 2$ ne soit pas valeur propre, c'est à dire $P - lambda / 2 I_n in "GL"_n (KK)$.
+- Soit $P in "GL"_n (KK), delta > 0$, Soit $lambda = min "Sp" (P)$, afin que $lambda / (k + 1)$ ne soit pas valeur propre, c'est à dire $P - lambda / (k + 1) I_n in "GL"_n (KK)$, pour tout $k in NN^*$.
 
 - Soit $p in [|0, n|]$, pour $norm(dot) : M |-> "tr" (M^TT M)$. Soit $M in M_n (KK)$ tel que $"rg" M >= p$, on dispose d'une sous matrice inversible extraite de taille $p$, or $"GL"_p (KK)$ est un ouvert, donc on dispose d'une boule bien choisie qui marche.
 
@@ -1340,9 +1340,9 @@ $
 
 Même démonstration pour $"DZ"_n (RR)$ dans $"TZ"_n (RR)$.
 
-#card("nattopcycl", "Nature topologique de l'ensemble des matrices cycycliques", ("Maths.Topologie.Réduction",))
+#card("nattopcycl", "Nature topologique de l'ensemble des matrices cycliques", ("Maths.Topologie.Réduction",))
 
-Nature topologique de l'ensemble des matrices cycycliques.
+Nature topologique de l'ensemble des matrices cycliques.
 
 #answer
 
@@ -1380,7 +1380,7 @@ N'est continue que sur $Omega$.
 
 #answer
 
-Pour $A in M_n (CC)$, notons $cal(C)(A) = { P A P^(-1), P in "GL"_n(CC) }$. On a alors
+Pour $A in M_n (CC)$, notons $cal(C)(A) = { P A P^(-1), P in "GL"_n (CC) }$. On a alors
 
 - $A$ est diagonalisable ssi $cal(C)$ est fermé.
 

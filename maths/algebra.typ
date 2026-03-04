@@ -593,7 +593,7 @@ $
   a ZZ inter b ZZ = (a or b) ZZ \
 $
 
-#card("invmat", "Théorème de caractérisation des matrices inversibles", ("Maths.Algèbre.Matrices",))
+#card("invmat", "Théorème de caractérisation des matrices inversibles", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncé du théorème de caractérisation des matrices inversibles.
 
@@ -851,7 +851,7 @@ $
   (P'(X)) / (P(X)) =  m_1 / (X - alpha_1) + dots.c + m_k / (X - alpha_k)
 $
 
-#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Espaces Vectoriels",))
+#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Algèbre lineaire",))
 
 Axiomes d'un espace vectoriel.
 
@@ -864,7 +864,7 @@ Sois $KK$ un corps, $E$ muni de la somme interne $+$ et du produit externe $dot$
 + $forall lambda, mu in KK, forall x in E, (lambda + mu) x = lambda x + mu x$.
 + $forall lambda, mu in KK, forall x in E, lambda (mu x) = (lambda mu) x$
 
-#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Espaces Vectoriels",))
+#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Algèbre lineaire",))
 
 Énoncé du théorème de caractérisation du rang.
 
@@ -886,7 +886,7 @@ $
 "rg"(phi compose psi) &= "rg" psi - dim(ker phi inter im phi) \ &<= min("rg" phi, "rg" psi)
 $
 
-#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Espaces Vectoriels",))
+#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Algèbre lineaire",))
 
 Formes lineaires et hyperplans.
 
@@ -913,7 +913,7 @@ Deux hyperplans on toujours un supplémentaire commun.
 
   Ainsi $"Vect"(x_0)$ est un supplémentaire de $H_1$ et $H_2$
 
-#card("semb", "Matrices sembables", ("Maths.Algèbre.Matrices",))
+#card("semb", "Matrices sembables", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition de matrices sembables.
 
@@ -1485,7 +1485,7 @@ $
 
 $G$ un $FF_2$-ev de dimension finie, donc isomorphe à $FF_2^n$ en tant qu'éspace vectoriel, et à fortiori en tant que groupe.
 
-#card("irean", "Irréductibles d'un anneau", ("Maths.Algèbre.Anneaux et Corps",))
+#card("irean", "Irréductibles d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
 
 Définition, propriétés élémentaires sur les irréductibles dans un anneau principal.
 
@@ -1673,7 +1673,7 @@ $
 
 Et on dit qu'un polynôme $P$ est primitif si $c(P) = 1$.
 
-- Soient $P, Q in ZZ[X]$ tels que $c(P) = c(Q) = 1$, alors $c(P Q) = 1$.A
+- Soient $P, Q in ZZ[X]$ tels que $c(P) = c(Q) = 1$, alors $c(P Q) = 1$.
 - Pour tout $P, Q in ZZ[X], c(P Q) = c(P) c(Q)$.
 
 *Démonstration*
@@ -2249,7 +2249,6 @@ Propriétés, outils du dévissage de groupes.
 #answer
 
 + Soient $G$ et $H$ deux groupes cycliques de cardinaux $n$ et $p$, $G times H$ est cyclique ssi $n and p = 1$.
-+ 
 
 *Démonstration*
 
