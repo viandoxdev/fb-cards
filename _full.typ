@@ -420,7 +420,7 @@ $
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("expendom", "Exponentielle d'un endomorphisme", ("Maths.Algèbre.Algèbre lineaire.Exponentielle d'endomorphismes",))
+#card("expendom", "Exponentielle d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
 
 #answer
 ]
@@ -3938,7 +3938,7 @@ $
   (P'(X)) / (P(X)) =  m_1 / (X - alpha_1) + dots.c + m_k / (X - alpha_k)
 $
 
-#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Algèbre lineaire",))
+#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Algèbre linéaire",))
 
 Axiomes d'un espace vectoriel.
 
@@ -3951,7 +3951,7 @@ Sois $KK$ un corps, $E$ muni de la somme interne $+$ et du produit externe $dot$
 + $forall lambda, mu in KK, forall x in E, (lambda + mu) x = lambda x + mu x$.
 + $forall lambda, mu in KK, forall x in E, lambda (mu x) = (lambda mu) x$
 
-#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Algèbre lineaire",))
+#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncé du théorème de caractérisation du rang.
 
@@ -3973,7 +3973,7 @@ $
 "rg"(phi compose psi) &= "rg" psi - dim(ker phi inter im phi) \ &<= min("rg" phi, "rg" psi)
 $
 
-#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Algèbre lineaire",))
+#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Algèbre linéaire",))
 
 Formes lineaires et hyperplans.
 
@@ -5623,7 +5623,7 @@ Par défaut $alpha$ algébrique veut dire algébrique sur $QQ$., quitte à les �
 
   On a $pi_alpha | P$, or $P$ irréductible donc $P$ et $pi_alpha$ sont associé, or tout deux unitaires donc $P = pi_alpha$.
 
-#card("bastel", "Théorème de la base téléscopique", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("bastel", "Théorème de la base téléscopique", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncer et démonstration du théorème de la base téléscopique.
 
@@ -5840,7 +5840,7 @@ Ainsi $"ord"(phi(x)) | abs(G_1) and abs(G_2)$.
     cases(space 0 &"si" abs(G_2) divides.not abs(G_1), space phi(abs(G_2)) space &"sinon")  
     $
 
-#card("exunionsev", "Exercice : Union de sous espaces vectoriels", ("Maths.Exercice.Algèbre Linéaire",))
+#card("exunionsev", "Exercice : Union de sous espaces vectoriels", ("Maths.Exercice.Algèbre linéaire",))
 
 $E$ un $KK$ espace vectoriel.
 
@@ -5912,7 +5912,7 @@ $E$ un $KK$ espace vectoriel.
   $
   Et $x in F_j$ impossible.
 
-#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition et propriétés de somme directe de sev.
 
@@ -5962,7 +5962,7 @@ Il y a équivalence entre $F_1, dots, F_n$ en somme directe et
 
   Donc $x_n = 0$ et $sum_(k = 1)^(n-1) x_k = 0$ donc $x_1 = x_2 = dots.c = x_n = 0$.
 
-#card("espsup", "Espaces supplémentaires", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("espsup", "Espaces supplémentaires", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition, propriétés des espaces supplémentaires.
 
@@ -5983,7 +5983,7 @@ E = plus.big_(k = 1)^n F_k \
 <=> cases(space sum_(k = 1)^n F_k = plus.big_(k = 1)^n F_k, space dim(E) = sum_(k = 1)^n dim(F_k)) \
 $
 
-#card("notmat", "Notations de matrices", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("notmat", "Notations de matrices", ("Maths.Algèbre.Algèbre linéaire",))
 
 Notations de matrices : changements de bases, matrices d'un endomorphisme, ...
 
@@ -6034,7 +6034,7 @@ $
   P_(e -> e') = cal(M)_(e) (e') = cal(M)_(e <- e') (id)
 $
 
-#card("noyimgiter", "Exercice : Noyaux et images itérées", ("Maths.Exercice.Algèbre Linéaire",))
+#card("noyimgiter", "Exercice : Noyaux et images itérées", ("Maths.Exercice.Algèbre linéaire",))
 
 Soit $u in cal(L)(E)$ avec $E$ un $KK$-ev. Que peut on dire des suites $(ker u^k)_k$ et $(im u^k)_k$ ?
 
@@ -6181,7 +6181,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
   Et on obtient l'égalité par supplémentarité, d'où $K' = K$ et $I' = I$.
 
-#card("detligcol", "Développement du déterminant par ligne ou par colonne", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("detligcol", "Développement du déterminant par ligne ou par colonne", ("Maths.Algèbre.Algèbre linéaire",))
 
 Formules et définitions du développement du déterminant par ligne ou par colonne.
 
@@ -6215,7 +6215,7 @@ $
 
 // TODO: Démo de tout ça ?
 
-#card("exrgcom", "Exercice : rang d'une comatrice", ("Maths.Exercice.Algèbre Linéaire",))
+#card("exrgcom", "Exercice : rang d'une comatrice", ("Maths.Exercice.Algèbre linéaire",))
 
 Soit $A in M_n (KK)$ ($n >= 3$), calculer $"rg" "com"(A)$ en fonction de $"rg" A$.
 
@@ -6235,7 +6235,7 @@ Soit $A in M_n (KK)$ avec $n >= 3$.
   $
   Donc $im "com" (A) subset.eq ker A^T$ et $dim ker A^T = 1$ d'où $"rg" "com" (A) <= 1$.
 
-#card("algopivgau", "Algorithme du pivot de Gauss", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("algopivgau", "Algorithme du pivot de Gauss", ("Maths.Algèbre.Algèbre linéaire",))
 
 Déscription de l'algorithme du pivot de Gauss, et propriétés qui en découlent.
 
@@ -6336,7 +6336,7 @@ On remarque que si $A$ est inversible, les transpositions sont inutiles car il n
 
 - Les transvections et une dilatation (pour atteindre n'importe quel déterminant) suffisent à engendrer $"GL"_n (KK)$.
 
-#card("interhyppl", "Intersection d'hyperplans", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("interhyppl", "Intersection d'hyperplans", ("Maths.Algèbre.Algèbre linéaire",))
 
 Propriétés sur les intersections d'hyperplans.
 
@@ -6374,7 +6374,7 @@ $
   dim (inter.big_(k = 1)^p ker phi_k) = n - "rg" (phi_1, dots, phi_p)
 $
 
-#card("lemutihyp", "Liberté d'une famille de l'espace dual", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("lemutihyp", "Liberté d'une famille de l'espace dual", ("Maths.Algèbre.Algèbre linéaire",))
 
 Démonstration d'une CNS pour la liberté d'une famille de $cal(L) (E, KK)$ où $E$ est un $KK$-ev.
 
@@ -6422,7 +6422,7 @@ $
 
   Donc $sum_(k = 1)^p alpha_k phi_k = 0$ et la famille est liée
 
-#card("condindepfl", "Condition de liberté d'une forme linéaire à une famille", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("condindepfl", "Condition de liberté d'une forme linéaire à une famille", ("Maths.Algèbre.Algèbre linéaire",))
 
 Soit $phi_1, dots, phi_p, psi in cal(L)(E, KK)$.
 
@@ -6481,7 +6481,7 @@ $
   $
   La famille $(phi_1, dots, phi_r, psi)$ est liée d'où $psi in "Vect"(phi_1, dots, phi_p)$.
 
-#card("baseduale", "Base duale, antéduale", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("baseduale", "Base duale, antéduale", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définitions, propriétés, démonstrations autours des bases duals.
 
@@ -6551,7 +6551,7 @@ Pour toute base $(phi_1, dots, phi_n)$ de $cal(L)(E, KK)$, il existe une unique 
   $
 // TODO: point de vue matricielle
 
-#card("lemfacalgl", "Lemme de factorisation", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("lemfacalgl", "Lemme de factorisation", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncé et démonstration du lemme de factorisation en algèbre linéaire.
 
@@ -6634,7 +6634,7 @@ Soient $E, F, G$ trois $KK$-ev
 
 // TODO: VI.2) Liberté des familles de F(X, K) (flm la vrm)
 
-#card("vanlag", "Vandermonde, interpolation de Lagrange", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("vanlag", "Vandermonde, interpolation de Lagrange", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définitions, propriétés et démonstrations de l'interpolation de Lagrange et des matrices des Vandermonde.
 
@@ -6703,7 +6703,7 @@ $
 
 // TODO: Pas sur de les mettres, sous espaces stables, droite stables, definition de vecteur et valeurs propres.
 
-#card("extvp", "Exercice : endomorphisme qui stabilise toutes les droites", ("Maths.Exercice.Algèbre Linéaire",))
+#card("extvp", "Exercice : endomorphisme qui stabilise toutes les droites", ("Maths.Exercice.Algèbre linéaire",))
 
 Soit $u in cal(L)(E)$ qui stabilise toute les droites, qui dire de $u$ ?
 
@@ -6730,7 +6730,7 @@ Soit $x, y in E\\{0}$.
 
 Donc pour tout $x in E, lambda_x = lambda$ et $u = lambda id$.
 
-#card("nilp", "Endomorphismes nilpotents", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("nilp", "Endomorphismes nilpotents", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition d'un endomorphisme nilpotent et inégalité sur son indice.
 
@@ -6773,7 +6773,7 @@ D'où $d <= n$.
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("vpep", "Valeurs propres, espaces propres", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("vpep", "Valeurs propres, espaces propres", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définitions, caractérisation, démonstration autour des valeurs propres et des espaces propres.
 
@@ -6800,7 +6800,7 @@ $
   <=> u - lambda id in.not "GL"(E) quad script(vec("dimension", "finie"))
 $
 
-#card("somdirsep", "Somme directe des sous-espaces propres", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("somdirsep", "Somme directe des sous-espaces propres", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Démonstration du fait que les sous-espaces propres d'un endomorphisme sont en somme directe.
 
@@ -6830,7 +6830,7 @@ Qui est finit ($abs("Sp"(u)) <= n = dim E$).
 
 // TODO: Stabilité des sous espaces propres, ça sert a quoique que ce soit ? I.5)
 
-#card("polcar", "Polynôme caractèristique d'un endomorphisme", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("polcar", "Polynôme caractèristique d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définitions, propriétés élémentaires et démonstrations autours du polynôme caractèristique d'un endomorphisme.
 
@@ -6899,7 +6899,7 @@ $
   &= chi_A (X)
 $
 
-#card("multvp", "Multiplicités d'une valeur propre", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("multvp", "Multiplicités d'une valeur propre", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définitions des multiplicités d'une valeur propre.
 
@@ -6930,7 +6930,7 @@ $
   &= (X-lambda)^d chi_C (X)
 $
 
-#card("proppolcaran", "Propriétés diverses du polynôme caractèristique", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("proppolcaran", "Propriétés diverses du polynôme caractèristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Cas particuliers de calculs du polynôme caractèristique, et lien avec les endomorphisme induit.
 
@@ -6967,7 +6967,7 @@ Cas particuliers de calculs du polynôme caractèristique, et lien avec les endo
 
   Avec $A = cal(M)_tilde(e) (tilde(u))$.
 
-#card("diag", "Diagonalisabilité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("diag", "Diagonalisabilité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et premier critère de diagonalisabilité.
 
@@ -6997,7 +6997,7 @@ En particulier
     underbrace(ker (s - id), E_1 (s)) plus.o underbrace(ker s + id, E_(-1) (s)) = E
   $
 
-#card("autcrit", "Autre critère de diagonalisabilité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("autcrit", "Autre critère de diagonalisabilité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Énoncer du critère de diagonalisabilité sur $chi_u$ et les multiplicités.
 
@@ -7043,7 +7043,7 @@ $
 
   Donc $u$ est diagonalisable.
 
-#card("trigonalisabilite", "Trigonalisabilité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("trigonalisabilite", "Trigonalisabilité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et premier critères de la trigonalisabilité.
 
@@ -7100,7 +7100,7 @@ $
   A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
 $
 
-#card("carnilp", "Caractèrisation des endomorphismes nilpotents", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("carnilp", "Caractèrisation des endomorphismes nilpotents", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Caractèrisation des endomorphisme nilpotents.
 
@@ -7160,7 +7160,7 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
     u(e_k) in "Vect"(e_1, dots, e_i_(j-1))
   $
 
-#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractèristique", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractèristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Lien entre racines du polynôme minimal et celles du polynôme caractèristique.
 
@@ -7203,7 +7203,7 @@ $
   lambda in "Sp"(u)
   $
 
-#card("tdn", "Théorème des noyaux", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("tdn", "Théorème des noyaux", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Énoncé et démonstrations du théorème des noyaux.
 
@@ -7274,7 +7274,7 @@ ker P (u) &= ker (P_(N+1) Q) (u) \
 &= plus.o.big_(k = 1)^(N+1) ker P_k (u)
 $
 
-#card("projchelou", "Démonstration annexe du théorème des noyaux", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("projchelou", "Démonstration annexe du théorème des noyaux", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Démonstration secondaire du théorème des noyaux dans le cas d'un polynôme annulateur.
 
@@ -7344,7 +7344,7 @@ $
   Pi_k &in KK[u]
 $
 
-#card("crtidiag", "Critère de Diagonalisabilité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("crtidiag", "Critère de Diagonalisabilité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Démonstration d'une CNS de diagonalisabilité.
 
@@ -7387,7 +7387,7 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
   $
   Donc $Pi_u | P$ SARS.
 
-#card("diaginduit", "Diagonalisabilité d'un endomorphisme induit", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("diaginduit", "Diagonalisabilité d'un endomorphisme induit", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Diagonalisabilité d'un endomorphisme induit.
 
@@ -7409,7 +7409,7 @@ Notons $tilde(u)$ l'endomorphisme induit par $u$ sur $F$.
 
 // TODO: M127 Dénombrement
 
-#card("seceng", "Sous-espaces cycliques", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("seceng", "Sous-espaces cycliques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition de sous-espace cyclique et base associé.
 
@@ -7451,7 +7451,7 @@ $
   = (x_0, u(x_0), dots, u^(d - 1) (x_0))
 $
 
-#card("endocycl", "Endomorphismes cycliques", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endocycl", "Endomorphismes cycliques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition, propriétés, démonstration autour des endomorphismes cycliques.
 
@@ -7484,7 +7484,7 @@ Soit $u in cal(L)(E)$, on dit que $u$ est cyclique si l'une des conditions équi
 
   Or $F_x_0 = E$ par hypothèse, donc $dim F_x_0 = n$ et $d = n$.
 
-#card("cycmat", "Vision matricielle de la cyclicité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("cycmat", "Vision matricielle de la cyclicité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Lien entre endomorphisme cyclique et matrices de compagnon.
 
@@ -7564,7 +7564,7 @@ $
   Pi_u = P
 $
 
-#card("matcomp", "Matrice compagnon", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("matcomp", "Matrice compagnon", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition de matrice compagnon.
 
@@ -7668,7 +7668,7 @@ deg Pi_(u,x_0) = n = dim underbrace("Vect"(u^k (x_0))_(k in NN), F_x_0)
 $ 
 D'où $F_x_0 = E$ et $u$ cyclique.
 
-#card("cayleyhamilton", "Théorème de Cayley-Hamilton", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("cayleyhamilton", "Théorème de Cayley-Hamilton", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Énoncé et démonstration du théorème de Cayley-Hamilton.
 
@@ -7785,7 +7785,7 @@ $
   $
   Donc $v$ et $sum_(k = 0)^(n-1) alpha_k u^k$ coincident sur une base, d'où $v in KK[u]$.
 
-#card("polmintz", "Critère de trigonalisabilité sur le polynôme minimal", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("polmintz", "Critère de trigonalisabilité sur le polynôme minimal", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Soit $u in cal(L)(E)$, CNS de trigonalisabilité sur $Pi_u$.
 
@@ -7873,7 +7873,7 @@ $
   chi_u | Pi_u Pi_A^(n-k) | Pi_u^(n - k + 1) | Pi_u^n
 $
 
-#card("decompsec", "Décomposition en sous espaces caractèristiques", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("decompsec", "Décomposition en sous espaces caractèristiques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et démonstration de la décomposition en sous-espaces caractèristiques.
 
@@ -7935,7 +7935,7 @@ product_(k = 1)^N (X - lambda_k)^(m_k) = chi_u = product_(k = 1)^N (X - lambda_k
 m_k = dim F_k
 $
 
-#card("secarpolmin", "Sous-espaces caractèristiques et polynôme minimal", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("secarpolmin", "Sous-espaces caractèristiques et polynôme minimal", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Lien entre la décomposition en sous-espaces caractèristiques et le polynôme minimal.
 
@@ -8024,7 +8024,7 @@ Soit $u in cal(L)(E)$, $Pi_u = X^d Q$ avec $X divides.not Q$.
   $
   D'où $im u^d = ker Q(u)$.
 
-#card("dunford", "Décomposition de Dunford", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("dunford", "Décomposition de Dunford", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et démonstration de la décomposition de Dunford.
 
@@ -8109,7 +8109,7 @@ $
 
 D'où $d' - d = 0$ et $n' - n = 0$.
 
-#card("codiag", "Codiagonalisabilité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("codiag", "Codiagonalisabilité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et critère de codiagonalisabilité.
 
@@ -8161,7 +8161,7 @@ On dispose donc de $e_k$ base de $E_lambda_k (u_j)$ formée de vecteurs propres 
 
 // TODO: Ex 64 de la fiche réduction
 
-#card("comendo", "Commutant d'un endomorphisme diagonalisable", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("comendo", "Commutant d'un endomorphisme diagonalisable", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Propriétés sur le commutant d'un endomorphisme diagonalisable.
 
@@ -8257,7 +8257,7 @@ $
 $
 D'où $w in KK[u]$.
 
-#card("projspect", "Projecteurs spectraux d'un endomorphisme diagonalisable", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("projspect", "Projecteurs spectraux d'un endomorphisme diagonalisable", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et propriétés des projecteurs spectraux d'un endomorphisme diagonalisable.
 
@@ -8290,7 +8290,7 @@ $
   u^p = sum_(k = 1)^N lambda_k^q p_k in KK_(N - 1) [u]
 $
 
-#card("sesendodiag", "Sous-espaces stables d'un endomorphisme diagonalisable", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("sesendodiag", "Sous-espaces stables d'un endomorphisme diagonalisable", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Propriétés sur les sous-espaces stables d'un endomorphisme diagonalisable.
 
@@ -8320,7 +8320,7 @@ Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
 
 + L'écrire.
 
-#card("dopsprev", "Existence d'une droite ou d'un plan stable dans un espace vectoriel réel", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("dopsprev", "Existence d'une droite ou d'un plan stable dans un espace vectoriel réel", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Démonstration de l'existence d'une droite ou d'un plan stable dans un espace vectoriel réel.
 
@@ -8364,7 +8364,7 @@ Avec $P_1, dots, P_N$ irréductibles deux à deux distincts.
   $
   Absurde donc $F$ est un plan.
 
-#card("endosimple", "Endomorphismes simples", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endosimple", "Endomorphismes simples", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Soit $u in cal(L)(E)$, il y a équivalence entre
 
@@ -8401,7 +8401,7 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
   $
   D'où $F_y$ stable non trivial.
 
-#card("endosemsimple", "Endomorphismes semi-simples", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endosemsimple", "Endomorphismes semi-simples", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Définition et propriétés des endomorphismes semi-simples.
 
@@ -8554,7 +8554,7 @@ Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisabl
   $
   Donc $tilde(u)$ admet une valeur propre $lambda$ et un vecteur propre $x in F inter G = {0}$ qui est absurde. Donc $G = {0}$ et $F = E$ : $u$ est diagonalisable.
 
-#card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endomatrix", "Endomorphismes de produit de matrices", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Propriétés sur les endomorphismes de la forme $M |-> A M$ et $M |-> M A$ de $cal(L)(M_n (KK))$.
 
@@ -8611,7 +8611,7 @@ $
   $
   Ainsi $E_lambda (L_A) tilde.eq E_lambda (A)^n$.
 
-#card("endodiffprodmat", "Endomorphisme différence de produits de matrices", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endodiffprodmat", "Endomorphisme différence de produits de matrices", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Propriétés sur l'endomorphisme $phi : M |-> A M - M B$ in $cal(L)(M_n (KK))$
 
@@ -8699,7 +8699,7 @@ De plus on a
   $
   Ainsi $alpha + mu in "Sp"(A)$.
 
-#card("endocommuta", "Endomorphisme commutateur de matrices", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endocommuta", "Endomorphisme commutateur de matrices", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Propriétés sur les endomorphismes de la forme $M |-> A M - M A in cal(L)(M_n (KK))$.
 
@@ -8739,7 +8739,7 @@ On a les propriétés de $M |-> A M - M B$, et de plus
   $
   Est diagonalisable.
 
-#card("endonilpcyc", "Endomorphismes nilpotents cycliques", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("endonilpcyc", "Endomorphismes nilpotents cycliques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Caractèrisation des sev stables par un endomorphisme nilpotent cyclique.
 
@@ -8766,7 +8766,7 @@ $
 
 D'où $F = ker u^d$.
 
-#card("prodkroc", "Produit de Kronecker et diagonalisabilité", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("prodkroc", "Produit de Kronecker et diagonalisabilité", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Diagonalisabilité du produit de Kronecker de matrices (dimension $2n$).
 
@@ -8822,7 +8822,7 @@ Alors
   Donc $Pi_M'(A) in "GL"_n (KK)$ et $A Pi_M' (A) = 0$ d'où $A = 0$.
 // TODO: Exo 51 Reduc
 
-#card("cotz", "Cotrigonalisation", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("cotz", "Cotrigonalisation", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Critère de Cotrigonalisabilité d'une famille d'endomorphismes.
 
@@ -8974,7 +8974,7 @@ Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u 
   $
   Et $A B - B A = A$ car $u v - v u = u$ donc on dispose de $(e_2, dots, e_n)$ qui cotrigonalisent $A$ et $B$.
 
-#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Soit $E$ un $KK$-ev de dimension $n$ ($KK subset.eq CC$).
 
@@ -9034,7 +9034,7 @@ $
   $
   Or $V(beta_1, dots, beta_N) != 0$ d'où $m_i = n_i$.
 
-#card("calcpmatdz", "Calcul de puissance de matrice : cas diagonalisable", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("calcpmatdz", "Calcul de puissance de matrice : cas diagonalisable", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Méthodes de calcul des puissances d'une matrice diagonalisable.
 
@@ -9074,7 +9074,7 @@ Soit $A in M_n (KK)$ diagonalisable.
   $
   On a alors $P(A) X = A^k X$ pour tout $X$, d'où $P(A) = A^k$.
 
-#card("calcpmatde", "Calcul de puissance de matrice : polynôme annulateur", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("calcpmatde", "Calcul de puissance de matrice : polynôme annulateur", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Méthodes de calcul des puissances d'une matrice grâce à un polynôme annulateur.
 
@@ -9095,7 +9095,7 @@ $
   A^p &= sum_(k = 0)^(m - 1) vec(p, k) lambda^(p - k)(A - lambda I_n)^(k)
 $
 
-#card("eqmat", "Équations matricielles", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("eqmat", "Équations matricielles", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Méthodes de résolutions d'équations matricielles.
 
@@ -9139,7 +9139,7 @@ $
 $
 D'où $P(mu_k) = lambda_k$ pour tout $k in [|1,n|]$.
 
-#card("eqmatxk", "Racine k-ème de matrices", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("eqmatxk", "Racine k-ème de matrices", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Méthodes général de résolution de l'équation $M^p = A$.
 
@@ -9208,7 +9208,7 @@ Soit $A in M_n (KK)$ et $p in NN$.
     &= A
   $
 
-#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Soit $u in cal(L)(E)$ où $E$ est un $CC$-ev, montrer que
 $
@@ -9247,7 +9247,7 @@ $
   $
   D'où $u$ diagonalisable.
 // TODO: Exo 16/17 cf photos
-#card("rechhypstab", "Recherche d'hyperplans stables", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("rechhypstab", "Recherche d'hyperplans stables", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Méthodes de recherche d'hyperplans stables.
 
@@ -9272,7 +9272,7 @@ $
   <=> exists lambda in KK, A^TT L^TT = lambda L^TT
 $
 
-#card("polcarabba", "Pseudo-commutativité du polynôme caractèristique", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("polcarabba", "Pseudo-commutativité du polynôme caractèristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Pour $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$, lien entre $chi_(A B)$ et $chi_(B A)$.
 
@@ -9333,7 +9333,7 @@ $
   $
   Avec égalité par symétrie.
 
-#card("redmatrg1", "Réduction de matrice dans rang 1", ("Maths.Algèbre.Algèbre lineaire.Réduction",))
+#card("redmatrg1", "Réduction de matrice dans rang 1", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Propriétés de réduction de matrices de rang $1$. 
 
@@ -9369,7 +9369,7 @@ Soit $A in M_n (KK)$ tel que $"rg" A = 1$.
 
 + Si $tr A = 0$, $X^2$ annule $A$, donc $A$ est nilpotente.
 
-#card("suitreclin", "Suites récurrentes linéaires", ("Maths.Algèbre.Algèbre lineaire.Réduction", "Maths.Analyse.Suites"))
+#card("suitreclin", "Suites récurrentes linéaires", ("Maths.Algèbre.Algèbre linéaire.Réduction", "Maths.Analyse.Suites"))
 
 Propriétés, méthodes d'étude de suites récurrentes linéaires.
 
