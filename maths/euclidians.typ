@@ -10,7 +10,7 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("fbildege", "Formes bilinéaires non dégénérées", ("Maths.Algèbre.Euclidiens",))
+#card("fbildege", "Formes bilinéaires non dégénérées", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Formes bilinéaires non dégénérées.
 
@@ -39,7 +39,7 @@ On a alors
   $
   Donc $x in ker psi = {0}$ d'où $x = 0$.
 
-#card("idpseucl", "Identités du produit scalaire", ("Maths.Algèbre.Euclidiens",))
+#card("idpseucl", "Identités du produit scalaire", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Identités du produit scalaire (polarisation, parallèlogramme).
 
@@ -58,7 +58,7 @@ Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien.
     norm(x + y)^2 + norm(x - y)^2 = 2 norm(x)^2 + 2 norm(y)^2
   $
 
-#card("partieortho", "Orthogonal d'une partie", ("Maths.Algèbre.Euclidiens",))
+#card("partieortho", "Orthogonal d'une partie", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Orthogonal d'une partie.
 
@@ -88,7 +88,7 @@ On a alors
 
 - L'écrire.
 
-#card("projecsev", "Projection orthogonale sur un sev de dimension finie", ("Maths.Algèbre.Euclidiens",))
+#card("projecsev", "Projection orthogonale sur un sev de dimension finie", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Projection orthogonale sur un sev de dimension finie.
 
@@ -108,7 +108,7 @@ $
 
 // NOTE: M320 matrice d'une application bilinéaire
 
-#card("exinegdetfam", "Exercice : Inégalité sur le determinant d'une famille de vecteurs", ("Maths.Algèbre.Euclidiens",))
+#card("exinegdetfam", "Exercice : Inégalité sur le determinant d'une famille de vecteurs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Soit $(E, scl(dot, dot))$ euclidien de dimension $n$, $(x_1, dots, x_n) in E^n$ une famille de vecteurs et $e$ une BON. Montrer que $abs(det_e (x_1, dots, x_n))$ est indépendant de la BON $e$ choisie et que
 $
@@ -139,7 +139,7 @@ $
   $
   Car $cal(M)_w (x) in T_n^+ (RR)$.
 
-#card("thmrepr", "Théorème de représentation", ("Maths.Algèbre.Euclidiens",))
+#card("thmrepr", "Théorème de représentation", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Théorème de représentation.
 
@@ -158,7 +158,7 @@ $
 $
 Est injective et donc bijective par argument dimensionnel.
 
-#card("adjendo", "Adjoint d'un endomorphisme", ("Maths.Algèbre.Euclidiens",))
+#card("adjendo", "Adjoint d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Adjoint d'un endomorphisme.
 
@@ -231,7 +231,7 @@ On a alors
     &= norm(u(x))^2
   $
 
-#card("isomvec", "Isométries vectorielles", ("Maths.Algèbre.Euclidiens",))
+#card("isomvec", "Isométries vectorielles", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Isométries vectorielles.
 
@@ -300,7 +300,7 @@ On a alors
     scl(tilde(u)(x), tilde(u)(y)) &= scl(u(x), u(y)) \ &= scl(x, y)
   $
 
-#card("symprojortho", "Symétries et projecteurs ortogonaux", ("Maths.Algèbre.Euclidiens",))
+#card("symprojortho", "Symétries et projecteurs ortogonaux", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Symétries et projecteurs ortogonaux.
 
@@ -346,7 +346,7 @@ Ou de manière équivalente si $p$ est autoadjoint.
     scl(x, y) = 0
   $
 
-#card("endosym", "Endomorphismes symétriques ou autoadjoints", ("Maths.Algèbre.Euclidiens",))
+#card("endosym", "Endomorphismes symétriques ou autoadjoints", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Endomorphismes symétriques ou autoadjoints.
 
@@ -365,7 +365,7 @@ $
 $
 Qui est donc un sev de $cal(L)(E)$ et $dim S(E) = (n (n+1)) / 2$.
 
-#card("thspectral", "Théorème spectrale", ("Maths.Algèbre.Euclidiens",))
+#card("thspectral", "Théorème spectrale", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Théorème spectrale.
 
@@ -412,7 +412,7 @@ On suppose $A in S_n (RR)$
   $
   Et on conclus par hypothèse de récurrence.
 
-#card("calcvpps", "Expression des valeurs propres avec le produit scalaire", ("Maths.Algèbre.Euclidiens",))
+#card("calcvpps", "Expression des valeurs propres avec le produit scalaire", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Expression des valeurs propres avec le produit scalaire.
 
@@ -503,7 +503,7 @@ Par le théorème spectral on dispose d'une BON de vecteurs propres $(e_1, dots,
     norm(u)_"op" = rho = max_(lambda in "Sp"(u)) abs(lambda)
   $
 
-#card("endoautopos", "Endomorphismes autoadjoints positifs", ("Maths.Algèbre.Euclidiens",))
+#card("endoautopos", "Endomorphismes autoadjoints positifs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Endomorphismes autoadjoints positifs.
 
@@ -609,7 +609,7 @@ Matriciellement, pour $A in S_n (RR)$, on regarde le signe de $X^TT A X$.
 
 // TODO: Vérifier
 
-#card("decompensympos", "Décomposition des Endomorphismes symétriques positifs", ("Maths.Algèbre.Euclidiens",))
+#card("decompensympos", "Décomposition des Endomorphismes symétriques positifs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Décomposition des Endomorphismes symétriques positifs.
 
@@ -657,7 +657,7 @@ Pour $S in M_n (RR)$
   $
   Et si de plus $S in S^(++)_n (RR)$, $Delta in "GL"_n (RR)$ et $A in "GL"_n (RR)$.
 
-#card("matgramm", "Matrices de Gram", ("Maths.Algèbre.Euclidiens",))
+#card("matgramm", "Matrices de Gram", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Matrices de Gram.
 
@@ -695,7 +695,7 @@ On a les propriétés suivantes
 
 // NOTE: Exercices M329-330
 
-#card("reducisomvec", "Réduction des isométries vectorielles", ("Maths.Algèbre.Euclidiens",))
+#card("reducisomvec", "Réduction des isométries vectorielles", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Réduction des isométries vectorielles.
 
@@ -764,7 +764,7 @@ Calculs.
 
     Or comme $E$ est un $RR$-ev, $u$ admet un plan stable, et on peut induire dessus, et il ne s'agit pas d'une réflexion car pas de valeurs propres.
 
-#card("identso", "Identification d'une matrice de rotation en dimension 3", ("Maths.Algèbre.Euclidiens",))
+#card("identso", "Identification d'une matrice de rotation en dimension 3", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Identification d'une matrice de rotation en dimension 3.
 
@@ -822,7 +822,7 @@ $
   =& product_(k = p + 1)^(p + q) S_k dot product_(k = 1)^r (T_(p + q + 2r - 1) (theta_k) S_(p + q + 2 r))
 $
 
-#card("raccarendos", "Racine carrée d'une matrice symétrique positive", ("Maths.Algèbre.Euclidiens",))
+#card("raccarendos", "Racine carrée d'une matrice symétrique positive", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Racine carrée d'une matrice symétrique positive.
 
@@ -864,7 +864,7 @@ $
 
 // NOTE: Analogies M334
 
-#card("decomppolaire", "Décomposition polaire d'Endomorphismes", ("Maths.Algèbre.Euclidiens",))
+#card("decomppolaire", "Décomposition polaire d'Endomorphismes", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Décomposition polaire d'Endomorphismes.
 
@@ -938,7 +938,7 @@ Et si $A in "GL"_n (RR)$, $R in S_n^(++) (RR)$ et cette décomposition est uniqu
   $
   Avec unicité de $R$ car $B^TT B = R^2$.
 
-#card("normadj", "Norme et adjoint d'un endomorphisme", ("Maths.Algèbre.Euclidiens",))
+#card("normadj", "Norme et adjoint d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Norme et adjoint d'un endomorphisme.
 
@@ -1040,7 +1040,7 @@ Soit $u in cal(L)(E)$ avec $(E, scl(dot, dot))$ euclidien tel que $norm(u)_"op" 
   $
   On a la CVS, et on peut en déduire la CVU en appliquant la CVS sur une BON.
 
-#card("prodmatsym", "Produit de matrices symétriques", ("Maths.Algèbre.Euclidiens",))
+#card("prodmatsym", "Produit de matrices symétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Produit de matrices symétriques.
 
@@ -1157,7 +1157,7 @@ Soit $(E, scl(dot, dot))$ un euclidien de dimension $n$, $(a_i)_i, (b_i)_i in E^
     A = P^(-1) B
   $
 
-#card("actionparcongr", "Action par congruence", ("Maths.Algèbre.Euclidiens",))
+#card("actionparcongr", "Action par congruence", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Action par congruence.
 
@@ -1207,7 +1207,7 @@ $
 
 - Les écrires.
 
-#card("coredmatsym", "Coréduction des matrices symétriques", ("Maths.Algèbre.Euclidiens",))
+#card("coredmatsym", "Coréduction des matrices symétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Coréduction des matrices symétriques.
 
@@ -1242,7 +1242,7 @@ $
 
 // NOTE: Applications que j'ai pas compris M339
 
-#card("decomsing", "Décomposition en valeurs singulières", ("Maths.Algèbre.Euclidiens",))
+#card("decomsing", "Décomposition en valeurs singulières", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Décomposition en valeurs singulières.
 
@@ -1309,7 +1309,7 @@ Et les valeurs sinngulières de $A$ sont les racines carrées des valeurs propre
 
 La même en introduisant $u^*$ l'endomorphisme associé à $A^TT$ (car pas adjoit tel qu'on la définit sur les endomorphismes).
 
-#card("matcov", "Matrice de covariance", ("Maths.Algèbre.Euclidiens", "Maths.Probabilités"))
+#card("matcov", "Matrice de covariance", ("Maths.Algèbre.Algèbre linéaire.Euclidiens", "Maths.Probabilités"))
 
 Matrice de covariance.
 
@@ -1373,7 +1373,7 @@ $
   &= Cov(W_1, dots, W_n) in S_n^+ (RR)
 $
 
-#card("matantisym", "Endomorphismes et matrices antisymétriques", ("Maths.Algèbre.Euclidiens",))
+#card("matantisym", "Endomorphismes et matrices antisymétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Endomorphismes et matrices antisymétriques.
 
@@ -1465,7 +1465,7 @@ Et de plus
 
   Or $ker A^2 = ker (- A^2) = ker (A^TT A) = ker A$, donc par un exercice de réduction, $A$ est diagonalisable dans $M_n (CC)$.
 
-#card("reducantisym", "Réduction des endomorphismes antisymétriques", ("Maths.Algèbre.Euclidiens",))
+#card("reducantisym", "Réduction des endomorphismes antisymétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Réduction des endomorphismes antisymétriques.
 

@@ -59,14 +59,22 @@
       }
     } else {
       block(
-        inset: (left: 0.5em, top: 0.2em, bottom: 0.2em),
-        stroke: (left: 0.8pt + black),
+        inset: (rest: 0.5em, right: 0pt),
+        stroke: (rest: 0.8pt + luma(200), right: none),
+        radius: (top-right: 0pt, bottom-right: 0pt, rest: 4pt),
         spacing: 0.9em,
         {
           text(weight: "bold", node.name, font: "DejaVu Sans Mono", size: 8pt)
           linebreak()
+          //set par(hanging-indent: 1em, spacing: 0.7em, leading: 0.6em)
+          //for card in node.cards.sorted(key: (card) => card.name) {
+          //  par(render_card(card))
+          //}
+          // if node.cards.len() > 0 {
+          //   list(marker: [‣], ..node.cards.sorted(key: (card) => card.name).map(render_card))
+          // }
           for card in node.cards.sorted(key: (card) => card.name) {
-            render_card(card)
+             box(render_card(card), radius: 4pt, inset: 0.6em, fill: luma(245))
           }
           for child in node.children.sorted(key: (child) => child.name) {
             render(child)

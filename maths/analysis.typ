@@ -158,7 +158,7 @@ $
   sum_(k=1)^n k^3 = ((n(n+1)) / 2)^2 = (n^2(n+1)^2) / 4 \
 $
 
-#card("edlo1", "EDL d'ordre 1", ("Maths.Analyse.EDL",))
+#card("edlo1", "EDL d'ordre 1", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soit $a, b in CC, c(x)$ et $C(x)$ tel que $C'(x) = c(x)$.
 
@@ -175,7 +175,7 @@ $
   S_2 = {x |-> lambda e^(A(x)), lambda in RR}
 $
 
-#card("edlsepvar", "Méthode de séparation des variables", ("Maths.Analyse.EDL",))
+#card("edlsepvar", "Méthode de séparation des variables", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soit $a(x) in D^1$
 $
@@ -194,7 +194,7 @@ $
   y = underbrace(y_0 e^(-A(x_0)), lambda) e^(A(x))
 $
 
-#card("edlvarcst", "Méthode de variation de la constante", ("Maths.Analyse.EDL",))
+#card("edlvarcst", "Méthode de variation de la constante", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soient $a(x), b(x) : RR -> RR$ et $A(x)$ une primitive de $a(x)$.
 $
@@ -221,7 +221,7 @@ $
   lambda (x) &= integral b(x) e^(-A(x)) dif x
 $
 
-#card("edlo2", "EDL d'ordre 2", ("Maths.Analyse.EDL",))
+#card("edlo2", "EDL d'ordre 2", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soient $a, b, c in CC$, résolution de l'équation homogène :
 $
@@ -302,7 +302,7 @@ $
 $
 Les parties convexes de $RR$ sont des intervalles.
 
-#card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites Réelles",))
+#card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites.Suites réelles",))
 
 Formule explicite d'une suite arithmético-géometrique.
 
@@ -320,7 +320,7 @@ $
   u_n &= a^n (v_0 - w) + w
 $
 
-#card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites Réelles",))
+#card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites.Suites réelles",))
 
 Formule explicite d'une suite récurrente d'ordre 2.
 
@@ -344,7 +344,7 @@ $
   $
 Avec $lambda, mu in RR$ déterminés par $u_0$ et $u_1$.
 
-#card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites Réelles",))
+#card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites.Suites réelles",))
 
 Définition et théorème des suites adjacentes et emboitées.
 
@@ -369,7 +369,7 @@ Définition et théorème des suites adjacentes et emboitées.
     inter.big_(n=0)^oo Icc(a_n, b_n) = {x} \ "avec" x = lim a_n = lim b_n
   $
 
-#card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites Réelles",))
+#card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites.Suites réelles",))
 
 Théorème de Bolzano-Weiestrass et démonstration.
 
@@ -396,7 +396,7 @@ Soit $phi$ une extractrice, par récurrence :
 
 Donc $a_n <= u_(phi(n)) <= b_n$ d'où $lim u_(phi(n)) = l$.
 
-#card("cesaro", "Moyennes de Cesàro", ("Maths.Analyse.Suites Réelles",))
+#card("cesaro", "Moyennes de Cesàro", ("Maths.Analyse.Suites.Suites réelles",))
 
 Définition, propriétés des moyennes de Cesàro.
 
@@ -412,7 +412,7 @@ Preuve :
 - $l$ fini : Découpage pour $n < N$ et $n >= N$ et inégalité triangulaire.
 - $l$ infini : majoration.
 
-#card("asympt", "Manipulations asymptotiques", ("Maths.Analyse.Suites Réelles",))
+#card("asympt", "Manipulations asymptotiques", ("Maths.Analyse.Suites.Suites réelles",))
 
 Manipulations asymptotiques élémentaires.
 
@@ -428,7 +428,7 @@ Manipulations asymptotiques élémentaires.
 - Si $u_n ~ v_n$ (ou $O, o$), alors $u_(phi(n)) ~ v_(phi(n))$ (ou $O, o$)
 - $o$ et $~$ sont des cas particuliers de $O$.
 
-#card("asyusu", "Comparaison asymptotiques usuelles", ("Maths.Analyse.Suites Réelles",))
+#card("asyusu", "Comparaison asymptotiques usuelles", ("Maths.Analyse.Suites.Suites réelles",))
 
 Comparaison asymptotiques usuelles, stirling
 
@@ -691,7 +691,7 @@ $
 lim_(x -> plus.minus oo) f(x) - a x - b = 0
 $
 
-#card("suitrec", "Suites récurrentes", ("Maths.Analyse.Suites Réelles",))
+#card("suitrec", "Suites récurrentes", ("Maths.Analyse.Suites.Suites réelles",))
 
 Méthode pour les suites récurrentes de la forme $u_(n+1) = f(u_n)$.
 

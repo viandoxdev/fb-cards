@@ -530,7 +530,7 @@ $
 $
 Et en sommant on a le résultat demandé.
 
-#card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercices.Probabilités",))
+#card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercice.Probabilités",))
 
 Démonstration probabiliste du théorème de Weierstrass.
 

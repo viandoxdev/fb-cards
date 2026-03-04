@@ -97,7 +97,7 @@ Inégalités utiles qui tiennent pour les fonctions à valeur dans un evn de dim
     <= abs(b - a) / (n+1)! sup_[a, b] norm(f^((n+1)))
   $
 
-#card("cvs", "Convergence simple", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("cvs", "Convergence simple", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Propriétés, définition de la convergence simple.
 
@@ -153,7 +153,7 @@ Si $A = I$ intervalle et $E = RR$
   $
   Donc au sens de la norme infinie : $P_n -> Q = f$.
 
-#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de continuité pour les suites de fonctions.
 
@@ -175,7 +175,7 @@ $
   < & 3 epsilon
 $
 
-#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de la double limite pour les suites de fonctions.
 
@@ -198,7 +198,7 @@ $
   norm(l_n - l_m) <= norm(f_n - f_m)_oo "de Cauchy"
 $
 
-#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de primitivation pour les suites de fonctions.
 
@@ -239,7 +239,7 @@ $
   &<= M epsilon
 $
 
-#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation pour les suites de fonctions.
 
@@ -258,7 +258,7 @@ $
 
 Par théorème de primitivation.
 
-#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation k-ème pour les suites de fonctions.
 
@@ -278,7 +278,7 @@ Pour tout $j in [|0, k|]$, $(f^((j))_n)_n$ CVU sur tout segment vers $g_j = g_0^
 
 Récurrence à l'aide du théorème de dérivation.
 
-#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de continuité pour les séries de fonctions.
 
@@ -298,7 +298,7 @@ Alors $S : x |-> sum_(n = 0)^(+oo) f_n (x)$ est continue en $a$.
 
 On applique le théorème de continuité pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de la doulbe limite pour les séries de fonctions.
 
@@ -321,7 +321,7 @@ $
 
 On applique le théorème de la double limite pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation pour les séries de fonctions.
 
@@ -337,7 +337,7 @@ Alors $sum f_n$ CVU sur tout segment de $I$, et $S in C^1 (I, F)$ et $S' = sum_(
 
 On applique le théorème de dérivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation k-ème pour les séries de fonctions.
 
@@ -359,7 +359,7 @@ $
 
 On applique le théorème de dérivation k-ème pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de primitivation pour les séries de fonctions.
 
@@ -568,7 +568,7 @@ $
 
 On montre $C^0$ avec le théorème de continuité, puis on montre la dérivabilité par le théorème de convergence dominée en calculant la limite usuelle.
 
-#card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Exemples d'espaces denses de fonctions.
 
@@ -584,7 +584,7 @@ Les fonctions polynômiales sur $[a, b]$ sont denses dans $(C^0 ([a, b], KK), no
 
 // TODO: Exos M230-231
 
-#card("dini1", "Premier théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("dini1", "Premier théorème de Dini", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Énoncé et démonstration du premier théorèmes de dini (HP).
 
@@ -616,7 +616,7 @@ $
 
 Absurde. Donc on dispose de $N in NN$ tel que pour tout $n >= N$, $K_n = emptyset$, c'est à dire $norm(g_n)_oo < epsilon$.
 
-#card("dini2", "Deuxième théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("dini2", "Deuxième théorème de Dini", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Énoncé et démonstration du deuxième théorèmes de dini (HP).
 
@@ -650,7 +650,7 @@ $
   - 2 epsilon < f_n (x) - f(x) < 2 epsilon
 $
 
-#card("equicont", "Équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("equicont", "Équicontinuité", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Définitions, propriétés de (uniforme) équicontinuité.
 
@@ -683,7 +683,7 @@ $
 
 - Soit $epsilon > 0$, on pose $delta = epsilon / k$ qui convient pour tout $i in I$.
 
-#card("cvscvuuec", "Convergence uniforme par convergence simple et uniforme équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("cvscvuuec", "Convergence uniforme par convergence simple et uniforme équicontinuité", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Démonstration de la convergence uniforme par convergence simple et uniforme équicontinuité.
 
@@ -721,7 +721,7 @@ $
 
 On peut montrer ce resultat pour $K$ compact quelconque (au lieu de $[a, b]$), le découpage se faisant par précompacité.
 
-#card("modeconvseries", "Modes de convergence des séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("modeconvseries", "Modes de convergence des séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Modes de convergence des séries de fonctions.
 
@@ -762,7 +762,7 @@ $
 
 // TODO: Développement en série de cotan (M241-242)
 
-#card("ascoli", "Théorème d'Ascoli", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("ascoli", "Théorème d'Ascoli", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Énoncé, démonstration du Théorème d'Ascoli.
 
