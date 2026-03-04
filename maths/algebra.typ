@@ -851,7 +851,7 @@ $
   (P'(X)) / (P(X)) =  m_1 / (X - alpha_1) + dots.c + m_k / (X - alpha_k)
 $
 
-#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Algèbre lineaire",))
+#card("axesp", "Axiomes d'un espace vectoriel", ("Maths.Algèbre.Algèbre linéaire",))
 
 Axiomes d'un espace vectoriel.
 
@@ -864,7 +864,7 @@ Sois $KK$ un corps, $E$ muni de la somme interne $+$ et du produit externe $dot$
 + $forall lambda, mu in KK, forall x in E, (lambda + mu) x = lambda x + mu x$.
 + $forall lambda, mu in KK, forall x in E, lambda (mu x) = (lambda mu) x$
 
-#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Algèbre lineaire",))
+#card("ran", "Théorème de caractérisation du rang", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncé du théorème de caractérisation du rang.
 
@@ -886,7 +886,7 @@ $
 "rg"(phi compose psi) &= "rg" psi - dim(ker phi inter im phi) \ &<= min("rg" phi, "rg" psi)
 $
 
-#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Algèbre lineaire",))
+#card("forml", "Formes lineaires et hyperplans", ("Maths.Algèbre.Algèbre linéaire",))
 
 Formes lineaires et hyperplans.
 
@@ -2536,7 +2536,7 @@ Par défaut $alpha$ algébrique veut dire algébrique sur $QQ$., quitte à les �
 
   On a $pi_alpha | P$, or $P$ irréductible donc $P$ et $pi_alpha$ sont associé, or tout deux unitaires donc $P = pi_alpha$.
 
-#card("bastel", "Théorème de la base téléscopique", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("bastel", "Théorème de la base téléscopique", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncer et démonstration du théorème de la base téléscopique.
 
@@ -2753,7 +2753,7 @@ Ainsi $"ord"(phi(x)) | abs(G_1) and abs(G_2)$.
     cases(space 0 &"si" abs(G_2) divides.not abs(G_1), space phi(abs(G_2)) space &"sinon")  
     $
 
-#card("exunionsev", "Exercice : Union de sous espaces vectoriels", ("Maths.Exercice.Algèbre Linéaire",))
+#card("exunionsev", "Exercice : Union de sous espaces vectoriels", ("Maths.Exercice.Algèbre linéaire",))
 
 $E$ un $KK$ espace vectoriel.
 
@@ -2825,7 +2825,7 @@ $E$ un $KK$ espace vectoriel.
   $
   Et $x in F_j$ impossible.
 
-#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("somdir", "Somme directe de sous espaces vectoriels", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition et propriétés de somme directe de sev.
 
@@ -2875,7 +2875,7 @@ Il y a équivalence entre $F_1, dots, F_n$ en somme directe et
 
   Donc $x_n = 0$ et $sum_(k = 1)^(n-1) x_k = 0$ donc $x_1 = x_2 = dots.c = x_n = 0$.
 
-#card("espsup", "Espaces supplémentaires", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("espsup", "Espaces supplémentaires", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition, propriétés des espaces supplémentaires.
 
@@ -2896,7 +2896,7 @@ E = plus.big_(k = 1)^n F_k \
 <=> cases(space sum_(k = 1)^n F_k = plus.big_(k = 1)^n F_k, space dim(E) = sum_(k = 1)^n dim(F_k)) \
 $
 
-#card("notmat", "Notations de matrices", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("notmat", "Notations de matrices", ("Maths.Algèbre.Algèbre linéaire",))
 
 Notations de matrices : changements de bases, matrices d'un endomorphisme, ...
 
@@ -2947,7 +2947,7 @@ $
   P_(e -> e') = cal(M)_(e) (e') = cal(M)_(e <- e') (id)
 $
 
-#card("noyimgiter", "Exercice : Noyaux et images itérées", ("Maths.Exercice.Algèbre Linéaire",))
+#card("noyimgiter", "Exercice : Noyaux et images itérées", ("Maths.Exercice.Algèbre linéaire",))
 
 Soit $u in cal(L)(E)$ avec $E$ un $KK$-ev. Que peut on dire des suites $(ker u^k)_k$ et $(im u^k)_k$ ?
 
@@ -3094,7 +3094,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
   Et on obtient l'égalité par supplémentarité, d'où $K' = K$ et $I' = I$.
 
-#card("detligcol", "Développement du déterminant par ligne ou par colonne", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("detligcol", "Développement du déterminant par ligne ou par colonne", ("Maths.Algèbre.Algèbre linéaire",))
 
 Formules et définitions du développement du déterminant par ligne ou par colonne.
 
@@ -3128,7 +3128,7 @@ $
 
 // TODO: Démo de tout ça ?
 
-#card("exrgcom", "Exercice : rang d'une comatrice", ("Maths.Exercice.Algèbre Linéaire",))
+#card("exrgcom", "Exercice : rang d'une comatrice", ("Maths.Exercice.Algèbre linéaire",))
 
 Soit $A in M_n (KK)$ ($n >= 3$), calculer $"rg" "com"(A)$ en fonction de $"rg" A$.
 
@@ -3148,7 +3148,7 @@ Soit $A in M_n (KK)$ avec $n >= 3$.
   $
   Donc $im "com" (A) subset.eq ker A^T$ et $dim ker A^T = 1$ d'où $"rg" "com" (A) <= 1$.
 
-#card("algopivgau", "Algorithme du pivot de Gauss", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("algopivgau", "Algorithme du pivot de Gauss", ("Maths.Algèbre.Algèbre linéaire",))
 
 Déscription de l'algorithme du pivot de Gauss, et propriétés qui en découlent.
 
@@ -3249,7 +3249,7 @@ On remarque que si $A$ est inversible, les transpositions sont inutiles car il n
 
 - Les transvections et une dilatation (pour atteindre n'importe quel déterminant) suffisent à engendrer $"GL"_n (KK)$.
 
-#card("interhyppl", "Intersection d'hyperplans", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("interhyppl", "Intersection d'hyperplans", ("Maths.Algèbre.Algèbre linéaire",))
 
 Propriétés sur les intersections d'hyperplans.
 
@@ -3287,7 +3287,7 @@ $
   dim (inter.big_(k = 1)^p ker phi_k) = n - "rg" (phi_1, dots, phi_p)
 $
 
-#card("lemutihyp", "Liberté d'une famille de l'espace dual", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("lemutihyp", "Liberté d'une famille de l'espace dual", ("Maths.Algèbre.Algèbre linéaire",))
 
 Démonstration d'une CNS pour la liberté d'une famille de $cal(L) (E, KK)$ où $E$ est un $KK$-ev.
 
@@ -3335,7 +3335,7 @@ $
 
   Donc $sum_(k = 1)^p alpha_k phi_k = 0$ et la famille est liée
 
-#card("condindepfl", "Condition de liberté d'une forme linéaire à une famille", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("condindepfl", "Condition de liberté d'une forme linéaire à une famille", ("Maths.Algèbre.Algèbre linéaire",))
 
 Soit $phi_1, dots, phi_p, psi in cal(L)(E, KK)$.
 
@@ -3394,7 +3394,7 @@ $
   $
   La famille $(phi_1, dots, phi_r, psi)$ est liée d'où $psi in "Vect"(phi_1, dots, phi_p)$.
 
-#card("baseduale", "Base duale, antéduale", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("baseduale", "Base duale, antéduale", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définitions, propriétés, démonstrations autours des bases duals.
 
@@ -3464,7 +3464,7 @@ Pour toute base $(phi_1, dots, phi_n)$ de $cal(L)(E, KK)$, il existe une unique 
   $
 // TODO: point de vue matricielle
 
-#card("lemfacalgl", "Lemme de factorisation", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("lemfacalgl", "Lemme de factorisation", ("Maths.Algèbre.Algèbre linéaire",))
 
 Énoncé et démonstration du lemme de factorisation en algèbre linéaire.
 
@@ -3547,7 +3547,7 @@ Soient $E, F, G$ trois $KK$-ev
 
 // TODO: VI.2) Liberté des familles de F(X, K) (flm la vrm)
 
-#card("vanlag", "Vandermonde, interpolation de Lagrange", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("vanlag", "Vandermonde, interpolation de Lagrange", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définitions, propriétés et démonstrations de l'interpolation de Lagrange et des matrices des Vandermonde.
 
@@ -3616,7 +3616,7 @@ $
 
 // TODO: Pas sur de les mettres, sous espaces stables, droite stables, definition de vecteur et valeurs propres.
 
-#card("extvp", "Exercice : endomorphisme qui stabilise toutes les droites", ("Maths.Exercice.Algèbre Linéaire",))
+#card("extvp", "Exercice : endomorphisme qui stabilise toutes les droites", ("Maths.Exercice.Algèbre linéaire",))
 
 Soit $u in cal(L)(E)$ qui stabilise toute les droites, qui dire de $u$ ?
 
@@ -3643,7 +3643,7 @@ Soit $x, y in E\\{0}$.
 
 Donc pour tout $x in E, lambda_x = lambda$ et $u = lambda id$.
 
-#card("nilp", "Endomorphismes nilpotents", ("Maths.Algèbre.Algèbre Linéaire",))
+#card("nilp", "Endomorphismes nilpotents", ("Maths.Algèbre.Algèbre linéaire",))
 
 Définition d'un endomorphisme nilpotent et inégalité sur son indice.
 
