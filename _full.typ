@@ -422,7 +422,420 @@ $
 
 #card("expendom", "Exponentielle d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
 
+Exponentielle d'un endomorphisme.
+
 #answer
+
+Soit $u in cal(L)(E)$ avec $E$ un $RR$ ou $CC$-ev de dimension finie.
+
+La série $sum u^n / n!$ est absolument convergente et on note
+$
+  exp(u) = e^u = sum_(n = 0)^(+oo) u^n / n!
+$
+
+On a
+
+- $exp$ est continue.
+
+- Pour tout $u in cal(L)(E)$ #h(1fr)
+  $
+    f : func(RR, cal(L)(E), t, e^(t u))
+  $
+  Est $C^1$ et
+  $
+    f' : t |-> u compose e^(t u) = e^(t u) compose u
+  $
+  Donc $f$ est $C^oo$.
+
+- Pour tout $D = diag(a_1, dots, a_n) in D_n (KK)$
+  $
+    e^D = diag(e^(a_1), dots, e^(a_n))
+  $
+
+- Pour tout $T in T_n^+ (KK)$
+  $
+    T = mat(a_1,,(*);,dots.down;,,a_n) \
+    e^T = mat(e^(a_1),,(*);,dots.down;,,e^(a_n))
+  $
+
+- Pour tout $A in M_n (KK), P in "GL"_n (KK)$
+  $
+    exp(P^(-1) A P) = P^(-1) exp(A) P
+  $
+
+- Pour tout $A in M_n (KK)$
+  $
+    det(e^A) = e^(tr A) > 0
+  $
+
+- Pour tout $A, B in M_n(KK)$ qui commutent.
+  $
+    e^A e^B = e^B e^A = e^(A + B)
+  $
+
+- Pour tout $A in M_n (KK)$
+  $
+    (e^A)^(-1) = e^(- A)
+  $
+
+- Pour tout $A in M_n (KK), e^A in KK[A]$.
+
+*Démonstration*
+
+Comme toute les normes sont équivalentes, on choisie la norme $norm(dot)_"op"$ associé à une norme $norm(dot)$ sur $KK^n$.
+
+Ainsi pour tout $k in NN$
+$
+  norm(u^k)_"op" <= norm(u)^k_"op" \
+  norm(u^k / k!)_"op" <= norm(u)_"op"^k / k!
+$
+Qui est le terme général d'une série convergente.
+
+De plus
+
+- Pour tout $R > 0$, la série converge normalement sur $overline(B(0, R))$, donc uniformement.
+
+- Théorème $C^1$ des séries de fonctions.
+
+- Somme partielles puis limite.
+
+- Somme partielles puis limite.
+
+- Somme partielles puis continuité.
+
+- On dispose de $T in T_n^+ (CC)$ et $P in "GL"_n (CC)$
+  $
+    A &= P^(-1) T P \
+    det(e^A) &= det(P^(-1) e^T P) \ &= det(e^T) \ &= e^(tr A)
+  $
+
+- On pose
+  $
+    theta : t |-> e^(t (A + B)) e^(- t A) e^(- t B)
+  $
+  Qui est $C^1$. Or si $A B = B A$, pour tout $P, Q in KK[X]$
+  $
+    P(A) Q(B) = Q(B) P(A)
+  $
+  Donc à la limite, $e^A e^B = e^B e^A$.
+
+  En dérivant on trouve $theta' = 0$. Donc pour tout $t in RR$
+  $
+    theta(t) = theta(0) = I_n \
+    e^(t A + B) e^(-t A) e^(-t B) = I_n \
+    e^(t A + B) = e^(t A) e^(t B)
+  $
+  Qui tient pour $t = 1$.
+
+- Avec $B = -A$
+  $
+    e^(A - A) = I_n = e^A e^(-A)
+  $
+
+- Limite dans un $KK$-evn de dimension finie, qui est donc fermé.
+
+#card("exexpaneqson", "Exercice : exponentielle des matrices antisymétriques", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
+
++ Montrer que #h(1fr)
+  $
+    exp(A_n (RR)) = "SO"_n (RR)
+  $
+
++ Montrer que si $A in M_n (RR)$ est tel que pour tout $t in RR$
+  $
+    e^(t A) in O_n (RR)
+  $
+  Alors $A in A_n (RR)$.
+
+#answer
+
++ - Soit $A in A_n (RR)$, on montre que #h(1fr)
+    $
+      (e^A)^TT = e^(A^TT)
+    $
+    En passant à la limite les sommes partielles, ainsi
+    $
+      (e^A)^TT = e^(-A) = e^(A)^(-1)
+    $
+    Donc $e^A in O_n (RR)$, or $det e^A > 0$, donc $e^A in "SO"_n (RR)$.
+
+  - Soit $A in "SO"_n (RR)$.
+    $
+      A = P dmat(I_p, R_theta_1, dots.down, R_theta_r) P^T
+    $
+    Avec $P in O_n (RR)$.
+
+    On pose
+    $
+    Omega^0 &=& I_2 quad quad Omega^1 &=& mat(0, -1;1, 0) \
+    Omega^2 &=& -I_2 quad quad Omega^3 &=& mat(0, 1; -1, 0)
+    $
+    $
+      Omega^4 = I_2
+    $
+    Ainsi
+    $
+      I_p = e^(0_p) \
+    $
+    $
+      R_theta &= mat(cos theta, -sin theta; sin theta, cos theta) \
+      &= e^(Omega theta)
+    $
+    D'où
+    $
+      A = exp(underbrace(dmat(0_p, theta_1 Omega, dots.down, theta_r Omega), in A_n (RR)))
+    $
+
++ On pose
+  $
+    f: t |-> e^(t A) (e^(t A))^TT = I_n \
+    f': t |-> e^(t A) A (e^(t A))^TT + e^(t A) A^TT (e^(t A))^TT = 0
+  $
+  En $t = 0$
+  $
+    A + A^TT = 0
+  $
+
+#card("expnilpot", "Exponentielle et nilpotents", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
+
+Exponentielle et nilpotents, surjectivité de l'exponentielle dans le groupe linéaire.
+
+#answer
+
+Si $N in M_n (CC)$ est nilpotent
+$
+  e^N &= sum_(k = 0)^(n - 1) N^k / k! \
+  &= I_n + underbrace(sum_(k = 1)^(n - 1) N^k / k!, "nilpotent")
+$
+
+Et pour toute matrice unipotente : $M = I_n + N$, on dispose de $A$ nilpotent tel que
+$
+  e^A = I_n + N = M
+$
+
+On en déduit que pour tout
+$
+  M = lambda I_n + N = lambda (I_n + 1/lambda N)
+$
+On dispose de $A$ nilpotente tel que $M = e^A$.
+
+Ainsi pour tout $M in "GL"_n (CC)$, comme on dispose de $P in "GL"_n (CC)$ tel que
+$
+  M = P dmat(lambda_1 I_m_1 + N_1, dots.down, lambda_p I_m_p + N_p) P^(-1)
+$
+On dispose de $A in M_n (CC)$ tel que $M = e^A$.
+
+On peut montrer de plus que $A in KK[M]$ (revoir Dunford).
+
+*Démonstration 1*
+
+Candidat : (logarithme)
+$
+  A = sum_(k = 1)^(n - 1) (-1)^(k - 1) N^k / k
+$
+
+On pose
+$
+  P(X) &= sum_(k = 0)^(n - 1) X^k / k! \
+  Q(X) &= sum_(k = 1)^(n - 1) (-1)^(k - 1) X^k /k
+$
+Ainsi
+$
+  e^x &= P(x) + o_(x -> 0) (x^(n - 1)) \
+  ln(1 + x) &= Q(x) + o_(x -> 0) (x^(n - 1))
+$
+Par composée de DL
+$
+  1 + x = e^(ln (1 + x)) = R(x) + o_(x -> 0) (x^(n - 1))
+$
+Où $R$ est $P compose Q$ tronqué à l'ordre $n - 1$.
+$
+  P(Q(X)) = R(X) + X^n R_0 (X)
+$
+Par unicité de la partie principale
+$
+  1 + X = R(X) = P(Q(X)) - X^n R_0 (X)
+$
+Ainsi
+$
+  M = I_n + N = P(Q(N)) - underbrace(N^n R_0 (N), 0)
+$
+Or $Q(N)$ est nilpotent, donc
+$
+  M = I_n + N =P(Q(N)) = e^(Q (N))
+$
+
+*Démonstration 2*
+
+On pose
+$
+  f : t |-> sum_(k = 1)^(n - 1) ((-1)^(k - 1) t^k N^k) / k \
+  g : t |-> e^f(t) = sum_(k = 0)^(n - 1) f(t)^n / k!
+$
+Car $f(t)$ est nilpotent.
+
+Comme toutes nos fonctions sont à valeur dans $KK[N]$ qui est une algèbre commutative
+$
+  g'(t) &= sum_(k = 1)^(n - 1) (k f'(t) f(t)^(k - 1)) / k! = f'(t) g(t) \
+  f'(t) &= sum_(k = 1)^(n - 1) (-1)^k N^k t^(k - 1) = N (I_n + N)^(-1)
+$
+Or $t |-> I_n + t N$ et $g$ sont solution de
+$
+  cases(space y(0) = I_n, space y' (t) = N (I_n + N)^(-1) y(t))
+$
+D'où par le théorème de Cauchy-Lipschitz
+$
+  g(t) = I_n + t N
+$
+Et en $t = 1$
+$
+  I_n + N = exp(f(1))
+$
+
+// NOTE: Exo M348
+
+#card("limexpendom", "Autre expression de l'exponentielle", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
+
+Autre expression de l'exponentielle.
+
+#answer
+
+On pose
+$
+  f_k : func(M_n (KK), M_n (KK), A, (1 + A / k)^k)
+$
+La suite $(f_k)_k$ converge uniformement sur tout compact vers $exp$.
+
+*Démonstration*
+
+On pose
+$
+  S_k : func(M_n (KK), M_n (KK), A, sum_(j = 0)^k A^j / j!)
+$
+On sait que $(S_k)_k$ converge uniformement vers $exp$ sur tout compact.
+
+Soit $k in NN^*$
+$
+  f_k : A |-> sum_(j = 0)^k vec(k, j) A^j / k^j \
+$
+$
+  &S_k (A) - f_k (A)  \
+  =& sum_(j = 0)^k A^j / j! (1 - underbrace((product_(m = 0)^(j - 1) (k - m)) /k^j, = product_(m = 0)^(j - 1) (k - m) / k <= 1))
+$
+Donc pour tout $A in overline(B(0, R))$
+$
+  &norm(S_k (A) - f_k (A)) \
+  <=& sum_(j = 0)^k norm(A)^j / j! (1 - (product_(m = 0)^(j - 1) (k - m)) / k^j) \
+  <=& sum_(j = 0)^k R^j / j! (1 - (product_(m = 0)^(j - 1) (k - m)) / k^j) \
+  =& (sum_(j = 0)^k R^j / j!) - (1 + R / k)^k \
+  tends(k -> oo)& e^R - e^R = 0
+$
+Ainsi $norm(S_k - f_k)_oo tends(k -> oo) 0$ et $norm(S_k - exp)_oo tends(k -> oo) 0$ d'où le résultat.
+
+#card("sevtangent", "Exercice : caractérisation de l'espace tangent à l'identité d'un groupe de Lie", ("Maths.Exercice.Exponentielle d'endomorphismes",))
+
+Soit $G subset.eq "GL"_n (RR)$ un sous groupe fermé, on note 
+$
+frak(G) = Set(M in M_n (RR), forall r in RR, e^(t M) in G)
+$
+Montrer que $frak(G)$ est un sev de $M_n (RR)$.
+
+#answer
+
+- Soit $M in frak(G), lambda in RR$ et $t in RR$ #h(1fr)
+  $
+    e^(t (lambda M)) = e^((t lambda) M) in G
+  $
+
+- Montrons d'abord le lemme suivant : pour tout $A, B in M_n (RR)$
+  $
+    e^(A + B) = lim_(k -> oo) (e^(A / k) e^(B / k))^k
+  $
+
+  On a
+  $
+    e^(A / k) = sum_(j = 0)^(+oo) A^k / (j! k^j) = I_n + A / k + R_k \
+    R_k = O_(k -> oo) (1 / k^2)
+  $
+  Car
+  $
+    R_k = 1 / k^2 (sum_(j = 2)^(+oo) underbrace(1 / j! A^(j - 2)/k^(j - 2),  norm(dot) <= norm(A)^(j - 2) / j!))
+  $
+  Ainsi
+  $
+    &(e^(A / k) e^(B / k))^k  \
+    =& (I_n + (A + B) / k + O_(k -> oo) (1/k^2))^k \
+    =& (I_n + (A + B + epsilon_k) / k)^k quad epsilon tends(k -> oo) 0 \
+    =& f_k (A + B + epsilon_k)
+  $
+  Comme $A + B + epsilon_k tends(k -> oo) A + B$ et $f_k$ converge uniformement vers $exp$ sur $overline(B(0, norm(A) + norm(B) + 1))$, par les résultats sur les suites et séries de fonctions (découpage)
+  $
+    f_k (A + B + epsilon_k) tends(k -> oo) exp(A + B)
+  $
+
+- Soit $A, B in frak(G)$, pour tout $k in NN^*$ et $t in RR$
+  $
+    e^((t A) / k) in G quad quad e^((t B) / k) in G \
+
+    (e^((t A) / k) e^((t B) / k))^k in G \
+    lim_(k -> oo) (e^((t A) / k) e^((t B) / k))^k = e^(t (A + B)) in G
+  $
+  Car $G$ est fermé.
+
+- Et $0 in frak(G)$ car $I_n in G$.
+
+#card("calcpratiexp", "Calcul d'exponentielle d'endomorphismes", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes", "Maths.Calculs"))
+
+Méthodes de calcul d'exponentielle d'endomorphismes.
+
+#answer
+
+Plusieurs cas :
+
++ Si $A = lambda I_n + N$ #h(1fr)
+  $
+    e^A = e^(lambda I_n) e^N = e^lambda (sum_(k = 1)^(n - 1) N^k / k!)
+  $
+
++ Si $A$ est diagonalisable
+
+  On note $"Sp" A = {lambda_1, dots, lambda_d}$
+  $
+    Pi_A = product_(k = 1)^d (X - lambda_k) \
+    chi_A = product_(k = 1)^d (X - lambda_k)^m_k \
+    A = P dmat(lambda_1 I_m_1, dots.down, lambda_d I_m_d) P^(-1)
+  $
+  Ainsi
+  $
+    e^A = P dmat(e^(lambda_1) I_m_1, dots.down, e^(lambda_d) I_m_d) P^(-1) = Q(A)
+  $
+  Avec $Q in KK_(d - 1) [X]$ tel que $Q_(lambda_k) = e^(lambda_k)$.
+  $
+    Q = sum_(k = 1)^d e^lambda_k product_(j != k) (X - lambda_j) / (lambda_k - lambda_j)
+  $
+
++ Si on connais un polynôme annulateur de $A$
+
+  On suppose que $R(A) = 0$ avec $R in KK[X]$.
+
+  + Si $R$ SARS, $A$ est diagonalisable, voir 2.
+
+  + Si $R = (X - lambda)^d$ alors $A - lambda I_n = N$ nilpotent, voir 1.
+
+  + Si $R = X^d (X - lambda)$ alors $A^(d + 1) = lambda A^d$ et pour tout $k >= d$
+    $
+      A^k = lambda^(k - d) A^d \
+      e^A = sum_(k = 0)^(d - 1) A^k / k! + 1/ lambda^d (e^lambda - sum_(k = 0)^d lambda^k / k!) A^d
+    $
+
+  + Si $R = (X - mu)^d (X - lambda)$, on pose $tilde(A) = A - mu I_n$, $tilde(A)$ annule $X^d (X - lambda + mu)$ et on reprend la cas précédent.
+
+  + Cas général : on fait la division euclidienne de $X^k$ par $R$
+    $
+      X^k = Q_k R + P_k \
+      A^k = P_k (A)
+    $
+    Et on somme.
 ]
 #[
 
@@ -14794,4 +15207,214 @@ Donc pour tout $n in NN$
 $
   abs(f^((n))(x)) <= (2 M) n! (4 / eta)^n
 $
+
+#card("formmatendomedl", "Forme vectorielle des EDLs", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Forme matricielle des EDLs.
+
+#answer
+
+Soit $a in C^0 (I, cal(L)(E))$ et $b in C^0 (I, E)$ où $I$ est un intervalle de $RR$ et $E$ un $RR$ ou $CC$-ev de dimension finie.
+
+Les équations différentielles linéaires qu'on étudie sont de la forme
+$
+  x' (t) = a(t) (x(t)) + b(t) quad quad (E)
+$
+Une solution de $(E)$ est $x in D^1 (I, E)$ tel que
+$
+  forall t in I, x'(t) = a(t)(x(t)) + b(t)
+$
+
+Toute solution est nécéssairement $C^1$ car $a$ et $b$ sont $C^0$.
+
+*Lien avec les EDLs scalaire d'ordre n*
+
+$
+  y^((n)) (t) - sum_(k = 0)^(n - 1) a_k (t) y^((k)) (t) = b(t) quad space (cal(E))
+$
+
+Avec $a_0, dots, a_(n - 1), b in C^0 (I, KK)$
+
+On associe à $y in D^n (I, KK)$
+$
+  Y : func(I, KK^n, t, vec(y(t), y'(t), dots.v, y^((n- 1)) (t)))
+$
+Et on pose
+$
+  A : t |-> inline(mat(0, 1;,dots.down, dots.down;,,dots.down,dots.down;,,,0,1;-a_0 (t),-a_1(t),dots.c, -a_(n - 2) (t), a_(n - 1) (t))) \
+  B : t |-> vec(0, dots.v, 0, b(t))
+$
+Ainsi $y$ solution de $cal(E)$ est équivalent à $Y$ solution de
+$
+  Y'(t) = A(t) Y(t) + B(t) quad quad (E)
+$
+
+#card("eqlinhom", "Équations différentielles linéaires homogènes", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Équations différentielles linéaires homogènes.
+
+#answer
+
+Une EDL homogène est une EDL de la forme
+$
+  x'(t) = a(t) (x(t)) quad quad (E_0)
+$
+Où $a(t) in C^0 (I, cal(L)(E))$.
+
+Avec $b(t) in C^0 (I, E)$
+$
+  x'(t) = a(t) (x(t)) + b(t) quad quad (E)
+$
+
+L'espace $S_0$ des solutions de $(E_0)$ est un sev de $C^0 (I, E)$.
+
+L'espace $S$ des solutions de $(E)$ est soit vide (mais cela est impossible par le théorème de Cauchy-Lipschitz), soit un sea de $C^0 (I, E)$ obtenus par translation de $S_0$
+$
+  S = y_p + S_0 quad quad y_p in S
+$
+
+#card("probdecauchy", "Problème de Cauchy", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Problème de Cauchy.
+
+#answer
+
+On considère une EDL
+$
+  x'(t) = a(t)(x(t)) + b(t) quad quad (E)
+$
+Une condition initiale pour $(E)$ est la donnée de $t_0 in I$ et $x_0 in E$.
+
+On appelle problème de Cauchy la recherche d'un $x in C^0 (I, E)$ tel que
+$
+  cases(space x'(t) = a(t)(x(t)) + b(t), space x(t_0) = x_0)
+$
+
+*Cas scalaire*
+
+Pour une EDL scalaire d'ordre $n$.
+$
+  y^((n)) (t) - sum_(k = 0)^(n - 1) a_k (t) y^((k)) (t) = b(t) quad space (cal(E))
+$
+
+En posant l'application linéaire
+$
+  xi : func(D^n (I, KK), D^1 (I, KK), y, Y = vec(y, dots.v, y^(n-1)))
+$
+Avec $A in C^0 (I, M_n (KK))$ et $B in C^0 (I, KK^n)$ associé.
+
+$
+  y in S_cal(E) <=> Y in S_E
+$
+Donc $xi|_S_cal(E)$ est un isomorphisme (dans le cas homogène, sinon pas des espaces vectoriels).
+
+Et une condition initiale pour $(cal(E))$ s'écrite
+$
+  cases(space y(t_0) &=& x_0, &space dots.v&, space y^(n-1) (t_0) &=& x_1 )
+$
+
+*Forme intégrale*
+
+Soit $a in C^0 (I, cal(L)(E))$, $b in C^0 (I, E)$, $x_0 in E$ et $t_0 in I$.
+
+Pour $y in D^1 (I, E)$, il y a équivalence entre
+
++ $y$ est solution du problème de Cauchy #h(1fr)
+  $
+  cases(space y'(t) = a(t)(y(t)) + b(t) quad (E), space y(t_0) = x_0)
+  $
+
++ $forall t in I$
+  $
+    y(t) = x_0 + integral_(t_0)^t (a(s)(y(s)) + b(s)) dif s
+  $
+
+#card("thmcauchylipschitz", "Théorème de Cauchy-Lipschitz", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Théorème de Cauchy-Lipschitz.
+
+#answer
+
+Soit $I$ un intervalle, $E$ un $RR$ ou $CC$-ev de dimension finie, $a in C^0 (I, cal(L)(E))$ et $b in C^0 (I, E)$.
+
+Pour tout $t_0 in I$ et $x_0 in E$, le problème de Cauchy
+$
+  cases(space x'(t) = a(t)(x(t)) + b(t) quad (E), space x(t_0) = x_0)
+$
+Admet une unique solution.
+
+*Démonstration*
+
+Idée : forme intégrale.
+
+Soit
+$
+  f : func(C^0(I, KK^n), C^0 (I, KK^n), Y, f(Y)) \
+  f(Y) = func(I, KK^n, t, X_0 + script(integral_(t_0)^t (A(s) Y(s) + B(s)) dif s))
+$
+Ainsi $Y in S <=> f(Y) = Y$
+
+Deux méthodes :
+
++ (Idée) Marche aussi si non linéaire.
+
+  Soit $delta > 0$ assez petit, $J = [t_0 - delta, t_0 + delta]$, sur $C^0 (J, KK^n)$, $f$ est contractante, et admet donc un unique point fixe, qui est une unique solution locale, puis on raccorde.
+
++ On pose
+  $
+    Y_0 : t |-> X_0
+  $
+  Et pour tout $p in NN$
+  $
+    Y_(p + 1) = f(Y_p)
+  $
+  On montre que $(Y_p)_(p in NN)$ converge uniformement sur tout $K = [a, b] subset.eq I$ contenant $t_0$.
+
+  $
+    f(x) - f(Y) : t |-> integral_(t_0)^t (A(X - Y))(s) dif s
+  $
+
+  Soit
+  $
+    c = sup_(s in K) norm(A(s))_"op"
+  $
+  D'où pour tout $t in K$ et $p in NN^*$
+  $
+    &norm(Y_(p+1) (t) - Y_p (t))  \
+    =& norm((f(Y_p) - f(Y_(p-1)))(t)) \
+    =& norm(integral_(t_0)^t A(s)(Y_p (s) - Y_(p-1) (s)) dif s) \
+    <=& abs(integral_(t_0)^t norm(A(s))_"op" norm((Y_p - Y_(p-1))(s)) dif s) \
+    <=& c abs(integral_(t_0)^t norm((Y_p - Y_(p-1))(s)) dif s) quad (*)
+  $
+  Or
+  $
+    Y_1 - Y_0 : t |-> integral_(t_0)^t (A(s)X_0 + B(s)) dif s \
+    C_0 = sup_(s in K) norm(A(s) X_0 + B(s))
+  $
+  Ainsi pour tout $t in  K$
+  $
+    norm(Y_1(t) - X_0) <= C_0 abs(t - t_0) quad (**)
+  $
+  On montre par récurrence
+  $
+    norm(Y_p (t) - Y_(p - 1) (t)) <= C_0 c^(p-1) abs(t - t_0)^p / p!
+  $
+
+  L'initialisation est déjà faite. En supposant l'hypothèse de récurrence, pour tout $t in I$ on a
+  $
+    &norm(Y_(p+1) (t) - Y_p (t)) \
+    <=& c abs(integral_(t_0)^t C_0 c^(p-1) abs(s - t_0)^p / p! dif s) \
+    =& C_0 c^p abs(t - t_0)^(p + 1) / (p + 1)!
+  $
+
+  Donc avec $eta = max(t_0 - a, b - t_0)$
+  $
+    norm(Y_p - Y_(p-1))_(oo,K) <= C_0 c^(p-1) eta^p / p!
+  $
+  Qui est le terme général d'une série convergente : $sum Y_p - Y_(p - 1)$ converge normalement sur $K$, donc $(Y_p)$ converge uniformement sur $K$ vers $Y_oo$.
+
+  Or pour tout $t in K$
+  $
+    Y_(p + 1) (t) = X_0 + integral_(t_0)^t (A(s)Y_p (s) + B(s)) dif s
+  $
 ]
