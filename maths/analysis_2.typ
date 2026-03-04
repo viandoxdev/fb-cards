@@ -1755,3 +1755,213 @@ Donc pour tout $n in NN$
 $
   abs(f^((n))(x)) <= (2 M) n! (4 / eta)^n
 $
+
+#card("formmatendomedl", "Forme vectorielle des EDLs", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Forme matricielle des EDLs.
+
+#answer
+
+Soit $a in C^0 (I, cal(L)(E))$ et $b in C^0 (I, E)$ où $I$ est un intervalle de $RR$ et $E$ un $RR$ ou $CC$-ev de dimension finie.
+
+Les équations différentielles linéaires qu'on étudie sont de la forme
+$
+  x' (t) = a(t) (x(t)) + b(t) quad quad (E)
+$
+Une solution de $(E)$ est $x in D^1 (I, E)$ tel que
+$
+  forall t in I, x'(t) = a(t)(x(t)) + b(t)
+$
+
+Toute solution est nécéssairement $C^1$ car $a$ et $b$ sont $C^0$.
+
+*Lien avec les EDLs scalaire d'ordre n*
+
+$
+  y^((n)) (t) - sum_(k = 0)^(n - 1) a_k (t) y^((k)) (t) = b(t) quad space (cal(E))
+$
+
+Avec $a_0, dots, a_(n - 1), b in C^0 (I, KK)$
+
+On associe à $y in D^n (I, KK)$
+$
+  Y : func(I, KK^n, t, vec(y(t), y'(t), dots.v, y^((n- 1)) (t)))
+$
+Et on pose
+$
+  A : t |-> inline(mat(0, 1;,dots.down, dots.down;,,dots.down,dots.down;,,,0,1;-a_0 (t),-a_1(t),dots.c, -a_(n - 2) (t), a_(n - 1) (t))) \
+  B : t |-> vec(0, dots.v, 0, b(t))
+$
+Ainsi $y$ solution de $cal(E)$ est équivalent à $Y$ solution de
+$
+  Y'(t) = A(t) Y(t) + B(t) quad quad (E)
+$
+
+#card("eqlinhom", "Équations différentielles linéaires homogènes", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Équations différentielles linéaires homogènes.
+
+#answer
+
+Une EDL homogène est une EDL de la forme
+$
+  x'(t) = a(t) (x(t)) quad quad (E_0)
+$
+Où $a(t) in C^0 (I, cal(L)(E))$.
+
+Avec $b(t) in C^0 (I, E)$
+$
+  x'(t) = a(t) (x(t)) + b(t) quad quad (E)
+$
+
+L'espace $S_0$ des solutions de $(E_0)$ est un sev de $C^0 (I, E)$.
+
+L'espace $S$ des solutions de $(E)$ est soit vide (mais cela est impossible par le théorème de Cauchy-Lipschitz), soit un sea de $C^0 (I, E)$ obtenus par translation de $S_0$
+$
+  S = y_p + S_0 quad quad y_p in S
+$
+
+#card("probdecauchy", "Problème de Cauchy", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Problème de Cauchy.
+
+#answer
+
+On considère une EDL
+$
+  x'(t) = a(t)(x(t)) + b(t) quad quad (E)
+$
+Une condition initiale pour $(E)$ est la donnée de $t_0 in I$ et $x_0 in E$.
+
+On appelle problème de Cauchy la recherche d'un $x in C^0 (I, E)$ tel que
+$
+  cases(space x'(t) = a(t)(x(t)) + b(t), space x(t_0) = x_0)
+$
+
+*Cas scalaire*
+
+Pour une EDL scalaire d'ordre $n$.
+$
+  y^((n)) (t) - sum_(k = 0)^(n - 1) a_k (t) y^((k)) (t) = b(t) quad space (cal(E))
+$
+
+En posant l'application linéaire
+$
+  xi : func(D^n (I, KK), D^1 (I, KK), y, Y = vec(y, dots.v, y^(n-1)))
+$
+Avec $A in C^0 (I, M_n (KK))$ et $B in C^0 (I, KK^n)$ associé.
+
+$
+  y in S_cal(E) <=> Y in S_E
+$
+Donc $xi|_S_cal(E)$ est un isomorphisme (dans le cas homogène, sinon pas des espaces vectoriels).
+
+Et une condition initiale pour $(cal(E))$ s'écrite
+$
+  cases(space y(t_0) &=& x_0, &space dots.v&, space y^(n-1) (t_0) &=& x_1 )
+$
+
+*Forme intégrale*
+
+Soit $a in C^0 (I, cal(L)(E))$, $b in C^0 (I, E)$, $x_0 in E$ et $t_0 in I$.
+
+Pour $y in D^1 (I, E)$, il y a équivalence entre
+
++ $y$ est solution du problème de Cauchy #h(1fr)
+  $
+  cases(space y'(t) = a(t)(y(t)) + b(t) quad (E), space y(t_0) = x_0)
+  $
+
++ $forall t in I$
+  $
+    y(t) = x_0 + integral_(t_0)^t (a(s)(y(s)) + b(s)) dif s
+  $
+
+#card("thmcauchylipschitz", "Théorème de Cauchy-Lipschitz", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Théorème de Cauchy-Lipschitz.
+
+#answer
+
+Soit $I$ un intervalle, $E$ un $RR$ ou $CC$-ev de dimension finie, $a in C^0 (I, cal(L)(E))$ et $b in C^0 (I, E)$.
+
+Pour tout $t_0 in I$ et $x_0 in E$, le problème de Cauchy
+$
+  cases(space x'(t) = a(t)(x(t)) + b(t) quad (E), space x(t_0) = x_0)
+$
+Admet une unique solution.
+
+*Démonstration*
+
+Idée : forme intégrale.
+
+Soit
+$
+  f : func(C^0(I, KK^n), C^0 (I, KK^n), Y, f(Y)) \
+  f(Y) = func(I, KK^n, t, X_0 + script(integral_(t_0)^t (A(s) Y(s) + B(s)) dif s))
+$
+Ainsi $Y in S <=> f(Y) = Y$
+
+Deux méthodes :
+
++ (Idée) Marche aussi si non linéaire.
+
+  Soit $delta > 0$ assez petit, $J = [t_0 - delta, t_0 + delta]$, sur $C^0 (J, KK^n)$, $f$ est contractante, et admet donc un unique point fixe, qui est une unique solution locale, puis on raccorde.
+
++ On pose
+  $
+    Y_0 : t |-> X_0
+  $
+  Et pour tout $p in NN$
+  $
+    Y_(p + 1) = f(Y_p)
+  $
+  On montre que $(Y_p)_(p in NN)$ converge uniformement sur tout $K = [a, b] subset.eq I$ contenant $t_0$.
+
+  $
+    f(x) - f(Y) : t |-> integral_(t_0)^t (A(X - Y))(s) dif s
+  $
+
+  Soit
+  $
+    c = sup_(s in K) norm(A(s))_"op"
+  $
+  D'où pour tout $t in K$ et $p in NN^*$
+  $
+    &norm(Y_(p+1) (t) - Y_p (t))  \
+    =& norm((f(Y_p) - f(Y_(p-1)))(t)) \
+    =& norm(integral_(t_0)^t A(s)(Y_p (s) - Y_(p-1) (s)) dif s) \
+    <=& abs(integral_(t_0)^t norm(A(s))_"op" norm((Y_p - Y_(p-1))(s)) dif s) \
+    <=& c abs(integral_(t_0)^t norm((Y_p - Y_(p-1))(s)) dif s) quad (*)
+  $
+  Or
+  $
+    Y_1 - Y_0 : t |-> integral_(t_0)^t (A(s)X_0 + B(s)) dif s \
+    C_0 = sup_(s in K) norm(A(s) X_0 + B(s))
+  $
+  Ainsi pour tout $t in  K$
+  $
+    norm(Y_1(t) - X_0) <= C_0 abs(t - t_0) quad (**)
+  $
+  On montre par récurrence
+  $
+    norm(Y_p (t) - Y_(p - 1) (t)) <= C_0 c^(p-1) abs(t - t_0)^p / p!
+  $
+
+  L'initialisation est déjà faite. En supposant l'hypothèse de récurrence, pour tout $t in I$ on a
+  $
+    &norm(Y_(p+1) (t) - Y_p (t)) \
+    <=& c abs(integral_(t_0)^t C_0 c^(p-1) abs(s - t_0)^p / p! dif s) \
+    =& C_0 c^p abs(t - t_0)^(p + 1) / (p + 1)!
+  $
+
+  Donc avec $eta = max(t_0 - a, b - t_0)$
+  $
+    norm(Y_p - Y_(p-1))_(oo,K) <= C_0 c^(p-1) eta^p / p!
+  $
+  Qui est le terme général d'une série convergente : $sum Y_p - Y_(p - 1)$ converge normalement sur $K$, donc $(Y_p)$ converge uniformement sur $K$ vers $Y_oo$.
+
+  Or pour tout $t in K$
+  $
+    Y_(p + 1) (t) = X_0 + integral_(t_0)^t (A(s)Y_p (s) + B(s)) dif s
+  $
