@@ -10,6 +10,6 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("expendom", "Exponentielle d'un endomorphisme", ("Maths.Algèbre.Algèbre lineaire.Exponentielle d'endomorphismes"))
+#card("expendom", "Exponentielle d'un endomorphisme", ("Maths.Algèbre.Algèbre lineaire.Exponentielle d'endomorphismes",))
 
 #answer
