@@ -952,7 +952,7 @@ $
 $
 Et en sommant on a le résultat demandé.
 
-#card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercices.Probabilités",))
+#card("exweieprob", "Exercice : Démonstration probabiliste du théorème de Weierstrass", ("Maths.Exercice.Probabilités",))
 
 Démonstration probabiliste du théorème de Weierstrass.
 
@@ -1924,7 +1924,7 @@ $
   sum_(k=1)^n k^3 = ((n(n+1)) / 2)^2 = (n^2(n+1)^2) / 4 \
 $
 
-#card("edlo1", "EDL d'ordre 1", ("Maths.Analyse.EDL",))
+#card("edlo1", "EDL d'ordre 1", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soit $a, b in CC, c(x)$ et $C(x)$ tel que $C'(x) = c(x)$.
 
@@ -1941,7 +1941,7 @@ $
   S_2 = {x |-> lambda e^(A(x)), lambda in RR}
 $
 
-#card("edlsepvar", "Méthode de séparation des variables", ("Maths.Analyse.EDL",))
+#card("edlsepvar", "Méthode de séparation des variables", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soit $a(x) in D^1$
 $
@@ -1960,7 +1960,7 @@ $
   y = underbrace(y_0 e^(-A(x_0)), lambda) e^(A(x))
 $
 
-#card("edlvarcst", "Méthode de variation de la constante", ("Maths.Analyse.EDL",))
+#card("edlvarcst", "Méthode de variation de la constante", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soient $a(x), b(x) : RR -> RR$ et $A(x)$ une primitive de $a(x)$.
 $
@@ -1987,7 +1987,7 @@ $
   lambda (x) &= integral b(x) e^(-A(x)) dif x
 $
 
-#card("edlo2", "EDL d'ordre 2", ("Maths.Analyse.EDL",))
+#card("edlo2", "EDL d'ordre 2", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Soient $a, b, c in CC$, résolution de l'équation homogène :
 $
@@ -2068,7 +2068,7 @@ $
 $
 Les parties convexes de $RR$ sont des intervalles.
 
-#card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites Réelles",))
+#card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites.Suites réelles",))
 
 Formule explicite d'une suite arithmético-géometrique.
 
@@ -2086,7 +2086,7 @@ $
   u_n &= a^n (v_0 - w) + w
 $
 
-#card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites Réelles",))
+#card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites.Suites réelles",))
 
 Formule explicite d'une suite récurrente d'ordre 2.
 
@@ -2110,7 +2110,7 @@ $
   $
 Avec $lambda, mu in RR$ déterminés par $u_0$ et $u_1$.
 
-#card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites Réelles",))
+#card("suitadj", "Suites adjacentes, emboitées", ("Maths.Analyse.Suites.Suites réelles",))
 
 Définition et théorème des suites adjacentes et emboitées.
 
@@ -2135,7 +2135,7 @@ Définition et théorème des suites adjacentes et emboitées.
     inter.big_(n=0)^oo Icc(a_n, b_n) = {x} \ "avec" x = lim a_n = lim b_n
   $
 
-#card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites Réelles",))
+#card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites.Suites réelles",))
 
 Théorème de Bolzano-Weiestrass et démonstration.
 
@@ -2162,7 +2162,7 @@ Soit $phi$ une extractrice, par récurrence :
 
 Donc $a_n <= u_(phi(n)) <= b_n$ d'où $lim u_(phi(n)) = l$.
 
-#card("cesaro", "Moyennes de Cesàro", ("Maths.Analyse.Suites Réelles",))
+#card("cesaro", "Moyennes de Cesàro", ("Maths.Analyse.Suites.Suites réelles",))
 
 Définition, propriétés des moyennes de Cesàro.
 
@@ -2178,7 +2178,7 @@ Preuve :
 - $l$ fini : Découpage pour $n < N$ et $n >= N$ et inégalité triangulaire.
 - $l$ infini : majoration.
 
-#card("asympt", "Manipulations asymptotiques", ("Maths.Analyse.Suites Réelles",))
+#card("asympt", "Manipulations asymptotiques", ("Maths.Analyse.Suites.Suites réelles",))
 
 Manipulations asymptotiques élémentaires.
 
@@ -2194,7 +2194,7 @@ Manipulations asymptotiques élémentaires.
 - Si $u_n ~ v_n$ (ou $O, o$), alors $u_(phi(n)) ~ v_(phi(n))$ (ou $O, o$)
 - $o$ et $~$ sont des cas particuliers de $O$.
 
-#card("asyusu", "Comparaison asymptotiques usuelles", ("Maths.Analyse.Suites Réelles",))
+#card("asyusu", "Comparaison asymptotiques usuelles", ("Maths.Analyse.Suites.Suites réelles",))
 
 Comparaison asymptotiques usuelles, stirling
 
@@ -2457,7 +2457,7 @@ $
 lim_(x -> plus.minus oo) f(x) - a x - b = 0
 $
 
-#card("suitrec", "Suites récurrentes", ("Maths.Analyse.Suites Réelles",))
+#card("suitrec", "Suites récurrentes", ("Maths.Analyse.Suites.Suites réelles",))
 
 Méthode pour les suites récurrentes de la forme $u_(n+1) = f(u_n)$.
 
@@ -11562,7 +11562,7 @@ Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("fbildege", "Formes bilinéaires non dégénérées", ("Maths.Algèbre.Euclidiens",))
+#card("fbildege", "Formes bilinéaires non dégénérées", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Formes bilinéaires non dégénérées.
 
@@ -11591,7 +11591,7 @@ On a alors
   $
   Donc $x in ker psi = {0}$ d'où $x = 0$.
 
-#card("idpseucl", "Identités du produit scalaire", ("Maths.Algèbre.Euclidiens",))
+#card("idpseucl", "Identités du produit scalaire", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Identités du produit scalaire (polarisation, parallèlogramme).
 
@@ -11610,7 +11610,7 @@ Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien.
     norm(x + y)^2 + norm(x - y)^2 = 2 norm(x)^2 + 2 norm(y)^2
   $
 
-#card("partieortho", "Orthogonal d'une partie", ("Maths.Algèbre.Euclidiens",))
+#card("partieortho", "Orthogonal d'une partie", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Orthogonal d'une partie.
 
@@ -11640,7 +11640,7 @@ On a alors
 
 - L'écrire.
 
-#card("projecsev", "Projection orthogonale sur un sev de dimension finie", ("Maths.Algèbre.Euclidiens",))
+#card("projecsev", "Projection orthogonale sur un sev de dimension finie", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Projection orthogonale sur un sev de dimension finie.
 
@@ -11660,7 +11660,7 @@ $
 
 // NOTE: M320 matrice d'une application bilinéaire
 
-#card("exinegdetfam", "Exercice : Inégalité sur le determinant d'une famille de vecteurs", ("Maths.Algèbre.Euclidiens",))
+#card("exinegdetfam", "Exercice : Inégalité sur le determinant d'une famille de vecteurs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Soit $(E, scl(dot, dot))$ euclidien de dimension $n$, $(x_1, dots, x_n) in E^n$ une famille de vecteurs et $e$ une BON. Montrer que $abs(det_e (x_1, dots, x_n))$ est indépendant de la BON $e$ choisie et que
 $
@@ -11691,7 +11691,7 @@ $
   $
   Car $cal(M)_w (x) in T_n^+ (RR)$.
 
-#card("thmrepr", "Théorème de représentation", ("Maths.Algèbre.Euclidiens",))
+#card("thmrepr", "Théorème de représentation", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Théorème de représentation.
 
@@ -11710,7 +11710,7 @@ $
 $
 Est injective et donc bijective par argument dimensionnel.
 
-#card("adjendo", "Adjoint d'un endomorphisme", ("Maths.Algèbre.Euclidiens",))
+#card("adjendo", "Adjoint d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Adjoint d'un endomorphisme.
 
@@ -11783,7 +11783,7 @@ On a alors
     &= norm(u(x))^2
   $
 
-#card("isomvec", "Isométries vectorielles", ("Maths.Algèbre.Euclidiens",))
+#card("isomvec", "Isométries vectorielles", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Isométries vectorielles.
 
@@ -11852,7 +11852,7 @@ On a alors
     scl(tilde(u)(x), tilde(u)(y)) &= scl(u(x), u(y)) \ &= scl(x, y)
   $
 
-#card("symprojortho", "Symétries et projecteurs ortogonaux", ("Maths.Algèbre.Euclidiens",))
+#card("symprojortho", "Symétries et projecteurs ortogonaux", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Symétries et projecteurs ortogonaux.
 
@@ -11898,7 +11898,7 @@ Ou de manière équivalente si $p$ est autoadjoint.
     scl(x, y) = 0
   $
 
-#card("endosym", "Endomorphismes symétriques ou autoadjoints", ("Maths.Algèbre.Euclidiens",))
+#card("endosym", "Endomorphismes symétriques ou autoadjoints", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Endomorphismes symétriques ou autoadjoints.
 
@@ -11917,7 +11917,7 @@ $
 $
 Qui est donc un sev de $cal(L)(E)$ et $dim S(E) = (n (n+1)) / 2$.
 
-#card("thspectral", "Théorème spectrale", ("Maths.Algèbre.Euclidiens",))
+#card("thspectral", "Théorème spectrale", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Théorème spectrale.
 
@@ -11964,7 +11964,7 @@ On suppose $A in S_n (RR)$
   $
   Et on conclus par hypothèse de récurrence.
 
-#card("calcvpps", "Expression des valeurs propres avec le produit scalaire", ("Maths.Algèbre.Euclidiens",))
+#card("calcvpps", "Expression des valeurs propres avec le produit scalaire", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Expression des valeurs propres avec le produit scalaire.
 
@@ -12055,7 +12055,7 @@ Par le théorème spectral on dispose d'une BON de vecteurs propres $(e_1, dots,
     norm(u)_"op" = rho = max_(lambda in "Sp"(u)) abs(lambda)
   $
 
-#card("endoautopos", "Endomorphismes autoadjoints positifs", ("Maths.Algèbre.Euclidiens",))
+#card("endoautopos", "Endomorphismes autoadjoints positifs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Endomorphismes autoadjoints positifs.
 
@@ -12161,7 +12161,7 @@ Matriciellement, pour $A in S_n (RR)$, on regarde le signe de $X^TT A X$.
 
 // TODO: Vérifier
 
-#card("decompensympos", "Décomposition des Endomorphismes symétriques positifs", ("Maths.Algèbre.Euclidiens",))
+#card("decompensympos", "Décomposition des Endomorphismes symétriques positifs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Décomposition des Endomorphismes symétriques positifs.
 
@@ -12209,7 +12209,7 @@ Pour $S in M_n (RR)$
   $
   Et si de plus $S in S^(++)_n (RR)$, $Delta in "GL"_n (RR)$ et $A in "GL"_n (RR)$.
 
-#card("matgramm", "Matrices de Gram", ("Maths.Algèbre.Euclidiens",))
+#card("matgramm", "Matrices de Gram", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Matrices de Gram.
 
@@ -12247,7 +12247,7 @@ On a les propriétés suivantes
 
 // NOTE: Exercices M329-330
 
-#card("reducisomvec", "Réduction des isométries vectorielles", ("Maths.Algèbre.Euclidiens",))
+#card("reducisomvec", "Réduction des isométries vectorielles", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Réduction des isométries vectorielles.
 
@@ -12316,7 +12316,7 @@ Calculs.
 
     Or comme $E$ est un $RR$-ev, $u$ admet un plan stable, et on peut induire dessus, et il ne s'agit pas d'une réflexion car pas de valeurs propres.
 
-#card("identso", "Identification d'une matrice de rotation en dimension 3", ("Maths.Algèbre.Euclidiens",))
+#card("identso", "Identification d'une matrice de rotation en dimension 3", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Identification d'une matrice de rotation en dimension 3.
 
@@ -12374,7 +12374,7 @@ $
   =& product_(k = p + 1)^(p + q) S_k dot product_(k = 1)^r (T_(p + q + 2r - 1) (theta_k) S_(p + q + 2 r))
 $
 
-#card("raccarendos", "Racine carrée d'une matrice symétrique positive", ("Maths.Algèbre.Euclidiens",))
+#card("raccarendos", "Racine carrée d'une matrice symétrique positive", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Racine carrée d'une matrice symétrique positive.
 
@@ -12416,7 +12416,7 @@ $
 
 // NOTE: Analogies M334
 
-#card("decomppolaire", "Décomposition polaire d'Endomorphismes", ("Maths.Algèbre.Euclidiens",))
+#card("decomppolaire", "Décomposition polaire d'Endomorphismes", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Décomposition polaire d'Endomorphismes.
 
@@ -12490,7 +12490,7 @@ Et si $A in "GL"_n (RR)$, $R in S_n^(++) (RR)$ et cette décomposition est uniqu
   $
   Avec unicité de $R$ car $B^TT B = R^2$.
 
-#card("normadj", "Norme et adjoint d'un endomorphisme", ("Maths.Algèbre.Euclidiens",))
+#card("normadj", "Norme et adjoint d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Norme et adjoint d'un endomorphisme.
 
@@ -12592,7 +12592,7 @@ Soit $u in cal(L)(E)$ avec $(E, scl(dot, dot))$ euclidien tel que $norm(u)_"op" 
   $
   On a la CVS, et on peut en déduire la CVU en appliquant la CVS sur une BON.
 
-#card("prodmatsym", "Produit de matrices symétriques", ("Maths.Algèbre.Euclidiens",))
+#card("prodmatsym", "Produit de matrices symétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Produit de matrices symétriques.
 
@@ -12709,7 +12709,7 @@ Soit $(E, scl(dot, dot))$ un euclidien de dimension $n$, $(a_i)_i, (b_i)_i in E^
     A = P^(-1) B
   $
 
-#card("actionparcongr", "Action par congruence", ("Maths.Algèbre.Euclidiens",))
+#card("actionparcongr", "Action par congruence", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Action par congruence.
 
@@ -12759,7 +12759,7 @@ $
 
 - Les écrires.
 
-#card("coredmatsym", "Coréduction des matrices symétriques", ("Maths.Algèbre.Euclidiens",))
+#card("coredmatsym", "Coréduction des matrices symétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Coréduction des matrices symétriques.
 
@@ -12794,7 +12794,7 @@ $
 
 // NOTE: Applications que j'ai pas compris M339
 
-#card("decomsing", "Décomposition en valeurs singulières", ("Maths.Algèbre.Euclidiens",))
+#card("decomsing", "Décomposition en valeurs singulières", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Décomposition en valeurs singulières.
 
@@ -12861,7 +12861,7 @@ Et les valeurs sinngulières de $A$ sont les racines carrées des valeurs propre
 
 La même en introduisant $u^*$ l'endomorphisme associé à $A^TT$ (car pas adjoit tel qu'on la définit sur les endomorphismes).
 
-#card("matcov", "Matrice de covariance", ("Maths.Algèbre.Euclidiens", "Maths.Probabilités"))
+#card("matcov", "Matrice de covariance", ("Maths.Algèbre.Algèbre linéaire.Euclidiens", "Maths.Probabilités"))
 
 Matrice de covariance.
 
@@ -12925,7 +12925,7 @@ $
   &= Cov(W_1, dots, W_n) in S_n^+ (RR)
 $
 
-#card("matantisym", "Endomorphismes et matrices antisymétriques", ("Maths.Algèbre.Euclidiens",))
+#card("matantisym", "Endomorphismes et matrices antisymétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Endomorphismes et matrices antisymétriques.
 
@@ -13017,7 +13017,7 @@ Et de plus
 
   Or $ker A^2 = ker (- A^2) = ker (A^TT A) = ker A$, donc par un exercice de réduction, $A$ est diagonalisable dans $M_n (CC)$.
 
-#card("reducantisym", "Réduction des endomorphismes antisymétriques", ("Maths.Algèbre.Euclidiens",))
+#card("reducantisym", "Réduction des endomorphismes antisymétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Réduction des endomorphismes antisymétriques.
 
@@ -13136,7 +13136,7 @@ Inégalités utiles qui tiennent pour les fonctions à valeur dans un evn de dim
     <= abs(b - a) / (n+1)! sup_[a, b] norm(f^((n+1)))
   $
 
-#card("cvs", "Convergence simple", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("cvs", "Convergence simple", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Propriétés, définition de la convergence simple.
 
@@ -13192,7 +13192,7 @@ Si $A = I$ intervalle et $E = RR$
   $
   Donc au sens de la norme infinie : $P_n -> Q = f$.
 
-#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc0sfn", "Théorème de continuité pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de continuité pour les suites de fonctions.
 
@@ -13214,7 +13214,7 @@ $
   < & 3 epsilon
 $
 
-#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thdbllimsfn", "Théorème de la double limite pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de la double limite pour les suites de fonctions.
 
@@ -13237,7 +13237,7 @@ $
   norm(l_n - l_m) <= norm(f_n - f_m)_oo "de Cauchy"
 $
 
-#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thprimsfn", "Théorème de primitivation pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de primitivation pour les suites de fonctions.
 
@@ -13278,7 +13278,7 @@ $
   &<= M epsilon
 $
 
-#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc1sfn", "Théorème de dérivation pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation pour les suites de fonctions.
 
@@ -13297,7 +13297,7 @@ $
 
 Par théorème de primitivation.
 
-#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thcksfn", "Théorème de dérivation k-ème pour les suites de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation k-ème pour les suites de fonctions.
 
@@ -13317,7 +13317,7 @@ Pour tout $j in [|0, k|]$, $(f^((j))_n)_n$ CVU sur tout segment vers $g_j = g_0^
 
 Récurrence à l'aide du théorème de dérivation.
 
-#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc0serfn", "Théorème de continuité pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de continuité pour les séries de fonctions.
 
@@ -13337,7 +13337,7 @@ Alors $S : x |-> sum_(n = 0)^(+oo) f_n (x)$ est continue en $a$.
 
 On applique le théorème de continuité pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de la doulbe limite pour les séries de fonctions.
 
@@ -13360,7 +13360,7 @@ $
 
 On applique le théorème de la double limite pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thc1serfn", "Théorème de dérivation pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation pour les séries de fonctions.
 
@@ -13376,7 +13376,7 @@ Alors $sum f_n$ CVU sur tout segment de $I$, et $S in C^1 (I, F)$ et $S' = sum_(
 
 On applique le théorème de dérivation pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thckserfn", "Théorème de dérivation k-ème pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de dérivation k-ème pour les séries de fonctions.
 
@@ -13398,7 +13398,7 @@ $
 
 On applique le théorème de dérivation k-ème pour les suites de fonctions à $S_n = sum_(k = 0)^n f_n$.
 
-#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
+#card("thprimserfn", "Théorème de primitivation pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
 Énoncé, démonstration du théorème de primitivation pour les séries de fonctions.
 
@@ -13607,7 +13607,7 @@ $
 
 On montre $C^0$ avec le théorème de continuité, puis on montre la dérivabilité par le théorème de convergence dominée en calculant la limite usuelle.
 
-#card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("densifunc", "Espaces denses de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Exemples d'espaces denses de fonctions.
 
@@ -13623,7 +13623,7 @@ Les fonctions polynômiales sur $[a, b]$ sont denses dans $(C^0 ([a, b], KK), no
 
 // TODO: Exos M230-231
 
-#card("dini1", "Premier théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("dini1", "Premier théorème de Dini", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Énoncé et démonstration du premier théorèmes de dini (HP).
 
@@ -13655,7 +13655,7 @@ $
 
 Absurde. Donc on dispose de $N in NN$ tel que pour tout $n >= N$, $K_n = emptyset$, c'est à dire $norm(g_n)_oo < epsilon$.
 
-#card("dini2", "Deuxième théorème de Dini", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("dini2", "Deuxième théorème de Dini", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Énoncé et démonstration du deuxième théorèmes de dini (HP).
 
@@ -13689,7 +13689,7 @@ $
   - 2 epsilon < f_n (x) - f(x) < 2 epsilon
 $
 
-#card("equicont", "Équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("equicont", "Équicontinuité", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Définitions, propriétés de (uniforme) équicontinuité.
 
@@ -13722,7 +13722,7 @@ $
 
 - Soit $epsilon > 0$, on pose $delta = epsilon / k$ qui convient pour tout $i in I$.
 
-#card("cvscvuuec", "Convergence uniforme par convergence simple et uniforme équicontinuité", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("cvscvuuec", "Convergence uniforme par convergence simple et uniforme équicontinuité", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Démonstration de la convergence uniforme par convergence simple et uniforme équicontinuité.
 
@@ -13760,7 +13760,7 @@ $
 
 On peut montrer ce resultat pour $K$ compact quelconque (au lieu de $[a, b]$), le découpage se faisant par précompacité.
 
-#card("modeconvseries", "Modes de convergence des séries de fonctions", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("modeconvseries", "Modes de convergence des séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Modes de convergence des séries de fonctions.
 
@@ -13801,7 +13801,7 @@ $
 
 // TODO: Développement en série de cotan (M241-242)
 
-#card("ascoli", "Théorème d'Ascoli", ("Maths.Analyse.Suites et séries de fonctions",))
+#card("ascoli", "Théorème d'Ascoli", ("Maths.Analyse.Suites.Suites et séries de fonctions",))
 
 Énoncé, démonstration du Théorème d'Ascoli.
 
