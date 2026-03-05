@@ -1910,7 +1910,7 @@ Deux méthodes :
 
 + On pose
   $
-    Y_0 : t |-> X_0
+    Y_0 : func(I, KK^n, t, X_0)
   $
   Et pour tout $p in NN$
   $
@@ -1961,7 +1961,61 @@ Deux méthodes :
   $
   Qui est le terme général d'une série convergente : $sum Y_p - Y_(p - 1)$ converge normalement sur $K$, donc $(Y_p)$ converge uniformement sur $K$ vers $Y_oo$.
 
-  Or pour tout $t in K$
+  On pose alors
   $
-    Y_(p + 1) (t) = X_0 + integral_(t_0)^t (A(s)Y_p (s) + B(s)) dif s
+    tilde(f) : C^0(K, KK^n) -> C^0 (K, KK^n)
   $
+  Qui correspond à $f$. Ainsi pour tout $X, Y in C^0(K, KK^n)$
+  $
+    norm(tilde(f)(X) - tilde(f)(Y))_oo <= c eta norm(X - Y)_oo
+  $
+  Et $tilde(f)$ est donc continue.
+
+  Ainsi
+  $
+    tilde(f) (Y_oo|_K) = Y_oo|_K
+  $
+  Et ce pour tout $K$.
+
+Il reste l'unicité :
+
+On montre d'abord le lemme de Gronwall
+
++ Soit $f, g in C^0(I, RR)$ positives et $c >= 0$ tel que pour tout $t in I = Ico(0, +oo)$
+  $
+    f(t) <= c + integral_a^t f(s) g(s) dif s
+  $
+  Alors pour tout $t in I$
+  $
+    f(t) <= c exp(integral_a^t g(s) dif s)
+  $
+
+  Posons
+  $
+    h(t) = (c + integral_a^t f(s) g(s) dif s) / (c exp(integral_a^t g(s) dif s)) \
+  $
+  $
+    h'(t) &= g(t) (f(t) - c - integral_a^t f(s) g(s) dif s) / (c exp(integral_a^t g(s) dif s)) \
+    &<= 0
+  $
+  Ainsi pour tout $t in I$
+  $
+    h(t) <= h(t_0) = 1
+  $
+
++ Ainsi si $Y$ et $tilde(Y)$ sont deux solutions, alors pour tout $t in I$
+  $
+    &Y(t) - tilde(Y)(t) \
+    =& (f(Y) - f(tilde(Y)))(t) \
+    =& integral_(t_0)^t A(s) (Y(s) - tilde(Y)(s)) dif s
+  $
+  Or pour tout $t >= t_0$
+  $
+    phi(t) &= norm(Y(t) - tilde(Y)(t)) \
+    &<= 0 + integral_(t_0)^t norm(A(s))_"op" phi(s) dif s
+  $
+  D'où par le lemme de Gronwall
+  $
+    phi(t) <= 0 dot exp(integral_(t_0)^t norm(A(s))_"op" dif s)
+  $
+  Donc $Y(t) = tilde(Y)(t)$ sur $I inter Ico(t_0, +oo)$, et on peut faire de même sur $I inter Ioc(+oo, t_0)$.
