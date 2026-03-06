@@ -15471,4 +15471,60 @@ On montre d'abord le lemme de Gronwall
     phi(t) <= 0 dot exp(integral_(t_0)^t norm(A(s))_"op" dif s)
   $
   Donc $Y(t) = tilde(Y)(t)$ sur $I inter Ico(t_0, +oo)$, et on peut faire de même sur $I inter Ioc(+oo, t_0)$.
+
+#card("inegrearran", "Inéaglité de réordonnement", ("Maths.Analyse",))
+
+Inéaglité de réordonnement.
+
+#answer
+
+Soit $a_1 <= dots.c <= a_n$ et $b_1 <= dots.c <= b_n in RR$, pour tout $sigma in frak(S)_n$
+
+$
+  sum_(i = 1)^n a_i b_i >= sum_(i = 1)^n a_i b_sigma(i)
+$
+
+Et si toutes les inégalités sont strictes alors le max n'est atteint qu'en $sigma = id$.
+
+*Démonstration*
+
+Pour $sigma in frak(S)_n$, notons
+$
+  T_sigma = sum_(i = 1)^n a_i b_sigma(i)
+$
+Et
+$
+  T = max_(sigma in frak(S)_n) T_sigma
+$
+
+Soit $sigma in frak(S)_n \\ {id}$ tel que
+$
+  T = T_sigma
+$
+Comme $sigma != id$, on dispose de $j in [|1, n|]$ tel que
+$
+  sigma(j) != j \
+  forall i in [|1,j-1|], sigma(i) = i
+$
+Ainsi $sigma(j) > j$ et $k = sigma^(-1) (j) > j$.
+
+Donc
+$
+  0 <= (b_sigma(j) - b_j)(a_k - a_j) \
+  a_j b_sigma(j) + a_k b_j <= a_j b_j + a_k b_sigma(j)
+$
+Définissons alors
+$
+  tau : func([|1, n|], [|1, n|], i = j, j, i = k, sigma(j), i in.not {j, k}, sigma(i))
+$
+Qui possède strictement plus de points fixes que $sigma$.
+$
+  T_sigma - T_tau \ = (a_j b_sigma(j)+ a_k b_j) - (a_j b_j + a_k b_sigma(j)) \
+  <= 0
+$
+Donc $tau$ est aussi maximal et a strictement plus de points fixes.
+
+Ainsi en un nombre fini d'étapes on trouve que $id$ est aussi maximal.
+
+Si les inégalités sont strictes, on obtient une contradiction sur la maximalité de $sigma$.
 ]
