@@ -37,6 +37,10 @@ done
 >&2 echo "compiling $src -> $full"
 typst compile --root . --font-path "./fonts/" --ignore-system-fonts --input "disable_sans_math=$disable_sans_math" "$src" "$full"
 
+# Grab the short Git commit hash for cache-busting
+# (Using a fallback to a timestamp just in case the script is ever run outside a git repo)
+CACHE_BUSTER="$(git rev-parse --short HEAD 2>/dev/null || date +%s)"
+
 # Build index
 cat > ./dist/index.html << EOF
 <html>
@@ -69,7 +73,7 @@ cat > ./dist/index.html << EOF
     </head>
     <body>
         Flashbang cards
-        <a href="_full.pdf"> everything </a>
+        <a href="_full.pdf?v=${CACHE_BUSTER}"> everything </a>
     </body>
 </html>
 EOF
