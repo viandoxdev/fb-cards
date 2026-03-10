@@ -4,9 +4,6 @@ import adapter from '@sveltejs/adapter-static';
 const config = { 
     kit: {
         adapter: adapter(),
-        paths: {
-            base: process.env.BASE_PATH || ''
-        },
         prerender: {
             handleHttpError: ({ path, message }) => {
                 // Ingore 404 for generated _full.pdf file

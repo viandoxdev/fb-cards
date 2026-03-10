@@ -12,6 +12,7 @@
     import type { Card } from "../app";
     import Popup from "$lib/Popup.svelte";
     import Loader from "$lib/Loader.svelte";
+    import { asset } from '$app/paths';
 
     const cards = _cards as Card[];
 
@@ -47,8 +48,19 @@
     onMount(async () => {
         worker = new WasmWorker();
 
+        worker.onerror = (err) => {
+            console.error("Worker initialization failed:", err);
+        };
+
         worker.onmessage = (event) => {
             const message = event.data as WorkerResponse;
+
+            if (message.type === 'READY') {
+                worker?.postMessage({ 
+                    type: 'INIT', 
+                    payload: { zipUrl: asset('/data-bundle.zip') } 
+                });
+            }
 
             switch (message.type) {
                 case "COMPILED_CARD":
