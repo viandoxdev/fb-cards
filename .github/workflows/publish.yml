@@ -34,6 +34,9 @@ jobs:
       - name: Fetch fb-cli binary
         run: gh release download -p fb-cli -R viandoxdev/flashbang
 
+      - name: Make fb-cli executable
+        run: chmod +x ./fb-cli
+
       - name: Bundle cards data
         run: ./bundle-data.sh
 
