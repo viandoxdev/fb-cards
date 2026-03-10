@@ -39,7 +39,7 @@ jobs:
         run: echo "PUBLIC_CACHE_BUSTER=${GITHUB_SHA}" >> $GITHUB_ENV
 
       - name: Build site
-        workdir: ./public
+        working-directory: ./public
         run: make build
 
       - name: Deploy to pages
