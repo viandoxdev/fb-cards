@@ -17,12 +17,34 @@ jobs:
       - name: Setup typst
         uses: typst-community/setup-typst@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
       - name: Compile documents into dist directory
         run: ./compile.sh --disable-sans-math
+
+      - name: Fetch fb-cli binary
+        run: gh release download -p fb-cli -R viandoxdev/flashbang
+
+      - name: Bundle cards data
+        run: ./bundle-data.sh
+
+      - name: Fetch fb-web wasm bundle
+        run: gh release download -p wasm-bundle.zip -R viandoxdev/flashbang -D ./public
+
+      - name: Setup cache buster from commit SHA
+        run: echo "PUBLIC_CACHE_BUSTER=${GITHUB_SHA}" >> $GITHUB_ENV
+
+      - name: Build site
+        workdir: ./public
+        run: make build
 
       - name: Deploy to pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./public/build
           publish_branch: gh-pages

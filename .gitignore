@@ -1,2 +1,5 @@
 *.pdf
-dist
+cache
+fb-cli
+cards.json
+data-bundle.zip

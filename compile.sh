@@ -16,13 +16,13 @@ while IFS=  read -r -d $'\0'; do
 done < <(find . -name "*.typ" -not -path "./dist/*" -printf "%P\0")
 # ^ think of excluding dist
 
-mkdir -p ./dist
+mkdir -p ./cache/src
 
-src="./dist/_full.typ"
-full="./dist/_full.pdf"
+src="./cache/src/_full.typ"
+full="./public/static/_full.pdf"
 
 # Merged file header
-echo -e "#import \"../cards.typ\": *\n#show: setup" > "$src"
+echo -e "#import \"../../cards.typ\": *\n#show: setup" > "$src"
 
 # Build merged source
 for doc in "${documents[@]}"; do
@@ -33,47 +33,10 @@ for doc in "${documents[@]}"; do
     echo "]" >> "$src"
 done
 
+# Make local cache home
+mkdir -p ./cache
+CACHE="$(realpath ./cache)"
+
 # Compile merged file
 >&2 echo "compiling $src -> $full"
-typst compile --root . --font-path "./fonts/" --ignore-system-fonts --input "disable_sans_math=$disable_sans_math" "$src" "$full"
-
-# Grab the short Git commit hash for cache-busting
-# (Using a fallback to a timestamp just in case the script is ever run outside a git repo)
-CACHE_BUSTER="$(git rev-parse --short HEAD 2>/dev/null || date +%s)"
-
-# Build index
-cat > ./dist/index.html << EOF
-<html>
-    <head>
-        <title>Flashbang cards</title>
-        <meta charset="UTF-8" />
-        <style>
-            html, body {
-                margin: 0;
-                padding: 0;
-            }
-
-            body {
-                display: flex;
-                width: 100vw;
-                height: 100vh;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                font-size: 2em;
-                gap: 1em;
-                background: #fafafa;
-                font-weight: bold;
-            }
-            a {
-                color: #34abeb;
-                text-decoration: none;
-            }
-        </style>
-    </head>
-    <body>
-        Flashbang cards
-        <a href="_full.pdf?v=${CACHE_BUSTER}"> everything </a>
-    </body>
-</html>
-EOF
+XDG_CACHE_HOME="$CACHE" typst compile --root . --font-path "./fonts/" --ignore-system-fonts --input "disable_sans_math=$disable_sans_math" "$src" "$full"

@@ -1891,6 +1891,19 @@ $
 $
 Admet une unique solution.
 
+*Corolaires*
+
+- L'espace (affine / vectorielle) des solutions est de même dimension que $E$.
+
+- Dans le cas homogène, si $y_1, dots, y_d$ sont des solutions et $lambda_1, dots, lambda_d in KK$ et $t_0$ tels que
+  $
+    sum_(k = 1)^d lambda_k y_k (t_0) = 0
+  $
+  Alors pour tout $t in I$
+  $
+    sum_(k = 1)^d lambda y_k (t) = 0
+  $
+
 *Démonstration*
 
 Idée : forme intégrale.
@@ -2075,3 +2088,102 @@ Donc $tau$ est aussi maximal et a strictement plus de points fixes.
 Ainsi en un nombre fini d'étapes on trouve que $id$ est aussi maximal.
 
 Si les inégalités sont strictes, on obtient une contradiction sur la maximalité de $sigma$.
+
+
+#card("edlsyslincoefconst", "Système d'équation differentielles linéaires à coefficients constants", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Système d'équation differentielles linéaires à coefficients constants.
+
+#answer
+
+Pour
+$
+  (E) quad cases(space display(mat(delim: #none, 
+    y'_1 (t), =, sum_(k = 1)^n a_(1 k) y_k (t);
+    dots.v,,dots.v;
+    y'_n (t), =, sum_(k = 1)^n a_(n k) y_k (t);
+  ))) \
+  <=> (E_0) quad Y'(t) = A Y(t) \
+  A = (a_(i j))_(i j) quad quad Y(t) = vec(y_1 (t), dots.v, y_n (t))
+$
+
+Ainsi
+$
+  S_0 = { func(delim: #none, RR, KK^n, t, e^(t A) X_0), X_0 in KK^n }
+$
+
+#card("excarmdgedl", "Exercice : caractérisation des morphismes des réels additifs vers le groupe linéaire", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Caractériser les morphismes de $(RR, +)$ vers $("GL"(E), compose)$
+
++ Dans le cas $C^1$.
+
++ Dans le cas $C^0$.
+
+#answer
+
++ Soit #h(1fr)
+  $
+    f in C^1(RR, "GL"(E))  \
+    forall t, s in RR, f(s + t) = f(s) compose f(t)
+  $
+  Comme $f$ est $C^1$
+  $
+    dv(,t) f(t + s) = f'(t + s) \
+    dv(,t) (f(t) compose f(s)) = f'(t) compose f(s) \
+  $
+  Donc pour $t = 0$ et pour tout $s in RR$
+  $
+    f'(s) = f'(0) compose f(s)
+  $
+  De plus $f(0) = id$ car morphisme de groupe.
+  
+  Ainsi par Cauchy-Lipschitz
+  $
+    f(t) = e^(t f'(0))
+  $
+
++ Avec la notation matricielle :
+  $
+    M in C^0(RR, "GL"_n (KK)) \
+    forall t, s in RR, space M(t + s) = M(t) M(s)
+  $
+  Montrons que $M$ est $C^1$. Pour $s, t in RR$
+  $
+    integral_0^t M(tau + s) dif tau = integral_0^t M(tau) M(s) dif tau
+  $
+  Par linéarité
+  $
+    integral_0^t M(tau + s) dif tau &= underbrace((integral_0^t M(tau) dif tau), tilde(M) (t)) M(s) \
+    &= integral_s^(t + s) M(tau) dif tau \ 
+    &= tilde(M)(t + s) - tilde(M)(s)
+  $
+  Or pour une norme subordonée
+  $
+    B(I_n, 1) subset.eq "GL"_n (KK)
+  $
+  (Car $I_n + N$ inversible si $N$ nilpotent)
+
+  Donc pour tout $t > 0$
+  $
+    &norm(1/t tilde(M)(t) - I_n) \
+    =& norm(1/t integral_0^t (M(tau) - I_n) dif tau) \
+    <=& 1/t integral_0^t norm(M(tau) - I_n) dif tau
+  $
+  Or $M(0) = I_n$ et $M$ est continue, donc on dispose de $delta > 0$ tel que
+  $
+    M(Ioo(-delta, delta)) subset.eq B(I_n, 1/2)
+  $
+
+  Donc pour tout $t in Ico(0, delta)$
+  $
+    norm(1/t tilde(M)(t) - I_n) <= 1/2 < 1
+  $
+
+  Ainsi $tilde(M)(Ico(0, delta)) subset.eq "GL"_n (KK)$
+
+  Donc pour tout $t in Ico(0, delta)$
+  $
+    M(s) = tilde(M)(t)^(-1) (tilde(M)(t + s) - tilde(M)(s))
+  $
+  Qui est donc $C^1$. Puis on conclut par propriétés de morphismes.
