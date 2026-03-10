@@ -49,6 +49,8 @@ jobs:
       - name: Build site
         working-directory: ./public
         run: make build
+        env: 
+          BASE_PATH: '/fb-cards'
 
       - name: Deploy to pages
         uses: peaceiris/actions-gh-pages@v4

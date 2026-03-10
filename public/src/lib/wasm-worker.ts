@@ -4,7 +4,7 @@ import { Card as FBCard, Core, SourceConfig } from '../fb-web';
 // 1. Declare the core variable and wrap the async setup in a Promise
 let core: Core;
 const initPromise = (async () => {
-    const response = await fetch("data-bundle.zip");
+    const response = await fetch(`${import.meta.env.BASE_URL}data-bundle.zip`);
     const buffer = await response.arrayBuffer();
     core = new Core(new Uint8Array(buffer));
 })();
