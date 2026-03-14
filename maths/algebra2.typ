@@ -426,3 +426,64 @@ Plusieurs cas :
       A^k = P_k (A)
     $
     Et on somme.
+
+#card("exeqkereamin", "Exercice : égalité des noyaux d'une matrice et de son exponentielle", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
+
++ Montrer que pour tout $A in M_n (CC)$, $ker A subset.eq ker (e^A - I_n)$. A-t-on l'égalité ?
+
++ Montrer que pour $N in M_n (CC)$ nilpotente, $ker N = ker (e^N - I_n)$.
+
++ Trouver une CNS sur $A in M_n (CC)$ pour que $ker A = ker (e^A - I_n)$.
+
+#answer
+
++ Pour tout $A in M_n (CC)$, $X in ker A$
+  $
+    (e^A - I_n) X &= (sum_(k = 1)^(+oo) A^k / k!) X \ &= sum_(k = 0)^(+oo)(A^k X) / k! = 0 
+  $
+
+  En général l'égalité ne tient pas :
+  $
+    A = dmat(2 i pi, 2 i pi) \
+    ker A = {0} \
+    e^A - I_2 = 0 \
+    ker (e^A - I_2) = CC^2
+  $
+
++ Premier sens fait ci-dessus.
+
+  soit $X in ker (e^N - I_n)$ #h(1fr)
+  $
+  d = min Set(k in NN^*, N^k X = 0) <= n
+  $
+  Donc
+  $
+    0 = (e^N - I_n) X = sum_(k = 1)^(d - 1) N^k / k! X
+  $
+  Or
+  $
+    (X, N X, dots, N^(d - 1) X)
+  $
+  Est libre, ainsi
+  $
+    forall i in [|1, d-1|],  1 / k! = 0
+  $
+  D'où
+  $
+    d = 1 quad "et" quad N X = 0
+  $
+
++ Dans le cas général, soit $A in M_n (CC)$
+  $
+    underbrace(dmat(N, lambda_1 I_m_1 + N_1, dots.down, lambda_p I_m_p + N_p), P^(-1) A P = B)
+  $
+  Avec $dim ker A = dim ker N$
+  $
+    underbrace(inline(dmat(e^N - I_m, e^(lambda_1) e^(N_1) - I_m_1, dots.down, e^(lambda_p) e^(N_p) - I_m_p)), P^(-1) (e^A - I_n) P = M)
+  $
+
+  Or $ker (e^N - I_m) = ker N$ et les $e^(lambda_i) e^(N_i) - I_m_i$ sont inversibles ssi $e^(lambda_i) != 1$, on peut alors conclure :
+
+  On a égalité ssi il n'existe pas $lambda in "Sp"(A) \\ {0}$ tel que $e^lambda = 1$.
+
+
