@@ -865,7 +865,7 @@ Méthodes de recherche d'équivalents.
 
 Si on cherche un équivalent d'une suite $(u_n)$
 
-- Étudier la série $sum (u_(n+1) - u_n)$ ou $sum (u_n - u_(n + 1))$, sommes partielles ou restes (voir théorème de sommation des relations de comparaison pour les séries.
+- Étudier la série $sum (u_(n+1) - u_n)$ ou $sum (u_n - u_(n + 1))$, sommes partielles ou restes (voir théorème de sommation des relations de comparaison pour les séries).
 - Chercher $alpha in RR^*$ tel que $u_(n+1)^alpha - u_n^alpha tends(n -> +oo) l in RR^*$, pour avoir
   $
     u_n^alpha - u_0^alpha &= sum_(k=0)^(n-1) u_(k+1)^alpha - u_k^alpha eqv(n->+oo) n l \
