@@ -119,7 +119,7 @@ Si $A = I$ intervalle et $E = RR$
 
 #card("exsuitesdepol", "Exercice : suite de polynômes, convergence uniforme", ("Maths.Exercice.Analyse",))
 
-+ Soit $(P_n)_n in RR[X]^NN tends(n -> oo, above: "CVU") f in cal(F)(RR, RR)$, montrer que $f$ est polynômiale.
++ Soit $(P_n)_n in RR[X]^NN tends(n -> oo, above: "CVU") f in cal(F)(RR, RR)$, montrer que $f$ est polynomiale.
 
 + Soit $(P_n)_n in RR_d [X]^NN tends(n -> oo, above: "CVS") Q in RR_d [X]$, montrer que $(P_n)_n$ converge uniformement sur tout segment.
 
@@ -132,7 +132,7 @@ Si $A = I$ intervalle et $E = RR$
   $
     P_N - P_n = (P_N - f) - (P_n - f)
   $
-  Différence de fonctions bornées, donc bornée et somme de polynômes de polynômiale.
+  Différence de fonctions bornées, donc bornée et somme de polynômes de polynomiale.
 
   D'où
   $
@@ -147,7 +147,7 @@ Si $A = I$ intervalle et $E = RR$
   $
   Par CVS, $(P_n)_n$ converge vers $Q$ au sens de la norme $N_d$, qui est équivalente à la norme infinie car en dimension finie.
 
-+ De même, par interpollation de Lagrange on prend $Q$ coincident avec $f$ en $d + 1$ points, et on définit la même norme :
++ De même, par interpolation de Lagrange on prend $Q$ coïncident avec $f$ en $d + 1$ points, et on définit la même norme :
   $
     N_d (P_n - Q) tends(n -> oo) 0
   $
@@ -216,7 +216,7 @@ $
 
 Alors $F_n$ CVU sur tout segment vers $F$
 
-*Corolaire*
+*Corollaire*
 
 Pour $(f_n)_n in C^0_"pm" ([a, b], F)^NN tends([a, b], above: "CVU") f in C^0_"pm" ([a, b], F)$.
 
@@ -226,7 +226,7 @@ $
 
 *Démonstration*
 
-Soit $K$ segment, $M = abs(sup K - inf K)$, quitte à le grandire, $a in K$.
+Soit $K$ segment, $M = abs(sup K - inf K)$, quitte à le grandir, $a in K$.
 
 Soit $epsilon > 0$, on dispose de $N in NN$ tel que pour tout $n >= N$,
 $
@@ -300,7 +300,7 @@ On applique le théorème de continuité pour les suites de fonctions à $S_n = 
 
 #card("thdbllimserfn", "Théorème de la double limite pour les séries de fonctions", ("Maths.Analyse.Suites.Suites et séries de fonctions", "Maths.Analyse.Théorèmes d'interversion"))
 
-Énoncé, démonstration du théorème de la doulbe limite pour les séries de fonctions.
+Énoncé, démonstration du théorème de la double limite pour les séries de fonctions.
 
 #answer
 
@@ -379,7 +379,7 @@ $
 
 Alors $sum F_n$ CVU sur tout segment vers $S$
 
-*Corolaire*
+*Corollaire*
 
 Pour $(f_n)_n in C^0_"pm" ([a, b], F)^NN$ tel que $sum f_n$ CVU sur $[a, b]$ et $S = sum_(n = 0)^(+oo) f_n$ est $C^0_"pm"$.
 
@@ -578,9 +578,9 @@ Exemples d'espaces denses de fonctions.
 
 Les fonctions en escalier sont denses dans les fonctions $(C^0_"pm" ([a,b], E), norm(dot)_oo)$.
 
-*Fonctions polynômiales (Théorème de Weierstrass)*
+*Fonctions polynomiales (Théorème de Weierstrass)*
 
-Les fonctions polynômiales sur $[a, b]$ sont denses dans $(C^0 ([a, b], KK), norm(dot)_oo)$.
+Les fonctions polynomiales sur $[a, b]$ sont denses dans $(C^0 ([a, b], KK), norm(dot)_oo)$.
 
 // TODO: Exos M230-231
 
@@ -1003,9 +1003,9 @@ Pour tout $n in NN$
 $
   a_n = (f^((n)) (0)) / n!
 $
-*Corolaire*
+*Corollaire*
 
-Si deux séries entières coincident sur un intervalle $Ico(0, delta)$ avec $delta > 0$, alors ce sont les mêmes.
+Si deux séries entières coïncident sur un intervalle $Ico(0, delta)$ avec $delta > 0$, alors ce sont les mêmes.
 
 *Démonstration*
 
@@ -1032,9 +1032,9 @@ Si deux séries entières coincident sur un intervalle $Ico(0, delta)$ avec $del
     a_k = b_k
   $
 
-#card("lemradabel", "Lemme radiale d'Abel", ("Maths.Analyse.Séries.Séries entières",))
+#card("lemradabel", "Lemme radial d'Abel", ("Maths.Analyse.Séries.Séries entières",))
 
-Lemme radiale d'Abel.
+Lemme radial d'Abel.
 
 #answer
 
@@ -1130,7 +1130,7 @@ $
   g(x) = o_(x -> 1^-) (f(x))
 $
 
-#card("exabelcesaro", "Exercice : Lemme radiale d'Abel version Césaro", ("Maths.Exercice.Séries entières",))
+#card("exabelcesaro", "Exercice : Lemme radial d'Abel version Césaro", ("Maths.Exercice.Séries entières",))
 
 Soit
 $
@@ -1532,7 +1532,7 @@ $
 $
 Donc $c_n = C_n$ et $R = 1/4$.
 
-On peut ensuite calculer $c_n$ à partire du DSE de $sqrt(1 + x)$.
+On peut ensuite calculer $c_n$ à partir du DSE de $sqrt(1 + x)$.
 
 #card("compdse", "Composée du développement en série entière", ("Maths.Analyse.Séries.Séries entières",))
 
@@ -1627,7 +1627,7 @@ $
   alpha <= a_n / n <= A - epsilon / 2 + epsilon / 2 = A
 $
 
-#card("exinttnpol", "Exercice : integrale nulle sur un ségment du produit d'une fonction continue avec une puissance", ("Maths.Exercice.Intégration",))
+#card("exinttnpol", "Exercice : intégrale nulle sur un segment du produit d'une fonction continue avec une puissance", ("Maths.Exercice.Intégration",))
 
 Deux exercices à ne pas confondre :
 
@@ -1678,7 +1678,7 @@ Par linéarité de l'intégrale on a
     integral_a^b f(t) P(t) dif t = 0
   $
 
-  Par l'aburde supposons que
+  Par l'absurde supposons que
   $
     abs(f^(-1) {0}) <= d
   $
@@ -1702,7 +1702,7 @@ $
 
 #answer
 
-*Sens indirecte*
+*Sens indirect*
 
 On dispose de $a, M$ et $V$ comme énoncé, pour tout $x in V$ on a
 $
@@ -1722,7 +1722,7 @@ $
 $
 Avec convergence de la série.
 
-*Sens directe*
+*Sens direct*
 
 On suppose que pour tout $x in Ioo(-eta, eta)$
 $
@@ -1756,9 +1756,9 @@ $
   abs(f^((n))(x)) <= (2 M) n! (4 / eta)^n
 $
 
-#card("inegrearran", "Inéaglité de réordonnement", ("Maths.Analyse",))
+#card("inegrearran", "Inégalité de réordonnement", ("Maths.Analyse",))
 
-Inéaglité de réordonnement.
+Inégalité de réordonnement.
 
 #answer
 

@@ -72,7 +72,7 @@ On a
 
 *Démonstration*
 
-Comme toute les normes sont équivalentes, on choisie la norme $norm(dot)_"op"$ associé à une norme $norm(dot)$ sur $KK^n$.
+Comme toutes les normes sont équivalentes, on choisit la norme $norm(dot)_"op"$ associée à une norme $norm(dot)$ sur $KK^n$.
 
 Ainsi pour tout $k in NN$
 $
@@ -83,15 +83,15 @@ Qui est le terme général d'une série convergente.
 
 De plus
 
-- Pour tout $R > 0$, la série converge normalement sur $overline(B(0, R))$, donc uniformement.
+- Pour tout $R > 0$, la série converge normalement sur $overline(B(0, R))$, donc uniformément.
 
 - Théorème $C^1$ des séries de fonctions.
 
-- Somme partielles puis limite.
+- Sommes partielles puis limite.
 
-- Somme partielles puis limite.
+- Sommes partielles puis limite.
 
-- Somme partielles puis continuité.
+- Sommes partielles puis continuité.
 
 - On dispose de $T in T_n^+ (CC)$ et $P in "GL"_n (CC)$
   $
@@ -294,7 +294,7 @@ On pose
 $
   f_k : func(M_n (KK), M_n (KK), A, (1 + A / k)^k)
 $
-La suite $(f_k)_k$ converge uniformement sur tout compact vers $exp$.
+La suite $(f_k)_k$ converge uniformément sur tout compact vers $exp$.
 
 *Démonstration*
 
@@ -302,7 +302,7 @@ On pose
 $
   S_k : func(M_n (KK), M_n (KK), A, sum_(j = 0)^k A^j / j!)
 $
-On sait que $(S_k)_k$ converge uniformement vers $exp$ sur tout compact.
+On sait que $(S_k)_k$ converge uniformément vers $exp$ sur tout compact.
 
 Soit $k in NN^*$
 $
@@ -358,7 +358,7 @@ Montrer que $frak(G)$ est un sev de $M_n (RR)$.
     =& (I_n + (A + B + epsilon_k) / k)^k quad epsilon tends(k -> oo) 0 \
     =& f_k (A + B + epsilon_k)
   $
-  Comme $A + B + epsilon_k tends(k -> oo) A + B$ et $f_k$ converge uniformement vers $exp$ sur $overline(B(0, norm(A) + norm(B) + 1))$, par les résultats sur les suites et séries de fonctions (découpage)
+  Comme $A + B + epsilon_k tends(k -> oo) A + B$ et $f_k$ converge uniformément vers $exp$ sur $overline(B(0, norm(A) + norm(B) + 1))$, par les résultats sur les suites et séries de fonctions (découpage)
   $
     f_k (A + B + epsilon_k) tends(k -> oo) exp(A + B)
   $
@@ -404,7 +404,7 @@ Plusieurs cas :
     Q = sum_(k = 1)^d e^lambda_k product_(j != k) (X - lambda_j) / (lambda_k - lambda_j)
   $
 
-+ Si on connais un polynôme annulateur de $A$
++ Si on connaît un polynôme annulateur de $A$
 
   On suppose que $R(A) = 0$ avec $R in KK[X]$.
 
@@ -418,7 +418,7 @@ Plusieurs cas :
       e^A = sum_(k = 0)^(d - 1) A^k / k! + 1/ lambda^d (e^lambda - sum_(k = 0)^d lambda^k / k!) A^d
     $
 
-  + Si $R = (X - mu)^d (X - lambda)$, on pose $tilde(A) = A - mu I_n$, $tilde(A)$ annule $X^d (X - lambda + mu)$ et on reprend la cas précédent.
+  + Si $R = (X - mu)^d (X - lambda)$, on pose $tilde(A) = A - mu I_n$, $tilde(A)$ annule $X^d (X - lambda + mu)$ et on reprend le cas précédent.
 
   + Cas général : on fait la division euclidienne de $X^k$ par $R$
     $

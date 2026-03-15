@@ -282,17 +282,17 @@ Si la limite existe, alors elle est unique.
 
 - Si $l = lim_(n -> oo) u_n$, prendre $l' != l$ et montrer que $(d(l', u_n))_n tendsnot(n->oo) 0$.
 
-#card("vadh", "Valeurs d'adhérance d'une suite", ("Maths.Topologie",))
+#card("vadh", "Valeurs d'adhérence d'une suite", ("Maths.Topologie",))
 
-Définitions et propriétés sur les valeurs d'adhérance d'une suite.
+Définitions et propriétés sur les valeurs d'adhérence d'une suite.
 
 #answer
 
 Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
 
-On dit que $l in E$ est une valeur d'adhérance de $u$ s'il existe $phi$ extractrice tel que $(u_(phi(n)))_n tends(n -> oo) l$.
+On dit que $l in E$ est une valeur d'adhérence de $u$ s'il existe $phi$ extractrice tel que $(u_(phi(n)))_n tends(n -> oo) l$.
 
-Une suite qui à deux valeurs d'adhérance diverge.
+Une suite qui à deux valeurs d'adhérence diverge.
 
 #card("compnorm", "Comparaison de normes", ("Maths.Topologie",))
 
@@ -324,11 +324,11 @@ On dit que $norm(dot)_1$ et $norm(dot)_2$ sont équivalentes si chacune est plus
 
 #card("adh", "Adhérance", ("Maths.Topologie",))
 
-Définition de l'adhérance, caractérisation séquentielle.
+Définition de l'adhérence, caractérisation séquentielle.
 
 #answer
 
-Soit $(E, d)$ un espace métrique, $A subset.eq E$ une partie. Un point $x in A$ est dit adhérant à $A$ s'il vérifit une des conditions équivalentes suivantes :
+Soit $(E, d)$ un espace métrique, $A subset.eq E$ une partie. Un point $x in A$ est dit adhérent à $A$ s'il vérifie une des conditions équivalentes suivantes :
 
 + $forall r > 0, B(x, r) inter A != emptyset$
 
@@ -336,7 +336,7 @@ Soit $(E, d)$ un espace métrique, $A subset.eq E$ une partie. Un point $x in A$
 
 + $d(x, A) = 0$
 
-On définit alors l'adhérance d'un ensemble (noté $overline(A)$) comme l'ensemble de ses points d'adhérance.
+On définit alors l'adhérence d'un ensemble (noté $overline(A)$) comme l'ensemble de ses points d'adhérence.
 
 - $A subset.eq overline(A)$.
 
@@ -486,7 +486,7 @@ $
   forall V in cal(V)(f(a)), f^(-1) (V) in cal(V)(a)
 $ 
 
-Il suffit d'ailleur que $f$ admette une limite en $a$, car dans ce cas cette limite est forcément $f(a)$.
+Il suffit d'ailleurs que $f$ admette une limite en $a$, car dans ce cas cette limite est forcément $f(a)$.
 
 *Démonstration*
 
@@ -546,7 +546,7 @@ $
   forall x, y in X, \ d_F (f(x), f(y)) <= k d_E (x, y)
 $
 
-Toute fonction lipschitzienne est uniformement continue, donc continue.
+Toute fonction lipschitzienne est uniformément continue, donc continue.
 
 Exemples (notons $d = d_E$) :
 
@@ -740,7 +740,7 @@ Si $f in cal(L)(E, KK)$ est une forme linéaire alors $f$ est continue ssi $ker 
 
 *Démonstration*
 
-- Si $f$ est continue, $ker f = f^(-1) {0}$ est fermé comme image reciproque d'un fermé par une application continue.
+- Si $f$ est continue, $ker f = f^(-1) {0}$ est fermé comme image réciproque d'un fermé par une application continue.
 
 - Si $f$ n'est pas continue, on dispose de $(x_n)_n in E^NN$ tel que #h(1fr)
   $
@@ -834,7 +834,7 @@ $
   N : func(E, RR_+, x, inf space Set(lambda > 0, x / lambda in K))
 $
 
-+ Montrer que $N$ est bien définit.
++ Montrer que $N$ est bien défini.
 + Montrer que $N$ est une norme
 + Montrer que $N$ est équivalente à $norm(dot)$.
 + Montrer que $overline(B_N) (0, 1) = overline(K)$
@@ -932,15 +932,15 @@ Par convexité.
       x = (1 - lambda) dot 0 + lambda dot (x / lambda) in K
     $
 
-#card("adhsuiteens", "Points d'adhérance d'une suite", ("Maths.Topologie",))
+#card("adhsuiteens", "Points d'adhérence d'une suite", ("Maths.Topologie",))
 
-Définition et propriétés sur les points d'adhérance d'une suite.
+Définition et propriétés sur les points d'adhérence d'une suite.
 
 #answer
 
 Soit $(E, d)$ un espace métrique, $u = (u_n)_n in E^NN$ une suite.
 
-On dit que $l in E$ est un point d'adhérance de $u$ s'il existe $phi$ extractrice tel que
+On dit que $l in E$ est un point d'adhérence de $u$ s'il existe $phi$ extractrice tel que
 $
   (u_phi(n))_n -> l
 $
@@ -984,7 +984,7 @@ Est compact.
   $
     Gamma = {n in NN, exists k in NN, x_k = u_n} 
   $
-  Si $Gamma$ est fini, alors $x_n$ prend une valeur une infinité de fois qui est valeur d'adhérance de $(x_n)$.
+  Si $Gamma$ est fini, alors $x_n$ prend une valeur une infinité de fois qui est valeur d'adhérence de $(x_n)$.
 
   Sinon on construit : on prend $psi(0) in Gamma$ et $phi(0)$ tel que $u_psi(0) = x_phi(0)$.
 
@@ -996,7 +996,7 @@ Est compact.
   $
     u_psi(k+1) = x_phi(k+1)
   $
-  D'où $l$ est valeur d'adhérance de $(x_n)$.
+  D'où $l$ est valeur d'adhérence de $(x_n)$.
 
 #card("compact", "Compacité", ("Maths.Topologie",))
 
@@ -1022,7 +1022,7 @@ Si $K$ est compacte :
 
 - Si $F subset.eq K$ est fermé, alors $F$ est compact.
 
-- Si $(u_n)$ est une suite à valeur dans $K$, alors elle converge ssi elle n'a qu'une seul valeur d'adhérance.
+- Si $(u_n)$ est une suite à valeur dans $K$, alors elle converge ssi elle n'a qu'une seule valeur d'adhérence.
 
 - Si $f in C^0 (K, F)$ avec $F$ un espace métrique, alors $f(K)$ est compacte.
 
@@ -1038,7 +1038,7 @@ Si $K$ est compacte :
   $
   Donc $(x_n)$ ne peut converger, et $K$ n'est pas compacte.
 
-- Soit $(x_n)_n in K^NN -> l in overline(X)$, par compacité on peut éxtraire
+- Soit $(x_n)_n in K^NN -> l in overline(X)$, par compacité on peut extraire
   $
     (u_phi(n))_n -> z in K
   $
@@ -1050,7 +1050,7 @@ Si $K$ est compacte :
   $
   Or comme $F$ est fermé et $(u_phi(n))_n in F^NN$, $l in F$ d'où $F$ compact.
 
-- Par contraposée, soit $(x_n)_n in K^NN$ qui diverge, par compacité, elle admet une valeur d'adhérance $l$, mais $(x_n) arrow.r.not l_1$ c'est à dire #h(1fr)
+- Par contraposée, soit $(x_n)_n in K^NN$ qui diverge, par compacité, elle admet une valeur d'adhérence $l$, mais $(x_n) arrow.r.not l_1$ c'est à dire #h(1fr)
   $
     exists epsilon>0, forall N in NN, exists n >= N, d(x_n, l_1) >= epsilon
   $
@@ -1058,13 +1058,13 @@ Si $K$ est compacte :
   $
     forall n in NN, d(x_phi(n), l) >= epsilon
   $
-  Or cette suite admet une valeur d'adhérance $l_2 != l_1$.
+  Or cette suite admet une valeur d'adhérence $l_2 != l_1$.
 
 - Soit $(y_n)_n in f(K)^NN$, on dispose de $(x_n)_n in K^NN$ tel que #h(1fr)
   $
     forall n in NN, f(x_n) = y_n
   $
-  Et par compacité on peut éxtraire
+  Et par compacité on peut extraire
   $
     (x_phi(n))_n -> l in K \
     (f(x_phi(n)))_n = (y_phi(n))_n -> f(l) in f(K)
@@ -1167,7 +1167,7 @@ $f(K)$ est bornée et fermé car compact, ainsi il existe un $inf$ et un $sup$, 
   $
   Donc $g_lambda$ est $lambda$-lipschitzienne, avec $lambda < 1$, donc $g_lambda$ admet un point fixe $x_lambda$.
 
-  On considère $lambda_n = 1 - 1 / n$, comme $(x_lambda_n)_n in K^NN$, on dispose de $x_1$ valeur d'adhérance : 
+  On considère $lambda_n = 1 - 1 / n$, comme $(x_lambda_n)_n in K^NN$, on dispose de $x_1$ valeur d'adhérence : 
   $
     (x_lambda_phi(n))_n -> x_1 in K
   $
@@ -1225,7 +1225,7 @@ Théorème de Heine sur un espace métrique.
 
 Soit $K$ compact et $F$ un espace métrique.
 
-Si $f in C^0(K, F)$ alors $f$ est uniformement continue.
+Si $f in C^0(K, F)$ alors $f$ est uniformément continue.
 
 *Démonstration*
 
@@ -1239,7 +1239,7 @@ On fixe un tel $epsilon$, on pose $delta_n = 1 / (n+1)$, et on construit $(x_n)_
 $
   forall n in NN, cases(space d(x_n, y_n) < delta_n, space d(f(x_n), f(y_n)) >= epsilon)
 $
-Par compacité, on peut éxtraire
+Par compacité, on peut extraire
 $
   (x_phi(n))_n -> l in K \
   "Or " d(x_n, y_n) -> 0 " donc" \
@@ -1287,9 +1287,9 @@ En dimension finie, pour toute norme :
 
 - Les compacts sont les fermés bornés.
 
-- Toute suite bornée admet au moins une valeur d'adhérance, et converge ssi elle n'en a qu'une.
+- Toute suite bornée admet au moins une valeur d'adhérence, et converge ssi elle n'en a qu'une.
 
-- Tout espace de dimension finie est fermé (caractère séquentielle).
+- Tout espace de dimension finie est fermé (caractère séquentiel).
 
 - La distance à un fermé est atteinte.
 
@@ -1305,7 +1305,7 @@ Et plus généralement pour tout $p in [|0, n|]$, $Set(M in M_n (KK), "rg" M >= 
 
 *Démonstration*
 
-- $"GL"_n$ est ouvert comme image reciproque de $KK\\{0}$ par $det$ (qui est continue).
+- $"GL"_n$ est ouvert comme image réciproque de $KK\\{0}$ par $det$ (qui est continue).
 
 - Soit $P in "GL"_n (KK), delta > 0$, Soit $lambda = min "Sp" (P)$, afin que $lambda / (k + 1)$ ne soit pas valeur propre, c'est à dire $P - lambda / (k + 1) I_n in "GL"_n (KK)$, pour tout $k in NN^*$.
 
@@ -1483,7 +1483,7 @@ Toute partie compacte est précompacte.
   $
    forall n in NN^*, u_n in A \\ union.big_(k = 0)^(n-1) B(u_k, epsilon)
   $
-  Ainsi $(u_n)_n$ ne peut admettre de valeur d'adhérance, donc $A$ n'est pas compacte.
+  Ainsi $(u_n)_n$ ne peut admettre de valeur d'adhérence, donc $A$ n'est pas compacte.
 
 // TODO: Peut être procéssus diagonal d'extraction ? (M198)
 
@@ -1532,14 +1532,14 @@ $
   exists J subset.eq I, J "finie et" K subset.eq union.big_(j in J) Omega_j
 $
 
-De manière équivalente (Borel-Lebesgue version fermé) : si $(G_i)_(i in I)$ est une famille quelconque de fermés de $K$ tels que $inter.big_(i in I) G_i = emptyset$ alors
+De manière équivalente (Borel-Lebesgue version fermée) : si $(G_i)_(i in I)$ est une famille quelconque de fermés de $K$ tels que $inter.big_(i in I) G_i = emptyset$ alors
 $
   exists J subset.eq I, J "finie et" inter.big_(j in J) G_j = emptyset
 $
 
 *Équivalence*
 
-Soit $(E, d)$ un espace métrique. Toute partie compacte au sens de Bolzano-Weierstrass, est compacte au sens de Borel-Lebesgue (et vis-versa).
+Soit $(E, d)$ un espace métrique. Toute partie compacte au sens de Bolzano-Weierstrass, est compacte au sens de Borel-Lebesgue (et vice-versa).
 
 *Démonstration*
 
@@ -1571,13 +1571,13 @@ Soit $K subset.eq union.big_(i in I) Omega_i$ compacte (au sens de Bolzano-Weier
     K subset.eq union.big_(k = 1)^n Omega_i_k
   $
 
-- La version fermé s'obtient en prenant $G_i = K\\Omega_i$.
+- La version fermée s'obtient en prenant $G_i = K\\Omega_i$.
 
-- La reciproque découle de la version fermée :
+- La réciproque découle de la version fermée :
 
   Soit $K$ compact au sens de Borel-Lebesgue, $(x_n)_n in K^NN$ une suite.
 
-  On a montrer que $S = {"valeurs d'adhérance de" (x_n)} = inter.big_(n in NN) overline({x_k, k >= n})$.
+  On a montrer que $S = {"valeurs d'adhérence de" (x_n)} = inter.big_(n in NN) overline({x_k, k >= n})$.
 
   On note $F_n = overline({x_k, k >= n})$ fermé dans $KK$.
   
@@ -1585,7 +1585,7 @@ Soit $K subset.eq union.big_(i in I) Omega_i$ compacte (au sens de Bolzano-Weier
   $
     x_n_d in inter.big_(k = 1)^d F_n_k
   $
-  Donc comme $K$ compacte $inter.big_(n in NN) F_n != emptyset$, donc $(x_n)$ admet au moins une valeur d'adhérance dans $K$.
+  Donc comme $K$ compacte $inter.big_(n in NN) F_n != emptyset$, donc $(x_n)$ admet au moins une valeur d'adhérence dans $K$.
 
 // TODO: Tout idéal stricte de C°(K, K) (K compacte) est inclus dans { f ∈ E | f(c) = 0 } pour un c ∈ K. (B-L ouvert, pabs).
 
@@ -1606,7 +1606,7 @@ Propriétés :
 
 - Toute suite convergente est de Cauchy.
 
-- Toute suite de Cauchy ayant une valeur d'adhérance converge.
+- Toute suite de Cauchy ayant une valeur d'adhérence converge.
 
 - Toute suite de Cauchy est bornée.
 
@@ -1636,7 +1636,7 @@ On appelle espace complet un espace métrique où les suites de Cauchy converge,
     abs(u_n) <= d(u_n, u_0) + abs(u_0) < 1 + abs(u_0)
   $
 
-- Supposons $(u_n)_n$ de Cauchy et $(E, norm(dot))$ un evn de dimension finie. Comme $(u_n)_n$ est de Cauchy, elle est bornée : $(u_n)_n in B(0, M)^NN$, qui est compacte, $(u_n)_n$ admet donc une valeur d'adhérance, et converge.
+- Supposons $(u_n)_n$ de Cauchy et $(E, norm(dot))$ un evn de dimension finie. Comme $(u_n)_n$ est de Cauchy, elle est bornée : $(u_n)_n in B(0, M)^NN$, qui est compacte, $(u_n)_n$ admet donc une valeur d'adhérence, et converge.
 
 #card("seriesevn", "Séries dans un espace vectoriel normé", ("Maths.Topologie",))
 
@@ -1656,7 +1656,7 @@ Toute séries absolument convergente est convergente ssi $E$ est un espace de Ba
   $
     norm(S_n) = norm(sum_(k = 0)^n u_n) <= S = sum_(k = 0)^(+oo) norm(u_k)
   $
-  Donc $(S_n)_n$ est bornée et admet au moins une valeur d'adhérance.
+  Donc $(S_n)_n$ est bornée et admet au moins une valeur d'adhérence.
 
   Soit $phi, psi$ tels que $(u_phi(n))_n -> l_1$, $(u_psi(n))_n -> l_2$.
   $
@@ -1677,7 +1677,7 @@ Toute séries absolument convergente est convergente ssi $E$ est un espace de Ba
 
 - Soit $(u_n)$ une suite de Cauchy. On construit $phi$ extractrice tel que $norm(u_phi(n+1) - u_phi(n)) <= 1 / n^2$ (qui est possible car $(u_n)$ est de Cauchy).
 
-  Ainsi $sum (u_phi(n+1) - u_phi(n))$ est absolument convergente donc convergente et $(u_phi(n))_n$ converge, donc $(u_n)$ admet une valeur d'adhérance et converge.
+  Ainsi $sum (u_phi(n+1) - u_phi(n))$ est absolument convergente donc convergente et $(u_phi(n))_n$ converge, donc $(u_n)$ admet une valeur d'adhérence et converge.
 
 #card("thmbaire", "Théorème de Baire", ("Maths.Topologie",))
 
@@ -1703,24 +1703,24 @@ Définition, propriétés de connexité par arcs.
 
 #answer
 
-Pour $X subset.eq E$ ($E$ espace métrique) et $a, b in X$, on appelle chemin continue reliant $a$ et $b$ une fonction
+Pour $X subset.eq E$ ($E$ espace métrique) et $a, b in X$, on appelle chemin continu reliant $a$ et $b$ une fonction
 $
   gamma : func([0, 1], E, 0, a, 1, b, t, gamma(t) in X)
 $
 
-L'existence d'un chemin continue forme une relation d'équivalence.
+L'existence d'un chemin continu forme une relation d'équivalence.
 
-- On appelle composentes connexes par arcs les classes d'équivalence pour cette relation.
+- On appelle composantes connexes par arcs les classes d'équivalence pour cette relation.
 
-- On dit que $X$ est connexe par arcs s'il n'y à qu'une seule classe d'équivalence pour cette relation.
+- On dit que $X$ est connexe par arcs s'il n'y a qu'une seule classe d'équivalence pour cette relation.
 
 - Si $f in C^0(X, F)$ et $X$ est connexe par arcs, alors $f(X)$ aussi.
 
 *Démonstration*
 
-- Soit $f(x) = a, f(y) = b in f(X)$, comme $X$ est connexe par arcs on dispose de $gamma$ chemin continue de $x$ à $y$.
+- Soit $f(x) = a, f(y) = b in f(X)$, comme $X$ est connexe par arcs on dispose de $gamma$ chemin continu de $x$ à $y$.
 
-  Posons $gamma' = f compose gamma$, continue par composition de fonctions qui le sont, et forme un chemin continue de $a$ à $b$.
+  Posons $gamma' = f compose gamma$, continue par composition de fonctions qui le sont, et forme un chemin continu de $a$ à $b$.
 
   Donc $f(X)$ est connexe par arcs.
 
@@ -1736,7 +1736,7 @@ Démonstrations de la connexité par arcs de $"GL"_n (CC)$.
     <=> A - (t - 1) / t in.not "GL"_n (CC) \
     <=> 1 - 1 / t in "Sp" (A)
   $
-  Notons $D = { 1 / lambda - 1, lambda in "Sp"(A) }$ qui est fini, donc $CC^* \\ D$ est connexe par arcs, et on dispose de $gamma$ chemin continue de $0$ à $1$ dans $CC^*\\D$.
+  Notons $D = { 1 / lambda - 1, lambda in "Sp"(A) }$ qui est fini, donc $CC^* \\ D$ est connexe par arcs, et on dispose de $gamma$ chemin continu de $0$ à $1$ dans $CC^*\\D$.
   $
     tilde(gamma) : t |-> (1 - gamma(t)) I_n + gamma(t) A
   $
@@ -1746,7 +1746,7 @@ Démonstrations de la connexité par arcs de $"GL"_n (CC)$.
   $
     gamma : s -> P mat(gamma_1 (s),,(s t_(i j));,dots.down;,,gamma_n (s)) P^(-1)
   $
-  Avec $gamma_i : [0, 1] -> CC^*$ chemin continue de $1$ à $gamma_i$.
+  Avec $gamma_i : [0, 1] -> CC^*$ chemin continu de $1$ à $gamma_i$.
 
 + On écrit $A$ comme produit de transvections et d'une dilatation, et on relie les termes. (Marche pour montrer la connexité par arcs de $"GL"_n^+ (RR)$ et $"GL"_n^-(RR)$).
 
@@ -1756,7 +1756,7 @@ Définition et propriétés de la connexité.
 
 #answer
 
-Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules parties ouvertes et fermés de $X$ sont $emptyset$ et $X$.
+Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules parties ouvertes et fermées de $X$ sont $emptyset$ et $X$.
 
 - Si $X$ connexe par arcs, alors $X$ est connexe.
 
@@ -1764,7 +1764,7 @@ Une partie $X subset.eq E$ d'un espace métrique est dite connexe si les seules 
 
 - Si $X$ est connexe, $overline(X)$ aussi.
 
-Contre exemple de la reciproque de connexe par arcs implique connexe :
+Contre-exemple de la réciproque de connexe par arcs implique connexe :
 
 $
   X = { (x, sin(1/x)), x in Ioc(0, 1) } \
@@ -1777,11 +1777,11 @@ $
 
 *Démonstration*
 
-- + Supposons $X$ connexe par arcs, soit $A subset.eq X$ non vide ouverte et fermé.
+- + Supposons $X$ connexe par arcs, soit $A subset.eq X$ non vide ouverte et fermée.
 
     On dispose donc de $a in A$, supposons par l'absurde qu'on dispose de $b in X \\ A$.
 
-    Comme $X$ est connexe par arcs, on dispose de $gamma$ chemin continue de $a$ à $b$.
+    Comme $X$ est connexe par arcs, on dispose de $gamma$ chemin continu de $a$ à $b$.
     $
       t_0 = sup underbrace([0, 1] inter gamma^(-1) (A), Gamma)
     $
@@ -1847,7 +1847,7 @@ Rapidement :
     G = "Bar" { (A_k, lambda_k), k in [1, n] }
   $
 
-- Les pondérations sont unique à facteur multiplicatif près, il en existe une unique tel que
+- Les pondérations sont uniques à facteur multiplicatif près, il en existe une unique tel que
   $
     sum_(k = 1)^n lambda_k = 1
   $
@@ -1883,7 +1883,7 @@ Rapidement :
     "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, n|] }\, n in NN\, \ (A_1, dots, A_n) in X^n\, (lambda_1, dots, lambda_n) in RR_+^n \ , sum_(k = 1)^n lambda_k != 0 ) = cal(C)
   $
 
-- (Carathéoodory) Soit $d = dim cal(E)$, $X subset.eq cal(E)$
+- (Carathéodory) Soit $d = dim cal(E)$, $X subset.eq cal(E)$
   $
     "Conv" (X) \ = Set( "Bar" { (A_k, lambda_k), k in [|1, d+1|] }\, \ (A_1, dots, A_(d+1)) in X^(d+1)\, \ (lambda_1\, dots, lambda_(d+1)) in RR_+^(d+1) \ , sum_(k = 1)^n lambda_k = 1)
   $
@@ -2036,7 +2036,7 @@ Soit $E$ un $KK$-evn, $A subset.eq E$, on a équivalence entre
 
 + $forall (x_n)_n in A^NN$, $exists phi "extractrice"$, $(x_phi(n))_n -> l in E$.
 
-On dit dans ce cas que $A$ est relativement compact.
+On dit dans ce cas que $A$ est relativement compacte.
 
 Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
 
@@ -2061,7 +2061,7 @@ Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
   $
     x_(n+1) in A \\ union.big_(k = 0)^n B(x_k, epsilon)
   $
-  Comme une tel suite ne peut admètre de valeur d'adhérance, le procéssus doit se terminer.
+  Comme une telle suite ne peut admettre de valeur d'adhérence, le processus doit se terminer.
 
   Ainsi on dispose de $x_0, dots, x_n$ tels que $A subset.eq union.big_(k = 0)^n B(x_k, epsilon)$ et $A$ est précompacte.
 

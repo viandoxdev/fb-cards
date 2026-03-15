@@ -63,19 +63,19 @@ $
   "Sp"(u) = {lambda in KK | lambda "valeur propre"}
 $
 
-Qui est finit ($abs("Sp"(u)) <= n = dim E$).
+Qui est fini ($abs("Sp"(u)) <= n = dim E$).
 
 // TODO: Stabilité des sous espaces propres, ça sert a quoique que ce soit ? I.5)
 
-#card("polcar", "Polynôme caractèristique d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("polcar", "Polynôme caractéristique d'un endomorphisme", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Définitions, propriétés élémentaires et démonstrations autours du polynôme caractèristique d'un endomorphisme.
+Définitions, propriétés élémentaires et démonstrations autours du polynôme caractéristique d'un endomorphisme.
 
 #answer
 
 *Matrices*
 
-Soit $A in M_n (KK)$, on définit le polynôme caractèristique de $A$ comme
+Soit $A in M_n (KK)$, on définit le polynôme caractéristique de $A$ comme
 $
   chi_A (X) = det(X I_n - A)
 $
@@ -167,9 +167,9 @@ $
   &= (X-lambda)^d chi_C (X)
 $
 
-#card("proppolcaran", "Propriétés diverses du polynôme caractèristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("proppolcaran", "Propriétés diverses du polynôme caractéristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Cas particuliers de calculs du polynôme caractèristique, et lien avec les endomorphisme induit.
+Cas particuliers de calculs du polynôme caractéristique, et lien avec les endomorphisme induit.
 
 #answer
 
@@ -337,9 +337,9 @@ $
   A = P mat(alpha_1,,*;,dots.down;,,alpha_(n+1)) P^(-1)
 $
 
-#card("carnilp", "Caractèrisation des endomorphismes nilpotents", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("carnilp", "Caractérisation des endomorphismes nilpotents", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Caractèrisation des endomorphisme nilpotents.
+Caractérisation des endomorphisme nilpotents.
 
 #answer
 
@@ -397,9 +397,9 @@ Soit $u in cal(L)(E)$, il y a équivalence entre
     u(e_k) in "Vect"(e_1, dots, e_i_(j-1))
   $
 
-#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractèristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("lienpolminpolcar", "Premier lien entre polynôme minimal et polynôme caractéristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Lien entre racines du polynôme minimal et celles du polynôme caractèristique.
+Lien entre racines du polynôme minimal et celles du polynôme caractéristique.
 
 #answer
 
@@ -648,7 +648,7 @@ Notons $tilde(u)$ l'endomorphisme induit par $u$ sur $F$.
 
 #card("seceng", "Sous-espaces cycliques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Définition de sous-espace cyclique et base associé.
+Définition de sous-espace cyclique et base associée.
 
 #answer
 
@@ -676,7 +676,7 @@ $
 $
 Donc $ker theta_x_0$ est un idéal de $KK[X]$, qui est principal d'où $Pi_(u,x_0)$ existe. Notons $d_x_0 = deg Pi_(u,x_0)$.
 
-Par existance et unicité de la division euclidienne on a
+Par existence et unicité de la division euclidienne on a
 $
   KK[X] = KK_(d_x_0 - 1) [X] plus.o ker theta_x_0
 $
@@ -733,7 +733,7 @@ Dans ce cas $Pi_u = P$.
 
 *Démonstration*
 
-Soit $u in cal(L)(E)$ cyclique pour $x_0 in E$. Notons $e = (x_0, u(x_0), dots, u^(n-1) (x_0))$ la base associé.
+Soit $u in cal(L)(E)$ cyclique pour $x_0 in E$. Notons $e = (x_0, u(x_0), dots, u^(n-1) (x_0))$ la base associée.
 
 On dispose alors de $a_0, dots, a_(n-1) in KK$ tels que
 $
@@ -1020,7 +1020,7 @@ $
     &= u^m (sum_(k = 0)^(n - 1) alpha_k u^k (x_0)) \
     &= sum_(k = 0)^(n - 1) alpha_k u^k (u^m (x_0))
   $
-  Donc $v$ et $sum_(k = 0)^(n-1) alpha_k u^k$ coincident sur une base, d'où $v in KK[u]$.
+  Donc $v$ et $sum_(k = 0)^(n-1) alpha_k u^k$ coïncident sur une base, d'où $v in KK[u]$.
 
 #card("polmintz", "Critère de trigonalisabilité sur le polynôme minimal", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
@@ -1077,7 +1077,7 @@ Soit $u in cal(L)(E)$, $u$ est trigonalisable ssi $Pi_u$ scindé.
   $
   D'où $Pi_u (A_1) = 0$ donc $Pi_(A_1) | Pi_u$ et $Pi_(A_1)$ scindé, donc par hypothèse de récurrence $A_1$ est trigonalisable.
 
-#card("exchiudivpiun", "Exercice : polynôme caractèristique divisant une puissance du polynôme minimal", ("Maths.Exercice.Réduction",))
+#card("exchiudivpiun", "Exercice : polynôme caractéristique divisant une puissance du polynôme minimal", ("Maths.Exercice.Réduction",))
 
 Soit $u in cal(L)(E)$, $n = dim E$. Montrer que $chi_u | Pi_u^n$
 
@@ -1110,9 +1110,9 @@ $
   chi_u | Pi_u Pi_A^(n-k) | Pi_u^(n - k + 1) | Pi_u^n
 $
 
-#card("decompsec", "Décomposition en sous espaces caractèristiques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("decompsec", "Décomposition en sous espaces caractéristiques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Définition et démonstration de la décomposition en sous-espaces caractèristiques.
+Définition et démonstration de la décomposition en sous-espaces caractéristiques.
 
 #answer
 
@@ -1172,9 +1172,9 @@ product_(k = 1)^N (X - lambda_k)^(m_k) = chi_u = product_(k = 1)^N (X - lambda_k
 m_k = dim F_k
 $
 
-#card("secarpolmin", "Sous-espaces caractèristiques et polynôme minimal", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("secarpolmin", "Sous-espaces caractéristiques et polynôme minimal", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Lien entre la décomposition en sous-espaces caractèristiques et le polynôme minimal.
+Lien entre la décomposition en sous-espaces caractéristiques et le polynôme minimal.
 
 #answer
 
@@ -1183,7 +1183,7 @@ Soit $u in cal(L)(E)$ tel que $chi_u$ scindé, à fortiori, $Pi_u$ est scindé.
 $
   Pi_u &= product_(k = 1)^N (X - lambda_k)^(d_k) \ chi_u &= product_(k = 1)^N (X - lambda_k)^(m_k)
 $
-On peut décomposer par le TDN sur $Pi_u$ et en les espaces caractèristiques
+On peut décomposer par le TDN sur $Pi_u$ et en les espaces caractéristiques
 $
   E &= plus.o.big_(k = 1)^N overbrace(ker (u - lambda_k id)^(m_k), F_k) \
   &= plus.o.big_(k = 1)^N underbrace(ker (u - lambda_k id)^(d_k), G_k) \
@@ -1284,7 +1284,7 @@ $
 
 *Démonstration*
 
-On reprend la décomposition en sous-espaces caractèristiques
+On reprend la décomposition en sous-espaces caractéristiques
 $
   Pi_u = product_(k = 1)^N (X - lambda_k)^(d_k) \
   chi_u = product_(k = 1)^N (X - lambda_k)^(m_k) \
@@ -1301,7 +1301,7 @@ $
   n_k = u_k - lambda_k id_F_k \
   "Donc" u_k = lambda_k id_F_k + n_k
 $
-Où $n_k$ est nilpotent d'ordre $d_k$ (cf démonstration sous-espaces caractèristiques).
+Où $n_k$ est nilpotent d'ordre $d_k$ (cf démonstration sous-espaces caractéristiques).
 
 On pose alors $d, n in cal(L)(E)$ tel que
 $
@@ -1331,7 +1331,7 @@ $
   n = u - d in KK[u] \
 $
 
-Soient $d', n' in cal(L)(E)$ respectent les conditions.
+Soient $d', n' in cal(L)(E)$ respectant les conditions.
 
 Comme $u = d' + n'$, $d'$ commute avec $u$ et $n'$ aussi, donc $d'$ commute avec $d in KK[u]$ et $n'$ avec $n in KK[u]$.
 
@@ -1380,7 +1380,7 @@ Supposons la propriété pour tout $KK$-ev de dimension inférieur à $n$.
 
 Soit $(u_i)_i in cal(L)(E)^I$ diagonalisables commutant avec $dim E = n+1$.
 
-Si tout les $u_i$ sont des homothéties n'importe quelle base convient.
+Si tous les $u_i$ sont des homothéties n'importe quelle base convient.
 
 Sinon on dispose de $j in I$ tel que $u_j$ n'est pas une homothétie.
 
@@ -1394,7 +1394,7 @@ Notons $u_(i,k)$ l'induit de $u_i$ sur $E_lambda_k (u_j)$ qui est de dimension i
 
 Les $(u_(i,k))_i$ sont donc diagonalisables et commutent entre eux, on peut appliquer l'hypothèse de récurrence.
 
-On dispose donc de $e_k$ base de $E_lambda_k (u_j)$ formée de vecteurs propres commmun aux $(u_i)_i$. Il suffit alors de les concatener.
+On dispose donc de $e_k$ base de $E_lambda_k (u_j)$ formée de vecteurs propres commun aux $(u_i)_i$. Il suffit alors de les concatener.
 
 // TODO: Ex 64 de la fiche réduction
 
@@ -1424,7 +1424,7 @@ Soit $u in cal(L)(E)$ diagonalisable.
 
   Or $u$ diagonalisable, donc on dispose d'une base de vecteurs propres de $u$.
 
-  Ainsi $u compose v$ et $v compose u$ coincident sur une base d'où l'égalité.
+  Ainsi $u compose v$ et $v compose u$ coïncident sur une base d'où l'égalité.
 
 - On note $"Sp"(u) = {lambda_1, dots, lambda_N}$.
 
@@ -1445,7 +1445,7 @@ Soit $u in cal(L)(E)$ diagonalisable.
 
   Pour $k in [|1,N|]$, on note $e_k$ base de $E_lambda_k (u)$.
 
-  On définit $v in cal(L)(E)$ qui coincide avec $v_k$ sur tout les vecteurs de $e_k$.
+  On définit $v in cal(L)(E)$ qui coincide avec $v_k$ sur tous les vecteurs de $e_k$.
 
   Ainsi $theta(v) = (v_1, dots, v_k)$, et $theta$ isomorphisme.
   $
@@ -1540,7 +1540,7 @@ Soit $u in cal(L)(E)$ diagonalisable, $"Sp"(u) = {lambda_1, dots, lambda_N}$.
     G = plus.o.big_(k = 1)^N G inter E_lambda_k (u)
   $
 
-+ Réciproquement si $G_1, dots, G_N$ sont des sevs de $E_lambda_1 (u), dots, E_lambda_N (u)$ respectivements alors
++ Réciproquement si $G_1, dots, G_N$ sont des sevs de $E_lambda_1 (u), dots, E_lambda_N (u)$ respectivement alors
   $
     G = plus.o.big_(k = 1) G_k
   $
@@ -1780,7 +1780,7 @@ Soit $u in cal(L)(E)$ tel que $chi_u$ scindé. Montrer que $u$ est diagonalisabl
   $
   Ainsi $G = "Vect"(e_i_1, dots, e_i_(n-d))$ est un supplémentaire de $F$ stable par $u$.
 
-- Supposons que tout sev stable par $u$ admettent un supplémentaire stable.
+- Supposons que tout sev stable par $u$ admette un supplémentaire stable.
 
   $
     F = plus.o.big_(lambda in "Sp"(u)) E_lambda (u)
@@ -1978,7 +1978,7 @@ On a les propriétés de $M |-> A M - M B$, et de plus
 
 #card("endonilpcyc", "Endomorphismes nilpotents cycliques", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
-Caractèrisation des sev stables par un endomorphisme nilpotent cyclique.
+Caractérisation des sev stables par un endomorphisme nilpotent cyclique.
 
 #answer
 
@@ -1996,7 +1996,7 @@ Or l'ordre de nilpotence de $tilde(u)$ est majoré par $d = dim F$ : $tilde(u)^d
 
 Donc $F subset.eq ker u^d$.
 
-De plus par les noyaux itérées
+De plus par les noyaux itérés
 $
 underbrace(ker u, dim 1) subset.neq dots.c subset.neq underbrace(ker u^d, dim d) subset.neq dots.c subset.neq underbrace(ker u^n, dim n)
 $
@@ -2133,7 +2133,7 @@ C'est une famille finie, donc cotrigonalisable dans une base $e$.
 
 Et pour tout $i in I$, $u_i in "Vect"(u_i_1, dots, u_i_d)$ donc $cal(M)_e (u_i)$ est triangulaire supérieur (comme combinaison linéaire de matrices qui le sont).
 
-#card("polcarsomme", "Exercice : polynôme caractèristique d'une somme d'endomorphismes", ("Maths.Exercice.Réduction",))
+#card("polcarsomme", "Exercice : polynôme caractéristique d'une somme d'endomorphismes", ("Maths.Exercice.Réduction",))
 
 Soit $E$ un $CC$-ev de dimension finie, $u, v in cal(L)(E)$ qui commutent, tel que $v$ est nilpotent. 
 
@@ -2349,7 +2349,7 @@ $
 
 - Ainsi $M$ laisse stable
   - Les sous-espaces propres de $A$
-  - Les sous-espaces caractèristiques de $A$
+  - Les sous-espaces caractéristiques de $A$
   - Tout les $ker Q(A)$
 
 - Pour $Q$ annulateur de $A$, $Q compose P$ est annulateur de $M$ : si $Q compose P$ est SARS, $M$ est diagonalisable.
@@ -2364,7 +2364,7 @@ $
 $
 Avec $C_1, dots, C_n$ vecteurs propres associés aux $lambda_1, dots, lambda_n$.
 
-Si $M$ est solution, $M$ laisse stable tout les $E_lambda_k = "Vect"(C_k)$
+Si $M$ est solution, $M$ laisse stable tous les $E_lambda_k = "Vect"(C_k)$
 $
   M C_k = mu_k C_k \
   M = R dmat(mu_1, dots.down, mu_n) R^(-1)
@@ -2509,7 +2509,7 @@ $
   <=> exists lambda in KK, A^TT L^TT = lambda L^TT
 $
 
-#card("polcarabba", "Pseudo-commutativité du polynôme caractèristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("polcarabba", "Pseudo-commutativité du polynôme caractéristique", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
 
 Pour $A in M_(p n) (KK)$ et $B in M_(n p) (KK)$, lien entre $chi_(A B)$ et $chi_(B A)$.
 

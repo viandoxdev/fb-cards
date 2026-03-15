@@ -20,7 +20,7 @@ Soit $E$ un $RR$-ev. Pour $phi : E^2 -> RR$ une forme bilinéaire on considère
 $
   psi : func(E, cal(L)(E, RR), x, phi_x : y |-> phi(x, y))
 $
-On dit que $phi$ est non dégénérée si $psi$ est unjective.
+On dit que $phi$ est non dégénérée si $psi$ est injective.
 
 On a alors
 
@@ -41,7 +41,7 @@ On a alors
 
 #card("idpseucl", "Identités du produit scalaire", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
-Identités du produit scalaire (polarisation, parallèlogramme).
+Identités du produit scalaire (polarisation, parallélogramme).
 
 #answer
 
@@ -53,7 +53,7 @@ Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien.
     &= 1/4 ( norm(x + y)^2 - norm(x - y)^2)
   $
 
-- (Parallèlogramme) Pour $x, y in E$
+- (Parallélogramme) Pour $x, y in E$
   $
     norm(x + y)^2 + norm(x - y)^2 = 2 norm(x)^2 + 2 norm(y)^2
   $
@@ -96,7 +96,7 @@ Projection orthogonale sur un sev de dimension finie.
 
 Soit $(E, scl(dot, dot))$ un $RR$-ev préhilbertien et $F$ sev de $E$.
 
-Pour tout $x in E$, il existe un unique $z in F$ tel que $norm(x - z) = d(x, F)$, de plus si $(e_1, dots, e_d)$ est une bon de $F$
+Pour tout $x in E$, il existe un unique $z in F$ tel que $norm(x - z) = d(x, F)$, de plus si $(e_1, dots, e_d)$ est une BON de $F$
 $
   z = sum_(j = 1)^d scl(x, e_j) e_j quad quad x - z in F^perp
 $
@@ -108,7 +108,7 @@ $
 
 // NOTE: M320 matrice d'une application bilinéaire
 
-#card("exinegdetfam", "Exercice : Inégalité sur le determinant d'une famille de vecteurs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
+#card("exinegdetfam", "Exercice : Inégalité sur le déterminant d'une famille de vecteurs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
 Soit $(E, scl(dot, dot))$ euclidien de dimension $n$, $(x_1, dots, x_n) in E^n$ une famille de vecteurs et $e$ une BON. Montrer que $abs(det_e (x_1, dots, x_n))$ est indépendant de la BON $e$ choisie et que
 $
@@ -128,7 +128,7 @@ $
     &<= product_(k = 1)^n norm(x_k)
   $
 
-+ Sinon, on pose $w = (w_1, dots, w_n)$ la BON obtenue par Gramm-Schmidt sur $x = (x_1, dots, x_n)$
++ Sinon, on pose $w = (w_1, dots, w_n)$ la BON obtenue par Gram-Schmidt sur $x = (x_1, dots, x_n)$
   $
     forall i in [|1, n|], x_i &= sum_(k = 1)^n scl(x_i, w_k) w_k \ 
     &= sum_(k = i)^n scl(x_i, w_k) w_k \
@@ -172,7 +172,7 @@ On pose alors
 $
   u^* : func(E, E, x, z_x) in cal(L)(E)
 $
-Qui est l'unique adjoit de $u$. On le caractérise alors par
+Qui est l'unique adjoint de $u$. On le caractérise alors par
 $
   forall x, y in E, scl(x, u(y)) = scl(u^* (x), y)
 $
@@ -222,7 +222,7 @@ On a alors
   u^*(alpha x + beta y) = alpha u^* (x) + beta u^* (y)
   $
 
-- Les écrires
+- Les écrire
 
 - On a $ker u subset.eq ker (u^* compose u)$. Soit $x in ker (u^* compose u)$.
   $
@@ -247,7 +247,7 @@ $
   forall x, y in E, scl(u(x), u(y)) = scl(x, y)
 $
 
-D'autre caractérisation équivalente des isométrie vectorielles :
+D'autres caractérisations équivalentes des isométries vectorielles :
 
 - Il existe $e$ BON tel que $u(e)$ BON.
 - Pour tout $e$ BON, $u(e)$ BON.
@@ -277,7 +277,7 @@ On a alors
     = scl(x, y)
   $
 
-- Les écrires.
+- Les écrire.
 
 - $u in O(E)$
   $
@@ -300,15 +300,15 @@ On a alors
     scl(tilde(u)(x), tilde(u)(y)) &= scl(u(x), u(y)) \ &= scl(x, y)
   $
 
-#card("symprojortho", "Symétries et projecteurs ortogonaux", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
+#card("symprojortho", "Symétries et projecteurs orthogonaux", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
-Symétries et projecteurs ortogonaux.
+Symétries et projecteurs orthogonaux.
 
 #answer
 
 Soit $(E, scl(dot, dot))$ euclidiens.
 
-*Symmétries orthogonales*
+*Symétries orthogonales*
 
 Soit $s in cal(L)(E)$ tel que $s^2 = id$, on dit que $s$ est une symétrie orthogonale si
 $
@@ -321,7 +321,7 @@ On appelle réflexion une symétrie orthogonale par rapport à un hyperplan.
 
 *Projecteurs orthogonaux*
 
-Soit $p in cal(L)(E)$ tel que $p^2 = p$, on dit que $p$ est un projecteur orthogonale si
+Soit $p in cal(L)(E)$ tel que $p^2 = p$, on dit que $p$ est un projecteur orthogonal si
 $
   ker (p - id) perp ker p \ => E = ker (p - id) dperp ker p
 $
@@ -330,7 +330,7 @@ Ou de manière équivalente si $p$ est autoadjoint.
 
 *Démonstration*
 
-- ($=>$) Soit $s$ une symétrie orthogonales, $x in E$, $F = ker (s - id)$
+- ($=>$) Soit $s$ une symétrie orthogonale, $x in E$, $F = ker (s - id)$
   $
     x = y + z quad quad y in F, z in F^perp \
   $
@@ -365,9 +365,9 @@ $
 $
 Qui est donc un sev de $cal(L)(E)$ et $dim S(E) = (n (n+1)) / 2$.
 
-#card("thspectral", "Théorème spectrale", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
+#card("thspectral", "Théorème spectral", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
-Théorème spectrale.
+Théorème spectral.
 
 #answer
 
@@ -395,7 +395,7 @@ On suppose $A in S_n (RR)$
   $
   D'où $lambda in RR$ et $chi_A$ est scindé sur $RR$.
 
-- Par recurrence sur $n$.
+- Par récurrence sur $n$.
 
   Le cas $n = 1$ est évident.
 
@@ -405,12 +405,12 @@ On suppose $A in S_n (RR)$
 
   Ainsi $E_lambda_1 (A) = F$ est stable par $A$, donc $F^perp$ aussi.
 
-  En considérent la bonne BON on a alors
+  En considérant la bonne BON on a alors
   $
     P A P^T = mat(lambda_1 I_m, 0; 0, tilde(A)) = (P A P^T)^TT \
     tilde(A) = tilde(A)^TT in S_n (RR)
   $
-  Et on conclus par hypothèse de récurrence.
+  Et on conclut par hypothèse de récurrence.
 
 #card("calcvpps", "Expression des valeurs propres avec le produit scalaire", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
@@ -418,7 +418,7 @@ Expression des valeurs propres avec le produit scalaire.
 
 #answer
 
-Pour $u in S(E)$, $(E, scl(dot, dot))$ euclidien, on note $lambda_1 <= dots.c <= lambda_n$ le spectre ordonnée (avec multiplicité) de $u$.
+Pour $u in S(E)$, $(E, scl(dot, dot))$ euclidien, on note $lambda_1 <= dots.c <= lambda_n$ le spectre ordonné (avec multiplicité) de $u$.
 
 Par le théorème spectral on dispose d'une BON de vecteurs propres $(e_1, dots, e_n)$.
 
@@ -429,7 +429,7 @@ Par le théorème spectral on dispose d'une BON de vecteurs propres $(e_1, dots,
     norm(u(x))^2 = sum_(k = 1)^n lambda_k^2 x_k^2 \
   $
 
-- Pour les valeurs propres extremmes
+- Pour les valeurs propres extrêmes
   $
     lambda_1 = min_(x in SS(0, 1)) scl(u(x), x) \
     lambda_n = max_(x in SS(0, 1)) scl(u(x), x) \
@@ -586,7 +586,7 @@ Matriciellement, pour $A in S_n (RR)$, on regarde le signe de $X^TT A X$.
 
 - La même avec des inégalités strictes.
 
-- Le sens indirecte est évident. Par théorème spectrale
+- Le sens indirect est évident. Par théorème spectral
   $
     x = sum_(k = 1)^n x_k e_k \
     scl(u(x), x) = sum_(k = 1)^n underbrace(lambda_k x_k^2, >= 0) = 0 \
@@ -711,7 +711,7 @@ $
 
 - Si $A in "SO"_2 (RR)$, $u$ est une rotation d'angle $theta$, et $A$ ne dépend pas de la BON directe choisie.
  
-- Si $A in O^-_2 (RR)$, $u$ est une réfléxion d'angle $theta / 2$ et $A$ ne dépend pas de la BON directe choisie.
+- Si $A in O^-_2 (RR)$, $u$ est une réflexion d'angle $theta / 2$ et $A$ ne dépend pas de la BON directe choisie.
 
 Ainsi pour $u in O(E)$ et $e$ BON tel que $cal(M)_e (u) = R_theta$ 
 $
@@ -774,7 +774,7 @@ Soit $A = cal(M)_e (u) = (C_1 space C_2 space C_3) != I_3$.
 
 + Si $(C_1, C_2, C_3)$ forme une BON, $A in O_3 (RR)$.
 
-+ Ainsi $C_3 = plus.minus C_1 and C_2$, et on peut déterminer le signe avec une seule coordonée de $C_1 and C_2$. #h(1fr)
++ Ainsi $C_3 = plus.minus C_1 and C_2$, et on peut déterminer le signe avec une seule coordonné de $C_1 and C_2$. #h(1fr)
 
   $
     det(C_1, C_2, C_3) = scl(C_1 and C_2, C_3)
@@ -793,7 +793,7 @@ Soit $A = cal(M)_e (u) = (C_1 space C_2 space C_3) != I_3$.
   $
   Donc le signe de $sin theta$ est donné par $scl(u(x), e_1 and x)$.
 
-#card("exrefengon", "Exercice : les réflexions engendrent le groupe orthogonale", ("Maths.Exercice.Euclidiens",))
+#card("exrefengon", "Exercice : les réflexions engendrent le groupe orthogonal", ("Maths.Exercice.Euclidiens",))
 
 Montrer que les réflexions engendrent $O_n (RR)$.
 
@@ -835,7 +835,7 @@ $
 
 *Démonstration*
 
-- Existence : par le théorème spectrale on dispose de $P in O_n (RR)$ tel que #h(1fr)
+- Existence : par le théorème spectral on dispose de $P in O_n (RR)$ tel que #h(1fr)
   $
     S = P^TT underbrace(dmat(lambda_1, dots.down, lambda_n), D) P \
   $
@@ -998,7 +998,7 @@ Soit $u in cal(L)(E)$ avec $(E, scl(dot, dot))$ euclidien tel que $norm(u)_"op" 
   $
     w_k = 1/k sum_(j = 0)^(k - 1) u^j
   $
-  Converge vers le projecteur orthogonale sur $ker (u - id)$.
+  Converge vers le projecteur orthogonal sur $ker (u - id)$.
 
 #answer
 
@@ -1061,7 +1061,7 @@ $
   X^TT S X = (R X)^TT B (R X) >= 0
 $
 
-#card("exendopreortho", "Exercice : endomorphisme qui preserve l'orthogonalité", ("Maths.Exercice.Euclidiens",))
+#card("exendopreortho", "Exercice : endomorphisme qui préserve l'orthogonalité", ("Maths.Exercice.Euclidiens",))
 
 Soit $u in cal(L)(E)$ où $(E, scl(dot, dot))$ euclidien  tel que
 $
@@ -1139,7 +1139,7 @@ Soit $(E, scl(dot, dot))$ un euclidien de dimension $n$, $(a_i)_i, (b_i)_i in E^
     $
     Qu'on étend en $phi in O(E)$ (en posant des BON).
 
-+ Il s'agit de la même chose, le fait qu'il peut y avoir plus de $n$ vecteurs n'est pas dérrangeant car on extrait une famille libre dans tous les cas.
++ Il s'agit de la même chose, le fait qu'il peut y avoir plus de $n$ vecteurs n'est pas dérangeant car on extrait une famille libre dans tous les cas.
 
 + Soit $A, B in M_n (RR)$
   $
@@ -1205,7 +1205,7 @@ $
     X^TT P M P^TT X = (P^T X)^TT M (P^TT X) >= 0
   $
 
-- Les écrires.
+- Les écrire.
 
 #card("coredmatsym", "Coréduction des matrices symétriques", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
 
@@ -1228,7 +1228,7 @@ On pose alors
 $
 B_0 = (Q^TT)^(-1) B Q^(-1) in S_n (RR)
 $
-Donc par théorème spectrale, on dispose de $P in O_n (RR)$ et $D in D_n (RR)$ tels que 
+Donc par théorème spectral, on dispose de $P in O_n (RR)$ et $D in D_n (RR)$ tels que 
 $
   B_0 = P^TT D P
 $
@@ -1238,7 +1238,7 @@ $
   (P Q)^TT P Q = Q^TT underbrace(P^TT P, I_n) Q = A
 $
 
-// NOTE: Nouvelle interpretation du théorème spectrale M338
+// NOTE: Nouvelle interpretation du théorème spectral M338
 
 // NOTE: Applications que j'ai pas compris M339
 
@@ -1303,11 +1303,11 @@ $
   cal(M)_(cal(B), cal(C)) (u) = dmat(sqrt(lambda_1) I_d_1, dots.down, sqrt(lambda_p) I_d_p, 0)
 $
 
-Et les valeurs sinngulières de $A$ sont les racines carrées des valeurs propres non nulles de $A^TT A$ avec multiplicité.
+Et les valeurs singulières de $A$ sont les racines carrées des valeurs propres non nulles de $A^TT A$ avec multiplicité.
 
 *Démonstration (cas non carré)*
 
-La même en introduisant $u^*$ l'endomorphisme associé à $A^TT$ (car pas adjoit tel qu'on la définit sur les endomorphismes).
+La même en introduisant $u^*$ l'endomorphisme associé à $A^TT$ (car pas adjoint tel qu'on la définit sur les endomorphismes).
 
 #card("matcov", "Matrice de covariance", ("Maths.Algèbre.Algèbre linéaire.Euclidiens", "Maths.Probabilités"))
 
@@ -1449,9 +1449,9 @@ Et de plus
     E &= ker (u) dperp im (u^*) \
     &= ker (u) dperp im (u)
   $
-  Ainsi $im (u)$ est stable par $u$ et est un supplémentaire de $ker (u)$ donc $tilde(u)$ induit est un automorphisme et $tilde(u) in A(im u)$, nécéssairement $dim (im u) in 2 NN$.
+  Ainsi $im (u)$ est stable par $u$ et est un supplémentaire de $ker (u)$ donc $tilde(u)$ induit est un automorphisme et $tilde(u) in A(im u)$, nécessairement $dim (im u) in 2 NN$.
 
-- Soit $A in A_n (RR)$, $lambda in "Sp" (A)$ et $X in C^n$ vecteur propre associé non nulle.
+- Soit $A in A_n (RR)$, $lambda in "Sp" (A)$ et $X in C^n$ vecteur propre associé non nul.
   $
     A Z &= lambda Z \
     overline(Z)^TT A Z &= lambda overline(Z)^TT Z = lambda sum_(k = 1)^n abs(z_k) in lambda RR^*_+ \

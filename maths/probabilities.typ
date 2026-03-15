@@ -51,7 +51,7 @@ Définition et propriétés des espaces probabilisés.
 
 #answer
 
-Soit $(Omega, cal(T))$ un espace probabilisable. Une probabilité sur $(Omega, cal(T))$ est la donné d'un
+Soit $(Omega, cal(T))$ un espace probabilisable. Une probabilité sur $(Omega, cal(T))$ est la donnée d'un
 $
   PP : cal(T) -> [0, 1]
 $
@@ -80,12 +80,12 @@ Dans ce cas
     PP(overline(A)) = 1 - PP(A)
   $
 
-- Pour tout $(A_n)_n in cal(T)^NN$ une suite croissante d'évenements
+- Pour tout $(A_n)_n in cal(T)^NN$ une suite croissante d'événements
   $
     PP(union.big_(n in NN) A_n) = lim_(n -> oo) PP(A_n)
   $
 
-- Pour tout $(A_n)_n in cal(T)^NN$ une suite décroissante d'évenements
+- Pour tout $(A_n)_n in cal(T)^NN$ une suite décroissante d'événements
   $
     PP(inter.big_(n in NN) A_n) = lim_(n -> oo) PP(A_n)
   $
@@ -141,7 +141,7 @@ Si $sum PP(A_n)$ converge, alors $PP(S) = 0$.
 
 *Démonstration*
 
-On pose $B_N = union.big_(n >= N) A_n$, une suite décroissante d'évenements, d'où
+On pose $B_N = union.big_(n >= N) A_n$, une suite décroissante d'événements, d'où
 $
   PP(S) &= PP(inter.big_(N in NN) B_N) \ 
   &= lim_(N -> oo) PP(B_N) \
@@ -188,7 +188,7 @@ Soit $(Omega, cal(T), PP)$ un ep, $E != emptyset$ un ensemble. Une variable alé
 
 Qui détermine une distribution de probabilité discrète sur $E$ ou $X(Omega)$.
 
-// NOTE: Indépendance d'évenements, formules de probabilité totales, de Bayes, conditionelles...
+// NOTE: Indépendance d'événements, formules de probabilité totales, de Bayes, conditionnelles...
 
 #card("loibas", "Lois classique de probabilité", ("Maths.Probabilités",))
 
@@ -245,7 +245,7 @@ Lois classique de probabilité, définition, espérance, variance et série gén
   $,
 ))
 
-// NOTE: lois usuels - M287, résultats connus qui existent
+// NOTE: lois usuelles - M287, résultats connus qui existent
 // - indépendance de variable à faire ?
 
 #card("lemdescoal", "Lemme des coalitions", ("Maths.Probabilités",))
@@ -265,20 +265,20 @@ Alors $f(X_1, dots, X_n)$ et $g(X_(n+1), dots, X_(n+m))$ sont des variables alé
 
 Calculs pas très beau, fubini.
 
-// NOTE: Interpretation des lois usuels M289
+// NOTE: Interpretation des lois usuelles M289
 
 #card("esppb", "Espérance d'une variable aléatoire", ("Maths.Probabilités",))
 
-Définition et propriétés élémentaires de l'ésperance d'une variable aléatoire.
+Définition et propriétés élémentaires de l'espérance d'une variable aléatoire.
 
 #answer
 
-- Pour $X$ une variable aléatoire sur $(Omega, cal(T), PP)$ complexe, on dit que $X$ est d'ésperance finie si $(x P(X = x))_(x in X^(-1) (Omega))$ est sommable, on note $X in LL^1$ et on pose
+- Pour $X$ une variable aléatoire sur $(Omega, cal(T), PP)$ complexe, on dit que $X$ est d'espérance finie si $(x P(X = x))_(x in X^(-1) (Omega))$ est sommable, on note $X in LL^1$ et on pose
   $
     EE(X) = sum_(x in X^(-1) (Omega)) x PP(X = x)
   $
 
-- Pour $X$ à valeur dans $RR_+$ on définit l'ésperance dans $RR_+ union {+oo}$, avec $EE(X) = +oo$ si la somme diverge.
+- Pour $X$ à valeur dans $RR_+$ on définit l'espérance dans $RR_+ union {+oo}$, avec $EE(X) = +oo$ si la somme diverge.
 
 - Pour $X$ à valeur dans $NN$ on a
   $
@@ -312,7 +312,7 @@ Définition et propriétés élémentaires de l'ésperance d'une variable aléat
   $
   Car série reste d'une série convergente.
 
-#card("ldtpb", "Lemme de tranfert", ("Maths.Probabilités",))
+#card("ldtpb", "Lemme de transfert", ("Maths.Probabilités",))
 
 Énoncé et démonstration du lemme de transfert.
 
@@ -331,15 +331,15 @@ On en déduit que $X in LL^1$ ssi $EE(abs(X)) < +oo$.
 
 Sommation par paquets.
 
-#card("propesppb", "Propriétés de l'ésperance", ("Maths.Probabilités",))
+#card("propesppb", "Propriétés de l'espérance", ("Maths.Probabilités",))
 
-Propriétés de l'ésperance.
+Propriétés de l'espérance.
 
 #answer
 
 On a les propriétés suivantes
 
-- Toute variable aléatoire bornée est d'ésperance finie.
+- Toute variable aléatoire bornée est d'espérance finie.
 - $EE$ est linéaire : #h(1fr)
   $
   EE(alpha A + beta B) = alpha EE(A) + beta EE(B)
@@ -402,12 +402,12 @@ $
 $
 Qui est une forme bilinéaire, symétrique, positive.
 
-Si $"Cov"(X, Y) = 0$ on dit que $X$ et $Y$ sont décorélées, et dans ce cas
+Si $"Cov"(X, Y) = 0$ on dit que $X$ et $Y$ sont décorrélées, et dans ce cas
 $
   VV(X + Y) = VV(X) + VV(Y)
 $
 
-- Deux variables indépendantes sont décorélées.
+- Deux variables indépendantes sont décorrélées.
 
 - Pour $X, Y in LL^2$
   $
@@ -439,7 +439,7 @@ Premières inégalités de probabilités.
 
 *Markov*
 
-Pour $X in LL^1$ reélle, et pour tout $delta > 0$
+Pour $X in LL^1$ réelle, et pour tout $delta > 0$
 $
   EE(abs(X) >= delta) <= EE(|X|) / delta
 $
@@ -491,7 +491,7 @@ $(S_n / n)_n$ converge en probabilité vers $m$.
 
 *Forte*
 
-$(S_n / n)_n$ converge presque surement vers $m$.
+$(S_n / n)_n$ converge presque sûrement vers $m$.
 
 *Démonstration : faible*
 
@@ -502,7 +502,7 @@ $
 
 *Démonstration : forte*
 
-Si $VV(X) = 0$, $X = m$ presque surement et le résultat est évident.
+Si $VV(X) = 0$, $X = m$ presque sûrement et le résultat est évident.
 
 On peut alors centrer et réduire $X_n$ afin de se ramener à $m = 0$ et $sigma = 1$.
 
@@ -510,7 +510,7 @@ Par la version faible
 $
   PP(abs(S_(n^2) / n^2) >= delta) <= 1 / (n^2 delta^2)
 $
-Qui est le terme général d'une série convergente. Donc par le lemme de Borel-Cantelli faible, on montre que $abs(S_(n^2) / n^2)$ converge presque surement vers $0$.
+Qui est le terme général d'une série convergente. Donc par le lemme de Borel-Cantelli faible, on montre que $abs(S_(n^2) / n^2)$ converge presque sûrement vers $0$.
 
 Soit $m in [|n_m^2, (n_m + 1)^2 - 1|]$
 $
@@ -782,7 +782,7 @@ Si $X$ est une vad à valeur dans $NN$, alors $R_"cv" (sum PP(X=n) t^n) >= 1$ et
 $
   G_X : func([0,1], RR, t, sum_(n = 0)^(+oo) PP(X = n) t^n)
 $
-Est appelée fonction génératrice de $X$, et les valeurs de $G_X$ sur un $[0, delta]$ avec $delta > 0$ detérminent de manière unique la loi de $X$.
+Est appelée fonction génératrice de $X$, et les valeurs de $G_X$ sur un $[0, delta]$ avec $delta > 0$ déterminent de manière unique la loi de $X$.
 
 On a de plus
 
@@ -793,12 +793,12 @@ On a de plus
     G_X^((n)) >= 0
   $
 
-- $X$ est d'ésperance finie ssi $G_X$ est dérivable en $1$ et dans ce cas #h(1fr)
+- $X$ est d'espérance finie ssi $G_X$ est dérivable en $1$ et dans ce cas #h(1fr)
   $
     G'_X (1) = EE(X)
   $
 
-- $X^2$ est d'ésperance finie ssi $G_X$ est dérivable deux fois en $1$ et dans ce cas
+- $X^2$ est d'espérance finie ssi $G_X$ est dérivable deux fois en $1$ et dans ce cas
   $
     G''_X (1) &= EE(X(X-1)) = EE(X^2) - EE(X) \
     VV(X) &= G''_X (1) + G'_X (1) - G'_X (1)^2
@@ -811,7 +811,7 @@ On a de plus
 
 *Démonstration*
 
-Pour la pluspart : les écrires.
+Pour la plupart : les écrire.
 
 - On suppose que $EE(X) < +oo$ #h(1fr)
 
@@ -819,11 +819,11 @@ Pour la pluspart : les écrires.
 
 - On suppose que $EE(X) = +oo$ (contraposée)
 
-  On exprime le taux d'accroissement en $1$, on le developpe et on montre qu'il diverge.
+  On exprime le taux d'accroissement en $1$, on le développe et on montre qu'il diverge.
 
-- Même shéma de preuve pour $X^2$.
+- Même schéma de preuve pour $X^2$.
 
-- Par le lemme de transfer
+- Par le lemme de transfert
   $
     G_X (t) = EE(t^X)
   $
@@ -1061,7 +1061,7 @@ $
     TR(j,k,a) = min Set(n > TR(j,k-1,a), S^((j))_n = a) \
     TR(,k,a) = TR(0,k,a) quad quad TR(,,a) = TR(0,1,a)
   $
-  Ainsi $TR(j,k,a)$ correspond au temps du $k$-ème retour en $a$ sur la marche decalée de $j$.
+  Ainsi $TR(j,k,a)$ correspond au temps du $k$-ème retour en $a$ sur la marche décalée de $j$.
   $
     &PP(T^k_0 < +oo)\
     =& PP(T^k_0 < +oo, T^(k-1)_0 < +oo) \
@@ -1108,11 +1108,11 @@ On définit deux modes de convergence des variables aléatoires :
     forall delta > 0, PP(abs(X_n - X) >= delta) tends(n -> oo) 0
   $
 
-+ On dit que $(X_n)_(n in NN)$ converge presque surement vers $X$ si
++ On dit que $(X_n)_(n in NN)$ converge presque sûrement vers $X$ si
   $
     PP(X_n tends(n -> oo) X) = 1
   $
-  Il s'agit bien d'un évenement : pour tout $omega in Omega$
+  Il s'agit bien d'un événement : pour tout $omega in Omega$
   $
     &X_n (omega) tends(n -> oo) X(omega) \
     <=> & forall epsilon > 0, exists N in NN, forall n >= N, \ & abs(X_n (omega) - X(omega)) < epsilon \
@@ -1217,7 +1217,7 @@ $
     EE(f(X)) >= f(EE(X))
   $
 
-+ Dans le cas général, $f$ admet une droite d'appuis en tout points
++ Dans le cas général, $f$ admet une droite d'appui en tout point
 
   Pour tout $x in I$
   $
@@ -1225,7 +1225,7 @@ $
   $
   Avec $alpha in [f'_g (EE(X)), f'_d (EE(X))]$.
 
-  Et on conclus de même.
+  Et on conclut de même.
 
 #card("exingedf", "Exercice : troisième inégalité classique", ("Maths.Exercice.Probabilités",))
 
@@ -1289,7 +1289,7 @@ D'où
 $
   PP(B_k) <= EE(S_n^2) / c^2 = sigma^2 / c^2
 $
-Et par continuité croissante des probabilité on a le résultat.
+Et par continuité croissante des probabilités on a le résultat.
 
 #card("espsomein", "Espérance d'une série", ("Maths.Probabilités",))
 
@@ -1297,7 +1297,7 @@ Espérance d'une série.
 
 #answer
 
-Si $(A_k)_k in cal(T)^NN$ est une suite d'évenements, alors
+Si $(A_k)_k in cal(T)^NN$ est une suite d'événements, alors
 $
   S = sum_(k = 0)^(+oo) bb(1)_A_k
 $
@@ -1334,7 +1334,7 @@ $
   $
     PP(S = +oo) = PP(lim sup A_n) = 0
   $
-  Or $EE(S) = sum_(n = 1)^(+oo) PP(S >= n)$, d'où par union croissante d'évenements
+  Or $EE(S) = sum_(n = 1)^(+oo) PP(S >= n)$, d'où par union croissante d'événements
   $
     PP(S >= n) &= lim_(k -> oo) PP(S_k >= n) \
     sum_(n = 1)^N PP(S >= n) &= lim_(k -> oo) underbrace(sum_(n = 1)^N PP(S_k >= n), <= EE(S_k) = sum_(j = 0)^k PP(A_j)) \

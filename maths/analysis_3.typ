@@ -28,9 +28,9 @@ $
   forall t in I, x'(t) = a(t)(x(t)) + b(t)
 $
 
-Toute solution est nécéssairement $C^1$ car $a$ et $b$ sont $C^0$.
+Toute solution est nécessairement $C^1$ car $a$ et $b$ sont $C^0$.
 
-*Lien avec les EDLs scalaire d'ordre n*
+*Lien avec les EDLs scalaires d'ordre n*
 
 $
   y^((n)) (t) - sum_(k = 0)^(n - 1) a_k (t) y^((k)) (t) = b(t) quad space (cal(E))
@@ -146,9 +146,9 @@ $
 $
 Admet une unique solution.
 
-*Corolaires*
+*Corollaires*
 
-- L'espace (affine / vectorielle) des solutions est de même dimension que $E$.
+- L'espace (affine / vectoriel) des solutions est de même dimension que $E$.
 
 - Dans le cas homogène, si $y_1, dots, y_d$ sont des solutions et $lambda_1, dots, lambda_d in KK$ et $t_0$ tels que
   $
@@ -156,7 +156,7 @@ Admet une unique solution.
   $
   Alors pour tout $t in I$
   $
-    sum_(k = 1)^d lambda y_k (t) = 0
+    sum_(k = 1)^d lambda_k y_k (t) = 0
   $
 
 *Démonstration*
@@ -288,9 +288,9 @@ On montre d'abord le lemme de Gronwall
   $
   Donc $Y(t) = tilde(Y)(t)$ sur $I inter Ico(t_0, +oo)$, et on peut faire de même sur $I inter Ioc(+oo, t_0)$.
 
-#card("edlsyslincoefconst", "Système d'équation differentielles linéaires à coefficients constants", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("edlsyslincoefconst", "Système d'équation différentielles linéaires à coefficients constants", ("Maths.Analyse.Équations différentielles linéaires",))
 
-Système d'équation differentielles linéaires à coefficients constants.
+Système d'équation différentielles linéaires à coefficients constants.
 
 #answer
 
@@ -386,9 +386,9 @@ Caractériser les morphismes de $(RR, +)$ vers $("GL"(E), compose)$
   $
   Qui est donc $C^1$. Puis on conclut par propriétés de morphismes.
 
-#card("resedlmatcasdz", "Résolution des équations differentielles linéaires homogènes matricielles à coefficient constant", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("resedlmatcasdz", "Résolution des équations différentielles linéaires homogènes matricielles à coefficient constant", ("Maths.Analyse.Équations différentielles linéaires",))
 
-Résolution des équations differentielles linéaires homogènes matricielles à coefficient constant.
+Résolution des équations différentielles linéaires homogènes matricielles à coefficient constant.
 
 #answer
 
@@ -420,7 +420,7 @@ Est libre et est donc une base de $S$.
 
 *Cas diagonalisable dans les complexes*
 
-On prend la même équation pour $KK = RR$, et on supposes $A$ diagonalisable dans $CC$.
+On prend la même équation pour $KK = RR$, et on suppose $A$ diagonalisable dans $CC$.
 
 Notons
 $
@@ -487,9 +487,9 @@ Est une base de $S$.
   $
   Et la famille est bien libre.
 
-#card("resedlhsclcoefcst", "Résolution des équations differentielles linéaires homogènes scalaires à coefficients constants", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("resedlhsclcoefcst", "Résolution des équations différentielles linéaires homogènes scalaires à coefficients constants", ("Maths.Analyse.Équations différentielles linéaires",))
 
-Résolution des équations differentielles linéaires homogènes scalaires à coefficients constants.
+Résolution des équations différentielles linéaires homogènes scalaires à coefficients constants.
 
 #answer
 
@@ -531,7 +531,7 @@ $
 
 *Cas scindé racines simples dans les complexes*
 
-Pour $KK = RR$, et $P$ SARS sur $CC$. Donc $A$ est diagonalisable sur $CC$, et on déduit du cas matricielle qu'en notant
+Pour $KK = RR$, et $P$ SARS sur $CC$. Donc $A$ est diagonalisable sur $CC$, et on déduit du cas matriciel qu'en notant
 $
   {script(underbrace(lambda_1\, dots\, lambda_p, in RR)\, alpha_1 + i beta_1\, alpha_1 - i beta_1\, dots\, alpha_r + i beta_r\, alpha_r + i beta_r) } = "Sp"_CC (A)
 $
@@ -583,3 +583,79 @@ $
   underbrace({t |-> sum_(k = 1)^q Q_k (t) e^(lambda_k t), (Q_k)_k in product_(j = 1)^q KK_(m_k - 1) [X]}, cal(S)) \
   = "Vect" (t^j e^(lambda_k t))_(k in [|1, q|], j in [|1, m_k - 1|])
 $
+
+#card("wronskiendef", "Wronskien", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Définition et premières propriétés du Wronskien.
+
+#answer
+
+On étudie
+$
+  (E_0) quad Y'(t) = A(t) Y(t)
+$
+Avec $A in C^0(I, M_n (KK))$. On note $S_0$ l'espace de ses solutions, qui est de dimension $n$ par Cauchy-Lipschitz.
+
+Pour $(Y_1, dots, Y_n) in S_0^n$, on définit le Wronskien associé
+$
+  W : func(I, KK, t, det(Y_1 (t), dots, Y_n (t)))
+$
+
+Par Cauchy-Lipschitz on a équivalence entre
+
++ $(Y_1, dots, Y_n)$ base de $S_0$.
+
++ $forall t in I, W(t) != 0$
+
++ $exists t_0 in I, W(t) != 0$
+
+De plus $W$ vérifie l'équation différentielle suivante
+$
+  forall t in I, space W'(t) = tr(A(t)) W(t)
+$
+D'où
+$
+  W: t |-> C exp(integral_a^t tr(A(s)) dif s)
+$
+
+*Démonstration*
+
+- Comme $Y_1, dots, Y_n$ sont $C^1$ et $det$ est $n$-linéaire, $W$ est $C^1$. #h(1fr)
+  $
+    W' &= sum_(k = 1)^n matrixdet(Y_1, dots.c, Y_(k-1), Y'_k, Y_(k+1), dots.c, Y_n) \
+  &= sum_(k = 1)^n matrixdet(Y_1, dots.c, Y_(k-1), A Y_k, Y_(k+1), dots.c, Y_n)
+  $
+  Étudions alors
+  $
+    underbrace(func(delim:#none, (KK^n)^n, KK, (X_1, dots, X_n), sum_(k = 1)^n matrixdet(X_1, dots.c, B X_k, dots.c, X_n)), phi)
+  $
+  Qui est n-linéaire alternée : si $X_i = X_j, i < j$
+  $
+    & phi(X_1, dots, X_n) \
+    =& matrixdet(X_1, dots.c, B X_i, dots.c, X_j, dots.c, X_n) \
+    +& matrixdet(X_1, dots.c, X_i, dots.c, B X_j, dots.c, X_n) \
+    +& sum_(k in [|1, n|] \\ {i, j}) underbrace(matrixdet(X_1, dots.c, B X_k, dots.c, X_n), 0 "car" X_i = X_j) \
+    =& matrixdet(X_1, dots.c, B X_i, dots.c, X_i, dots.c, X_n) \ 
+    -& matrixdet(X_1, dots.c, B X_i, dots.c, X_i, dots.c, X_n) \ 
+    =& 0
+  $
+  Ainsi
+  $
+    phi = phi(E_1, dots, E_n) det_"can"
+  $
+  Or
+  $
+    phi(E_1, dots, E_n) = tr(b)
+  $
+
+#card("princvarcst", "Principe de variation de la constante", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Principe de variation de la constante.
+
+#answer
+
+On considère l'équation
+$
+  (E) quad Y'(t) = A(t) Y(t) + B(t)
+$
+Avec $A in C^0 (I, M_n (KK))$ et $B in C^0(I, KK^n)$.

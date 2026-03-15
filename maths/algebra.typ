@@ -25,7 +25,7 @@ $
   a^n - b^n = (a - b) sum_(k = 0)^(n - 1) a^k b^(n - k - 1) \
 $
 
-#card("coefbi", "Formules sur les coéfficients binomiaux", ("Maths.Calculs",))
+#card("coefbi", "Formules sur les coefficients binomiaux", ("Maths.Calculs",))
 
 Soit $k, n, p in NN$
 
@@ -81,14 +81,14 @@ $
     = sum_(k = 1)^n (-1)^(k+1) sum_script(1 <= i_1 < dots.c < i_k <= n) abs(inter.big_(j = 1)^k A_(i_j))
 $
 
-#card("majmaxbs", "Majorant, borne supérieure, élément maximale", ("Maths.Algèbre.Relations",))
+#card("majmaxbs", "Majorant, borne supérieure, élément maximal", ("Maths.Algèbre.Relations",))
 
 Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$, définitions de
 
 - Majorant
 - Maximum
 - Borne supérieure
-- Élément maximale
+- Élément maximal
 
 #answer
 
@@ -97,7 +97,7 @@ Soit $(E, <=)$ un ensemble ordonné et $A subset.eq E$.
 / Majorant: $M in E$ est un majorant de $A$ si $forall x in A, x <= M$
 / Maximum: $M$ est le maximum de $A$ si $M$ est un majorant de $A$ et $M in A$. S'il existe il est unique.
 / Borne supérieure: $B$ est la borne supérieure de $A$ si $B$ est le plus petit majorant de $A$ : $forall M in E, (forall x in A, x <= M) => B <= M$. Si elle existe elle est unique.
-/ Élément maximale: $M$ est un élément maximale de $A$ si $M$ n'est plus petit que personne : $exists.not x in A, M <= x$. Dans le cas d'un ensemble totalement ordonné, seul un maximum est élément maximale, dans le cas d'un ensemble non totalement ordonné, il peut en exister plusieurs.
+/ Élément maximal: $M$ est un élément maximal de $A$ si $M$ n'est plus petit que personne : $exists.not x in A, M <= x$. Dans le cas d'un ensemble totalement ordonné, seul un maximum est élément maximal, dans le cas d'un ensemble non totalement ordonné, il peut en exister plusieurs.
 
 #card("axgroupe", "Axiomes d'un groupe", ("Maths.Algèbre.Groupes",))
 
@@ -311,7 +311,7 @@ Qu'est-ce qu'un "corps gauche" ou "anneau à division" ?
 
 #answer
 
-Un corps gauche ou anneau a division et un anneau non commutatif dont tous les éléments sont inversible sauf $0$. C'est un corps dont le produit n'est pas commutatif.
+Un corps gauche ou anneau à division est un anneau non commutatif dont tous les éléments sont inversibles sauf $0$. C'est un corps dont le produit n'est pas commutatif.
 
 #card("axsouscorps", "Axiomes d'un sous-corps", ("Maths.Algèbre.Anneaux et corps",))
 
@@ -331,13 +331,13 @@ $(K, +, times)$ un corps, $L subset.eq K$ est un sous-corps si :
   + Stable par $div$ ou stable par inverse
 ]
 
-#card("carprem", "Primalité de la caracèristique d'un corps", ("Maths.Algèbre.Anneaux et corps",))
+#card("carprem", "Primalité de la caractéristique d'un corps", ("Maths.Algèbre.Anneaux et corps",))
 
-Si $(K, +, dot)$ est un corps de caractèristique non nulle, que peut-on dire sur celle ci ?
+Si $(K, +, dot)$ est un corps de caractéristique non nulle, que peut-on dire sur celle ci ?
 
 #answer
 
-$(K, +, dot)$ un corps, notons $p$ sa caractèristique, si $p != 0$ alors $p$ est premier
+$(K, +, dot)$ un corps, notons $p$ sa caractéristique, si $p != 0$ alors $p$ est premier
 
 Démonstration:
 
@@ -455,7 +455,7 @@ $
 Plus algébriquement :
 
 $
-  ZZ \/ p ZZ "est un anneaux intègre :" \
+  ZZ \/ p ZZ "est un anneau intègre :" \
   a b equiv 0 space [p] => a equiv 0 space [p] "ou" b equiv 0 space [p]
 $
 
@@ -630,7 +630,7 @@ Soit $P in KK[X]$, $n = deg P$
 + L'unique polynôme qui à une infinité de racines est $P = 0$.
 + Si $Q in KK_n [X]$ et $exists alpha_1, dots, alpha_(n+1) in KK$ tels que $forall k in [|1, n+1|], P(alpha_k) = Q(alpha_k)$, alors $P = Q$.
 
-*En caractèristique nulle*
+*En caractéristique nulle*
 4. $a in KK$ est racine de $P$ avec multiplicité $m$ ssi 
   $
   forall k in [|0, m - 1|], P^((k))(a) = 0 \
@@ -701,7 +701,7 @@ Définition et propriétés des polynômes irréductibles.
 Soit $P in KK[X]$, $P$ est dit irréductible si ses seuls diviseurs sont $P$, $1$ et leurs associés.
 
 + Dans $CC$, les polynômes irréductibles sont les monômes (théorème de Gauss-d'Alembert).
-+ Dans $RR$, les polynômes irréductibles sont les monômes et les polŷnomes de degré $2$ avec $Delta < 0$.
++ Dans $RR$, les polynômes irréductibles sont les monômes et les polynômes de degré $2$ avec $Delta < 0$.
 + En général, un polynôme de degré $1$ est toujours irréductible.
 + Dans $KK[X]$, un polynôme de degré $2$ ou $3$ est irréductible ssi il n'admet pas de racine dans $KK$.
 + Dans $KK[X]$, un polynôme de degré $>= 2$ ne peut être irréductible s'il admet une racine dans $KK$.
@@ -778,7 +778,7 @@ Propriétés :
   $
     T_(n+1) + T_(n-1) = 2 X T_n
   $
-+ $deg T_n = n$, coéfficient dominant : $2^(n-1)$, sauf pour $n = 0$, $T_0 = 1$.
++ $deg T_n = n$, coefficient dominant : $2^(n-1)$, sauf pour $n = 0$, $T_0 = 1$.
 + $T_n$ est scindé racines simples sur $RR$ :
   $
     T_n (X) \ = 2^(n-1) product_(k = 0)^(n-1) (X - cos ((2k+1) pi) / (2n))
@@ -801,26 +801,26 @@ Preuves :
   script(cos((n+1)theta) + cos((n-1)theta) = 2 cos theta cos(n theta)) \
   script(T_(n+1) (cos theta) + T_(n-1) (cos theta) = 2 (cos theta) T_(n) (cos theta))
   $
-  Donc ils coincident en une infinité de valeurs $Icc(-1, 1)$, et sont donc égaux.
+  Donc ils coïncident en une infinité de valeurs $Icc(-1, 1)$, et sont donc égaux.
 + Par récurrence avec la relation de récurrence.
-+ On résout $cos(n theta) = 0$, on fait attention à distingué les racines.
++ On résout $cos(n theta) = 0$, on fait attention à distinguer les racines.
 + Changement de variable $x = cos theta$, puis formules de trigonométrie.
-+ Par contraposé : On prend $P$ unitare de degré $n$ tel que $norm(P) <= 1 / (2^(n-1))$.
++ Par contraposée : On prend $P$ unitaire de degré $n$ tel que $norm(P) <= 1 / (2^(n-1))$.
   - $P = 1/(2^(n-1)) T_n + Q, quad deg Q <= n - 1$.
   - On regarde les $y_k$ quand $T_n (y_k) = plus.minus 1$.
-  - On en déduis le signe de $Q$
-  - Par le TVI $Q$ à $n$ racines donc $Q = 0$.
+  - On en déduit le signe de $Q$
+  - Par le TVI $Q$ a $n$ racines donc $Q = 0$.
   - Donc $P(X) = (T_n (X)) / (2^(n-1))$.
 
-#card("fracrat", "Propriétés des fractions rationelles", ("Maths.Algèbre.Polynômes",))
+#card("fracrat", "Propriétés des fractions rationnelles", ("Maths.Algèbre.Polynômes",))
 
-Propriétés des fractions rationelles
+Propriétés des fractions rationnelles
 
 #answer
 
 - Si on dit que $P / Q$ est scindé, c'est que $Q$ est scindé.
 - Si $F$ admet une infinité de racines alors $F = 0$.
-- Si $F$ et $G$ coincident en une infinité de points alors $F = G$.
+- Si $F$ et $G$ coïncident en une infinité de points alors $F = G$.
 
 #card("decompels", "Décomposition en éléments simples", ("Maths.Algèbre.Polynômes",))
 
@@ -828,13 +828,13 @@ Formules, propriétés de la décomposition en éléments simples.
 
 #answer
 
-Soit $F in KK(X)$, $F$ se décompose de façon uniqe sous la forme
+Soit $F in KK(X)$, $F$ se décompose de façon unique sous la forme
 $
   F = E + G "avec" E in KK[X] "et" deg G < 0
 $
-On appelle $E$ la partie entière de $F$ et $G$ la partie pôlaire.
+On appelle $E$ la partie entière de $F$ et $G$ la partie polaire.
 
-- Si $F = P / Q$ sindé racines simples : soit $alpha_1, dots, alpha_n$ les pôles et $Q(X) = (X - alpha_k) R_k (X)$ pour tout $k in [|1, n|]$ : #h(1fr)
+- Si $F = P / Q$ scindé racines simples : soit $alpha_1, dots, alpha_n$ les pôles et $Q(X) = (X - alpha_k) R_k (X)$ pour tout $k in [|1, n|]$ : #h(1fr)
   $
     F = E + lambda_1 / (X - alpha_1) + dots.c + lambda_n / (X - alpha_n)
   $
@@ -871,7 +871,7 @@ Sois $KK$ un corps, $E$ muni de la somme interne $+$ et du produit externe $dot$
 #answer
 
 Soit $A in M_(n p)(KK), r in NN$, les assertions suivantes sont équivalentes
-- $A$ équivalente par ligne à une matrice échelonné avec $r$ lignes non nulles.
+- $A$ équivalente par ligne à une matrice échelonnée avec $r$ lignes non nulles.
 - $"rg" phi_A = r$ \
 - $"rg" (C_1, dots, C_p) = r$ (avec $C_i$ la $i$-ème colonne de $A$)
 - $"rg" (L_1, dots, L_n) = r$ (avec $L_i$ la $i$-ème ligne de $A$)
@@ -984,9 +984,9 @@ C'est à dire $f = g * mu = f * underbrace(bb(1)_NN * mu, bb(1)_{1})$.
 
 De plus $mu$ est multiplicative.
 
-#card("exunsgcycl", "Éxistence et unicité des sous groupes de groupe cyclique", ("Maths.Algèbre.Groupes",))
+#card("exunsgcycl", "Existence et unicité des sous groupes de groupe cyclique", ("Maths.Algèbre.Groupes",))
 
-Soit $G$ un groupe cyclique d'ordre $n$, et $d | n$, montrer l'éxistence et l'unicité d'un sous groupe d'ordre $d$.
+Soit $G$ un groupe cyclique d'ordre $n$, et $d | n$, montrer l'existence et l'unicité d'un sous groupe d'ordre $d$.
 
 #answer
 
@@ -1065,7 +1065,7 @@ $
 &= X^(p-1) + sum_(k=1)^(p - 1) underbrace(vec(k, p), "divisible par" p) X^(k - 1)
   $
 
-  et le coéfficient constant est $vec(p, 1)$ qui n'est pas divisible par $p^2$, d'où par le critère d'Eisenstein, $Phi_p$ irréductible dans $QQ[X]$.
+  et le coefficient constant est $vec(p, 1)$ qui n'est pas divisible par $p^2$, d'où par le critère d'Eisenstein, $Phi_p$ irréductible dans $QQ[X]$.
 
 Démonstration de $n = sum_(d | n) phi(d)$ :
 
@@ -1107,24 +1107,24 @@ $
   f : mat(delim: #none, G, ->, G \/ H; g, |->, g H)
 $
 
-qui est un morphisme de groupe surjectif appelé projection cannonique de $G$ sur $G \/ H$ dont le noyau est $H$.
+qui est un morphisme de groupe surjectif appelé projection canonique de $G$ sur $G \/ H$ dont le noyau est $H$.
 
 *Cas particuliers*
 
-- Tous noyau de morphisme est un sous groupe distingué.
+- Tout noyau de morphisme est un sous groupe distingué.
 - Tous sous-groupe d'indice 2 ($(|G|)/(|H|) = 2$) est distingué.
 
 #card("idmax", "Idéaux maximaux, anneaux quotientés", ("Maths.Algèbre.Anneaux et corps",))
 
-Définitions d'idéal maximale, anneau quotienté, propriétés.
+Définitions d'idéal maximal, anneau quotienté, propriétés.
 
 #answer
 
 Soit $(A, +, dot)$ un anneau et $I$ idéal de $A$.
 
-*Idéal maximale*
+*Idéal maximal*
 
-Un idéal $I$ de $A$ est dit maximale si pour tout $J$ idéal de $A$
+Un idéal $I$ de $A$ est dit maximal si pour tout $J$ idéal de $A$
   $
     I subset.neq J => J = A
   $
@@ -1143,18 +1143,18 @@ $
   overline(x) dot overline(y) = overline(x dot y) \
 $
 
-Qui ne dépend pas du représentant choisis.
+Qui ne dépend pas du représentant choisi.
 
 *Propriétés*
 
-- $I$ est maximale ssi tous les éléments non nuls de $A \/ I$ sont inversibles.
-- Si $A$ commutatif, $I$ maximale, alors $I$ est premier ($A \/ I$ est intègre).
+- $I$ est maximal ssi tous les éléments non nuls de $A \/ I$ sont inversibles.
+- Si $A$ commutatif, $I$ maximal, alors $I$ est premier ($A \/ I$ est intègre).
 
 Démonstration :
 
-- On suppose $I$ maximale. Soit $x in A\\I$ c'est à dire $x in.not overline(0_A)$, montrons que $overline(x)$ est inversible. 
+- On suppose $I$ maximal. Soit $x in A\\I$ c'est à dire $x in.not overline(0_A)$, montrons que $overline(x)$ est inversible. 
 
-  $I subset.eq x A + I = J$ est un idéal, or $I$ maximale d'où $1_A in A = J$, d'où l'éxistence de $y in A$ et $z in I$ tel que
+  $I subset.eq x A + I = J$ est un idéal, or $I$ maximal d'où $1_A in A = J$, d'où l'existence de $y in A$ et $z in I$ tel que
 
   $
     x y + z = 1_A \
@@ -1170,7 +1170,7 @@ Démonstration :
   exists z in I, space underbrace(x y + z, in J) = 1_A
   $
 
-  $1_A in J$ donc $J = A$, $I$ est maximale.
+  $1_A in J$ donc $J = A$, $I$ est maximal.
 - Soit $x, y in A$ tels que $x y in I$, supposons que $x in.not I$. Donc $overline(x)$ inversible : on dispose de $x' in A$ et $z in I$ tels que
 
   $
@@ -1304,7 +1304,7 @@ Définitions d'un $p$-groupe, et démonstration de
 
 #answer
 
-Un $p$-groupe est un groupe dont tout les éléments sont d'odre $p^gamma$ avec $p in PP$. A fortiori, il s'agit d'un groupe de cardinal $p^alpha$.
+Un $p$-groupe est un groupe dont tous les éléments sont d'ordre $p^gamma$ avec $p in PP$. A fortiori, il s'agit d'un groupe de cardinal $p^alpha$.
 
 + On étudie l'action de groupe 
   $
@@ -1345,11 +1345,11 @@ Un $p$-groupe est un groupe dont tout les éléments sont d'odre $p^gamma$ avec 
 
 #card("exeordp", "Exercice : élément d'ordre p dans un groupe d'ordre divisé par p", ("Maths.Algèbre.Groupes", "Maths.Exercice.Algèbre Générale"))
 
-Soit $G$ un groupe d'ordre $p q$ avec $p in PP$ et $q in NN^star$, démonstration de l'éxistence d'un élémént d'ordre $p$.
+Soit $G$ un groupe d'ordre $p q$ avec $p in PP$ et $q in NN^star$, démonstration de l'existence d'un élément d'ordre $p$.
 
 #answer
 
-Soit $G$ d'odre $n = p q$ avec $(p, q) in PP times NN^*$.
+Soit $G$ d'ordre $n = p q$ avec $(p, q) in PP times NN^*$.
 
 On pose
 $
@@ -1395,11 +1395,11 @@ Avec $k in NN$. Or $p | n$ donc
 $
 p | |{x in G | x^p = e_G}| >= 1
 $
-Donc il existe au moins $p - 1$ éléménts d'ordre $p$.
+Donc il existe au moins $p - 1$ éléments d'ordre $p$.
 
 *Cas $n = 2$ :*
 
-On regroupe les éléments avec leurs inverse, ce qui montre par la parité du cardinale l'éxistence d'un élémént d'ordre $2$.
+On regroupe les éléments avec leurs inverse, ce qui montre par la parité du cardinal l'existence d'un élément d'ordre $2$.
 
 #card("burnside", "Théorème de Burnside", ("Maths.Algèbre.Groupes",))
 
@@ -1483,7 +1483,7 @@ $
 
   Qui ne dépend pas du représentant car $2 G = {0}$.
 
-$G$ un $FF_2$-ev de dimension finie, donc isomorphe à $FF_2^n$ en tant qu'éspace vectoriel, et à fortiori en tant que groupe.
+$G$ un $FF_2$-ev de dimension finie, donc isomorphe à $FF_2^n$ en tant qu'espace vectoriel, et à fortiori en tant que groupe.
 
 #card("irean", "Irréductibles d'un anneau", ("Maths.Algèbre.Anneaux et corps",))
 
@@ -1519,15 +1519,15 @@ Soit $(A, +, dot)$ un anneau principal.
 
   Soit $x in A$, on construit la suite $(x_n)$ par récurrence : $x_0 = x$ et pour $n in NN$
   - Si $x_n$ irréductible, $x_(n+1) = x_n$
-  - Sinon on prend $x_(n+1)$ diviseur de $x_n$ non associés et non inversible.
+  - Sinon on prend $x_(n+1)$ diviseur de $x_n$ non associés et non inversibles.
   
   Par définition de la divisibilité, $(x_n A)_n$ est une suite croissante d'idéaux, et est donc stationnaire. 
 
   Soit $k$ le rang à partir du quel c'est le cas, $x_k$ est donc un diviseur irréductible de $x$.
-- Éxistence de la décomposition : récurrence avec la propriété ci dessus.
+- Existence de la décomposition : récurrence avec la propriété ci dessus.
 - Unicité de la décomposition : on prend deux décomposition on montre que chaque irréductible est présent à la même puissance dans les deux.
 
-#card("carspos", "Polynômes en caractèristique strictement positive", ("Maths.Algèbre.Polynômes",))
+#card("carspos", "Polynômes en caractéristique strictement positive", ("Maths.Algèbre.Polynômes",))
 
 Remarques et mises en gardes à propos de $KK[X]$ quand $"car"(KK) > 0$
 
@@ -1659,7 +1659,7 @@ $
   lambda_j &= (P^((j)) (a)) / j!
 $
 
-#card("polentz", "Contenus d'un polynôme à coéfficients entiers", ("Maths.Algèbre.Polynômes",))
+#card("polentz", "Contenus d'un polynôme à coefficients entiers", ("Maths.Algèbre.Polynômes",))
 
 Définitions, propriétés, et démonstrations à propos du contenu dans $ZZ[X]$.
 
@@ -1683,17 +1683,17 @@ Et on dit qu'un polynôme $P$ est primitif si $c(P) = 1$.
     pi: func(ZZ[X], FF_p [X], sum_(k=0)^d a_k X^k, sum_(k = 0)^d overline(a_k) X^k)
   $
   
-  $c(P) = 1$ donc $P$ admet au moins un coéfficient non divisible par $p$ et de même pour $Q$.
+  $c(P) = 1$ donc $P$ admet au moins un coefficient non divisible par $p$ et de même pour $Q$.
 
   $
     pi(P) != 0 "et" pi(Q) != 0 \
     pi(P Q) = pi(P) pi(Q) != 0
   $
 
-  Donc $p$ ne divise pas tous les coéfficients de $P Q$ pour tout $p in PP$, d'où $c(P Q) = 1$.
+  Donc $p$ ne divise pas tous les coefficients de $P Q$ pour tout $p in PP$, d'où $c(P Q) = 1$.
 - On remarque que pour $P in ZZ[X]$ et $k in ZZ$, $c(k P) = k c(P)$ et on étudie $tilde(P) = P / c(P)$ et $tilde(Q) = Q / c(Q)$.
 
-#card("exocont1", "Exercice : Produit de polynômes de rationels unitaire entier", ("Maths.Exercice.Polynômes",))
+#card("exocont1", "Exercice : Produit de polynômes de rationnels unitaire entier", ("Maths.Exercice.Polynômes",))
 
 Soient $P, Q in QQ[X]$ unitaires, montrer que si $P Q in ZZ[X]$ alors $P, Q in ZZ[X]$.
 
@@ -1720,7 +1720,7 @@ $
   cases(P = a P / a in ZZ[X], Q = b Q / b in ZZ[X])
 $
 
-#card("exocont2", "Exercice : Irréductibilité dans les rationels", ("Maths.Exercice.Polynômes",))
+#card("exocont2", "Exercice : Irréductibilité dans les rationnels", ("Maths.Exercice.Polynômes",))
 
 Soit $P in ZZ[X]$ dont les seuls diviseurs dans $ZZ[X]$ sont de degré $0$ ou $deg P$, montrer que $P$ est irréductible dans $QQ[X]$.
 
@@ -1864,9 +1864,9 @@ Soit $alpha in CC$, on dit que $alpha$ est un entier algébrique s'il existe $Q 
 z^(-1) = epsilon(x + beta y)
     $
 
-#card("expolent", "Exercice : Polynômes à coéfficients entiers", ("Maths.Exercice.Polynômes",))
+#card("expolent", "Exercice : Polynômes à coefficients entiers", ("Maths.Exercice.Polynômes",))
 
-+ Soit $P = sum_(k = 0)^d a_k X^k in ZZ[X]$, montrer que si $P$ admet une racine rationelle $p / q$ avec $p and q = 1$, alors $q | a_d$ et $p | a_0$.
++ Soit $P = sum_(k = 0)^d a_k X^k in ZZ[X]$, montrer que si $P$ admet une racine rationnelle $p / q$ avec $p and q = 1$, alors $q | a_d$ et $p | a_0$.
 
 #answer
 
@@ -1878,7 +1878,7 @@ z^(-1) = epsilon(x + beta y)
   $
   D'où $cases(q | a_d p^d, p | a_0 q^d)$ or $q and p = 1$ donc par le théorème de Gauss, $cases(q | a_d, p | a_0)$.
 
-  On en déduis que si $P in ZZ[X]$ est unitaire et admet une racine rationelle, alors elle est entière.
+  On en déduit que si $P in ZZ[X]$ est unitaire et admet une racine rationnelle, alors elle est entière.
 
 #card("eisenstein", "Critère d'Eisenstein", ("Maths.Algèbre.Polynômes",))
 
@@ -2031,7 +2031,7 @@ Or pour tout $g in G, g^m = 1$ d'où
 $
   G subset {"racines de" X^m - 1 "dans" KK[X]}
 $
-D'où $|G| <= m$ car $KK$ est un corps et ainsi l'élément d'ordre maximale est d'ordre supérieure ou égal au cardinal de $G$, d'où $G$ cyclique.
+D'où $|G| <= m$ car $KK$ est un corps et ainsi l'élément d'ordre maximal est d'ordre supérieure ou égal au cardinal de $G$, d'où $G$ cyclique.
 
 *Deuxième méthode*
 
@@ -2065,7 +2065,7 @@ $
   sum_(d | n) phi(d) = n = sum_(d | n) underbrace(|Gamma_d|, in {0, phi(d)})
 $
 
-D'où nécéssairement $|Gamma_d| = phi(d)$ pour tout $d | n$, en particulier pour $|Gamma_n| = phi(n) > 0$ : il existe $phi(n)$ éléments d'ordre $n$.
+D'où nécessairement $|Gamma_d| = phi(d)$ pour tout $d | n$, en particulier pour $|Gamma_n| = phi(n) > 0$ : il existe $phi(n)$ éléments d'ordre $n$.
 
 #card("excarfp", "Exercice : Les carrés de Fp", ("Maths.Exercice.Algèbre Générale",))
 
@@ -2195,7 +2195,7 @@ $
 
 *Démonstration*
 
-On a évidement $B^times subset B inter A^times$.
+On a évidemment $B^times subset B inter A^times$.
 
 On suppose $b in B inter A^times$, on dispose de $a in A, a b = b a = 1$.
 
@@ -2310,7 +2310,7 @@ Construction et propriétés du groupe diédral.
 
 *Construction*
 
-Soient $n >= 2$ et $A_0, dots, A_(n-1)$ des points de $RR^2$ d'afixes
+Soient $n >= 2$ et $A_0, dots, A_(n-1)$ des points de $RR^2$ d'affixes
 $
   forall i in [|0, n-1|], A_i : e^((2 i k pi) / n)
 $
@@ -2334,7 +2334,7 @@ Et donc tout $gamma in Gamma$, est soit une rotation ou une réflexion.
 
 - Si $gamma$ est une réflexion
 
-  Soit $s$ la réflexion à l'axe des abscices, $s in Gamma$.
+  Soit $s$ la réflexion à l'axe des abscisses, $s in Gamma$.
 
   $s compose gamma in Gamma$ est une rotation car
   $
@@ -2380,7 +2380,7 @@ De plus $ker theta_alpha$ est un idéal de $KK[X]$.
 
 *Démonstration*
 
-- Soit $B in KK[X] \\ {0}$ et $d = deg B$, par l'éxistence et l'unicité de la division euclidienne on a
+- Soit $B in KK[X] \\ {0}$ et $d = deg B$, par l'existence et l'unicité de la division euclidienne on a
 
   $
     KK[X] = B KK[X] plus.o KK_(d - 1) [X]
@@ -2413,7 +2413,7 @@ y &= u|_G (b)
     dim KK[alpha] = d
   $
 
-  Et l'image de la base cannonique de $KK_(d - 1) [X]$ par $theta|_(KK_(d - 1) [X])$ est
+  Et l'image de la base canonique de $KK_(d - 1) [X]$ par $theta|_(KK_(d - 1) [X])$ est
 
   $
     (1, alpha, dots, alpha^(d - 1))
@@ -2443,7 +2443,7 @@ $KK[alpha]$ est intègre ssi $pi_alpha$ est irréductible.
   $
   "ou" space cases(delim: #none, pi_alpha | P <=> x = 0, pi_alpha | Q <=> y = 0)
   $
-- Par contraposé, si $pi_alpha$ non irréductible, $pi_alpha = P Q$ avec $P, Q in KK[X]$ non inversible ou associé à $pi_alpha$.
+- Par contraposé, si $pi_alpha$ non irréductible, $pi_alpha = P Q$ avec $P, Q in KK[X]$ non inversibles ou associés à $pi_alpha$.
 
   $
     underbrace(P(alpha), != 0) underbrace(Q(alpha), != 0) = pi_alpha (alpha) = 0
@@ -2532,9 +2532,9 @@ Par défaut $alpha$ algébrique veut dire algébrique sur $QQ$., quitte à les �
 
 *Démonstration*
 
-+ Sens directe connus. Soit $P in KK[X]$ unitaire, irréductible et annulateur de $alpha$.
++ Sens direct connu. Soit $P in KK[X]$ unitaire, irréductible et annulateur de $alpha$.
 
-  On a $pi_alpha | P$, or $P$ irréductible donc $P$ et $pi_alpha$ sont associé, or tout deux unitaires donc $P = pi_alpha$.
+  On a $pi_alpha | P$, or $P$ irréductible donc $P$ et $pi_alpha$ sont associés, or tous deux unitaires donc $P = pi_alpha$.
 
 #card("bastel", "Théorème de la base téléscopique", ("Maths.Algèbre.Algèbre linéaire",))
 
@@ -2642,7 +2642,7 @@ $
 $
 Soit $b$ une racine de $P'$.
 
-Si $b in {a_1, dots, a_N}$, b est nécéssairement dans leur enveloppe convexe.
+Si $b in {a_1, dots, a_N}$, b est nécessairement dans leur enveloppe convexe.
 
 Sinon
 
@@ -2660,7 +2660,7 @@ $
 
 Où $lambda_k = (a_k m_k) / abs(b - a_k)^2 / (sum_(i = 1)^N m_i / abs(b - a_i)^2)$ (on a alors $sum_(k = 1)^N lambda_k = 1$).
 
-$b$ est donc un barycentre à coéfficients positifs des $a_1, dots, a_n$ et est donc dans leur enveloppe convexe.
+$b$ est donc un barycentre à coefficients positifs des $a_1, dots, a_n$ et est donc dans leur enveloppe convexe.
 
 #card("exdenommorp", "Exercice : Dénombrement de morphismes", ("Maths.Exercice.Algèbre Générale",))
 
@@ -2996,7 +2996,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
 *Démonstration*
 
-- Soit $l >= k$, on a évidement $ker u^l subset.eq ker u^(l+1)$. #h(1fr)
+- Soit $l >= k$, on a évidemment $ker u^l subset.eq ker u^(l+1)$. #h(1fr)
 
   Soit $x in ker u^(l + 1)$ :
   $
@@ -3006,7 +3006,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
     x in ker u^l
   $
 
-- Soit $l >= k$, on a évidement $im u^(l+1) subset.eq im u^l$. 
+- Soit $l >= k$, on a évidemment $im u^(l+1) subset.eq im u^l$. 
 
   Soit $u^l (x) = y in im u^l$ :
   $
@@ -3068,7 +3068,7 @@ Qui sont les valeurs auquelles les suites stationnent, on a
 
   Donc $tilde(u)$ est inversible.
 
-- Soit $K' plus.o I' = E$ qui respectent les hypothèses.
+- Soit $K' plus.o I' = E$ qui respectant les hypothèses.
 
   On dispose de $d in NN^*$ tel que
 
@@ -3156,7 +3156,7 @@ Déscription de l'algorithme du pivot de Gauss, et propriétés qui en découlen
 
 *Opérations, représentation matricielle*
 
-Notons $(E_(i j))_(i j)$ la base cannonique de $M_n (KK)$. On a
+Notons $(E_(i j))_(i j)$ la base canonique de $M_n (KK)$. On a
 
 $
   E_(i k) E_(l j) = delta_(k l) E_(i j)
@@ -3241,7 +3241,7 @@ $
   )
 $
 
-On remarque que si $A$ est inversible, les transpositions sont inutiles car il n'éxiste pas de colonnes nulles.
+On remarque que si $A$ est inversible, les transpositions sont inutiles car il n'existe pas de colonnes nulles.
 
 *Propriétés*
 
@@ -3455,14 +3455,14 @@ Pour toute base $(phi_1, dots, phi_n)$ de $cal(L)(E, KK)$, il existe une unique 
 
   Par liberté de la famille, donc bijective par argument dimensionnel.
 
-  Notons $(b_1, dots, b_n)$ la base cannonique de $KK^n$.
+  Notons $(b_1, dots, b_n)$ la base canonique de $KK^n$.
 
   La famille $(e_k = theta^(-1) (b_k))_(k in [|1, n|])$ est l'unique base de $E$ tel que
 
   $
     forall i, j in [|1,n|], space phi_i (e_j) = delta_(i j)
   $
-// TODO: point de vue matricielle
+// TODO: point de vue matriciel
 
 #card("lemfacalgl", "Lemme de factorisation", ("Maths.Algèbre.Algèbre linéaire",))
 
@@ -3571,11 +3571,11 @@ Notons
 $
 e &= (e_0, dots, e_n) \ c &= (1, X, dots, X^n)
 $ 
-Les bases cannoniques de $KK^(n+1)$ et $KK_n [X]$.
+Les bases canoniques de $KK^(n+1)$ et $KK_n [X]$.
 $
   forall k in [|0, n|], space theta^(-1)(e_k) = product_(i = 0 \ i != k)^n (X - a_i) / (a_k - a_i) = L_k (X)
 $
-La matrice de $theta$ dans les bases cannoniques est appelée matrice de Vandermonde de $a_0, dots, a_n$.
+La matrice de $theta$ dans les bases canoniques est appelée matrice de Vandermonde de $a_0, dots, a_n$.
 $
   cal(M)_(e <- c)(theta) = mat(1, a_0, a_0^2, dots.c, a_0^n; dots.v, dots.v, dots.v, dots.down, dots.v; 1, a_n, a_n^2, dots.c, a_n^n)
 $
@@ -3614,7 +3614,7 @@ $
   &= product_(0 <= i < j <= n + 1) (a_j - a_i)
 $
 
-// TODO: Pas sur de les mettres, sous espaces stables, droite stables, definition de vecteur et valeurs propres.
+// TODO: Pas sur de les mettres, sous espaces stables, droite stables, définition de vecteur et valeurs propres.
 
 #card("extvp", "Exercice : endomorphisme qui stabilise toutes les droites", ("Maths.Exercice.Algèbre linéaire",))
 

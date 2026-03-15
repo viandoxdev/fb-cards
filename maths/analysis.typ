@@ -10,7 +10,7 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
-#card("anatl", "Taylor-Langrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
+#card("anatl", "Taylor-Lagrange", ("Maths.Analyse.Dérivation", "Maths.Analyse.Taylor"))
 
 Théorème de Taylor-Lagrange, et conditions d'application.
 
@@ -38,9 +38,9 @@ Soit $f : Icc(a, b) -> E$, $C^(n+1)$
   = &sum_(k = 0)^(n) f^((k))(a) (b - a)^k / (k!)  \ &+ (b - a)^(n+1) / n! integral_0^1 script((1 - s)^n f^((n + 1)) (a + s (b - a)) dif s) \
 $)
 
-#card("inegtri", "Inégalitée Triangulaire", ("Maths.Analyse.Réels", "Maths.Analyse.Complexes"))
+#card("inegtri", "Inégalité Triangulaire", ("Maths.Analyse.Réels", "Maths.Analyse.Complexes"))
 
-Inégalitée triangulaire première et deuxième forme.
+Inégalité triangulaire première et deuxième forme.
 
 #answer
 
@@ -62,7 +62,7 @@ $
   (cos theta + i sin theta)^n = cos (n theta) + i sin (n theta)
 $
 
-#card("trigsomme", "Formules d'addition trigonometrique", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
+#card("trigsomme", "Formules d'addition trigonométrique", ("Maths.Analyse.Complexes", "Maths.Trigonométrie.Euclidienne"))
 
 Formules d'additions trigonométriques.
 
@@ -234,7 +234,7 @@ Soient $a, b, c in CC$
 $
   a y'' + b y' + c y = 0
 $
-On appèlle équation caractèristique
+On appèlle équation caractéristique
 $
   (E C) : quad a z^2 + b z + c = 0
 $
@@ -302,9 +302,9 @@ $
 $
 Les parties convexes de $RR$ sont des intervalles.
 
-#card("aritgeomsuit", "Suites arithmético-géometriques", ("Maths.Analyse.Suites.Suites réelles",))
+#card("aritgeomsuit", "Suites arithmético-géométriques", ("Maths.Analyse.Suites.Suites réelles",))
 
-Formule explicite d'une suite arithmético-géometrique.
+Formule explicite d'une suite arithmético-géométrique.
 
 #answer
 
@@ -320,7 +320,7 @@ $
   u_n &= a^n (v_0 - w) + w
 $
 
-#card("record2", "Suites récurentes d'ordre 2", ("Maths.Analyse.Suites.Suites réelles",))
+#card("record2", "Suites récurrentes d'ordre 2", ("Maths.Analyse.Suites.Suites réelles",))
 
 Formule explicite d'une suite récurrente d'ordre 2.
 
@@ -330,7 +330,7 @@ Soit $a, b in RR$, $(u_n)$ une suite tel que
 $
   u_(n+2) = a u_(n+1) + b u_n
 $
-On résout l'équation caractèristique 
+On résout l'équation caractéristique 
 $
 x^2 = a x + b
 $
@@ -369,13 +369,13 @@ Définition et théorème des suites adjacentes et emboitées.
     inter.big_(n=0)^oo Icc(a_n, b_n) = {x} \ "avec" x = lim a_n = lim b_n
   $
 
-#card("bolzweie", "Théorème de Bolzano-Weiestrass", ("Maths.Analyse.Suites.Suites réelles",))
+#card("bolzweie", "Théorème de Bolzano-Weierstrass", ("Maths.Analyse.Suites.Suites réelles",))
 
-Théorème de Bolzano-Weiestrass et démonstration.
+Théorème de Bolzano-Weierstrass et démonstration.
 
 #answer
 
-Toute suite réelle bornée admet une sous-suite convergente. Dans $RR^n$ (et $CC$), il suffit d'ếtre borné en norme ou module.
+Toute suite réelle bornée admet une sous-suite convergente. Dans $RR^n$ (et $CC$), il suffit d'être borné en norme ou module.
 
 Preuve :
 
@@ -455,7 +455,7 @@ Preuve :
 
 Notons $M = sup f$, quitte à avoir $M in overline(RR)$. $M in "adh"_overline(RR)(f(Icc(a, b)))$, donc il existe une suite $(x_n)$ à valeur dans $Icc(a, b)$ tel que $f(x_n) -> M$.
 
-Par Bolzano-Weiestrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in Icc(a, b)$ et donc nécéssairement $M in RR$.
+Par Bolzano-Weierstrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in Icc(a, b)$ et donc nécéssairement $M in RR$.
 
 #card("heine", "Théorème de Heine réel", ("Maths.Analyse.Continuité",))
 
@@ -463,11 +463,11 @@ Par Bolzano-Weiestrass, il existe $phi$ tel que $x_(phi(n)) -> l$ avec $l in Icc
 
 #answer
 
-Toute fonction continue sur un segment est uniformement continue.
+Toute fonction continue sur un segment est uniformément continue.
 
 Preuve :
 
-Soit $f in C^0(Icc(a,b))$. Supposons par l'absurde que $f$ n'est pas uniformement continue.
+Soit $f in C^0(Icc(a,b))$. Supposons par l'absurde que $f$ n'est pas uniformément continue.
 
 $
   exists epsilon > 0, forall delta > 0, exists x, y in Icc(a,b) \
@@ -479,7 +479,7 @@ $
 forall n in NN, |x_n - y_n| < 1/n \
 |f(x_n) - f(y_n)| >= epsilon
 $
-Ces suites sont bornées donc par Bolzano-Weiestrass, il existe une extractrice $phi$ tel que $x_(phi(n)) -> l in Icc(a, b)$.
+Ces suites sont bornées donc par Bolzano-Weierstrass, il existe une extractrice $phi$ tel que $x_(phi(n)) -> l in Icc(a, b)$.
 
 Or $|x_(phi(n)) - y_(phi(n))| -> 0$ donc $y_(phi(n)) -> l$. 
 
@@ -494,9 +494,9 @@ $
 $
 Qui est absurde.
 
-#card("trigorec", "Fonctions trigonometriques réciproques", ("Maths.Analyse.Dérivation",))
+#card("trigorec", "Fonctions trigonométriques réciproques", ("Maths.Analyse.Dérivation",))
 
-Domaine de définition et dérivées des fonctions trigonometrique réciproques.
+Domaine de définition et dérivées des fonctions trigonométrique réciproques.
 
 #answer
 
@@ -544,9 +544,9 @@ Si $x > a$ :
 ]))
 Donc $f'(a) = 0$ (les deux limites sont égales par la dérivabilité de $f$ en $a$).
 
-#card("rolletaf", "Théorème de Rolle, théorème des acroissements finis", ("Maths.Analyse.Dérivation",))
+#card("rolletaf", "Théorème de Rolle, théorème des accroissements finis", ("Maths.Analyse.Dérivation",))
 
-Énoncé et preuve des théorèmes de Rolle et des acroissements finis.
+Énoncé et preuve des théorèmes de Rolle et des accroissements finis.
 
 #answer
 Soit $f in C^0(Icc(a,b))$ dérivable sur $Ioo(a,b)$ 
@@ -564,13 +564,13 @@ Preuve :
 - Rolle : théorème des bornes atteintes, propriétés des extrémum locaux avec une disjonction de cas si les extrémums sont aux bornes.
 - TAF : Rolle en pente, on corrige par la pente pour se ramener à Rolle.
 
-#card("inegacrlag", "Inégalité des acroissements finis et de Taylor-Lagrange", ("Maths.Analyse.Dérivation",))
+#card("inegacrlag", "Inégalité des accroissements finis et de Taylor-Lagrange", ("Maths.Analyse.Dérivation",))
 
-Inégalité des acroissements finis et de Taylor-Lagrange.
+Inégalité des accroissements finis et de Taylor-Lagrange.
 
 #answer
 
-/ Inégalité des acroissements finis: #linebreak()
+/ Inégalité des accroissements finis: #linebreak()
   Soit $f : I -> RR$ dérivable et $a in I$, pour tout $x in I$
 $
   abs(f(x) - f(a)) <= sup_Icc(a,x) abs(f') dot abs(x - a)
@@ -599,7 +599,7 @@ On prend $a x^2 + b x + c$ un trinôme du second degré, on vas intégrer $1 / (
     integral (dif x) / (a x^2 + b x + c) &= integral (dif x) / (a(x - r)^2) \
     &= - 1 /(a(x - r))
   $
-- $Delta < 0$ : on passe à la forme cannonique
+- $Delta < 0$ : on passe à la forme canonique
   $
     a x^2 + b x + c \ = a [(x + b/(2 a))^2 + abs(Delta) / (4 a^2)]
   $
@@ -671,7 +671,7 @@ $
 
 #card("etudl", "Étude local et asymptotique de fonctions", ("Maths.Analyse.Développements Limités",))
 
-Méthode pour étudié le comportement local et asymptotique d'une fonction.
+Méthode pour étudier le comportement local et asymptotique d'une fonction.
 
 #answer
 
@@ -684,7 +684,7 @@ Méthode pour étudié le comportement local et asymptotique d'une fonction.
   - Asymptote oblique : $"DL"_1(plus.minus oo)$
   - Position relative : signe du terme suivant.
 
-Rappelle :
+Rappel :
 
 $f$ admet une asymptote oblique d'équation $a x + b$ si 
 $
@@ -708,7 +708,7 @@ Soit $f$ une fonction et $(u_n) in RR^NN$ tel que $u_(n+1) = f(u_n)$.
   - Monotonie de $f$
     - Si $f$ est croissante sur $I$, $(u_n)$ est monotone
     - Si $f$ est décroissante sur $I$, $(u_(2n))$ et $(u_(2n+1))$ sont monotone.
-+ On montre l'éxistence de la limite (limite croissante)
++ On montre l'existence de la limite (limite croissante)
 + On la détermine : il s'agit de l'un des points fixes de $I$ (idéalement il n'y en a qu'un).
   
   Dans le cas des fonctions décroissantes, on cherche les limites des deux sous-suites, points fixes de $f compose f$.
@@ -738,13 +738,13 @@ Propriétés :
   $
     mat(delim: #none, tau_a,:, I\\{a},->,RR;,,x,|->,(f(x) - f(a)) / (x - a))
   $
-  les taux d'acroissements en $a$ de $f$.
+  les taux d'accroissements en $a$ de $f$.
 
   $f$ est convexe ssi $forall a in I, tau_a$ est croissante.
-- Soit $f : I -> RR$, on appelle droite d'appuis en $x_0$ de $f$ une droite $y = a x + b$ tel que
+- Soit $f : I -> RR$, on appelle droite d'appui en $x_0$ de $f$ une droite $y = a x + b$ tel que
   - $forall x in I, a x + b <= f(x)$ \
   - $f(x_0) = a x_0 + b$
-  Si $f$ convexe, $f$ admet des droites d'appuis en tout points.
+  Si $f$ convexe, $f$ admet des droites d'appui en tout point.
 
 #card("propbaseseries", "Propriétés élémentaires sur les séries", ("Maths.Analyse.Séries",))
 
@@ -865,7 +865,7 @@ Méthodes de recherche d'équivalents.
 
 Si on cherche un équivalent d'une suite $(u_n)$
 
-- Étudier la série $sum (u_(n+1) - u_n)$ ou $sum (u_n - u_(n + 1))$, sommes partielles ou restes (voir théorème de sommation des relations de comparaison).
+- Étudier la série $sum (u_(n+1) - u_n)$ ou $sum (u_n - u_(n + 1))$, sommes partielles ou restes (voir théorème de sommation des relations de comparaison pour les séries.
 - Chercher $alpha in RR^*$ tel que $u_(n+1)^alpha - u_n^alpha tends(n -> +oo) l in RR^*$, pour avoir
   $
     u_n^alpha - u_0^alpha &= sum_(k=0)^(n-1) u_(k+1)^alpha - u_k^alpha eqv(n->+oo) n l \
@@ -879,7 +879,7 @@ Définitions et démonstration du théorème de l'absolue convergence d'une sér
 
 Une série $sum u_n$ (dans $RR$ ou $CC$) est dite absoluement convergente si $sum |u_n|$ converge. Si $sum u_n$ est absoluement convergente, alors elle est convergente.
 
-Démonstration : on étudie $((u_n)_+)$ et $((u_n)_-)$ pour le cas réel, puis $("Re"(u_n))$ et $("Im"(u_n))$ pour le cas imaginaire, à chaque fois on majore par le module et on applique les thorème de comparaison des séries positives.
+Démonstration : on étudie $((u_n)_+)$ et $((u_n)_-)$ pour le cas réel, puis $("Re"(u_n))$ et $("Im"(u_n))$ pour le cas imaginaire, à chaque fois on majore par le module et on applique les théorèmes de comparaison des séries positives.
 
 #card("thseralt", "Théorème des séries alternées", ("Maths.Analyse.Séries",))
 
@@ -913,11 +913,11 @@ sum cos(n theta) / n^alpha \
 sum e^(i n theta) / n^alpha \
 $
 
-Remarque : on peut aussi écrire $a_k = R_(k-1) - R_k$, qui peut être intérressant si $sum a_n$ converge.
+Remarque : on peut aussi écrire $a_k = R_(k-1) - R_k$, qui peut être intéressant si $sum a_n$ converge.
 
 #card("raabduchamel", "Règle de Raabe-Duhamel", ("Maths.Analyse.Séries",))
 
-Énoncé et démonstration de la règle de Raab-Duchamel.
+Énoncé et démonstration de la règle de Raabe-Duhamel.
 
 #answer
 
@@ -986,7 +986,7 @@ Démonstration : même que pour l'autre, on à juste a découper la somme entre 
 
 #card("eqvrefrim", "Équivalents de référence : séries de Riemann", ("Maths.Analyse.Séries",))
 
-Équivalent des restes ou sommes partielles des séries de Riemann (à redemontrer).
+Équivalent des restes ou sommes partielles des séries de Riemann (à redémontrer).
 
 #answer
 
@@ -1081,7 +1081,7 @@ $
 &~ ln(S_n) - ln(S_(n-1))
 $
 
-Qui est le terme général d'une série téléscopique divergergente.
+Qui est le terme général d'une série téléscopique divergente.
 
 - Si $alpha <= 1$, on compare avec $alpha = 1$, car à partir d'un certain rang $S_n >= 1$.
 
@@ -1134,7 +1134,7 @@ Démonstration :
       sum_(j in J) u_j &= sum_(n = 0)^N (sum_(j in J_n) u_j) \
 &<= sum_(n=0)^(+oo) (sum_(i in I_n) u_i) = S
     $
-  - Caractèrisation de la borne supérieure, majoration et sous ensembles finis.
+  - Caractérisation de la borne supérieure, majoration et sous ensembles finis.
 - Cas général :
   D'abord en valeurs absolues, puis parties positives, négatives, réelles et imaginaires. 
 
@@ -1269,12 +1269,12 @@ $
 
 *Démonstration*
 
-- Si $f$ est $C^1$ sur un ségment : par IPP, on dérive $f$, $f'$ étant continue sur un ségment elle est uniformement continue sur ce ségment (théorème de Heine), et est donc bornée (théorème des bornes atteintes).
+- Si $f$ est $C^1$ sur un segment : par IPP, on dérive $f$, $f'$ étant continue sur un segment elle est uniformément continue sur ce segment (théorème de Heine), et est donc bornée (théorème des bornes atteintes).
 
-- On montre d'abord pour $I$ ségment.
+- On montre d'abord pour $I$ segment.
   - On traite le cas $f$ constante.
-  - On généralise à $f$ en éscalier.
-  - Par densité des fonctions en éscalier on étend aux fonctions continues.
+  - On généralise à $f$ en escalier.
+  - Par densité des fonctions en escalier on étend aux fonctions continues.
 - On étend finalement aux intervalles quelconques.
 
 #card("hold", "Hölder", ("Maths.Analyse.Intégration",))

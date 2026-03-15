@@ -14,19 +14,19 @@
 
 // TODO: These are all relatively low quality and thats kinda meh, I should go over this again when I have the time (when will I ever have the time ?)
 
-#card("phali", "Amplificateurs Opérationels", ("Physique.Électricité",))
+#card("phali", "Amplificateurs Opérationnels", ("Physique.Électricité",))
 
 // TODO: This
 
 #answer
 
-#card("syscoordanvec", "Systèmes de coordonées orthogonales", ("Physique.Analyse Vectorielle",))
+#card("syscoordanvec", "Systèmes de coordonnées orthogonales", ("Physique.Analyse Vectorielle",))
 
-Définitions élémentaires de système de coordonées orthogonales en analyse vectorielle.
+Définitions élémentaires de système de coordonnées orthogonales en analyse vectorielle.
 
 #answer
 
-On peut décrire l'espace dans un système de coordonées $(q_1, q_2, q_3)$ associé au trièdre local $(va(e_1), va(e_2), va(e_3))$.
+On peut décrire l'espace dans un système de coordonnées $(q_1, q_2, q_3)$ associé au trièdre local $(va(e_1), va(e_2), va(e_3))$.
 
 Un déplacement élémentaire $va(dif M)$ s'éxprime
 
@@ -68,10 +68,10 @@ Un champ peut être vectoriel ou scalaire selon si la grandeur qu'il représente
 Un champ est dit
 
 / Uniforme: s'il est indépendant de $va(r)$.
-/ Stationnaire ou permanant: s'il est indépendant de $t$.
+/ Stationnaire ou permanent: s'il est indépendant de $t$.
 / Constant: S'il est les deux
 
-- On appelle ligne de champ une courbe de l'espace qui est en tout points tengente au champ.
+- On appelle ligne de champ une courbe de l'espace qui est en tout point tangente au champ.
 
 - Pour un champ $f(va(r), t)$, on appelle surface équi-$f$ une surface où $f$ est uniforme.
 
@@ -87,7 +87,7 @@ $
   dif f = grad f dprod va(dif M)
 $
 
-*En coordonées cartésiennes*
+*En coordonnées cartésiennes*
 
 $
   va("grad") f = grad f = pdv(f, x) va(u_x) + pdv(f, y) va(u_y) + pdv(f, z) va(u_z)
@@ -126,7 +126,7 @@ On considère une fonction vectorielle $va(F)(q_1, q_2, q_3)$
 Pour une surface
 - Fermée : on l'oriente de l'intérieur vers l'extérieur par convention.
 
-- Ouverte : on oriente le coutour sur lequel elle s'appuis et on applique la règle de la main droite.
+- Ouverte : on oriente le contour sur lequel elle s'appuie et on applique la règle de la main droite.
 
 Le flux $Phi$ au travers de la surface $S$ est
 $
@@ -140,7 +140,7 @@ Définition de la divergence d'un champ vectoriel.
 
 #answer
 
-La divergence d'un champ de vecteur représente à quelle point le champ diverge ou converge en ce points. On écrit $"div" va(F)$ ou $div va(F)$.
+La divergence d'un champ de vecteur représente à quel point le champ diverge ou converge en ce point. On écrit $"div" va(F)$ ou $div va(F)$.
 
 $
 div va(F) > 0 quad quad
@@ -208,7 +208,7 @@ Définition de la circulation dans un champ de vecteurs.
 
 #answer
 
-Pour $C$ un coutour orienté
+Pour $C$ un contour orienté
 
 #align(center, {cetz.canvas(length: 1.5em, {
   import cetz.draw: *
@@ -271,7 +271,7 @@ Notation nabla.
 
 #answer
 
-En coordonées cartésiennes, on "définit"
+En coordonnées cartésiennes, on "définit"
 $
   bold(nabla) = vec(pdv(,x), pdv(,y), pdv(,z))
 $
@@ -298,7 +298,7 @@ Un champ $va(F)$ est dit à circulation conservative ssi pour toute courbe ferm�
 $
   integral.cont_cal(C) va(F) va(dif l) = 0
 $
-Ainsi la circulation de toute courbe passant par $A$ et $B$ deux points est la même, elle ne dépend pas du chemin choisis.
+Ainsi la circulation de toute courbe passant par $A$ et $B$ deux points est la même, elle ne dépend pas du chemin choisi.
 
 On peut alors définir le potentiel $V$, un champ scalaire tel que
 $
@@ -379,11 +379,25 @@ $
   &= vec(laplace F_x, laplace F_y, laplace F_z)
 $
 
-#card("formondeav", "Formules d'analyse vectoriel pour les ondes", ("Physique.Analyse Vectorielle",))
+#card("formondeav", "Formules d'analyse vectorielle pour les ondes", ("Physique.Analyse Vectorielle",))
 
-Formules d'analyse vectoriel pour les ondes.
+Formules d'analyse vectorielle pour les ondes.
 
 #answer
+
+Pour
+$
+  f(va(r), t) = f_0 e^(plus.minus i (omega t - va(k) dot va(r))) \
+  va(F)(va(r), t) = va(F_0) e^(plus.minus i (omega t - va(k) dot va(r))) \
+$
+On a
+$
+  grad f &= minus.plus i va(k) f(va(r), t) \
+  curl va(F) &= minus.plus i va(k) curl va(F)(va(r), t) \
+  div va(F) &= minus.plus i va(k) dot va(F)(va(r), t) \
+  laplace f &= -omega^2 f \
+  laplace va(F) &= -k^2 va(F)
+$
 
 Pour
 $
