@@ -11,6 +11,100 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/physica:0.9.7": *
 
+#card("edlo1", "Équations différentielles linéaires scalaires réelles à coefficients constants d'ordre 1", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Soit $a, b in CC, c(x)$ et $C(x)$ tel que $C'(x) = c(x)$.
+
+$
+  (E_1) : quad y' = a y + b \
+  (E_2) : quad y' = a(x) y
+$
+
+#answer
+
+Les solutions $S_1$ et $S_2$ de $(E_1)$ et $(E_2)$ sont
+$
+  S_1 = {x |-> lambda e^(a x) - b / a, lambda in RR} \
+  S_2 = {x |-> lambda e^(A(x)), lambda in RR}
+$
+
+#card("edlsepvar", "Méthode de séparation des variables", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Soit $a(x) in D^1$
+$
+  (dif y) / (dif x) = a(x) y \
+  y(x) = thin ?
+$
+
+#answer
+
+Soient $a(x) in D^1$ et $A(x)$ une primitive de $a(x)$.
+$
+  (dif y) / (dif x) = a(x) y \
+  (dif y) / y = a(x) dif x \
+  integral_(y_0)^y (dif y) / y = integral_(x_0)^x a(x) dif x \
+  ln y - ln y_0 = A(x) - A(x_0) \
+  y = underbrace(y_0 e^(-A(x_0)), lambda) e^(A(x))
+$
+
+#card("edlvarcst", "Méthode de variation de la constante d'ordre 1 scalaire", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Soient $a(x), b(x) : RR -> RR$ et $A(x)$ une primitive de $a(x)$.
+$
+  y' = a(x) y + b(x) \
+  f_h : quad y(x) = lambda e^(A(x))
+$
+
+Trouver $f_p$ solution particulière par la variation de la constante.
+
+#answer
+
+Soient $a(x), b(x) : RR -> RR$ et $A(x)$ une primitive de $a(x)$.
+$
+  y' = a(x) y + b(x) \
+  f_h : quad y(x) = lambda e^(A(x))
+$
+On fait varier la constante : $lambda -> lambda(x)$ :
+$
+  f_p (x) &= lambda(x) e^(A(x)) \
+  f_p' (x) &= a(x) f_p(x) + b(x) \
+  &= lambda'(x) e^(A(x)) + lambda(x) a(x) e^(A(x))  \
+  &= lambda(x) a(x) e^(A(x)) + b(x) \
+  lambda'(x) &= b(x) e^(-A(x)) \
+  lambda (x) &= integral b(x) e^(-A(x)) dif x
+$
+
+#card("edlo2", "Équations différentielles linéaires scalaires réelles à coefficients constants d'ordre 2", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Soient $a, b, c in CC$, résolution de l'équation homogène :
+$
+  a y'' + b y' + c y = 0
+$
+
+#answer
+
+Soient $a, b, c in CC$
+$
+  a y'' + b y' + c y = 0
+$
+On appèlle équation caractéristique
+$
+  (E C) : quad a z^2 + b z + c = 0
+$
+- Si $Delta > 0$, soit $r_1, r_2$ les racines (réelles) de $(E C)$
+  $
+    f_h(x) = lambda e^(r_1 x) + mu e^(r_2 x), quad lambda, mu in RR
+  $
+- Si $Delta = 0$, soit $r$ la racine double de $(E C)$
+  $
+  f_h(x) = (lambda + mu x) e^(r x), quad lambda, mu in RR
+  $
+- Si $Delta < 0$, soit $alpha + i beta$ et $alpha - i beta$ les racines complexes de $(E C)$ #h(1fr)
+  $
+  f_h(x) = e^(alpha x)(lambda cos (beta x) + mu sin (beta x))
+  $
+
+
 #card("formmatendomedl", "Forme vectorielle des EDLs", ("Maths.Analyse.Équations différentielles linéaires",))
 
 Forme matricielle des EDLs.
@@ -654,8 +748,97 @@ Principe de variation de la constante.
 
 #answer
 
+*Cas général*
+
 On considère l'équation
 $
   (E) quad Y'(t) = A(t) Y(t) + B(t)
 $
 Avec $A in C^0 (I, M_n (KK))$ et $B in C^0(I, KK^n)$.
+
+On suppose disposer de $(Y_1, dots, Y_n)$ base de $S_0$, l'espace des solutions de l'équation homogène.
+
+
+On cherche $Y_p$ de la forme 
+$ 
+  t |-> sum_(j = 1)^n lambda_j (t) Y_j (t)
+$
+
+Où $lambda_1, dots, lambda_n in C^1 (I, KK)$. Cela n'est pas contraignant car pour tout $t in I$
+$ 
+  (Y_1 (t), dots, Y_n (t))
+$
+Est une base de $KK^n$.
+
+De plus les $lambda_j$ sont $C^1$ :
+
+Par la règle de Cramer
+$ 
+lambda_j (t) &= matrixdet(Y_1, dots.c, Y_(j - 1), Y_p, Y_(j+1), dots.c, Y_n) / matrixdet(Y_1, dots, Y_n) (t) \
+&= matrixdet(Y_1, dots.c, Y_(j - 1), Y_p, Y_(j+1), dots.c, Y_n) / W (t) \
+$
+
+*Cas constant*
+
+On suppose maintenant $A$ constante.
+
+Ainsi pour $j in [|1, n|]$, on prend
+$ 
+  Y_j (t) = e^(t A) E_k
+$
+
+On cherche alors $Y_p$ sous la forme
+$ 
+  Y_p : t &|-> sum_(j = 1)^n lambda_j (t) Y_j (t) \
+  &= e^(t A) underbrace(vec(lambda_1 (t), dots.v, lambda_n (t)), Gamma(t))
+$
+
+D'où
+$ 
+  Y_p in S <=>& forall t in I, Y'_p (t) = A Y(t) + B(t) \
+  <=>& forall t in I, space A e^(t A) Gamma(t) + e^(t A) Gamma'(t) \ =& A e^(t A) Gamma(t) + B(t) \
+  <=>& forall t in I, space Gamma' (t) = e^(-t A) B(t)
+$
+
+Donc
+$ 
+  Y_p : t |-> e^(t A) integral_(t_0)^t e^(- s A) B(s) dif s
+$
+
+Est solution particulière.
+
+$ 
+  S = {func(delim: #none, I, KK^n, t, e^(t A) X_0 + integral_(t_0)^t e^((t - s) A) B(s) dif s), script(X_0 in KK^n)}
+$
+
+#card("edlord2wronks", "Équations différentielles linéaires d'ordre 2 scalaire", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Équations différentielles linéaires d'ordre 2 scalaire.
+
+#answer
+
+On étudie
+$
+  (cal(E)) quad y'' + p y' + q y = b \
+  (cal(E)_0) quad y'' + p y' + q y = 0 \
+$
+Où $p, q, b in C^0 (I, KK)$
+
+On associe à $y in cal(S)_0$, $Y = vec(y, y') in S_0$ pour
+$ 
+  (E) quad Y' = A Y + B \
+  (E_0) quad Y' = A Y \
+  A = mat(0, 1; -q, -p) quad quad B = vec(0, b)
+$
+D'où $y in cal(S)_0 <=> Y in S_0$ et $y in cal(S) <=> y in S$.
+
+Par Cauchy-Lipschitz, $S_0$ et $cal(S)_0$ sont des $KK$-ev de dimension $2$.
+
+Pour $y_1, y_2 in cal(S)_0$ on pose leur Wronskien
+$ 
+  W : func(I, KK, t, matrixdet(y_1, y_2; y'_1, y'_2) (t))
+$
+Ainsi
+$ 
+  forall t in I, space W'(t) = -p W (t)
+$
