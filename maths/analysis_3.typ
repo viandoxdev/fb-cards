@@ -842,3 +842,65 @@ Ainsi
 $ 
   forall t in I, space W'(t) = -p W (t)
 $
+
+#card("exsolnonborne", "Exercice : existence d'une solution non bornée de l'équation différentielle linéaire scalaire du deuxième ordre où la somme de la dérivée seconde de la fonction et du produit fonctionnel de ladite fonction avec une fonction continue fixée dont le domaine de définition est l'ensemble des réels positifs et le domaine d'arrivé est l'ensemble des réels est nulle.", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Soit $q in C^0 (RR_+, RR)$
+
+Montrer qu'il existe une solution non bornée à l'équation différentielle suivante
+$ 
+  (E) quad y'' + q y = 0
+$
+
+#answer
+
+Soit $y in S$ bornée
+$ 
+  y'' (t) = - q(t) y(t) = O_(t -> oo) (q (t))
+$
+Qui est intégrable sur $RR_+$. Donc $y'$ admet une limite $l$ en $+oo$ (Théorème fondamentale de l'analyse)
+
+Comme $y$ est bornée, $l = 0$.
+
+Par l'absurde si $y_1$ et $y_2$ une base de $S$ bornées.
+$ 
+  0 != C = W (t) = (y_1 y'_2 - y'_1 y_2)(t) tends(t -> oo) 0
+$
+Absurde.
+
+#card("methoddescdeg", "Méthode de la descente de degré", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Méthode de la descente de degré.
+
+#answer
+
+On considère 
+$ 
+  (E) quad y'' + p y' + q y = 0
+$
+Avec $p, q in C^0 (I, KK)$. On suppose qu'on dispose de $y_1$ solution qui ne s'annule pas sur $I$. On cherche $y_2$ solution qui forme une base avec $y_1$.
+
+*Idée*
+
+Si $y in S$ est une autre solution
+$ 
+  W : func(I, KK, t, matrixdet(y_1, y; y'_1, y') (t)) \
+  W'(t) = -p W(t)
+$
+
+Ainsi
+$ 
+  W(t) &= C exp(integral_(t_0)^t -p(s) dif s) \
+  &= y_1 y' - y'_1 y
+$
+Donc
+$ 
+  (cal(E)) quad y' - y'_1 / y_1 y = W(t)
+$
+
+Or $y_1$ est solution de l'équation homogène associée, on cherche donc 
+$ 
+  y(t) = lambda(t) y_1 (t)
+$
+
+On peut aussi directement cherche une solution sous cette forme.
