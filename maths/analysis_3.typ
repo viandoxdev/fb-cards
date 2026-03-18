@@ -1,4 +1,4 @@
-#import "/cards.typ": *
+#import "../cards.typ": *
 
 #show: setup
 
@@ -903,4 +903,278 @@ $
   y(t) = lambda(t) y_1 (t)
 $
 
-On peut aussi directement cherche une solution sous cette forme.
+On peut aussi directement chercher une solution sous cette forme :
+$ 
+  y'_2 &= lambda' y_1 + lambda y'_1 \
+  y''_2 &= lambda'' y_1 + 2 lambda' y'_1 + lambda y''_1 \
+  &= lambda'' y_1 + 2 lambda' y'_1 - lambda p y'_1 - lambda q y_1 \
+  y''_2 &= - p y'_2 - q y_2 \
+  &= -lambda' p y_1 - lambda p y'_1 - lambda q y_1
+$
+Donc
+$ 
+  lambda'' y_1 + (2 y'_1 + p y_1) lambda' = 0
+$
+Qui est une EDL d'ordre $1$ en $lambda'$, puis on intègre $lambda'$.
+
+#card("methvarcsteord2", "Méthode de la variation de la constante à l'ordre 2", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Méthode de la variation de la constante à l'ordre 2.
+
+#answer
+
+On considère
+$ 
+  (E) quad y'' + p y' + q y = b \
+  (E_0) quad y'' + p y' + q y = 0
+$
+Où $p, q, b in C^0 (I, KK)$.
+
+On suppose disposer de $y_1, y_2$ basee de $S_0$ (solutions de l'équation homogène).
+
+*Idée*
+
+Principe de variation de la constante, on cherche $Y_p = vec(y_p, y'_p)$ solution particulière de
+$ 
+  Y' = A Y + B \
+  A = mat(0, 1; -p, -q) quad quad B = vec(0, b)
+$
+Sous la forme
+$ 
+  Y_p = lambda Y_1 + mu Y_2 \
+  "i.e" quad cases(space y_p &= lambda y_1 + mu y_2, space y'_p &= lambda y'_1 + mu y'_2) quad quad (1)
+$
+
+*En pratique*
+
+On cherche $y_p$ solution particulière sous la forme
+$ 
+  y_p : t |-> lambda (t) y_1 (t) + mu (t) y_2 (t)
+$
+Avec $lambda, mu in C^1(I, KK)$ tels que
+$ 
+  lambda' y_1 + mu' y_2 = 0
+$
+Pour avoir (1). Ainsi
+$ 
+  y''_p =& lambda' y'_1 + mu' y'_2 + lambda y''_1 + mu y''_2 \
+  =& lambda' y'_1 + mu' y'_2 \ +& lambda (-p y'_1 - q y_1) + mu (-p y'_2 - q y_2) \ \
+  =& - p y'_p - q y_p + b \
+  =& -p lambda y'_1 -p mu y'_2 - q lambda y_1 - q mu y_2 + b
+$
+Ainsi
+$ 
+  lambda' y'_1 + mu' y'_2 = b
+$
+
+Finalement on cherche $lambda, mu$ tels que
+$ 
+  cases(space lambda' y_1 + mu' y_2 = 0, space lambda' y'_1 + mu' y'_2 = b)
+$
+Avec
+$ 
+  forall t in I, space matrixdet(y_1, y_2; y'_1, y'_2) (t) != 0
+$
+
+#card("ohnaca", "Cas particulier des oscillateurs harmoniques", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Cas particulier des oscillateurs harmoniques.
+
+#answer
+
+On considère les équations suivantes
+$
+  (E_1) quad y'' + omega^2 y = f \
+  (E_2) quad y'' - omega^2 y = f \
+$
+On note
+$
+  S_(0,1) &= "Vect" (t |-> cos(omega t), t |-> sin(omega t)) \
+  S_(0,2) &= "Vect" (t |-> ch(omega t), t |-> sh(omega t)) \
+$
+Les ensembles des solutions homogènes.
+
++ Par la variation de la constante on cherche une solution sous la forme #h(1fr)
+  $
+    y : t |-> lambda(t) cos(omega t) + mu(t) sin(omega t)
+  $
+  Tel que
+  $
+    lambda'(t) cos(omega t) + mu'(t) sin(omega t) = 0
+  $
+  Ainsi $y in S$ ssi
+  $
+    cases(space script(lambda'(t) cos(omega t) + mu'(t) sin(omega t) = 0), space script(-omega lambda'(t) sin(omega t) + omega mu'(t) cos(omega t) = f(t)))
+  $
+  Donc
+  $
+    forall t in I, space cases(space lambda'(t) = - (sin (omega t) f(t)) / omega, space mu'(t) = (f(t) cos (omega t)) / omega)
+  $
+  Et enfin
+  $
+    y : t |-> 1 / omega integral_(t_0)^t sin(omega(t - s)) f(s) dif s
+  $
+
++ Par le même raisonnement 
+  $
+    y : t |-> 1 / omega integral_(t_0)^t f(s) sh(omega(t - s)) dif s
+  $
+
+#card("zeroisoo2", "Zéros isolés pour une équation différentielle du deuxième ordre", ("Maths.Analyse.Équations différentielles linéaires.Zéros",))
+
+Zéros isolés pour une équation différentielle du deuxième ordre.
+
+#answer
+
+On considère
+$
+  (E) quad y'' + p y' + q y = 0
+$
+Avec $p, q in C^0(I, KK)$.
+
+Soit $s in S \\ {0}$, alors $s$ n'admet que des zéros isolés.
+
+*Corollaire*
+
+Si $I$ est un segment, toute solution non nulle admet un nombre fini de zéros.
+
+*Démonstration*
+
+Soit $t_0 in I$ tel que $y(t_0) = 0$.
+
+Or $y'(t_0) = 0$ car $y != 0$ (Cauchy-Lipschitz).
+
+Deux méthodes
++ Comme $lim_(t -> t_0 \ t != t_0) y'(t_0) != 0$ #h(1fr)
+
+  Donc on dispose de $delta > 0$ tel que tel que pour tout $t in B(t_0, delta)$
+  $
+    y(t) / (t - t_0) != 0 quad quad y(t) != 0
+  $
+
++ Supposons par l'absurde qu'il existe une suite $(t_n)_n in (I \\{t_0})^NN tends(n -> +oo) t_0$ tel que $forall n in NN, y(t_n) = 0$.
+
+  Alors
+  $
+    y'(t_0) = lim_(n -> oo) (y(t_n) - y(t_0)) / (t_n - t_0) = 0
+  $
+  Absurde.
+
+Pour le corollaire : Soit $y in S$ qui s'annule une infinité de fois, soit $(t_n)_n in I^NN$ deux à deux distincts tel que pour tout $n in NN, y(t_n) = 0$.
+
+Comme $I$ est un segment, on dispose de $phi$ extractrice tel que 
+$
+t_phi(n) tends(n -> oo) s in I
+$
+Donc $y(s) = 0$ par continuité et les $(t_n)$ étant deux à deux distincts, $s$ n'est pas un zéro isolé : $y = 0$.
+
+#card("unanoh", "Annulation unique d'un oscillateur harmonique inversé", ("Maths.Analyse.Équations différentielles linéaires.Zéros",))
+
+Annulation unique d'un oscillateur harmonique inversé.
+
+#answer
+
+On étudie
+$
+  (E) quad y'' - q y = 0
+$
+Où $q in C^0(I, RR)$ positif.
+
+Alors toute solution non nulle s'annule au plus une fois.
+
+*Démonstration*
+
+Deux méthodes
+
++ Intuitif : on suppose par l'absurde que $y in S\\{0}$ s'annule plus de deux fois, et on considère l'intervalle $J$ entre deux zéros consécutifs (existent car isolés).
+
+  Or sur $J$, $y$ est de signe constant, donc $y''$ aussi, et donc par convexité (ou concavité) $y$ est nulle sur $J$, qui est absurde.
+
++ Plus rapidement, on remarque que $y^2$ est convexe sur $I$, puis on fait le même raisonnement.
+
+#card("loczero", "Localisation des zéros et Wronskien mixte", ("Maths.Analyse.Équations différentielles linéaires.Zéros",))
+
+Localisation des zéros et Wronskien mixte.
+
+#answer
+
+On considère
+$
+  (E_1) quad y'' + p y = 0 \
+  (E_2) quad y'' + q y = 0 \
+$
+Avec $p, q in C^1(I, RR)$, on note $y_1, y_2$ solutions de $(E_1)$ et $(E_2)$, on prend $a < b in I$ deux zéros consécutifs de $y_2$, et on suppose que $p >= q$ sur $[a, b]$.
+
+Alors $y_1$ s'annule sur $Ioc(a, b)$.
+
+*Démonstration*
+
+On considère
+$
+  W : func(I, RR, t, matrixdet(y_1, y_2; y'_1, y'_2)(t)) \
+  W = y_1 y'_2 - y'_1 y_2 in C^1(I, RR) \
+  W' = y_1 y''_2 - y''_1 y_2 = (p - q) y_1 y_2
+$
+
+- Comme $y_2$ ne s'annule pas sur $Ioo(a, b)$, quitte à poser $-y_2$, on suppose #h(1fr)
+  $
+    forall t in [a, b], space y_2 (t) >= 0 \
+    y'_2 (a) > 0 quad quad y'_2 (b) < 0
+  $
+
+- Supposons par l'absurde que $y_1$ ne s'annule par sur $Ioc(a, b)$, quitte à poser $-y_1$, on suppose
+  $
+    forall t in Ioc(a, b), space y_1 (t) > 0 \
+    y'_1 (a) >= 0
+  $
+
+Ainsi
+$
+  W(a) &= y_1 (a) y'_2 (a) >= 0 \
+  W(b) &= y_1 (b) y'_2 (b) < 0 \
+$
+$
+  forall t in Icc(a, b); space W' (t) = (p - q) y_1 y_2 >= 0
+$
+Qui est absurde.
+
+#card("infzeroh", "Infinité de zéros pour un oscillateur harmonique", ("Maths.Analyse.Équations différentielles linéaires.Zéros",))
+
+Infinité de zéros pour un oscillateur harmonique.
+
+#answer
+
+On considère
+$
+  (E) quad y'' + q y = 0
+$
+Avec $q in C^0(RR_+, RR_+^*)$ minoré par $m > 0$.
+
+Toute solution de $(E)$ s'annule une infinité de fois et on dispose de
+$
+  (t_n)_n in RR_+^NN "strictement croissante" \
+  y^(-1) {0} = {t_n, n in NN}
+$
+
+*Démonstration*
+
+Soit $y in S$, on refait la localisation des zéros avec $y_1 = y$ et $y_2$ une solution de
+$
+  (cal(E)) quad y'' + m y = 0
+$
+
+Par exemple
+$
+  y_2 : t |-> sin(sqrt(m) t)
+$
+Ainsi
+$
+  y_2^(-1) {0} = {(pi k) / sqrt(m), k in NN}
+$
+Comme $q >= m$, par la localisation des zéros, $y$ s'annule au moins une fois sur
+$
+  J_k = Ioc((pi k) / sqrt(m), (pi(k+1)) / sqrt(m))
+$
+Et donc $y$ à une infinité de zéros.
+
+De plus on sait que sur tout segment $overline(J_k)$, $y$ admet un nombre fini de zéros, on peut donc les numéroter.

@@ -2065,3 +2065,16 @@ Si $A subset.eq E$ est relativement compacte, alors $A$ est précompacte.
 
   Ainsi on dispose de $x_0, dots, x_n$ tels que $A subset.eq union.big_(k = 0)^n B(x_k, epsilon)$ et $A$ est précompacte.
 
+
+#card("ptisolé", "Point isolé", ("Maths.Topologie",))
+
+Définition de point isolé.
+
+#answer
+
+Soit $(E, d)$ un em, $X subset.eq E$ une partie.
+
+On dit que $a in X$ est un point isolé de $X$ si
+$
+  exists.not (u_n)_n in (X \\ {a})^NN, u_n tends(n -> +oo) a
+$
