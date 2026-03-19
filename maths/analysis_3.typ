@@ -1178,3 +1178,148 @@ $
 Et donc $y$ à une infinité de zéros.
 
 De plus on sait que sur tout segment $overline(J_k)$, $y$ admet un nombre fini de zéros, on peut donc les numéroter.
+
+#card("exencdazerooh", "Encadrement des zéros pour un oscillateur harmonique", ("Maths.Analyse.Équations différentielles linéaires.Zéros",))
+
+Comment encadrer les zéros des solutions d'une équation de la forme
+$
+  y'' + q y = 0
+$
+
+#answer
+
+On considère
+$
+  (E) quad y'' + q y = 0 \
+  q in C^0(RR_+, RR) \
+  forall t in RR_+, space 0 < m <= q(t) <= M
+$
+
+Soit $y$ solution, on sait montrer (avec $m <= q(t)$) que $y$ admet une infinité dénombrable de zéros. On pose la suite $(t_n)_n in RR_+^NN$ strictement croissante de ses zéros.
+
+On montre que
+$
+  pi / sqrt(M) <= t_(n+1) - t_n <= pi / sqrt(m)
+$
+
+Et en supposant de plus que $q tends(+oo) l$, on trouve un équivalent de $(t_n)$.
+
+*Démonstration*
+
+Soit $n in NN$,
+On pose
+$
+  z_1 : t |-> sin(sqrt(m) (t - t_n)) \
+  z_2 : t |-> sin(sqrt(M) (t - t_n)) \
+$
+Qui sont solution de
+$
+  (cal(E)_1) quad y'' + m y = 0 \
+  (cal(E)_2) quad y'' + M y = 0 \
+$
+
+- Comme $z_1$ admet $t_n$ et $t_n + pi / sqrt(m)$ comme zéros consécutifs et $q >= m$, on peut montrer que $y$ s'annule sur $Ioc(t_n, t_n + pi / sqrt(m))$.
+
+  Ainsi #h(1fr)
+  $
+    t_(n + 1) - t_n <= pi / sqrt(m)
+  $
+
+- Comme $t_n$ et $t_(n+1)$ sont deux zéros consécutifs de $y$ et $q <= M$, $z_2$ s'annule sur $Ioc(t_n, t_(n+1))$, d'où
+  $
+    t_n + pi/sqrt(M) in Ioc(t_n, t_(n+1)) \
+    pi/sqrt(M) <= t_(n+1) - t_n
+  $
+
+En supposant que $q tends(+oo) l$
+
+Soit $epsilon > 0$, on dispose de $N in NN$ tel que pour tout $n >= N$
+$
+  pi / sqrt(l - epsilon) <= t_(n + 1) - t_n <= pi / sqrt(l + epsilon)
+$
+D'où
+$
+  t_(n + 1) - t_n tends(n -> +oo) pi / sqrt(l) \
+$
+Et donc par théorème de sommation des relations de comparaisons
+$
+  t_n eqv(+oo) (n pi) / sqrt(l)
+$
+
+*Autre exemple*
+
+$
+  (E) quad y'' + e^t y = 0
+$
+
+Pour tout $n in NN$
+On pose
+$
+  u_n = e^(t_n / 2)
+$
+Ainsi (de même)
+$
+  pi / u_(n+1) <= underbrace(t_(n+1) - t_n, tends(n -> +oo) 0) <= pi / u_n \
+  pi / u_(n+1) <= ln(u_(n+1)) - ln(u_n) <= pi / u_n \
+$
+Donc
+$
+  ln(u_(n+1) / u_n) eqv(+oo) pi / u_n \
+  ln(1 + (u_(n+1) - u_n) / u_n) eqv(+oo) pi / u_n \
+  (u_(n+1) - u_n) / u_n eqv(+oo) pi / u_n \
+$
+Donc par le bon théorème
+$
+  u_n = n pi + o(n) \
+$
+$
+  t_n &= ln(2 n pi (1 + o(1))) \
+  &= ln(2 n pi) + o(1)
+$
+
+#card("ineqdiff", "Inéquations différentielles", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Inéquations différentielles.
+
+#answer
+
+*Exemple : exercice 22 (EDL)*
+
+Soit $f in C^2(RR, RR)$ tel que
+$
+  f'' + 4 f >= 0
+$
+
+Montrer que pour tout $x in RR$
+$
+  f(x) + f(x + pi / 2) >= 0
+$
+
+*Démonstration*
+
+On pose $b = f'' + 4f in C^0(RR, RR_+)$. Ainsi $f$ est solution de
+$
+  (E) quad y'' + 4y = b
+$
+
+On sait que
+$
+  S_0 = "Vect" (t |-> cos (2 t), t |-> sin (2 t)) \
+  y_p : t |-> 1/2 integral_0^t sin(2 (t - s)) b(s) dif s
+$
+
+Comme $f$ est solution, on dispose de $alpha, beta in RR$ tels que
+$
+  f : t |-> alpha cos(2 t) + beta sin(2 t) + y_p (t)
+$
+
+Ainsi pour $x in RR$
+$
+  &f(x) + f(x + pi / 2) \ =& alpha underbrace((cos(2 x) + cos(2 x + pi)), 0) \
+  +& beta underbrace((sin(2 x) + sin(2 x + pi)), 0) \
+  +& 1/2 integral_0^x sin(2 (x - s)) b(s) dif s \
+  +& 1/2 integral_0^(x + pi/2) sin(2 (x - s) + pi) b(s) dif s \
+  =& 1/2 integral_x^(x + pi/2) sin(2 (s - x)) b(s) dif s \
+  >=& 0
+$
+
