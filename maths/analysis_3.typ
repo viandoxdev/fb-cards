@@ -1323,3 +1323,82 @@ $
   >=& 0
 $
 
+#card("exmqsolborngw", "Exercice : borne des solutions d'une EDL du deuxième ordre", ("Maths.Analyse.Équations différentielles linéaires",))
+
+On considère
+$
+  y'' + q y = 0
+$
+Où $q in C^1(RR_+, RR_+^*)$ est croissante. Montrer que toutes les solutions sont bornées.
+
+#answer
+
+Soit $y in S_0 \\ {0}$
+$
+  y'' y' + q y y' = 0 \
+  integral_0^x y'' y' + integral_0^x q y y' = 0 \
+  1/2 [y'^2]_0^x + integral_0^x q y y' = 0 \
+  [y'^2]_0^x + [q y^2]_0^x - integral_0^x q' y^2 = 0
+$
+Ainsi
+$
+  q(x) y^2 (x) &=&& underbrace(q(0) y^2 (0) y'^2 (0), C) \ &-&& y'^2 (x) + integral_0^x q'(t) y^2(t) dif t \
+  &<=&& C + integral_0^x (q'(t)) / q(t) q(t) y^2 (t) dif t
+$
+
+Or par le lemme de Gronwall, dont les hypothèses sont vérifiées :
+$
+  forall x >= 0, \
+  q(x) y^2(x) &<= C exp(integral_0^x (q'(t)) / q(t) dif t) \
+  &= C q(x) / q(0) \
+  y^2(x) &<= C / q(0)
+$
+
+#card("limdiflin", "Limite différentielle linéaire", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Limite différentielle linéaire.
+
+#answer
+
+Soit $y in C^n (RR_+, CC)$ tel que
+$
+  y^((n)) + sum_(k = 0)^(n-1) a_k y^((k)) tends(+oo) ell
+$
+
+*Démonstration cas 1*
+
+Soit $y in C^1(RR_+, CC)$ tel que
+$
+  y' + a y tends(+oo) ell
+$
+
+Avec $Re(a) < 0$.
+
+Ainsi on dispose de $epsilon in C^0(RR, CC)$ tel que
+$
+  forall t in RR_+ quad y'(t) + a y(t) = ell + underbrace(epsilon(t), tends(t -> +oo) 0)
+$
+Comme $y$ est solution 
+$
+  y : t |-> lambda e^(a t) + e^(a t) integral_0^t e^(- a s) (ell + epsilon(s)) dif s
+$
+
+Ainsi
+$
+  abs(e^(a t)) = e^(Re(a) t) tends(t -> +oo) 0 \
+$
+$
+  e^(a t) integral_0^t e^(-a s) ell dif s &= ell /a (e^(a t) - 1) \
+  &tends(t -> +oo) - ell / a
+$
+$
+  &abs(e^(a t) integral_0^t e^(-a s) epsilon(s) dif s) \
+  <=& e^(Re(a) t) integral_0^t underbrace(e^(-Re(a) s) abs(epsilon(s)), o_(s -> +oo) (e^(-Re(a) s))) dif s
+$
+Donc par théorème d'intégration des relations de comparaisons cas divergent
+$
+  e^(Re(a) t) integral_0^t e^(-Re(a) s) abs(epsilon(s)))) dif s \
+  = o_(t -> +oo) (e^(Re (a) t) integral_0^t e^(-Re(a) s) dif s) \
+  = o_(t -> +oo) (1)
+$
+D'où $y(t) tends(t -> +oo) - ell / a$ et comme $y' - a y = ell + epsilon$, $y' tends(+oo) 0$.
