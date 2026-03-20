@@ -953,14 +953,17 @@ $
 $
 Avec $lambda, mu in C^1(I, KK)$ tels que
 $ 
-  lambda' y_1 + mu' y_2 = 0
+  lambda' y_1 + mu' y_2 = 0 quad ("par 1")
 $
 Pour avoir (1). Ainsi
 $ 
   y''_p =& lambda' y'_1 + mu' y'_2 + lambda y''_1 + mu y''_2 \
   =& lambda' y'_1 + mu' y'_2 \ +& lambda (-p y'_1 - q y_1) + mu (-p y'_2 - q y_2) \ \
-  =& - p y'_p - q y_p + b \
+  y''_p =& - p y'_p - q y_p + b \
   =& -p lambda y'_1 -p mu y'_2 - q lambda y_1 - q mu y_2 + b
+$
+Donc
+$
 $
 Ainsi
 $ 
@@ -1402,3 +1405,285 @@ $
   = o_(t -> +oo) (1)
 $
 D'où $y(t) tends(t -> +oo) - ell / a$ et comme $y' - a y = ell + epsilon$, $y' tends(+oo) 0$.
+
+*Démonstration cas 2*
+
+On pose
+$
+  P(D) = (D - alpha_1 id) compose (D - alpha_2 id) (y) \
+  z = y' - alpha_2 y \
+  y'' + b y' + c y = z' - alpha_1 z tends(+oo) ell
+$
+Avec $Re(alpha_1) < 0$.
+
+Par le cas précédent
+$
+  z tends(+oo) -ell / alpha_1 \
+$
+Et donc
+$
+  y' - alpha_2 y tends(+oo) - ell / alpha_1
+$
+On repète le cas précédent
+$
+  y tends(+oo) ell / (alpha_1 alpha_2)
+$
+
+*Cas général*
+
+Récurrence.
+
+#card("ex51edl", "Exercice : automorphisme de transition vers l'infini", ("Maths.Analyse.Équations différentielles linéaires",))
+
+On pose 
+$
+  (E) quad Y'(t) = A(t) Y(t)
+$
+On suppose que $t |-> norm(A(t))$ est intégrable sur $RR_+$. Pour tout $x in RR^n$ on note $Z_x$ l'unique solution de $(E)$ tel que $Z_x (0) = x$.
+
++ Montrer que $Z_x$ est bornée et admet une limite $ell(x)$ en $+oo$.
+
++ Montrer que $ell$ est un automorphisme de $RR^n$.
+
+#answer
+
++ Pour tout $t in RR_+$ #h(1fr)
+  $
+    Z_x (t) = x + integral_0^t A(s) Z_x (s) dif s \
+    norm(Z_x (t)) <= norm(x) + norm(integral_0^t A(s) Z_x (s) dif s) \
+    <= norm(x) + integral_0^t norm(A(s))_"op" norm(Z_x (s)) dif s
+  $
+  Donc par le lemme de Gronwall
+  $
+    &norm(Z_x (t)) \ <=& norm(x) exp(integral_0^t norm(A(s))_"op" dif s) \
+
+    <=& norm(x) exp(integral_0^(+oo) norm(A(s))_"op" dif s) = C
+  $
+  Et donc
+  $
+    norm(Z'_x(t)) &<= norm(A(t))_"op" norm(Z_x (t)) \ 
+    &<= C norm(A(t))_"op"
+  $
+  Qui est intégrable, donc $integral_0^(+oo) Z'_x$ est absolument convergente donc convergente, et $Z_x$ admet une limite finie $l(x)$ en $+oo$.
+
++ Par Cauchy-Lipschitz, on a
+  $
+    theta_0 : func(RR^n, S, x, Z_x) in cal(L)(RR^n, S)
+  $
+  Or (par linéarité de la limite)
+  $
+    sigma : func(S, RR^n, Y, lim_(+oo) Y) in cal(L)(S, RR^n)
+  $
+  D'où
+  $
+    ell : func(RR^n, RR^n, x, ell(x) = sigma compose theta_0 (x)) in cal(L)(RR^n)
+  $
+
+  Soit $e = (e_1, dots, e_n)$ base canonique de $RR^n$, d'où $(Z_e_1, dots, Z_e_n)$ base de $S$.
+  $
+    W : func(RR_+, RR, t, det_e (Z_e_1 (t)\, dots\, Z_e_n (t)))
+  $
+  Par continueté du determinant
+  $
+    lim_(+oo) W &= det_e (ell(e_1), dots, ell(e_n)) \ &= det ell
+  $
+  Or
+  $
+    forall t in RR_+, space W'(t) = tr(A(t)) W (t) \
+    W(0) = 1
+  $
+  Ainsi
+  $
+    W : t &|-> exp(integral_0^t tr(A(s)) dif s) \
+    &= exp(tr integral_0^t A(s) dif s)
+  $
+  Qui admet une limite strictement positive en $+oo$.
+
+#card("excontroledll", "Exercice : controllabilité des EDLs", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Soit $t_0 > 0$, $A in M_n (RR), B in M_(n m) (RR)$
+$
+  (E_u) quad X'(t) = A X(t) + B u(t)
+$
+Où $u in C^0([0, 1], RR^m) = E$ et $x in RR^n$.
+
+On pose $X_u$ la solution de $(E_u)$ qui vérifie $X_u (0) = x$.
+
+On cherche à savoir si ce problème vérifie la condition
+$
+  (cal(C)) : {X_u (t_0), u in E} = RR^n
+$
+
+#answer
+
+Montrons l'équivalence entre
+
++ $(cal(C))$
+
++ $integral_0^t_0 e^((t_0 - s) A) B B^TT e^((t_0 - s) A^TT) dif s$ est inversible.
+
++ $mat(B, A B, dots.c, A^(n - 1) B)$ est de rang $n$.
+
+$(E_0)$ a pour solution
+$
+  X : t |-> e^(t A) x
+$
+Pour $x in RR^n$.
+
+On fait la variation de la constante
+$
+  X_p : t |-> e^(t A) Gamma(t) \
+  Gamma(t) = e^(t A) B u (t) \
+  X_u : t |-> e^(t A) x + integral_0^t e^((t - s) A) B u (s) dif s
+$
+
+- (ii $=>$ iii) Par contraposé, on dispose de $H = z^TT$ tel que #h(1fr)
+  $
+    "Vect" {A^k B v, k in [|0, n - 1|], v in RR^m} \
+    subset.eq H
+  $
+  Ainsi pour tout $k in [|0, n - 1|], v in RR^m$
+  $
+    z^TT A^k B v = 0
+  $
+  Donc pour tout $k in [|0, n - 1|]$
+  $
+    z^TT A^k B = 0
+  $
+  Or $RR[A] = "Vect" (A^k)_(k in [|0, n - 1|])$ car $deg Pi_A <= n$, d'où pour tout $k in NN$
+  $
+
+    z^TT A^k B = 0 \
+    z^TT e^A B = 0
+  $
+  Ainsi
+  $
+    z^TT X_u (t_0) = z^TT e^(t_0 A) x \
+    scl(z, X_u (t_0) - e^(t_0 A) x) = 0 \
+    X_u (t_0) in H + e^(t_0 A) x
+  $
+  Et on conclut par argument dimensionnel.
+
+- (ii $=>$ i) On suppose
+  $
+    C &= integral_0^(t_0) e^((t_0 - s) A) B B^TT e^((t_0 - s) A^TT) dif s \ &in "GL"_n (RR)
+  $
+  Soit $y in RR^n$, on pose
+  $
+    u : t |-> B^TT e^((t_0 - s) A^TT) C^(-1) (y - e^(t_0 A) x) \
+    X_u (t_0) = y
+  $
+
+- (iii $=>$ ii) Par contraposé, on suppose que $C in.not "GL"_n (RR)$
+
+  Soit $y in ker C$
+  $
+    y^TT C y = 0 \
+    integral_0^(t_0) norm(B^TT e^((t_0 - s) A^TT) y)^2 dif s = 0
+  $
+  Ainsi pour tout $t in [0, t_0]$
+  $
+    h(t) = y^TT e^(t A) B = 0 \
+    h^((k)) (t) = 0 \
+    y^TT A^k B = 0
+  $
+  Ceci pour tout $k in NN$.
+
+  Donc
+  $
+    {A^k B v, k in NN, v in RR^m} subset.eq y^TT != RR^n
+  $
+
+#card("rechsolper", "Recherche de solutions périodiques", ("Maths.Analyse.Équations différentielles linéaires",))
+
+Recherche de solutions périodiques.
+
+#answer
+
+On considère
+$
+  (E) quad Y'(t) = A(t) Y(t)
+$
+Avec $A in C^0 (RR, M_n (KK))$ qui est $T$-périodique.
+
+Pour tout $Y in S$ 
+$
+tilde(Y) : t |-> Y(t + T) in S
+$
+
+Une solution $Y$ est $T$-périodique ssi $tilde(Y) = Y$, donc par Cauchy-Lipschitz ssi $Y(T) = Y(0)$.
+
+*Pour aller plus loin*
+
+Soit $(Y_1, dots, Y_n)$ une base de $S$, et les $tilde(Y)_k in S$ associés.
+
+Ainsi on dispose de $R = (r_(i j))_(i j)$ tel que pour tout $j in [|1, n|]$ 
+$
+  tilde(Y)_j = sum_(i = 1)^n r_(i j) Y_i \
+$
+
+Posons alors
+$
+  M : t |-> mat(Y_1, dots.c, Y_n) (t) \
+  forall t in RR, space M(T + t) = R M(t)
+$
+Avec
+$
+  forall k in [|1, n|], space y_k (0) = E_k quad M(0) = I_n
+$
+
+Soit $Z in S$, nécessairement on dispose de $X$ tel que $Z : t |-> M(t) X$. 
+$
+  Z(T) = Z(0) &<=> M(T) X = M(0) X \
+  &<=> X = R X
+$
+
+Qui existe ssi $1 in "Sp"(R)$.
+
+#card("exrechsolper", "Exercice : recherche de solutions périodiques pour un oscillateur harmonique avec un second membre", ("Maths.Analyse.Équations différentielles linéaires",))
+
+On considère
+$
+  (E) quad y'' + y = f
+$
+Où $f in C^0 (RR, RR)$ $T$-périodique.
+
+CNS pour l'existence de solutions $T$-périodiques.
+
+#answer
+
+On montre que $y$ solution est $T$-périodique ssi 
+$
+cases(space y(T) = y(0), space y'(T) = y'(0))
+$
+
+Or toute solution est de la forme
+$
+  y : t |->& lambda cos(t) + mu sin(t) \ +& underbrace(integral_0^t sin(t - s) f(s) dif s, y_p (t))
+$
+Or pour tout $t in RR$
+$
+  y_p (t) =& sin(t) integral_0^t cos(s) f(s) dif s \ -& cos(t) integral_0^t sin(s) f(s) dif s \
+  y'_p (t) =& cos(t) integral_0^t cos(s) f(s) dif s \ +& sin(t) integral_0^t sin(s) f(s) dif s \
+$
+Ainsi $y_p (0) = y'_p (0) = 0$
+
+Donc
+$
+  y space T"-periodique" \
+  <=> cases(space lambda cos(T) + mu sin(T) + y_p (T) = lambda, space - lambda sin(T) + mu cos(T) + y'_p(T) = mu) \
+  <=> cases(space (cos (T) - 1) lambda + sin(T) mu = -y_p (T), space -sin (T) lambda + (cos(T) - 1) mu = -y'_p (T)) \
+$
+$
+  s &= matrixdet(cos(T) - 1, sin(T); sin(T), cos(T) - 1) \ &= 2 - 2 cos(T)
+$
+Ainsi
+
+- Pour $T in.not 2 pi ZZ$, $s != 0$ et $S$ admet une unique solution périodique.
+
+- Pour $T in 2 pi ZZ$ #h(1fr)
+  $
+    y space T"-périodique" \
+    <=> cases(space y_p (T) = 0, space y'_p (T) = 0)
+  $
+  Si c'est le cas, toutes les solutions sont $T$-périodiques, sinon aucune.
