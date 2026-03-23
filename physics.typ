@@ -423,7 +423,180 @@ $
   h &= 6.63 dot 10^(-34) J dot s \ e &= 1.6 dot 10^(-19) C \
   k_B &= 1.38 dot 10^(-23) J dot K^(-1) \ cal(N)_A &= 6.02 dot 10^(23) "mol"^(-1) \
   mu_0 &= 4pi dot 10^(-7) H dot m^(-1) \ epsilon_0 &= 8.9 dot 10^(35) F dot m^(-1) \
-  m_e &= 9.1 dot 10^(-31) "kg" \ m_p &= 1.7 dot 10^(-27) \
+  m_e &= 9.1 dot 10^(-31) "kg" \ m_p &= 1.7 dot 10^(-27) "kg"\
 $
 
 // TODO: finir ça 
+
+#card("rapmeca", "Rappels de Mécanique", ("Physique.Mécanique",))
+
+Rappels de Mécanique.
+
+#answer
+
+- Dérivée d'un vecteur dans un référentielle #h(1fr)
+  $
+    evaluated(dv(va(A), t))_cal(R) = evaluated(dv(va(A), t))_cal(R') + va(Omega)_(cal(R') \/ cal(R)) cprod va(A)
+  $
+
+- Expression de la vitesse d'entraînement
+  $
+    va(v)_e = va(v) (M in cal(R') \/ cal(R)) = va(v)_O' + va(Omega) cprod va(O' M)
+  $
+
+- Expression de l'accélération d'entraînement
+  $
+    va(gamma)_e = va(gamma)_O' + evaluated(dv(va(Omega), t))_(cal(R)) cprod va(O' M) + va(Omega) cprod (va(Omega) cprod va(O' M))
+  $
+
+- Expression de l'accélération de Coriolis
+  $
+    va(gamma)_c = 2 va(Omega) cprod va(v)_r
+  $
+
+- PFD en référentiel non galliléen
+  $
+    m evaluated(va(gamma))_cal(R') = va(F) - m va(gamma)_e - m va(gamma)_c
+  $
+
+- Forces d'inerties dans le cas d'une translation uniforme
+  $
+    va(f)_(i e) = - m va(gamma)_O' quad quad va(f)_(i c) = va(0)
+  $
+
+- Forces d'inerties dans le cas d'une rotation uniforme
+  $
+    va(f)_(i e) = - m va(Gamma) cprod (va(Gamma) cprod va(O' M)) \ va(f)_(i c) = - 2 m va(Omega) cprod va(v)_r
+  $
+
+- Quelques référentiels galliléens (approchés)
+
+  / Référentiel de Copernic : centrée autour du soleil, dont les axes sont dirigés vers des étoiles fixes.
+  / Référentiel Géocentrique : centrée autour de la terre avec les axes de Copernic.
+  / Référentiel Terrestre : centrée autour de la terre donc les axes sont liés à la Terre.
+
+- Quelques manifestation du caractère non galliléen du référentiel terrestre.
+  - Pendule de Foucault.
+  - Déviation vers l'est.
+  - Usure des rails.
+  - Mouvements géostrophiques.
+
+#card("raploisdecoulon", "Lois de Coulomb", ("Physique.Mécanique",))
+
+Rappels sur les lois de Coulomb.
+
+#answer
+
+- Vitesse de glissement de $cal(S)_2$ par rapport à $cal(S)_1$ en contact en $I$ :
+  $
+    va(u) = va(v)_(I in cal(S)_2) - va(v)_(I in cal(S)_1)
+  $
+  Ainsi la réaction de $cal(S)_1$ sur $cal(S)_2$ en $I$
+  $
+    va(R) = va(T) + va(N)
+  $
+  Avec $va(T)$ dans le plan tangent, et $va(R)$ colinéaire à la normale commune.
+  
+- Lois du frottement cinétique
+  $
+    va(T) cprod va(u) = va(0) quad va(T) dprod va(u) < 0 quad abs(T) = mu_c abs(N)
+  $
+
+- Lois du frottement statique
+  $
+    va(T) + sum va(F) = va(0) quad quad abs(T) < mu_s abs(N)
+  $
+
+- Puissance des actions de contacts dans la translation
+  $
+    cal(P) = va(R) dprod va(u) = va(T) dprod va(u)
+  $
+  Puissance indépendante du référentiel.
+
+#card("rapoptique", "Rappels d'optique", ("Physique.Optique",))
+
+Rappels d'optique.
+
+#answer
+
+- La grandeur lumineuse est une composente du champ éléctrique.
+
+- Chemin optique $(M N)$ : La distance que pourrait parcourir la lumière dans le vide durant le temps $t_(M N)$ qu'elle met pour aller de $M$ à $N$ #h(1fr)
+  $
+    integral_M^N n(P) dif ell
+  $
+
+  // TODO: C'est pas fini et peut être faux
+  - Dans le cas d'une onde plane : 
+    $
+      Delta (M N) = va(k) dprod va(M N)
+    $
+
+  - Par le théorème de Malus.
+
+  - Si $M$ et $N$ sont stigmatiques $Delta (M N) = 0$.
+
+- Le temps de cohérence $tau$ d'une source est lié à sa largeur spectrale $Delta nu$ par $tau Delta nu ~ 1$.
+
+- Deux points différents d'une source large sont incohérent.
+
+- Les récepteurs sont sensibles au carré de l'onde scalaire. Leurs temps de réponse sont grands devant le temps de cohérence des sources.
+
+- Superposition d'ondes lumineuses
+  
+  - Pour deux ondes cohérentes #h(1fr)
+    $
+      I = I_1 + I_2 + 2 sqrt(I_1 I_2) cos (phi) \
+      phi(M) = (2 pi delta(M)) / lambda
+    $
+
+  - Le contraste est d'autant meilleur que les sources ont des intensités proches.
+
+  - Pour deux ondes incohérentes, les intensités s'ajoutent
+    $
+      I = I_1 + I_2
+    $
+
+  - Pour $N$ ondes en progression arthmétiques
+    $
+      I = I_0 (sin^2 (N phi / 2)) / (sin^2(phi / 2))
+    $
+    Demi largeur des pics $(2 pi) / N$.
+
+- Trous d'Young séparés de $a$
+  - Différence de marche : $delta = (a x) / D$ ou $delta = (a x) / f'$.
+  - Interfrange : $i = (lambda D) / a$ ou $i = (lambda f') / a$.
+  - Localisation des franges : Champ d'interférence volume, les franges sont non localisées. Brouillage quand l'odre varie d'une unité sur la largeur de la source, ou sur l'étendue spectrale de la source. (Ou de $1/2$ sur la moitié).
+
+- Michelson en lame d'air
+  - Différence de marche : $delta = 2 e cos i$.
+  - Nom des franges : Franges égale inclinaison.
+  - Localisation en source étendue : à l'infini.
+  - Conditions éclairage et projection : Inclinaisons multiples sur les miroirs (lentille ou condenseur). Écran dans le plan focal d'une lentille.
+
+- Michelson en coin d'air
+  - Différence de marche : $delta = 2 alpha x$ (admise).
+  - Nom des franges : Franges égale épaisseur.
+  - Localisation en source étendue : sur les miroirs.
+  - Conditions éclairage et projection : Incidence quasi-normale, donc source dans le plan focal d'une lentille ; Image des miroirs sur l'écran avec une lentille ($D > 4f'$)
+
+#card("rapelecmag", "Rappels d'éléctromagnétisme", ("Physique.Éléctromagnétisme", ))
+
+Rappels d'éléctromagnétisme.
+
+#answer
+
+- Déterminer la charge totale :
+  - Volumique #h(1fr)
+    $
+      rho(P) = dv(q, tau, 3) \
+      va(E) (M) = 1 /(4 pi epsilon_0) integral.triple_(P in cal(V)) va(P M) / P M^3 rho(P) dif tau
+    $
+  - Surfacique
+    $
+      sigma(P) = dv(q, S, 2) \
+      va(E) (M) = 1 /(4 pi epsilon_0) integral.double_(P in cal(S)) va(P M) / P M^3 sigma(P) dif S
+    $
+  - Pareil en linéique.
+
+- Gauss, tout ça tout ça...
