@@ -136,6 +136,17 @@ $
   (f compose gamma)' (t_0) = dif f (gamma (t_0)) compose gamma' (t_0)
 $
 
+*Intégrale*
+
+Si de plus $f$ et $gamma$ sont $C^1$ (sur $Omega$ et $[0, 1]$ respectivement), alors $f compose gamma$ est $C^1$ et
+
+$
+  f(gamma(1)) - f(gamma(0)) &= integral_0^1 (f compose gamma)' (t) dif t \
+  &= integral_0^1 dif f (gamma(t)).gamma'(t) dif t
+$
+
+On en déduit que si $f in C^1 (Omega, F)$ où $Omega$ est un ouvert connexe par arcs, $f$ est constante ssi pour tout $a in Omega, dif f (a) = 0$.
+
 *Démonstration*
 
 Par continuité de $gamma$ en $t_0$, on dispose de $V$ voisinage de $t_0$ tel que $gamma(V) subset.eq B(a, r)$.
@@ -158,6 +169,18 @@ Donc à la limite
 $
   (f compose gamma)' (t_0) = dif f (a). gamma'(t_0)
 $
+
+Pour le lien entre $f$ constante et $dif f = 0$, on ne peut pas simplement considérer un chemin $gamma$ $C^1$, car la connexité par arcs ne nous assure pas son existence (ici il en existe bien un car $Omega$ est ouvert).
+
+On considère plutot, pour un $b in Omega$ quelconque
+$
+  Gamma = f^(-1) {f(b)}
+$
+Qui est fermé dans $Omega$.
+
+On montre (par les boules) que $Gamma$ est ouvert dans $Omega$.
+
+Or comme connexe par arcs implique connexe, $Gamma in {Omega, emptyset}$, or $b in Gamma$, donc $Gamma = Omega$.
 
 #card("diffeetbases", "Différentiabilité et bases", ("Maths.Analyse.Calcul différentiel",))
 
@@ -288,3 +311,415 @@ Si $g$ est différentiable en $a$ et $f$ est différentiable en $b = g(a)$, alor
 $
   pdv(f compose g, x_j) = sum_(k = 1)^n pdv(f_i, u_k) (g(a)) pdv(g, x_j) (a)
 $
+
+*Exemple : changement polaire*
+
+On considère
+$
+  phi : func(RR^2, RR^2, (r, theta), (r cos theta, r sin theta))
+$
+
+Et $f : W -> RR$ différentiable. On prend $Omega subset.eq RR^2$ tel que $phi(Omega) subset.eq W$ et on note $tilde(f) = f compose phi$.
+
+Comme $f$ est $phi$ sont différentiables, $tilde(f)$ l'est aussi sur $Omega$ et
+$
+  pdv(tilde(f), r) (r, theta) &= pdv(f, x) (r cos theta, r sin theta) pdv(x, r) (r, theta) \
+  &+ pdv(f, y) (r cos theta, r sin theta) pdv(y, r) (r, theta) \
+  &= cos theta pdv(f, x) (r cos theta, r sin theta) \
+  &+ sin theta pdv(f, y) (r cos theta, r sin theta)
+$
+
+De même
+$
+  pdv(tilde(f), theta) (r, theta) &= -r sin theta pdv(f, x) (r cos theta, r sin theta) \
+  &+ r cos theta pdv(f, y) (r cos theta, r sin theta)
+$
+
+Si de plus $phi : Omega -> W$ est une bijection
+$
+  phi^(-1) : func(W, Omega, (x, y), vec(sqrt(x^2 + y^2), 2 arctan(y / (x + sqrt(x^2 + y^2)))))
+$
+
+On peut écrire $f = tilde(f) compose phi^(-1)$, mais on a aucune envie de calculer $pdv(theta, x)$ et $pdv(theta, y)$.
+
+D'après ci dessus
+$
+  vec(pdv(tilde(f), r) (r, theta), pdv(tilde(f), theta) (r, theta)) \ = underbrace(mat(cos theta, sin theta; -r sin theta, r cos theta), J(phi)(r, theta)^TT) vec(pdv(f, x)(script(r cos theta\, r sin theta)), pdv(f, y)(script(r cos theta\, r sin theta)))
+$
+
+Or $det J(phi)(r, theta) = r != 0$, d'où
+$
+    vec(pdv(f, x)(script(r cos theta\, r sin theta)), pdv(f, y)(script(r cos theta\, r sin theta)))\ = underbrace(1/r mat(r cos theta, -sin theta; r sin theta, cos theta), (J(phi)(r, theta)^TT)^(-1)) vec(pdv(tilde(f), r) (r, theta), pdv(tilde(f), theta) (r, theta))
+$
+
+Et ainsi
+$
+  pdv(f, x) (r cos theta, r sin theta) &= cos theta pdv(tilde(f), r) (r, theta) \ &- (sin theta) / r pdv(tilde(f), theta) (r, theta) \
+  pdv(f, y) (r cos theta, r sin theta) &= sin theta pdv(tilde(f), r) (r, theta) \ &+ (cos theta) / r pdv(tilde(f), theta) (r, theta) \
+$
+
+// NOTE: M385 ???
+
+#card("clasdiff", "Classe de différentiabilité", ("Maths.Analyse.Calcul différentiel",))
+
+Classe de différentiabilité ($C^1$). 
+
+#answer
+
+Soit $f : Omega -> F$. On dit que $f$ est $C^1$ sur $Omega$ si $f$ est différentiable sur $Omega$ et
+$
+  func(Omega, cal(L)(E, F), a, dif f (a))
+$
+Est continue.
+
+*Propriétés*
+
+Comme $cal(L)(E, F)$ est de dimension finie, donc $dif f$ est continue sur toute ses coordonnées.
+
+- Soit $(e_1, dots, e_p)$ base de $E$ et $(w_1, dots, w_n)$ base de $F$.
+
+  Alors $f$ est $C^1$ sur $Omega$ ssi $f$ est différentiable sur $Omega$ et pour tout $i in [|1, n|], j in [|1, p|]$, $pdv(f_i, x_j)$ est continue sur $Omega$.
+
+- On peut d'ailleurs montrer que $f$ est $C^1$ ssi toutes ses dérivées partielles existent et sont $C^1$ sur $Omega$.
+
+*Opérations*
+
+- Toutes combinaison linéaire de fonctions $C^1$ est $C^1$.
+
+- Toute forme $d$-linéaire évalué en $d$ fonctions $C^1$ est $C^1$.
+
+- Toute composée de fonctions $C^1$ est $C^1$.
+
+- Toute application linéaire est $C^1$.
+
+- Toute application polynomiale en les coordonnées est $C^1$.
+
+*Démonstration*
+
+On découpe le chemin sur les coordonnées, puis on fait du calcul pas très beau avec l'EAF.
+
+// NOTE: Démonstration M387-388, j'ai pas le courage là
+
+#card("exediffclas", "Exercice : différentiel du determinant et de l'inverse", ("Maths.Exercice.Calcul différentiel",))
+
+Montrer que $det$ est $C^1$, puis donner sa différentielle.
+
+En déduire que l'inverse est $C^1$ et donner sa différentielle en $I_n$.
+
+#answer
+
+Comme
+$
+  det : func(M_n (RR), RR, A, det A)
+$
+Est polynomiale en les coordonnées, $det$ est $C^1$.
+
+On fixe $(E_(i j))_(i j)$ la base canonique de $M_n (RR)$. On veut calculer $pdv(det, x_(i j)) (A)$.
+
+Soit $l in [|1, n|]$, on developpe selon la $l$-ème colonne
+$
+  det A = sum_(i = 1)^n (-1)^(i + l) a_(i l) det(A_(i l))
+$
+Où $A_(i l)$ est la matrice $A$ privée de sa $i$-ème ligne et $l$-ème colonne.
+
+Soit $k in [|1, n|]$, les $det(A_(i l))$ sont tous indépendants de 
+$
+pdv(det, x_(k l)) (A) &= (-1)^(k + l) det(A_(k l)) \ &= ("Com"(A))_(k l)
+$
+
+Or pour tout $H in M_n (RR)$
+$
+  dif (det) (A). H &= sum_(k, l) pdv(det, x_(k l)) (A) H_(k l) \
+  &= sum_(k, l) ("Com" (A))_(k l) H_(k l) \
+  &= tr("Com" (A)^TT H)
+$
+Enfin
+$
+  dif (det) : func(M_n (RR), RR, H, tr("Com"(A)^TT H), H, scl("Com"(A), H))
+$
+
+Ainsi
+$
+  theta : func("GL"_n (RR), "GL"_n (RR), A, A^(-1))
+$
+Est $C^1$ (par la formule de l'inverse avec la commatrice) : chaque coefficient de la commatrice est $C^1$ car polynomiale en les coordonnées.
+
+Or pour tout $A in "GL"_n (RR)$
+$
+  A theta(A) = I_n \
+$
+Donc en différentient
+$
+  forall H in B(0, r), space A(dif theta(A). H) + H theta(A) = 0 \
+  dif theta (A). H = A^(-1) H A^(-1)
+$
+
+#card("esptange", "Espace tangent", ("Maths.Analyse.Calcul différentiel",))
+
+Espace tangent.
+
+#answer
+
+Soit $E$ un $RR$-ev, $Gamma subset.eq E$, on définit l'espace tangent à $Gamma$ au point $a in Gamma$
+$
+  T_a Gamma = Set(v in E, cases(delim: #none, exists epsilon > 0\, gamma in D^1 (Ioo(-epsilon, epsilon)), space space gamma(0) = a quad gamma' (0) = v))
+$
+
+*Exemples*
+
+- $E = RR^n$, $Gamma = SS(0, r)$, pour tout $x in Gamma$ #h(1fr)
+  $
+    T_x Gamma = x^perp
+  $
+
+- $E = RR^n$, $Gamma = overline(B(0, 1))$
+
+  - Pour tout $x in B(0, 1)$, $T_x Gamma = RR^n$
+
+  - Pour tout $x in SS(0, 1)$, $T_x Gamma = x^perp$
+
+- Si $Gamma = Omega$ ouvert, alors pour tout $x in Gamma$, $T_x Gamma = E$.
+
+- Si $Gamma = cal(H) = x_0 + H$ est un espace affine de direction $H$, alors pour tout $a in cal(H)$, $T_a cal(H) = H$.
+
+*Démonstration*
+
+- Soit $v in T_x (SS(0, r))$, soit $gamma$ associé.
+  $
+    forall t in Ioo(-epsilon, epsilon), norm(gamma(t))^2 = r^2 \
+    scl(gamma(t), gamma(t)) = r^2 \
+    2scl(gamma'(t), gamma(t)) = 0
+  $
+  Donc en $t = 0$, $scl(x, v) = 0$.
+
+  Soit $v in x^perp \\ {0}$ (cas nulle évident).
+
+  On construit bien le chemin et ça marche.
+
+- La même.
+
+- Logique.
+
+- Soit $a in cal(H), v in T_a cal(H)$, et $gamma$ associé, pour tout $t in I = Ioo(-epsilon, epsilon)$
+  $
+    gamma(t) - gamma(0) = gamma(t) - a in H \
+    (gamma(t) - gamma(0))/t in H
+  $
+  Or $H$ est fermé comme sev de dimension finie, d'où à la limite
+  $
+    gamma'(0) = v in H
+  $
+
+  Soit $v in H$ et $a in cal(H)$
+  $
+    gamma : t |-> a + t v
+  $
+  Convient.
+
+#card("exesptangonsln", "Exercice : espaces tangents du groupe orthogonale et du groupe special linéaire", ("Maths.Analyse.Calcul différentiel",))
+
+Donner
+
++ $T_I_n O_n (RR)$
+
++ $T_I_n "SL"_n (RR)$
+
+#answer
+
++ Soit $A in T_I_n (RR)$, et $gamma$ associé.
+
+  Pour tout $t in Ioo(-epsilon, epsilon)$ #h(1fr)
+  $
+    gamma(t)^TT gamma(t) = I_n \
+    gamma'(t)^TT gamma(t) + gamma(t)^TT gamma'(t) = 0
+  $
+  D'où en $t = 0$
+  $
+    A + A^TT = 0 quad quad A in A_n (RR)
+  $
+
+  Et réciproquement pour tout $A in A_n (RR)$
+  $
+    gamma : func(RR, O_n (RR), t, e^(t A))
+  $
+  Convient.
+
++ Soit $A in T_I_n "SL"_n (RR)$, $gamma$ associé.
+
+  Ainsi pour tout $t in Ioo(-epsilon, epsilon)$
+  $
+    (det compose gamma)'(t) = 0 \
+    dif (det) (gamma (t)). gamma'(t) = 0 \
+    tr("Com"(gamma(t))^TT gamma'(t)) = 0
+  $
+  D'où en $t = 0$
+  $
+    tr(A) = 0
+  $
+  D'où $T_I_n "SL"_n (RR) subset.eq ker tr$.
+
+  Réciproquement, soit $A in ker tr$
+  $
+    gamma : func(RR, O_n (RR), t, e^(t A))
+  $
+  Convient.
+
+// TODO: Exo M393 
+
+#card("esptanggraphfun", "Espace tangent du graphe d'une fonction", ("Maths.Analyse.Calcul différentiel",))
+
+Espace tangent du graphe d'une fonction.
+
+#answer
+
+Soit $Omega subset.eq RR^2$ et $f in C^1 (Omega, RR)$. On pose
+$
+  Gamma = { (x, y, f(x, y)), (x, y) in Omega }
+$
+
+Soit $m = (a, b, f(a, b)) in Gamma$ et $v in T_m Gamma$.
+
+Ainsi on dispose de $gamma$ associé.
+
+Pour tout $t in I = Ioo(-epsilon, epsilon)$
+$
+  gamma(t) = vec(gamma_1 (t), gamma_2 (t), gamma_3 (t)) \
+  gamma_3 (t) = f(gamma_1 (t), gamma_2 (t)) \
+$
+$
+  gamma'_3 (t) &= dif f(gamma_1 (t), gamma_2 (t)). (gamma'_1 (t), gamma'_2 (t)) \
+  &= pdv(f, x) (gamma_1 (t), gamma_2 (t)) gamma'_1 (t) \
+  &+ pdv(f, y) (gamma_1 (t), gamma_2 (t)) gamma'_2 (t)
+$
+Donc en $t = 0$
+$
+  v = vec(v_1, v_2, v_3) \
+  v_3 = gamma'_3 (0) \
+  (E) quad v_3 = pdv(f, x) (a ,b) v_1 + pdv(f, y) (a, b) v_2
+$
+
+Ainsi $T_m Gamma subset.eq H$ hyperplan d'équation $(E)$.
+
+Réciproquement, soit $vec(v_1, v_2, v_3) in H$. Comme $Omega$ est ouvert, on dispose de $r > 0$ tel que $B_oo ((a, b), r) subset.eq Omega$.
+
+Soit $delta > 0$ tel que $delta norm(v_2) < r$ et $delta norm(v_1) < r$
+
+On pose
+$
+  gamma : func(Ioo(-delta, delta), RR^3, t, vec(a + t v_1, b + t v_2, f(a + t v_1, b + t v_2)))
+$
+Qui convient.
+
+#card("lignesdeniveau", "Lignes de niveau", ("Maths.Analyse.Calcul différentiel",))
+
+Lignes de niveau.
+
+#answer
+
+Soit $Omega$ ouvert de $E$, $f in C^1 (Omega, F)$ et $alpha in f(Omega)$
+
+On note la ligne de niveau
+$
+  Gamma = f^(-1) {alpha}
+$
+Pour tout $a in Gamma$, si $dif f(a) != 0$, alors 
+$
+T_a Gamma = ker dif f (A)
+$
+
+// TODO: Démonstration M394-395
+
+#card("rechextr", "Recherche d'extremum au première ordre", ("Maths.Analyse.Calcul différentiel",))
+
+Recherche d'extremum au première ordre.
+
+#answer
+
+Soit $f : Omega -> RR$, où $Omega subset.eq E$ ouvert.
+
+Si $f$ admet un extremum local en $a in Omega$ et $f$ est différentiable en $a$, alors
+$
+  dif f(a) = 0
+$
+
+*Pour une restriction*
+
+Soit $f: Omega -> RR$ différentiable en $a in Omega$.
+
+Soit $Gamma subset.eq Omega$, si $f|_Gamma$ admet un extremum en $a$ alors pour tout $v in T_a Gamma$
+$
+  dif f (a).v = 0
+$
+
+*Optimisation sous contrainte*
+
+Soient $f, g in C^1 (Omega, RR)$. On note $Gamma = g^(-1) { alpha }$ pour $alpha in g(Omega)$.
+
+On suppose que $f|_Gamma$ admet un extremum en $a in Gamma$ et $dif g (a) != 0$.
+
+Alors on dispose de $lambda in RR$
+$
+  dif f(a) = lambda dif g(a)
+$
+
+*Démonstration*
+
+- On a le resultat pour les dérivée selon tout les vecteurs.
+
+- Soit $v in T_a Gamma$ et $gamma$ associé. Ainsi $f compose gamma$ admet un extremum en $t = 0$. #h(1fr)
+
+  Ainsi
+  $
+    (f compose gamma)'(0) = 0 =dif f(gamma(0)).gamma'(0) \
+    dif f (a).v = 0
+  $
+
+- Comme $T_a Gamma = ker dif g (a)$ et $f|_Gamma$ admet un extremum en $a$
+  $
+    ker dif g (a) subset.eq ker dif f (a)
+  $
+  Qui sont deux formes linéaires, et sont donc liées.
+
+// NOTE: Autre démonstration du théorème spectrale M397 et le truc du début M398
+
+#card("exsurjparinjdedif", "Exercice : surjectivité d'une fonction dont la différentielle est injective", ("Maths.Exercice.Calcul différentiel",))
+
+Soit $f : RR^n -> RR^n$ différentiable tel que pour tout $x in RR^n$, $dif f (x)$ est injective et $norm(f(x)) tends(norm(x) -> oo) oo$.
+
+Montrer que $f$ est surjective.
+
+#answer
+
+Soit $a in RR^n$, on pose
+$
+  g : func(RR^n, RR^n, x, norm(f(x) - a)^2)
+$
+
+Pour tout $x in RR^n$
+$
+  norm(f(x) - a) >= norm(f(x)) - norm(a) tends(norm(x) -> oo) oo
+$
+D'où $g(x) tends(norm(x) -> oo) oo$.
+
+Soit $R > 0$ tel que pour tout $norm(x) > R$
+$
+  g(x) >= g(0)
+$
+
+Ainsi
+$
+  inf_(x in RR^n) g(x) = inf_(x in B(0, R)) g(x)
+$
+
+Or $g$ est continue sur le compact $overline(B(0, R))$, donc cet $inf$ est atteint en $x_0$ et $dif g(x_0) = 0$.
+
+Or pour tout $h in RR^n$
+$
+  0 &= dif g (x_0).h \ &= 2 scl(dif f (x_0).h, f(x_0) - a)
+$
+Donc pour tout $v in RR^n$, avec $h = dif f (x_0)^(-1) (v)$
+$
+  0 = scl(v, f(x_0) - a)
+$
+Donc $f(x_0) - a = 0$ et $f$ est surjective.
+
