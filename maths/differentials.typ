@@ -723,3 +723,266 @@ $
 $
 Donc $f(x_0) - a = 0$ et $f$ est surjective.
 
+#card("derpartordsup", "Dérivées partielles d'ordres supérieurs", ("Maths.Analyse.Calcul différentiel",))
+
+Dérivées partielles d'ordres supérieurs.
+
+#answer
+
+On ne définit (pas dans le cadre du programme) pas les différentielles d'ordres supérieurs.
+
+On dit que $f in C^1 (Omega, F)$ est de classe $C^k$ si toutes les dérivées partielles d'ordre $k$ existent et sont $C^0$.
+
+Il faut la continuité selon toute les variables : pour montrer l'éxistence on fixe les variables, mais pour montrer la continuité elles ne peuvent rester fixes.
+
+*Théorème de Schwarz*
+
+Pour une fonction $C^k$, l'ordre des dérivée partielles n'importe pas.
+
+On le montre pour intervertir deux dérivée partielles (qui suffit pour toute les permutations), et pour les fonctions à valeur dans $RR$ car on peut decomposer $f$ sur une base.
+
+On calcul la dérivée de deux manières en passant par des chemin différents ($h_1$ puis $h_2$, et $h_2$ puis $h_1$) + EAF.
+
+#card("hessienne", "Matrice Hessienne", ("Maths.Analyse.Calcul différentiel",))
+
+Matrice Hessienne.
+
+#answer
+
+Soit $f in C^2(Omega, RR)$ et $e = (e_1, dots, e_n)$ base de $E$.
+
+On définit pour $a in Omega$ la matrice Hessienne de $f$ en $a$ comme
+$
+  H(f)(a) &= (pdv(f, x_i, x_j) (a))_(i, j in [|1, n|]) \
+  &in M_n (RR) \
+  &in S_n (RR) quad "(Par Schwarz)" \ 
+$
+
+Et ainsi si $r > 0$ tel que $B(a, r) subset.eq Omega$.
+
+Pour tout $h in B(0,r)$
+$
+  f(a + h) - f(a) \
+  = dif f (a).h + 1/2 h^TT H(f)(a) h + o(norm(h)^2) \
+$
+Et si $E$ est euclidien
+$
+  f(a + h) - f(a) &= scl(grad f (a), h) \ &+ 1/2 scl(H(f)(a) h, h) \ &+ o(norm(h)^2)
+$
+
+*Démonstration*
+
+On note $H(a) = H(f)(a)$.
+
+On utilise Taylor reste intégrale :
+
+Pour tout $h in B(0, r)$, on pose
+$
+  gamma_h : func([0, 1], Omega, t, a + t h)
+$
+Ainsi
+$
+  &f(a + h) - f(a) \
+  =& f compose gamma_h (1) - f compose gamma_h (0) \
+  =& (f compose gamma_h)' (0) + integral_0^1 (1 - t) (f compose gamma_h)''(t) dif t \
+$
+Or
+$
+  (f compose gamma_h)' : t |->& dif f(gamma_h (t)).gamma'_h(t) \
+  =& dif f(a + t h).h \
+  =& sum_(j = 1)^n pdv(f, x_j) (a + t h) h_j
+$
+Ainsi
+$
+  (f compose gamma_h)'' : t |->& sum_(j = 1)^n sum_(k = 1)^n pdv(f, x_k, x_j) (a + t h) h_k h_j
+$
+
+On peut maintenant écrire
+$
+  f(a + h) - f(a) \
+  = dif f(a).h + integral_0^1 (1 - t) h^TT H(a + t h) h dif t \
+$
+Ainsi
+$
+  &Delta (h) \
+  =& f(a + h) -(script(f(a) + dif f(a).h + 1/2 h^TT H(a) h)) \
+  =& integral_0^1 (1 - t) h^TT [H(a + t h) - H(a)] h dif t
+$
+Soit $epsilon > 0$ et $delta > 0$ tel que pour tout $norm(x) < delta$, qui existe par continuité.
+$
+  norm(H(a + x) - H(a))_"op" < epsilon
+$
+
+D'où pour $norm(h) < delta$
+$
+  norm(Delta(h)) \
+  <= integral_0^t (1 - t) norm(h) norm((H(a + t h) - H(a)) h) dif t \
+  <= integral_0^t (1 - t) norm(h)^2 norm(H(a + t h) - H(a))_"op" dif t \
+  <= epsilon / 2 norm(h)^2
+$
+
+#card("rechextr2", "Recherche d'extremum au deuxième ordre", ("Maths.Analyse.Calcul différentiel",))
+
+Recherche d'extremum au deuxième ordre.
+
+#answer
+
+Soit $f in C^2 (Omega, RR)$.
+
+*Condition nécéssaire*
+
+Si $f$ admet un minimum en $a in Omega$, alors
+$
+  dif f (a) = 0 \
+  H(f) (a) in S_n^+ (RR)
+$
+
+*Condition suffisante*
+
+Si $f$ admet un point critique en $a in Omega$ et $H(f)(a) in S_n^(++) (RR)$, alors $f$ admet un minmum local strict en $a$.
+
+*Application*
+
+Pour $Omega subset.eq RR^2$, soit $a in Omega$ tel que $dif f (a) = 0$.
+
+On considère
+$
+  H(f)(a) = mat(pdv(f, x, 2) (a), pdv(f, x, y) (a); pdv(f, x, y) (a), pdv(f, y, 2) (a))
+$
+
+On note $lambda_1 <= lambda_2$ les valeurs propres de $H(f)(a)$ réelles.
+
+- Si $det H(f)(a) > 0$, alors $lambda_1 lambda_2 > 0$ :
+
+  Si $pdv(f, x, 2) (a) > 0$, alors comme $det > 0$, $lambda_1, lambda_2 > 0$.
+
+  Ainsi $H(f)(a) in S_n^(++) (RR)$ et $a$ est un minimum local strict (et inversement si $pdv(f, x, 2) < 0$).
+
+- Si $det H(f)(a) < 0$, alors $lambda_1 < 0 < lambda_2$.
+
+  Comme $H(f)(a) in.not S_n^+ (RR)$ et $H(f)(a) in.not S_n^- (RR)$, $a$ n'est ni un maximum ni un minimum.
+
+  C'est un point selle.
+
+  Si $(e_1, e_2)$ BON de vecteurs propres de $H(f)(a)$ ($h = h_1 e_1 + h_2 e_2$),
+  $
+    f(a + h) - f(a) \ = underbrace(lambda_1, < 0) h_1^2 + underbrace(lambda_2, > 0) h_2^2 + o(h_1^2 + h_2^2)
+  $
+
+- Si $det H(f)(a) = 0$ on ne peut rien dire.
+
+*Démonstration*
+
+- On pose pour $h in RR^n$ #h(1fr)
+  $
+    g = f compose gamma : func(Ioo(-delta, delta), RR, t, f(a + t h))
+  $
+  Qui admet un minimum en $0$, d'où $g''(0) >= 0$, et en calculant $(f compose gamma)''$, on relie cela à $h^TT H(f)(a) h$.
+
+- On suppose $dif f (a) = 0$ et $H(f)(a) in S_n^(++) (RR)$.
+
+  On note $lambda_1 <= dots.c <= lambda_n$ le spectre ordonné de $H(f)(a)$.
+
+  Pour tout $h in B(0, r)$
+  $
+    f(a + h) - f(a) \ 
+    = 1/2 h^TT H(f)(a) h + norm(h)^2 epsilon(h) \
+    >= (lambda_1 / 2 + epsilon (h)) norm(h)^2
+  $
+  On peut alors trouver $delta > 0$ tel que pour tout $h in B(0, delta)$
+  $
+    f(a + h) - f(a) >= lambda / 4 norm(h)^2
+  $
+
+#card("eqderpart", "Équations au dérivées partielles", ("Maths.Analyse.Calcul différentiel",))
+
+Équations au dérivées partielles.
+
+#answer
+
+On pose $Omega = I times W subset.eq RR^n$ où $W subset.eq RR^(n - 1)$
+
+On considère
+$
+  (E) quad pdv(f, x_1) = 0
+$
+
+Une fonction $f in C^1 (Omega, RR)$ est solution de $(E)$ ssi il existe $g in C^1 (W, RR)$ tel que
+$
+  f : func(Omega, RR, (x_1, dots, x_n), g(x_2, dots, x_n))
+$
+
+*Démonstration*
+
+Soit $(x_2, dots, x_n) in W$
+$
+  func(I, RR, x_1, f(x_1, dots, x_n))
+$
+Est $C^1$ de dérivée nulle sur $I$ donc constante.
+
+On note $g(x_2, dots, x_n)$ cette constante.
+
+Soit $a in I$
+$
+  g : func(W, RR, (x_2, dots, x_n), f(a, dots, x_n))
+$
+Est $C^1$.
+
+Réciproquement ces fonctions marchent.
+
+// TODO: M404 Exemple
+
+#card("laplaciencd", "Laplacien", ("Maths.Analyse.Calcul différentiel",))
+
+Laplacien.
+
+#answer
+
+Soit $Omega subset.eq RR^n$ et $f in C^2(Omega, RR)$.
+
+On définit le laplacien de $f$
+$
+  laplace f = sum_(j = 1)^n pdv(f, x_j, 2)
+$
+
+On dit que $f$ est harmonique sur $Omega$ si $laplace f = 0$.
+
+*Laplacien polaire*
+
+Pour $n = 2$, par exemple $Omega = RR^2 \\ {(0, 0)}$ et $W = R_+^* times RR$, on pose
+$
+  phi : func(W, Omega, (r, theta), (r cos theta, r sin theta))
+$
+Et $f in C^2 (Omega, RR), tilde(f) = f compose phi$.
+
+Alors
+$
+  laplace f (r cos theta, r sin theta) \
+  = pdv(tilde(f), r, 2) (r, theta) + 1 /r pdv(tilde(f), theta, r) (r, theta) + 1/r^2 pdv(tilde(f), theta, 2) (r, theta)
+$
+
+*Démonstration*
+
+Calcul moche, penser à utiliser la matrice Jacobienne (voir changement polaire).
+
+#card("exfunharm", "Exercice : fonctions harmoniques invariantes par rotation", ("Maths.Analyse.Calcul différentiel",))
+
+Trouver les fonctions harmoniques sur $RR^2$ tel qu'on dispose de $phi in C^2(RR, RR)$ tel que
+$
+  f(x, y) = phi(x^2 + y^2)
+$
+
+#answer
+
+Pour $(r, theta) in RR_+^* times RR$
+$
+  0 &= laplace f (r cos theta, r sin theta) \
+  &= pdv(tilde(f), r, 2) (r, theta) + 1/r pdv(tilde(f), r) (r, theta) \
+  &= 1 / r pdv(,r) (r pdv(tilde(f), r)(r, theta))
+$
+$
+  <=> forall r in RR_+^*, (r |-> r h'(r))' = 0 \
+  <=> exists alpha in RR, forall r in RR_+^*, r h'(r) = alpha \
+  <=> exists alpha in RR, forall r in RR_+^*, h'(r) = alpha / r \
+  <=> exists alpha in RR, forall r in RR_+^*, h(r) = alpha ln(r) + beta \
+$
