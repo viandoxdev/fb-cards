@@ -986,3 +986,314 @@ $
   <=> exists alpha in RR, forall r in RR_+^*, h'(r) = alpha / r \
   <=> exists alpha in RR, forall r in RR_+^*, h(r) = alpha ln(r) + beta \
 $
+
+#card("exfunharmpol", "Exercice : Integrales sur un cercle d'une fonction harmonique", ("Maths.Analyse.Calcul différentiel",))
+
+Soit $f in C^2(Omega, RR)$ qui est harmonique sur $Omega$ et où $0 in Omega subset.eq RR^2$, et $R > 0$ tel que $B(0, R) subset.eq Omega$.
+
+Pour tout $r in Ico(0, R)$ exprimer 
+$
+  h(r) = 1/ (2 pi) integral_0^(2 pi) f(r cos theta, r sin theta) dif theta
+$
+
+#answer
+
+On pose 
+$
+  tilde(f) : (r, theta) |-> f(r cos theta ,r sin theta)
+$
+
+On montre par le théorème $C^2$ des intégrales à paramètres que $h$ est $C^2$.
+
+Ainsi pour tout $r in Ioo(0, r)$
+$
+  h''(r) + 1/r h'(r) \ = 1 /(2pi) integral_0^(2 pi) [pdv(tilde(f), r, 2) (r, theta) + 1 / r pdv(tilde(f), r) (r, theta)] dif theta \
+  = - 1 / (2 pi r^2) integral_0^(2 pi) pdv(tilde(f), theta, 2) (r, theta) dif theta
+$ 
+
+Qui est nulle par $2pi$-périodicité de $theta |-> tilde(f) (theta, r)$.
+
+Ainsi
+$
+  h : r |-> alpha ln(r) + beta
+$
+Et par continuité de $h$ en $0$, $alpha = beta = 0$.
+
+#card("fonctionconv", "Fonctions convexes", ("Maths.Analyse.Calcul différentiel",))
+
+Fonctions convexes (Calcul différentiel).
+
+#answer
+
+Soit $Omega$ un ouvert convexe de $E$, et $f : Omega -> RR$. On dit que $f$ est convexe si pour tout $x, y in Omega$ et $t in [0, 1]$
+$
+  f(underbrace((1 - t) x + t y, in Omega)) <= (1 - t) f(x) + t f(y)
+$
+
+*Conditions nécéssaires / suffisantes*
+
+- $f$ est convexe ssi pour tout $x, y in Omega$ #h(1fr)
+  $
+    phi_(x, y) : func([0, 1], RR, t, f((1 - t) x + t y))
+  $
+  Est convexe sur $[0, 1]$.
+
+- Si $f$ est convexe alors pour tout $x, y in Omega$
+  $
+    f(y) >= f(x) + dif f (x) . (y - x)
+  $
+
+Et si $E$ est euclidien et $f$ $C^1$, on a équivalence entre
+
+- $f$ convexe. #h(1fr)
+
+- Pour tout $x, y in Omega$
+  $
+    f(y) >= f(x) + scl(grad f (x), y - x)
+  $
+
+- Pour tout $x, y in Omega$
+  $
+    scl(grad f (y) - grad f(x), y - x) >= 0
+  $
+
+*Démonstration*
+
+- Un sens évident.
+
+  On suppose $f$ convexe, $x , y in Omega$ et $t_1, t_2, s in [0, 1]$.
+  $
+    &phi_(x, y) (underbrace((1 - s) t_1 + s t_2, s')) \
+    =& f((1 - s') x + s' y) \
+    =& f(script((1 - s) ((1 - t_1) x + t_1 y) + s ((1 - t_2) x + t_2 y))) \
+    <=& (1 - s) phi_(x, y) (t_1) + s phi_(x, y) (t_2)
+  $
+
+- Comme $f$ est convexe, $phi_(x, y)$ l'est sur $[0, 1]$.
+
+  $
+    phi_(x, y) (1) &>= phi_(x, y) (0) + phi'_(x, y) (0) (1 - 0) \
+    f(y) &>= f(x) + dif f (x).(y - x)
+  $
+
+- On suppose $f$ convexe, par ci-dessus, pour tout $x, y in Omega$
+  $
+    f(y) >= f(x) + scl(grad f (x), y - x)
+  $
+  Ainsi
+  $
+    cases(space f(y) >= f(x) + scl(grad f (x), y -x), space f(x) >= f(y) + scl(grad f (y), x - y)) \
+    0 >= scl(grad f (x) - grad f (y), y - x)
+  $
+
+- On suppose la croissance des gradients.
+
+  Soit $x, y in Omega$, montrons que $phi_(x, y)$ est convexe.
+
+  Soit $t in [0, 1]$
+  $
+    phi'_(x, y) (t) &= dif f (x + t( y -x)).(y - x) \
+    &= scl(grad f (x + t(y - x)), y - x)
+  $
+  Donc pour tout $t >= s$, on pose
+  $
+    x_t = x + t (y - x) \
+    x_s = x + s (y - x)
+  $
+  D'où
+  $
+    &phi'_(x, y) (t) - phi'_(x, y) (s) \
+    =& scl(grad f (x_t) - grad f (x_s), y - x) \
+    =& 1 / (t - s) scl(grad f (x_t) - grad f(x_s), x_t - x_s) \
+    >=& 0
+  $
+  Donc $phi_(x, y)$ convexe et $f$ aussi.
+
+#card("propconvcd", "Propriétés supplémentaires de convexité", ("Maths.Analyse.Calcul différentiel",))
+
+Propriétés supplémentaires de convexité.
+
+#answer
+
+- Si $f in C^1(Omega, RR)$ est convexe et admet un extremum local, alors c'est un minimum global.
+
+- Si $f in C^2 (Omega, RR)$, on a équivalence entre
+
+  + $f$ est convexe sur $Omega$.
+
+  + Pour tout $x in Omega$, $H(f)(x) in S_n^+ (RR)$.
+
+*Démonstration*
+
+- Avec la condition de convexité sur $dif f$.
+
+- On reprend la démonstration du DL à l'ordre 2 pour la Hessienne.
+
+  Pour tout $a, b in Omega$
+  $
+    f(b) = f(a) + dif f (a).(b - a) \ + integral_0^1 script((1 - t) (b - a)^TT H(f)(a + t (b - a)) (b - a) dif t)
+  $
+
+#card("exmethnewt", "Exercice : contexte de la descente du gradient", ("Maths.Analyse.Calcul différentiel",))
+
+Soit $u in S_n^(++) (RR)$ et $phi in cal(L)(E, RR)$, on pose
+$
+  f &: func(E, RR, x, 1/2 scl(x, u(x)) + phi(x)) \ &in C^1(E, RR)
+$
+
++ Calculer $dif f (x)$ et $grad f(x)$ pour tout $x in EE$.
+
++ Montrer que $f(x) tends(norm(x) -> +oo) +oo$.
+
++ Montrer que $f$ admet un unique minimum local, puis qu'il est global.
+
++ Montrer que $f$ est strictement convexe.
+
+#answer
+
++ Par simple calcul (et par théorème de représentation) on obtient  #h(1fr)
+  $
+    dif f (x) : func(E, RR, h, scl(h, u(x)) + scl(h, v))
+  $
+  Pour un $v in E$ qui dépend de $phi$.
+
+  D'où
+  $
+    grad f(x) = u(x) + v
+  $
+
++ On note $0 < lambda_1 <= dots.c, <= lambda_n$ le spectre ordonné de $u$.
+
+  Pour tout $x in E$
+  $
+    f(x) &>= lambda_1 norm(x)^2 - norm(v) norm(x) \ &tends(norm(x) -> +oo) +oo
+  $
+
++ Si $f$ admet un minimum local en $x_0 in E$
+  $
+    dif f(x_0) = 0
+  $
+  D'où pour tout $h in E$
+  $
+    scl(grad f(x_0), h) = 0 \
+    u(x) + v = 0
+  $
+  Or comme $u in "GL"(E)$, le seul point critique est
+  $
+    x_0 = - u^(-1) (v)
+  $
+
+  Or comme $f tends(+oo) +oo$, on dispose de $R > 0$ tel que
+  $
+    min_(x in E) f(x) = min_(x in B(0, R)) f(x)
+  $
+  Qui est atteint (par compacité), d'où $x_0$ est un minimum global.
+
++ Pour tout $x, y in Omega$
+  $
+    scl(grad f(x) - grad f(y), x - y) \
+    = scl(u(x) - u(y), x - y) >= 0
+  $
+
+#card("excondjacob", "Exercice : determination d'une fonction dont la Jacobienne est antisymetrique ou orthogonale", ("Maths.Analyse.Calcul différentiel",))
+
+Soit $f in C^2 (RR^n, RR^n)$
+
+Déterminer $f$ si
+
++ $forall x in RR^n, J(f)(x) in A_n (RR)$.
++ $forall x in RR^n, J(f)(x) in O_n (RR)$.
+
+#answer
+
+On commence par montrer deux lemmes.
+
+*Lemme 1*
+
+Soit $f in C^1 (RR^n, RR^n)$, on a équivalence entre
+
+- $exists A in M_n (RR), forall x in RR^n, J(f)(x) = A$.
+
+- $exists A in M_n (RR), b in RR^n$
+  $
+    f : x |-> A x + b
+  $
+
+*Démonstration*
+
+Un sens évident.
+
+Soit $x in RR^n$, on pose
+$
+  gamma : func([0, 1], RR^n, t, t x)
+$
+Ainsi
+$
+  f(x) - underbrace(f(0), b) &= integral_0^1 dif f (gamma(t)).gamma'(t) dif t \
+  &= integral_0^1 J(f)(gamma(t)) gamma'(t) dif t \
+  &= integral_0^1 A x dif t \
+  &= A x
+$
+
+*Lemme 2*
+
+Soit $X$ des ensembles et $phi : X^3 -> RR$.
+
+On suppose que pour tout $i, j, k in X$
+$
+  phi(i, j, k) &= phi(j, i, k) \
+  &= -phi(k, j, i)
+$
+
+Alors $phi = 0$.
+
+*Démonstration*
+
+Ça se voit.
+
+*Exercice*
+
++ On en déduit que pour tout $i, j in [|1, n|]$
+  $
+    pdv(f_i, x_j) = - pdv(f_j, x_i)
+  $
+
+  Donc pour tout $i, j, k in [|1, n|]$
+  $
+    pdv(f_i, x_k, x_i) = -pdv(f_j, x_k, x_j)
+  $
+  
+  Et par Schwarz et le lemme 2,
+  $
+    pdv(f_i, x_k, x_j) = 0
+  $
+
+  Ainsi par convexité de $RR^n$
+  $
+    pdv(f_i, x_j) : x |-> a_(i j)
+  $
+  Et
+  $
+    x |-> J(f)(x) = A
+  $
+  Et on conclut par le lemme 1.
+
++ Pour tout $i, j in [|1, n|]$
+  $
+    x |-> scl(pdv(f, x_i) (x), pdv(f, x_j) (x)) = delta_(i j)
+  $
+  Ainsi pour tout $i, j, k in [|1, n|], x in RR^n$
+  $
+    overbrace(scl(pdv(f, x_k, x_i) (x), pdv(f, x_j) (x)), phi(i, j, k)) \
+    + scl(pdv(f, x_i) (x), pdv(f, x_k, x_j)) = 0
+  $
+  Donc par Schwarz et le lemme 1
+  $
+    scl(pdv(f, x_k, x_i) (x), pdv(f, x_j) (x)) = 0
+  $
+  Or par hypothèse $(pdv(f, x_j) (x))_j$ forme une BON, donc
+  $
+    forall i, k in [|1,n|], space pdv(f, x_k, x_i) = 0
+  $
+
+  Et on conclut comme ci dessus.

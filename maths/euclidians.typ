@@ -1488,3 +1488,5 @@ Soit $E$ de dimension $n + 1$.
 - Sinon $u in "GL"(E)$, ($dim E in 2 NN$) et $"Sp"_RR (u) = emptyset$. Mais comme $E$ est un $RR$-ev, $u$ admet un plan stable, donc on peut induire et utiliser l'hypothèse de récurrence.
 
 // NOTE: Exercice M343
+
+// TODO: Correction d'exercice M??? (C'est bien une feuille)
