@@ -836,6 +836,11 @@ $
   dif f (a) = 0 \
   H(f) (a) in S_n^+ (RR)
 $
+Et comme $laplace f (a) = tr H(f)(a)$
+$
+  dif f (a) = 0 \
+  laplace f (a) >= 0
+$
 
 *Condition suffisante*
 
@@ -987,7 +992,7 @@ $
   <=> exists alpha in RR, forall r in RR_+^*, h(r) = alpha ln(r) + beta \
 $
 
-#card("exfunharmpol", "Exercice : Integrales sur un cercle d'une fonction harmonique", ("Maths.Analyse.Calcul différentiel",))
+#card("exfunharmpol", "Exercice : Intégrale sur un cercle d'une fonction harmonique", ("Maths.Analyse.Calcul différentiel",))
 
 Soit $f in C^2(Omega, RR)$ qui est harmonique sur $Omega$ et où $0 in Omega subset.eq RR^2$, et $R > 0$ tel que $B(0, R) subset.eq Omega$.
 
@@ -1297,3 +1302,332 @@ Alors $phi = 0$.
   $
 
   Et on conclut comme ci dessus.
+
+#card("fonctionhomogènes", "Fonctions homogènes", ("Maths.Analyse.Calcul différentiel",))
+
+Fonctions homogènes.
+
+#answer
+
+Soit $f in C^1 (RR^n, RR)$ et $alpha in RR$
+
+On dit que $f$ est $alpha$-homogène si (de manière équivalente)
+
++ $forall x in RR^n, forall mu > 0, f(mu x) = mu^alpha f(x)$
+
++ $forall x in RR^n, dif f (x) = alpha f(x)$
+
++ $forall x n RR^n, sum_(i = 1)^n x_i pdv(f, x_i) (x) = alpha f(x)$
+
+*Application*
+
+On considère
+$
+  (E) quad x pdv(f, x) + y pdv(f, y) = underbrace(sqrt(x^3 + y^3), h(x, y))
+$
+
+Comme $h$ est $3 / 2$-homogène, $f_p = 2 /3 h$ est solution particulière.
+
+On se ramène à resoudre l'équation homogène
+$
+  (E_0) quad x pdv(f, x) + y pdv(f ,y) = 0
+$
+Qui est $0$-homogène, puis par continuité en $0$ on conclut que $f_h$ est constante et nulle.
+
+*Démonstration*
+
+- (ii $<=>$ iii) Par définition.
+
+- (i $=>$ ii) Soit $x in RR^n$, on pose #h(1fr)
+  $
+    phi : func(RR_+^*, RR, mu, f(mu x)) in C^1(RR_+^*, RR)
+  $
+  $
+    phi' : mu |->& dif f(mu x).x \
+    =& (mu |-> mu^alpha f(x))'(mu) \
+    =& alpha mu^(alpha - 1) f(x) \
+  $
+  Et on conclut en évaluant en $1$.
+
+- (ii $=>$ i) Soit $x in RR^n$, on pose le même $phi$.
+  $
+    phi' : mu |->& 1 / mu dif f (mu x).mu x \
+    =& alpha / mu phi(mu)
+  $
+  Ainsi (avec les conditions initiales)
+  $
+    phi : mu |-> mu^alpha f(x)
+  $
+
+#card("exprinmacafunharm", "Exercice : Principe du maximum pour les fonctions harmoniques", ("Maths.Analyse.Calcul différentiel",))
+
+Soit $f in C^0 (overline(Omega), RR)$ et $C^2(Omega, RR)$ où $Omega subset.eq E$ ouvert et $overline(Omega)$ compact.
+
+On suppose que $forall a in Omega, laplace f (a) >= 0$
+
+Montrer que
+$
+  max_(overline(Omega)) f = max_(partial Omega) f
+$
+
+#answer
+
+Comme $f$ est $C^0$ sur un compact, ce maximum est bien définit.
+
+- On traite le cas où $laplace f > 0$ d'abord. #h(1fr)
+
+  Supposons par l'absurde que $f$ atteint son maximum en $x in Omega$, alors
+  $
+    laplace f (x) = tr (H (f) (x)) <= 0
+  $
+  Absurde.
+
+- Pour le cas général.
+
+  On pose pour tout $k in NN^*$
+  $
+    f_k : x |-> f(x) + 1/k norm(x)^2
+  $
+  Pour tout $x in Omega$
+  $
+    laplace f_k (x) = laplace f (x) + 1/k (sum_(k = 1)^n 2) = (2 n) /k > 0
+  $
+  Ainsi $f_k$ atteint son maximum en $x_k in partial Omega$.
+
+  Or par compacité 
+  $
+  x_phi(k) tends(k -> +oo) y in partial Omega
+  $
+
+  Donc pour $x in overline(Omega)$
+  $
+    f(x) &= f_phi(k) - 1/phi(k) norm(x)^2 \
+    &<= f_phi(k) (x_phi(k)) \
+    &= f(x_phi(k)) + 1/phi(k) norm(x_phi(k))^2 \
+    &<= f(x_phi(k)) + R^2 / phi(k) \
+    &tends(k -> +oo) f(y)
+  $
+  Où $overline(Omega) subset.eq B(0, R)$.
+
+  Ainsi pour tout $x in overline(Omega)$
+  $
+    f(x) <= f(underbrace(y, in partial Omega)) = max_overline(Omega) f
+  $
+
+#card("fonctionsholomorphes", "Fonctions holomorphes", ("Maths.Analyse.Calcul différentiel",))
+
+Fonctions holomorphes.
+
+#answer
+
+Soit $Omega$ un ouvert de $CC$ et $f : Omega -> CC$.
+
+On dit que $f$ est dérivable par rapport à la variable complexe en $z_0 in Omega$ si
+$
+  z in Omega\\{z_0} |-> (f(z) - f(z_0)) / (z - z_0)
+$
+Admet une limite finie en $z_0$.
+
+*Méthode*
+
+On pose l'homéomorphisme
+$
+  theta : func(RR^2, CC, (x, y), x + i y)
+$
+
+Et $Omega_0 = theta^(-1) (Omega)$ qui est un ouvert de $RR^2$.
+$
+  f_0 : func(Omega_0, CC, (x, y), script(f(x + i y) = f_1 (x, y) + i f_2 (x, y)))
+$
+
+Avec $f_1, f_2 : Omega_0 -> RR$.
+
+*Propriétés*
+
+Si de plus $f_0 in C^1(Omega_0 CC)$ ($CC$ vus comme un $RR$-ev de dimension $2$).
+
+On montre l'équivalence suivante
+
++ $f$ est $CC$-dérivable en $z_0$.
+
++ $J(f_0) (x_0, y_0)$ est un similitude directe.
+
++ On a
+  $
+  cases(space pdv(f_1, x) (x_0, y_0) = pdv(f_2, y) (x_0, y_0), space pdv(f_2, x) (x_0, y_0) = - pdv(f_2, y) (x_0, y_0))
+  $
+
+*Conséquence*
+
+Si $f$ est $CC$-dérivable sur $Omega$ et $f_0 in C^2 (Omega_0, CC)$, alors $f_1$ et $f_2$ sont harmoniques.
+
+*Démonstration*
+
+- (ii $<=>$ iii) Par définition.
+
+- (iii $=>$ i) Soit $h = h_1 + i h_2 in CC$ suffisament petit. #h(1fr)
+  $
+    f_0 (x_0 + h_1, y_0 + h_2) = f_0 (x_0, y_0) quad quad (*) \
+    + pdv(f_0, x) (x_0, y_0) h_1 + pdv(f_0, y) (x_0, y_0) h_2 + o(abs(h))
+  $
+
+  Or par (iii)
+  $
+    pdv(f_0, y) (x_0, y_0) = i pdv(f_0, x) (x_0, y_0)
+  $
+  Et $(*)$  devient
+  $
+    f(z_0 + h) \ = f(z_0) + pdv(f_0, x) (x_0, y_0) (h_1 + i h_2) + o(abs(h)) \
+  $
+  Et donc
+  $
+    (f(z_0 + h) - f(z_0)) / h &= pdv(f_0, x) (x_0, y_0) + 1/h o(abs(h)) \
+    &tends(h -> 0 \ h != 0) pdv(f_0, x) (x_0, y_0)
+  $
+
+- (i $=>$ iii) On suppose que
+  $
+    (f(z_0 + h) - f(z_0)) / h tends(h -> 0 \ h != 0) f'(z_0) in CC \
+    f(z_0 + h) - f(z_0) = f'(z_0) h + o(abs(h))
+  $
+  On pose $a_0 = (x_0, y_0)$.
+
+  Ainsi $(h = h_1 + i h_2)$
+  $
+    f_0 (x_0 + h_1, y_0 + h_2) \
+    = f(a_0) + (h_1 + i h_2) f'(z_0) + o(abs(h))
+  $
+  Donc
+  $
+    dif f_0 (a_0) : vec(h_1, h_2) |-> (h_1 + i h_2) f'(z_0)
+  $
+  Et
+  $
+    pdv(f_0, x) (a_0) = dif f_0 (a_0) vec(0, 1) = f'(z_0) \
+    pdv(f_0, y) (a_0) = dif f_0 (a_0) vec(1, 0) = i f'(z_0) \
+  $
+
+- Pour $laplace f_1$
+  $
+    laplace f_1 &= pdv(f_1, x, 2) + pdv(f_1, y, 2) \
+    &= pdv(,x) (pdv(f_2, y)) + pdv(,y) (- pdv(f_2, x)) = 0
+  $
+  Par Schwarz.
+
+  Et de même pour $laplace f_2$.
+
+#card("foncharmholom", "Fonctions harmoniques, holomorphes et séries entières", ("Maths.Analyse.Calcul différentiel",))
+
+Fonctions harmoniques, holomorphes et séries entières.
+
+#answer
+
+Soit $R > 0$ et $g in C^2(DD(0, R), RR)$ tel que $laplace g = 0$.
+
+On cherche à montrer que $g$ s'écrit comme la partie réelle d'une fonction developpable en série entière.
+
+- On va developper en série de Fourier. On pose #h(1fr)
+  $
+    tilde(g) (r, theta) = g(r cos theta, r sin theta) \
+    g_r : theta |-> tilde(g)(r, theta) \
+  $
+
+- Dans le cas $C^2$, la série de Fourier converge normalement et la fonction est égale à la somme de sa série de Fourier (à redémontrer).
+
+On pose pour $n in ZZ$
+$
+  h_n : r |->& c_n (g_r) \ 
+  =& 1/(2pi) integral_0^(2pi) e^(- i n theta) tilde(g)(r, theta) dif theta
+$
+
+Comme dans le cas $n = 0$ (voir intégrale sur un cercle d'une fonction harmonique), on cherche une EDL d'ordre $2$ pour $h_n$.
+
+Par le théorème $C^2$ des intégrales à paramètres (vérifier les hypothèses), $h_n$ est $C^2$ sur $Ico(0, R)$.
+
+Or comme $g$ est harmonique, pour tout $r in Ioo(0, R)$ et $theta in RR$
+$
+  pdv(tilde(g), r, 2) (r, theta) + 1 / r pdv(tilde(g), r) (r, theta) + 1/ r^2 pdv(tilde(g), theta, 2) (r, theta) = 0
+$
+
+Ainsi pour tout $r in Ioo(0, R)$
+$
+  h''_n (r) + 1/r h'_n (r) \ 
+  = 1/(2 pi r^2) integral_0^(2pi) e^(i n theta) pdv(tilde(g), theta^2) (r, theta) dif theta \
+$
+Puis on montre par 2 IPP et par $2pi$-périodicité du crochet, que
+$
+  h''_n (r) + 1/r h'_n (r) = n^2 / r^2 h_n (r)
+$
+Donc $h_n$ est solution de
+$
+  (E_n) quad y'' + 1/r y_' - n^2 / r^2 y = 0
+$
+On remarque que $y_n : r |-> r^n$ est solution et $y_(-n)$ aussi.
+
+D'où $h_n in "Vect"(y_n, y_(-n))$ et par continuité en $0$
+$
+  h_n : r |-> alpha_n r^abs(n)
+$
+
+Or comme $g$ est $C^2$ (somme de la série de Fourier)
+$
+  tilde(g)(r, theta) &= g_r (theta) = sum_(n in ZZ) C_n (g_r) e^(i n theta) \
+  &= sum_(n = in ZZ) alpha_n r^abs(n) e^(i n theta)
+$
+
+Or $g$ est à valeurs réelles, donc par liberté des $(theta |-> e^(i n theta))$, $overline(alpha_n) = alpha_(- n)$.
+
+Ainsi
+$
+  tilde(g)(r, theta) &= alpha_0 + sum_(n = 1)^(+oo) r^n (alpha_n e^(i n theta) + alpha_(-n) e^(- i n theta)) \
+  &= Re (alpha_0 + sum_(n = 1)^(+oo) (2 alpha_n) (r e^(i theta))^n)
+$
+
+*Pour une fonction holomorphe*
+
+Soit $f in C^1 (DD_CC (0, RR), CC)$ holomorphe.
+
+On lui associe (voir fonctions holomorphes)
+$
+  f_0 : func(DD_RR(0, R), CC, (x, y), f_1 (x, y) + i f_2 (x, y))
+$
+
+On a que $laplace f_1 = laplace f_2 = 0$ donc $laplace f_0 = 0$.
+
+On note 
+$
+tilde(f_0) : (r, theta) |-> f_0 (r cos theta, r sin theta)
+$
+
+Et comme avant on pose
+$
+  h_n (r) = 1/(2pi) integral_0^(2pi) e^(-i n theta) tilde(f_0) (r, theta) dif theta
+$
+
+Comme $laplace f_0 = 0$, on a la même EDL et
+$
+  h_n : r |-> alpha_n r^abs(n)
+$
+
+Ainsi
+$
+  f(r e^(i theta)) = alpha_0 + sum_(n = 1)^(+oo) (alpha_n r^n e^(i n theta) + alpha_(-n) r^n e^(-i n theta))
+$
+
+On veut montrer que $alpha_(-n) = 0$ pour tout $n in NN^*$ (pour avoir $f$ developpable en série entière).
+
+Deux méthodes
+
++ On peut exploiter l'égalité entre les dérivée partielles pour les fonctions holomorphes (voir fiche) pour trouver une autre EDL vérifié par les $(h_n)$.
+
++ On regarde #h(1fr)
+  $
+    sum_(n = 1)^(+oo) (alpha_n r^n e^(i n theta) + alpha_(-n) r^n e^(- i n theta)) \
+    = g(z) + h(z)
+  $
+  Où
+  $
+    g : z |-> sum_(n = 1)^(+oo) alpha_n z^n \
+    h : z |-> sum_(n = 1)^(+oo) alpha_(-n) z^n \
+  $
+  $f$ et $g$ sont holomorphes, donc $h$ est holomorphe.
