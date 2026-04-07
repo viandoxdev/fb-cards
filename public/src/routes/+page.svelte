@@ -136,7 +136,7 @@
 
     {#if cardOpen}
         <div
-            class="w-full min-h-1 grow-2 bg-slate-200 flex flex-col overflow-scroll"
+            class="w-full min-h-1 grow-5 bg-slate-200 flex flex-col overflow-scroll"
         >
             <div class="flex flex-col p-3 m-3 rounded-xl bg-white">
                 <div class="flex flex-row gap-4 items-center p-2">
@@ -162,6 +162,9 @@
                     {@html backSvg}
                 </div>
             </div>
+            <!-- Spacer quickfix because cards were getting cropped on mobile android -->
+            <!-- TODO: Find a better solution when I have time -->
+            <div class="w-full min-h-48"></div>
         </div>
     {/if}
 

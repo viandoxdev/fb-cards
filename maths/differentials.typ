@@ -54,7 +54,7 @@ $
 $
 La $j^e$ dérivée partielle existe si $phi_(a, e_j)$ est dérivable en $0$, ou si $g_j$ est dérivable en $a_j$, et dans ce cas
 $
-  diff_j (f) = pdv(f, x_j) (a) = phi'_(a, e_j) (a) = g'_j (a_j)
+  partial_j (f) = pdv(f, x_j) (a) = phi'_(a, e_j) (a) = g'_j (a_j)
 $
 
 *Cela ne suffit pas à généraliser la dérivabilité*
