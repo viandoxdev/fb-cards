@@ -5,6 +5,8 @@ import topLevelAwait from 'vite-plugin-top-level-await';
 import Icons from 'unplugin-icons/vite'
 import tailwindcss from '@tailwindcss/vite';
 
+process.env.PUBLIC_CACHE_BUSTER ||= 'dev';
+
 export default defineConfig({
     plugins: [sveltekit(), wasm(), topLevelAwait(), Icons({ compiler: 'svelte' }), tailwindcss()],
     build: {

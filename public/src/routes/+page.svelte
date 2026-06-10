@@ -1,32 +1,38 @@
 <script lang="ts">
     import { PUBLIC_CACHE_BUSTER } from '$env/static/public';
-    import MaterialSymbolsNoteStackOutline from "~icons/material-symbols/note-stack-outline";
     import MaterialSymbolsSettings from "~icons/material-symbols/settings";
-    import MaterialSymbolsCloseRounded from "~icons/material-symbols/close-rounded";
+    import MaterialSymbolsFolderOpenOutline from "~icons/material-symbols/folder-open-outline";
     import SearchBar from "$lib/SearchBar.svelte";
     import _cards from "$lib/cards.json";
-    import type { WorkerRequests, WorkerResponse } from "$lib/wasm-worker";
-    import WasmWorker from "$lib/wasm-worker.ts?worker";
-    import { onDestroy, onMount } from "svelte";
     import uFuzzy from "@leeoniya/ufuzzy";
     import type { Card } from "../app";
-    import Popup from "$lib/Popup.svelte";
     import Loader from "$lib/Loader.svelte";
-    import { asset } from '$app/paths';
+    import CardPreview from "$lib/CardPreview.svelte";
+    import SettingsPopup from "$lib/SettingsPopup.svelte";
+    import { compileCard } from "$lib/cardCompiler";
+    import { settings } from "$lib/settings.svelte";
+    import { pushState, replaceState } from "$app/navigation";
+    import { page } from "$app/state";
+
+    type SearchState = {
+        kind: "search";
+        query: string;
+        cardId: string | null;
+    };
 
     const cards = _cards as Card[];
 
-    let worker: Worker | undefined;
     let query = $state("");
     let settingsOpen = $state(false);
-    let fontSize = $state(20);
-    let useSansFont = $state(false);
     let pageWidth = $state(0);
     let frontSvg = $state("");
     let backSvg = $state("");
     let cardOpen = $state(false);
     let cardName = $state("");
     let isLoading = $state(false);
+
+    let activeCardId: string | null = null;
+    let renderSeq = 0;
 
     const uf = new uFuzzy();
     const haystack = cards.map((item) => item.name);
@@ -45,52 +51,59 @@
         return order.slice(0, max_results - 1).map((i) => cards[info.idx[i]]);
     });
 
-    onMount(async () => {
-        worker = new WasmWorker();
-
-        worker.onerror = (err) => {
-            console.error("Worker initialization failed:", err);
-        };
-
-        worker.onmessage = (event) => {
-            const message = event.data as WorkerResponse;
-
-            if (message.type === 'READY') {
-                worker?.postMessage({ 
-                    type: 'INIT', 
-                    payload: { zipUrl: asset('/data-bundle.zip') } 
-                });
-            }
-
-            switch (message.type) {
-                case "COMPILED_CARD":
-                    isLoading = false;
-                    cardOpen = true;
-                    frontSvg = message.payload[0];
-                    backSvg = message.payload[1];
-                    break;
-            }
-        };
-    });
-
     function renderCard(card: Card) {
+        // Snapshot the current query into the entry we're leaving so back
+        // restores it, then push a new entry representing the preview.
+        replaceState("", {
+            kind: "search",
+            query,
+            cardId: null,
+        } satisfies SearchState);
+        pushState("", {
+            kind: "search",
+            query,
+            cardId: card.id,
+        } satisfies SearchState);
+    }
+
+    async function loadCard(card: Card) {
         cardName = card.name;
         isLoading = true;
-        sendMessage({
-            type: "COMPILE_CARD",
-            payload: {
-                card: card,
-                config: { fontSize, pageWidth, useSansFont, textColor: 0 },
-            },
+        cardOpen = false;
+        const seq = ++renderSeq;
+        const [front, back] = await compileCard(card, {
+            fontSize: settings.fontSize,
+            pageWidth,
+            useSansFont: settings.useSansFont,
+            textColor: 0,
         });
+        if (seq !== renderSeq) return;
+        frontSvg = front;
+        backSvg = back;
+        isLoading = false;
+        cardOpen = true;
     }
 
-    function sendMessage(message: WorkerRequests) {
-        worker?.postMessage(message);
-    }
+    $effect(() => {
+        const state = page.state as Partial<SearchState> | undefined;
+        const isOurs = state?.kind === "search";
+        const newCardId = isOurs ? (state.cardId ?? null) : null;
 
-    onDestroy(() => {
-        if (worker) worker.terminate();
+        if (newCardId === activeCardId) return;
+        activeCardId = newCardId;
+        renderSeq++;
+
+        if (newCardId === null) {
+            cardOpen = false;
+            isLoading = false;
+            // Restore the query that was active when this entry was created.
+            if (isOurs && state.query !== undefined && state.query !== query) {
+                query = state.query;
+            }
+        } else {
+            const card = cards.find((c) => c.id === newCardId);
+            if (card) loadCard(card);
+        }
     });
 </script>
 
@@ -108,9 +121,18 @@
         </div>
 
         <div class="flex items-center gap-x-3">
+            <a
+                class="rounded-md p-2 hover:bg-slate-100 text-slate-900 cursor-pointer transition-colors"
+                href="browse"
+                aria-label="Browse cards"
+            >
+                <MaterialSymbolsFolderOpenOutline />
+            </a>
+
             <button
                 class="rounded-md p-2 hover:bg-slate-100 text-slate-900 cursor-pointer transition-colors"
                 onclick={() => (settingsOpen = true)}
+                aria-label="Settings"
             >
                 <MaterialSymbolsSettings />
             </button>
@@ -135,66 +157,15 @@
     {/if}
 
     {#if cardOpen}
-        <div
-            class="w-full min-h-1 grow-5 bg-slate-200 flex flex-col overflow-scroll"
-        >
-            <div class="flex flex-col p-3 m-3 rounded-xl bg-white">
-                <div class="flex flex-row gap-4 items-center p-2">
-                    <MaterialSymbolsNoteStackOutline class="min-w-6 min-h-6" />
-                    <span class="grow-1 text-xl font-bold text-left"
-                        >{cardName}</span
-                    >
-                    <button
-                        onclick={() => (cardOpen = false)}
-                        aria-label="Close popup"
-                    >
-                        <MaterialSymbolsCloseRounded class="min-w-6 min-h-6" />
-                    </button>
-                </div>
-                <div
-                    class="w-full flex justify-center [&>svg]:max-w-full [&>svg]:h-auto"
-                >
-                    {@html frontSvg}
-                </div>
-                <div
-                    class="w-full flex justify-center [&>svg]:max-w-full [&>svg]:h-auto"
-                >
-                    {@html backSvg}
-                </div>
-            </div>
-            <!-- Spacer quickfix because cards were getting cropped on mobile android -->
-            <!-- TODO: Find a better solution when I have time -->
-            <div class="w-full min-h-48"></div>
-        </div>
+        <CardPreview
+            {cardName}
+            {frontSvg}
+            {backSvg}
+            onclose={() => history.back()}
+        />
     {/if}
 
     {#if settingsOpen}
-        <Popup title="Settings" onclose={() => (settingsOpen = false)}>
-            <div class="flex flex-col p-1">
-                <div class="flex flex-row justify-between">
-                    <label for="font_size" class="font-bold mb-2"
-                        >Font size</label
-                    >
-                    <span> {fontSize} </span>
-                </div>
-                <input
-                    id="font_size"
-                    bind:value={fontSize}
-                    type="range"
-                    min="0"
-                    max="40"
-                />
-                <div class="flex flex-row justify-between mt-3">
-                    <label for="sans" class="font-bold mb-2"
-                        >Sans math font</label
-                    >
-                    <input
-                        id="sans"
-                        type="checkbox"
-                        bind:checked={useSansFont}
-                    />
-                </div>
-            </div>
-        </Popup>
+        <SettingsPopup onclose={() => (settingsOpen = false)} />
     {/if}
 </div>
