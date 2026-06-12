@@ -20,6 +20,7 @@ export interface Card {
     locations: string[],
     answer: string,
     question: string,
+    search_body?: string,
 }
 
 module '$lib/cards.json' {

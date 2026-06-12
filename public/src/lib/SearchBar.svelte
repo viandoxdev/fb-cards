@@ -1,25 +1,60 @@
+<script lang="ts" module>
+    import type { Card } from "../app";
+    export type SearchResult = {
+        card: Card;
+        nameRanges: number[];
+        bodySnippet?: {
+            text: string;
+            ranges: number[];
+        };
+    };
+</script>
+
 <script lang="ts">
     import MaterialSymbolsSearch from '~icons/material-symbols/search'
     import MaterialSymbolsCloseRounded from '~icons/material-symbols/close-rounded'
+    import uFuzzy from "@leeoniya/ufuzzy";
     import { fade } from "svelte/transition";
-    import { onMount } from "svelte";
-    import type { Card } from "../app";
+    import { onMount, tick } from "svelte";
 
     let expanded = $state(false);
+    let inputEl: HTMLInputElement | undefined = $state();
+    let listEl: HTMLUListElement | undefined = $state();
+    let selectedIndex = $state(0);
+
     let {
         query = $bindable(""),
         results = [],
         select = (_: Card) => {},
     }: {
         query?: string;
-        results?: Card[];
+        results?: SearchResult[];
         select?: (card: Card) => void;
     } = $props();
 
     onMount(() => {
-        // If a query was preserved (e.g. by history navigation), open the
-        // results view immediately rather than showing the placeholder.
         if (query) expanded = true;
+
+        function onGlobalKey(e: KeyboardEvent) {
+            if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+            const t = e.target as HTMLElement | null;
+            if (
+                t?.tagName === "INPUT" ||
+                t?.tagName === "TEXTAREA" ||
+                t?.isContentEditable
+            )
+                return;
+            e.preventDefault();
+            inputEl?.focus();
+        }
+        window.addEventListener("keydown", onGlobalKey);
+        return () => window.removeEventListener("keydown", onGlobalKey);
+    });
+
+    // Clamp selection whenever the result set changes.
+    $effect(() => {
+        const len = results.length;
+        if (selectedIndex >= len) selectedIndex = 0;
     });
 
     function expand() {
@@ -29,50 +64,160 @@
     function dismiss() {
         expanded = false;
         query = "";
+        selectedIndex = 0;
+    }
+
+    function scrollSelectedIntoView() {
+        tick().then(() => {
+            listEl
+                ?.querySelector<HTMLElement>(`[data-idx="${selectedIndex}"]`)
+                ?.scrollIntoView({ block: "nearest" });
+        });
+    }
+
+    function onInputKeydown(e: KeyboardEvent) {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (results.length === 0) return;
+            selectedIndex = (selectedIndex + 1) % results.length;
+            scrollSelectedIntoView();
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (results.length === 0) return;
+            selectedIndex =
+                (selectedIndex - 1 + results.length) % results.length;
+            scrollSelectedIntoView();
+        } else if (e.key === "Enter") {
+            if (results.length === 0) return;
+            e.preventDefault();
+            select(results[selectedIndex].card);
+        } else if (e.key === "Escape") {
+            e.preventDefault();
+            if (query.length > 0) {
+                query = "";
+            } else {
+                inputEl?.blur();
+                dismiss();
+            }
+        }
+    }
+
+    type Segment = { text: string; matched: boolean };
+
+    function highlight(name: string, ranges: number[]): Segment[] {
+        if (!ranges || ranges.length === 0) return [{ text: name, matched: false }];
+        return uFuzzy.highlight<Segment[], Segment>(
+            name,
+            ranges,
+            (text, matched) => ({ text, matched }),
+            [],
+            (acc, part) => {
+                acc.push(part);
+                return acc;
+            },
+        );
+    }
+
+    function breadcrumb(card: Card): string {
+        const loc = card.locations[0];
+        if (!loc) return "";
+        return loc.split(".").join(" › ");
     }
 </script>
 
-<div class="size-full flex flex-col overflow-hidden ">
-    <div class="p-3 my-3 flex flex-row items-center gap-2 transition-all {expanded ? 'mx-0' : 'rounded-xl mx-3 bg-slate-200'}">
+<div class="size-full flex flex-col overflow-hidden">
+    <div
+        class="p-3 my-3 flex flex-row items-center gap-2 transition-all {expanded
+            ? 'mx-0'
+            : 'rounded-xl mx-3 bg-slate-200'}"
+    >
         <div class="search-icon">
-            <MaterialSymbolsSearch class={expanded ? 'text-slate-700' : 'text-slate-500'} />
+            <MaterialSymbolsSearch
+                class={expanded ? "text-slate-700" : "text-slate-500"}
+            />
         </div>
 
         <input
+            bind:this={inputEl}
             class="grow-2 outline-0"
             type="text"
             placeholder="Search..."
             bind:value={query}
             onfocus={expand}
+            onkeydown={onInputKeydown}
         />
 
         {#if expanded}
-            <button
-                onclick={dismiss}
-                transition:fade={{ duration: 150 }}
-            >
+            <button onclick={dismiss} transition:fade={{ duration: 150 }}>
                 <MaterialSymbolsCloseRounded />
-
             </button>
         {/if}
     </div>
 
     {#if expanded}
-        <div class="flex flex-col overflow-scroll flex-1" transition:fade={{ duration: 200 }}>
-            <ul>
-                {#each results as result}
+        <div
+            class="flex flex-col overflow-scroll flex-1"
+            transition:fade={{ duration: 200 }}
+        >
+            <ul bind:this={listEl}>
+                {#each results as result, i (result.card.id)}
+                    {@const segments = highlight(
+                        result.card.name,
+                        result.nameRanges,
+                    )}
+                    {@const crumb = breadcrumb(result.card)}
+                    {@const snippetSegments = result.bodySnippet
+                        ? highlight(
+                              result.bodySnippet.text,
+                              result.bodySnippet.ranges,
+                          )
+                        : null}
                     <li>
-                        <button class="p-3 size-full text-left hover:bg-slate-200 transition-colors cursor-pointer"
-                            onclick={() => select(result)}>{result.name}</button
+                        <button
+                            data-idx={i}
+                            class="p-3 size-full text-left transition-colors cursor-pointer flex flex-col gap-0.5 {i ===
+                            selectedIndex
+                                ? 'bg-slate-200'
+                                : 'hover:bg-slate-100'}"
+                            onclick={() => select(result.card)}
+                            onmouseenter={() => (selectedIndex = i)}
                         >
+                            <span class="text-slate-900">
+                                {#each segments as seg}{#if seg.matched}<mark
+                                            class="bg-indigo-100 text-indigo-900 rounded-sm px-0.5"
+                                            >{seg.text}</mark
+                                        >{:else}{seg.text}{/if}{/each}
+                            </span>
+                            {#if crumb}
+                                <span
+                                    class="text-xs text-slate-500 flex items-center"
+                                >
+                                    {crumb}
+                                </span>
+                            {/if}
+                            {#if snippetSegments}
+                                <span
+                                    class="text-xs text-slate-500 italic mt-0.5 line-clamp-2"
+                                >
+                                    {#each snippetSegments as seg}{#if seg.matched}<mark
+                                                class="bg-indigo-100 text-indigo-900 rounded-sm px-0.5 not-italic"
+                                                >{seg.text}</mark
+                                            >{:else}{seg.text}{/if}{/each}
+                                </span>
+                            {/if}
+                        </button>
                     </li>
                 {:else}
-                    <li class="w-full p-3 text-center text-slate-500">No results found for "{query}"</li>
+                    <li class="w-full p-3 text-center text-slate-500">
+                        No results found for "{query}"
+                    </li>
                 {/each}
             </ul>
         </div>
     {:else}
-        <div class="flex flex-col items-center justify-center grow-1 gap-4 px-6 pb-8 text-center select-none">
+        <div
+            class="flex flex-col items-center justify-center grow-1 gap-4 px-6 pb-8 text-center select-none"
+        >
             <svg
                 viewBox="0 0 200 200"
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,6 +245,9 @@
                 </g>
             </svg>
             <p class="text-slate-500 text-lg">Search a card to get started.</p>
+            <p class="text-slate-400 text-xs">
+                Press <kbd class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-300 font-mono">/</kbd> to focus search
+            </p>
         </div>
     {/if}
 </div>
