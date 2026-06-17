@@ -2211,7 +2211,7 @@ Soit $E$ un $KK$-ev ($"car" KK = 0$) et $u, v in cal(L)(E)$ tels que $u v - v u 
   $
   Et $A B - B A = A$ car $u v - v u = u$ donc on dispose de $(e_2, dots, e_n)$ qui cotrigonalisent $A$ et $B$.
 
-#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("exunilpssitruk", "Exercice : critère de nilpotence sur la trace des puissances", ("Maths.Exercice.Réduction",))
 
 Soit $E$ un $KK$-ev de dimension $n$ ($KK subset.eq CC$).
 
@@ -2445,7 +2445,7 @@ Soit $A in M_n (KK)$ et $p in NN$.
     &= A
   $
 
-#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Algèbre.Algèbre linéaire.Réduction",))
+#card("exoquejspoumettre", "Exercice : lien entre diagonalisabilité d'un endomorphisme et son carré", ("Maths.Exercice.Réduction",))
 
 Soit $u in cal(L)(E)$ où $E$ est un $CC$-ev, montrer que
 $

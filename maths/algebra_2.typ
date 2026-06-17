@@ -124,7 +124,7 @@ De plus
 
 - Limite dans un $KK$-evn de dimension finie, qui est donc fermé.
 
-#card("exexpaneqson", "Exercice : exponentielle des matrices antisymétriques", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
+#card("exexpaneqson", "Exercice : exponentielle des matrices antisymétriques", ("Maths.Exercice.Exponentielle d'endomorphismes",))
 
 + Montrer que #h(1fr)
   $
@@ -427,7 +427,7 @@ Plusieurs cas :
     $
     Et on somme.
 
-#card("exeqkereamin", "Exercice : égalité des noyaux d'une matrice et de son exponentielle", ("Maths.Algèbre.Algèbre linéaire.Exponentielle d'endomorphismes",))
+#card("exeqkereamin", "Exercice : égalité des noyaux d'une matrice et de son exponentielle", ("Maths.Exercice.Exponentielle d'endomorphismes",))
 
 + Montrer que pour tout $A in M_n (CC)$, $ker A subset.eq ker (e^A - I_n)$. A-t-on l'égalité ?
 

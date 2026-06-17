@@ -833,7 +833,7 @@ Pour la plupart : les écrire.
     &= EE(t^X) EE(t^Y) = G_X (t) G_Y (t)
   $
 
-#card("exnbcyclper", "Exercie : nombre de cycles d'une permutation aléatoire", ("Maths.Probabilités",))
+#card("exnbcyclper", "Exercice : nombre de cycles d'une permutation aléatoire", ("Maths.Exercice.Probabilités",))
 
 Soit $sigma_n ~ cal(U) (frak(S)_n)$ et $X_n$ le nombre de cycle de $sigma_n$.
 

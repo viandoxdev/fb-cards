@@ -516,7 +516,7 @@ $
   $
   Convient.
 
-#card("exesptangonsln", "Exercice : espaces tangents du groupe orthogonale et du groupe special linéaire", ("Maths.Analyse.Calcul différentiel",))
+#card("exesptangonsln", "Exercice : espaces tangents du groupe orthogonale et du groupe special linéaire", ("Maths.Exercice.Calcul différentiel",))
 
 Donner
 
@@ -970,7 +970,7 @@ $
 
 Calcul moche, penser à utiliser la matrice Jacobienne (voir changement polaire).
 
-#card("exfunharm", "Exercice : fonctions harmoniques invariantes par rotation", ("Maths.Analyse.Calcul différentiel",))
+#card("exfunharm", "Exercice : fonctions harmoniques invariantes par rotation", ("Maths.Exercice.Calcul différentiel",))
 
 Trouver les fonctions harmoniques sur $RR^2$ tel qu'on dispose de $phi in C^2(RR, RR)$ tel que
 $
@@ -992,7 +992,7 @@ $
   <=> exists alpha in RR, forall r in RR_+^*, h(r) = alpha ln(r) + beta \
 $
 
-#card("exfunharmpol", "Exercice : Intégrale sur un cercle d'une fonction harmonique", ("Maths.Analyse.Calcul différentiel",))
+#card("exfunharmpol", "Exercice : Intégrale sur un cercle d'une fonction harmonique", ("Maths.Exercice.Calcul différentiel",))
 
 Soit $f in C^2(Omega, RR)$ qui est harmonique sur $Omega$ et où $0 in Omega subset.eq RR^2$, et $R > 0$ tel que $B(0, R) subset.eq Omega$.
 
@@ -1139,7 +1139,7 @@ Propriétés supplémentaires de convexité.
     f(b) = f(a) + dif f (a).(b - a) \ + integral_0^1 script((1 - t) (b - a)^TT H(f)(a + t (b - a)) (b - a) dif t)
   $
 
-#card("exmethnewt", "Exercice : contexte de la descente du gradient", ("Maths.Analyse.Calcul différentiel",))
+#card("exmethnewt", "Exercice : contexte de la descente du gradient", ("Maths.Exercice.Calcul différentiel",))
 
 Soit $u in S_n^(++) (RR)$ et $phi in cal(L)(E, RR)$, on pose
 $
@@ -1200,7 +1200,7 @@ $
     = scl(u(x) - u(y), x - y) >= 0
   $
 
-#card("excondjacob", "Exercice : determination d'une fonction dont la Jacobienne est antisymetrique ou orthogonale", ("Maths.Analyse.Calcul différentiel",))
+#card("excondjacob", "Exercice : determination d'une fonction dont la Jacobienne est antisymetrique ou orthogonale", ("Maths.Exercice.Calcul différentiel",))
 
 Soit $f in C^2 (RR^n, RR^n)$
 
@@ -1359,7 +1359,7 @@ Qui est $0$-homogène, puis par continuité en $0$ on conclut que $f_h$ est cons
     phi : mu |-> mu^alpha f(x)
   $
 
-#card("exprinmacafunharm", "Exercice : Principe du maximum pour les fonctions harmoniques", ("Maths.Analyse.Calcul différentiel",))
+#card("exprinmacafunharm", "Exercice : Principe du maximum pour les fonctions harmoniques", ("Maths.Exercice.Calcul différentiel",))
 
 Soit $f in C^0 (overline(Omega), RR)$ et $C^2(Omega, RR)$ où $Omega subset.eq E$ ouvert et $overline(Omega)$ compact.
 

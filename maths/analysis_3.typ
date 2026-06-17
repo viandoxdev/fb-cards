@@ -404,7 +404,7 @@ $
   S_0 = { func(delim: #none, RR, KK^n, t, e^(t A) X_0), X_0 in KK^n }
 $
 
-#card("excarmdgedl", "Exercice : caractérisation des morphismes des réels additifs vers le groupe linéaire", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("excarmdgedl", "Exercice : caractérisation des morphismes des réels additifs vers le groupe linéaire", ("Maths.Exercice.Équations différentielles linéaires",))
 
 Caractériser les morphismes de $(RR, +)$ vers $("GL"(E), compose)$
 
@@ -843,7 +843,7 @@ $
   forall t in I, space W'(t) = -p W (t)
 $
 
-#card("exsolnonborne", "Exercice : existence d'une solution non bornée de l'équation différentielle linéaire scalaire du deuxième ordre où la somme de la dérivée seconde de la fonction et du produit fonctionnel de ladite fonction avec une fonction continue fixée dont le domaine de définition est l'ensemble des réels positifs et le domaine d'arrivé est l'ensemble des réels est nulle.", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("exsolnonborne", "Exercice : existence d'une solution non bornée de l'équation différentielle linéaire scalaire du deuxième ordre où la somme de la dérivée seconde de la fonction et du produit fonctionnel de ladite fonction avec une fonction continue fixée dont le domaine de définition est l'ensemble des réels positifs et le domaine d'arrivé est l'ensemble des réels est nulle.", ("Maths.Exercice.Équations différentielles linéaires",))
 
 Soit $q in C^0 (RR_+, RR)$
 
@@ -1326,7 +1326,7 @@ $
   >=& 0
 $
 
-#card("exmqsolborngw", "Exercice : borne des solutions d'une EDL du deuxième ordre", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("exmqsolborngw", "Exercice : borne des solutions d'une EDL du deuxième ordre", ("Maths.Exercice.Équations différentielles linéaires",))
 
 On considère
 $
@@ -1433,7 +1433,7 @@ $
 
 Récurrence.
 
-#card("ex51edl", "Exercice : automorphisme de transition vers l'infini", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("ex51edl", "Exercice : automorphisme de transition vers l'infini", ("Maths.Exercice.Équations différentielles linéaires",))
 
 On pose 
 $
@@ -1499,7 +1499,7 @@ On suppose que $t |-> norm(A(t))$ est intégrable sur $RR_+$. Pour tout $x in RR
   $
   Qui admet une limite strictement positive en $+oo$.
 
-#card("excontroledll", "Exercice : controllabilité des EDLs", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("excontroledll", "Exercice : controllabilité des EDLs", ("Maths.Exercice.Équations différentielles linéaires",))
 
 Soit $t_0 > 0$, $A in M_n (RR), B in M_(n m) (RR)$
 $
@@ -1640,7 +1640,7 @@ $
 
 Qui existe ssi $1 in "Sp"(R)$.
 
-#card("exrechsolper", "Exercice : recherche de solutions périodiques pour un oscillateur harmonique avec un second membre", ("Maths.Analyse.Équations différentielles linéaires",))
+#card("exrechsolper", "Exercice : recherche de solutions périodiques pour un oscillateur harmonique avec un second membre", ("Maths.Exercice.Équations différentielles linéaires",))
 
 On considère
 $

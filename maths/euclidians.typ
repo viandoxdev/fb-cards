@@ -108,7 +108,7 @@ $
 
 // NOTE: M320 matrice d'une application bilinéaire
 
-#card("exinegdetfam", "Exercice : Inégalité sur le déterminant d'une famille de vecteurs", ("Maths.Algèbre.Algèbre linéaire.Euclidiens",))
+#card("exinegdetfam", "Exercice : Inégalité sur le déterminant d'une famille de vecteurs", ("Maths.Exercice.Euclidiens",))
 
 Soit $(E, scl(dot, dot))$ euclidien de dimension $n$, $(x_1, dots, x_n) in E^n$ une famille de vecteurs et $e$ une BON. Montrer que $abs(det_e (x_1, dots, x_n))$ est indépendant de la BON $e$ choisie et que
 $

@@ -910,7 +910,7 @@ Par comparaison série intégrale :
   R_n (alpha) = sum_(k = n + 1)^(+oo) 1/k^alpha eqv(n -> +oo) 1/(alpha - 1) dot 1 / n^(alpha - 1)
   $
 
-#card("convsertgsp", "Exercice : Nature de la série terme général sur somme partielle", ("Maths.Analyse.Séries","Maths.Exercice.Séries"))
+#card("convsertgsp", "Exercice : Nature de la série terme général sur somme partielle", ("Maths.Exercice.Séries",))
 
 Démonstration de la CNS sur $alpha$ de la convergence de la série $sum u_n / S_n^alpha$ (avec $sum u_n$ divergente).
 
