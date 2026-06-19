@@ -309,7 +309,7 @@ On fixe des bases de $E$, $F$ et $G$, et on se ramène au cas $E = RR^p, F = RR^
 
 Si $g$ est différentiable en $a$ et $f$ est différentiable en $b = g(a)$, alors $f compose g$ est différentiable en $a$ et pour tout $j in [|1, p|]$ et $i in [|1, q|]$
 $
-  pdv(f compose g, x_j) = sum_(k = 1)^n pdv(f_i, u_k) (g(a)) pdv(g, x_j) (a)
+  pdv(f compose g, x_j) = sum_(k = 1)^n pdv(f_i, u_k) (g(a)) pdv(g_k, x_j) (a)
 $
 
 *Exemple : changement polaire*
