@@ -963,7 +963,7 @@ Et $f in C^2 (Omega, RR), tilde(f) = f compose phi$.
 Alors
 $
   laplace f (r cos theta, r sin theta) \
-  = pdv(tilde(f), r, 2) (r, theta) + 1 /r pdv(tilde(f), theta, r) (r, theta) + 1/r^2 pdv(tilde(f), theta, 2) (r, theta)
+  = pdv(tilde(f), r, 2) (r, theta) + 1 /r pdv(tilde(f), r) (r, theta) + 1/r^2 pdv(tilde(f), theta, 2) (r, theta)
 $
 
 *Démonstration*
