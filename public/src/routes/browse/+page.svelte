@@ -259,7 +259,9 @@
                 {/each}
             </div>
 
-            <div class="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-2">
+            <div
+                class="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 pt-2 pb-24 sm:pb-6"
+            >
                 {#if sortedDirs.length === 0 && sortedCards.length === 0}
                     <div class="text-center text-slate-500 py-8">
                         Nothing here.

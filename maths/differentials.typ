@@ -622,9 +622,9 @@ On note la ligne de niveau
 $
   Gamma = f^(-1) {alpha}
 $
-Pour tout $a in Gamma$, si $dif f(a) != 0$, alors 
+Pour tout $x in Gamma$, si $dif f(x) != 0$, alors 
 $
-T_a Gamma = ker dif f (A)
+T_x Gamma = ker dif f (x)
 $
 
 // TODO: Démonstration M394-395
